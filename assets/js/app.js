@@ -122,12 +122,39 @@ const TR = {
 
 let lang = localStorage.getItem('dl_lang') || 'ru';
 
-/* ── Профили ── */
-const PROFILES = {
-  kirill: { name: 'Кирилл', avatar: '👨', key: 'dl_prog_kirill',  coinKey: 'dl_coins_kirill',  shopKey: 'dl_shop_kirill',  usedKey: 'dl_used_kirill',  petKey: 'dl_pet_kirill',  petImg: 'assets/images/pet1.png' },
-  albina: { name: 'Альбина', avatar: '👩', key: 'dl_prog_albina', coinKey: 'dl_coins_albina', shopKey: 'dl_shop_albina', usedKey: 'dl_used_albina', petKey: 'dl_pet_albina', petImg: 'assets/images/Pet2.png' },
-};
-let activeProfile = localStorage.getItem('dl_profile') || 'kirill';
+/* ── Аккаунты (динамические) ── */
+let activeProfile = null; // id активного аккаунта
+
+const PET_IMGS = ['assets/images/Pet1.png', 'assets/images/Pet2.png'];
+
+function getAccounts() {
+  try { return JSON.parse(localStorage.getItem('dl_accounts') || '[]'); } catch { return []; }
+}
+function saveAccounts(arr) { localStorage.setItem('dl_accounts', JSON.stringify(arr)); }
+function createAccount(name) {
+  const accounts = getAccounts();
+  const id = 'u' + Date.now().toString(36);
+  accounts.push({ id, name });
+  saveAccounts(accounts);
+  return id;
+}
+
+/* Возвращает объект активного профиля */
+function P() {
+  const accounts = getAccounts();
+  const idx = accounts.findIndex(a => a.id === activeProfile);
+  const acc = idx >= 0 ? accounts[idx] : { name: '?' };
+  return {
+    name:    acc.name || '?',
+    avatar:  (acc.name || '?')[0].toUpperCase(),
+    key:     `dl_prog_${activeProfile}`,
+    coinKey: `dl_coins_${activeProfile}`,
+    shopKey: `dl_shop_${activeProfile}`,
+    usedKey: `dl_used_${activeProfile}`,
+    petKey:  `dl_pet_${activeProfile}`,
+    petImg:  PET_IMGS[Math.max(0, idx) % PET_IMGS.length],
+  };
+}
 
 /* ── Магазин ── */
 const SHOP_ITEMS = [
@@ -167,7 +194,7 @@ function applyLang() {
   document.documentElement.lang = lang;
   // greeting depends on both lang and profile
   if ($('user-hi')) {
-    const prof = PROFILES[activeProfile];
+    const prof = P();
     if (prof) $('user-hi').textContent = lang==='ru'
       ? `Привет, ${prof.name}!` : `Hi, ${prof.name}!`;
   }
@@ -231,10 +258,10 @@ function buildWordCache() {
 /* ══════════════════════════════════════════════════════════════
    ПРОГРЕСС
 ══════════════════════════════════════════════════════════════ */
-function loadProg()   { try { return JSON.parse(localStorage.getItem(PROFILES[activeProfile].key)||'{}'); } catch { return {}; } }
-function saveProg(p)  { localStorage.setItem(PROFILES[activeProfile].key, JSON.stringify(p)); }
-function loadCoins()  { return parseInt(localStorage.getItem(PROFILES[activeProfile].coinKey)||'0',10); }
-function saveCoins(n) { localStorage.setItem(PROFILES[activeProfile].coinKey, String(Math.max(0,n))); }
+function loadProg()   { try { return JSON.parse(localStorage.getItem(P().key)||'{}'); } catch { return {}; } }
+function saveProg(p)  { localStorage.setItem(P().key, JSON.stringify(p)); }
+function loadCoins()  { return parseInt(localStorage.getItem(P().coinKey)||'0',10); }
+function saveCoins(n) { localStorage.setItem(P().coinKey, String(Math.max(0,n))); }
 
 /* Евро — общий баланс для обоих профилей */
 const EURO_KEY      = 'dl_euros_shared';
@@ -246,12 +273,12 @@ function updateEuroDisplay() {
   if ($('euro-balance-header')) $('euro-balance-header').textContent = v;
   if ($('euro-balance-shop'))   $('euro-balance-shop').textContent   = v;
 }
-function loadShop()   { try { return JSON.parse(localStorage.getItem(PROFILES[activeProfile].shopKey)||'[]'); } catch { return []; } }
-function saveShop(a)  { localStorage.setItem(PROFILES[activeProfile].shopKey, JSON.stringify(a)); }
-function loadUsed()   { try { return JSON.parse(localStorage.getItem(PROFILES[activeProfile].usedKey)||'[]'); } catch { return []; } }
-function saveUsed(a)  { localStorage.setItem(PROFILES[activeProfile].usedKey, JSON.stringify(a)); }
-function loadPet()    { try { return JSON.parse(localStorage.getItem(PROFILES[activeProfile].petKey)||'{"clicks":0,"hatched":false}'); } catch { return {clicks:0,hatched:false}; } }
-function savePet(p)   { localStorage.setItem(PROFILES[activeProfile].petKey, JSON.stringify(p)); }
+function loadShop()   { try { return JSON.parse(localStorage.getItem(P().shopKey)||'[]'); } catch { return []; } }
+function saveShop(a)  { localStorage.setItem(P().shopKey, JSON.stringify(a)); }
+function loadUsed()   { try { return JSON.parse(localStorage.getItem(P().usedKey)||'[]'); } catch { return []; } }
+function saveUsed(a)  { localStorage.setItem(P().usedKey, JSON.stringify(a)); }
+function loadPet()    { try { return JSON.parse(localStorage.getItem(P().petKey)||'{"clicks":0,"hatched":false}'); } catch { return {clicks:0,hatched:false}; } }
+function savePet(p)   { localStorage.setItem(P().petKey, JSON.stringify(p)); }
 
 function getAvailableQty(itemId) {
   const bought = loadShop().filter(e=>e.id===itemId).reduce((s,e)=>s+(e.qty||1), 0);
@@ -290,7 +317,7 @@ function updateCoinDisplay() {
 
 /* одноразовое начисление монет за уже пройденный прогресс */
 function migrateCoins() {
-  const flagKey = PROFILES[activeProfile].coinKey + '_v3';
+  const flagKey = P().coinKey + '_v3';
   if (localStorage.getItem(flagKey)) return;
   // сбрасываем монеты и пересчитываем по новым правилам:
   // +1 за каждый правильный ответ (p[id].total), +5 за каждое правило грамматики
@@ -399,33 +426,43 @@ function renderHome() {
 }
 
 function updateProfileUI() {
-  const prof = PROFILES[activeProfile];
-  // header avatar
+  const prof = P();
+  const accounts = getAccounts();
   if ($('header-avatar')) $('header-avatar').textContent = prof.avatar;
-  // user card avatar
   if ($('user-avatar-lg')) $('user-avatar-lg').textContent = prof.avatar;
-  // greeting
   if ($('user-hi')) $('user-hi').textContent = lang==='ru'
     ? `Привет, ${prof.name}!` : `Hi, ${prof.name}!`;
-  // dropdown checkmarks
-  Object.keys(PROFILES).forEach(id => {
-    const el = $('po-check-'+id);
-    if (el) el.classList.toggle('hidden', id !== activeProfile);
-  });
-  // highlight active profile option
-  document.querySelectorAll('.profile-option').forEach(opt =>
-    opt.classList.toggle('active', opt.dataset.profile === activeProfile));
+  // перерисовываем дропдаун динамически
+  const dd = $('profile-dropdown');
+  if (dd) {
+    dd.innerHTML = accounts.map(acc => `
+      <div class="profile-option ${acc.id === activeProfile ? 'active' : ''}" data-profile="${acc.id}">
+        <span class="po-avatar po-av-letter">${acc.name[0]?.toUpperCase() || '?'}</span>
+        <span class="po-name">${acc.name}</span>
+        ${acc.id === activeProfile ? '<span class="po-check">✓</span>' : ''}
+      </div>
+    `).join('') + `
+      <div class="profile-option po-new-acc" id="po-new-acc">
+        <span class="po-avatar">＋</span>
+        <span class="po-name">${lang==='ru' ? 'Новый аккаунт' : 'Neues Konto'}</span>
+      </div>`;
+    dd.querySelectorAll('[data-profile]').forEach(opt =>
+      opt.addEventListener('click', e => { e.stopPropagation(); switchProfile(opt.dataset.profile); }));
+    const newBtn = $('po-new-acc');
+    if (newBtn) newBtn.addEventListener('click', e => { e.stopPropagation(); dd.classList.add('hidden'); showRegOverlay(true); });
+  }
 }
 
 function switchProfile(id) {
-  if (!PROFILES[id]) return;
+  if (!getAccounts().find(a => a.id === id)) return;
   activeProfile = id;
-  localStorage.setItem('dl_profile', id);
+  localStorage.setItem('dl_active_id', id);
   S.cart = {};
   $('profile-dropdown').classList.add('hidden');
   updateProfileUI();
   migrateCoins();
   updateCoinDisplay();
+  updateEuroDisplay();
   rerenderCurrent();
   refreshOverallBar();
 }
@@ -749,7 +786,7 @@ function renderProfile() {
         </div>`;
       }).filter(Boolean).join('')
     : `<div style="color:var(--text-muted);font-size:13px">${t('no_words_yet')}</div>`;
-  const prof = PROFILES[activeProfile];
+  const prof = P();
   $('profile-layout').innerHTML=`
     <div>
       <div class="profile-card">
@@ -757,9 +794,9 @@ function renderProfile() {
         <div class="profile-card-info">
           <div class="profile-card-name">${prof.name}</div>
           <div class="profile-card-switch">
-            ${Object.entries(PROFILES).map(([id,pr])=>`
-              <button class="profile-switch-btn ${id===activeProfile?'active':''}" data-pid="${id}">
-                ${pr.avatar} ${pr.name}
+            ${getAccounts().map(acc=>`
+              <button class="profile-switch-btn ${acc.id===activeProfile?'active':''}" data-pid="${acc.id}">
+                ${acc.name[0]?.toUpperCase()||'?'} ${acc.name}
               </button>`).join('')}
           </div>
         </div>
@@ -1074,7 +1111,7 @@ function onEggClick() {
 }
 
 function showPetCharacter(area, animate) {
-  const prof = PROFILES[activeProfile];
+  const prof = P();
   const greeting = lang==='ru'
     ? `Питомец ${prof.name} вылупился! 🎉`
     : `Das Haustier von ${prof.name} ist geschlüpft! 🎉`;
@@ -1164,10 +1201,9 @@ function initEvents() {
   /* Переключатель профиля */
   $('header-avatar').addEventListener('click', e => {
     e.stopPropagation();
+    updateProfileUI(); // перерисовываем свежий список аккаунтов
     $('profile-dropdown').classList.toggle('hidden');
   });
-  document.querySelectorAll('.profile-option').forEach(opt =>
-    opt.addEventListener('click', e => { e.stopPropagation(); switchProfile(opt.dataset.profile); }));
   document.addEventListener('click', () => {
     const dd = $('profile-dropdown');
     if (dd) dd.classList.add('hidden');
@@ -1192,6 +1228,78 @@ function initEvents() {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   РЕГИСТРАЦИЯ / ВХОД
+══════════════════════════════════════════════════════════════ */
+function showRegOverlay(addingNew) {
+  renderRegCard(addingNew);
+  $('reg-overlay').classList.remove('hidden');
+}
+function hideRegOverlay() { $('reg-overlay').classList.add('hidden'); }
+
+function renderRegCard(addingNew) {
+  const accounts = getAccounts();
+  const card = $('reg-card');
+  const logo = `<div class="reg-logo"><div class="logo-badge">D</div><span class="logo-text">DEUTSCHLERNEN</span></div>`;
+
+  if (accounts.length > 0 && !addingNew) {
+    /* ── Выбор существующего аккаунта ── */
+    card.innerHTML = `
+      ${logo}
+      <h2 class="reg-title">Выбери аккаунт</h2>
+      <div class="reg-accounts">
+        ${accounts.map(acc => `
+          <div class="reg-acc-card" data-id="${acc.id}">
+            <div class="reg-acc-avatar">${acc.name[0]?.toUpperCase() || '?'}</div>
+            <div class="reg-acc-name">${acc.name}</div>
+          </div>`).join('')}
+      </div>
+      <div class="reg-divider"><span>или</span></div>
+      <button class="reg-new-btn" id="reg-new-btn">＋ Создать новый аккаунт</button>`;
+
+    card.querySelectorAll('.reg-acc-card').forEach(el =>
+      el.addEventListener('click', () => {
+        activeProfile = el.dataset.id;
+        localStorage.setItem('dl_active_id', activeProfile);
+        hideRegOverlay();
+        if (S.screen === 'home') { updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
+        else startApp();
+      }));
+    $('reg-new-btn').addEventListener('click', () => renderRegCard(true));
+
+  } else {
+    /* ── Создание нового аккаунта ── */
+    const hasBack = accounts.length > 0;
+    card.innerHTML = `
+      ${logo}
+      <div class="reg-flag">🇩🇪</div>
+      <h1 class="reg-title">${hasBack ? 'Новый аккаунт' : 'Добро пожаловать!'}</h1>
+      <p class="reg-sub">${hasBack ? 'Введи никнейм для нового аккаунта' : 'Введи свой никнейм чтобы начать учить немецкий'}</p>
+      <input type="text" id="reg-input" class="reg-input" placeholder="Твой никнейм..." maxlength="20" autocomplete="off" spellcheck="false">
+      ${hasBack ? '<button class="reg-back-btn" id="reg-back-btn">← Назад</button>' : ''}
+      <button class="btn-primary reg-btn" id="reg-btn">Начать →</button>`;
+
+    const input = $('reg-input');
+    const backBtn = $('reg-back-btn');
+
+    function submitNew() {
+      const name = input.value.trim();
+      if (!name) { input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); return; }
+      const id = createAccount(name);
+      activeProfile = id;
+      localStorage.setItem('dl_active_id', id);
+      hideRegOverlay();
+      if (hasBack) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
+      else startApp();
+    }
+
+    $('reg-btn').addEventListener('click', submitNew);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submitNew(); });
+    if (backBtn) backBtn.addEventListener('click', () => renderRegCard(false));
+    setTimeout(() => input.focus(), 50);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
    СТАРТ
 ══════════════════════════════════════════════════════════════ */
 function startApp() {
@@ -1204,38 +1312,15 @@ function startApp() {
   show('home');
 }
 
-function initRegistration() {
-  const overlay = document.getElementById('reg-overlay');
-  const input   = document.getElementById('reg-input');
-  const btn     = document.getElementById('reg-btn');
-
-  function submit() {
-    const name = input.value.trim();
-    if (!name) {
-      input.classList.remove('shake');
-      void input.offsetWidth; // reflow
-      input.classList.add('shake');
-      return;
-    }
-    localStorage.setItem('dl_user_name', name);
-    PROFILES.kirill.name = name;
-    overlay.classList.add('hidden');
-    startApp();
-  }
-
-  btn.addEventListener('click', submit);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
-  input.focus();
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
   buildWordCache();
-  const savedName = localStorage.getItem('dl_user_name');
-  if (savedName) {
-    PROFILES.kirill.name = savedName;
-    document.getElementById('reg-overlay').classList.add('hidden');
+  const accounts  = getAccounts();
+  const savedId   = localStorage.getItem('dl_active_id');
+  if (accounts.length > 0 && savedId && accounts.find(a => a.id === savedId)) {
+    activeProfile = savedId;
+    hideRegOverlay();
     startApp();
   } else {
-    initRegistration();
+    showRegOverlay(false);
   }
 });

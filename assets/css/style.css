@@ -32,50 +32,109 @@
 }
 
 /* ══════════════════════════════════════════════════
-   REGISTRATION OVERLAY
+   REGISTRATION / LOGIN OVERLAY
 ══════════════════════════════════════════════════ */
 .reg-overlay {
   position: fixed; inset: 0; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #0d0f1a 0%, #1a1230 50%, #0d0f1a 100%);
+  backdrop-filter: blur(12px) brightness(.55);
+  background: rgba(8, 9, 18, .45);
 }
 .reg-overlay.hidden { display: none; }
 
 .reg-card {
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(168,139,250,.2);
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  background: rgba(19, 22, 37, .92);
+  border: 1px solid rgba(168,139,250,.25);
   border-radius: 24px;
-  padding: 48px 40px;
-  width: 100%; max-width: 420px;
-  box-shadow: 0 24px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(168,139,250,.08);
-  animation: reg-appear .5s cubic-bezier(.22,1,.36,1) both;
+  padding: 44px 40px;
+  width: 100%; max-width: 440px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(168,139,250,.1);
+  animation: reg-appear .45s cubic-bezier(.22,1,.36,1) both;
 }
 @keyframes reg-appear {
-  from { opacity:0; transform: translateY(32px) scale(.96); }
+  from { opacity:0; transform: translateY(28px) scale(.95); }
   to   { opacity:1; transform: none; }
 }
 
-.reg-logo {
-  display: flex; align-items: center; gap: 10px;
-}
-.reg-emoji { font-size: 52px; line-height: 1; }
+.reg-logo { display: flex; align-items: center; gap: 10px; }
+.reg-flag  { font-size: 48px; line-height: 1; }
+
 .reg-title {
-  font-size: 28px; font-weight: 800;
-  color: #fff; text-align: center;
+  font-size: 26px; font-weight: 800;
+  color: #fff; text-align: center; margin: 0;
 }
 .reg-sub {
-  font-size: 15px; color: var(--text-muted);
+  font-size: 14px; color: var(--text-muted);
   text-align: center; line-height: 1.5;
-  max-width: 280px;
+  max-width: 300px; margin: 0;
 }
+
+/* Сетка карточек аккаунтов */
+.reg-accounts {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: center; width: 100%;
+}
+.reg-acc-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(168,139,250,.2);
+  border-radius: 16px;
+  padding: 20px 24px;
+  min-width: 110px; cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.reg-acc-card:hover {
+  border-color: var(--accent);
+  background: rgba(168,139,250,.12);
+  transform: translateY(-2px);
+}
+.reg-acc-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 800; color: #fff;
+}
+.reg-acc-name {
+  font-size: 14px; font-weight: 600; color: #fff;
+  text-align: center;
+}
+
+/* Разделитель "или" */
+.reg-divider {
+  width: 100%; display: flex; align-items: center; gap: 12px;
+  color: var(--text-muted); font-size: 13px;
+}
+.reg-divider::before, .reg-divider::after {
+  content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.1);
+}
+
+/* Кнопки */
+.reg-new-btn {
+  background: transparent;
+  border: 1.5px dashed rgba(168,139,250,.4);
+  border-radius: 12px;
+  color: var(--accent);
+  font-size: 14px; font-weight: 600;
+  padding: 10px 24px; cursor: pointer; width: 100%;
+  transition: border-color .2s, background .2s;
+}
+.reg-new-btn:hover { border-color: var(--accent); background: rgba(168,139,250,.08); }
+
+.reg-back-btn {
+  background: transparent; border: none;
+  color: var(--text-muted); font-size: 13px; cursor: pointer;
+  align-self: flex-start; padding: 0;
+}
+.reg-back-btn:hover { color: var(--text); }
+
 .reg-input {
   width: 100%;
   background: rgba(255,255,255,.07);
   border: 1.5px solid rgba(168,139,250,.25);
   border-radius: 12px;
   padding: 14px 18px;
-  font-size: 17px; color: #fff;
+  font-size: 16px; color: #fff;
   outline: none;
   transition: border-color .2s, box-shadow .2s;
 }
@@ -95,11 +154,16 @@
   60%      { transform: translateX(-5px); }
   80%      { transform: translateX(5px); }
 }
-.reg-btn {
-  width: 100%; padding: 14px;
-  font-size: 16px; font-weight: 700;
-  border-radius: 12px;
+.reg-btn { width: 100%; padding: 13px; font-size: 15px; font-weight: 700; border-radius: 12px; }
+
+/* Буква-аватар в дропдауне */
+.po-av-letter {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #fff;
 }
+.po-new-acc { border-top: 1px solid rgba(255,255,255,.07); margin-top: 4px; }
 
 body {
   background: var(--bg);

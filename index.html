@@ -8,19 +8,9 @@
 </head>
 <body>
 
-  <!-- REGISTRATION OVERLAY -->
+  <!-- REGISTRATION / LOGIN OVERLAY -->
   <div id="reg-overlay" class="reg-overlay">
-    <div class="reg-card">
-      <div class="reg-logo">
-        <div class="logo-badge">D</div>
-        <span class="logo-text">DEUTSCHLERNEN</span>
-      </div>
-      <div class="reg-emoji">🇩🇪</div>
-      <h1 class="reg-title">Добро пожаловать!</h1>
-      <p class="reg-sub">Введи свой никнейм чтобы начать учить немецкий</p>
-      <input type="text" id="reg-input" class="reg-input" placeholder="Твой никнейм..." maxlength="20" autocomplete="off" spellcheck="false">
-      <button class="btn-primary reg-btn" id="reg-btn">Начать обучение →</button>
-    </div>
+    <div class="reg-card" id="reg-card"></div>
   </div>
 
   <!-- HEADER -->
@@ -49,18 +39,7 @@
       <button class="notif-btn">🔔</button>
       <div class="profile-switcher" id="profile-switcher">
         <div class="avatar" id="header-avatar">👨</div>
-        <div class="profile-dropdown hidden" id="profile-dropdown">
-          <div class="profile-option" data-profile="kirill">
-            <span class="po-avatar">👨</span>
-            <span class="po-name">Кирилл</span>
-            <span class="po-check" id="po-check-kirill">✓</span>
-          </div>
-          <div class="profile-option" data-profile="albina">
-            <span class="po-avatar">👩</span>
-            <span class="po-name">Альбина</span>
-            <span class="po-check hidden" id="po-check-albina">✓</span>
-          </div>
-        </div>
+        <div class="profile-dropdown hidden" id="profile-dropdown"></div>
       </div>
     </div>
   </header>
