@@ -1315,8 +1315,34 @@ function startApp() {
   show('home');
 }
 
+/* Переносит данные со старых хардкодных ключей на новые динамические */
+function migrateOldProfileData() {
+  if (localStorage.getItem('_prof_mig_done')) return;
+  const OLD = {
+    'Кирилл': { prog:'dl_prog_kirill', coins:'dl_coins_kirill', shop:'dl_shop_kirill', used:'dl_used_kirill', pet:'dl_pet_kirill' },
+    'Альбина': { prog:'dl_prog_albina', coins:'dl_coins_albina', shop:'dl_shop_albina', used:'dl_used_albina', pet:'dl_pet_albina' },
+  };
+  getAccounts().forEach(acc => {
+    const old = OLD[acc.name];
+    if (!old) return;
+    const map = [
+      [old.prog,  `dl_prog_${acc.id}`],
+      [old.coins, `dl_coins_${acc.id}`],
+      [old.shop,  `dl_shop_${acc.id}`],
+      [old.used,  `dl_used_${acc.id}`],
+      [old.pet,   `dl_pet_${acc.id}`],
+    ];
+    map.forEach(([oldKey, newKey]) => {
+      const val = localStorage.getItem(oldKey);
+      if (val !== null && localStorage.getItem(newKey) === null)
+        localStorage.setItem(newKey, val);
+    });
+  });
+  localStorage.setItem('_prof_mig_done', '1');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   buildWordCache();
-  // всегда показываем оверлей — выбор аккаунта или создание
+  migrateOldProfileData();
   showRegOverlay(false);
 });
