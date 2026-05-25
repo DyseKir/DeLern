@@ -1,0 +1,107 @@
+{
+  "level": "A1",
+  "rules": [
+    {
+      "id": "a1_gr_001",
+      "title": "Der bestimmte Artikel",
+      "subtitle": "Определённый артикль",
+      "explanation": "Im Deutschen hat jedes Substantiv einen festen Artikel: der (мужской род), die (женский род), das (средний род). Den Artikel musst du immer zusammen mit dem Wort lernen!",
+      "examples": [
+        { "de": "der Mann – der Hund – der Tisch", "ru": "мужской род (der)" },
+        { "de": "die Frau – die Katze – die Lampe", "ru": "женский род (die)" },
+        { "de": "das Kind – das Buch – das Haus", "ru": "средний род (das)" }
+      ],
+      "tip": "Lerne jedes Wort IMMER mit Artikel: nicht 'Tisch', sondern 'der Tisch'!"
+    },
+    {
+      "id": "a1_gr_002",
+      "title": "Der unbestimmte Artikel",
+      "subtitle": "Неопределённый артикль",
+      "explanation": "Der unbestimmte Artikel zeigt, dass etwas zum ersten Mal erwähnt wird. Er lautet: ein (м.р.), eine (ж.р.), ein (ср.р.). Die Verneinung ist kein/keine/kein.",
+      "examples": [
+        { "de": "Das ist ein Mann.", "ru": "Это (какой-то) мужчина." },
+        { "de": "Ich habe eine Katze.", "ru": "У меня есть кошка." },
+        { "de": "Das ist ein Kind.", "ru": "Это ребёнок." },
+        { "de": "Das ist kein Hund.", "ru": "Это не собака." }
+      ],
+      "tip": "ein/eine/ein = неопределённый | kein/keine/kein = отрицание"
+    },
+    {
+      "id": "a1_gr_003",
+      "title": "Plural der Nomen",
+      "subtitle": "Множественное число существительных",
+      "explanation": "Im Plural gibt es keinen Artikel-Unterschied – es heißt immer 'die'. Die Pluralformen sind unterschiedlich und müssen auswendig gelernt werden.",
+      "examples": [
+        { "de": "der Hund → die Hunde", "ru": "собака → собаки (+e)" },
+        { "de": "die Frau → die Frauen", "ru": "женщина → женщины (+en)" },
+        { "de": "das Kind → die Kinder", "ru": "ребёнок → дети (+er)" },
+        { "de": "der Apfel → die Äpfel", "ru": "яблоко → яблоки (Umlaut)" }
+      ],
+      "tip": "Im Plural = immer 'die'! Pluralform immer beim Wort mitlernen."
+    },
+    {
+      "id": "a1_gr_004",
+      "title": "Verb: sein (Präsens)",
+      "subtitle": "Глагол 'sein' (быть) — настоящее время",
+      "explanation": "Das Verb 'sein' ist eines der wichtigsten deutschen Verben. Es ist unregelmäßig. Ich bin / du bist / er-sie-es ist / wir sind / ihr seid / sie-Sie sind.",
+      "examples": [
+        { "de": "Ich bin Student.", "ru": "Я студент." },
+        { "de": "Du bist nett.", "ru": "Ты милый/милая." },
+        { "de": "Er ist Arzt.", "ru": "Он врач." },
+        { "de": "Wir sind Freunde.", "ru": "Мы друзья." }
+      ],
+      "tip": "ich bin | du bist | er/sie/es ist | wir sind | ihr seid | sie/Sie sind"
+    },
+    {
+      "id": "a1_gr_005",
+      "title": "Verb: haben (Präsens)",
+      "subtitle": "Глагол 'haben' (иметь) — настоящее время",
+      "explanation": "Das Verb 'haben' ist ebenfalls unregelmäßig. Es wird als Vollverb (У меня есть) und als Hilfsverb im Perfekt verwendet. Ich habe / du hast / er-sie-es hat / wir haben / ihr habt / sie-Sie haben.",
+      "examples": [
+        { "de": "Ich habe ein Auto.", "ru": "У меня есть машина." },
+        { "de": "Du hast Zeit.", "ru": "У тебя есть время." },
+        { "de": "Er hat Hunger.", "ru": "Он голоден." },
+        { "de": "Wir haben eine Katze.", "ru": "У нас есть кошка." }
+      ],
+      "tip": "ich habe | du hast | er/sie/es hat | wir haben | ihr habt | sie/Sie haben"
+    },
+    {
+      "id": "a1_gr_006",
+      "title": "Satzstellung: Verb auf Position 2",
+      "subtitle": "Порядок слов: глагол всегда на 2-м месте",
+      "explanation": "Im deutschen Hauptsatz steht das konjugierte Verb IMMER auf Position 2, egal was am Satzanfang steht. Wenn ein anderes Satzglied vorne steht, tauschen Verb und Subjekt die Plätze (Inversion).",
+      "examples": [
+        { "de": "Ich lerne Deutsch.", "ru": "Я учу немецкий. (норм. порядок)" },
+        { "de": "Heute lerne ich Deutsch.", "ru": "Сегодня я учу немецкий. (инверсия)" },
+        { "de": "Morgen fahre ich nach Berlin.", "ru": "Завтра я еду в Берлин." }
+      ],
+      "tip": "Verb = всегда 2-я позиция! Перед глаголом может быть только ОДНО слово."
+    },
+    {
+      "id": "a1_gr_007",
+      "title": "Personalpronomen",
+      "subtitle": "Личные местоимения",
+      "explanation": "Die Personalpronomen ersetzen Substantive. Im Deutschen: ich, du, er/sie/es, wir, ihr, sie/Sie.",
+      "examples": [
+        { "de": "Ich komme aus Russland.", "ru": "Я из России." },
+        { "de": "Er trinkt Kaffee. Sie trinkt Tee.", "ru": "Он пьёт кофе. Она пьёт чай." },
+        { "de": "Wir lernen Deutsch.", "ru": "Мы учим немецкий." },
+        { "de": "Sie sind Studenten. (Plural)", "ru": "Они студенты." }
+      ],
+      "tip": "Sie (с большой буквы) = вежливое обращение (Вы), sie = она/они"
+    },
+    {
+      "id": "a1_gr_008",
+      "title": "Verneinung mit nicht",
+      "subtitle": "Отрицание с 'nicht'",
+      "explanation": "'Nicht' verneint Verben, Adjektive und bestimmte Nominalgruppen. 'Kein/keine/kein' verneint Substantive mit unbestimmtem Artikel oder ohne Artikel.",
+      "examples": [
+        { "de": "Ich trinke nicht.", "ru": "Я не пью. (глагол)" },
+        { "de": "Das ist nicht gut.", "ru": "Это нехорошо. (прилагательное)" },
+        { "de": "Ich habe kein Auto.", "ru": "У меня нет машины. (сущ.)" },
+        { "de": "Das ist keine Katze.", "ru": "Это не кошка." }
+      ],
+      "tip": "nicht = не (для глаголов/прилагательных) | kein/keine = нет (для существительных)"
+    }
+  ]
+}

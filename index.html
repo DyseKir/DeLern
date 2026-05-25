@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeutschLernen – Deutsch lernen mit System</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-badge">D</div>
+      <span class="logo-text">DEUTSCHLERNEN</span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link active" data-screen="home"       data-i18n="nav_home">Startseite</a>
+      <a href="#" class="nav-link"        data-screen="lektionen"  data-i18n="nav_lektionen">Lektionen</a>
+      <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
+      <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
+      <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
+      <a href="#" class="nav-link"        data-screen="shop"       data-i18n="nav_shop">Shop</a>
+      <a href="#" class="nav-link"        data-screen="pet"        data-i18n="nav_pet">Питомец</a>
+    </nav>
+    <div class="header-right">
+      <div class="coin-display" id="coin-display-header">
+        <span class="coin-icon"></span><span id="coin-balance-header">0</span>
+      </div>
+      <div class="euro-display" id="euro-display-header">
+        <span class="euro-icon">€</span><span id="euro-balance-header">4000</span>
+      </div>
+      <button class="lang-btn" id="lang-btn" title="Sprache / Язык">DE</button>
+      <button class="notif-btn">🔔</button>
+      <div class="profile-switcher" id="profile-switcher">
+        <div class="avatar" id="header-avatar">👨</div>
+        <div class="profile-dropdown hidden" id="profile-dropdown">
+          <div class="profile-option" data-profile="kirill">
+            <span class="po-avatar">👨</span>
+            <span class="po-name">Кирилл</span>
+            <span class="po-check" id="po-check-kirill">✓</span>
+          </div>
+          <div class="profile-option" data-profile="albina">
+            <span class="po-avatar">👩</span>
+            <span class="po-name">Альбина</span>
+            <span class="po-check hidden" id="po-check-albina">✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <div id="screen-home" class="screen active">
+      <div class="home-layout">
+
+        <div class="home-left">
+          <h1 class="home-title">
+            <span data-i18n="home_title">Willkommen bei DeutschLernen!</span><br>
+            <span data-i18n="home_subtitle">Wähle deinen Kurs aus.</span>
+          </h1>
+
+          <h2 class="section-title" data-i18n="sec_level">Dein Lernniveau wählen</h2>
+          <div class="level-grid">
+            <div class="level-card selected" data-level="A1">
+              <span class="level-emoji">🏁</span>
+              <div class="level-code">A1</div>
+              <div class="level-name" data-i18n="a1_name">(Anfänger)</div>
+              <div class="level-sub"  data-i18n="a1_sub">Active</div>
+            </div>
+            <div class="level-card" data-level="A2">
+              <span class="level-emoji">📝</span>
+              <div class="level-code">A2</div>
+              <div class="level-name" data-i18n="a2_name">(Grundlagen)</div>
+              <div class="level-sub"  data-i18n="a2_sub">Lernolagen</div>
+            </div>
+            <div class="level-card" data-level="B1">
+              <span class="level-emoji">📊</span>
+              <div class="level-code">B1</div>
+              <div class="level-name" data-i18n="b1_name">(Fortgeschritten)</div>
+              <div class="level-sub"  data-i18n="b1_sub">Lerngeschritten</div>
+            </div>
+            <div class="level-card" data-level="B2">
+              <span class="level-emoji">🎓</span>
+              <div class="level-code">B2</div>
+              <div class="level-name" data-i18n="b2_name">(Selbstständig)</div>
+              <div class="level-sub"  data-i18n="b2_sub">Lerne Selbstständig</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-right">
+
+          <div class="user-card">
+            <div class="user-greeting">
+              <div>
+                <div class="user-hi" id="user-hi">Привет!</div>
+                <div class="user-progress-row">
+                  <span class="user-level-badge" id="current-level-badge">A1</span>
+                  <div class="progress-track">
+                    <div class="progress-fill" id="overall-progress" style="width:0%"></div>
+                  </div>
+                  <span class="progress-pct" id="overall-pct">0%</span>
+                </div>
+              </div>
+              <div class="avatar-lg" id="user-avatar-lg">👨</div>
+            </div>
+          </div>
+
+          <h2 class="section-title" data-i18n="sec_area">Lernbereich wählen</h2>
+          <div class="area-grid">
+            <div class="area-card grammar-card">
+              <div class="area-icons">📖 💡</div>
+              <div class="area-title" data-i18n="area_grammar_title">GRAMMATIK &amp; REGELN</div>
+              <div class="area-desc"  data-i18n="area_grammar_desc">Lerne grundlegende Grammatikthemen und Regeln.</div>
+            </div>
+            <div class="area-card vocab-card">
+              <div class="area-icons">📘 🎯</div>
+              <div class="area-title" data-i18n="area_vocab_title">WORTSCHATZ &amp; THEMEN</div>
+              <div class="area-desc"  data-i18n="area_vocab_desc">Lerne Vokabeln nach Kategorien mit Artikeln.</div>
+            </div>
+          </div>
+
+          <h2 class="section-title" id="themes-title">A1 Themen wählen</h2>
+          <div class="categories-grid" id="categories-preview"></div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- CARDS -->
+    <div id="screen-cards" class="screen">
+      <div class="cards-header">
+        <button class="back-btn" id="cards-back" data-i18n="btn_back">← Zurück</button>
+        <div class="cards-info">
+          <span class="cards-title"      id="cards-category-title"></span>
+          <span class="cards-level-badge" id="cards-level-badge">A1</span>
+        </div>
+        <div class="session-stats">
+          <span class="stat-correct" id="stat-correct">✓ 0</span>
+          <span class="stat-wrong"   id="stat-wrong">✗ 0</span>
+        </div>
+      </div>
+
+      <div class="cards-progress-bar">
+        <div class="cards-progress-fill" id="cards-progress-fill" style="width:0%"></div>
+      </div>
+
+      <div class="card-container">
+
+        <div class="flashcard" id="flashcard">
+          <div class="card-counter"    id="card-counter">1 / 10</div>
+          <div class="card-emoji"      id="card-emoji">🍎</div>
+          <div class="card-word"       id="card-word">Apfel</div>
+          <div class="card-translation" id="card-translation">яблоко</div>
+          <div class="article-buttons">
+            <button class="art-btn der" data-article="der">der</button>
+            <button class="art-btn die" data-article="die">die</button>
+            <button class="art-btn das" data-article="das">das</button>
+          </div>
+          <div class="card-feedback" id="card-feedback"></div>
+          <div class="card-streak"   id="card-streak"></div>
+          <div class="card-hint"     id="card-hint" data-i18n="hint_keys">Tipp: Tasten [1] der &nbsp; [2] die &nbsp; [3] das</div>
+        </div>
+
+        <div class="session-complete hidden" id="session-complete">
+          <div class="complete-emoji">🎉</div>
+          <h2 data-i18n="session_done">Sitzung abgeschlossen!</h2>
+          <div class="complete-stats">
+            <div class="cs-stat correct">
+              <div class="cs-num" id="cs-correct">0</div>
+              <div class="cs-label" data-i18n="label_correct">Richtig</div>
+            </div>
+            <div class="cs-stat wrong">
+              <div class="cs-num" id="cs-wrong">0</div>
+              <div class="cs-label" data-i18n="label_wrong">Falsch</div>
+            </div>
+            <div class="cs-stat learned">
+              <div class="cs-num" id="cs-learned">0</div>
+              <div class="cs-label" data-i18n="label_learned">Neu gelernt</div>
+            </div>
+          </div>
+          <div class="complete-buttons">
+            <button class="btn-primary"   id="btn-repeat"  data-i18n="btn_repeat">Wiederholen</button>
+            <button class="btn-secondary" id="btn-home"    data-i18n="btn_home_ov">Zurück zur Übersicht</button>
+          </div>
+        </div>
+
+        <div class="all-learned hidden" id="all-learned">
+          <div class="complete-emoji">⭐</div>
+          <h2 data-i18n="all_learned_h">Alle Wörter gelernt!</h2>
+          <p data-i18n="all_learned_p">Du hast alle Wörter dieser Kategorie gemeistert.</p>
+          <div class="complete-buttons">
+            <button class="btn-primary"   id="btn-review-learned" data-i18n="btn_review_all">Alle wiederholen</button>
+            <button class="btn-secondary" id="btn-home2"          data-i18n="btn_home_ov">Zurück zur Übersicht</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WORTSCHATZ -->
+    <div id="screen-wortschatz" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="vocab-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title"><span data-i18n="vocab_screen_h">Wortschatz</span></h2>
+      </div>
+      <div class="vocab-level-filter" id="vocab-level-filter"></div>
+      <div class="categories-full-grid" id="vocab-categories-grid"></div>
+      <div class="vocab-learned-section" id="vocab-learned-section"></div>
+    </div>
+
+    <!-- SHOP -->
+    <div id="screen-shop" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="shop-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title" data-i18n="nav_shop">Shop</h2>
+        <div class="euro-display shop-euro-display"><span class="euro-icon">€</span> <span id="euro-balance-shop">4000</span></div>
+      </div>
+      <div class="shop-layout">
+        <div class="shop-items-wrap">
+          <div class="shop-items-grid" id="shop-items-grid"></div>
+        </div>
+        <div class="shop-cart-panel" id="shop-cart-panel">
+          <div class="cart-header">
+            <span data-i18n="cart_title">Корзина</span>
+            <span class="cart-count-badge" id="cart-count-badge">0</span>
+          </div>
+          <div class="cart-items-list" id="cart-items-list">
+            <div class="cart-empty" data-i18n="cart_empty">Пусто</div>
+          </div>
+          <div class="cart-footer">
+            <div class="cart-total-row">
+              <span data-i18n="cart_total">Итого:</span>
+              <span class="cart-total-val"><span class="coin-icon"></span> <strong id="cart-total-val">0</strong></span>
+            </div>
+            <button class="btn-primary cart-buy-btn" id="cart-buy-btn" disabled data-i18n="cart_buy">Купить!</button>
+          </div>
+        </div>
+      </div>
+      <div class="shop-purchased-wrap" id="shop-purchased-wrap"></div>
+    </div>
+
+    <!-- GRAMMATIK -->
+    <div id="screen-grammatik" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="grammar-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title"><span data-i18n="grammar_screen_h">Grammatik &amp; Regeln</span> – <span id="grammar-level-title">A1</span></h2>
+      </div>
+      <div class="grammar-grid" id="grammar-grid"></div>
+    </div>
+
+    <!-- PROFIL -->
+    <div id="screen-profil" class="screen">
+      <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
+      <div id="profile-layout" class="profile-layout"></div>
+    </div>
+
+    <!-- PET -->
+    <div id="screen-pet" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="pet-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title" data-i18n="nav_pet">Питомец</h2>
+      </div>
+      <div class="pet-area" id="pet-area"></div>
+    </div>
+
+  </main>
+
+  <!-- GRAMMAR MODAL -->
+  <div class="modal-overlay hidden" id="grammar-modal">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-content"></div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="modal-needs-review" data-i18n="modal_needs_review">Nochmal lernen</button>
+        <button class="btn-primary"   id="modal-mark-done"    data-i18n="modal_mark_done">Verstanden ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG-фильтр для удаления белого/светлого фона у PNG-картинок -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="remove-white" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+        <feColorMatrix type="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                 -1 -1 -1 0 3"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="db/words.js"></script>
+  <script src="db/grammar.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

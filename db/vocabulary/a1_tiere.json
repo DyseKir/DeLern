@@ -1,0 +1,18 @@
+{
+  "level": "A1",
+  "category": "tiere",
+  "categoryName": "Tiere",
+  "emoji": "🦌",
+  "words": [
+    { "id": "a1_tiere_001", "article": "der", "word": "Hund", "translation": "собака", "image": "hund.jpg" },
+    { "id": "a1_tiere_002", "article": "die", "word": "Katze", "translation": "кошка", "image": "katze.jpg" },
+    { "id": "a1_tiere_003", "article": "der", "word": "Vogel", "translation": "птица", "image": "vogel.jpg" },
+    { "id": "a1_tiere_004", "article": "das", "word": "Pferd", "translation": "лошадь", "image": "pferd.jpg" },
+    { "id": "a1_tiere_005", "article": "die", "word": "Kuh", "translation": "корова", "image": "kuh.jpg" },
+    { "id": "a1_tiere_006", "article": "der", "word": "Fisch", "translation": "рыба", "image": "fisch.jpg" },
+    { "id": "a1_tiere_007", "article": "der", "word": "Bär", "translation": "медведь", "image": "baer.jpg" },
+    { "id": "a1_tiere_008", "article": "der", "word": "Löwe", "translation": "лев", "image": "loewe.jpg" },
+    { "id": "a1_tiere_009", "article": "der", "word": "Elefant", "translation": "слон", "image": "elefant.jpg" },
+    { "id": "a1_tiere_010", "article": "die", "word": "Schlange", "translation": "змея", "image": "schlange.jpg" }
+  ]
+}

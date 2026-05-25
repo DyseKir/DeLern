@@ -1,0 +1,16 @@
+{
+  "level": "A1",
+  "category": "einkaufen",
+  "categoryName": "Einkaufen",
+  "emoji": "🛒",
+  "words": [
+    { "id": "a1_einkaufen_001", "article": "der", "word": "Supermarkt", "translation": "супермаркет", "image": "supermarkt.jpg" },
+    { "id": "a1_einkaufen_002", "article": "das", "word": "Geld", "translation": "деньги", "image": "geld.jpg" },
+    { "id": "a1_einkaufen_003", "article": "die", "word": "Tasche", "translation": "сумка", "image": "tasche.jpg" },
+    { "id": "a1_einkaufen_004", "article": "der", "word": "Preis", "translation": "цена", "image": "preis.jpg" },
+    { "id": "a1_einkaufen_005", "article": "die", "word": "Kasse", "translation": "касса", "image": "kasse.jpg" },
+    { "id": "a1_einkaufen_006", "article": "das", "word": "Geschäft", "translation": "магазин", "image": "geschaeft.jpg" },
+    { "id": "a1_einkaufen_007", "article": "der", "word": "Markt", "translation": "рынок", "image": "markt.jpg" },
+    { "id": "a1_einkaufen_008", "article": "die", "word": "Rechnung", "translation": "счёт", "image": "rechnung.jpg" }
+  ]
+}

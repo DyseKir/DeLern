@@ -1,0 +1,5 @@
+{
+  "rules": [
+    { "file": "a1_rules.json", "level": "A1" }
+  ]
+}

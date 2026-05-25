@@ -1,0 +1,18 @@
+{
+  "level": "A1",
+  "category": "transport",
+  "categoryName": "Transport",
+  "emoji": "🚌",
+  "words": [
+    { "id": "a1_transport_001", "article": "das", "word": "Auto", "translation": "машина", "image": "auto.jpg" },
+    { "id": "a1_transport_002", "article": "der", "word": "Bus", "translation": "автобус", "image": "bus.jpg" },
+    { "id": "a1_transport_003", "article": "das", "word": "Fahrrad", "translation": "велосипед", "image": "fahrrad.jpg" },
+    { "id": "a1_transport_004", "article": "der", "word": "Zug", "translation": "поезд", "image": "zug.jpg" },
+    { "id": "a1_transport_005", "article": "das", "word": "Flugzeug", "translation": "самолёт", "image": "flugzeug.jpg" },
+    { "id": "a1_transport_006", "article": "das", "word": "Schiff", "translation": "корабль", "image": "schiff.jpg" },
+    { "id": "a1_transport_007", "article": "die", "word": "U-Bahn", "translation": "метро", "image": "ubahn.jpg" },
+    { "id": "a1_transport_008", "article": "das", "word": "Motorrad", "translation": "мотоцикл", "image": "motorrad.jpg" },
+    { "id": "a1_transport_009", "article": "die", "word": "Straßenbahn", "translation": "трамвай", "image": "strassenbahn.jpg" },
+    { "id": "a1_transport_010", "article": "das", "word": "Taxi", "translation": "такси", "image": "taxi.jpg" }
+  ]
+}

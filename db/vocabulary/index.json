@@ -1,0 +1,8 @@
+{
+  "categories": [
+    { "file": "a1_essen.json",      "level": "A1", "name": "Essen & Trinken", "emoji": "🍔" },
+    { "file": "a1_transport.json",  "level": "A1", "name": "Transport",       "emoji": "🚌" },
+    { "file": "a1_tiere.json",      "level": "A1", "name": "Tiere",           "emoji": "🦌" },
+    { "file": "a1_einkaufen.json",  "level": "A1", "name": "Einkaufen",       "emoji": "🛒" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "level": "A1",
+  "category": "essen",
+  "categoryName": "Essen & Trinken",
+  "emoji": "🍔",
+  "words": [
+    { "id": "a1_essen_001", "article": "der", "word": "Apfel", "translation": "яблоко", "image": "apfel.jpg" },
+    { "id": "a1_essen_002", "article": "die", "word": "Milch", "translation": "молоко", "image": "milch.jpg" },
+    { "id": "a1_essen_003", "article": "das", "word": "Brot", "translation": "хлеб", "image": "brot.jpg" },
+    { "id": "a1_essen_004", "article": "die", "word": "Pizza", "translation": "пицца", "image": "pizza.jpg" },
+    { "id": "a1_essen_005", "article": "der", "word": "Käse", "translation": "сыр", "image": "kaese.jpg" },
+    { "id": "a1_essen_006", "article": "das", "word": "Wasser", "translation": "вода", "image": "wasser.jpg" },
+    { "id": "a1_essen_007", "article": "der", "word": "Tee", "translation": "чай", "image": "tee.jpg" },
+    { "id": "a1_essen_008", "article": "der", "word": "Kaffee", "translation": "кофе", "image": "kaffee.jpg" },
+    { "id": "a1_essen_009", "article": "die", "word": "Butter", "translation": "масло", "image": "butter.jpg" },
+    { "id": "a1_essen_010", "article": "das", "word": "Ei", "translation": "яйцо", "image": "ei.jpg" },
+    { "id": "a1_essen_011", "article": "die", "word": "Banane", "translation": "банан", "image": "banane.jpg" },
+    { "id": "a1_essen_012", "article": "die", "word": "Tomate", "translation": "помидор", "image": "tomate.jpg" },
+    { "id": "a1_essen_013", "article": "die", "word": "Kartoffel", "translation": "картофель", "image": "kartoffel.jpg" },
+    { "id": "a1_essen_014", "article": "das", "word": "Fleisch", "translation": "мясо", "image": "fleisch.jpg" },
+    { "id": "a1_essen_015", "article": "der", "word": "Saft", "translation": "сок", "image": "saft.jpg" }
+  ]
+}
