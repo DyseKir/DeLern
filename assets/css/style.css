@@ -31,6 +31,76 @@
   --sh: 0 4px 28px rgba(0,0,0,.45);
 }
 
+/* ══════════════════════════════════════════════════
+   REGISTRATION OVERLAY
+══════════════════════════════════════════════════ */
+.reg-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #0d0f1a 0%, #1a1230 50%, #0d0f1a 100%);
+}
+.reg-overlay.hidden { display: none; }
+
+.reg-card {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(168,139,250,.2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 100%; max-width: 420px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(168,139,250,.08);
+  animation: reg-appear .5s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes reg-appear {
+  from { opacity:0; transform: translateY(32px) scale(.96); }
+  to   { opacity:1; transform: none; }
+}
+
+.reg-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.reg-emoji { font-size: 52px; line-height: 1; }
+.reg-title {
+  font-size: 28px; font-weight: 800;
+  color: #fff; text-align: center;
+}
+.reg-sub {
+  font-size: 15px; color: var(--text-muted);
+  text-align: center; line-height: 1.5;
+  max-width: 280px;
+}
+.reg-input {
+  width: 100%;
+  background: rgba(255,255,255,.07);
+  border: 1.5px solid rgba(168,139,250,.25);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 17px; color: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.reg-input::placeholder { color: rgba(255,255,255,.3); }
+.reg-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(168,139,250,.15);
+}
+.reg-input.shake {
+  animation: reg-shake .35s ease;
+  border-color: #f87171;
+}
+@keyframes reg-shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-5px); }
+  80%      { transform: translateX(5px); }
+}
+.reg-btn {
+  width: 100%; padding: 14px;
+  font-size: 16px; font-weight: 700;
+  border-radius: 12px;
+}
+
 body {
   background: var(--bg);
   color: var(--text);

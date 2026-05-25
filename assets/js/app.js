@@ -1194,8 +1194,7 @@ function initEvents() {
 /* ══════════════════════════════════════════════════════════════
    СТАРТ
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded',()=>{
-  buildWordCache();
+function startApp() {
   initEvents();
   applyLang();
   migrateCoins();
@@ -1203,4 +1202,40 @@ document.addEventListener('DOMContentLoaded',()=>{
   updateEuroDisplay();
   renderHome();
   show('home');
+}
+
+function initRegistration() {
+  const overlay = document.getElementById('reg-overlay');
+  const input   = document.getElementById('reg-input');
+  const btn     = document.getElementById('reg-btn');
+
+  function submit() {
+    const name = input.value.trim();
+    if (!name) {
+      input.classList.remove('shake');
+      void input.offsetWidth; // reflow
+      input.classList.add('shake');
+      return;
+    }
+    localStorage.setItem('dl_user_name', name);
+    PROFILES.kirill.name = name;
+    overlay.classList.add('hidden');
+    startApp();
+  }
+
+  btn.addEventListener('click', submit);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+  input.focus();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildWordCache();
+  const savedName = localStorage.getItem('dl_user_name');
+  if (savedName) {
+    PROFILES.kirill.name = savedName;
+    document.getElementById('reg-overlay').classList.add('hidden');
+    startApp();
+  } else {
+    initRegistration();
+  }
 });
