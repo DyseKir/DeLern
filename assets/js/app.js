@@ -1261,7 +1261,7 @@ function renderRegCard(addingNew) {
         activeProfile = el.dataset.id;
         localStorage.setItem('dl_active_id', activeProfile);
         hideRegOverlay();
-        if (S.screen === 'home') { updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
+        if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
         else startApp();
       }));
     $('reg-new-btn').addEventListener('click', () => renderRegCard(true));
@@ -1288,7 +1288,7 @@ function renderRegCard(addingNew) {
       activeProfile = id;
       localStorage.setItem('dl_active_id', id);
       hideRegOverlay();
-      if (hasBack) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
+      if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
       else startApp();
     }
 
@@ -1302,7 +1302,10 @@ function renderRegCard(addingNew) {
 /* ══════════════════════════════════════════════════════════════
    СТАРТ
 ══════════════════════════════════════════════════════════════ */
+let appStarted = false;
+
 function startApp() {
+  appStarted = true;
   initEvents();
   applyLang();
   migrateCoins();
@@ -1314,13 +1317,6 @@ function startApp() {
 
 document.addEventListener('DOMContentLoaded', () => {
   buildWordCache();
-  const accounts  = getAccounts();
-  const savedId   = localStorage.getItem('dl_active_id');
-  if (accounts.length > 0 && savedId && accounts.find(a => a.id === savedId)) {
-    activeProfile = savedId;
-    hideRegOverlay();
-    startApp();
-  } else {
-    showRegOverlay(false);
-  }
+  // всегда показываем оверлей — выбор аккаунта или создание
+  showRegOverlay(false);
 });
