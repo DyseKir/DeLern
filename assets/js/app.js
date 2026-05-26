@@ -1155,11 +1155,27 @@ function findCat(lvl,c) { return (window.VOCAB_DATA||[]).find(c2=>c2.level===lvl
 /* ══════════════════════════════════════════════════════════════
    СОБЫТИЯ
 ══════════════════════════════════════════════════════════════ */
+function closeMobileNav() {
+  const nav = $('main-nav');
+  const btn = $('burger-btn');
+  nav.classList.remove('mobile-open');
+  btn.classList.remove('open');
+}
+
 function initEvents() {
+  /* Бургер-меню */
+  $('burger-btn').addEventListener('click', ()=>{
+    const nav = $('main-nav');
+    const btn = $('burger-btn');
+    const isOpen = nav.classList.toggle('mobile-open');
+    btn.classList.toggle('open', isOpen);
+  });
+
   /* Навигация */
   document.querySelectorAll('.nav-link').forEach(link=>{
     link.addEventListener('click',e=>{
       e.preventDefault();
+      closeMobileNav();
       const s=link.dataset.screen;
       if(s==='home'||s==='lektionen'){show('home');renderHome();}
       else if(s==='wortschatz') renderVocabScreen();
