@@ -254,6 +254,34 @@ const EMOJI = {
   Zahnbürste:'🪥', Kamm:'💈', Haarbürste:'💇', Toilettenpapier:'🧻',
   Creme:'🧴', Rasierer:'🪒', Pflaster:'🩹', Deo:'🧴', Shampoo:'🧴',
   Zahnpasta:'🪥', Seife:'🧼', Duschgel:'🚿',
+  // Sich vorstellen
+  Name:'🪪', Alter:'🎂', Beruf:'💼', Wohnort:'📍', Nationalität:'🌍',
+  Sprache:'🗣️', Adresse:'🏠', Hobby:'🎯', Telefonnummer:'📱',
+  'E-Mail':'📧', Stadt:'🏙️', Vorname:'🪪', Nachname:'🪪', Formular:'📋',
+  // Körper
+  Kopf:'🧠', Haar:'💇', Auge:'👁️', Nase:'👃', Mund:'👄', Ohr:'👂',
+  Arm:'💪', Bein:'🦵', Hand:'✋', Fuß:'🦶', Bauch:'🫃', Rücken:'🔙',
+  Schulter:'🤷', Finger:'☝️', Hals:'🦒', Gesicht:'😊', Knie:'🦵', Zahn:'🦷',
+  // Kleidung
+  Hemd:'👔', Hose:'👖', Jacke:'🧥', Schuh:'👟', Socke:'🧦',
+  Pullover:'🧶', Rock:'👗', Kleid:'👗', Mantel:'🧥', Mütze:'🧢',
+  Bluse:'👚', 'T-Shirt':'👕', Jeans:'👖', Schal:'🧣', Handschuh:'🧤',
+  // Berufe
+  Arzt:'👨‍⚕️', Lehrer:'👨‍🏫', Student:'🎓', Koch:'👨‍🍳', Bäcker:'🥐',
+  Ingenieur:'⚙️', Krankenschwester:'👩‍⚕️', Polizist:'👮', Verkäufer:'🛍️',
+  Fahrer:'🚗', Kellner:'🍽️', Mechaniker:'🔧', Friseur:'💈', Sekretär:'📝',
+  // Fragewörter
+  Wer:'❓', Was:'❓', Wo:'📍', Woher:'🗺️', Wohin:'➡️', Wie:'🤔',
+  'Wie alt':'🎂', 'Wie viel':'🔢', Wann:'🕐', Warum:'🤷', Welcher:'☝️',
+  Welche:'☝️', 'Was für':'🔍', 'Wie lange':'⏱️',
+  // Farben
+  rot:'🔴', blau:'🔵', grün:'🟢', gelb:'🟡', schwarz:'⚫', weiß:'⚪',
+  grau:'🩶', orange:'🟠', lila:'🟣', rosa:'🌸', braun:'🟤', bunt:'🌈',
+  // Zahlen
+  null:'0️⃣', eins:'1️⃣', zwei:'2️⃣', drei:'3️⃣', vier:'4️⃣', fünf:'5️⃣',
+  sechs:'6️⃣', sieben:'7️⃣', acht:'8️⃣', neun:'9️⃣', zehn:'🔟',
+  elf:'1️⃣1️⃣', zwölf:'1️⃣2️⃣', zwanzig:'2️⃣0️⃣', dreißig:'3️⃣0️⃣',
+  vierzig:'4️⃣0️⃣', fünfzig:'5️⃣0️⃣', hundert:'💯', tausend:'🔢',
 };
 
 /* ══════════════════════════════════════════════════════════════
@@ -643,6 +671,10 @@ function drawCard() {
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
   $('card-streak').textContent = wp.status==='learned' ? t('already_lrn') : wp.streak>0 ? t('streak_txt',wp.streak) : '';
   const fb=$('card-feedback'); fb.textContent=''; fb.className='card-feedback';
+  const noArt = !card.article || card.article === '-';
+  $('article-buttons').classList.toggle('hidden', noArt);
+  $('weiter-btn').classList.toggle('hidden', !noArt);
+  $('card-hint').classList.toggle('hidden', noArt);
   document.querySelectorAll('.art-btn').forEach(b=>{b.disabled=false;b.classList.remove('show-correct','show-wrong','highlight-correct');});
   $('flashcard').classList.remove('flash-correct','flash-wrong');
   S.busy=false;
@@ -650,14 +682,17 @@ function drawCard() {
 
 function handleArticle(article) {
   if (S.busy) return; S.busy=true;
-  const card=S.cards[S.cardIdx], correct=article===card.article, wp=updateWP(card.id,correct);
+  const card=S.cards[S.cardIdx];
+  const noArt = !card.article || card.article === '-';
+  const correct = noArt || article===card.article;
+  const wp=updateWP(card.id,correct);
   const fb=$('card-feedback'), se=$('card-streak');
   document.querySelectorAll('.art-btn').forEach(b=>b.disabled=true);
   if (correct) {
     S.sessionCorrect++;
     $('flashcard').classList.add('flash-correct');
     fb.textContent=t('fb_correct'); fb.className='card-feedback ok';
-    document.querySelector(`.art-btn[data-article="${article}"]`).classList.add('show-correct');
+    if (!noArt) document.querySelector(`.art-btn[data-article="${article}"]`).classList.add('show-correct');
     addCoins(1, $('flashcard'));
     if (wp.status==='learned'){
       se.textContent=t('streak_done',LEARNED_THRESHOLD); S.sessionLearned++;
@@ -1193,6 +1228,9 @@ function initEvents() {
   /* Разделы */
   document.querySelector('.grammar-card').addEventListener('click',renderGrammarScreen);
   document.querySelector('.vocab-card').addEventListener('click',  renderVocabScreen);
+
+  /* Weiter (для слов без артикля) */
+  $('weiter-btn').addEventListener('click', ()=>{ if(!S.busy) handleArticle('-'); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>

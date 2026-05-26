@@ -610,6 +610,8 @@ body {
 
 /* Article buttons */
 .article-buttons { display: flex; gap: 12px; justify-content: center; margin-bottom: 18px; }
+.weiter-btn { color: var(--accent); border-color: rgba(168,139,250,.4); margin-bottom: 18px; }
+.weiter-btn:hover:not(:disabled) { background: rgba(168,139,250,.15); border-color: var(--accent); }
 
 .art-btn {
   padding: 11px 26px;

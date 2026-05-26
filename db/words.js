@@ -286,4 +286,174 @@ window.VOCAB_DATA = [
     ]
   },
 
+
+  // ════════════════════════════════
+  //  A1 — SICH VORSTELLEN (Знакомство)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "vorstellen", name: "Sich vorstellen", name_ru: "Знакомство", emoji: "🤝",
+    words: [
+      { id: "a1_vs_001", article: "der", word: "Name",           translation: "имя / фамилия"         },
+      { id: "a1_vs_002", article: "das", word: "Alter",          translation: "возраст"               },
+      { id: "a1_vs_003", article: "der", word: "Beruf",          translation: "профессия"             },
+      { id: "a1_vs_004", article: "der", word: "Wohnort",        translation: "место проживания"      },
+      { id: "a1_vs_005", article: "die", word: "Nationalität",   translation: "национальность"        },
+      { id: "a1_vs_006", article: "die", word: "Sprache",        translation: "язык"                  },
+      { id: "a1_vs_007", article: "die", word: "Adresse",        translation: "адрес"                 },
+      { id: "a1_vs_008", article: "das", word: "Hobby",          translation: "хобби"                 },
+      { id: "a1_vs_009", article: "die", word: "Telefonnummer",  translation: "номер телефона"        },
+      { id: "a1_vs_010", article: "die", word: "E-Mail",         translation: "электронная почта"     },
+      { id: "a1_vs_011", article: "die", word: "Stadt",          translation: "город"                 },
+      { id: "a1_vs_012", article: "der", word: "Vorname",        translation: "имя (личное)"          },
+      { id: "a1_vs_013", article: "der", word: "Nachname",       translation: "фамилия"               },
+      { id: "a1_vs_014", article: "das", word: "Formular",       translation: "анкета / бланк"        },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — KÖRPER (Тело)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "koerper", name: "Körper & Aussehen", name_ru: "Тело и внешность", emoji: "🧍",
+    words: [
+      { id: "a1_kb_001", article: "der", word: "Kopf",     translation: "голова"              },
+      { id: "a1_kb_002", article: "das", word: "Haar",     translation: "волосы"              },
+      { id: "a1_kb_003", article: "das", word: "Auge",     translation: "глаз"                },
+      { id: "a1_kb_004", article: "die", word: "Nase",     translation: "нос"                 },
+      { id: "a1_kb_005", article: "der", word: "Mund",     translation: "рот"                 },
+      { id: "a1_kb_006", article: "das", word: "Ohr",      translation: "ухо"                 },
+      { id: "a1_kb_007", article: "der", word: "Arm",      translation: "рука (до плеча)"     },
+      { id: "a1_kb_008", article: "das", word: "Bein",     translation: "нога"                },
+      { id: "a1_kb_009", article: "die", word: "Hand",     translation: "рука (кисть)"        },
+      { id: "a1_kb_010", article: "der", word: "Fuß",      translation: "ступня / нога"       },
+      { id: "a1_kb_011", article: "der", word: "Bauch",    translation: "живот"               },
+      { id: "a1_kb_012", article: "der", word: "Rücken",   translation: "спина"               },
+      { id: "a1_kb_013", article: "die", word: "Schulter", translation: "плечо"               },
+      { id: "a1_kb_014", article: "der", word: "Finger",   translation: "палец"               },
+      { id: "a1_kb_015", article: "der", word: "Hals",     translation: "шея / горло"         },
+      { id: "a1_kb_016", article: "das", word: "Gesicht",  translation: "лицо"                },
+      { id: "a1_kb_017", article: "das", word: "Knie",     translation: "колено"              },
+      { id: "a1_kb_018", article: "der", word: "Zahn",     translation: "зуб"                 },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — KLEIDUNG (Одежда)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "kleidung", name: "Kleidung", name_ru: "Одежда", emoji: "👕",
+    words: [
+      { id: "a1_kl_001", article: "das", word: "Hemd",        translation: "рубашка"              },
+      { id: "a1_kl_002", article: "die", word: "Hose",        translation: "брюки"                },
+      { id: "a1_kl_003", article: "die", word: "Jacke",       translation: "куртка / жакет"       },
+      { id: "a1_kl_004", article: "der", word: "Schuh",       translation: "ботинок / туфля"      },
+      { id: "a1_kl_005", article: "die", word: "Socke",       translation: "носок"                },
+      { id: "a1_kl_006", article: "der", word: "Pullover",    translation: "свитер"               },
+      { id: "a1_kl_007", article: "der", word: "Rock",        translation: "юбка"                 },
+      { id: "a1_kl_008", article: "das", word: "Kleid",       translation: "платье"               },
+      { id: "a1_kl_009", article: "der", word: "Mantel",      translation: "пальто"               },
+      { id: "a1_kl_010", article: "die", word: "Mütze",       translation: "шапка"                },
+      { id: "a1_kl_011", article: "die", word: "Bluse",       translation: "блузка"               },
+      { id: "a1_kl_012", article: "das", word: "T-Shirt",     translation: "футболка"             },
+      { id: "a1_kl_013", article: "die", word: "Jeans",       translation: "джинсы"               },
+      { id: "a1_kl_014", article: "der", word: "Schal",       translation: "шарф"                 },
+      { id: "a1_kl_015", article: "der", word: "Handschuh",   translation: "перчатка"             },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — BERUFE (Профессии)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "berufe", name: "Berufe", name_ru: "Профессии", emoji: "👔",
+    words: [
+      { id: "a1_br_001", article: "der", word: "Arzt",         translation: "врач (м) / die Ärztin (ж)"           },
+      { id: "a1_br_002", article: "der", word: "Lehrer",       translation: "учитель (м) / die Lehrerin (ж)"      },
+      { id: "a1_br_003", article: "der", word: "Student",      translation: "студент (м) / die Studentin (ж)"     },
+      { id: "a1_br_004", article: "der", word: "Koch",         translation: "повар (м) / die Köchin (ж)"          },
+      { id: "a1_br_005", article: "der", word: "Bäcker",       translation: "пекарь (м) / die Bäckerin (ж)"      },
+      { id: "a1_br_006", article: "der", word: "Ingenieur",    translation: "инженер (м) / die Ingenieurin (ж)"   },
+      { id: "a1_br_007", article: "die", word: "Krankenschwester", translation: "медсестра / der Krankenpfleger (м)" },
+      { id: "a1_br_008", article: "der", word: "Polizist",     translation: "полицейский (м) / die Polizistin (ж)"},
+      { id: "a1_br_009", article: "der", word: "Verkäufer",    translation: "продавец (м) / die Verkäuferin (ж)"  },
+      { id: "a1_br_010", article: "der", word: "Fahrer",       translation: "водитель (м) / die Fahrerin (ж)"     },
+      { id: "a1_br_011", article: "der", word: "Kellner",      translation: "официант (м) / die Kellnerin (ж)"    },
+      { id: "a1_br_012", article: "der", word: "Mechaniker",   translation: "механик (м) / die Mechanikerin (ж)"  },
+      { id: "a1_br_013", article: "der", word: "Friseur",      translation: "парикмахер (м) / die Friseurin (ж)"  },
+      { id: "a1_br_014", article: "der", word: "Sekretär",     translation: "секретарь (м) / die Sekretärin (ж)"  },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — FRAGEWÖRTER (Вопросительные слова, без артикля)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "fragewörter", name: "Fragewörter", name_ru: "Вопросительные слова", emoji: "❓",
+    words: [
+      { id: "a1_fw_001", article: "-", word: "Wer",       translation: "кто"                      },
+      { id: "a1_fw_002", article: "-", word: "Was",       translation: "что"                      },
+      { id: "a1_fw_003", article: "-", word: "Wo",        translation: "где"                      },
+      { id: "a1_fw_004", article: "-", word: "Woher",     translation: "откуда"                   },
+      { id: "a1_fw_005", article: "-", word: "Wohin",     translation: "куда"                     },
+      { id: "a1_fw_006", article: "-", word: "Wie",       translation: "как"                      },
+      { id: "a1_fw_007", article: "-", word: "Wie alt",   translation: "сколько лет"              },
+      { id: "a1_fw_008", article: "-", word: "Wie viel",  translation: "сколько (количество)"     },
+      { id: "a1_fw_009", article: "-", word: "Wann",      translation: "когда"                    },
+      { id: "a1_fw_010", article: "-", word: "Warum",     translation: "почему"                   },
+      { id: "a1_fw_011", article: "-", word: "Welcher",   translation: "какой / который (м)"      },
+      { id: "a1_fw_012", article: "-", word: "Welche",    translation: "какая / которая (ж/мн)"   },
+      { id: "a1_fw_013", article: "-", word: "Was für",   translation: "что за / какой"           },
+      { id: "a1_fw_014", article: "-", word: "Wie lange", translation: "как долго"                },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — FARBEN (Цвета, без артикля)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "farben", name: "Farben", name_ru: "Цвета", emoji: "🎨",
+    words: [
+      { id: "a1_fb_001", article: "-", word: "rot",      translation: "красный"          },
+      { id: "a1_fb_002", article: "-", word: "blau",     translation: "синий / голубой"  },
+      { id: "a1_fb_003", article: "-", word: "grün",     translation: "зелёный"          },
+      { id: "a1_fb_004", article: "-", word: "gelb",     translation: "жёлтый"           },
+      { id: "a1_fb_005", article: "-", word: "schwarz",  translation: "чёрный"           },
+      { id: "a1_fb_006", article: "-", word: "weiß",     translation: "белый"            },
+      { id: "a1_fb_007", article: "-", word: "grau",     translation: "серый"            },
+      { id: "a1_fb_008", article: "-", word: "orange",   translation: "оранжевый"        },
+      { id: "a1_fb_009", article: "-", word: "lila",     translation: "фиолетовый"       },
+      { id: "a1_fb_010", article: "-", word: "rosa",     translation: "розовый"          },
+      { id: "a1_fb_011", article: "-", word: "braun",    translation: "коричневый"       },
+      { id: "a1_fb_012", article: "-", word: "bunt",     translation: "разноцветный"     },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ZAHLEN (Числа, без артикля)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "zahlen", name: "Zahlen", name_ru: "Числа", emoji: "🔢",
+    words: [
+      { id: "a1_zn_001", article: "-", word: "null",      translation: "0 — ноль"     },
+      { id: "a1_zn_002", article: "-", word: "eins",      translation: "1 — один"     },
+      { id: "a1_zn_003", article: "-", word: "zwei",      translation: "2 — два"      },
+      { id: "a1_zn_004", article: "-", word: "drei",      translation: "3 — три"      },
+      { id: "a1_zn_005", article: "-", word: "vier",      translation: "4 — четыре"   },
+      { id: "a1_zn_006", article: "-", word: "fünf",      translation: "5 — пять"     },
+      { id: "a1_zn_007", article: "-", word: "sechs",     translation: "6 — шесть"    },
+      { id: "a1_zn_008", article: "-", word: "sieben",    translation: "7 — семь"     },
+      { id: "a1_zn_009", article: "-", word: "acht",      translation: "8 — восемь"   },
+      { id: "a1_zn_010", article: "-", word: "neun",      translation: "9 — девять"   },
+      { id: "a1_zn_011", article: "-", word: "zehn",      translation: "10 — десять"  },
+      { id: "a1_zn_012", article: "-", word: "elf",       translation: "11 — одиннадцать" },
+      { id: "a1_zn_013", article: "-", word: "zwölf",     translation: "12 — двенадцать"  },
+      { id: "a1_zn_014", article: "-", word: "zwanzig",   translation: "20 — двадцать"    },
+      { id: "a1_zn_015", article: "-", word: "dreißig",   translation: "30 — тридцать"    },
+      { id: "a1_zn_016", article: "-", word: "vierzig",   translation: "40 — сорок"       },
+      { id: "a1_zn_017", article: "-", word: "fünfzig",   translation: "50 — пятьдесят"   },
+      { id: "a1_zn_018", article: "-", word: "hundert",   translation: "100 — сто"         },
+      { id: "a1_zn_019", article: "-", word: "tausend",   translation: "1000 — тысяча"    },
+    ]
+  },
+
 ];
