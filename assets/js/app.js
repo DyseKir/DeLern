@@ -46,6 +46,7 @@ const TR = {
     cat_learned_txt: (a, b) => `${a} / ${b} gelernt`,
     btn_start:   'Start Lerneinheit',
     btn_learn:   'Lernen starten',
+    done_section: 'Abgeschlossen',
     no_cats:     (lvl) => `Keine Kategorien für ${lvl}. Füge Wörter in db/words.js hinzu.`,
     rule_label:  (n) => `Regel ${n}`,
     studied_badge: '✓ Gelernt',
@@ -100,6 +101,7 @@ const TR = {
     cat_learned_txt: (a, b) => `${a} / ${b} выучено`,
     btn_start:   'Начать урок',
     btn_learn:   'Учить',
+    done_section: 'Пройденное',
     no_cats:     (lvl) => `Нет категорий для ${lvl}. Добавь слова в db/words.js.`,
     rule_label:  (n) => `Правило ${n}`,
     studied_badge: '✓ Изучено',
@@ -530,32 +532,57 @@ function refreshOverallBar() {
   $('overall-pct').textContent       = pct+'%';
 }
 
-function renderCatPreview() {
-  const wrap = $('categories-preview');
-  const cats = getCats(S.level);
-  if (!cats.length) { wrap.innerHTML=`<div class="loading-hint">${t('no_cats',S.level)}</div>`; return; }
-  const p = loadProg();
-  wrap.innerHTML = cats.map(cat => {
-    const total   = cat.words.length;
-    const learned = cat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
-    const pct     = total ? Math.round(learned/total*100) : 0;
-    const preview = cat.words.slice(0,4)
-      .map(w=>`<div>• <span class="art-${w.article}">${w.article}</span> ${w.word}</div>`).join('');
-    return `
-      <div class="cat-card" data-cat="${cat.category}">
-        <span class="cat-emoji">${cat.emoji||'📁'}</span>
-        <span class="cat-name">${cat.name}${cat.name_ru ? `<span class="cat-name-ru"> (${cat.name_ru})</span>` : ''}</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
-        <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
-        <div class="cat-words-preview">${preview}</div>
-        <button class="cat-start-btn">${t('btn_start')}</button>
-      </div>`;
-  }).join('');
-  wrap.querySelectorAll('.cat-card').forEach(card => {
-    const cat = findCat(S.level, card.dataset.cat);
+function makeCatCardHTML(cat, total, learned, p) {
+  const pct     = total ? Math.round(learned/total*100) : 0;
+  const preview = cat.words.slice(0,4)
+    .map(w=>`<div>• <span class="art-${w.article}">${w.article!=='-'?w.article:''}</span> ${w.word}</div>`).join('');
+  return `
+    <div class="cat-card" data-cat="${cat.category}">
+      <span class="cat-emoji">${cat.emoji||'📁'}</span>
+      <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
+      <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
+      <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
+      <div class="cat-words-preview">${preview}</div>
+      <button class="cat-start-btn">${t('btn_start')}</button>
+    </div>`;
+}
+
+function attachCatEvents(container, level) {
+  container.querySelectorAll('.cat-card').forEach(card => {
+    const cat = findCat(level, card.dataset.cat);
     card.querySelector('.cat-start-btn').addEventListener('click', e=>{e.stopPropagation();startSession(cat);});
     card.addEventListener('click', ()=>startSession(cat));
   });
+}
+
+function renderCatPreview() {
+  const wrap     = $('categories-preview');
+  const doneWrap = $('categories-done');
+  const doneSec  = $('done-section');
+  const cats = getCats(S.level);
+  if (!cats.length) { wrap.innerHTML=`<div class="loading-hint">${t('no_cats',S.level)}</div>`; doneSec.classList.add('hidden'); return; }
+  const p = loadProg();
+
+  const active = [], done = [];
+  cats.forEach(cat => {
+    const total   = cat.words.length;
+    const learned = cat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
+    (total > 0 && learned === total ? done : active).push({cat, total, learned});
+  });
+
+  wrap.innerHTML = active.length
+    ? active.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('')
+    : `<div class="loading-hint">Alle Kategorien abgeschlossen! 🎉</div>`;
+  attachCatEvents(wrap, S.level);
+
+  if (done.length) {
+    doneSec.classList.remove('hidden');
+    doneWrap.innerHTML = done.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('');
+    attachCatEvents(doneWrap, S.level);
+  } else {
+    doneSec.classList.add('hidden');
+    doneWrap.innerHTML = '';
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════

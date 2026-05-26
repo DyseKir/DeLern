@@ -489,10 +489,27 @@ body {
 /* ══════════════════════════════════════════════════
    CATEGORY CARDS (home preview)
 ══════════════════════════════════════════════════ */
+.categories-scroll-wrap {
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.categories-scroll-wrap::-webkit-scrollbar { width: 5px; }
+.categories-scroll-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+}
+
+.done-section-title { margin-top: 1.5rem; opacity: .8; }
+.categories-done-grid {
+  opacity: .65;
+  filter: grayscale(30%);
 }
 .categories-full-grid {
   display: grid;
