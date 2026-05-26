@@ -173,16 +173,117 @@ window.VOCAB_DATA = [
   },
 
   // ════════════════════════════════
-  //  СЮДА ДОБАВЛЯЙ СВОИ КАТЕГОРИИ:
+  //  A1 — FAMILIE
   // ════════════════════════════════
-  /*
   {
-    level: "A1", category: "wohnen", name: "Wohnen", emoji: "🏠",
+    level: "A1", category: "familie", name: "Familie", emoji: "👨‍👩‍👧",
     words: [
-      { id: "a1_wo_001", article: "das", word: "Haus",    translation: "дом"      },
-      { id: "a1_wo_002", article: "die", word: "Wohnung", translation: "квартира" },
+      { id: "a1_fa_001", article: "der", word: "Vater",       translation: "отец"              },
+      { id: "a1_fa_002", article: "die", word: "Mutter",      translation: "мать"              },
+      { id: "a1_fa_003", article: "der", word: "Sohn",        translation: "сын"               },
+      { id: "a1_fa_004", article: "die", word: "Tochter",     translation: "дочь"              },
+      { id: "a1_fa_005", article: "der", word: "Bruder",      translation: "брат"              },
+      { id: "a1_fa_006", article: "die", word: "Schwester",   translation: "сестра"            },
+      { id: "a1_fa_007", article: "das", word: "Kind",        translation: "ребёнок"           },
+      { id: "a1_fa_008", article: "der", word: "Mann",        translation: "муж / мужчина"     },
+      { id: "a1_fa_009", article: "die", word: "Frau",        translation: "жена / женщина"    },
+      { id: "a1_fa_010", article: "der", word: "Großvater",   translation: "дедушка"           },
+      { id: "a1_fa_011", article: "die", word: "Großmutter",  translation: "бабушка"           },
+      { id: "a1_fa_012", article: "der", word: "Opa",         translation: "дедуля"            },
+      { id: "a1_fa_013", article: "die", word: "Oma",         translation: "бабуля"            },
+      { id: "a1_fa_014", article: "der", word: "Onkel",       translation: "дядя"              },
+      { id: "a1_fa_015", article: "die", word: "Tante",       translation: "тётя"              },
     ]
   },
-  */
+
+  // ════════════════════════════════
+  //  A1 — WOCHENTAGE
+  // ════════════════════════════════
+  {
+    level: "A1", category: "wochentage", name: "Wochentage", emoji: "📅",
+    words: [
+      { id: "a1_wt_001", article: "der", word: "Montag",     translation: "понедельник"  },
+      { id: "a1_wt_002", article: "der", word: "Dienstag",   translation: "вторник"      },
+      { id: "a1_wt_003", article: "der", word: "Mittwoch",   translation: "среда"        },
+      { id: "a1_wt_004", article: "der", word: "Donnerstag", translation: "четверг"      },
+      { id: "a1_wt_005", article: "der", word: "Freitag",    translation: "пятница"      },
+      { id: "a1_wt_006", article: "der", word: "Samstag",    translation: "суббота"      },
+      { id: "a1_wt_007", article: "der", word: "Sonntag",    translation: "воскресенье"  },
+      { id: "a1_wt_008", article: "das", word: "Wochenende", translation: "выходные"     },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — OBST & GEMÜSE
+  // ════════════════════════════════
+  {
+    level: "A1", category: "obst_gemuese", name: "Obst & Gemüse", emoji: "🥦",
+    words: [
+      { id: "a1_og_001", article: "die", word: "Karotte",   translation: "морковь"          },
+      { id: "a1_og_002", article: "die", word: "Zwiebel",   translation: "лук"              },
+      { id: "a1_og_003", article: "die", word: "Orange",    translation: "апельсин"         },
+      { id: "a1_og_004", article: "die", word: "Birne",     translation: "груша"            },
+      { id: "a1_og_005", article: "die", word: "Kirsche",   translation: "вишня / черешня"  },
+      { id: "a1_og_006", article: "die", word: "Mango",     translation: "манго"            },
+      { id: "a1_og_007", article: "die", word: "Traube",    translation: "виноград"         },
+      { id: "a1_og_008", article: "der", word: "Pilz",      translation: "гриб"             },
+      { id: "a1_og_009", article: "der", word: "Salat",     translation: "салат"            },
+      { id: "a1_og_010", article: "die", word: "Paprika",   translation: "перец / паприка"  },
+      { id: "a1_og_011", article: "die", word: "Gurke",     translation: "огурец"           },
+      { id: "a1_og_012", article: "die", word: "Möhre",     translation: "морковь"          },
+      { id: "a1_og_013", article: "die", word: "Melone",    translation: "дыня / арбуз"     },
+      { id: "a1_og_014", article: "der", word: "Kohl",      translation: "капуста"          },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — LEBENSMITTEL (расширенный)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "lebensmittel", name: "Lebensmittel", emoji: "🥫",
+    words: [
+      { id: "a1_lm_001", article: "das", word: "Brötchen",   translation: "булочка"           },
+      { id: "a1_lm_002", article: "der", word: "Reis",       translation: "рис"               },
+      { id: "a1_lm_003", article: "der", word: "Honig",      translation: "мёд"               },
+      { id: "a1_lm_004", article: "die", word: "Marmelade",  translation: "варенье / джем"    },
+      { id: "a1_lm_005", article: "die", word: "Schokolade", translation: "шоколад"           },
+      { id: "a1_lm_006", article: "die", word: "Sahne",      translation: "сливки"            },
+      { id: "a1_lm_007", article: "das", word: "Mehl",       translation: "мука"              },
+      { id: "a1_lm_008", article: "das", word: "Salz",       translation: "соль"              },
+      { id: "a1_lm_009", article: "der", word: "Wein",       translation: "вино"              },
+      { id: "a1_lm_010", article: "das", word: "Bier",       translation: "пиво"              },
+      { id: "a1_lm_011", article: "die", word: "Limonade",   translation: "лимонад"           },
+      { id: "a1_lm_012", article: "die", word: "Cola",       translation: "кола"              },
+      { id: "a1_lm_013", article: "der", word: "Kuchen",     translation: "торт / пирог"      },
+      { id: "a1_lm_014", article: "der", word: "Joghurt",    translation: "йогурт"            },
+      { id: "a1_lm_015", article: "der", word: "Zucker",     translation: "сахар"             },
+      { id: "a1_lm_016", article: "die", word: "Nudel",      translation: "макаронина (мн: Nudeln)" },
+      { id: "a1_lm_017", article: "das", word: "Öl",         translation: "масло (раст.)"     },
+      { id: "a1_lm_018", article: "der", word: "Essig",      translation: "уксус"             },
+      { id: "a1_lm_019", article: "die", word: "Wurst",      translation: "колбаса"           },
+      { id: "a1_lm_020", article: "das", word: "Müsli",      translation: "мюсли"             },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — KÖRPERPFLEGE
+  // ════════════════════════════════
+  {
+    level: "A1", category: "koerperpflege", name: "Körperpflege", emoji: "🧴",
+    words: [
+      { id: "a1_kp_001", article: "die", word: "Zahnbürste",      translation: "зубная щётка"     },
+      { id: "a1_kp_002", article: "der", word: "Kamm",            translation: "расчёска"         },
+      { id: "a1_kp_003", article: "die", word: "Haarbürste",      translation: "щётка для волос"  },
+      { id: "a1_kp_004", article: "das", word: "Toilettenpapier", translation: "туалетная бумага" },
+      { id: "a1_kp_005", article: "die", word: "Creme",           translation: "крем"             },
+      { id: "a1_kp_006", article: "der", word: "Rasierer",        translation: "бритва"           },
+      { id: "a1_kp_007", article: "das", word: "Pflaster",        translation: "пластырь"         },
+      { id: "a1_kp_008", article: "das", word: "Deo",             translation: "дезодорант"       },
+      { id: "a1_kp_009", article: "das", word: "Shampoo",         translation: "шампунь"          },
+      { id: "a1_kp_010", article: "die", word: "Zahnpasta",       translation: "зубная паста"     },
+      { id: "a1_kp_011", article: "die", word: "Seife",           translation: "мыло"             },
+      { id: "a1_kp_012", article: "das", word: "Duschgel",        translation: "гель для душа"    },
+    ]
+  },
 
 ];

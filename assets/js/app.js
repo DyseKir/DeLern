@@ -234,6 +234,26 @@ const EMOJI = {
   Astigmatismus:'👁️', Messbrille:'👓', Hyaluronsäure:'💉',
   Veränderungsmitteilung:'📬', Transitgeld:'💸', Mitwirkungspflicht:'⚖️',
   Bedarfsgemeinschaft:'👨‍👩‍👧', Kontoauszug:'🏦', Nachweis:'📋', Leistungsbezug:'📑',
+  // Familie
+  Vater:'👨', Mutter:'👩', Sohn:'👦', Tochter:'👧', Bruder:'🧑', Schwester:'👧',
+  Kind:'🧒', Mann:'🧔', Frau:'👩', Großvater:'👴', Großmutter:'👵',
+  Opa:'👴', Oma:'👵', Onkel:'🧑', Tante:'👩',
+  // Wochentage
+  Montag:'📅', Dienstag:'📅', Mittwoch:'📅', Donnerstag:'📅',
+  Freitag:'🎉', Samstag:'🌅', Sonntag:'☀️', Wochenende:'🏖️',
+  // Obst & Gemüse
+  Karotte:'🥕', Zwiebel:'🧅', Orange:'🍊', Birne:'🍐', Kirsche:'🍒',
+  Mango:'🥭', Traube:'🍇', Pilz:'🍄', Salat:'🥗', Paprika:'🫑',
+  Gurke:'🥒', Möhre:'🥕', Melone:'🍈', Kohl:'🥬',
+  // Lebensmittel
+  Brötchen:'🥖', Reis:'🍚', Honig:'🍯', Marmelade:'🫙', Schokolade:'🍫',
+  Sahne:'🥛', Mehl:'🌾', Salz:'🧂', Wein:'🍷', Bier:'🍺',
+  Limonade:'🥤', Cola:'🥤', Kuchen:'🎂', Joghurt:'🥛', Zucker:'🍬',
+  Nudel:'🍝', Öl:'🫙', Essig:'🍶', Wurst:'🌭', Müsli:'🥣',
+  // Körperpflege
+  Zahnbürste:'🪥', Kamm:'💈', Haarbürste:'💇', Toilettenpapier:'🧻',
+  Creme:'🧴', Rasierer:'🪒', Pflaster:'🩹', Deo:'🧴', Shampoo:'🧴',
+  Zahnpasta:'🪥', Seife:'🧼', Duschgel:'🚿',
 };
 
 /* ══════════════════════════════════════════════════════════════

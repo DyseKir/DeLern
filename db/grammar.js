@@ -255,22 +255,191 @@ Kein/keine — это буквально «не один», «ни одного�
     tip_ru: "Sie (заглавная) = вежливое Вы — всегда с заглавной! sie (строчная) = она ИЛИ они — смотри по контексту.",
   },
 
+  {
+    id: "a1_gr_009", level: "A1",
+    title_de: "Reguläre Verben: Konjugation",
+    title_ru: "Правильные глаголы: спряжение",
+    explanation_de: "Reguläre Verben folgen einem festen Muster. Stamm + Endung. Die Endungen sind immer gleich: -e, -st, -t, -en, -t, -en.",
+    explanation_ru: `Большинство немецких глаголов — <strong>правильные</strong>. Их спрягать очень просто по одной формуле:
+
+<strong>Основа (Stamm) = инфинитив − «en»</strong>
+• mach<strong>en</strong> → Stamm: <em>mach-</em>
+• wohn<strong>en</strong> → Stamm: <em>wohn-</em>
+• lern<strong>en</strong> → Stamm: <em>lern-</em>
+
+Затем добавляем окончание по лицу:
+
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 12px 3px 0"><strong>ich</strong></td><td><strong>-e</strong></td><td style="color:#aaa;padding-left:12px">ich mach<strong>e</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>du</strong></td><td><strong>-st</strong></td><td style="color:#aaa;padding-left:12px">du mach<strong>st</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>er/sie/es</strong></td><td><strong>-t</strong></td><td style="color:#aaa;padding-left:12px">er mach<strong>t</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>wir</strong></td><td><strong>-en</strong></td><td style="color:#aaa;padding-left:12px">wir mach<strong>en</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>ihr</strong></td><td><strong>-t</strong></td><td style="color:#aaa;padding-left:12px">ihr mach<strong>t</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>sie/Sie</strong></td><td><strong>-en</strong></td><td style="color:#aaa;padding-left:12px">sie mach<strong>en</strong></td></tr>
+</table>
+
+⚠️ Если основа оканчивается на <strong>-t / -d</strong> (arbeit-, find-), перед окончанием добавляется «e» для удобства произношения: du arbeit<strong>e</strong>st, er arbeit<strong>e</strong>t.`,
+    examples: [
+      { de: "Ich lerne Deutsch.",       ru: "Я учу немецкий."        },
+      { de: "Du wohnst in Berlin.",     ru: "Ты живёшь в Берлине."   },
+      { de: "Er macht Hausaufgaben.",   ru: "Он делает домашнее задание." },
+      { de: "Wir hören Musik.",         ru: "Мы слушаем музыку."     },
+      { de: "Ihr lernt schnell.",       ru: "Вы учитесь быстро."     },
+      { de: "Sie schreiben eine E-Mail.", ru: "Они пишут имейл."     },
+    ],
+    tip_de: "Stamm + Endung: -e | -st | -t | -en | -t | -en",
+    tip_ru: "Формула: основа + окончание. ich→-e, du→-st, er→-t, wir→-en, ihr→-t, sie→-en. Wir и sie/Sie одинаковые — как инфинитив!",
+  },
+
+  {
+    id: "a1_gr_010", level: "A1",
+    title_de: "du oder Sie? Formell und informell",
+    title_ru: "du или Sie? Как обращаться к людям",
+    explanation_de: "Im Deutschen gibt es zwei Möglichkeiten: 'du' (informell) und 'Sie' (formell). Die Wahl hängt von der Situation und der Beziehung ab.",
+    explanation_ru: `В немецком есть два способа обратиться к человеку — и выбрать неправильный может быть невежливо!
+
+<strong>du</strong> — неформальное «ты»:
+• к друзьям, однокурсникам, детям
+• в семье
+• между молодёжью
+• когда человек сам предложил перейти на «du»
+
+<strong>Sie</strong> (всегда с заглавной!) — вежливое «Вы»:
+• к незнакомым взрослым
+• к старшим
+• в официальных ситуациях (врач, продавец, начальник)
+• пока человек не предложил «du»
+
+Разница в глаголах:
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 16px 3px 0"><strong>du</strong></td><td><strong>Sie</strong></td></tr>
+<tr><td style="padding:3px 16px 3px 0">Wie heißt <em>du</em>?</td><td>Wie heißen <em>Sie</em>?</td></tr>
+<tr><td style="padding:3px 16px 3px 0">Woher kommst <em>du</em>?</td><td>Woher kommen <em>Sie</em>?</td></tr>
+<tr><td style="padding:3px 16px 3px 0">Wer bist <em>du</em>?</td><td>Wer sind <em>Sie</em>?</td></tr>
+</table>
+
+В Германии переход на «du» — это особый момент. Обычно предлагает тот, кто старше или выше по должности: «Wir können uns duzen» (Мы можем говорить на «ты»).`,
+    examples: [
+      { de: "Wie heißt du? – Ich heiße Anna.",       ru: "Как тебя зовут? (к другу)"         },
+      { de: "Wie heißen Sie? – Ich heiße Herr Müller.", ru: "Как вас зовут? (к незнакомому)" },
+      { de: "Woher kommst du?",                       ru: "Откуда ты? (неформально)"          },
+      { de: "Woher kommen Sie?",                      ru: "Откуда вы? (формально)"            },
+    ],
+    tip_de: "du = друзья/семья | Sie (заглавная) = незнакомые/официально",
+    tip_ru: "Не знаешь как обратиться — используй Sie, не ошибёшься. Перейти на du предложит сам собеседник, если захочет.",
+  },
+
+  {
+    id: "a1_gr_011", level: "A1",
+    title_de: "W-Fragen: Fragewörter",
+    title_ru: "W-вопросы: вопросительные слова",
+    explanation_de: "W-Fragen beginnen mit einem Fragewort (Wer, Was, Wo, Woher, Wie, Wann...). Das Verb steht auf Position 2, direkt nach dem Fragewort.",
+    explanation_ru: `W-вопросы — открытые вопросы, на которые нельзя ответить просто «да» или «нет». Начинаются с вопросительного слова.
+
+Главные вопросительные слова:
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 16px 3px 0"><strong>Wer?</strong></td><td style="color:#aaa">Кто?</td><td style="padding-left:12px;color:#aaa">Wer ist das?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Was?</strong></td><td style="color:#aaa">Что?</td><td style="padding-left:12px;color:#aaa">Was ist das?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Wo?</strong></td><td style="color:#aaa">Где?</td><td style="padding-left:12px;color:#aaa">Wo wohnst du?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Woher?</strong></td><td style="color:#aaa">Откуда?</td><td style="padding-left:12px;color:#aaa">Woher kommen Sie?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Wie?</strong></td><td style="color:#aaa">Как?</td><td style="padding-left:12px;color:#aaa">Wie heißen Sie?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Wie alt?</strong></td><td style="color:#aaa">Сколько лет?</td><td style="padding-left:12px;color:#aaa">Wie alt bist du?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Wann?</strong></td><td style="color:#aaa">Когда?</td><td style="padding-left:12px;color:#aaa">Wann kommst du?</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Welche?</strong></td><td style="color:#aaa">Какой / Который?</td><td style="padding-left:12px;color:#aaa">Welche Sprache?</td></tr>
+</table>
+
+Структура: <strong>Fragewort → Verb → Subjekt → Rest</strong>
+• Woher <strong>kommst</strong> <em>du</em>?
+• Wie <strong>heißen</strong> <em>Sie</em>?
+
+Это та же позиция 2 для глагола — вопросительное слово занимает позицию 1.`,
+    examples: [
+      { de: "Wer sind Sie?",          ru: "Кто вы?"                  },
+      { de: "Wie heißt du?",          ru: "Как тебя зовут?"          },
+      { de: "Woher kommen Sie?",      ru: "Откуда вы?"               },
+      { de: "Wo wohnst du?",          ru: "Где ты живёшь?"           },
+      { de: "Wie alt bist du?",       ru: "Сколько тебе лет?"        },
+      { de: "Welche Sprache sprechen Sie?", ru: "На каком языке вы говорите?" },
+    ],
+    tip_de: "Fragewort → Verb (Pos. 2) → Subjekt → Rest",
+    tip_ru: "W-слово стоит первым, затем сразу глагол на 2-м месте. Wer/Was/Wo/Woher/Wie — главные пять, выучи их наизусть!",
+  },
+
+  {
+    id: "a1_gr_012", level: "A1",
+    title_de: "Possessivpronomen: mein / dein / sein / ihr",
+    title_ru: "Притяжательные местоимения: мой / твой / его / её",
+    explanation_de: "Possessivpronomen zeigen, wem etwas gehört. Sie richten sich im Genus nach dem Substantiv, das sie begleiten.",
+    explanation_ru: `Притяжательные местоимения отвечают на вопрос «чей?»:
+
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><th style="padding:3px 16px 3px 0;text-align:left">Местоимение</th><th style="padding:3px 16px 3px 0;text-align:left">Значение</th></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>mein</strong></td><td style="color:#aaa">мой / моя / моё</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>dein</strong></td><td style="color:#aaa">твой / твоя / твоё</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>sein</strong></td><td style="color:#aaa">его (у него)</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>ihr</strong></td><td style="color:#aaa">её (у неё)</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>unser</strong></td><td style="color:#aaa">наш / наша</td></tr>
+<tr><td style="padding:3px 16px 3px 0"><strong>Ihr</strong></td><td style="color:#aaa">Ваш / Ваша (вежливо)</td></tr>
+</table>
+
+Окончание зависит от <strong>рода существительного</strong> после:
+• мужской/средний → <strong>mein</strong> Vater, <strong>mein</strong> Kind
+• женский → <strong>mein<em>e</em></strong> Mutter, <strong>mein<em>e</em></strong> Schwester
+• мн.ч. → <strong>mein<em>e</em></strong> Eltern, <strong>mein<em>e</em></strong> Kinder
+
+Правило простое: если после него «die» или мн.ч. — добавь <strong>-e</strong> на конец. Если «der» или «das» — без изменений.`,
+    examples: [
+      { de: "Das ist mein Vater.",      ru: "Это мой отец."          },
+      { de: "Das ist meine Mutter.",    ru: "Это моя мать."          },
+      { de: "Das ist mein Kind.",       ru: "Это мой ребёнок."       },
+      { de: "Wie heißt dein Bruder?",   ru: "Как зовут твоего брата?" },
+      { de: "Das ist seine Frau Ana.",  ru: "Это его жена Ана."      },
+      { de: "Meine Eltern kommen aus Polen.", ru: "Мои родители из Польши." },
+    ],
+    tip_de: "mein/dein → +e vor die-Wörtern und Pluralformen",
+    tip_ru: "Перед «die»-словами и мн.ч. → добавь -е: mein<strong>e</strong> Mutter, dein<strong>e</strong> Schwester. Перед «der/das» → без -е: mein Vater, mein Kind.",
+  },
+
+  {
+    id: "a1_gr_013", level: "A1",
+    title_de: "Verben mit Vokalwechsel: e→i und e→ie",
+    title_ru: "Глаголы с изменением гласной: e→i и e→ie",
+    explanation_de: "Einige Verben ändern den Stammvokal bei du und er/sie/es: e→i (sprechen, essen) oder e→ie (lesen, sehen). Diese Verben müssen einzeln gelernt werden.",
+    explanation_ru: `У некоторых глаголов в формах <strong>du</strong> и <strong>er/sie/es</strong> меняется гласная в основе. Это нужно запомнить для каждого глагола отдельно.
+
+<strong>e → i</strong> (е становится и):
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 12px 3px 0"></td><td style="padding:3px 12px 3px 0"><strong>sprechen</strong></td><td><strong>essen</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0">ich</td><td>spr<strong>e</strong>che</td><td><strong>e</strong>sse</td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>du</strong></td><td>spr<strong>i</strong>chst ⚡</td><td><strong>i</strong>sst ⚡</td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>er/sie</strong></td><td>spr<strong>i</strong>cht ⚡</td><td><strong>i</strong>sst ⚡</td></tr>
+<tr><td style="padding:3px 12px 3px 0">wir</td><td>spr<strong>e</strong>chen</td><td><strong>e</strong>ssen</td></tr>
+</table>
+
+<strong>e → ie</strong> (е становится ие):
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 12px 3px 0"></td><td style="padding:3px 12px 3px 0"><strong>lesen</strong></td><td><strong>sehen</strong></td></tr>
+<tr><td style="padding:3px 12px 3px 0">ich</td><td>l<strong>e</strong>se</td><td>s<strong>e</strong>he</td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>du</strong></td><td>l<strong>ie</strong>st ⚡</td><td>s<strong>ie</strong>hst ⚡</td></tr>
+<tr><td style="padding:3px 12px 3px 0"><strong>er/sie</strong></td><td>l<strong>ie</strong>st ⚡</td><td>s<strong>ie</strong>ht ⚡</td></tr>
+<tr><td style="padding:3px 12px 3px 0">wir</td><td>l<strong>e</strong>sen</td><td>s<strong>e</strong>hen</td></tr>
+</table>
+
+⚠️ Изменение происходит ТОЛЬКО в формах du и er/sie/es. Ich, wir, ihr, sie — как обычно!`,
+    examples: [
+      { de: "Ich spreche Deutsch.",      ru: "Я говорю по-немецки."      },
+      { de: "Du sprichst Englisch.",     ru: "Ты говоришь по-английски." },
+      { de: "Er spricht Arabisch.",      ru: "Он говорит по-арабски."    },
+      { de: "Ich lese ein Buch.",        ru: "Я читаю книгу."            },
+      { de: "Du liest eine E-Mail.",     ru: "Ты читаешь имейл."         },
+      { de: "Was isst du gern?",         ru: "Что ты любишь есть?"       },
+    ],
+    tip_de: "e→i: sprechen, essen, helfen, nehmen | e→ie: lesen, sehen, empfehlen",
+    tip_ru: "Изменяются только du и er/sie/es! Ich и wir — всегда с обычным 'e'. Главные глаголы: sprech→sprich, ess→iss, les→lies.",
+  },
+
   // ════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════
-  /*
-  {
-    id: "a2_gr_001", level: "A2",
-    title_de: "Modalverben",
-    title_ru: "Модальные глаголы",
-    explanation_de: "...",
-    explanation_ru: "...",
-    examples: [
-      { de: "Ich kann Deutsch sprechen.", ru: "Я умею говорить по-немецки." },
-    ],
-    tip_de: "können / müssen / wollen / dürfen / sollen / mögen",
-    tip_ru: "können (мочь) / müssen (должен) / wollen (хотеть) / dürfen (можно) / sollen (следует) / mögen (нравится)",
-  },
-  */
 
 ];
