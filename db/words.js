@@ -15,7 +15,7 @@ window.VOCAB_DATA = [
   //  A1 — ESSEN & TRINKEN
   // ════════════════════════════════
   {
-    level: "A1", category: "essen", name: "Essen & Trinken", emoji: "🍔",
+    level: "A1", category: "essen", name: "Essen & Trinken", name_ru: "Еда и напитки", emoji: "🍔",
     words: [
       { id: "a1_essen_001", article: "der", word: "Apfel",     translation: "яблоко"    },
       { id: "a1_essen_002", article: "die", word: "Milch",     translation: "молоко"    },
@@ -39,7 +39,7 @@ window.VOCAB_DATA = [
   //  A1 — TRANSPORT
   // ════════════════════════════════
   {
-    level: "A1", category: "transport", name: "Transport", emoji: "🚌",
+    level: "A1", category: "transport", name: "Transport", name_ru: "Транспорт", emoji: "🚌",
     words: [
       { id: "a1_tr_001", article: "das", word: "Auto",        translation: "машина"    },
       { id: "a1_tr_002", article: "der", word: "Bus",         translation: "автобус"   },
@@ -58,7 +58,7 @@ window.VOCAB_DATA = [
   //  A1 — TIERE
   // ════════════════════════════════
   {
-    level: "A1", category: "tiere", name: "Tiere", emoji: "🦌",
+    level: "A1", category: "tiere", name: "Tiere", name_ru: "Животные", emoji: "🦌",
     words: [
       { id: "a1_ti_001", article: "der", word: "Hund",     translation: "собака"  },
       { id: "a1_ti_002", article: "die", word: "Katze",    translation: "кошка"   },
@@ -77,7 +77,7 @@ window.VOCAB_DATA = [
   //  A1 — EINKAUFEN
   // ════════════════════════════════
   {
-    level: "A1", category: "einkaufen", name: "Einkaufen", emoji: "🛒",
+    level: "A1", category: "einkaufen", name: "Einkaufen", name_ru: "Покупки", emoji: "🛒",
     words: [
       { id: "a1_ei_001", article: "der", word: "Supermarkt", translation: "супермаркет" },
       { id: "a1_ei_002", article: "das", word: "Geld",       translation: "деньги"      },
@@ -94,7 +94,7 @@ window.VOCAB_DATA = [
   //  A1 — STADT & ORIENTIERUNG  🟢
   // ════════════════════════════════
   {
-    level: "A1", category: "stadt", name: "Stadt & Orientierung", emoji: "🏙️",
+    level: "A1", category: "stadt", name: "Stadt & Orientierung", name_ru: "Город и ориентация", emoji: "🏙️",
     words: [
       { id: "a1_st_001", article: "die", word: "Ampel",       translation: "светофор"   },
       { id: "a1_st_002", article: "die", word: "Brücke",      translation: "мост"       },
@@ -117,7 +117,7 @@ window.VOCAB_DATA = [
   //  A2 — STADT & BEHÖRDEN  🟡
   // ════════════════════════════════
   {
-    level: "A2", category: "stadtA2", name: "Stadt & Behörden", emoji: "🏛️",
+    level: "A2", category: "stadtA2", name: "Stadt & Behörden", name_ru: "Город и учреждения", emoji: "🏛️",
     words: [
       { id: "a2_sb_001", article: "die", word: "Kreuzung",          translation: "перекрёсток"         },
       { id: "a2_sb_002", article: "das", word: "Jobcenter",         translation: "центр занятости"     },
@@ -139,7 +139,7 @@ window.VOCAB_DATA = [
   //  B1 — BEHÖRDEN & OPTIKER  🟠
   // ════════════════════════════════
   {
-    level: "B1", category: "behoerden", name: "Behörden & Optiker", emoji: "🏛️",
+    level: "B1", category: "behoerden", name: "Behörden & Optiker", name_ru: "Ведомства и оптика", emoji: "🏛️",
     words: [
       { id: "b1_bo_001", article: "der", word: "Kreisverkehr",            translation: "круговое движение / кольцо" },
       { id: "b1_bo_002", article: "die", word: "Kurzsichtigkeit",         translation: "близорукость"                },
@@ -157,7 +157,7 @@ window.VOCAB_DATA = [
   //  B2 — MEDIZIN & BÜROKRATIE  🔴
   // ════════════════════════════════
   {
-    level: "B2", category: "buerokratie", name: "Medizin & Bürokratie", emoji: "📑",
+    level: "B2", category: "buerokratie", name: "Medizin & Bürokratie", name_ru: "Медицина и бюрократия", emoji: "📑",
     words: [
       { id: "b2_mb_001", article: "der", word: "Astigmatismus",        translation: "астигматизм"                         },
       { id: "b2_mb_002", article: "die", word: "Messbrille",           translation: "пробные очки для теста зрения"       },
@@ -176,7 +176,7 @@ window.VOCAB_DATA = [
   //  A1 — FAMILIE
   // ════════════════════════════════
   {
-    level: "A1", category: "familie", name: "Familie", emoji: "👨‍👩‍👧",
+    level: "A1", category: "familie", name: "Familie", name_ru: "Семья", emoji: "👨‍👩‍👧",
     words: [
       { id: "a1_fa_001", article: "der", word: "Vater",       translation: "отец"              },
       { id: "a1_fa_002", article: "die", word: "Mutter",      translation: "мать"              },
@@ -200,7 +200,7 @@ window.VOCAB_DATA = [
   //  A1 — WOCHENTAGE
   // ════════════════════════════════
   {
-    level: "A1", category: "wochentage", name: "Wochentage", emoji: "📅",
+    level: "A1", category: "wochentage", name: "Wochentage", name_ru: "Дни недели", emoji: "📅",
     words: [
       { id: "a1_wt_001", article: "der", word: "Montag",     translation: "понедельник"  },
       { id: "a1_wt_002", article: "der", word: "Dienstag",   translation: "вторник"      },
@@ -217,7 +217,7 @@ window.VOCAB_DATA = [
   //  A1 — OBST & GEMÜSE
   // ════════════════════════════════
   {
-    level: "A1", category: "obst_gemuese", name: "Obst & Gemüse", emoji: "🥦",
+    level: "A1", category: "obst_gemuese", name: "Obst & Gemüse", name_ru: "Фрукты и овощи", emoji: "🥦",
     words: [
       { id: "a1_og_001", article: "die", word: "Karotte",   translation: "морковь"          },
       { id: "a1_og_002", article: "die", word: "Zwiebel",   translation: "лук"              },
@@ -240,7 +240,7 @@ window.VOCAB_DATA = [
   //  A1 — LEBENSMITTEL (расширенный)
   // ════════════════════════════════
   {
-    level: "A1", category: "lebensmittel", name: "Lebensmittel", emoji: "🥫",
+    level: "A1", category: "lebensmittel", name: "Lebensmittel", name_ru: "Продукты питания", emoji: "🥫",
     words: [
       { id: "a1_lm_001", article: "das", word: "Brötchen",   translation: "булочка"           },
       { id: "a1_lm_002", article: "der", word: "Reis",       translation: "рис"               },
@@ -269,7 +269,7 @@ window.VOCAB_DATA = [
   //  A1 — KÖRPERPFLEGE
   // ════════════════════════════════
   {
-    level: "A1", category: "koerperpflege", name: "Körperpflege", emoji: "🧴",
+    level: "A1", category: "koerperpflege", name: "Körperpflege", name_ru: "Гигиена", emoji: "🧴",
     words: [
       { id: "a1_kp_001", article: "die", word: "Zahnbürste",      translation: "зубная щётка"     },
       { id: "a1_kp_002", article: "der", word: "Kamm",            translation: "расчёска"         },

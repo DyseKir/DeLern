@@ -514,6 +514,7 @@ body {
 
 .cat-emoji { font-size: 2rem; display: block; margin-bottom: 7px; }
 .cat-name  { font-size: 12px; font-weight: 600; display: block; }
+.cat-name-ru { font-weight: 400; color: var(--text-muted); }
 
 .cat-bar-wrap { width: 100%; height: 3px; background: var(--bg4); border-radius: 2px; margin-top: 8px; overflow: hidden; }
 .cat-bar-fill {

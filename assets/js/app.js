@@ -516,7 +516,7 @@ function renderCatPreview() {
     return `
       <div class="cat-card" data-cat="${cat.category}">
         <span class="cat-emoji">${cat.emoji||'📁'}</span>
-        <span class="cat-name">${cat.name}</span>
+        <span class="cat-name">${cat.name}${cat.name_ru ? `<span class="cat-name-ru"> (${cat.name_ru})</span>` : ''}</span>
         <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
         <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
         <div class="cat-words-preview">${preview}</div>
@@ -565,7 +565,7 @@ function renderVocabScreen() {
           ${done?'<div class="cat-star-badge">⭐</div>':''}
           <span class="cat-emoji" style="font-size:2.5rem">${cat.emoji||'📁'}</span>
           <div class="cat-level-chip">${cat.level}</div>
-          <span class="cat-name" style="font-size:14px;font-weight:700;display:block;margin:6px 0">${cat.name}</span>
+          <span class="cat-name" style="font-size:14px;font-weight:700;display:block;margin:6px 0">${cat.name}${cat.name_ru ? `<span class="cat-name-ru"> (${cat.name_ru})</span>` : ''}</span>
           <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
           <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
           <button class="cat-start-btn" style="margin-top:14px">${t('btn_learn')}</button>
@@ -615,7 +615,7 @@ function startSession(cat) {
   active.sort((a,b)=>{const o={new:0,learning:1};return(o[(p[a.id]||{}).status]||0)-(o[(p[b.id]||{}).status]||0);});
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
-  $('cards-category-title').textContent = cat.name;
+  $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
   $('cards-level-badge').textContent    = S.level;
   show('cards');
   $('flashcard').classList.remove('hidden');
@@ -791,7 +791,7 @@ function renderProfile() {
     const lrn=cat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
     const pct=total?Math.round(lrn/total*100):0;
     return `<div class="cat-prog-item">
-      <div class="cpi-row"><span>${cat.emoji} ${cat.name}</span><span style="color:var(--text-muted)">${lrn}/${total}</span></div>
+      <div class="cpi-row"><span>${cat.emoji} ${cat.name}${cat.name_ru ? ` (${cat.name_ru})` : ''}</span><span style="color:var(--text-muted)">${lrn}/${total}</span></div>
       <div class="cpi-bar"><div class="cpi-fill" style="width:${pct}%"></div></div>
     </div>`;
   }).join('');
