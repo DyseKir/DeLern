@@ -51,6 +51,7 @@ window.VOCAB_DATA = [
       { id: "a1_tr_008", article: "das", word: "Motorrad",    translation: "мотоцикл"  },
       { id: "a1_tr_009", article: "die", word: "Straßenbahn", translation: "трамвай"   },
       { id: "a1_tr_010", article: "das", word: "Taxi",        translation: "такси"     },
+      { id: "a1_tr_011", article: "-",   word: "zu Fuß",     translation: "пешком"    },
     ]
   },
 
@@ -334,6 +335,9 @@ window.VOCAB_DATA = [
       { id: "a1_kb_016", article: "das", word: "Gesicht",  translation: "лицо"                },
       { id: "a1_kb_017", article: "das", word: "Knie",     translation: "колено"              },
       { id: "a1_kb_018", article: "der", word: "Zahn",     translation: "зуб"                 },
+      { id: "a1_kb_019", article: "die", word: "Faust",    translation: "кулак"               },
+      { id: "a1_kb_020", article: "der", word: "Daumen",   translation: "большой палец"       },
+      { id: "a1_kb_021", article: "das", word: "Gesäß",    translation: "ягодицы"             },
     ]
   },
 
@@ -358,6 +362,9 @@ window.VOCAB_DATA = [
       { id: "a1_kl_013", article: "die", word: "Jeans",       translation: "джинсы"               },
       { id: "a1_kl_014", article: "der", word: "Schal",       translation: "шарф"                 },
       { id: "a1_kl_015", article: "der", word: "Handschuh",   translation: "перчатка"             },
+      { id: "a1_kl_016", article: "der", word: "Strumpf",     translation: "чулок / длинный носок" },
+      { id: "a1_kl_017", article: "der", word: "Gürtel",      translation: "ремень / пояс"         },
+      { id: "a1_kl_018", article: "der", word: "Hut",         translation: "шляпа"                 },
     ]
   },
 
@@ -599,6 +606,9 @@ window.VOCAB_DATA = [
       { id: "a1_s2_022", article: "die", word: "Abfahrt",       translation: "отправление / выезд"       },
       { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
       { id: "a1_s2_024", article: "der", word: "Kantenautomat", translation: "кофейный / торговый автомат"},
+      { id: "a1_s2_025", article: "die", word: "Arztpraxis",   translation: "кабинет врача / клиника"   },
+      { id: "a1_s2_026", article: "der", word: "Platz",        translation: "площадь / место"           },
+      { id: "a1_s2_027", article: "die", word: "Rakete",       translation: "ракета"                    },
     ]
   },
 
