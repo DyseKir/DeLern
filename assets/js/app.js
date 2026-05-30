@@ -64,6 +64,7 @@ const TR = {
     streak_txt:    (n) => `🔥 Streak: ${n} / ${LEARNED_THRESHOLD}`,
     streak_done:   (n) => `⭐ Gelernt! (${n}/${n})`,
     already_lrn:   '⭐ Bereits gelernt',
+    tt_phase:      'Prüfung — schreibe das Wort mit Artikel',
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
@@ -119,6 +120,63 @@ const TR = {
     streak_txt:    (n) => `🔥 Подряд: ${n} / ${LEARNED_THRESHOLD}`,
     streak_done:   (n) => `⭐ Выучено! (${n}/${n})`,
     already_lrn:   '⭐ Уже выучено',
+    tt_phase:      'Контрольная проверка — напиши слово с артиклем',
+  },
+  uk: {
+    nav_home: 'Головна',          nav_lektionen: 'Уроки',
+    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець',
+    cart_title: 'Кошик', cart_empty: 'Порожньо', cart_total: 'Разом:', cart_buy: 'Купити!',
+    home_title: 'Ласкаво просимо до DeutschLernen!',
+    home_subtitle: 'Обери свій курс.',
+    user_hi: 'Привіт!',
+    sec_level: 'Обери рівень',
+    sec_area:  'Обери розділ',
+    a1_name:'(Початківець)',   a1_sub:'Активний',
+    a2_name:'(Основи)',        a2_sub:'Навчаюсь',
+    b1_name:'(Просунутий)',    b1_sub:'Просуваюсь',
+    b2_name:'(Самостійний)',   b2_sub:'Самостійний',
+    area_grammar_title: 'ГРАМАТИКА І ПРАВИЛА',
+    area_grammar_desc:  'Вивчай граматичні теми і правила німецької.',
+    area_vocab_title:   'СЛОВНИК І ТЕМИ',
+    area_vocab_desc:    'Вчи слова за категоріями з артиклями.',
+    btn_back:      '← Назад',
+    btn_repeat:    'Повторити',
+    btn_home_ov:   'На головну',
+    btn_review_all:'Повторити все',
+    modal_needs_review: 'Вчити ще',
+    modal_mark_done:    'Зрозумів ✓',
+    hint_keys:   'Клавіші: [1] der  [2] die  [3] das',
+    session_done: 'Сесію завершено!',
+    label_correct:'Правильно', label_wrong:'Невірно', label_learned:'Вивчено',
+    all_learned_h:'Всі слова вивчені!',
+    all_learned_p:'Ти освоїв усі слова цієї категорії.',
+    vocab_screen_h:   'Словник',
+    grammar_screen_h: 'Граматика',
+    profile_title: 'Мій профіль і прогрес',
+    themes_title:    (lvl) => `${lvl} — теми`,
+    cat_learned_txt: (a, b) => `${a} / ${b} вивчено`,
+    btn_start:   'Почати урок',
+    btn_learn:   'Вчити',
+    done_section: 'Пройдене',
+    no_cats:     (lvl) => `Немає категорій для ${lvl}.`,
+    rule_label:  (n) => `Правило ${n}`,
+    studied_badge: '✓ Вивчено',
+    examples_h:  'Приклади',
+    stat_learned:  'Вивчених слів',
+    stat_learning: 'В процесі',
+    stat_grammar:  'Правил граматики',
+    progress_lbl:  (lvl) => `Прогрес ${lvl}`,
+    learned_sec:   '⭐ Вивчені слова',
+    no_words_yet:  'Слів ще немає. Починай вчити! 🚀',
+    start_unit:    'Почни урок!',
+    loading:       'Завантаження…',
+    fb_correct:    '✓ Правильно!',
+    fb_wrong:      (art, word) => `✗ Невірно! Правильно: ${art} ${word}`,
+    streak_txt:    (n) => `🔥 Поспіль: ${n} / ${LEARNED_THRESHOLD}`,
+    streak_done:   (n) => `⭐ Вивчено! (${n}/${n})`,
+    already_lrn:   '⭐ Вже вивчено',
+    tt_phase:      'Контрольна перевірка — напиши слово з артиклем',
+    done_section:  'Пройдене',
   }
 };
 
@@ -189,9 +247,10 @@ function applyLang() {
   /* кнопка-переключатель */
   const btn = $('lang-btn');
   if (btn) {
-    btn.textContent = lang === 'de' ? 'RU' : 'DE';
-    btn.classList.toggle('ru', lang === 'ru');
-    btn.title = lang === 'de' ? 'Переключить на русский' : 'Switch to German';
+    const next = lang === 'de' ? 'RU' : lang === 'ru' ? 'UK' : 'DE';
+    btn.textContent = next;
+    btn.dataset.nextLang = next.toLowerCase();
+    btn.title = lang === 'de' ? 'Перейти на русский' : lang === 'ru' ? 'Перейти на українську' : 'Switch to German';
   }
   document.documentElement.lang = lang;
   // greeting depends on both lang and profile
@@ -1533,7 +1592,7 @@ function initEvents() {
 
   /* Переключатель языка */
   $('lang-btn').addEventListener('click',()=>{
-    lang = lang==='de' ? 'ru' : 'de';
+    lang = lang==='de' ? 'ru' : lang==='ru' ? 'uk' : 'de';
     localStorage.setItem('dl_lang', lang);
     applyLang();                          // обновляет data-i18n элементы
     rerenderCurrent();                    // обновляет динамический контент экрана
