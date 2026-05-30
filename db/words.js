@@ -45,7 +45,6 @@ window.VOCAB_DATA = [
       { id: "a1_e2_011", article: "die", word: "Waffel",    translation: "вафля"          },
       { id: "a1_e2_012", article: "die", word: "Torte",     translation: "торт"           },
       { id: "a1_e2_013", article: "das", word: "Eis",       translation: "мороженое"      },
-      { id: "a1_e2_014", article: "der", word: "Ticket",    translation: "билет"          },
     ]
   },
 

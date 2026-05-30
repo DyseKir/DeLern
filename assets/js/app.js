@@ -901,7 +901,7 @@ function drawCard() {
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
   $('card-emoji').textContent           = EMOJI[card.word] || S.currentCatEmoji;
   $('card-word').textContent            = card.word;
-  $('card-translation').textContent     = card.translation;
+  $('card-translation').textContent     = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
   $('card-streak').textContent = wp.status==='learned' ? t('already_lrn') : wp.streak>0 ? t('streak_txt',wp.streak) : '';
@@ -990,7 +990,7 @@ function drawTestCard() {
   const streak = getWP(card.id).streak || 0;
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
   $('tt-emoji').textContent    = EMOJI[card.word] || S.currentCatEmoji;
-  $('tt-ru').textContent       = card.translation;
+  $('tt-ru').textContent       = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
   $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
