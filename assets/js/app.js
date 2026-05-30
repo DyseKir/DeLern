@@ -279,6 +279,33 @@ const EMOJI = {
   // Farben
   rot:'🔴', blau:'🔵', grün:'🟢', gelb:'🟡', schwarz:'⚫', weiß:'⚪',
   grau:'🩶', orange:'🟠', lila:'🟣', rosa:'🌸', braun:'🟤', bunt:'🌈',
+  // Zahlen расширенные
+  dreizehn:'1️⃣3️⃣', vierzehn:'1️⃣4️⃣', fünfzehn:'1️⃣5️⃣', sechzehn:'1️⃣6️⃣',
+  siebzehn:'1️⃣7️⃣', achtzehn:'1️⃣8️⃣', neunzehn:'1️⃣9️⃣',
+  einundzwanzig:'2️⃣1️⃣', sechzig:'6️⃣0️⃣', siebzig:'7️⃣0️⃣',
+  achtzig:'8️⃣0️⃣', neunzig:'9️⃣0️⃣', zweihundert:'2️⃣0️⃣0️⃣',
+  // Wichtige Verben
+  gehen:'🚶', kommen:'🏃', fliegen:'✈️', schwimmen:'🏊', trinken:'🥤',
+  schreiben:'✍️', lernen:'📖', spielen:'🎮', geben:'🤲', nehmen:'👐',
+  kaufen:'🛍️', brauchen:'🤔', hören:'👂', sagen:'💬', fragen:'❓',
+  antworten:'💡', machen:'🔨', suchen:'🔍', bleiben:'🏠', denken:'🧠',
+  singen:'🎤', tanzen:'💃', schlafen:'😴', wohnen:'🏡', arbeiten:'💼',
+  beginnen:'🚀', helfen:'🤝', treffen:'👋', rufen:'📣',
+  // Am Bahnhof
+  Fahrkartenautomat:'🎫', Fahrkarte:'🎫', Anzeigetafel:'📋',
+  Zugnummer:'🔢', Zielstation:'📍', Ticketkontrolle:'✅',
+  Serviceschalter:'🏧', Stationen:'🚉', Uhrzeit:'🕐',
+  Minute:'⏱️', Stunde:'⏰',
+  // Nützliche Wörter
+  Musik:'🎵', Ruhe:'🤫', Spaß:'🎉', Zentrum:'🏙️', Haustür:'🚪',
+  Schere:'✂️', Museum:'🏛️', Kuli:'✒️', Handy:'📱',
+  Verkehrsmittel:'🚌', Parkgebühren:'💶',
+  praktisch:'🛠️', öffentlich:'🏛️', teuer:'💎', billig:'💸',
+  wichtig:'⚠️', richtig:'✅', falsch:'❌', schwer:'🏋️', leicht:'🪶', fit:'💪',
+  // Länder 2
+  Slowakei:'🇸🇰', Niederlande:'🇳🇱', Iran:'🇮🇷', Sudan:'🌍',
+  Irak:'🌍', Uganda:'🇺🇬', USA:'🇺🇸', 'Saudi-Arabien':'🇸🇦',
+  Vietnam:'🇻🇳', Japan:'🇯🇵',
   // Wetter
   Wetter:'🌤️', Wind:'💨', Regen:'🌧️', Schnee:'❄️', Wolke:'☁️',
   Gewitter:'⛈️', Sonne:'☀️', Temperatur:'🌡️', Frost:'🥶', Nebel:'🌫️',

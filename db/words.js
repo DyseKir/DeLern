@@ -446,13 +446,26 @@ window.VOCAB_DATA = [
       { id: "a1_zn_010", article: "-", word: "neun",      translation: "9 — девять"   },
       { id: "a1_zn_011", article: "-", word: "zehn",      translation: "10 — десять"  },
       { id: "a1_zn_012", article: "-", word: "elf",       translation: "11 — одиннадцать" },
-      { id: "a1_zn_013", article: "-", word: "zwölf",     translation: "12 — двенадцать"  },
-      { id: "a1_zn_014", article: "-", word: "zwanzig",   translation: "20 — двадцать"    },
-      { id: "a1_zn_015", article: "-", word: "dreißig",   translation: "30 — тридцать"    },
-      { id: "a1_zn_016", article: "-", word: "vierzig",   translation: "40 — сорок"       },
-      { id: "a1_zn_017", article: "-", word: "fünfzig",   translation: "50 — пятьдесят"   },
-      { id: "a1_zn_018", article: "-", word: "hundert",   translation: "100 — сто"         },
-      { id: "a1_zn_019", article: "-", word: "tausend",   translation: "1000 — тысяча"    },
+      { id: "a1_zn_013", article: "-", word: "zwölf",          translation: "12 — двенадцать"      },
+      { id: "a1_zn_020", article: "-", word: "dreizehn",       translation: "13 — тринадцать"      },
+      { id: "a1_zn_021", article: "-", word: "vierzehn",       translation: "14 — четырнадцать"    },
+      { id: "a1_zn_022", article: "-", word: "fünfzehn",       translation: "15 — пятнадцать"      },
+      { id: "a1_zn_023", article: "-", word: "sechzehn",       translation: "16 — шестнадцать"     },
+      { id: "a1_zn_024", article: "-", word: "siebzehn",       translation: "17 — семнадцать"      },
+      { id: "a1_zn_025", article: "-", word: "achtzehn",       translation: "18 — восемнадцать"    },
+      { id: "a1_zn_026", article: "-", word: "neunzehn",       translation: "19 — девятнадцать"    },
+      { id: "a1_zn_014", article: "-", word: "zwanzig",        translation: "20 — двадцать"        },
+      { id: "a1_zn_027", article: "-", word: "einundzwanzig",  translation: "21 — двадцать один"   },
+      { id: "a1_zn_015", article: "-", word: "dreißig",        translation: "30 — тридцать"        },
+      { id: "a1_zn_016", article: "-", word: "vierzig",        translation: "40 — сорок"           },
+      { id: "a1_zn_017", article: "-", word: "fünfzig",        translation: "50 — пятьдесят"       },
+      { id: "a1_zn_028", article: "-", word: "sechzig",        translation: "60 — шестьдесят"      },
+      { id: "a1_zn_029", article: "-", word: "siebzig",        translation: "70 — семьдесят"       },
+      { id: "a1_zn_030", article: "-", word: "achtzig",        translation: "80 — восемьдесят"     },
+      { id: "a1_zn_031", article: "-", word: "neunzig",        translation: "90 — девяносто"       },
+      { id: "a1_zn_018", article: "-", word: "hundert",        translation: "100 — сто"            },
+      { id: "a1_zn_032", article: "-", word: "zweihundert",    translation: "200 — двести"         },
+      { id: "a1_zn_019", article: "-", word: "tausend",        translation: "1000 — тысяча"        },
     ]
   },
 
@@ -886,6 +899,118 @@ window.VOCAB_DATA = [
       { id: "a1_t2_010", article: "das", word: "Kaninchen", translation: "кролик"           },
       { id: "a1_t2_011", article: "der", word: "Hahn",      translation: "петух"            },
       { id: "a1_t2_012", article: "die", word: "Ziege",     translation: "коза"             },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — WICHTIGE VERBEN (Важные глаголы A1)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "verben", name: "Wichtige Verben", name_ru: "Важные глаголы", emoji: "🏃",
+    words: [
+      { id: "a1_vb_001", article: "-", word: "gehen",      translation: "ходить / идти"           },
+      { id: "a1_vb_002", article: "-", word: "kommen",     translation: "приходить / приезжать"   },
+      { id: "a1_vb_003", article: "-", word: "fahren",     translation: "ехать (на транспорте)"   },
+      { id: "a1_vb_004", article: "-", word: "fliegen",    translation: "летать"                  },
+      { id: "a1_vb_005", article: "-", word: "laufen",     translation: "бегать / ходить пешком"  },
+      { id: "a1_vb_006", article: "-", word: "schwimmen",  translation: "плавать"                 },
+      { id: "a1_vb_007", article: "-", word: "trinken",    translation: "пить"                    },
+      { id: "a1_vb_008", article: "-", word: "essen",      translation: "есть / кушать"           },
+      { id: "a1_vb_009", article: "-", word: "schreiben",  translation: "писать"                  },
+      { id: "a1_vb_010", article: "-", word: "lesen",      translation: "читать"                  },
+      { id: "a1_vb_011", article: "-", word: "lernen",     translation: "учить / учиться"         },
+      { id: "a1_vb_012", article: "-", word: "spielen",    translation: "играть"                  },
+      { id: "a1_vb_013", article: "-", word: "geben",      translation: "давать"                  },
+      { id: "a1_vb_014", article: "-", word: "nehmen",     translation: "брать"                   },
+      { id: "a1_vb_015", article: "-", word: "kaufen",     translation: "покупать"                },
+      { id: "a1_vb_016", article: "-", word: "brauchen",   translation: "нуждаться / нужно"       },
+      { id: "a1_vb_017", article: "-", word: "hören",      translation: "слушать / слышать"       },
+      { id: "a1_vb_018", article: "-", word: "sehen",      translation: "видеть / смотреть"       },
+      { id: "a1_vb_019", article: "-", word: "sagen",      translation: "говорить / сказать"      },
+      { id: "a1_vb_020", article: "-", word: "fragen",     translation: "спрашивать"              },
+      { id: "a1_vb_021", article: "-", word: "antworten",  translation: "отвечать"                },
+      { id: "a1_vb_022", article: "-", word: "machen",     translation: "делать"                  },
+      { id: "a1_vb_023", article: "-", word: "suchen",     translation: "искать"                  },
+      { id: "a1_vb_024", article: "-", word: "finden",     translation: "находить"                },
+      { id: "a1_vb_025", article: "-", word: "bleiben",    translation: "оставаться"              },
+      { id: "a1_vb_026", article: "-", word: "denken",     translation: "думать"                  },
+      { id: "a1_vb_027", article: "-", word: "singen",     translation: "петь"                    },
+      { id: "a1_vb_028", article: "-", word: "tanzen",     translation: "танцевать"               },
+      { id: "a1_vb_029", article: "-", word: "schlafen",   translation: "спать"                   },
+      { id: "a1_vb_030", article: "-", word: "wohnen",     translation: "жить / проживать"        },
+      { id: "a1_vb_031", article: "-", word: "arbeiten",   translation: "работать"                },
+      { id: "a1_vb_032", article: "-", word: "beginnen",   translation: "начинать"                },
+      { id: "a1_vb_033", article: "-", word: "helfen",     translation: "помогать"                },
+      { id: "a1_vb_034", article: "-", word: "treffen",    translation: "встречать / встречаться" },
+      { id: "a1_vb_035", article: "-", word: "rufen",      translation: "звать / звонить"         },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — AM BAHNHOF (На вокзале)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "bahnhof", name: "Am Bahnhof", name_ru: "На вокзале", emoji: "🚉",
+    words: [
+      { id: "a1_bh_001", article: "der", word: "Fahrkartenautomat", translation: "автомат для билетов"     },
+      { id: "a1_bh_002", article: "die", word: "Fahrkarte",         translation: "билет на транспорт"      },
+      { id: "a1_bh_003", article: "die", word: "Anzeigetafel",      translation: "информационное табло"    },
+      { id: "a1_bh_004", article: "die", word: "Zugnummer",         translation: "номер поезда"            },
+      { id: "a1_bh_005", article: "die", word: "Zielstation",       translation: "конечная станция"        },
+      { id: "a1_bh_006", article: "die", word: "Ticketkontrolle",   translation: "контроль билетов"        },
+      { id: "a1_bh_007", article: "der", word: "Serviceschalter",   translation: "стойка обслуживания"     },
+      { id: "a1_bh_008", article: "die", word: "Stationen",         translation: "станции (мн. ч.)"        },
+      { id: "a1_bh_009", article: "die", word: "Uhrzeit",           translation: "время / который час"     },
+      { id: "a1_bh_010", article: "die", word: "Minute",            translation: "минута"                  },
+      { id: "a1_bh_011", article: "die", word: "Stunde",            translation: "час"                     },
+      { id: "a1_bh_012", article: "der", word: "Markt",             translation: "рынок / ярмарка"         },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — NÜTZLICHE WÖRTER (Полезные слова)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "nuetzlich", name: "Nützliche Wörter", name_ru: "Полезные слова", emoji: "💡",
+    words: [
+      { id: "a1_nw_001", article: "die", word: "Musik",          translation: "музыка"                 },
+      { id: "a1_nw_002", article: "die", word: "Ruhe",           translation: "тишина / покой"         },
+      { id: "a1_nw_003", article: "der", word: "Spaß",           translation: "удовольствие / веселье" },
+      { id: "a1_nw_004", article: "das", word: "Zentrum",        translation: "центр города"           },
+      { id: "a1_nw_005", article: "die", word: "Haustür",        translation: "входная дверь"          },
+      { id: "a1_nw_006", article: "die", word: "Schere",         translation: "ножницы"                },
+      { id: "a1_nw_007", article: "das", word: "Museum",         translation: "музей"                  },
+      { id: "a1_nw_008", article: "der", word: "Kuli",           translation: "шариковая ручка"        },
+      { id: "a1_nw_009", article: "das", word: "Handy",          translation: "мобильный телефон"      },
+      { id: "a1_nw_010", article: "das", word: "Verkehrsmittel", translation: "средство транспорта"    },
+      { id: "a1_nw_011", article: "die", word: "Parkgebühren",   translation: "плата за парковку"      },
+      { id: "a1_nw_012", article: "-",   word: "praktisch",      translation: "практичный"             },
+      { id: "a1_nw_013", article: "-",   word: "öffentlich",     translation: "общественный"           },
+      { id: "a1_nw_014", article: "-",   word: "teuer",          translation: "дорогой"                },
+      { id: "a1_nw_015", article: "-",   word: "billig",         translation: "дешёвый"                },
+      { id: "a1_nw_016", article: "-",   word: "wichtig",        translation: "важный"                 },
+      { id: "a1_nw_017", article: "-",   word: "richtig",        translation: "правильный"             },
+      { id: "a1_nw_018", article: "-",   word: "falsch",         translation: "неправильный"           },
+      { id: "a1_nw_019", article: "-",   word: "schwer",         translation: "тяжёлый / сложный"      },
+      { id: "a1_nw_020", article: "-",   word: "leicht",         translation: "лёгкий"                 },
+      { id: "a1_nw_021", article: "-",   word: "fit",            translation: "в форме / бодрый"       },
+    ]
+  },
+
+  // Расширение Länder: дополнительные страны
+  {
+    level: "A1", category: "laender2", name: "Länder – mehr", name_ru: "Страны – ещё", emoji: "🌐",
+    words: [
+      { id: "a1_l2_001", article: "die", word: "Slowakei",       translation: "Словакия"        },
+      { id: "a1_l2_002", article: "die", word: "Niederlande",    translation: "Нидерланды"      },
+      { id: "a1_l2_003", article: "der", word: "Iran",           translation: "Иран"            },
+      { id: "a1_l2_004", article: "der", word: "Sudan",          translation: "Судан"           },
+      { id: "a1_l2_005", article: "der", word: "Irak",           translation: "Ирак"            },
+      { id: "a1_l2_006", article: "-",   word: "Uganda",         translation: "Уганда"          },
+      { id: "a1_l2_007", article: "die", word: "USA",            translation: "США"             },
+      { id: "a1_l2_008", article: "-",   word: "Saudi-Arabien",  translation: "Саудовская Аравия"},
+      { id: "a1_l2_009", article: "-",   word: "Vietnam",        translation: "Вьетнам"         },
+      { id: "a1_l2_010", article: "-",   word: "Japan",          translation: "Япония"          },
     ]
   },
 

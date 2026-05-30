@@ -788,6 +788,176 @@ Ich bin + прилагательное → Ich bin glücklich / müde / krank.`,
   },
 
   // ════════════════════════════════════════
+  //  A1 — DIE UHRZEIT (Время)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_025", level: "A1",
+    title_de: "Die Uhrzeit – Wie viel Uhr ist es?",
+    title_ru: "Время – Который час?",
+    explanation_de: "So fragst du nach der Uhrzeit und sagst sie auf zwei Arten.",
+    explanation_ru: `<strong>Как спросить:</strong>
+• Wie viel Uhr ist es? — Который час?
+• Wie spät ist es? — Сколько времени?
+
+<strong>Официальный способ</strong> (24 часа):
+• 8:00 = acht Uhr
+• 8:20 = acht Uhr zwanzig
+• 15:49 = fünfzehn Uhr neunundvierzig
+
+<strong>Разговорный способ</strong> (12 часов):
+• halb... = «половина следующего» → halb neun = 8:30!
+• Viertel nach... = «четверть прошла» → Viertel nach acht = 8:15
+• Viertel vor... = «без четверти» → Viertel vor neun = 8:45
+• zehn nach acht = 8:10
+• zehn vor neun = 8:50
+
+⚠️ <strong>halb neun = 8:30</strong>, НЕ 9:30! Halb bedeutet: halb[er Weg] zu neun.`,
+    examples: [
+      { de: "Wie viel Uhr ist es? – Es ist sieben Uhr.",         ru: "Который час? — Семь часов."             },
+      { de: "Es ist halb neun. (= 8:30)",                        ru: "Половина девятого (= 8:30)."            },
+      { de: "Es ist Viertel nach acht. (= 8:15)",                ru: "Четверть девятого (= 8:15)."            },
+      { de: "Es ist Viertel vor zehn. (= 9:45)",                 ru: "Без четверти десять (= 9:45)."          },
+      { de: "Der Zug fährt um 14:07 Uhr ab.",                    ru: "Поезд отправляется в 14:07."            },
+    ],
+    tip_de: "halb neun = 8:30, NICHT 9:30! Der Zeiger ist halb auf dem Weg zur 9.",
+    tip_ru: "halb neun = 8:30, НЕ 9:30! Стрелка находится на полпути к девятке.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — LÄNDER MIT/OHNE ARTIKEL
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_026", level: "A1",
+    title_de: "Länder – mit oder ohne Artikel?",
+    title_ru: "Страны – с артиклем или без?",
+    explanation_de: "Die meisten Länder haben keinen Artikel. Einige wenige Länder haben einen festen Artikel.",
+    explanation_ru: `<strong>Большинство стран</strong> — без артикля:
+Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda, Japan...
+
+<em>Ich komme aus Deutschland. / Ich wohne in Deutschland.</em>
+
+<strong>Некоторые страны</strong> — с артиклем (запомни!):
+• <strong>die</strong> Türkei, die Ukraine, die Schweiz, die Slowakei, die Niederlande, die USA
+• <strong>der</strong> Iran, der Sudan, der Irak
+
+⚠️ С артиклем меняется в Dativ:
+• aus der Türkei / in der Schweiz
+• aus dem Iran / in den USA
+
+Структура: Ich komme aus + [Dativ]
+• Ich komme aus <u>Deutschland</u>. (без артикля)
+• Ich komme aus <u>der Türkei</u>. (die → der в Dativ)
+• Ich komme aus <u>dem Iran</u>. (der → dem в Dativ)`,
+    examples: [
+      { de: "Ich komme aus Deutschland.",        ru: "Я из Германии. (без артикля)"       },
+      { de: "Er kommt aus der Türkei.",          ru: "Он из Турции. (die → der Dativ)"    },
+      { de: "Sie wohnt in der Ukraine.",         ru: "Она живёт в Украине."               },
+      { de: "Wir kommen aus den USA.",           ru: "Мы из США. (die → den Dativ)"       },
+    ],
+    tip_de: "Merke die Ausnahmen: die Türkei, die Schweiz, die Ukraine, der Iran, die USA.",
+    tip_ru: "Запомни исключения: die Türkei, die Schweiz, die Ukraine, der Iran, die USA.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — SEIN VS HABEN BEI GEFÜHLEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_027", level: "A1",
+    title_de: "sein vs. haben bei Gefühlen",
+    title_ru: "sein или haben при описании чувств?",
+    explanation_de: "Manche Gefühle und Zustände werden mit 'sein', andere mit 'haben' ausgedrückt.",
+    explanation_ru: `В немецком одни чувства выражаются через <strong>sein</strong> (быть), другие через <strong>haben</strong> (иметь):
+
+<strong>Ich bin + Adjektiv:</strong>
+• Ich bin müde (усталый) / traurig (грустный)
+• Ich bin krank (больной) / wütend (злой)
+• Ich bin glücklich (счастливый) / verliebt (влюблённый)
+• Ich bin groß / klein / jung / alt / schön / stark
+
+<strong>Ich habe + Nomen:</strong>
+• Ich habe Hunger (голод) — я голоден
+• Ich habe Durst (жажда) — я хочу пить
+• Ich habe Angst (страх) — мне страшно
+• Ich habe Schmerzen (боль) — у меня боль
+
+⚠️ <strong>«Hunger/Durst/Angst haben»</strong> — это существительные, поэтому haben!`,
+    examples: [
+      { de: "Ich bin müde und traurig.",      ru: "Я устал и грустен. (sein + adj)"         },
+      { de: "Ich habe Hunger und Durst.",     ru: "Я голоден и хочу пить. (haben + Nomen)"  },
+      { de: "Er ist glücklich.",              ru: "Он счастлив. (sein)"                      },
+      { de: "Sie hat Angst.",                 ru: "Ей страшно. (haben)"                      },
+    ],
+    tip_de: "Hunger/Durst/Angst/Schmerzen → haben! Adjektive → sein!",
+    tip_ru: "Hunger/Durst/Angst/Schmerzen → haben! Прилагательные → sein!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — PLURAL DER NOMEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_028", level: "A1",
+    title_de: "Plural der Nomen – Mehrzahl bilden",
+    title_ru: "Множественное число существительных",
+    explanation_de: "Im Deutschen gibt es verschiedene Pluralendungen. Der Artikel ist immer 'die' im Plural.",
+    explanation_ru: `Во множественном числе артикль всегда <strong>die</strong> — независимо от рода слова!
+
+Основные типы множественного числа:
+• <strong>-e</strong>: der Bahnhof → die Bahnhöf<strong>e</strong> | der Park → die Park<strong>s</strong>
+• <strong>-en</strong>: die Schule → die Schul<strong>en</strong> | die Kirche → die Kirch<strong>en</strong>
+• <strong>-er</strong>: das Krankenhaus → die Krankenhäus<strong>er</strong>
+• <strong>-s</strong>: das Hotel → die Hotel<strong>s</strong> | das Restaurant → die Restaurant<strong>s</strong>
+• <strong>без изменений</strong>: der Supermarkt → die Supermärkte (Umlaut!)
+• <strong>только мн. ч.</strong>: die Eltern, die Geschwister, die Leute (не имеют ед. ч.)
+
+⚠️ Умлаут (ä/ö/ü) часто появляется во мн. ч.!
+• der Markt → die Märkt<strong>e</strong>
+• die Apotheke → die Apothek<strong>en</strong>`,
+    examples: [
+      { de: "der Supermarkt → die Supermärkte",   ru: "супермаркет → супермаркеты"        },
+      { de: "die Schule → die Schulen",            ru: "школа → школы"                    },
+      { de: "das Hotel → die Hotels",              ru: "отель → отели"                    },
+      { de: "das Krankenhaus → die Krankenhäuser", ru: "больница → больницы"              },
+      { de: "die Post → (nur Singular)",           ru: "почта → только единственное число" },
+    ],
+    tip_de: "Im Plural ist der Artikel immer DIE! Plural lernst du am besten zusammen mit dem Wort.",
+    tip_ru: "Во множественном числе артикль всегда DIE! Лучше учи множественное число вместе со словом.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — POSSESSIVPRONOMEN (полная таблица)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_029", level: "A1",
+    title_de: "Possessivpronomen – mein, dein, sein, ihr...",
+    title_ru: "Притяжательные местоимения",
+    explanation_de: "Possessivpronomen zeigen, wem etwas gehört. Sie richten sich nach dem Artikel des Substantivs.",
+    explanation_ru: `Притяжательные местоимения показывают принадлежность и согласуются с родом существительного:
+
+<table style="border-collapse:collapse">
+<tr><td><strong>ich →</strong></td><td>mein/meine</td><td>мой/моя/моё</td></tr>
+<tr><td><strong>du →</strong></td><td>dein/deine</td><td>твой/твоя/твоё</td></tr>
+<tr><td><strong>er →</strong></td><td>sein/seine</td><td>его</td></tr>
+<tr><td><strong>sie →</strong></td><td>ihr/ihre</td><td>её</td></tr>
+<tr><td><strong>wir →</strong></td><td>unser/unsere</td><td>наш/наша</td></tr>
+<tr><td><strong>ihr →</strong></td><td>euer/eure</td><td>ваш/ваша</td></tr>
+<tr><td><strong>sie/Sie →</strong></td><td>ihr/ihre / Ihr/Ihre</td><td>их/Ваш</td></tr>
+</table>
+
+Окончания:
+• der-слова → <strong>mein</strong> Vater (без окончания)
+• die-слова → <strong>meine</strong> Mutter (-e)
+• das-слова → <strong>mein</strong> Kind (без окончания)`,
+    examples: [
+      { de: "Das ist mein Vater. / meine Mutter. / mein Kind.", ru: "Это мой отец / моя мать / моё дитя." },
+      { de: "Wie heißt dein Bruder?",                           ru: "Как зовут твоего брата?"              },
+      { de: "Er hat seine Tasche vergessen.",                   ru: "Он забыл свою сумку."                 },
+      { de: "Das ist ihr Mann. (ihre Frau)",                    ru: "Это её муж. (её жена)"                },
+    ],
+    tip_de: "mein = kein: gleiche Endungen! Lern: 'mein' für der/das, 'meine' für die.",
+    tip_ru: "mein = kein: одинаковые окончания! mein для der/das, meine для die.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 
