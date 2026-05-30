@@ -438,8 +438,357 @@ Kein/keine — это буквально «не один», «ни одного�
     tip_ru: "Изменяются только du и er/sie/es! Ich и wir — всегда с обычным 'e'. Главные глаголы: sprech→sprich, ess→iss, les→lies.",
   },
 
-  // ════════════════════════════════
+  // ════════════════════════════════════════
+  //  A1 — SEIN & HABEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_014", level: "A1",
+    title_de: "sein & haben – Konjugation",
+    title_ru: "sein (быть) и haben (иметь) – спряжение",
+    explanation_de: "sein und haben sind die wichtigsten Verben. Sie werden unregelmäßig konjugiert und auswendig gelernt.",
+    explanation_ru: `<strong>sein</strong> (быть) и <strong>haben</strong> (иметь) — самые важные глаголы немецкого языка. Они неправильные — их нужно просто запомнить.
+
+<strong>sein:</strong>
+• ich bin / du bist / er–sie–es ist
+• wir sind / ihr seid / sie–Sie sind
+
+<strong>haben:</strong>
+• ich habe / du hast / er–sie–es hat
+• wir haben / ihr habt / sie–Sie haben
+
+💡 sein используется для описания состояний и свойств: <em>Ich bin müde.</em>
+💡 haben используется для обозначения владения: <em>Ich habe einen Hund.</em>`,
+    examples: [
+      { de: "Ich bin Student. Du bist Lehrerin.",     ru: "Я студент. Ты учительница."    },
+      { de: "Er ist krank. Sie ist glücklich.",       ru: "Он болен. Она счастлива."      },
+      { de: "Ich habe ein Buch. Du hast einen Hund.", ru: "У меня есть книга. У тебя собака." },
+      { de: "Wir haben Hunger. Ihr habt Durst.",      ru: "Мы голодны. Вы хотите пить."   },
+    ],
+    tip_de: "sein und haben musst du auswendig lernen – sie folgen keiner Regel!",
+    tip_ru: "sein и haben надо просто выучить наизусть — они не подчиняются никаким правилам!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — FREQUENZADVERBIEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_015", level: "A1",
+    title_de: "Frequenzadverbien – Wie oft?",
+    title_ru: "Наречия частоты – Как часто?",
+    explanation_de: "Frequenzadverbien zeigen, wie oft etwas passiert. Sie stehen meist direkt nach dem Verb.",
+    explanation_ru: `Наречия частоты отвечают на вопрос «Как часто?» и показывают, насколько регулярно что-то происходит.
+
+По убыванию частоты:
+• <strong>immer</strong> — всегда (100%)
+• <strong>meistens</strong> — чаще всего (≈80%)
+• <strong>oft</strong> — часто (≈60%)
+• <strong>manchmal</strong> — иногда (≈40%)
+• <strong>selten</strong> — редко (≈20%)
+• <strong>nie</strong> — никогда (0%)
+
+Позиция в предложении: обычно сразу после глагола.
+<em>Ich gehe <u>oft</u> ins Kino.</em>`,
+    examples: [
+      { de: "Ich trinke immer Kaffee am Morgen.",  ru: "Я всегда пью кофе утром."       },
+      { de: "Er geht oft ins Fitnessstudio.",       ru: "Он часто ходит в спортзал."     },
+      { de: "Wir fahren manchmal in die Berge.",    ru: "Мы иногда едем в горы."         },
+      { de: "Sie ist selten krank.",                ru: "Она редко болеет."              },
+      { de: "Ich esse nie Fleisch.",                ru: "Я никогда не ем мясо."          },
+    ],
+    tip_de: "immer → meistens → oft → manchmal → selten → nie",
+    tip_ru: "Запомни шкалу: всегда → чаще всего → часто → иногда → редко → никогда",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — MODALVERBEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_016", level: "A1",
+    title_de: "Modalverben – können, müssen, dürfen, wollen, sollen, mögen",
+    title_ru: "Модальные глаголы",
+    explanation_de: "Modalverben verändern die Bedeutung des Hauptverbs. Das Hauptverb steht im Infinitiv am Satzende.",
+    explanation_ru: `Модальные глаголы изменяют смысл основного глагола. Основной глагол всегда стоит в инфинитиве в КОНЦЕ предложения.
+
+<strong>können</strong> — мочь/уметь: ich kann / du kannst / er kann
+<strong>müssen</strong> — должен/нужно: ich muss / du musst / er muss
+<strong>dürfen</strong> — разрешено: ich darf / du darfst / er darf
+<strong>wollen</strong> — хотеть: ich will / du willst / er will
+<strong>sollen</strong> — следует/должен: ich soll / du sollst / er soll
+<strong>mögen</strong> — любить/нравиться: ich mag / du magst / er mag
+<strong>wissen</strong> — знать: ich weiß / du weißt / er weiß
+
+⚠️ У всех модальных глаголов ich = er/sie/es (без окончания -t)!`,
+    examples: [
+      { de: "Ich kann Deutsch sprechen.",     ru: "Я умею говорить по-немецки."   },
+      { de: "Du musst jetzt schlafen.",       ru: "Тебе нужно спать сейчас."      },
+      { de: "Er darf hier nicht rauchen.",    ru: "Ему нельзя здесь курить."      },
+      { de: "Wir wollen ins Kino gehen.",     ru: "Мы хотим пойти в кино."        },
+      { de: "Ich weiß nicht, wo er ist.",     ru: "Я не знаю, где он."            },
+    ],
+    tip_de: "Ich kann = Er kann (kein -t!). Das Hauptverb kommt immer ans Satzende.",
+    tip_ru: "ich kann = er kann (без -t!). Основной глагол всегда уходит в конец предложения.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — IMPERATIV
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_017", level: "A1",
+    title_de: "Imperativ – Befehle und Bitten",
+    title_ru: "Повелительное наклонение – приказы и просьбы",
+    explanation_de: "Der Imperativ wird benutzt, um Befehle oder Bitten auszudrücken. Es gibt drei Formen: du, ihr, Sie.",
+    explanation_ru: `Повелительное наклонение используется для команд и просьб. В немецком три формы:
+
+<strong>du-Form</strong> (ты): Verbstamm (без окончания) → <em>Geh!</em>
+<strong>ihr-Form</strong> (вы, неформально): wie ihr → <em>Geht!</em>
+<strong>Sie-Form</strong> (Вы, формально): Infinitiv + Sie → <em>Gehen Sie!</em>
+
+Особые глаголы:
+• sein: Sei! / Seid! / Seien Sie!
+• haben: Hab! / Habt! / Haben Sie!
+
+Глаголы с e→i меняются и в du-форме:
+• sprechen → Sprich! | lesen → Lies! | essen → Iss!`,
+    examples: [
+      { de: "Geh nach Hause! / Geht nach Hause! / Gehen Sie nach Hause!", ru: "Иди домой! / Идите (мн.)! / Идите (вежл.)!" },
+      { de: "Komm her! / Kommt her! / Kommen Sie her!",                   ru: "Иди сюда! / Идите сюда (мн.)! / Подойдите!" },
+      { de: "Sei ruhig! / Seid ruhig! / Seien Sie ruhig!",                ru: "Будь тихим! / Будьте тихими! / Будьте тихим!" },
+      { de: "Sprich lauter! (du-Form von sprechen)",                       ru: "Говори громче! (e→i у du-формы)"              },
+    ],
+    tip_de: "du-Form: nur Verbstamm, kein -e am Ende (außer bei -t/-d-Stämmen).",
+    tip_ru: "du-форма: только основа глагола, без -e в конце (кроме глаголов на -t/-d).",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — PRÄPOSITIONEN WO? (DATIV)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_018", level: "A1",
+    title_de: "Präpositionen Wo? + Dativ",
+    title_ru: "Предлоги места + Дативный падеж",
+    explanation_de: "Wechselpräpositionen stehen mit Dativ bei der Frage 'Wo?' (Lage/Position).",
+    explanation_ru: `Предлоги места отвечают на вопрос <strong>Wo?</strong> (Где?) и требуют <strong>Dativ</strong>:
+
+• <strong>vor</strong> — перед
+• <strong>hinter</strong> — за (позади)
+• <strong>neben</strong> — рядом
+• <strong>über</strong> — над
+• <strong>unter</strong> — под
+• <strong>an</strong> — у / возле / на (вертикальная поверхность)
+• <strong>auf</strong> — на (горизонтальная поверхность)
+• <strong>in</strong> — внутри / в
+• <strong>zwischen</strong> — между
+
+Сокращения в Dativ:
+• in + dem = <strong>im</strong>
+• an + dem = <strong>am</strong>
+
+Артикли в Dativ: der → dem | die → der | das → dem`,
+    examples: [
+      { de: "Das Buch liegt auf dem Tisch.",    ru: "Книга лежит на столе."          },
+      { de: "Die Katze sitzt unter dem Stuhl.", ru: "Кошка сидит под стулом."        },
+      { de: "Er steht vor dem Haus.",           ru: "Он стоит перед домом."          },
+      { de: "Ich bin im Supermarkt. (in+dem)",  ru: "Я в супермаркете. (in+dem=im)"  },
+      { de: "Wo ist der Ball?",                 ru: "Где мяч?"                        },
+    ],
+    tip_de: "Wo? → Dativ (im, am). Wohin? → Akkusativ (in den, an den). Lern diese Frage!",
+    tip_ru: "Wo? (где?) → Dativ. Wohin? (куда?) → Akkusativ. Вопрос определяет падеж!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — AKKUSATIV
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_019", level: "A1",
+    title_de: "Der Akkusativ – Veränderungen",
+    title_ru: "Винительный падеж (Akkusativ)",
+    explanation_de: "Der Akkusativ zeigt das direkte Objekt. Nur der männliche Artikel ändert sich: der → den.",
+    explanation_ru: `Аккузатив — это падеж прямого дополнения (кого? что?). В немецком меняется только <strong>мужской</strong> артикль!
+
+Nominativ → Akkusativ:
+• <strong>der</strong> (м.р.) → <strong>den</strong>
+• <strong>die</strong> (ж.р.) → <strong>die</strong> (без изменений!)
+• <strong>das</strong> (ср.р.) → <strong>das</strong> (без изменений!)
+• Plural <strong>die</strong> → <strong>die</strong> (без изменений!)
+
+Неопределённый артикль:
+• ein → <strong>einen</strong> (м.р.) | eine → <strong>eine</strong> | ein → <strong>ein</strong>
+• kein → <strong>keinen</strong> | keine → <strong>keine</strong> | kein → <strong>kein</strong>`,
+    examples: [
+      { de: "Ich sehe den Mann. (der → den)",    ru: "Я вижу мужчину. (мужской → изменяется)"  },
+      { de: "Ich sehe die Frau. (die → die)",    ru: "Я вижу женщину. (женский → не меняется)" },
+      { de: "Ich trinke einen Kaffee.",           ru: "Я пью кофе. (einen = AKK мужской)"       },
+      { de: "Ich habe keinen Hunger.",            ru: "Я не голоден. (keinen = AKK мужской)"    },
+    ],
+    tip_de: "Nur der → den! Die und das bleiben gleich. Das ist die gute Nachricht!",
+    tip_ru: "Только der → den! Женский и средний не меняются. Это хорошая новость!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — VERBEN MIT A→Ä
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_020", level: "A1",
+    title_de: "Starke Verben mit a → ä",
+    title_ru: "Глаголы с изменением корня a → ä",
+    explanation_de: "Einige starke Verben ändern den Vokal a → ä bei du und er/sie/es.",
+    explanation_ru: `Некоторые глаголы меняют гласную <strong>a → ä</strong> в формах <em>du</em> и <em>er/sie/es</em>:
+
+• <strong>fahren</strong> (ехать): ich fahre / du <strong>fäh</strong>rst / er <strong>fäh</strong>rt
+• <strong>schlafen</strong> (спать): ich schlafe / du <strong>schläf</strong>st / er <strong>schläf</strong>t
+• <strong>waschen</strong> (стирать/мыть): ich wasche / du <strong>wäsch</strong>st / er <strong>wäsch</strong>t
+• <strong>gefallen</strong> (нравиться): ich gefalle / du <strong>gefäll</strong>st / er <strong>gefäll</strong>t
+• <strong>laufen</strong> (бегать): ich laufe / du <strong>läuf</strong>st / er <strong>läuf</strong>t
+• <strong>tragen</strong> (носить): ich trage / du <strong>träg</strong>st / er <strong>träg</strong>t
+
+⚠️ Только du и er/sie/es! Ich, wir, ihr, sie — без изменений.`,
+    examples: [
+      { de: "Ich fahre, du fährst, er fährt.",         ru: "Я еду, ты едешь, он едет."           },
+      { de: "Ich schlafe, du schläfst, er schläft.",   ru: "Я сплю, ты спишь, он спит."          },
+      { de: "Das Kleid gefällt mir sehr gut.",         ru: "Мне очень нравится это платье."       },
+      { de: "Sie wäscht die Wäsche jeden Montag.",     ru: "Она стирает бельё каждый понедельник."},
+    ],
+    tip_de: "a → ä nur bei du und er/sie/es. Ich bleibt immer normal!",
+    tip_ru: "a → ä только у du и er/sie/es. Форма ich всегда остаётся без изменений!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — WEGBESCHREIBUNG
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_021", level: "A1",
+    title_de: "Wegbeschreibung – nach dem Weg fragen",
+    title_ru: "Как объяснить дорогу",
+    explanation_de: "Mit diesen Phrasen kannst du den Weg erklären und nach dem Weg fragen.",
+    explanation_ru: `Основные фразы для объяснения пути:
+
+<strong>Направления:</strong>
+• nach rechts abbiegen — повернуть направо
+• nach links abbiegen — повернуть налево
+• geradeaus gehen — идти прямо
+• die erste/zweite Straße links/rechts — первая/вторая улица налево/направо
+
+<strong>Предлоги движения (+ Akkusativ):</strong>
+• durch den Park gehen — идти через парк
+• über die Brücke gehen — перейти мост
+• an der Kirche vorbeigehen — пройти мимо церкви
+• die Straße entlang gehen — идти вдоль улицы
+
+<strong>Ориентиры:</strong>
+• am Bahnhof — у вокзала
+• an der Ampel — у светофора`,
+    examples: [
+      { de: "Gehen Sie geradeaus!",                        ru: "Идите прямо!"                          },
+      { de: "Biegen Sie links ab! / Bieg links ab!",       ru: "Поверните налево! / Повернись налево!" },
+      { de: "Nehmen Sie die erste Straße rechts.",         ru: "Возьмите первую улицу направо."         },
+      { de: "Gehen Sie durch den Park.",                   ru: "Идите через парк."                     },
+      { de: "Gehen Sie die Straße entlang.",               ru: "Идите вдоль улицы."                    },
+      { de: "Gehen Sie über die Kreuzung.",                ru: "Пройдите через перекрёсток."            },
+    ],
+    tip_de: "durch/über/entlang stehen mit Akkusativ. an/bei stehen mit Dativ (vorbei).",
+    tip_ru: "durch/über/entlang — с Akkusativ. an/bei (vorbei) — с Dativ.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — GEFÜHLE AUSDRÜCKEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_022", level: "A1",
+    title_de: "Gefühle ausdrücken – Wie geht es dir?",
+    title_ru: "Выражение эмоций – Как дела?",
+    explanation_de: "So fragst du nach dem Befinden und beschreibst Gefühle.",
+    explanation_ru: `<strong>Как спросить о самочувствии:</strong>
+• Wie geht es dir? — Как ты? (неформально, «ты»)
+• Wie geht es Ihnen? — Как Вы? (формально, «Вы»)
+• Wie geht's? — Как дела? (разговорно)
+• Und dir? / Und Ihnen? — А у тебя? / А у Вас?
+
+<strong>Ответы:</strong>
+• Sehr gut! — Очень хорошо!
+• Gut, danke! — Хорошо, спасибо!
+• Es geht. — Неплохо / Так себе.
+• Nicht so gut. — Не очень.
+• Schlecht. — Плохо.
+
+<strong>Эмоции с «Ich bin»:</strong>
+Ich bin + прилагательное → Ich bin glücklich / müde / krank.`,
+    examples: [
+      { de: "Wie geht es dir? – Gut, danke!",              ru: "Как ты? — Хорошо, спасибо!"         },
+      { de: "Wie geht es Ihnen? – Nicht so gut.",          ru: "Как Вы? — Не очень."                },
+      { de: "Ich bin müde und hungrig.",                   ru: "Я устал и голоден."                 },
+      { de: "Er ist sehr glücklich heute.",                ru: "Он очень счастлив сегодня."         },
+    ],
+    tip_de: "Ich bin + Adjektiv für Gefühle. Ich habe Hunger / Durst / Angst — Ausnahmen!",
+    tip_ru: "Ich bin + прилагательное для чувств. Но: Ich habe Hunger / Durst / Angst — исключения!",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — BESONDERE VERBFORMEN (-t/-d Stämme, -eln, heißen)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_023", level: "A1",
+    title_de: "Besondere Verbformen – Stämme auf -t, -d, -eln",
+    title_ru: "Особые формы глаголов – основы на -t, -d, -eln",
+    explanation_de: "Verben mit Stämmen auf -t oder -d bekommen ein Extra-e. Verben auf -eln verlieren das -e bei ich.",
+    explanation_ru: `<strong>Глаголы с основой на -t или -d</strong> добавляют дополнительное -e- для произносимости:
+
+• <strong>arbeiten</strong> (работать): du arbeit<strong>e</strong>st / er arbeit<strong>e</strong>t
+• <strong>finden</strong> (находить): du find<strong>e</strong>st / er find<strong>e</strong>t
+• <strong>atmen</strong> (дышать): du atm<strong>e</strong>st / er atm<strong>e</strong>t
+
+<strong>Глаголы на -eln</strong> — ich теряет -e:
+• <strong>klingeln</strong> (звонить): ich kling<strong>le</strong> / du klingelst / er klingelt
+• <strong>sammeln</strong> (собирать): ich samm<strong>le</strong> / du sammelst / er sammelt
+
+<strong>Глаголы с -β / -ß / -z</strong> — du-форма не добавляет второй -s:
+• <strong>heißen</strong>: du heiß<strong>t</strong> (не heißst!)
+• <strong>benutzen</strong>: du benutz<strong>t</strong>
+• <strong>tanzen</strong>: du tanz<strong>t</strong>`,
+    examples: [
+      { de: "Ich arbeite, du arbeitest, er arbeitet.",   ru: "Я работаю, ты работаешь, он работает."   },
+      { de: "Ich finde, du findest, er findet.",         ru: "Я нахожу, ты находишь, он находит."      },
+      { de: "Ich klingle, du klingelst, er klingelt.",   ru: "Я звоню, ты звонишь, он звонит."         },
+      { de: "Ich heiße Anna. Wie heißt du?",            ru: "Меня зовут Анна. Как тебя зовут?"        },
+    ],
+    tip_de: "Nach -t/-d: immer extra -e- einfügen! Bei -eln: ich verliert das -e (ich sammle, nicht sammele).",
+    tip_ru: "После -t/-d всегда вставляй дополнительное -e-! У -eln: ich теряет -e (ich sammle, не sammele).",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — DATIV ПАДЕЖ
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_024", level: "A1",
+    title_de: "Der Dativ – wem? mit wem?",
+    title_ru: "Дательный падеж (Dativ)",
+    explanation_de: "Der Dativ bezeichnet das indirekte Objekt. Alle Artikel ändern sich!",
+    explanation_ru: `Dativ — это падеж косвенного дополнения (кому? с кем? чем?). В отличие от Akkusativ, в Dativ меняются ВСЕ артикли:
+
+Определённый артикль (Dativ):
+• der (м.р.) → <strong>dem</strong>
+• die (ж.р.) → <strong>der</strong>
+• das (ср.р.) → <strong>dem</strong>
+• die (мн.ч.) → <strong>den</strong> (+n к существительному!)
+
+Сокращения:
+• in + dem = <strong>im</strong>
+• an + dem = <strong>am</strong>
+• von + dem = <strong>vom</strong>
+• zu + dem = <strong>zum</strong> | zu + der = <strong>zur</strong>
+
+Предлоги всегда с Dativ: mit, von, zu, aus, bei, seit, nach, gegenüber`,
+    examples: [
+      { de: "Ich fahre mit dem Bus. (der Bus → dem Bus)",    ru: "Я еду на автобусе. (der→dem)"      },
+      { de: "Ich gehe zur Schule. (zu+der)",                 ru: "Я иду в школу. (zu+der=zur)"       },
+      { de: "Er kommt aus der Türkei. (die Türkei → der)",   ru: "Он из Турции. (die→der в Dativ)"   },
+      { de: "Ich helfe dem Mann. (der Mann → dem Mann)",     ru: "Я помогаю мужчине."                },
+    ],
+    tip_de: "Merke: mit, von, zu, aus, bei, seit, nach → immer Dativ!",
+    tip_ru: "Запомни: mit, von, zu, aus, bei, seit, nach → всегда Dativ!",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
-  // ════════════════════════════════
+  // ════════════════════════════════════════
 
 ];

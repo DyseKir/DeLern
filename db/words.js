@@ -456,4 +456,159 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — GEFÜHLE (Эмоции, без артикля)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "gefuehle", name: "Gefühle", name_ru: "Эмоции и состояния", emoji: "😊",
+    words: [
+      { id: "a1_gf_001", article: "-", word: "glücklich",   translation: "счастливый / счастлива"  },
+      { id: "a1_gf_002", article: "-", word: "traurig",     translation: "грустный / грустна"      },
+      { id: "a1_gf_003", article: "-", word: "wütend",      translation: "злой / злая"             },
+      { id: "a1_gf_004", article: "-", word: "müde",        translation: "усталый / усталая"       },
+      { id: "a1_gf_005", article: "-", word: "hungrig",     translation: "голодный / голодная"     },
+      { id: "a1_gf_006", article: "-", word: "krank",       translation: "больной / больна"        },
+      { id: "a1_gf_007", article: "-", word: "verliebt",    translation: "влюблённый / влюблена"   },
+      { id: "a1_gf_008", article: "-", word: "ängstlich",   translation: "тревожный / тревожна"    },
+      { id: "a1_gf_009", article: "-", word: "aufgeregt",   translation: "взволнованный / взволнована" },
+      { id: "a1_gf_010", article: "-", word: "überrascht",  translation: "удивлённый / удивлена"   },
+      { id: "a1_gf_011", article: "-", word: "nervös",      translation: "нервный / нервна"        },
+      { id: "a1_gf_012", article: "-", word: "froh",        translation: "радостный / рада"        },
+      { id: "a1_gf_013", article: "-", word: "langweilig",  translation: "скучный / скучно"        },
+      { id: "a1_gf_014", article: "-", word: "gut",         translation: "хорошо / хорош"          },
+      { id: "a1_gf_015", article: "-", word: "schlecht",    translation: "плохо / плохой"          },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ADJEKTIVE (Прилагательные, без артикля)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "adjektive", name: "Adjektive", name_ru: "Прилагательные", emoji: "🔤",
+    words: [
+      { id: "a1_adj_001", article: "-", word: "alt",          translation: "старый / старая"        },
+      { id: "a1_adj_002", article: "-", word: "jung",         translation: "молодой / молодая"      },
+      { id: "a1_adj_003", article: "-", word: "lang",         translation: "длинный / длинная"      },
+      { id: "a1_adj_004", article: "-", word: "kurz",         translation: "короткий / короткая"    },
+      { id: "a1_adj_005", article: "-", word: "groß",         translation: "большой / высокий"      },
+      { id: "a1_adj_006", article: "-", word: "klein",        translation: "маленький / низкий"     },
+      { id: "a1_adj_007", article: "-", word: "dick",         translation: "толстый / полный"       },
+      { id: "a1_adj_008", article: "-", word: "dünn",         translation: "тонкий / худой"         },
+      { id: "a1_adj_009", article: "-", word: "hässlich",     translation: "некрасивый"             },
+      { id: "a1_adj_010", article: "-", word: "schön",        translation: "красивый / красивая"    },
+      { id: "a1_adj_011", article: "-", word: "hell",         translation: "светлый / светлая"      },
+      { id: "a1_adj_012", article: "-", word: "dunkel",       translation: "тёмный / тёмная"       },
+      { id: "a1_adj_013", article: "-", word: "stark",        translation: "сильный / сильная"      },
+      { id: "a1_adj_014", article: "-", word: "schwach",      translation: "слабый / слабая"        },
+      { id: "a1_adj_015", article: "-", word: "reich",        translation: "богатый / богатая"      },
+      { id: "a1_adj_016", article: "-", word: "arm",          translation: "бедный / бедная"        },
+      { id: "a1_adj_017", article: "-", word: "schnell",      translation: "быстрый / быстрая"      },
+      { id: "a1_adj_018", article: "-", word: "langsam",      translation: "медленный / медленная"  },
+      { id: "a1_adj_019", article: "-", word: "laut",         translation: "громкий / громкая"      },
+      { id: "a1_adj_020", article: "-", word: "leise",        translation: "тихий / тихая"          },
+      { id: "a1_adj_021", article: "-", word: "neu",          translation: "новый / новая"          },
+      { id: "a1_adj_022", article: "-", word: "interessant",  translation: "интересный"             },
+      { id: "a1_adj_023", article: "-", word: "langweilig",   translation: "скучный / скучная"      },
+      { id: "a1_adj_024", article: "-", word: "lustig",       translation: "смешной / весёлый"      },
+      { id: "a1_adj_025", article: "-", word: "freundlich",   translation: "дружелюбный"            },
+      { id: "a1_adj_026", article: "-", word: "unfreundlich", translation: "недружелюбный"          },
+      { id: "a1_adj_027", article: "-", word: "sauber",       translation: "чистый / чистая"        },
+      { id: "a1_adj_028", article: "-", word: "schmutzig",    translation: "грязный / грязная"      },
+      { id: "a1_adj_029", article: "-", word: "glücklich",    translation: "счастливый"             },
+      { id: "a1_adj_030", article: "-", word: "unglücklich",  translation: "несчастный"             },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MÖBEL & HAUSHALT (Мебель и быт)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "moebel", name: "Möbel & Haushalt", name_ru: "Мебель и быт", emoji: "🛋️",
+    words: [
+      { id: "a1_mb_001", article: "das", word: "Glas",         translation: "стакан"           },
+      { id: "a1_mb_002", article: "das", word: "Messer",       translation: "нож"              },
+      { id: "a1_mb_003", article: "das", word: "Sofa",         translation: "диван"            },
+      { id: "a1_mb_004", article: "das", word: "Bett",         translation: "кровать"          },
+      { id: "a1_mb_005", article: "das", word: "Buch",         translation: "книга"            },
+      { id: "a1_mb_006", article: "das", word: "Heft",         translation: "тетрадь"          },
+      { id: "a1_mb_007", article: "das", word: "Lineal",       translation: "линейка"          },
+      { id: "a1_mb_008", article: "das", word: "Foto",         translation: "фото"             },
+      { id: "a1_mb_009", article: "das", word: "Bild",         translation: "картина"          },
+      { id: "a1_mb_010", article: "das", word: "Kissen",       translation: "подушка"          },
+      { id: "a1_mb_011", article: "das", word: "Bücherregal",  translation: "книжная полка"    },
+      { id: "a1_mb_012", article: "die", word: "Gabel",        translation: "вилка"            },
+      { id: "a1_mb_013", article: "die", word: "Kanne",        translation: "чайник / кувшин"  },
+      { id: "a1_mb_014", article: "die", word: "Tasse",        translation: "чашка / кружка"   },
+      { id: "a1_mb_015", article: "die", word: "Pfanne",       translation: "сковородка"       },
+      { id: "a1_mb_016", article: "die", word: "Vase",         translation: "ваза"             },
+      { id: "a1_mb_017", article: "die", word: "Flasche",      translation: "бутылка"          },
+      { id: "a1_mb_018", article: "die", word: "Lampe",        translation: "лампа"            },
+      { id: "a1_mb_019", article: "die", word: "Tür",          translation: "дверь"            },
+      { id: "a1_mb_020", article: "die", word: "Wanne",        translation: "ванна"            },
+      { id: "a1_mb_021", article: "die", word: "Wand",         translation: "стена"            },
+      { id: "a1_mb_022", article: "die", word: "Couch",        translation: "кушетка / диван"  },
+      { id: "a1_mb_023", article: "die", word: "Telefonzelle", translation: "телефонная будка" },
+      { id: "a1_mb_024", article: "der", word: "Löffel",       translation: "ложка"            },
+      { id: "a1_mb_025", article: "der", word: "Teller",       translation: "тарелка"          },
+      { id: "a1_mb_026", article: "der", word: "Kühlschrank",  translation: "холодильник"      },
+      { id: "a1_mb_027", article: "der", word: "Herd",         translation: "плита"            },
+      { id: "a1_mb_028", article: "die", word: "Handschelle",  translation: "наручник"         },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — STADT ERWEITERT (Расширенный город)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "stadt2", name: "Stadt – mehr Orte", name_ru: "Город – больше мест", emoji: "🗺️",
+    words: [
+      { id: "a1_s2_001", article: "der", word: "Bahnhof",       translation: "вокзал"                    },
+      { id: "a1_s2_002", article: "der", word: "Zoo",           translation: "зоопарк"                   },
+      { id: "a1_s2_003", article: "der", word: "Baum",          translation: "дерево"                    },
+      { id: "a1_s2_004", article: "der", word: "Kiosk",         translation: "киоск"                     },
+      { id: "a1_s2_005", article: "der", word: "Spielplatz",    translation: "детская площадка"          },
+      { id: "a1_s2_006", article: "der", word: "Zaun",          translation: "забор"                     },
+      { id: "a1_s2_007", article: "der", word: "Fahrradweg",    translation: "велодорожка"               },
+      { id: "a1_s2_008", article: "der", word: "Zebrastreifen", translation: "пешеходный переход"        },
+      { id: "a1_s2_009", article: "der", word: "Fahrplan",      translation: "расписание"                },
+      { id: "a1_s2_010", article: "die", word: "Post",          translation: "почта"                     },
+      { id: "a1_s2_011", article: "die", word: "Straße",        translation: "улица"                     },
+      { id: "a1_s2_012", article: "die", word: "Kirche",        translation: "церковь"                   },
+      { id: "a1_s2_013", article: "die", word: "Bibliothek",    translation: "библиотека"                },
+      { id: "a1_s2_014", article: "die", word: "Wiese",         translation: "луг / поляна"              },
+      { id: "a1_s2_015", article: "die", word: "S-Bahn",        translation: "городская электричка"      },
+      { id: "a1_s2_016", article: "die", word: "Tankstelle",    translation: "автозаправка"              },
+      { id: "a1_s2_017", article: "die", word: "Schule",        translation: "школа"                     },
+      { id: "a1_s2_018", article: "die", word: "Zeitung",       translation: "газета"                    },
+      { id: "a1_s2_019", article: "die", word: "Moschee",       translation: "мечеть"                    },
+      { id: "a1_s2_020", article: "die", word: "Polizei",       translation: "полиция"                   },
+      { id: "a1_s2_021", article: "die", word: "Polizeiwache",  translation: "полицейский участок"       },
+      { id: "a1_s2_022", article: "die", word: "Abfahrt",       translation: "отправление / выезд"       },
+      { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
+      { id: "a1_s2_024", article: "der", word: "Kantenautomat", translation: "кофейный / торговый автомат"},
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — VERWANDTE ERWEITERT (Расширенная семья)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "verwandte", name: "Verwandte", name_ru: "Родственники", emoji: "👨‍👩‍👧‍👦",
+    words: [
+      { id: "a1_vw_001", article: "der", word: "Cousin",       translation: "двоюродный брат"          },
+      { id: "a1_vw_002", article: "die", word: "Cousine",      translation: "двоюродная сестра"        },
+      { id: "a1_vw_003", article: "der", word: "Ehemann",      translation: "муж / супруг"             },
+      { id: "a1_vw_004", article: "die", word: "Ehefrau",      translation: "жена / супруга"           },
+      { id: "a1_vw_005", article: "die", word: "Eltern",       translation: "родители (мн. ч.)"        },
+      { id: "a1_vw_006", article: "die", word: "Geschwister",  translation: "братья и сёстры (мн. ч.)" },
+      { id: "a1_vw_007", article: "die", word: "Großeltern",   translation: "дедушка и бабушка (мн.)"  },
+      { id: "a1_vw_008", article: "die", word: "Verwandten",   translation: "родственники (мн. ч.)"    },
+      { id: "a1_vw_009", article: "die", word: "Hochzeit",     translation: "свадьба"                  },
+      { id: "a1_vw_010", article: "-",   word: "ledig",        translation: "холостой / незамужняя"    },
+      { id: "a1_vw_011", article: "-",   word: "verheiratet",  translation: "женат / замужем"          },
+      { id: "a1_vw_012", article: "die", word: "Beziehung",    translation: "отношения"                },
+      { id: "a1_vw_013", article: "die", word: "Scheidung",    translation: "развод"                   },
+    ]
+  },
+
 ];

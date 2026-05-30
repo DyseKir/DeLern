@@ -284,6 +284,36 @@ const EMOJI = {
   sechs:'6️⃣', sieben:'7️⃣', acht:'8️⃣', neun:'9️⃣', zehn:'🔟',
   elf:'1️⃣1️⃣', zwölf:'1️⃣2️⃣', zwanzig:'2️⃣0️⃣', dreißig:'3️⃣0️⃣',
   vierzig:'4️⃣0️⃣', fünfzig:'5️⃣0️⃣', hundert:'💯', tausend:'🔢',
+  // Gefühle
+  glücklich:'😊', traurig:'😢', wütend:'😠', müde:'😴', hungrig:'🍽️',
+  krank:'🤒', verliebt:'😍', ängstlich:'😨', aufgeregt:'🤩',
+  überrascht:'😲', nervös:'😬', froh:'😄', langweilig:'😑',
+  gut:'✅', schlecht:'❌',
+  // Adjektive
+  alt:'👴', jung:'🧒', lang:'📏', kurz:'📐', groß:'🏔️', klein:'🐭',
+  dick:'🐘', dünn:'🦴', hässlich:'👺', schön:'🌸', hell:'☀️', dunkel:'🌑',
+  stark:'💪', schwach:'🪶', reich:'💰', arm:'🪙', schnell:'⚡', langsam:'🐢',
+  laut:'📢', leise:'🤫', neu:'✨', interessant:'🔍', lustig:'😂',
+  freundlich:'😊', unfreundlich:'😤', sauber:'🧹', schmutzig:'🗑️',
+  unglücklich:'😞',
+  // Möbel & Haushalt
+  Glas:'🥛', Messer:'🔪', Sofa:'🛋️', Bett:'🛏️', Buch:'📚',
+  Heft:'📓', Lineal:'📏', Foto:'📷', Bild:'🖼️', Kissen:'🛏️',
+  Bücherregal:'📚', Gabel:'🍴', Kanne:'🫖', Tasse:'☕', Pfanne:'🍳',
+  Vase:'🌸', Flasche:'🍶', Wanne:'🛁', Wand:'🧱', Couch:'🛋️',
+  Telefonzelle:'📞', Löffel:'🥄', Teller:'🍽️', Kühlschrank:'🥶', Herd:'🔥',
+  Handschelle:'⛓️',
+  // Stadt erweitert
+  Bahnhof:'🚉', Zoo:'🦁', Baum:'🌳', Kiosk:'🏪', Spielplatz:'🛝',
+  Zaun:'🚧', Fahrradweg:'🚲', Zebrastreifen:'🦓', Fahrplan:'📅',
+  Post:'📬', Straße:'🛣️', Kirche:'⛪', Bibliothek:'📚', Wiese:'🌿',
+  'S-Bahn':'🚆', Tankstelle:'⛽', Zeitung:'📰', Moschee:'🕌',
+  Polizei:'👮', Polizeiwache:'🚔', Abfahrt:'🚀', Ankunft:'🛬',
+  Kantenautomat:'🤖',
+  // Verwandte
+  Cousin:'👦', Cousine:'👧', Ehemann:'💍', Ehefrau:'💍',
+  Eltern:'👨‍👩‍👧', Geschwister:'👫', Großeltern:'👴👵', Verwandten:'👨‍👩‍👧‍👦',
+  Hochzeit:'💒', ledig:'🧍', verheiratet:'💑', Beziehung:'❤️', Scheidung:'💔',
 };
 
 /* ══════════════════════════════════════════════════════════════
