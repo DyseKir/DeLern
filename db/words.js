@@ -32,6 +32,20 @@ window.VOCAB_DATA = [
       { id: "a1_essen_013", article: "die", word: "Kartoffel", translation: "картофель" },
       { id: "a1_essen_014", article: "das", word: "Fleisch",   translation: "мясо"      },
       { id: "a1_essen_015", article: "der", word: "Saft",      translation: "сок"       },
+      { id: "a1_e2_001", article: "der", word: "Döner",     translation: "донер-кебаб"    },
+      { id: "a1_e2_002", article: "der", word: "Pfeffer",   translation: "перец (специя)" },
+      { id: "a1_e2_003", article: "der", word: "Mais",      translation: "кукуруза"       },
+      { id: "a1_e2_004", article: "der", word: "Speck",     translation: "бекон"          },
+      { id: "a1_e2_005", article: "der", word: "Schinken",  translation: "ветчина"        },
+      { id: "a1_e2_006", article: "der", word: "Lachs",     translation: "лосось"         },
+      { id: "a1_e2_007", article: "der", word: "Ketchup",   translation: "кетчуп"         },
+      { id: "a1_e2_008", article: "der", word: "Hamburger", translation: "гамбургер"      },
+      { id: "a1_e2_009", article: "der", word: "Toast",     translation: "тост"           },
+      { id: "a1_e2_010", article: "die", word: "Ananas",    translation: "ананас"         },
+      { id: "a1_e2_011", article: "die", word: "Waffel",    translation: "вафля"          },
+      { id: "a1_e2_012", article: "die", word: "Torte",     translation: "торт"           },
+      { id: "a1_e2_013", article: "das", word: "Eis",       translation: "мороженое"      },
+      { id: "a1_e2_014", article: "der", word: "Ticket",    translation: "билет"          },
     ]
   },
 
@@ -52,6 +66,23 @@ window.VOCAB_DATA = [
       { id: "a1_tr_009", article: "die", word: "Straßenbahn", translation: "трамвай"   },
       { id: "a1_tr_010", article: "das", word: "Taxi",        translation: "такси"     },
       { id: "a1_tr_011", article: "-",   word: "zu Fuß",     translation: "пешком"    },
+      { id: "a1_f2_001", article: "der", word: "Roller",         translation: "самокат / скутер"          },
+      { id: "a1_f2_002", article: "der", word: "LKW",            translation: "грузовик (Lastkraftwagen)" },
+      { id: "a1_f2_003", article: "der", word: "Traktor",        translation: "трактор"                   },
+      { id: "a1_f2_004", article: "der", word: "Bagger",         translation: "экскаватор"                },
+      { id: "a1_f2_005", article: "der", word: "Gabelstapler",   translation: "вилочный погрузчик"        },
+      { id: "a1_f2_006", article: "der", word: "Hubschrauber",   translation: "вертолёт"                  },
+      { id: "a1_f2_007", article: "der", word: "Heißluftballon", translation: "воздушный шар"             },
+      { id: "a1_f2_008", article: "der", word: "ICE",            translation: "скоростной поезд"          },
+      { id: "a1_f2_009", article: "die", word: "Seilbahn",       translation: "канатная дорога"           },
+      { id: "a1_f2_010", article: "die", word: "Fähre",          translation: "паром"                     },
+      { id: "a1_f2_011", article: "das", word: "Boot",           translation: "лодка"                     },
+      { id: "a1_f2_012", article: "das", word: "Wohnmobil",      translation: "дом на колёсах"            },
+      { id: "a1_f2_013", article: "das", word: "Motorboot",      translation: "моторная лодка"            },
+      { id: "a1_f2_014", article: "das", word: "Segelboot",      translation: "парусная лодка"            },
+      { id: "a1_f2_015", article: "das", word: "Kanu",           translation: "каноэ"                     },
+      { id: "a1_f2_016", article: "das", word: "Kajak",          translation: "каяк"                      },
+      { id: "a1_f2_017", article: "das", word: "U-Boot",         translation: "подводная лодка"           },
     ]
   },
 
@@ -71,6 +102,18 @@ window.VOCAB_DATA = [
       { id: "a1_ti_008", article: "der", word: "Löwe",     translation: "лев"     },
       { id: "a1_ti_009", article: "der", word: "Elefant",  translation: "слон"    },
       { id: "a1_ti_010", article: "die", word: "Schlange", translation: "змея"    },
+      { id: "a1_t2_001", article: "der", word: "Frosch",    translation: "лягушка"           },
+      { id: "a1_t2_002", article: "der", word: "Igel",      translation: "ёж"               },
+      { id: "a1_t2_003", article: "der", word: "Esel",      translation: "осёл"             },
+      { id: "a1_t2_004", article: "die", word: "Mücke",     translation: "комар"            },
+      { id: "a1_t2_005", article: "die", word: "Maus",      translation: "мышь"             },
+      { id: "a1_t2_006", article: "die", word: "Spinne",    translation: "паук"             },
+      { id: "a1_t2_007", article: "das", word: "Pony",      translation: "пони"             },
+      { id: "a1_t2_008", article: "das", word: "Rind",      translation: "бык / корова (скот)" },
+      { id: "a1_t2_009", article: "die", word: "Gans",      translation: "гусь"             },
+      { id: "a1_t2_010", article: "das", word: "Kaninchen", translation: "кролик"           },
+      { id: "a1_t2_011", article: "der", word: "Hahn",      translation: "петух"            },
+      { id: "a1_t2_012", article: "die", word: "Ziege",     translation: "коза"             },
     ]
   },
 
@@ -111,6 +154,33 @@ window.VOCAB_DATA = [
       { id: "a1_st_012", article: "die", word: "Brille",      translation: "очки"       },
       { id: "a1_st_013", article: "das", word: "Land",        translation: "страна"     },
       { id: "a1_st_014", article: "das", word: "Telefon",     translation: "телефон"    },
+      { id: "a1_s2_001", article: "der", word: "Bahnhof",       translation: "вокзал"                    },
+      { id: "a1_s2_002", article: "der", word: "Zoo",           translation: "зоопарк"                   },
+      { id: "a1_s2_003", article: "der", word: "Baum",          translation: "дерево"                    },
+      { id: "a1_s2_004", article: "der", word: "Kiosk",         translation: "киоск"                     },
+      { id: "a1_s2_005", article: "der", word: "Spielplatz",    translation: "детская площадка"          },
+      { id: "a1_s2_006", article: "der", word: "Zaun",          translation: "забор"                     },
+      { id: "a1_s2_007", article: "der", word: "Fahrradweg",    translation: "велодорожка"               },
+      { id: "a1_s2_008", article: "der", word: "Zebrastreifen", translation: "пешеходный переход"        },
+      { id: "a1_s2_009", article: "der", word: "Fahrplan",      translation: "расписание"                },
+      { id: "a1_s2_010", article: "die", word: "Post",          translation: "почта"                     },
+      { id: "a1_s2_011", article: "die", word: "Straße",        translation: "улица"                     },
+      { id: "a1_s2_012", article: "die", word: "Kirche",        translation: "церковь"                   },
+      { id: "a1_s2_013", article: "die", word: "Bibliothek",    translation: "библиотека"                },
+      { id: "a1_s2_014", article: "die", word: "Wiese",         translation: "луг / поляна"              },
+      { id: "a1_s2_015", article: "die", word: "S-Bahn",        translation: "городская электричка"      },
+      { id: "a1_s2_016", article: "die", word: "Tankstelle",    translation: "автозаправка"              },
+      { id: "a1_s2_017", article: "die", word: "Schule",        translation: "школа"                     },
+      { id: "a1_s2_018", article: "die", word: "Zeitung",       translation: "газета"                    },
+      { id: "a1_s2_019", article: "die", word: "Moschee",       translation: "мечеть"                    },
+      { id: "a1_s2_020", article: "die", word: "Polizei",       translation: "полиция"                   },
+      { id: "a1_s2_021", article: "die", word: "Polizeiwache",  translation: "полицейский участок"       },
+      { id: "a1_s2_022", article: "die", word: "Abfahrt",       translation: "отправление / выезд"       },
+      { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
+      { id: "a1_s2_024", article: "der", word: "Kantenautomat", translation: "кофейный / торговый автомат"},
+      { id: "a1_s2_025", article: "die", word: "Arztpraxis",   translation: "кабинет врача / клиника"   },
+      { id: "a1_s2_026", article: "der", word: "Platz",        translation: "площадь / место"           },
+      { id: "a1_s2_027", article: "die", word: "Rakete",       translation: "ракета"                    },
     ]
   },
 
@@ -573,42 +643,20 @@ window.VOCAB_DATA = [
       { id: "a1_mb_026", article: "der", word: "Kühlschrank",  translation: "холодильник"      },
       { id: "a1_mb_027", article: "der", word: "Herd",         translation: "плита"            },
       { id: "a1_mb_028", article: "die", word: "Handschelle",  translation: "наручник"         },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — STADT ERWEITERT (Расширенный город)
-  // ════════════════════════════════
-  {
-    level: "A1", category: "stadt2", name: "Stadt – mehr Orte", name_ru: "Город – больше мест", emoji: "🗺️",
-    words: [
-      { id: "a1_s2_001", article: "der", word: "Bahnhof",       translation: "вокзал"                    },
-      { id: "a1_s2_002", article: "der", word: "Zoo",           translation: "зоопарк"                   },
-      { id: "a1_s2_003", article: "der", word: "Baum",          translation: "дерево"                    },
-      { id: "a1_s2_004", article: "der", word: "Kiosk",         translation: "киоск"                     },
-      { id: "a1_s2_005", article: "der", word: "Spielplatz",    translation: "детская площадка"          },
-      { id: "a1_s2_006", article: "der", word: "Zaun",          translation: "забор"                     },
-      { id: "a1_s2_007", article: "der", word: "Fahrradweg",    translation: "велодорожка"               },
-      { id: "a1_s2_008", article: "der", word: "Zebrastreifen", translation: "пешеходный переход"        },
-      { id: "a1_s2_009", article: "der", word: "Fahrplan",      translation: "расписание"                },
-      { id: "a1_s2_010", article: "die", word: "Post",          translation: "почта"                     },
-      { id: "a1_s2_011", article: "die", word: "Straße",        translation: "улица"                     },
-      { id: "a1_s2_012", article: "die", word: "Kirche",        translation: "церковь"                   },
-      { id: "a1_s2_013", article: "die", word: "Bibliothek",    translation: "библиотека"                },
-      { id: "a1_s2_014", article: "die", word: "Wiese",         translation: "луг / поляна"              },
-      { id: "a1_s2_015", article: "die", word: "S-Bahn",        translation: "городская электричка"      },
-      { id: "a1_s2_016", article: "die", word: "Tankstelle",    translation: "автозаправка"              },
-      { id: "a1_s2_017", article: "die", word: "Schule",        translation: "школа"                     },
-      { id: "a1_s2_018", article: "die", word: "Zeitung",       translation: "газета"                    },
-      { id: "a1_s2_019", article: "die", word: "Moschee",       translation: "мечеть"                    },
-      { id: "a1_s2_020", article: "die", word: "Polizei",       translation: "полиция"                   },
-      { id: "a1_s2_021", article: "die", word: "Polizeiwache",  translation: "полицейский участок"       },
-      { id: "a1_s2_022", article: "die", word: "Abfahrt",       translation: "отправление / выезд"       },
-      { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
-      { id: "a1_s2_024", article: "der", word: "Kantenautomat", translation: "кофейный / торговый автомат"},
-      { id: "a1_s2_025", article: "die", word: "Arztpraxis",   translation: "кабинет врача / клиника"   },
-      { id: "a1_s2_026", article: "der", word: "Platz",        translation: "площадь / место"           },
-      { id: "a1_s2_027", article: "die", word: "Rakete",       translation: "ракета"                    },
+      { id: "a1_m2_001", article: "der", word: "Tisch",      translation: "стол"              },
+      { id: "a1_m2_002", article: "der", word: "Stuhl",      translation: "стул"              },
+      { id: "a1_m2_003", article: "der", word: "Sessel",     translation: "кресло"            },
+      { id: "a1_m2_004", article: "der", word: "Schrank",    translation: "шкаф"              },
+      { id: "a1_m2_005", article: "der", word: "Ofen",       translation: "печь / плита"      },
+      { id: "a1_m2_006", article: "der", word: "Leuchter",   translation: "подсвечник / люстра"},
+      { id: "a1_m2_007", article: "der", word: "Fernseher",  translation: "телевизор"         },
+      { id: "a1_m2_008", article: "der", word: "Hocker",     translation: "табурет"           },
+      { id: "a1_m2_009", article: "der", word: "Computer",   translation: "компьютер"         },
+      { id: "a1_m2_010", article: "der", word: "Schlüssel",  translation: "ключ"              },
+      { id: "a1_m2_011", article: "der", word: "Topf",       translation: "кастрюля"          },
+      { id: "a1_m2_012", article: "der", word: "Stift",      translation: "ручка / карандаш"  },
+      { id: "a1_m2_013", article: "der", word: "Brief",      translation: "письмо"            },
+      { id: "a1_m2_014", article: "der", word: "Pinsel",     translation: "кисть"             },
     ]
   },
 
@@ -754,55 +802,16 @@ window.VOCAB_DATA = [
       { id: "a1_la_018", article: "-",   word: "Marokko",      translation: "Марокко"    },
       { id: "a1_la_019", article: "-",   word: "Dänemark",     translation: "Дания"      },
       { id: "a1_la_020", article: "-",   word: "Belgien",      translation: "Бельгия"    },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — FAHRZEUGE ERWEITERT (Расширенный транспорт)
-  // ════════════════════════════════
-  {
-    level: "A1", category: "fahrzeuge2", name: "Fahrzeuge – mehr", name_ru: "Транспорт – расширенный", emoji: "🚁",
-    words: [
-      { id: "a1_f2_001", article: "der", word: "Roller",         translation: "самокат / скутер"          },
-      { id: "a1_f2_002", article: "der", word: "LKW",            translation: "грузовик (Lastkraftwagen)" },
-      { id: "a1_f2_003", article: "der", word: "Traktor",        translation: "трактор"                   },
-      { id: "a1_f2_004", article: "der", word: "Bagger",         translation: "экскаватор"                },
-      { id: "a1_f2_005", article: "der", word: "Gabelstapler",   translation: "вилочный погрузчик"        },
-      { id: "a1_f2_006", article: "der", word: "Hubschrauber",   translation: "вертолёт"                  },
-      { id: "a1_f2_007", article: "der", word: "Heißluftballon", translation: "воздушный шар"             },
-      { id: "a1_f2_008", article: "der", word: "ICE",            translation: "скоростной поезд"          },
-      { id: "a1_f2_009", article: "die", word: "Seilbahn",       translation: "канатная дорога"           },
-      { id: "a1_f2_010", article: "die", word: "Fähre",          translation: "паром"                     },
-      { id: "a1_f2_011", article: "das", word: "Boot",           translation: "лодка"                     },
-      { id: "a1_f2_012", article: "das", word: "Wohnmobil",      translation: "дом на колёсах"            },
-      { id: "a1_f2_013", article: "das", word: "Motorboot",      translation: "моторная лодка"            },
-      { id: "a1_f2_014", article: "das", word: "Segelboot",      translation: "парусная лодка"            },
-      { id: "a1_f2_015", article: "das", word: "Kanu",           translation: "каноэ"                     },
-      { id: "a1_f2_016", article: "das", word: "Kajak",          translation: "каяк"                      },
-      { id: "a1_f2_017", article: "das", word: "U-Boot",         translation: "подводная лодка"           },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — MÖBEL 2 (der-Wörter)
-  // ════════════════════════════════
-  {
-    level: "A1", category: "moebel2", name: "Möbel & Zimmer", name_ru: "Мебель и комната (der)", emoji: "🪑",
-    words: [
-      { id: "a1_m2_001", article: "der", word: "Tisch",      translation: "стол"              },
-      { id: "a1_m2_002", article: "der", word: "Stuhl",      translation: "стул"              },
-      { id: "a1_m2_003", article: "der", word: "Sessel",     translation: "кресло"            },
-      { id: "a1_m2_004", article: "der", word: "Schrank",    translation: "шкаф"              },
-      { id: "a1_m2_005", article: "der", word: "Ofen",       translation: "печь / плита"      },
-      { id: "a1_m2_006", article: "der", word: "Leuchter",   translation: "подсвечник / люстра"},
-      { id: "a1_m2_007", article: "der", word: "Fernseher",  translation: "телевизор"         },
-      { id: "a1_m2_008", article: "der", word: "Hocker",     translation: "табурет"           },
-      { id: "a1_m2_009", article: "der", word: "Computer",   translation: "компьютер"         },
-      { id: "a1_m2_010", article: "der", word: "Schlüssel",  translation: "ключ"              },
-      { id: "a1_m2_011", article: "der", word: "Topf",       translation: "кастрюля"          },
-      { id: "a1_m2_012", article: "der", word: "Stift",      translation: "ручка / карандаш"  },
-      { id: "a1_m2_013", article: "der", word: "Brief",      translation: "письмо"            },
-      { id: "a1_m2_014", article: "der", word: "Pinsel",     translation: "кисть"             },
+      { id: "a1_l2_001", article: "die", word: "Slowakei",       translation: "Словакия"        },
+      { id: "a1_l2_002", article: "die", word: "Niederlande",    translation: "Нидерланды"      },
+      { id: "a1_l2_003", article: "der", word: "Iran",           translation: "Иран"            },
+      { id: "a1_l2_004", article: "der", word: "Sudan",          translation: "Судан"           },
+      { id: "a1_l2_005", article: "der", word: "Irak",           translation: "Ирак"            },
+      { id: "a1_l2_006", article: "-",   word: "Uganda",         translation: "Уганда"          },
+      { id: "a1_l2_007", article: "die", word: "USA",            translation: "США"             },
+      { id: "a1_l2_008", article: "-",   word: "Saudi-Arabien",  translation: "Саудовская Аравия"},
+      { id: "a1_l2_009", article: "-",   word: "Vietnam",        translation: "Вьетнам"         },
+      { id: "a1_l2_010", article: "-",   word: "Japan",          translation: "Япония"          },
     ]
   },
 
@@ -820,29 +829,6 @@ window.VOCAB_DATA = [
       { id: "a1_od_006", article: "das", word: "Haus",       translation: "дом"          },
       { id: "a1_od_007", article: "das", word: "Dach",       translation: "крыша"        },
       { id: "a1_od_008", article: "das", word: "Gleis",      translation: "ж/д путь / платформа" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ESSEN ERWEITERT
-  // ════════════════════════════════
-  {
-    level: "A1", category: "essen2", name: "Essen – mehr", name_ru: "Еда – расширенная", emoji: "🍽️",
-    words: [
-      { id: "a1_e2_001", article: "der", word: "Döner",     translation: "донер-кебаб"    },
-      { id: "a1_e2_002", article: "der", word: "Pfeffer",   translation: "перец (специя)" },
-      { id: "a1_e2_003", article: "der", word: "Mais",      translation: "кукуруза"       },
-      { id: "a1_e2_004", article: "der", word: "Speck",     translation: "бекон"          },
-      { id: "a1_e2_005", article: "der", word: "Schinken",  translation: "ветчина"        },
-      { id: "a1_e2_006", article: "der", word: "Lachs",     translation: "лосось"         },
-      { id: "a1_e2_007", article: "der", word: "Ketchup",   translation: "кетчуп"         },
-      { id: "a1_e2_008", article: "der", word: "Hamburger", translation: "гамбургер"      },
-      { id: "a1_e2_009", article: "der", word: "Toast",     translation: "тост"           },
-      { id: "a1_e2_010", article: "die", word: "Ananas",    translation: "ананас"         },
-      { id: "a1_e2_011", article: "die", word: "Waffel",    translation: "вафля"          },
-      { id: "a1_e2_012", article: "die", word: "Torte",     translation: "торт"           },
-      { id: "a1_e2_013", article: "das", word: "Eis",       translation: "мороженое"      },
-      { id: "a1_e2_014", article: "der", word: "Ticket",    translation: "билет"          },
     ]
   },
 
@@ -888,27 +874,6 @@ window.VOCAB_DATA = [
       { id: "a1_gu_011", article: "-", word: "Es tut mir leid", translation: "мне жаль"               },
       { id: "a1_gu_012", article: "-", word: "Ja",              translation: "да"                      },
       { id: "a1_gu_013", article: "-", word: "Nein",            translation: "нет"                     },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — TIERE 2 (Животные расширенные)
-  // ════════════════════════════════
-  {
-    level: "A1", category: "tiere2", name: "Tiere – mehr", name_ru: "Животные – расширенные", emoji: "🐸",
-    words: [
-      { id: "a1_t2_001", article: "der", word: "Frosch",    translation: "лягушка"           },
-      { id: "a1_t2_002", article: "der", word: "Igel",      translation: "ёж"               },
-      { id: "a1_t2_003", article: "der", word: "Esel",      translation: "осёл"             },
-      { id: "a1_t2_004", article: "die", word: "Mücke",     translation: "комар"            },
-      { id: "a1_t2_005", article: "die", word: "Maus",      translation: "мышь"             },
-      { id: "a1_t2_006", article: "die", word: "Spinne",    translation: "паук"             },
-      { id: "a1_t2_007", article: "das", word: "Pony",      translation: "пони"             },
-      { id: "a1_t2_008", article: "das", word: "Rind",      translation: "бык / корова (скот)" },
-      { id: "a1_t2_009", article: "die", word: "Gans",      translation: "гусь"             },
-      { id: "a1_t2_010", article: "das", word: "Kaninchen", translation: "кролик"           },
-      { id: "a1_t2_011", article: "der", word: "Hahn",      translation: "петух"            },
-      { id: "a1_t2_012", article: "die", word: "Ziege",     translation: "коза"             },
     ]
   },
 
@@ -1004,23 +969,6 @@ window.VOCAB_DATA = [
       { id: "a1_nw_019", article: "-",   word: "schwer",         translation: "тяжёлый / сложный"      },
       { id: "a1_nw_020", article: "-",   word: "leicht",         translation: "лёгкий"                 },
       { id: "a1_nw_021", article: "-",   word: "fit",            translation: "в форме / бодрый"       },
-    ]
-  },
-
-  // Расширение Länder: дополнительные страны
-  {
-    level: "A1", category: "laender2", name: "Länder – mehr", name_ru: "Страны – ещё", emoji: "🌐",
-    words: [
-      { id: "a1_l2_001", article: "die", word: "Slowakei",       translation: "Словакия"        },
-      { id: "a1_l2_002", article: "die", word: "Niederlande",    translation: "Нидерланды"      },
-      { id: "a1_l2_003", article: "der", word: "Iran",           translation: "Иран"            },
-      { id: "a1_l2_004", article: "der", word: "Sudan",          translation: "Судан"           },
-      { id: "a1_l2_005", article: "der", word: "Irak",           translation: "Ирак"            },
-      { id: "a1_l2_006", article: "-",   word: "Uganda",         translation: "Уганда"          },
-      { id: "a1_l2_007", article: "die", word: "USA",            translation: "США"             },
-      { id: "a1_l2_008", article: "-",   word: "Saudi-Arabien",  translation: "Саудовская Аравия"},
-      { id: "a1_l2_009", article: "-",   word: "Vietnam",        translation: "Вьетнам"         },
-      { id: "a1_l2_010", article: "-",   word: "Japan",          translation: "Япония"          },
     ]
   },
 
