@@ -513,30 +513,42 @@ function showCoinPop(n, anchor) {
 }
 function getWP(id) { return loadProg()[id] || {streak:0,total:0,wrong:0,status:'new',seen:null}; }
 
-function updateWP(id, correct, noArt=false) {
+// streak накапливается ТОЛЬКО через печатный тест; learned = 3 верных ввода
+function updateWP(id, correct) {
   const p  = loadProg();
   const wp = p[id] || {streak:0,total:0,wrong:0,status:'new',seen:null};
   wp.seen  = new Date().toISOString().slice(0,10);
   if (correct) {
     wp.streak++; wp.total++;
-    // Learned only via typing test (phase==='test'), or for no-article words in study
-    if (wp.streak >= LEARNED_THRESHOLD && (S.phase === 'test' || noArt)) {
-      wp.status = 'learned';
-    } else if (wp.status !== 'learned') {
-      wp.status = 'learning';
-    }
+    wp.status = wp.streak >= LEARNED_THRESHOLD ? 'learned' : 'learning';
   } else {
-    wp.wrong++; wp.streak=0; wp.status = 'learning';
+    wp.wrong++; wp.streak = 0;
+    if (wp.status !== 'learned') wp.status = 'learning';
   }
   p[id] = wp; saveProg(p); return wp;
 }
 
-function markWordLearned(id) {
-  const p  = loadProg();
-  const wp = p[id] || {streak:0,total:0,wrong:0,status:'new',seen:null};
-  wp.status = 'learned'; wp.streak = LEARNED_THRESHOLD;
-  wp.seen   = new Date().toISOString().slice(0,10);
-  p[id] = wp; saveProg(p);
+/* Сброс всех ранее «выученных» слов — теперь выученным считается только после 3x печатного теста */
+function resetLearnedWords() {
+  if (localStorage.getItem('_typing_reset_v2')) return;
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('dl_prog_')) keys.push(k);
+  }
+  keys.forEach(key => {
+    try {
+      const prog = JSON.parse(localStorage.getItem(key) || '{}');
+      Object.keys(prog).forEach(id => {
+        if (!id.startsWith('g_') && prog[id] && prog[id].status === 'learned') {
+          prog[id].status = 'new';
+          prog[id].streak = 0;
+        }
+      });
+      localStorage.setItem(key, JSON.stringify(prog));
+    } catch(e) {}
+  });
+  localStorage.setItem('_typing_reset_v2', '1');
 }
 
 function setGrammarStudied(id) {
@@ -846,7 +858,11 @@ function handleArticle(article) {
   const card=S.cards[S.cardIdx];
   const noArt = !card.article || card.article === '-';
   const correct = noArt || article===card.article;
-  const wp=updateWP(card.id,correct,noArt);
+
+  // Для слов без артикля — обновляем прогресс как раньше
+  // Для слов с артиклем — только визуал, прогресс только через печатный тест
+  const wp = noArt ? updateWP(card.id, correct) : getWP(card.id);
+
   const fb=$('card-feedback'), se=$('card-streak');
   document.querySelectorAll('.art-btn').forEach(b=>b.disabled=true);
   if (correct) {
@@ -856,9 +872,9 @@ function handleArticle(article) {
     if (!noArt) document.querySelector(`.art-btn[data-article="${article}"]`).classList.add('show-correct');
     addCoins(1, $('flashcard'));
     if (wp.status==='learned'){
-      se.textContent=t('streak_done',LEARNED_THRESHOLD); S.sessionLearned++;
+      se.textContent=t('streak_done',LEARNED_THRESHOLD); if(noArt) S.sessionLearned++;
     } else {
-      se.textContent=t('streak_txt',wp.streak);
+      se.textContent = wp.streak>0 ? t('streak_txt',wp.streak) : '';
     }
     setTimeout(()=>{S.cardIdx++;drawCard();},700);
   } else {
@@ -868,7 +884,6 @@ function handleArticle(article) {
     document.querySelector(`.art-btn[data-article="${article}"]`).classList.add('show-wrong');
     document.querySelector(`.art-btn[data-article="${card.article}"]`).classList.add('highlight-correct');
     se.textContent='';
-    // возвращаем слово в конец колоды (один раз за сессию)
     if (!S.requeued.has(card.id)) {
       S.requeued.add(card.id);
       S.cards.push(card);
@@ -908,11 +923,13 @@ function startTypingTest() {
 
 function drawTestCard() {
   if (S.testIdx >= S.testCards.length) { showComplete(); return; }
-  const card = S.testCards[S.testIdx];
-  $('tt-emoji').textContent = EMOJI[card.word] || S.currentCatEmoji;
-  $('tt-ru').textContent    = card.translation;
+  const card   = S.testCards[S.testIdx];
+  const streak = getWP(card.id).streak || 0;
+  const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
+  $('tt-emoji').textContent   = EMOJI[card.word] || S.currentCatEmoji;
+  $('tt-ru').textContent      = card.translation;
   $('tt-counter').textContent = `${S.testIdx+1} / ${S.testCards.length}`;
-  $('tt-score').textContent   = `✓ ${S.testCorrect}`;
+  $('tt-score').textContent   = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value = '';
@@ -923,21 +940,27 @@ function drawTestCard() {
 function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
-  const raw     = $('tt-input').value.trim();
-  const input   = raw.toLowerCase().replace(/\s+/g,' ');
-  const correct = (card.article + ' ' + card.word).toLowerCase();
-
+  const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ');
+  const expected = (card.article + ' ' + card.word).toLowerCase();
   if (!input) return;
 
-  if (input === correct) {
-    markWordLearned(card.id);
-    S.testCorrect++; S.sessionLearned++;
-    addCoins(2, $('typing-test'));
-    $('tt-feedback').textContent = '✓ Richtig! 🎉';
-    $('tt-feedback').className   = 'tt-feedback ok';
-    setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 700);
+  if (input === expected) {
+    const wp = updateWP(card.id, true);
+    S.testCorrect++;
+    if (wp.status === 'learned') {
+      S.sessionLearned++;
+      addCoins(3, $('typing-test'));
+      $('tt-feedback').innerHTML = `✓ Выучено! 🎉 (${LEARNED_THRESHOLD}/${LEARNED_THRESHOLD})`;
+    } else {
+      addCoins(1, $('typing-test'));
+      $('tt-feedback').innerHTML = `✓ Richtig! (${wp.streak}/${LEARNED_THRESHOLD})`;
+    }
+    $('tt-feedback').className  = 'tt-feedback ok';
+    $('tt-score').textContent   = `✓ ${S.testCorrect}`;
+    setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 800);
   } else {
-    $('tt-feedback').innerHTML = `✗ Richtig: <strong>${card.article} ${card.word}</strong>`;
+    updateWP(card.id, false); // сбрасываем streak при ошибке
+    $('tt-feedback').innerHTML = `✗ Правильно: <strong>${card.article} ${card.word}</strong>`;
     $('tt-feedback').className = 'tt-feedback bad';
     if (!S.testRequeued.has(card.id)) {
       S.testRequeued.add(card.id);
@@ -945,7 +968,6 @@ function handleTypingSubmit() {
     }
     setTimeout(()=>{ $('tt-input').value=''; S.testIdx++; drawTestCard(); }, 2000);
   }
-  $('tt-score').textContent = `✓ ${S.testCorrect}`;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1606,6 +1628,7 @@ let appStarted = false;
 
 function startApp() {
   appStarted = true;
+  resetLearnedWords();
   initEvents();
   applyLang();
   migrateCoins();
