@@ -611,4 +611,282 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — DAS WETTER (Погода)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "wetter", name: "Das Wetter", name_ru: "Погода", emoji: "⛅",
+    words: [
+      { id: "a1_we_001", article: "das", word: "Wetter",      translation: "погода"              },
+      { id: "a1_we_002", article: "der", word: "Wind",        translation: "ветер"               },
+      { id: "a1_we_003", article: "der", word: "Regen",       translation: "дождь"               },
+      { id: "a1_we_004", article: "der", word: "Schnee",      translation: "снег"                },
+      { id: "a1_we_005", article: "die", word: "Wolke",       translation: "облако"              },
+      { id: "a1_we_006", article: "das", word: "Gewitter",    translation: "гроза"               },
+      { id: "a1_we_007", article: "die", word: "Sonne",       translation: "солнце"              },
+      { id: "a1_we_008", article: "die", word: "Temperatur",  translation: "температура"         },
+      { id: "a1_we_009", article: "der", word: "Frost",       translation: "мороз"               },
+      { id: "a1_we_010", article: "der", word: "Nebel",       translation: "туман"               },
+      { id: "a1_we_011", article: "-",   word: "sonnig",      translation: "солнечно"            },
+      { id: "a1_we_012", article: "-",   word: "bewölkt",     translation: "пасмурно"            },
+      { id: "a1_we_013", article: "-",   word: "windig",      translation: "ветрено"             },
+      { id: "a1_we_014", article: "-",   word: "regnerisch",  translation: "дождливо"            },
+      { id: "a1_we_015", article: "-",   word: "kalt",        translation: "холодно"             },
+      { id: "a1_we_016", article: "-",   word: "warm",        translation: "тепло"               },
+      { id: "a1_we_017", article: "-",   word: "heiß",        translation: "жарко"               },
+      { id: "a1_we_018", article: "-",   word: "kühl",        translation: "прохладно"           },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MONATE (Месяцы)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "monate", name: "Monate", name_ru: "Месяцы", emoji: "📆",
+    words: [
+      { id: "a1_mo_001", article: "-", word: "Januar",    translation: "январь (im Januar)"      },
+      { id: "a1_mo_002", article: "-", word: "Februar",   translation: "февраль (im Februar)"    },
+      { id: "a1_mo_003", article: "-", word: "März",      translation: "март (im März)"          },
+      { id: "a1_mo_004", article: "-", word: "April",     translation: "апрель (im April)"       },
+      { id: "a1_mo_005", article: "-", word: "Mai",       translation: "май (im Mai)"            },
+      { id: "a1_mo_006", article: "-", word: "Juni",      translation: "июнь (im Juni)"          },
+      { id: "a1_mo_007", article: "-", word: "Juli",      translation: "июль (im Juli)"          },
+      { id: "a1_mo_008", article: "-", word: "August",    translation: "август (im August)"      },
+      { id: "a1_mo_009", article: "-", word: "September", translation: "сентябрь (im September)" },
+      { id: "a1_mo_010", article: "-", word: "Oktober",   translation: "октябрь (im Oktober)"    },
+      { id: "a1_mo_011", article: "-", word: "November",  translation: "ноябрь (im November)"    },
+      { id: "a1_mo_012", article: "-", word: "Dezember",  translation: "декабрь (im Dezember)"   },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — JAHRESZEITEN & TAGESZEITEN
+  // ════════════════════════════════
+  {
+    level: "A1", category: "jahreszeiten", name: "Jahreszeiten & Zeit", name_ru: "Времена года и время", emoji: "🌸",
+    words: [
+      { id: "a1_jz_001", article: "der", word: "Frühling",   translation: "весна (warm)"             },
+      { id: "a1_jz_002", article: "der", word: "Sommer",     translation: "лето (heiß)"              },
+      { id: "a1_jz_003", article: "der", word: "Herbst",     translation: "осень (kühl)"             },
+      { id: "a1_jz_004", article: "der", word: "Winter",     translation: "зима (kalt)"              },
+      { id: "a1_jz_005", article: "der", word: "Morgen",     translation: "утро (6–10 Uhr)"          },
+      { id: "a1_jz_006", article: "der", word: "Vormittag",  translation: "первая половина дня (10–12)"},
+      { id: "a1_jz_007", article: "der", word: "Mittag",     translation: "полдень (12–14 Uhr)"      },
+      { id: "a1_jz_008", article: "der", word: "Nachmittag", translation: "после полудня (14–18 Uhr)" },
+      { id: "a1_jz_009", article: "der", word: "Abend",      translation: "вечер (18–22 Uhr)"        },
+      { id: "a1_jz_010", article: "die", word: "Nacht",      translation: "ночь (22–6 Uhr)"          },
+      { id: "a1_jz_011", article: "das", word: "Jahr",       translation: "год"                      },
+      { id: "a1_jz_012", article: "-",   word: "vorgestern", translation: "позавчера"                },
+      { id: "a1_jz_013", article: "-",   word: "gestern",    translation: "вчера"                    },
+      { id: "a1_jz_014", article: "-",   word: "heute",      translation: "сегодня"                  },
+      { id: "a1_jz_015", article: "-",   word: "morgen",     translation: "завтра"                   },
+      { id: "a1_jz_016", article: "-",   word: "übermorgen", translation: "послезавтра"              },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — SPRACHEN (Языки)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "sprachen", name: "Sprachen", name_ru: "Языки", emoji: "🗣️",
+    words: [
+      { id: "a1_sp_001", article: "-", word: "Deutsch",       translation: "немецкий язык"     },
+      { id: "a1_sp_002", article: "-", word: "Russisch",      translation: "русский язык"      },
+      { id: "a1_sp_003", article: "-", word: "Englisch",      translation: "английский язык"   },
+      { id: "a1_sp_004", article: "-", word: "Französisch",   translation: "французский язык"  },
+      { id: "a1_sp_005", article: "-", word: "Italienisch",   translation: "итальянский язык"  },
+      { id: "a1_sp_006", article: "-", word: "Türkisch",      translation: "турецкий язык"     },
+      { id: "a1_sp_007", article: "-", word: "Arabisch",      translation: "арабский язык"     },
+      { id: "a1_sp_008", article: "-", word: "Spanisch",      translation: "испанский язык"    },
+      { id: "a1_sp_009", article: "-", word: "Persisch",      translation: "персидский язык"   },
+      { id: "a1_sp_010", article: "-", word: "Polnisch",      translation: "польский язык"     },
+      { id: "a1_sp_011", article: "-", word: "Chinesisch",    translation: "китайский язык"    },
+      { id: "a1_sp_012", article: "-", word: "Ukrainisch",    translation: "украинский язык"   },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — LÄNDER (Страны)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "laender", name: "Länder", name_ru: "Страны", emoji: "🌍",
+    words: [
+      { id: "a1_la_001", article: "-",   word: "Deutschland",  translation: "Германия"   },
+      { id: "a1_la_002", article: "-",   word: "Russland",     translation: "Россия"     },
+      { id: "a1_la_003", article: "-",   word: "Österreich",   translation: "Австрия"    },
+      { id: "a1_la_004", article: "-",   word: "Frankreich",   translation: "Франция"    },
+      { id: "a1_la_005", article: "-",   word: "Italien",      translation: "Италия"     },
+      { id: "a1_la_006", article: "-",   word: "Spanien",      translation: "Испания"    },
+      { id: "a1_la_007", article: "die", word: "Türkei",       translation: "Турция"     },
+      { id: "a1_la_008", article: "-",   word: "Polen",        translation: "Польша"     },
+      { id: "a1_la_009", article: "die", word: "Ukraine",      translation: "Украина"    },
+      { id: "a1_la_010", article: "die", word: "Schweiz",      translation: "Швейцария"  },
+      { id: "a1_la_011", article: "-",   word: "Kanada",       translation: "Канада"     },
+      { id: "a1_la_012", article: "-",   word: "China",        translation: "Китай"      },
+      { id: "a1_la_013", article: "-",   word: "Afghanistan",  translation: "Афганистан" },
+      { id: "a1_la_014", article: "-",   word: "Senegal",      translation: "Сенегал"    },
+      { id: "a1_la_015", article: "-",   word: "Nigeria",      translation: "Нигерия"    },
+      { id: "a1_la_016", article: "-",   word: "Ghana",        translation: "Гана"       },
+      { id: "a1_la_017", article: "-",   word: "Eritrea",      translation: "Эритрея"    },
+      { id: "a1_la_018", article: "-",   word: "Marokko",      translation: "Марокко"    },
+      { id: "a1_la_019", article: "-",   word: "Dänemark",     translation: "Дания"      },
+      { id: "a1_la_020", article: "-",   word: "Belgien",      translation: "Бельгия"    },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — FAHRZEUGE ERWEITERT (Расширенный транспорт)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "fahrzeuge2", name: "Fahrzeuge – mehr", name_ru: "Транспорт – расширенный", emoji: "🚁",
+    words: [
+      { id: "a1_f2_001", article: "der", word: "Roller",         translation: "самокат / скутер"          },
+      { id: "a1_f2_002", article: "der", word: "LKW",            translation: "грузовик (Lastkraftwagen)" },
+      { id: "a1_f2_003", article: "der", word: "Traktor",        translation: "трактор"                   },
+      { id: "a1_f2_004", article: "der", word: "Bagger",         translation: "экскаватор"                },
+      { id: "a1_f2_005", article: "der", word: "Gabelstapler",   translation: "вилочный погрузчик"        },
+      { id: "a1_f2_006", article: "der", word: "Hubschrauber",   translation: "вертолёт"                  },
+      { id: "a1_f2_007", article: "der", word: "Heißluftballon", translation: "воздушный шар"             },
+      { id: "a1_f2_008", article: "der", word: "ICE",            translation: "скоростной поезд"          },
+      { id: "a1_f2_009", article: "die", word: "Seilbahn",       translation: "канатная дорога"           },
+      { id: "a1_f2_010", article: "die", word: "Fähre",          translation: "паром"                     },
+      { id: "a1_f2_011", article: "das", word: "Boot",           translation: "лодка"                     },
+      { id: "a1_f2_012", article: "das", word: "Wohnmobil",      translation: "дом на колёсах"            },
+      { id: "a1_f2_013", article: "das", word: "Motorboot",      translation: "моторная лодка"            },
+      { id: "a1_f2_014", article: "das", word: "Segelboot",      translation: "парусная лодка"            },
+      { id: "a1_f2_015", article: "das", word: "Kanu",           translation: "каноэ"                     },
+      { id: "a1_f2_016", article: "das", word: "Kajak",          translation: "каяк"                      },
+      { id: "a1_f2_017", article: "das", word: "U-Boot",         translation: "подводная лодка"           },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MÖBEL 2 (der-Wörter)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "moebel2", name: "Möbel & Zimmer", name_ru: "Мебель и комната (der)", emoji: "🪑",
+    words: [
+      { id: "a1_m2_001", article: "der", word: "Tisch",      translation: "стол"              },
+      { id: "a1_m2_002", article: "der", word: "Stuhl",      translation: "стул"              },
+      { id: "a1_m2_003", article: "der", word: "Sessel",     translation: "кресло"            },
+      { id: "a1_m2_004", article: "der", word: "Schrank",    translation: "шкаф"              },
+      { id: "a1_m2_005", article: "der", word: "Ofen",       translation: "печь / плита"      },
+      { id: "a1_m2_006", article: "der", word: "Leuchter",   translation: "подсвечник / люстра"},
+      { id: "a1_m2_007", article: "der", word: "Fernseher",  translation: "телевизор"         },
+      { id: "a1_m2_008", article: "der", word: "Hocker",     translation: "табурет"           },
+      { id: "a1_m2_009", article: "der", word: "Computer",   translation: "компьютер"         },
+      { id: "a1_m2_010", article: "der", word: "Schlüssel",  translation: "ключ"              },
+      { id: "a1_m2_011", article: "der", word: "Topf",       translation: "кастрюля"          },
+      { id: "a1_m2_012", article: "der", word: "Stift",      translation: "ручка / карандаш"  },
+      { id: "a1_m2_013", article: "der", word: "Brief",      translation: "письмо"            },
+      { id: "a1_m2_014", article: "der", word: "Pinsel",     translation: "кисть"             },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ORTE (das-Wörter)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "orte_das", name: "Orte (das)", name_ru: "Места (das-слова)", emoji: "🏨",
+    words: [
+      { id: "a1_od_001", article: "das", word: "Kino",       translation: "кинотеатр"    },
+      { id: "a1_od_002", article: "das", word: "Hotel",      translation: "отель"        },
+      { id: "a1_od_003", article: "das", word: "Rathaus",    translation: "ратуша"       },
+      { id: "a1_od_004", article: "das", word: "Restaurant", translation: "ресторан"     },
+      { id: "a1_od_005", article: "das", word: "Café",       translation: "кафе"         },
+      { id: "a1_od_006", article: "das", word: "Haus",       translation: "дом"          },
+      { id: "a1_od_007", article: "das", word: "Dach",       translation: "крыша"        },
+      { id: "a1_od_008", article: "das", word: "Gleis",      translation: "ж/д путь / платформа" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ESSEN ERWEITERT
+  // ════════════════════════════════
+  {
+    level: "A1", category: "essen2", name: "Essen – mehr", name_ru: "Еда – расширенная", emoji: "🍽️",
+    words: [
+      { id: "a1_e2_001", article: "der", word: "Döner",     translation: "донер-кебаб"    },
+      { id: "a1_e2_002", article: "der", word: "Pfeffer",   translation: "перец (специя)" },
+      { id: "a1_e2_003", article: "der", word: "Mais",      translation: "кукуруза"       },
+      { id: "a1_e2_004", article: "der", word: "Speck",     translation: "бекон"          },
+      { id: "a1_e2_005", article: "der", word: "Schinken",  translation: "ветчина"        },
+      { id: "a1_e2_006", article: "der", word: "Lachs",     translation: "лосось"         },
+      { id: "a1_e2_007", article: "der", word: "Ketchup",   translation: "кетчуп"         },
+      { id: "a1_e2_008", article: "der", word: "Hamburger", translation: "гамбургер"      },
+      { id: "a1_e2_009", article: "der", word: "Toast",     translation: "тост"           },
+      { id: "a1_e2_010", article: "die", word: "Ananas",    translation: "ананас"         },
+      { id: "a1_e2_011", article: "die", word: "Waffel",    translation: "вафля"          },
+      { id: "a1_e2_012", article: "die", word: "Torte",     translation: "торт"           },
+      { id: "a1_e2_013", article: "das", word: "Eis",       translation: "мороженое"      },
+      { id: "a1_e2_014", article: "der", word: "Ticket",    translation: "билет"          },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MENSCHEN (Люди)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "menschen", name: "Menschen", name_ru: "Люди", emoji: "👥",
+    words: [
+      { id: "a1_me_001", article: "der", word: "Junge",     translation: "мальчик"           },
+      { id: "a1_me_002", article: "das", word: "Mädchen",   translation: "девочка"           },
+      { id: "a1_me_003", article: "der", word: "Freund",    translation: "друг / парень"     },
+      { id: "a1_me_004", article: "die", word: "Freundin",  translation: "подруга / девушка" },
+      { id: "a1_me_005", article: "der", word: "Enkel",     translation: "внук"              },
+      { id: "a1_me_006", article: "die", word: "Enkelin",   translation: "внучка"            },
+      { id: "a1_me_007", article: "der", word: "Kollege",   translation: "коллега (м)"       },
+      { id: "a1_me_008", article: "die", word: "Kollegin",  translation: "коллега (ж)"       },
+      { id: "a1_me_009", article: "der", word: "Nachbar",   translation: "сосед"             },
+      { id: "a1_me_010", article: "die", word: "Nachbarin", translation: "соседка"           },
+      { id: "a1_me_011", article: "der", word: "Rentner",   translation: "пенсионер"         },
+      { id: "a1_me_012", article: "der", word: "Anwalt",    translation: "адвокат"           },
+      { id: "a1_me_013", article: "der", word: "Schüler",   translation: "ученик"            },
+      { id: "a1_me_014", article: "die", word: "Schülerin", translation: "ученица"           },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — GRÜßE (Приветствия)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "gruesse", name: "Grüße & Begrüßung", name_ru: "Приветствия", emoji: "👋",
+    words: [
+      { id: "a1_gu_001", article: "-", word: "Hallo",           translation: "привет"                  },
+      { id: "a1_gu_002", article: "-", word: "Tschüss",         translation: "пока"                    },
+      { id: "a1_gu_003", article: "-", word: "Auf Wiedersehen", translation: "до свидания (форм.)"     },
+      { id: "a1_gu_004", article: "-", word: "Guten Morgen",    translation: "доброе утро"             },
+      { id: "a1_gu_005", article: "-", word: "Guten Tag",       translation: "добрый день"             },
+      { id: "a1_gu_006", article: "-", word: "Guten Abend",     translation: "добрый вечер"            },
+      { id: "a1_gu_007", article: "-", word: "Gute Nacht",      translation: "спокойной ночи"          },
+      { id: "a1_gu_008", article: "-", word: "Bitte",           translation: "пожалуйста / прошу"      },
+      { id: "a1_gu_009", article: "-", word: "Danke",           translation: "спасибо"                 },
+      { id: "a1_gu_010", article: "-", word: "Entschuldigung",  translation: "извините / простите"     },
+      { id: "a1_gu_011", article: "-", word: "Es tut mir leid", translation: "мне жаль"               },
+      { id: "a1_gu_012", article: "-", word: "Ja",              translation: "да"                      },
+      { id: "a1_gu_013", article: "-", word: "Nein",            translation: "нет"                     },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — TIERE 2 (Животные расширенные)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "tiere2", name: "Tiere – mehr", name_ru: "Животные – расширенные", emoji: "🐸",
+    words: [
+      { id: "a1_t2_001", article: "der", word: "Frosch",    translation: "лягушка"           },
+      { id: "a1_t2_002", article: "der", word: "Igel",      translation: "ёж"               },
+      { id: "a1_t2_003", article: "der", word: "Esel",      translation: "осёл"             },
+      { id: "a1_t2_004", article: "die", word: "Mücke",     translation: "комар"            },
+      { id: "a1_t2_005", article: "die", word: "Maus",      translation: "мышь"             },
+      { id: "a1_t2_006", article: "die", word: "Spinne",    translation: "паук"             },
+      { id: "a1_t2_007", article: "das", word: "Pony",      translation: "пони"             },
+      { id: "a1_t2_008", article: "das", word: "Rind",      translation: "бык / корова (скот)" },
+      { id: "a1_t2_009", article: "die", word: "Gans",      translation: "гусь"             },
+      { id: "a1_t2_010", article: "das", word: "Kaninchen", translation: "кролик"           },
+      { id: "a1_t2_011", article: "der", word: "Hahn",      translation: "петух"            },
+      { id: "a1_t2_012", article: "die", word: "Ziege",     translation: "коза"             },
+    ]
+  },
+
 ];

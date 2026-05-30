@@ -279,6 +279,57 @@ const EMOJI = {
   // Farben
   rot:'🔴', blau:'🔵', grün:'🟢', gelb:'🟡', schwarz:'⚫', weiß:'⚪',
   grau:'🩶', orange:'🟠', lila:'🟣', rosa:'🌸', braun:'🟤', bunt:'🌈',
+  // Wetter
+  Wetter:'🌤️', Wind:'💨', Regen:'🌧️', Schnee:'❄️', Wolke:'☁️',
+  Gewitter:'⛈️', Sonne:'☀️', Temperatur:'🌡️', Frost:'🥶', Nebel:'🌫️',
+  sonnig:'☀️', bewölkt:'☁️', windig:'💨', regnerisch:'🌧️',
+  // Jahreszeiten
+  Frühling:'🌸', Sommer:'☀️', Herbst:'🍂', Winter:'❄️',
+  Morgen:'🌅', Vormittag:'🌤️', Mittag:'🌞', Nachmittag:'🌇', Abend:'🌆', Nacht:'🌙',
+  Jahr:'📅', vorgestern:'⏪', gestern:'◀️', heute:'📍', übermorgen:'⏩',
+  // Monate
+  Januar:'❄️', Februar:'💝', März:'🌱', April:'🌷', Mai:'🌸', Juni:'🌻',
+  Juli:'🏖️', August:'☀️', September:'🍂', Oktober:'🎃', November:'🍁', Dezember:'🎄',
+  // Sprachen
+  Deutsch:'🇩🇪', Russisch:'🇷🇺', Englisch:'🇬🇧', Französisch:'🇫🇷',
+  Italienisch:'🇮🇹', Türkisch:'🇹🇷', Arabisch:'🌙', Spanisch:'🇪🇸',
+  Persisch:'🌹', Polnisch:'🇵🇱', Chinesisch:'🇨🇳', Ukrainisch:'🇺🇦',
+  // Länder
+  Deutschland:'🇩🇪', Russland:'🇷🇺', Österreich:'🇦🇹', Frankreich:'🇫🇷',
+  Italien:'🇮🇹', Spanien:'🇪🇸', Türkei:'🇹🇷', Polen:'🇵🇱',
+  Ukraine:'🇺🇦', Schweiz:'🇨🇭', Kanada:'🇨🇦', China:'🇨🇳',
+  Afghanistan:'🇦🇫', Senegal:'🇸🇳', Nigeria:'🇳🇬', Ghana:'🇬🇭',
+  Eritrea:'🌍', Marokko:'🇲🇦', Dänemark:'🇩🇰', Belgien:'🇧🇪',
+  // Fahrzeuge 2
+  Roller:'🛴', LKW:'🚛', Traktor:'🚜', Bagger:'🏗️', Gabelstapler:'🏭',
+  Hubschrauber:'🚁', Heißluftballon:'🎈', ICE:'🚄', Seilbahn:'🚡',
+  Fähre:'⛴️', Boot:'🚤', Wohnmobil:'🚌', Motorboot:'🚤',
+  Segelboot:'⛵', Kanu:'🛶', Kajak:'🛶', 'U-Boot':'🌊',
+  // Möbel 2
+  Tisch:'🪵', Stuhl:'🪑', Sessel:'🛋️', Schrank:'🗄️', Ofen:'🔥',
+  Leuchter:'🕯️', Fernseher:'📺', Hocker:'🪑', Computer:'💻',
+  Schlüssel:'🔑', Topf:'🫕', Stift:'✏️', Brief:'✉️', Pinsel:'🖌️',
+  // Orte das
+  Kino:'🎬', Hotel:'🏨', Rathaus:'🏛️', Restaurant:'🍽️', Café:'☕',
+  Haus:'🏠', Dach:'🏠', Gleis:'🛤️',
+  // Essen 2
+  Döner:'🌯', Pfeffer:'🌶️', Mais:'🌽', Speck:'🥓', Schinken:'🍖',
+  Lachs:'🐟', Ketchup:'🍅', Hamburger:'🍔', Toast:'🍞',
+  Ananas:'🍍', Waffel:'🧇', Torte:'🎂', Eis:'🍦', Ticket:'🎫',
+  // Menschen
+  Junge:'👦', Mädchen:'👧', Freund:'🤝', Freundin:'👭',
+  Enkel:'👦', Enkelin:'👧', Kollege:'👔', Kollegin:'👩‍💼',
+  Nachbar:'🏘️', Nachbarin:'🏘️', Rentner:'👴', Anwalt:'⚖️',
+  Schüler:'📚', Schülerin:'📚',
+  // Grüße
+  Hallo:'👋', Tschüss:'👋', 'Auf Wiedersehen':'🤝', 'Guten Morgen':'🌅',
+  'Guten Tag':'☀️', 'Guten Abend':'🌆', 'Gute Nacht':'🌙',
+  Bitte:'🙏', Danke:'💙', Entschuldigung:'🙇', 'Es tut mir leid':'😔',
+  Ja:'✅', Nein:'❌',
+  // Tiere 2
+  Frosch:'🐸', Igel:'🦔', Esel:'🫏', Mücke:'🦟', Maus:'🐭',
+  Spinne:'🕷️', Pony:'🐴', Rind:'🐄', Gans:'🪿', Kaninchen:'🐰',
+  Hahn:'🐓', Ziege:'🐐',
   // Zahlen
   null:'0️⃣', eins:'1️⃣', zwei:'2️⃣', drei:'3️⃣', vier:'4️⃣', fünf:'5️⃣',
   sechs:'6️⃣', sieben:'7️⃣', acht:'8️⃣', neun:'9️⃣', zehn:'🔟',
