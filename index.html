@@ -170,6 +170,22 @@
           <div class="card-hint"     id="card-hint" data-i18n="hint_keys">Tipp: Tasten [1] der &nbsp; [2] die &nbsp; [3] das</div>
         </div>
 
+        <!-- TYPING TEST -->
+        <div class="typing-test hidden" id="typing-test">
+          <div class="tt-phase-banner">✍️ <span data-i18n="tt_phase">Контрольная проверка — напиши слово с артиклем</span></div>
+          <div class="tt-counter" id="tt-counter">1 / 5</div>
+          <div class="tt-emoji"   id="tt-emoji">🍎</div>
+          <div class="tt-ru"      id="tt-ru">яблоко</div>
+          <div class="tt-input-wrap">
+            <input id="tt-input" class="tt-input" type="text"
+              placeholder="der / die / das + Wort"
+              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <button class="tt-ok-btn" id="tt-submit">→</button>
+          </div>
+          <div class="tt-feedback" id="tt-feedback"></div>
+          <div class="tt-score"    id="tt-score">✓ 0</div>
+        </div>
+
         <div class="session-complete hidden" id="session-complete">
           <div class="complete-emoji">🎉</div>
           <h2 data-i18n="session_done">Sitzung abgeschlossen!</h2>

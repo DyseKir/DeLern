@@ -409,6 +409,8 @@ const S = {
   vocabFilter:'all',
   cart:{},
   rewardPop: null, // { itemId, useQty }
+  phase:'study',   // 'study' | 'test'
+  testCards:[], testIdx:0, testCorrect:0, testRequeued:new Set(),
 };
 
 function buildWordCache() {
@@ -511,13 +513,30 @@ function showCoinPop(n, anchor) {
 }
 function getWP(id) { return loadProg()[id] || {streak:0,total:0,wrong:0,status:'new',seen:null}; }
 
-function updateWP(id, correct) {
+function updateWP(id, correct, noArt=false) {
   const p  = loadProg();
   const wp = p[id] || {streak:0,total:0,wrong:0,status:'new',seen:null};
   wp.seen  = new Date().toISOString().slice(0,10);
-  if (correct) { wp.streak++; wp.total++;  wp.status = wp.streak >= LEARNED_THRESHOLD ? 'learned' : 'learning'; }
-  else         { wp.wrong++;  wp.streak=0; wp.status = 'learning'; }
+  if (correct) {
+    wp.streak++; wp.total++;
+    // Learned only via typing test (phase==='test'), or for no-article words in study
+    if (wp.streak >= LEARNED_THRESHOLD && (S.phase === 'test' || noArt)) {
+      wp.status = 'learned';
+    } else if (wp.status !== 'learned') {
+      wp.status = 'learning';
+    }
+  } else {
+    wp.wrong++; wp.streak=0; wp.status = 'learning';
+  }
   p[id] = wp; saveProg(p); return wp;
+}
+
+function markWordLearned(id) {
+  const p  = loadProg();
+  const wp = p[id] || {streak:0,total:0,wrong:0,status:'new',seen:null};
+  wp.status = 'learned'; wp.streak = LEARNED_THRESHOLD;
+  wp.seen   = new Date().toISOString().slice(0,10);
+  p[id] = wp; saveProg(p);
 }
 
 function setGrammarStudied(id) {
@@ -779,6 +798,7 @@ function startSession(cat) {
   const p = loadProg();
   let active = (cat.words||[]).filter(w=>!p[w.id]||p[w.id].status!=='learned');
   shuffle(active);
+  S.phase='study'; S.testCards=[]; S.testIdx=0; S.testCorrect=0; S.testRequeued=new Set();
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
   $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
@@ -797,7 +817,10 @@ function startSession(cat) {
 }
 
 function drawCard() {
-  if (S.cardIdx >= S.cards.length) { showComplete(); return; }
+  if (S.cardIdx >= S.cards.length) {
+    if (S.phase === 'study') { startTypingTest(); } else { showComplete(); }
+    return;
+  }
   const card = S.cards[S.cardIdx];
   const wp   = getWP(card.id);
   $('cards-progress-fill').style.width = (S.cards.length>1 ? S.cardIdx/S.cards.length*100 : 0)+'%';
@@ -823,7 +846,7 @@ function handleArticle(article) {
   const card=S.cards[S.cardIdx];
   const noArt = !card.article || card.article === '-';
   const correct = noArt || article===card.article;
-  const wp=updateWP(card.id,correct);
+  const wp=updateWP(card.id,correct,noArt);
   const fb=$('card-feedback'), se=$('card-streak');
   document.querySelectorAll('.art-btn').forEach(b=>b.disabled=true);
   if (correct) {
@@ -858,11 +881,71 @@ function handleArticle(article) {
 
 function showComplete() {
   $('flashcard').classList.add('hidden');
+  $('typing-test').classList.add('hidden');
   $('session-complete').classList.remove('hidden');
   $('cards-progress-fill').style.width='100%';
-  $('cs-correct').textContent=S.sessionCorrect;
+  $('cs-correct').textContent=S.sessionCorrect + S.testCorrect;
   $('cs-wrong').textContent  =S.sessionWrong;
   $('cs-learned').textContent=S.sessionLearned;
+  refreshOverallBar();
+}
+
+function startTypingTest() {
+  S.phase = 'test';
+  const p = loadProg();
+  // Only words with real articles that haven't been learned yet
+  S.testCards = S.cards.filter(w => w.article && w.article !== '-' && (!p[w.id] || p[w.id].status !== 'learned'));
+  shuffle(S.testCards);
+  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
+
+  $('flashcard').classList.add('hidden');
+
+  if (!S.testCards.length) { showComplete(); return; }
+
+  $('typing-test').classList.remove('hidden');
+  drawTestCard();
+}
+
+function drawTestCard() {
+  if (S.testIdx >= S.testCards.length) { showComplete(); return; }
+  const card = S.testCards[S.testIdx];
+  $('tt-emoji').textContent = EMOJI[card.word] || S.currentCatEmoji;
+  $('tt-ru').textContent    = card.translation;
+  $('tt-counter').textContent = `${S.testIdx+1} / ${S.testCards.length}`;
+  $('tt-score').textContent   = `✓ ${S.testCorrect}`;
+  $('tt-feedback').textContent = '';
+  $('tt-feedback').className   = 'tt-feedback';
+  $('tt-input').value = '';
+  $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
+  setTimeout(()=>{ try{$('tt-input').focus();}catch(e){} }, 100);
+}
+
+function handleTypingSubmit() {
+  const card = S.testCards[S.testIdx];
+  if (!card) return;
+  const raw     = $('tt-input').value.trim();
+  const input   = raw.toLowerCase().replace(/\s+/g,' ');
+  const correct = (card.article + ' ' + card.word).toLowerCase();
+
+  if (!input) return;
+
+  if (input === correct) {
+    markWordLearned(card.id);
+    S.testCorrect++; S.sessionLearned++;
+    addCoins(2, $('typing-test'));
+    $('tt-feedback').textContent = '✓ Richtig! 🎉';
+    $('tt-feedback').className   = 'tt-feedback ok';
+    setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 700);
+  } else {
+    $('tt-feedback').innerHTML = `✗ Richtig: <strong>${card.article} ${card.word}</strong>`;
+    $('tt-feedback').className = 'tt-feedback bad';
+    if (!S.testRequeued.has(card.id)) {
+      S.testRequeued.add(card.id);
+      S.testCards.push(card);
+    }
+    setTimeout(()=>{ $('tt-input').value=''; S.testIdx++; drawTestCard(); }, 2000);
+  }
+  $('tt-score').textContent = `✓ ${S.testCorrect}`;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1370,6 +1453,10 @@ function initEvents() {
 
   /* Weiter (для слов без артикля) */
   $('weiter-btn').addEventListener('click', ()=>{ if(!S.busy) handleArticle('-'); });
+
+  /* Typing test */
+  $('tt-submit').addEventListener('click', handleTypingSubmit);
+  $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>

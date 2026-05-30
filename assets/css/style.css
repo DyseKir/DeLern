@@ -670,6 +670,65 @@ body {
 .card-streak { font-size: 12px; color: var(--text-dim); min-height: 16px; }
 .card-hint   { margin-top: 18px; font-size: 11px; color: var(--text-dim); }
 
+/* ── Typing test ── */
+.typing-test {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 24px 24px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  animation: fadeIn .3s ease;
+}
+.tt-phase-banner {
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-size: 13px; font-weight: 600;
+  width: 100%; box-sizing: border-box;
+}
+.tt-counter { font-size: 13px; color: var(--text-muted); }
+.tt-emoji   { font-size: 4.5rem; line-height: 1; }
+.tt-ru      { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.tt-input-wrap {
+  display: flex; gap: 10px; width: 100%; max-width: 340px;
+}
+.tt-input {
+  flex: 1;
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 18px; font-weight: 600;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color .2s;
+  text-align: center;
+}
+.tt-input:focus { border-color: var(--accent); }
+.tt-ok-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none; border-radius: 10px;
+  width: 52px; font-size: 20px;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.tt-ok-btn:hover  { background: #7c3aed; }
+.tt-ok-btn:active { transform: scale(.94); }
+.tt-feedback {
+  font-size: 15px; font-weight: 600; min-height: 22px;
+}
+.tt-feedback.ok  { color: var(--correct); }
+.tt-feedback.bad { color: var(--wrong); }
+.tt-score { font-size: 13px; color: var(--text-muted); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* Session complete / all-learned */
 .session-complete, .all-learned {
   background: var(--card);
