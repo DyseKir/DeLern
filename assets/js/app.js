@@ -967,8 +967,8 @@ function showComplete() {
 function startTypingTest() {
   S.phase = 'test';
   const p = loadProg();
-  // Only words with real articles that haven't been learned yet
-  S.testCards = S.cards.filter(w => w.article && w.article !== '-' && (!p[w.id] || p[w.id].status !== 'learned'));
+  // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
+  S.testCards = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
   shuffle(S.testCards);
   S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
 
@@ -983,15 +983,17 @@ function startTypingTest() {
 function drawTestCard() {
   if (S.testIdx >= S.testCards.length) { showComplete(); return; }
   const card   = S.testCards[S.testIdx];
+  const noArt  = !card.article || card.article === '-';
   const streak = getWP(card.id).streak || 0;
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
-  $('tt-emoji').textContent   = EMOJI[card.word] || S.currentCatEmoji;
-  $('tt-ru').textContent      = card.translation;
-  $('tt-counter').textContent = `${S.testIdx+1} / ${S.testCards.length}`;
-  $('tt-score').textContent   = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
+  $('tt-emoji').textContent    = EMOJI[card.word] || S.currentCatEmoji;
+  $('tt-ru').textContent       = card.translation;
+  $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
+  $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
-  $('tt-input').value = '';
+  $('tt-input').value          = '';
+  $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
   $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
   setTimeout(()=>{ try{$('tt-input').focus();}catch(e){} }, 100);
 }
@@ -1000,7 +1002,8 @@ function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
   const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ');
-  const expected = (card.article + ' ' + card.word).toLowerCase();
+  const noArt    = !card.article || card.article === '-';
+  const expected = noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase();
   if (!input) return;
 
   if (input === expected) {
@@ -1018,8 +1021,9 @@ function handleTypingSubmit() {
     $('tt-score').textContent   = `✓ ${S.testCorrect}`;
     setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 800);
   } else {
-    updateWP(card.id, false); // сбрасываем streak при ошибке
-    $('tt-feedback').innerHTML = `✗ Правильно: <strong>${card.article} ${card.word}</strong>`;
+    updateWP(card.id, false);
+    const ans = noArt ? card.word : `${card.article} ${card.word}`;
+    $('tt-feedback').innerHTML = `✗ Правильно: <strong>${ans}</strong>`;
     $('tt-feedback').className = 'tt-feedback bad';
     if (!S.testRequeued.has(card.id)) {
       S.testRequeued.add(card.id);
