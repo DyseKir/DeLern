@@ -176,7 +176,6 @@ const TR = {
     streak_done:   (n) => `⭐ Вивчено! (${n}/${n})`,
     already_lrn:   '⭐ Вже вивчено',
     tt_phase:      'Контрольна перевірка — напиши слово з артиклем',
-    done_section:  'Пройдене',
   }
 };
 
@@ -218,24 +217,28 @@ function P() {
 
 /* ── Магазин ── */
 const SHOP_ITEMS = [
-  { id:'sh_001', emoji:'🥤', name_ru:'Бутылка кока колы', name_de:'Coca-Cola',       price:10 },
-  { id:'sh_002', emoji:'🧃', name_ru:'Бутылка сока',      name_de:'Saftflasche',     price:10 },
-  { id:'sh_003', emoji:'🍫', name_ru:'Чикалятка',         name_de:'Schokolade',      price:15 },
-  { id:'sh_004', emoji:'🍟', name_ru:'Чипсеки',           name_de:'Chips',           price:15 },
-  { id:'sh_005', emoji:'⚡', name_ru:'Энергос',           name_de:'Energy-Drink',    price:20 },
-  { id:'sh_006', emoji:'🍅', name_ru:'Помидор',           name_de:'Tomate',          price:5  },
-  { id:'sh_007', emoji:'🍬', name_ru:'Желейки',           name_de:'Gummibärchen',    price:10 },
-  { id:'sh_008', emoji:'🍕', name_ru:'Пицка',             name_de:'Pizza',           price:40 },
-  { id:'sh_009', emoji:'🍔', name_ru:'Бургер',            name_de:'Burger',          price:35 },
-  { id:'sh_010', emoji:'🥤', name_ru:'Молочный коктейль', name_de:'Milchshake',      price:15 },
+  { id:'sh_001', emoji:'🥤', name_ru:'Бутылка кока колы', name_uk:'Пляшка коки',        name_de:'Coca-Cola',    price:10 },
+  { id:'sh_002', emoji:'🧃', name_ru:'Бутылка сока',      name_uk:'Пляшка соку',         name_de:'Saftflasche',  price:10 },
+  { id:'sh_003', emoji:'🍫', name_ru:'Чикалятка',         name_uk:'Шоколадка',           name_de:'Schokolade',   price:15 },
+  { id:'sh_004', emoji:'🍟', name_ru:'Чипсеки',           name_uk:'Чіпси',               name_de:'Chips',        price:15 },
+  { id:'sh_005', emoji:'⚡', name_ru:'Энергос',           name_uk:'Енергетик',           name_de:'Energy-Drink', price:20 },
+  { id:'sh_006', emoji:'🍅', name_ru:'Помидор',           name_uk:'Помідор',             name_de:'Tomate',       price:5  },
+  { id:'sh_007', emoji:'🍬', name_ru:'Желейки',           name_uk:'Желейки',             name_de:'Gummibärchen', price:10 },
+  { id:'sh_008', emoji:'🍕', name_ru:'Пицка',             name_uk:'Піца',                name_de:'Pizza',        price:40 },
+  { id:'sh_009', emoji:'🍔', name_ru:'Бургер',            name_uk:'Бургер',              name_de:'Burger',       price:35 },
+  { id:'sh_010', emoji:'🥤', name_ru:'Молочный коктейль', name_uk:'Молочний коктейль',   name_de:'Milchshake',   price:15 },
 ];
 
 /* t(key, ...args) — получить строку перевода */
 function t(key, ...args) {
-  const val = TR[lang][key];
+  const val = (TR[lang] || TR.ru)[key] ?? TR.ru[key];
   if (typeof val === 'function') return val(...args);
   return val ?? key;
 }
+/* lstr(de, ru, uk) — inline трёхъязычная строка */
+function lstr(de, ru, uk) { return lang==='de' ? de : lang==='uk' ? (uk||ru) : ru; }
+/* lname(item) — имя товара по текущему языку */
+function lname(item) { return lang==='de' ? item.name_de : lang==='uk' ? (item.name_uk||item.name_ru) : item.name_ru; }
 
 /* Применить язык ко всем data-i18n элементам */
 function applyLang() {
@@ -256,8 +259,7 @@ function applyLang() {
   // greeting depends on both lang and profile
   if ($('user-hi')) {
     const prof = P();
-    if (prof) $('user-hi').textContent = lang==='ru'
-      ? `Привет, ${prof.name}!` : `Hi, ${prof.name}!`;
+    if (prof) $('user-hi').textContent = lstr(`Hi, ${prof.name}!`,`Привет, ${prof.name}!`,`Привіт, ${prof.name}!`);
   }
 }
 
@@ -519,7 +521,8 @@ function useReward(itemId, qty) {
 
 function fmtDatetime(iso) {
   const d = new Date(iso);
-  const date = d.toLocaleDateString(lang==='ru'?'ru-RU':'de-DE', {day:'numeric', month:'long', year:'numeric'});
+  const locale = lang==='de'?'de-DE':lang==='uk'?'uk-UA':'ru-RU';
+  const date = d.toLocaleDateString(locale, {day:'numeric', month:'long', year:'numeric'});
   const time = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
   return { date, time };
 }
@@ -695,7 +698,7 @@ function updateProfileUI() {
     `).join('') + `
       <div class="profile-option po-new-acc" id="po-new-acc">
         <span class="po-avatar">＋</span>
-        <span class="po-name">${lang==='ru' ? 'Новый аккаунт' : 'Neues Konto'}</span>
+        <span class="po-name">${lstr('Neues Konto','Новый аккаунт','Новий акаунт')}</span>
       </div>`;
     dd.querySelectorAll('[data-profile]').forEach(opt =>
       opt.addEventListener('click', e => { e.stopPropagation(); switchProfile(opt.dataset.profile); }));
@@ -796,7 +799,7 @@ function renderVocabScreen() {
 
   /* ─ фильтр уровней ─ */
   const filterWrap = $('vocab-level-filter');
-  const allLabel   = lang==='ru' ? 'Все' : 'Alle';
+  const allLabel   = lstr('Alle','Все','Всі');
   filterWrap.innerHTML = `<button class="vlf-btn ${S.vocabFilter==='all'?'active':''}" data-vf="all">${allLabel}</button>`
     + LEVELS.map(lv=>`<button class="vlf-btn ${S.vocabFilter===lv?'active':''}" data-vf="${lv}">${lv}</button>`).join('');
   filterWrap.querySelectorAll('.vlf-btn').forEach(btn =>
@@ -848,7 +851,7 @@ function renderVocabLearned() {
     if (p[w.id]&&p[w.id].status==='learned') learnedWords.push({...w, catEmoji: cat.emoji});
   }));
   if (!learnedWords.length) { section.innerHTML=''; return; }
-  const title = lang==='ru' ? '⭐ Выученные слова' : '⭐ Gelernte Wörter';
+  const title = lstr('⭐ Gelernte Wörter','⭐ Выученные слова','⭐ Вивчені слова');
   section.innerHTML = `
     <h3 class="vocab-learned-title">${title}</h3>
     <div class="vocab-learned-grid">
@@ -1055,7 +1058,7 @@ function renderGrammarScreen() {
   }
   barEl.innerHTML = `
     <div class="grammar-progress-label">
-      <span>${lang==='ru'?'Изучено':'Gelernt'}: <strong>${studiedR} / ${totalR}</strong></span>
+      <span>${lstr('Gelernt','Изучено','Вивчено')}: <strong>${studiedR} / ${totalR}</strong></span>
       <span class="grammar-progress-pct">${pctR}%</span>
     </div>
     <div class="grammar-progress-track"><div class="grammar-progress-fill" style="width:${pctR}%"></div></div>`;
@@ -1210,7 +1213,7 @@ function renderShop() {
   /* ─ сетка товаров ─ */
   const grid = $('shop-items-grid');
   grid.innerHTML = SHOP_ITEMS.map(item => {
-    const name  = lang==='ru' ? item.name_ru : item.name_de;
+    const name  = lname(item);
     const qty   = S.cart[item.id] || 0;
     const inCart = qty > 0;
     return `
@@ -1224,7 +1227,7 @@ function renderShop() {
                <span class="si-qty-num">${qty}</span>
                <button class="si-qty-btn" data-sid="${item.id}" data-d="1">+</button>
              </div>`
-          : `<button class="si-btn" data-sid="${item.id}">${lang==='ru'?'В корзину':'In den Warenkorb'}</button>`
+          : `<button class="si-btn" data-sid="${item.id}">${lstr('In den Warenkorb','В корзину','До кошика')}</button>`
         }
       </div>`;
   }).join('');
@@ -1244,7 +1247,7 @@ function renderCart() {
   const badge   = $('cart-count-badge');
   const count   = cartCount();
   if (!count) {
-    list.innerHTML = `<div class="cart-empty">${lang==='ru'?'Пусто':'Leer'}</div>`;
+    list.innerHTML = `<div class="cart-empty">${lstr('Leer','Пусто','Порожньо')}</div>`;
     totalEl.textContent = '0';
     buyBtn.disabled = true;
     badge.textContent = '0';
@@ -1256,7 +1259,7 @@ function renderCart() {
     if (!item) return '';
     const line = item.price * qty;
     total += line;
-    const name = lang==='ru' ? item.name_ru : item.name_de;
+    const name = lname(item);
     return `<div class="cart-item-row">
       <span class="cir-emoji">${item.emoji}</span>
       <span class="cir-name">${name}</span>
@@ -1310,7 +1313,7 @@ function renderPurchased() {
           <button class="pp-qty-btn" data-ppd="1">+</button>
         </div>
         <button class="btn-primary pp-apply" style="width:100%;padding:7px;font-size:13px">
-          ${lang==='ru'?'Использовать ✓':'Einlösen ✓'}
+          ${lstr('Einlösen ✓','Использовать ✓','Використати ✓')}
         </button>
       </div>` : '';
 
@@ -1320,11 +1323,11 @@ function renderPurchased() {
           <span class="pur-emoji">${item.emoji}</span>
           <div class="pur-info">
             <span class="pur-name">${name}</span>
-            <span class="pur-avail">${lang==='ru'?'Осталось':'Verfügbar'}: <strong>${avail}</strong> / ${total}</span>
+            <span class="pur-avail">${lstr('Verfügbar','Осталось','Залишилось')}: <strong>${avail}</strong> / ${total}</span>
           </div>
           ${avail > 0
             ? `<span class="pur-arrow ${isOpen?'open':''}">▾</span>`
-            : `<span class="pur-done-badge">${lang==='ru'?'Исп.':'Verw.'}</span>`}
+            : `<span class="pur-done-badge">${lstr('Verw.','Исп.','Вик.')}</span>`}
         </div>
         ${popupHtml}
       </div>`;
@@ -1335,7 +1338,7 @@ function renderPurchased() {
   const histHtml = used.length ? used.map(entry => {
     const item = SHOP_ITEMS.find(i=>i.id===entry.id);
     if (!item) return '';
-    const name = lang==='ru' ? item.name_ru : item.name_de;
+    const name = lname(item);
     const {date, time} = fmtDatetime(entry.datetime);
     return `
       <div class="used-card">
@@ -1345,7 +1348,7 @@ function renderPurchased() {
           <div class="uc-datetime">📅 ${date} &nbsp;&nbsp; 🕐 ${time}</div>
         </div>
       </div>`;
-  }).join('') : `<div class="uc-empty">${lang==='ru'?'Ещё ничего не использовано':'Noch nichts eingelöst'}</div>`;
+  }).join('') : `<div class="uc-empty">${lstr('Noch nichts eingelöst','Ещё ничего не использовано','Ще нічого не використано')}</div>`;
 
   wrap.innerHTML = `
     <h3 class="purchased-title">${rewardsTitle}</h3>
@@ -1434,7 +1437,7 @@ function showEgg(area, clicks) {
       <div class="egg-dots">
         ${[0,1,2].map(i=>`<span class="ep-dot ${i<clicks?'filled':''}"></span>`).join('')}
       </div>
-      <p class="egg-sub">${lang==='ru'?`${clicks}/3 нажатий`:`${clicks}/3 Klicks`}</p>
+      <p class="egg-sub">${lstr(`${clicks}/3 Klicks`,`${clicks}/3 нажатий`,`${clicks}/3 натискань`)}</p>
     </div>`;
   $('egg-img').addEventListener('click', onEggClick);
   document.querySelector('.egg-fallback').addEventListener('click', onEggClick);
@@ -1467,7 +1470,7 @@ function onEggClick() {
     const hEl = document.querySelector('.egg-hint');
     const sEl = document.querySelector('.egg-sub');
     if (hEl) hEl.textContent = hints[next] || hints[0];
-    if (sEl) sEl.textContent = lang==='ru' ? `${next}/3 нажатий` : `${next}/3 Klicks`;
+    if (sEl) sEl.textContent = lstr(`${next}/3 Klicks`,`${next}/3 нажатий`,`${next}/3 натискань`);
   }
 }
 
@@ -1630,7 +1633,7 @@ function renderRegCard(addingNew) {
     /* ── Выбор существующего аккаунта ── */
     card.innerHTML = `
       ${logo}
-      <h2 class="reg-title">Выбери аккаунт</h2>
+      <h2 class="reg-title">${lstr('Konto wählen','Выбери аккаунт','Оберіть акаунт')}</h2>
       <div class="reg-accounts">
         ${accounts.map(acc => `
           <div class="reg-acc-card" data-id="${acc.id}">
@@ -1638,8 +1641,8 @@ function renderRegCard(addingNew) {
             <div class="reg-acc-name">${acc.name}</div>
           </div>`).join('')}
       </div>
-      <div class="reg-divider"><span>или</span></div>
-      <button class="reg-new-btn" id="reg-new-btn">＋ Создать новый аккаунт</button>`;
+      <div class="reg-divider"><span>${lstr('oder','или','або')}</span></div>
+      <button class="reg-new-btn" id="reg-new-btn">＋ ${lstr('Neues Konto erstellen','Создать новый аккаунт','Створити новий акаунт')}</button>`;
 
     card.querySelectorAll('.reg-acc-card').forEach(el =>
       el.addEventListener('click', () => {
@@ -1657,11 +1660,15 @@ function renderRegCard(addingNew) {
     card.innerHTML = `
       ${logo}
       <div class="reg-flag">🇩🇪</div>
-      <h1 class="reg-title">${hasBack ? 'Новый аккаунт' : 'Добро пожаловать!'}</h1>
-      <p class="reg-sub">${hasBack ? 'Введи никнейм для нового аккаунта' : 'Введи свой никнейм чтобы начать учить немецкий'}</p>
-      <input type="text" id="reg-input" class="reg-input" placeholder="Твой никнейм..." maxlength="20" autocomplete="off" spellcheck="false">
-      ${hasBack ? '<button class="reg-back-btn" id="reg-back-btn">← Назад</button>' : ''}
-      <button class="btn-primary reg-btn" id="reg-btn">Начать →</button>`;
+      <h1 class="reg-title">${hasBack
+        ? lstr('Neues Konto','Новый аккаунт','Новий акаунт')
+        : lstr('Willkommen!','Добро пожаловать!','Ласкаво просимо!')}</h1>
+      <p class="reg-sub">${hasBack
+        ? lstr('Gib einen Nicknamen für das neue Konto ein','Введи никнейм для нового аккаунта','Введи нікнейм для нового акаунта')
+        : lstr('Gib deinen Nicknamen ein, um Deutsch zu lernen','Введи свой никнейм чтобы начать учить немецкий','Введи свій нікнейм щоб почати вчити німецьку')}</p>
+      <input type="text" id="reg-input" class="reg-input" placeholder="${lstr('Dein Nickname...','Твой никнейм...','Твій нікнейм...')}" maxlength="20" autocomplete="off" spellcheck="false">
+      ${hasBack ? `<button class="reg-back-btn" id="reg-back-btn">${lstr('← Zurück','← Назад','← Назад')}</button>` : ''}
+      <button class="btn-primary reg-btn" id="reg-btn">${lstr('Starten →','Начать →','Почати →')}</button>`;
 
     const input = $('reg-input');
     const backBtn = $('reg-back-btn');
