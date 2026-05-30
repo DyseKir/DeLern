@@ -778,7 +778,7 @@ function renderVocabLearned() {
 function startSession(cat) {
   const p = loadProg();
   let active = (cat.words||[]).filter(w=>!p[w.id]||p[w.id].status!=='learned');
-  active.sort((a,b)=>{const o={new:0,learning:1};return(o[(p[a.id]||{}).status]||0)-(o[(p[b.id]||{}).status]||0);});
+  shuffle(active);
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
   $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
@@ -1324,6 +1324,7 @@ function showPetCharacter(area, animate) {
 function $(id)          { return document.getElementById(id); }
 function getCats(lvl)   { return (window.VOCAB_DATA||[]).filter(c=>c.level===lvl); }
 function findCat(lvl,c) { return (window.VOCAB_DATA||[]).find(c2=>c2.level===lvl&&c2.category===c)||{}; }
+function shuffle(arr)   { for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr; }
 
 /* ══════════════════════════════════════════════════════════════
    СОБЫТИЯ
