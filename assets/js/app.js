@@ -340,6 +340,9 @@ const EMOJI = {
   // Farben
   rot:'🔴', blau:'🔵', grün:'🟢', gelb:'🟡', schwarz:'⚫', weiß:'⚪',
   grau:'🩶', orange:'🟠', lila:'🟣', rosa:'🌸', braun:'🟤', bunt:'🌈',
+  // Новые части тела
+  Stirn:'😮', Augenbraue:'🤨', Kinn:'🫦', Wange:'😊',
+  Brust:'💪', Zeh:'🦶', Ellbogen:'💪', Po:'🍑', Körper:'🧍',
   // Доп. слова
   'zu Fuß':'🚶', Strumpf:'🧦', Gürtel:'👔', Hut:'🎩',
   Faust:'✊', Daumen:'👍', Arztpraxis:'🏥', Platz:'🏟️', Rakete:'🚀',

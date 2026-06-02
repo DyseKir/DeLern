@@ -958,6 +958,54 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — KÖRPERTEILE PLURAL
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_030", level: "A1",
+    title_de: "Körperteile – Plural",
+    title_ru: "Части тела — множественное число",
+    explanation_de: "Körperteile haben verschiedene Pluralformen. Im Plural ist der Artikel immer 'die'.",
+    explanation_ru: `Части тела во множественном числе — у каждого своя форма. Артикль всегда <strong>die</strong>.
+
+<strong>Голова (Der Kopf):</strong>
+• das Gesicht → die Gesicht<strong>er</strong>
+• der Hals → die Häls<strong>e</strong> (Umlaut!)
+• der Zahn → die Zähn<strong>e</strong> (Umlaut!)
+• der Mund → die Münder (Umlaut!)
+• die Nase → die Nas<strong>en</strong>
+• das Ohr → die Ohr<strong>en</strong>
+• das Auge → die Aug<strong>en</strong>
+• die Augenbraue → die Augenbrau<strong>en</strong>
+• das Haar → die Haar<strong>e</strong>
+• das Kinn → die Kinn<strong>e</strong>
+• die Wange → die Wang<strong>en</strong>
+• die Stirn → (nur Singular)
+
+<strong>Тело (Der Körper):</strong>
+• der Arm → die Arm<strong>e</strong>
+• die Hand → die Händ<strong>e</strong> (Umlaut!)
+• der Finger → die Finger (без изменений!)
+• die Brust → die Brüst<strong>e</strong> (Umlaut!)
+• der Rücken → die Rücken (без изменений!)
+• die Schulter → die Schulter<strong>n</strong>
+• der Bauch → die Bäuch<strong>e</strong> (Umlaut!)
+• das Knie → die Knie (без изменений!)
+• das Bein → die Bein<strong>e</strong>
+• der Fuß → die Füß<strong>e</strong> (Umlaut!)
+• der Zeh → die Zeh<strong>en</strong>
+• der Ellbogen → die Ellbogen (без изменений!)`,
+    examples: [
+      { de: "Ich habe zwei Augen, zwei Ohren und eine Nase.",   ru: "У меня два глаза, два уха и один нос."       },
+      { de: "Der Zahn → die Zähne (Umlaut + -e)",              ru: "Зуб → зубы (умлаут + -e)"                   },
+      { de: "der Finger → die Finger (kein Plural-s!)",        ru: "Палец → пальцы (без окончания!)"            },
+      { de: "die Hand → die Hände (Umlaut!)",                  ru: "Рука → руки (умлаут ä!)"                    },
+      { de: "Mein Kopf tut weh! / Meine Ohren tun weh!",       ru: "У меня болит голова! / У меня болят уши!"   },
+    ],
+    tip_de: "Viele Körperteile bilden den Plural mit Umlaut (ä, ö, ü). Lerne Singular + Plural zusammen!",
+    tip_ru: "Многие части тела во мн. числе получают умлаут (ä, ö, ü). Учи ед. и мн. число вместе!",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 

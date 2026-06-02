@@ -406,7 +406,16 @@ window.VOCAB_DATA = [
       { id: "a1_kb_018", article: "der", word: "Zahn",     translation: "зуб"                 },
       { id: "a1_kb_019", article: "die", word: "Faust",    translation: "кулак"               },
       { id: "a1_kb_020", article: "der", word: "Daumen",   translation: "большой палец"       },
-      { id: "a1_kb_021", article: "das", word: "Gesäß",    translation: "ягодицы"             },
+      { id: "a1_kb_021", article: "das", word: "Gesäß",      translation: "ягодицы"              },
+      { id: "a1_kb_022", article: "die", word: "Stirn",      translation: "лоб"                  },
+      { id: "a1_kb_023", article: "die", word: "Augenbraue", translation: "бровь"                },
+      { id: "a1_kb_024", article: "das", word: "Kinn",       translation: "подбородок"           },
+      { id: "a1_kb_025", article: "die", word: "Wange",      translation: "щека"                 },
+      { id: "a1_kb_026", article: "die", word: "Brust",      translation: "грудь"                },
+      { id: "a1_kb_027", article: "der", word: "Zeh",        translation: "палец ноги"           },
+      { id: "a1_kb_028", article: "der", word: "Ellbogen",   translation: "локоть"               },
+      { id: "a1_kb_029", article: "der", word: "Po",         translation: "попа / ягодицы (разг.)"},
+      { id: "a1_kb_030", article: "der", word: "Körper",     translation: "тело"                 },
     ]
   },
 
