@@ -405,8 +405,6 @@ window.VOCAB_DATA = [
       { id: "a1_kb_017", article: "das", word: "Knie",     translation: "колено"              },
       { id: "a1_kb_018", article: "der", word: "Zahn",     translation: "зуб"                 },
       { id: "a1_kb_019", article: "die", word: "Faust",    translation: "кулак"               },
-      { id: "a1_kb_020", article: "der", word: "Daumen",   translation: "большой палец"       },
-      { id: "a1_kb_021", article: "das", word: "Gesäß",      translation: "ягодицы"              },
       { id: "a1_kb_022", article: "die", word: "Stirn",      translation: "лоб"                  },
       { id: "a1_kb_023", article: "die", word: "Augenbraue", translation: "бровь"                },
       { id: "a1_kb_024", article: "das", word: "Kinn",       translation: "подбородок"           },

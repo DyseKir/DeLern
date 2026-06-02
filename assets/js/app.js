@@ -345,7 +345,7 @@ const EMOJI = {
   Brust:'💪', Zeh:'🦶', Ellbogen:'💪', Po:'🍑', Körper:'🧍',
   // Доп. слова
   'zu Fuß':'🚶', Strumpf:'🧦', Gürtel:'👔', Hut:'🎩',
-  Faust:'✊', Daumen:'👍', Arztpraxis:'🏥', Platz:'🏟️', Rakete:'🚀',
+  Faust:'✊', Arztpraxis:'🏥', Platz:'🏟️', Rakete:'🚀',
   // Zahlen расширенные
   dreizehn:'1️⃣3️⃣', vierzehn:'1️⃣4️⃣', fünfzehn:'1️⃣5️⃣', sechzehn:'1️⃣6️⃣',
   siebzehn:'1️⃣7️⃣', achtzehn:'1️⃣8️⃣', neunzehn:'1️⃣9️⃣',
