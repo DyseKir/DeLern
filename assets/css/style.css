@@ -529,6 +529,18 @@ body {
 }
 .cat-card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: var(--sh); }
 
+.cat-card-locked {
+  opacity: .5;
+  filter: grayscale(60%);
+  cursor: not-allowed;
+  border-style: dashed;
+}
+.cat-card-locked:hover { transform: none; border-color: var(--border); box-shadow: none; }
+.cat-locked-hint {
+  font-size: 11px; color: var(--text-muted);
+  margin-top: 8px; font-style: italic;
+}
+
 .cat-emoji { font-size: 2rem; display: block; margin-bottom: 7px; }
 .cat-name  { font-size: 12px; font-weight: 600; display: block; }
 .cat-name-ru { font-weight: 400; color: var(--text-muted); }

@@ -420,6 +420,42 @@ window.VOCAB_DATA = [
   },
 
   // ════════════════════════════════
+  //  A1 — KÖRPER PLURAL (Тело — мн. число, разблокируется после koerper)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "koerper_plural",
+    name: "Körper – Plural", name_ru: "Тело – множественное число",
+    emoji: "🧍", requiresCategory: "koerper",
+    words: [
+      // Голова
+      { id: "a1_kp2_001", article: "die", word: "Gesichter",    translation: "лица (das Gesicht)"         },
+      { id: "a1_kp2_002", article: "die", word: "Hälse",        translation: "шеи (der Hals)"             },
+      { id: "a1_kp2_003", article: "die", word: "Zähne",        translation: "зубы (der Zahn)"            },
+      { id: "a1_kp2_004", article: "die", word: "Münder",       translation: "рты (der Mund)"             },
+      { id: "a1_kp2_005", article: "die", word: "Nasen",        translation: "носы (die Nase)"            },
+      { id: "a1_kp2_006", article: "die", word: "Ohren",        translation: "уши (das Ohr)"              },
+      { id: "a1_kp2_007", article: "die", word: "Augen",        translation: "глаза (das Auge)"           },
+      { id: "a1_kp2_008", article: "die", word: "Augenbrauen",  translation: "брови (die Augenbraue)"     },
+      { id: "a1_kp2_009", article: "die", word: "Haare",        translation: "волосы (das Haar)"          },
+      { id: "a1_kp2_010", article: "die", word: "Kinne",        translation: "подбородки (das Kinn)"      },
+      { id: "a1_kp2_011", article: "die", word: "Wangen",       translation: "щеки (die Wange)"           },
+      // Тело
+      { id: "a1_kp2_012", article: "die", word: "Arme",         translation: "руки (der Arm)"             },
+      { id: "a1_kp2_013", article: "die", word: "Hände",        translation: "кисти рук (die Hand)"       },
+      { id: "a1_kp2_014", article: "die", word: "Finger",       translation: "пальцы (der Finger)"        },
+      { id: "a1_kp2_015", article: "die", word: "Brüste",       translation: "грудь мн. (die Brust)"      },
+      { id: "a1_kp2_016", article: "die", word: "Rücken",       translation: "спины (der Rücken)"         },
+      { id: "a1_kp2_017", article: "die", word: "Schultern",    translation: "плечи (die Schulter)"       },
+      { id: "a1_kp2_018", article: "die", word: "Bäuche",       translation: "животы (der Bauch)"         },
+      { id: "a1_kp2_019", article: "die", word: "Knie",         translation: "колени (das Knie)"          },
+      { id: "a1_kp2_020", article: "die", word: "Beine",        translation: "ноги (das Bein)"            },
+      { id: "a1_kp2_021", article: "die", word: "Füße",         translation: "ступни (der Fuß)"           },
+      { id: "a1_kp2_022", article: "die", word: "Zehen",        translation: "пальцы ног (der Zeh)"       },
+      { id: "a1_kp2_023", article: "die", word: "Ellbogen",     translation: "локти (der Ellbogen)"       },
+    ]
+  },
+
+  // ════════════════════════════════
   //  A1 — KLEIDUNG (Одежда)
   // ════════════════════════════════
   {

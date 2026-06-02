@@ -739,7 +739,26 @@ function refreshOverallBar() {
   $('overall-pct').textContent       = pct+'%';
 }
 
+function isCatComplete(level, catKey) {
+  const cat = findCat(level, catKey);
+  if (!cat || !cat.words || !cat.words.length) return false;
+  const p = loadProg();
+  return cat.words.every(w => p[w.id] && p[w.id].status === 'learned');
+}
+
 function makeCatCardHTML(cat, total, learned, p) {
+  // Проверяем блокировку
+  if (cat.requiresCategory && !isCatComplete(cat.level, cat.requiresCategory)) {
+    const reqCat = findCat(cat.level, cat.requiresCategory);
+    const reqName = reqCat ? (reqCat.name_ru || reqCat.name) : cat.requiresCategory;
+    return `
+      <div class="cat-card cat-card-locked" data-cat="${cat.category}" data-locked="1">
+        <span class="cat-emoji">🔒</span>
+        <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
+        <div class="cat-locked-hint">${lstr(`Erst «${reqName}» lernen`,`Сначала выучи «${reqName}»`,`Спочатку вивчи «${reqName}»`)}</div>
+      </div>`;
+  }
+
   const pct     = total ? Math.round(learned/total*100) : 0;
   const preview = cat.words.slice(0,4)
     .map(w=>`<div>• <span class="art-${w.article}">${w.article!=='-'?w.article:''}</span> ${w.word}</div>`).join('');
@@ -756,8 +775,9 @@ function makeCatCardHTML(cat, total, learned, p) {
 
 function attachCatEvents(container, level) {
   container.querySelectorAll('.cat-card').forEach(card => {
+    if (card.dataset.locked) return; // заблокирована — игнорируем клики
     const cat = findCat(level, card.dataset.cat);
-    card.querySelector('.cat-start-btn').addEventListener('click', e=>{e.stopPropagation();startSession(cat);});
+    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation();startSession(cat);});
     card.addEventListener('click', ()=>startSession(cat));
   });
 }
