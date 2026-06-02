@@ -724,6 +724,27 @@ body {
 .tt-feedback.bad { color: var(--wrong); }
 .tt-score { font-size: 13px; color: var(--text-muted); }
 
+.tt-umlaut-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.uml-btn {
+  background: var(--bg4);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .1s;
+  min-width: 38px;
+}
+.uml-btn:hover  { background: rgba(168,139,250,.18); border-color: var(--accent); }
+.uml-btn:active { transform: scale(.9); }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }

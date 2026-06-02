@@ -1546,6 +1546,19 @@ function initEvents() {
   $('tt-submit').addEventListener('click', handleTypingSubmit);
   $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
 
+  /* Umlaut buttons — вставляем символ в позицию курсора */
+  document.querySelectorAll('.uml-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const inp = $('tt-input');
+      const ch  = btn.dataset.char;
+      const s   = inp.selectionStart ?? inp.value.length;
+      const e2  = inp.selectionEnd   ?? inp.value.length;
+      inp.value = inp.value.slice(0, s) + ch + inp.value.slice(e2);
+      inp.setSelectionRange(s + 1, s + 1);
+      inp.focus();
+    });
+  });
+
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>
     btn.addEventListener('click',()=>handleArticle(btn.dataset.article)));
