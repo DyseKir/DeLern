@@ -4,7 +4,25 @@
       "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\User\\\\Desktop\\\\DELern\" -Recurse -File | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Users\\\\User\\\\Desktop\\\\DELern\\\\\",\"\"\\) })",
       "PowerShell(python --version 2>&1)",
       "PowerShell(node --version 2>&1)",
-      "PowerShell(py --version 2>&1)"
+      "PowerShell(py --version 2>&1)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add index.html assets/css/style.css assets/js/app.js)",
+      "Bash('C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe' commit -m ' *)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" push origin main)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" log --oneline -3)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add assets/css/style.css)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js assets/js/app.js assets/css/style.css index.html)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add index.html assets/js/app.js assets/css/style.css)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/grammar.js assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" diff --stat db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js index.html assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/grammar.js db/translations_uk.js assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js assets/js/app.js assets/css/style.css)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add -A)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" status --short)"
     ]
   }
 }

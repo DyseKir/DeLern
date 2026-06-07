@@ -475,6 +475,8 @@ const S = {
   rewardPop: null, // { itemId, useQty }
   phase:'study',   // 'study' | 'test'
   testCards:[], testIdx:0, testCorrect:0, testRequeued:new Set(),
+  catMode:'',      // '' | 'possessive'
+  possePerson:'',  // 'leo' | 'lea'
 };
 
 function buildWordCache() {
@@ -797,6 +799,17 @@ function renderCatPreview() {
     (total > 0 && learned === total ? done : active).push({cat, total, learned});
   });
 
+  // Сортировка активных: по проценту выученного (по убыванию);
+  // заблокированные карточки уходят в конец списка
+  active.sort((a, b) => {
+    const aLocked = a.cat.requiresCategory && !isCatComplete(a.cat.level, a.cat.requiresCategory);
+    const bLocked = b.cat.requiresCategory && !isCatComplete(b.cat.level, b.cat.requiresCategory);
+    if (aLocked !== bLocked) return aLocked ? 1 : -1;
+    const aPct = a.total ? a.learned / a.total : 0;
+    const bPct = b.total ? b.learned / b.total : 0;
+    return bPct - aPct;
+  });
+
   wrap.innerHTML = active.length
     ? active.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('')
     : `<div class="loading-hint">Alle Kategorien abgeschlossen! 🎉</div>`;
@@ -896,6 +909,7 @@ function startSession(cat) {
   let active = (cat.words||[]).filter(w=>!p[w.id]||p[w.id].status!=='learned');
   shuffle(active);
   S.phase='study'; S.testCards=[]; S.testIdx=0; S.testCorrect=0; S.testRequeued=new Set();
+  S.catMode = cat.mode || '';
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
   $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
@@ -930,9 +944,25 @@ function drawCard() {
   $('card-streak').textContent = wp.status==='learned' ? t('already_lrn') : wp.streak>0 ? t('streak_txt',wp.streak) : '';
   const fb=$('card-feedback'); fb.textContent=''; fb.className='card-feedback';
   const noArt = !card.article || card.article === '-';
-  $('article-buttons').classList.toggle('hidden', noArt);
-  $('weiter-btn').classList.toggle('hidden', !noArt);
-  $('card-hint').classList.toggle('hidden', noArt);
+  const isPoss = S.catMode === 'possessive';
+
+  $('article-buttons').classList.toggle('hidden', noArt || isPoss);
+  $('weiter-btn').classList.toggle('hidden', !noArt || isPoss);
+  $('card-hint').classList.toggle('hidden', noArt || isPoss);
+  $('possessive-area').classList.toggle('hidden', !isPoss);
+
+  if (isPoss) {
+    // Случайно выбираем Лео или Лею
+    S.possePerson = Math.random() < .5 ? 'leo' : 'lea';
+    const personLabel = S.possePerson === 'leo' ? '👦 Leo (er)' : '👧 Lea (sie)';
+    $('poss-person').textContent  = personLabel;
+    $('poss-example').textContent = `___ ${card.word}`;
+    document.querySelectorAll('.poss-btn').forEach(b=>{
+      b.disabled=false;
+      b.classList.remove('poss-correct','poss-wrong','poss-hint');
+    });
+  }
+
   document.querySelectorAll('.art-btn').forEach(b=>{b.disabled=false;b.classList.remove('show-correct','show-wrong','highlight-correct');});
   $('flashcard').classList.remove('flash-correct','flash-wrong');
   S.busy=false;
@@ -988,6 +1018,49 @@ function showComplete() {
   $('cs-wrong').textContent  =S.sessionWrong;
   $('cs-learned').textContent=S.sessionLearned;
   refreshOverallBar();
+}
+
+/* Правило притяжательных:
+   er (Leo):  der/das → sein | die/Plural → seine
+   sie (Lea): der/das → ihr  | die/Plural → ihre  */
+function correctPossessive(person, article) {
+  const femOrPl = article === 'die' || article === '-';
+  if (person === 'leo') return femOrPl ? 'seine' : 'sein';
+  return femOrPl ? 'ihre' : 'ihr';
+}
+
+function handlePossessive(chosen) {
+  if (S.busy) return; S.busy = true;
+  const card    = S.cards[S.cardIdx];
+  const correct = correctPossessive(S.possePerson, card.article);
+  const isOk    = chosen === correct;
+  const wp      = updateWP(card.id, isOk);
+  const fb      = $('card-feedback'), se = $('card-streak');
+
+  document.querySelectorAll('.poss-btn').forEach(b => b.disabled = true);
+
+  if (isOk) {
+    S.sessionCorrect++;
+    $('flashcard').classList.add('flash-correct');
+    document.querySelector(`.poss-btn[data-poss="${chosen}"]`).classList.add('poss-correct');
+    $('poss-example').textContent = `${correct} ${card.word}`;
+    fb.textContent = t('fb_correct'); fb.className = 'card-feedback ok';
+    addCoins(1, $('flashcard'));
+    se.textContent = wp.status==='learned' ? t('streak_done',LEARNED_THRESHOLD) : wp.streak>0 ? t('streak_txt',wp.streak) : '';
+    setTimeout(()=>{ S.cardIdx++; drawCard(); }, 700);
+  } else {
+    S.sessionWrong++;
+    $('flashcard').classList.add('flash-wrong');
+    document.querySelector(`.poss-btn[data-poss="${chosen}"]`).classList.add('poss-wrong');
+    document.querySelector(`.poss-btn[data-poss="${correct}"]`).classList.add('poss-hint');
+    $('poss-example').textContent = `${correct} ${card.word}`;
+    fb.textContent = `✗ ${correct} ${card.word}`; fb.className = 'card-feedback bad';
+    se.textContent = '';
+    if (!S.requeued.has(card.id)) { S.requeued.add(card.id); S.cards.push(card); }
+    setTimeout(()=>{ S.cardIdx++; drawCard(); }, 1800);
+  }
+  $('stat-correct').textContent = '✓ '+S.sessionCorrect;
+  $('stat-wrong').textContent   = '✗ '+S.sessionWrong;
 }
 
 function startTypingTest() {
@@ -1568,6 +1641,10 @@ function initEvents() {
   /* Typing test */
   $('tt-submit').addEventListener('click', handleTypingSubmit);
   $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
+
+  /* Притяжательные кнопки */
+  document.querySelectorAll('.poss-btn').forEach(btn =>
+    btn.addEventListener('click', () => { if(!S.busy) handlePossessive(btn.dataset.poss); }));
 
   /* Umlaut buttons — вставляем символ в позицию курсора */
   document.querySelectorAll('.uml-btn').forEach(btn => {

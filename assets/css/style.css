@@ -642,6 +642,33 @@ body {
 .weiter-btn { color: var(--accent); border-color: rgba(168,139,250,.4); margin-bottom: 18px; }
 .weiter-btn:hover:not(:disabled) { background: rgba(168,139,250,.15); border-color: var(--accent); }
 
+/* ── Possessive mode ── */
+.possessive-area { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 8px; }
+.poss-person {
+  font-size: 1.1rem; font-weight: 700;
+  background: rgba(168,139,250,.15);
+  border: 1.5px solid var(--accent);
+  border-radius: 10px; padding: 5px 18px;
+}
+.poss-example {
+  font-size: 1.3rem; font-weight: 600; color: var(--text-muted);
+  letter-spacing: .5px;
+}
+.poss-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.poss-btn {
+  padding: 10px 20px;
+  border-radius: 10px; border: 2px solid var(--border);
+  background: var(--bg3); color: var(--text);
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: background .12s, border-color .12s, transform .1s;
+  min-width: 70px;
+}
+.poss-btn:hover:not(:disabled) { background: rgba(168,139,250,.15); border-color: var(--accent); }
+.poss-btn:disabled { opacity: .45; cursor: not-allowed; }
+.poss-btn.poss-correct { background: rgba(78,203,113,.2); border-color: var(--correct); color: var(--correct); }
+.poss-btn.poss-wrong   { background: rgba(255,77,109,.2);  border-color: var(--wrong);   color: var(--wrong); }
+.poss-btn.poss-hint    { background: rgba(78,203,113,.15); border-color: var(--correct); }
+
 .art-btn {
   padding: 11px 26px;
   border-radius: 10px; border: 2px solid;
