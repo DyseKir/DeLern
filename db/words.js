@@ -246,7 +246,7 @@ window.VOCAB_DATA = [
   //  A1 — FAMILIE
   // ════════════════════════════════
   {
-    level: "A1", category: "familie", name: "Familie", name_ru: "Семья", emoji: "👨‍👩‍👧",
+    level: "A1", category: "familie", name: "Familie", name_ru: "Семья", emoji: "👨‍👩‍👧", ruleId: "a1_gr_012",
     words: [
       { id: "a1_fa_001", article: "der", word: "Vater",       translation: "отец"              },
       { id: "a1_fa_002", article: "die", word: "Mutter",      translation: "мать"              },
@@ -361,7 +361,7 @@ window.VOCAB_DATA = [
   //  A1 — SICH VORSTELLEN (Знакомство)
   // ════════════════════════════════
   {
-    level: "A1", category: "vorstellen", name: "Sich vorstellen", name_ru: "Знакомство", emoji: "🤝",
+    level: "A1", category: "vorstellen", name: "Sich vorstellen", name_ru: "Знакомство", emoji: "🤝", ruleId: "a1_gr_011",
     words: [
       { id: "a1_vs_001", article: "der", word: "Name",           translation: "имя / фамилия"         },
       { id: "a1_vs_002", article: "das", word: "Alter",          translation: "возраст"               },
@@ -384,7 +384,7 @@ window.VOCAB_DATA = [
   //  A1 — KÖRPER (Тело)
   // ════════════════════════════════
   {
-    level: "A1", category: "koerper", name: "Körper & Aussehen", name_ru: "Тело и внешность", emoji: "🧍",
+    level: "A1", category: "koerper", name: "Körper & Aussehen", name_ru: "Тело и внешность", emoji: "🧍", ruleId: "a1_gr_001",
     words: [
       { id: "a1_kb_001", article: "der", word: "Kopf",     translation: "голова"              },
       { id: "a1_kb_002", article: "das", word: "Haar",     translation: "волосы"              },
@@ -423,7 +423,7 @@ window.VOCAB_DATA = [
   {
     level: "A1", category: "koerper_plural",
     name: "Körper – Plural", name_ru: "Тело – множественное число",
-    emoji: "🧍", requiresCategory: "koerper", mode: "possessive",
+    emoji: "🧍", requiresCategory: "koerper", mode: "possessive", ruleId: "a1_gr_030",
     words: [
       // Голова
       { id: "a1_kp2_001", article: "die", word: "Gesichter",    translation: "лица (das Gesicht)"         },
@@ -507,7 +507,7 @@ window.VOCAB_DATA = [
   //  A1 — FRAGEWÖRTER (Вопросительные слова, без артикля)
   // ════════════════════════════════
   {
-    level: "A1", category: "fragewörter", name: "Fragewörter", name_ru: "Вопросительные слова", emoji: "❓",
+    level: "A1", category: "fragewörter", name: "Fragewörter", name_ru: "Вопросительные слова", emoji: "❓", ruleId: "a1_gr_011",
     words: [
       { id: "a1_fw_001", article: "-", word: "Wer",       translation: "кто"                      },
       { id: "a1_fw_002", article: "-", word: "Was",       translation: "что"                      },
@@ -592,7 +592,7 @@ window.VOCAB_DATA = [
   //  A1 — GEFÜHLE (Эмоции, без артикля)
   // ════════════════════════════════
   {
-    level: "A1", category: "gefuehle", name: "Gefühle", name_ru: "Эмоции и состояния", emoji: "😊",
+    level: "A1", category: "gefuehle", name: "Gefühle", name_ru: "Эмоции и состояния", emoji: "😊", ruleId: "a1_gr_027",
     words: [
       { id: "a1_gf_001", article: "-", word: "glücklich",   translation: "счастливый / счастлива"  },
       { id: "a1_gf_002", article: "-", word: "traurig",     translation: "грустный / грустна"      },
@@ -822,7 +822,7 @@ window.VOCAB_DATA = [
   //  A1 — LÄNDER (Страны)
   // ════════════════════════════════
   {
-    level: "A1", category: "laender", name: "Länder", name_ru: "Страны", emoji: "🌍",
+    level: "A1", category: "laender", name: "Länder", name_ru: "Страны", emoji: "🌍", ruleId: "a1_gr_026",
     words: [
       { id: "a1_la_001", article: "-",   word: "Deutschland",  translation: "Германия"   },
       { id: "a1_la_002", article: "-",   word: "Russland",     translation: "Россия"     },
@@ -923,7 +923,7 @@ window.VOCAB_DATA = [
   //  A1 — WICHTIGE VERBEN (Важные глаголы A1)
   // ════════════════════════════════
   {
-    level: "A1", category: "verben", name: "Wichtige Verben", name_ru: "Важные глаголы", emoji: "🏃",
+    level: "A1", category: "verben", name: "Wichtige Verben", name_ru: "Важные глаголы", emoji: "🏃", ruleId: "a1_gr_009",
     words: [
       { id: "a1_vb_001", article: "-", word: "gehen",      translation: "ходить / идти"           },
       { id: "a1_vb_002", article: "-", word: "kommen",     translation: "приходить / приезжать"   },

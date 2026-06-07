@@ -65,6 +65,7 @@ const TR = {
     streak_done:   (n) => `⭐ Gelernt! (${n}/${n})`,
     already_lrn:   '⭐ Bereits gelernt',
     tt_phase:      'Prüfung — schreibe das Wort mit Artikel',
+    peek_rule:     'Regel',
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
@@ -121,6 +122,7 @@ const TR = {
     streak_done:   (n) => `⭐ Выучено! (${n}/${n})`,
     already_lrn:   '⭐ Уже выучено',
     tt_phase:      'Контрольная проверка — напиши слово с артиклем',
+    peek_rule:     'Правило',
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
@@ -176,6 +178,7 @@ const TR = {
     streak_done:   (n) => `⭐ Вивчено! (${n}/${n})`,
     already_lrn:   '⭐ Вже вивчено',
     tt_phase:      'Контрольна перевірка — напиши слово з артиклем',
+    peek_rule:     'Правило',
   }
 };
 
@@ -914,6 +917,9 @@ function startSession(cat) {
   S.catMode = cat.mode || '';
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
+  S.catRuleId = cat.ruleId || null;
+  const peekBtn = $('rule-peek-btn');
+  if (peekBtn) peekBtn.classList.toggle('hidden', !cat.ruleId);
   $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
   $('cards-level-badge').textContent    = S.level;
   show('cards');
@@ -1664,6 +1670,13 @@ function initEvents() {
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>
     btn.addEventListener('click',()=>handleArticle(btn.dataset.article)));
+
+  /* Подсмотреть правило грамматики во время карточек */
+  $('rule-peek-btn')?.addEventListener('click', () => {
+    if (!S.catRuleId) return;
+    const rule = (window.GRAMMAR_DATA||[]).find(r => r.id === S.catRuleId);
+    if (rule) openModal(rule);
+  });
 
   /* Кнопки назад */
   $('cards-back').addEventListener('click',  ()=>{show('home');renderHome();});
