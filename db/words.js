@@ -1014,4 +1014,33 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — KRANKHEITEN & GESUNDHEIT (Болезни и здоровье)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "krankheiten", name: "Krankheiten & Gesundheit", name_ru: "Болезни и здоровье", emoji: "🤒", ruleId: "a1_gr_032",
+    words: [
+      { id: "a1_kr_001", article: "die", word: "Kopfschmerzen",   translation: "головная боль (мн.ч.)"      },
+      { id: "a1_kr_002", article: "die", word: "Bauchschmerzen",  translation: "боль в животе (мн.ч.)"      },
+      { id: "a1_kr_003", article: "die", word: "Halsschmerzen",   translation: "боль в горле (мн.ч.)"       },
+      { id: "a1_kr_004", article: "die", word: "Zahnschmerzen",   translation: "зубная боль (мн.ч.)"        },
+      { id: "a1_kr_005", article: "die", word: "Rückenschmerzen", translation: "боль в спине (мн.ч.)"       },
+      { id: "a1_kr_006", article: "das", word: "Fieber",          translation: "температура / жар"          },
+      { id: "a1_kr_007", article: "die", word: "Erkältung",       translation: "простуда"                   },
+      { id: "a1_kr_008", article: "der", word: "Husten",          translation: "кашель"                     },
+      { id: "a1_kr_009", article: "der", word: "Schnupfen",       translation: "насморк"                    },
+      { id: "a1_kr_010", article: "die", word: "Depression",      translation: "депрессия"                  },
+      { id: "a1_kr_011", article: "der", word: "Durchfall",       translation: "понос / диарея"             },
+      { id: "a1_kr_012", article: "der", word: "Ausschlag",       translation: "сыпь"                       },
+      { id: "a1_kr_013", article: "die", word: "Grippe",          translation: "грипп"                      },
+      { id: "a1_kr_014", article: "die", word: "Schmerzen",       translation: "боль / боли (мн.ч.)"        },
+      { id: "a1_kr_015", article: "die", word: "Beschwerden",     translation: "недомогания (мн.ч.)"        },
+      { id: "a1_kr_016", article: "die", word: "Gesundheit",      translation: "здоровье"                   },
+      { id: "a1_kr_017", article: "die", word: "Krankheit",       translation: "болезнь"                    },
+      { id: "a1_kr_018", article: "die", word: "Übelkeit",        translation: "тошнота"                    },
+      { id: "a1_kr_019", article: "die", word: "Wunde",           translation: "рана"                       },
+      { id: "a1_kr_020", article: "das", word: "Medikament",      translation: "лекарство"                  },
+    ]
+  },
+
 ];

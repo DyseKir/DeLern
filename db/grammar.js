@@ -1044,6 +1044,43 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — БОЛЬ: tut weh / Ich habe ...schmerzen
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_032", level: "A1",
+    title_de: "Schmerzen ausdrücken – tut weh / Ich habe ...",
+    title_ru: "Как сказать что болит",
+    explanation_de: "Es gibt zwei Wege, Schmerzen auszudrücken: mit 'tut weh' oder mit 'Ich habe ...schmerzen'.",
+    explanation_ru: `Есть <strong>два способа</strong> сказать что у тебя болит:
+
+<strong>Способ 1: ... tut weh (болит)</strong>
+Подходит для одной части тела. Используем притяжательное местоимение (mein/dein...):
+• <strong>Mein Kopf tut weh.</strong> — У меня болит голова.
+• <strong>Mein Bauch tut weh.</strong> — У меня болит живот.
+
+Если болят НЕСКОЛЬКО частей → <strong>tun weh</strong> (мн. число):
+• <strong>Meine Ohren tun weh.</strong> — У меня болят уши.
+• <strong>Meine Hände tun weh.</strong> — У меня болят руки.
+
+<strong>Способ 2: Ich habe + ...schmerzen</strong>
+Слова боли уже содержат «-schmerzen» и всегда во мн. числе (die):
+• <strong>Ich habe Kopfschmerzen.</strong> — У меня головная боль.
+• <strong>Ich habe Bauchschmerzen.</strong> — У меня болит живот.
+• <strong>Ich habe Halsschmerzen.</strong> — У меня болит горло.
+
+💡 mein → меняется по роду: mein Kopf (der/das), meine Hand (die), meine Ohren (мн.).`,
+    examples: [
+      { de: "Mein Kopf tut weh.",          ru: "У меня болит голова. (одна часть → tut weh)"   },
+      { de: "Meine Ohren tun weh.",        ru: "У меня болят уши. (несколько → tun weh)"        },
+      { de: "Ich habe Zahnschmerzen.",     ru: "У меня болит зуб. (Ich habe + schmerzen)"       },
+      { de: "Ich habe Fieber und Husten.", ru: "У меня температура и кашель."                   },
+      { de: "Was tut dir weh?",            ru: "Что у тебя болит?"                              },
+    ],
+    tip_de: "Einer → tut weh. Mehrere → tun weh. Oder einfach: Ich habe ...schmerzen.",
+    tip_ru: "Одна часть → tut weh. Несколько → tun weh. Или проще: Ich habe ...schmerzen.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 
