@@ -739,6 +739,8 @@ function refreshOverallBar() {
   const pct = total ? Math.round((learned + learning*(1/LEARNED_THRESHOLD)) / total * 100) : 0;
   $('overall-progress').style.width = pct+'%';
   $('overall-pct').textContent       = pct+'%';
+  const wc = $('overall-words-count');
+  if (wc) wc.textContent = `⭐ ${learned} / ${total} ${lstr('Wörter','слов','слів')}`;
 }
 
 function isCatComplete(level, catKey) {

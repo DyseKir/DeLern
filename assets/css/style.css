@@ -467,6 +467,7 @@ body {
   border-radius: 3px; transition: width .6s ease;
 }
 .progress-pct { font-size: 12px; color: var(--text-muted); min-width: 30px; }
+.user-words-count { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
 
 /* ══════════════════════════════════════════════════
    AREA GRID
