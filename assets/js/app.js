@@ -1038,14 +1038,18 @@ function showComplete() {
    base  = форма для der/das (без -e)
    baseE = форма для die / множественного (с -e) */
 const POSS_FORMS = {
-  ich: { base:'mein', baseE:'meine', label:'🧑 Ich (я)'      },
-  du:  { base:'dein', baseE:'deine', label:'🫵 Du (ты)'      },
-  leo: { base:'sein', baseE:'seine', label:'👦 Leo (er)'     },
-  lea: { base:'ihr',  baseE:'ihre',  label:'👧 Lea (sie)'    },
+  ich:   { base:'mein',  baseE:'meine',  label:'🧑 Ich (я)'        },
+  du:    { base:'dein',  baseE:'deine',  label:'🫵 Du (ты)'        },
+  leo:   { base:'sein',  baseE:'seine',  label:'👦 Leo (er)'       },
+  lea:   { base:'ihr',   baseE:'ihre',   label:'👧 Lea (sie)'      },
+  wir:   { base:'unser', baseE:'unsere', label:'👨‍👩‍👧 Wir (мы)'    },
+  ihrpl: { base:'euer',  baseE:'eure',   label:'👥 Ihr (вы)'       },
+  siepl: { base:'ihr',   baseE:'ihre',   label:'👨‍👩‍👧‍👦 Sie (они)'  },
+  Sie:   { base:'Ihr',   baseE:'Ihre',   label:'🎩 Sie (Вы, вежл.)'},
 };
-/* Какие лица практикуются: все сразу — mein/dein/sein/ihr */
+/* Какие лица практикуются: все */
 const POSS_MODES = {
-  possessive: ['ich','du','leo','lea'],
+  possessive: ['ich','du','leo','lea','wir','ihrpl','siepl','Sie'],
 };
 
 function correctPossessive(person, article) {
@@ -1054,12 +1058,12 @@ function correctPossessive(person, article) {
   return femOrPl ? f.baseE : f.base;
 }
 
-/* набор кнопок для текущего режима (все формы участвующих лиц) */
+/* набор кнопок для текущего режима — все формы участвующих лиц, без дублей */
 function possButtonsForMode() {
   const persons = POSS_MODES[S.catMode] || POSS_MODES.possessive;
   const forms = [];
   persons.forEach(pr => { forms.push(POSS_FORMS[pr].base, POSS_FORMS[pr].baseE); });
-  return forms;
+  return [...new Set(forms)];
 }
 
 function handlePossessive(chosen) {
