@@ -1039,14 +1039,6 @@ window.VOCAB_DATA = [
       { id: "a1_kr_010", article: "die", word: "Depression",      translation: "депрессия"                  },
       { id: "a1_kr_011", article: "der", word: "Durchfall",       translation: "понос / диарея"             },
       { id: "a1_kr_012", article: "der", word: "Ausschlag",       translation: "сыпь"                       },
-      { id: "a1_kr_013", article: "die", word: "Grippe",          translation: "грипп"                      },
-      { id: "a1_kr_014", article: "die", word: "Schmerzen",       translation: "боль / боли (мн.ч.)"        },
-      { id: "a1_kr_015", article: "die", word: "Beschwerden",     translation: "недомогания (мн.ч.)"        },
-      { id: "a1_kr_016", article: "die", word: "Gesundheit",      translation: "здоровье"                   },
-      { id: "a1_kr_017", article: "die", word: "Krankheit",       translation: "болезнь"                    },
-      { id: "a1_kr_018", article: "die", word: "Übelkeit",        translation: "тошнота"                    },
-      { id: "a1_kr_019", article: "die", word: "Wunde",           translation: "рана"                       },
-      { id: "a1_kr_020", article: "das", word: "Medikament",      translation: "лекарство"                  },
     ]
   },
 
