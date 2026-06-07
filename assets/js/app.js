@@ -965,15 +965,16 @@ function drawCard() {
   $('possessive-area').classList.toggle('hidden', !isPoss);
 
   if (isPoss) {
-    // Случайно выбираем Лео или Лею
-    S.possePerson = Math.random() < .5 ? 'leo' : 'lea';
-    const personLabel = S.possePerson === 'leo' ? '👦 Leo (er)' : '👧 Lea (sie)';
-    $('poss-person').textContent  = personLabel;
+    // Случайно выбираем лицо из набора режима
+    const persons = POSS_MODES[S.catMode] || POSS_MODES.possessive;
+    S.possePerson = persons[Math.floor(Math.random()*persons.length)];
+    $('poss-person').textContent  = POSS_FORMS[S.possePerson].label;
     $('poss-example').textContent = `___ ${card.word}`;
-    document.querySelectorAll('.poss-btn').forEach(b=>{
-      b.disabled=false;
-      b.classList.remove('poss-correct','poss-wrong','poss-hint');
-    });
+    // Рендерим кнопки динамически под режим
+    $('poss-btns').innerHTML = possButtonsForMode()
+      .map(f=>`<button class="poss-btn" data-poss="${f}">${f}</button>`).join('');
+    $('poss-btns').querySelectorAll('.poss-btn').forEach(b=>
+      b.addEventListener('click', ()=>{ if(!S.busy) handlePossessive(b.dataset.poss); }));
   }
 
   document.querySelectorAll('.art-btn').forEach(b=>{b.disabled=false;b.classList.remove('show-correct','show-wrong','highlight-correct');});
@@ -1033,13 +1034,32 @@ function showComplete() {
   refreshOverallBar();
 }
 
-/* Правило притяжательных:
-   er (Leo):  der/das → sein | die/Plural → seine
-   sie (Lea): der/das → ihr  | die/Plural → ihre  */
+/* Притяжательные формы по лицам.
+   base  = форма для der/das (без -e)
+   baseE = форма для die / множественного (с -e) */
+const POSS_FORMS = {
+  ich: { base:'mein', baseE:'meine', label:'🧑 Ich (я)'      },
+  du:  { base:'dein', baseE:'deine', label:'🫵 Du (ты)'      },
+  leo: { base:'sein', baseE:'seine', label:'👦 Leo (er)'     },
+  lea: { base:'ihr',  baseE:'ihre',  label:'👧 Lea (sie)'    },
+};
+/* Какие лица практикуются: все сразу — mein/dein/sein/ihr */
+const POSS_MODES = {
+  possessive: ['ich','du','leo','lea'],
+};
+
 function correctPossessive(person, article) {
   const femOrPl = article === 'die' || article === '-';
-  if (person === 'leo') return femOrPl ? 'seine' : 'sein';
-  return femOrPl ? 'ihre' : 'ihr';
+  const f = POSS_FORMS[person] || POSS_FORMS.leo;
+  return femOrPl ? f.baseE : f.base;
+}
+
+/* набор кнопок для текущего режима (все формы участвующих лиц) */
+function possButtonsForMode() {
+  const persons = POSS_MODES[S.catMode] || POSS_MODES.possessive;
+  const forms = [];
+  persons.forEach(pr => { forms.push(POSS_FORMS[pr].base, POSS_FORMS[pr].baseE); });
+  return forms;
 }
 
 function handlePossessive(chosen) {
@@ -1657,9 +1677,7 @@ function initEvents() {
   $('tt-submit').addEventListener('click', handleTypingSubmit);
   $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
 
-  /* Притяжательные кнопки */
-  document.querySelectorAll('.poss-btn').forEach(btn =>
-    btn.addEventListener('click', () => { if(!S.busy) handlePossessive(btn.dataset.poss); }));
+  /* (Притяжательные кнопки рендерятся динамически в drawCard) */
 
   /* Umlaut buttons — вставляем символ в позицию курсора */
   document.querySelectorAll('.uml-btn').forEach(btn => {
