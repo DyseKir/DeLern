@@ -526,18 +526,9 @@ window.TRANSLATIONS_UK = {
   a1_we_018: "прохолодно",
 
   // ── Monate ──
-  a1_mo_001: "січень (im Januar)",
-  a1_mo_002: "лютий (im Februar)",
-  a1_mo_003: "березень (im März)",
-  a1_mo_004: "квітень (im April)",
-  a1_mo_005: "травень (im Mai)",
-  a1_mo_006: "червень (im Juni)",
-  a1_mo_007: "липень (im Juli)",
-  a1_mo_008: "серпень (im August)",
-  a1_mo_009: "вересень (im September)",
-  a1_mo_010: "жовтень (im Oktober)",
-  a1_mo_011: "листопад (im November)",
-  a1_mo_012: "грудень (im Dezember)",
+  a1_mo_001: "", a1_mo_002: "", a1_mo_003: "", a1_mo_004: "",
+  a1_mo_005: "", a1_mo_006: "", a1_mo_007: "", a1_mo_008: "",
+  a1_mo_009: "", a1_mo_010: "", a1_mo_011: "", a1_mo_012: "",
 
   // ── Jahreszeiten & Zeit ──
   a1_jz_001: "весна (warm)",
