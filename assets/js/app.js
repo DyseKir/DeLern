@@ -430,7 +430,8 @@ const EMOJI = {
   // Krankheiten & Gesundheit
   Kopfschmerzen:'🤕', Bauchschmerzen:'😣', Halsschmerzen:'😷', Zahnschmerzen:'🦷',
   Rückenschmerzen:'🔙', Fieber:'🌡️', Erkältung:'🤧', Husten:'😮‍💨', Schnupfen:'🤧',
-  Depression:'😔', Durchfall:'🚽', Ausschlag:'🔴',
+  Depression:'😔', Durchfall:'🚽', Ausschlag:'🔴', Grippe:'🤒', Schmerzen:'💢',
+  Beschwerden:'😖', Gesundheit:'💚', Krankheit:'🤒', Übelkeit:'🤢', Wunde:'🩹', Medikament:'💊',
   // Zahlen
   null:'0️⃣', eins:'1️⃣', zwei:'2️⃣', drei:'3️⃣', vier:'4️⃣', fünf:'5️⃣',
   sechs:'6️⃣', sieben:'7️⃣', acht:'8️⃣', neun:'9️⃣', zehn:'🔟',
