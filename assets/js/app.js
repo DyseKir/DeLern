@@ -1185,10 +1185,12 @@ function renderGrammarScreen() {
   });
 }
 
-/* возвращает нужный языковой вариант поля правила */
+/* возвращает нужный языковой вариант поля правила
+   uk → uk || ru || de ; ru → ru || de ; de → de */
 function ruleField(rule, field) {
-  return (lang === 'ru' && rule[field+'_ru']) ? rule[field+'_ru']
-       : (rule[field+'_de'] || rule[field] || '');
+  if (lang === 'uk') return rule[field+'_uk'] || rule[field+'_ru'] || rule[field+'_de'] || rule[field] || '';
+  if (lang === 'ru') return rule[field+'_ru'] || rule[field+'_de'] || rule[field] || '';
+  return rule[field+'_de'] || rule[field] || '';
 }
 
 function openModal(rule) {
