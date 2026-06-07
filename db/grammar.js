@@ -1006,6 +1006,44 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — sein / seine / ihr / ihre
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_031", level: "A1",
+    title_de: "sein / seine / ihr / ihre",
+    title_ru: "sein / seine / ihr / ihre — его и её",
+    explanation_de: "sein = von ihm (er). ihr = von ihr (sie). Die Endung -e richtet sich nach dem Wort.",
+    explanation_ru: `Это притяжательные местоимения <strong>3-го лица</strong>: «его» и «её».
+
+<strong>1. Чьё это? — выбираем основу:</strong>
+• Он (er, Leo) → <strong>sein</strong> (его)
+• Она (sie, Lea) → <strong>ihr</strong> (её)
+
+<strong>2. Какое слово стоит после? — выбираем окончание:</strong>
+• der / das слово → БЕЗ окончания → <strong>sein</strong> / <strong>ihr</strong>
+• die слово или МНОЖЕСТВЕННОЕ число → окончание <strong>-e</strong> → <strong>seine</strong> / <strong>ihre</strong>
+
+<strong>Таблица:</strong>
+<table style="border-collapse:collapse">
+<tr><td></td><td><strong>Он (Leo)</strong></td><td><strong>Она (Lea)</strong></td></tr>
+<tr><td>der Arm</td><td>sein Arm</td><td>ihr Arm</td></tr>
+<tr><td>das Bein</td><td>sein Bein</td><td>ihr Bein</td></tr>
+<tr><td>die Hand</td><td>seine Hand</td><td>ihre Hand</td></tr>
+<tr><td>die Arme (мн.)</td><td>seine Arme</td><td>ihre Arme</td></tr>
+</table>
+
+💡 Множественное число всегда ведёт себя как die-слово → всегда <strong>-e</strong> (seine / ihre).`,
+    examples: [
+      { de: "Leo: sein Arm, sein Bein (der/das → sein)",     ru: "Лео: его рука, его нога (der/das → sein)"    },
+      { de: "Leo: seine Hand, seine Arme (die/мн. → seine)", ru: "Лео: его кисть, его руки (die/мн. → seine)"  },
+      { de: "Lea: ihr Arm, ihr Bein (der/das → ihr)",        ru: "Леа: её рука, её нога (der/das → ihr)"        },
+      { de: "Lea: ihre Hand, ihre Arme (die/мн. → ihre)",    ru: "Леа: её кисть, её руки (die/мн. → ihre)"      },
+    ],
+    tip_de: "er → sein/seine | sie → ihr/ihre. Plural immer mit -e!",
+    tip_ru: "Он → sein/seine | Она → ihr/ihre. Множественное число — всегда с -e (seine/ihre)!",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 

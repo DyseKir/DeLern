@@ -423,7 +423,7 @@ window.VOCAB_DATA = [
   {
     level: "A1", category: "koerper_plural",
     name: "Körper – Plural", name_ru: "Тело – множественное число",
-    emoji: "🧍", requiresCategory: "koerper", mode: "possessive", ruleId: "a1_gr_030",
+    emoji: "🧍", requiresCategory: "koerper", mode: "possessive", ruleId: "a1_gr_031",
     words: [
       // Голова
       { id: "a1_kp2_001", article: "die", word: "Gesichter",    translation: "лица (das Gesicht)"         },
