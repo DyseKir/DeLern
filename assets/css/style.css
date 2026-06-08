@@ -2,6 +2,7 @@
    RESET & ROOT VARS
 ══════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; max-width: 100%; }
 
 :root {
   --bg:    #0d0f1a;
@@ -1483,7 +1484,17 @@ body {
 
 /* Мобильное меню */
 @media (max-width: 620px) {
-  .main { padding: 1rem; }
+  .main { padding: 1rem; max-width: 100%; overflow-x: hidden; }
+
+  /* ── Адаптивная шапка ── */
+  .header { padding: 0 .7rem; gap: .5rem; }
+  .logo { margin-right: 0; }
+  .logo-text { display: none; }              /* прячем длинный текст логотипа */
+  .header-right { gap: 7px; }
+  .coin-display, .euro-display { padding: 4px 8px; font-size: 13px; }
+  .lang-btn { padding: 5px 8px; font-size: 12px; }
+  .notif-btn { font-size: 16px; }
+  .avatar, #header-avatar { width: 32px; height: 32px; font-size: 16px; }
 
   .nav { display: none; }
 
