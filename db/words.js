@@ -1050,4 +1050,49 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — BEIM ARZT & APOTHEKE (У врача и в аптеке)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "arzt", name: "Beim Arzt & Apotheke", name_ru: "У врача и в аптеке", emoji: "🩺",
+    words: [
+      // Врачи
+      { id: "a1_ar_001", article: "der", word: "Hausarzt",          translation: "семейный врач"               },
+      { id: "a1_ar_002", article: "der", word: "Zahnarzt",          translation: "стоматолог"                  },
+      { id: "a1_ar_003", article: "der", word: "Frauenarzt",        translation: "гинеколог"                   },
+      { id: "a1_ar_004", article: "der", word: "Kinderarzt",        translation: "педиатр"                     },
+      { id: "a1_ar_005", article: "der", word: "HNO-Arzt",          translation: "ЛОР-врач"                    },
+      { id: "a1_ar_006", article: "der", word: "Orthopäde",         translation: "ортопед"                     },
+      { id: "a1_ar_007", article: "der", word: "Facharzt",          translation: "врач-специалист"             },
+      // На приёме
+      { id: "a1_ar_008", article: "der", word: "Termin",            translation: "приём / запись"              },
+      { id: "a1_ar_009", article: "die", word: "Sprechstunde",      translation: "часы приёма"                 },
+      { id: "a1_ar_010", article: "die", word: "Sprechstundenhilfe",translation: "ассистент врача"             },
+      { id: "a1_ar_011", article: "das", word: "Wartezimmer",       translation: "комната ожидания"            },
+      { id: "a1_ar_012", article: "die", word: "Untersuchung",      translation: "обследование"                },
+      { id: "a1_ar_013", article: "die", word: "Blutentnahme",      translation: "забор крови"                 },
+      { id: "a1_ar_014", article: "die", word: "Impfung",           translation: "прививка"                    },
+      { id: "a1_ar_015", article: "der", word: "Impfpass",          translation: "паспорт прививок"            },
+      { id: "a1_ar_016", article: "das", word: "Röntgenbild",       translation: "рентгеновский снимок"        },
+      { id: "a1_ar_017", article: "die", word: "Vorsorge",          translation: "профилактический осмотр"     },
+      // Документы
+      { id: "a1_ar_018", article: "das", word: "Rezept",            translation: "рецепт"                      },
+      { id: "a1_ar_019", article: "die", word: "Überweisung",       translation: "направление (к специалисту)" },
+      { id: "a1_ar_020", article: "die", word: "Krankschreibung",   translation: "больничный лист"             },
+      { id: "a1_ar_021", article: "die", word: "Krankmeldung",      translation: "уведомление о болезни"       },
+      { id: "a1_ar_022", article: "die", word: "Gesundheitskarte",  translation: "карта медстрахования"        },
+      { id: "a1_ar_023", article: "die", word: "Krankenkasse",      translation: "больничная касса / страховая"},
+      { id: "a1_ar_024", article: "der", word: "Behandlungsschein", translation: "талон на лечение"            },
+      // В аптеке
+      { id: "a1_ar_025", article: "die", word: "Spritze",           translation: "шприц / укол"                },
+      { id: "a1_ar_026", article: "die", word: "Tablette",          translation: "таблетка"                    },
+      { id: "a1_ar_027", article: "die", word: "Salbe",             translation: "мазь"                        },
+      { id: "a1_ar_028", article: "der", word: "Hustensaft",        translation: "сироп от кашля"              },
+      { id: "a1_ar_029", article: "der", word: "Verband",          translation: "повязка / бинт"              },
+      { id: "a1_ar_030", article: "das", word: "Fieberthermometer", translation: "градусник"                   },
+      { id: "a1_ar_031", article: "die", word: "Augentropfen",      translation: "глазные капли (мн.ч.)"       },
+      { id: "a1_ar_032", article: "das", word: "Verhütungsmittel",  translation: "противозачаточное средство"  },
+    ]
+  },
+
 ];

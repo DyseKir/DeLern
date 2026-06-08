@@ -432,6 +432,14 @@ const EMOJI = {
   Rückenschmerzen:'🔙', Fieber:'🌡️', Erkältung:'🤧', Husten:'😮‍💨', Schnupfen:'🤧',
   Depression:'😔', Durchfall:'🚽', Ausschlag:'🔴', Grippe:'🤒', Schmerzen:'💢',
   Beschwerden:'😖', Gesundheit:'💚', Krankheit:'🤒', Übelkeit:'🤢', Wunde:'🩹', Medikament:'💊',
+  // Beim Arzt & Apotheke
+  Hausarzt:'👨‍⚕️', Zahnarzt:'🦷', Frauenarzt:'👩‍⚕️', Kinderarzt:'🧒', 'HNO-Arzt':'👂',
+  Orthopäde:'🦴', Facharzt:'🩺', Termin:'📅', Sprechstunde:'🕐', Sprechstundenhilfe:'💁',
+  Wartezimmer:'🪑', Untersuchung:'🔬', Blutentnahme:'🩸', Impfung:'💉', Impfpass:'📗',
+  Röntgenbild:'🩻', Vorsorge:'🛡️', Rezept:'📝', Überweisung:'📄', Krankschreibung:'📋',
+  Krankmeldung:'📋', Gesundheitskarte:'💳', Krankenkasse:'🏥', Behandlungsschein:'🎫',
+  Spritze:'💉', Tablette:'💊', Salbe:'🧴', Hustensaft:'🍯', Verband:'🩹',
+  Fieberthermometer:'🌡️', Augentropfen:'💧', Verhütungsmittel:'🛡️',
   // Zahlen
   null:'0️⃣', eins:'1️⃣', zwei:'2️⃣', drei:'3️⃣', vier:'4️⃣', fünf:'5️⃣',
   sechs:'6️⃣', sieben:'7️⃣', acht:'8️⃣', neun:'9️⃣', zehn:'🔟',
