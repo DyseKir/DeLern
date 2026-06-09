@@ -12,7 +12,10 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier',
+    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
+    exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
+    exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
+    exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
     cart_title: 'Warenkorb', cart_empty: 'Leer', cart_total: 'Gesamt:', cart_buy: 'Kaufen!',
     home_title: 'Willkommen bei DeutschLernen!',
     home_subtitle: 'Wähle deinen Kurs aus.',
@@ -70,7 +73,10 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец',
+    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
+    exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
+    exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
+    exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
     cart_title: 'Корзина', cart_empty: 'Пусто', cart_total: 'Итого:', cart_buy: 'Купить!',
     home_title: 'Добро пожаловать в DeutschLernen!',
     home_subtitle: 'Выбери свой курс.',
@@ -128,7 +134,10 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець',
+    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
+    exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
+    exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
+    exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
     cart_title: 'Кошик', cart_empty: 'Порожньо', cart_total: 'Разом:', cart_buy: 'Купити!',
     home_title: 'Ласкаво просимо до DeutschLernen!',
     home_subtitle: 'Обери свій курс.',
@@ -218,6 +227,7 @@ function P() {
     usedKey: `dl_used_${activeProfile}`,
     petKey:  `dl_pet_${activeProfile}`,
     deferKey:`dl_defer_${activeProfile}`,
+    examKey: `dl_exam_${activeProfile}`,
     petImg:  PET_IMGS[Math.max(0, idx) % PET_IMGS.length],
   };
 }
@@ -698,6 +708,7 @@ function rerenderCurrent() {
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='shop')       renderShop();
   else if (S.screen==='pet')        renderPetScreen();
+  else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
 }
 
@@ -1647,6 +1658,138 @@ function checkoutCart() {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   ГЛОБАЛЬНЫЙ ЭКЗАМЕН
+══════════════════════════════════════════════════════════════ */
+const EX = { cards:[], idx:0, correct:0, total:0 };
+
+function loadExamHistory()    { try { return JSON.parse(localStorage.getItem(P().examKey)||'[]'); } catch { return []; } }
+function saveExamHistory(arr) { localStorage.setItem(P().examKey, JSON.stringify(arr)); }
+
+/* все выученные слова (status 'learned') по всем категориям */
+function getLearnedWords() {
+  const p = loadProg();
+  const words = [];
+  (window.VOCAB_DATA||[]).forEach(cat => (cat.words||[]).forEach(w => {
+    if (p[w.id] && p[w.id].status === 'learned') words.push(w);
+  }));
+  return words;
+}
+
+function renderExamScreen() {
+  show('exam');
+  $('exam-run').classList.add('hidden');
+  $('exam-result').classList.add('hidden');
+  $('exam-intro').classList.remove('hidden');
+
+  const learned = getLearnedWords();
+  const startBtn = $('exam-start');
+  if (!learned.length) {
+    startBtn.disabled = true;
+    startBtn.textContent = t('exam_none');
+  } else {
+    startBtn.disabled = false;
+    startBtn.textContent = `${t('exam_start')} (${learned.length})`;
+  }
+  $('exam-chart').innerHTML = buildExamChart(loadExamHistory());
+}
+
+function startExam() {
+  const learned = getLearnedWords();
+  if (!learned.length) return;
+  EX.cards = shuffle(learned.slice());
+  EX.idx = 0; EX.correct = 0; EX.total = learned.length;
+  $('exam-intro').classList.add('hidden');
+  $('exam-result').classList.add('hidden');
+  $('exam-run').classList.remove('hidden');
+  drawExamCard();
+}
+
+function drawExamCard() {
+  if (EX.idx >= EX.cards.length) { finishExam(); return; }
+  const card = EX.cards[EX.idx];
+  $('exam-emoji').textContent = EMOJI[card.word] || '📝';
+  $('exam-ru').textContent    = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
+  $('exam-counter').textContent = `${EX.idx+1} / ${EX.cards.length}`;
+  $('exam-score').textContent   = `✓ ${EX.correct}`;
+  $('exam-feedback').textContent = '';
+  $('exam-feedback').className   = 'exam-feedback';
+  $('exam-input').value = '';
+  const noArt = !card.article || card.article === '-';
+  $('exam-input').placeholder = noArt ? 'Wort...' : 'der / die / das + Wort';
+  $('exam-progress-fill').style.width = (EX.idx / EX.cards.length * 100) + '%';
+  setTimeout(()=>{ try{$('exam-input').focus();}catch(e){} }, 80);
+}
+
+function handleExamSubmit() {
+  const card = EX.cards[EX.idx];
+  if (!card) return;
+  const input    = $('exam-input').value.trim().toLowerCase().replace(/\s+/g,' ');
+  const noArt    = !card.article || card.article === '-';
+  const expected = noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase();
+  if (!input) return;
+
+  const fb = $('exam-feedback');
+  if (input === expected) {
+    EX.correct++;
+    fb.textContent = '✓'; fb.className = 'exam-feedback ok';
+  } else {
+    const ans = noArt ? card.word : `${card.article} ${card.word}`;
+    fb.innerHTML = `✗ <strong>${ans}</strong>`; fb.className = 'exam-feedback bad';
+  }
+  $('exam-score').textContent = `✓ ${EX.correct}`;
+  const delay = input === expected ? 500 : 1400;
+  setTimeout(()=>{ EX.idx++; drawExamCard(); }, delay);
+}
+
+function finishExam() {
+  // сохраняем попытку
+  const hist = loadExamHistory();
+  hist.push({ t: Date.now(), total: EX.total, correct: EX.correct });
+  saveExamHistory(hist);
+
+  $('exam-run').classList.add('hidden');
+  $('exam-result').classList.remove('hidden');
+  $('exam-result-title').textContent = t('exam_done');
+  const pct = EX.total ? Math.round(EX.correct / EX.total * 100) : 0;
+  $('exam-result-stats').innerHTML = `
+    <div class="exam-rs-big">${EX.correct} / ${EX.total}</div>
+    <div class="exam-rs-pct">${pct}%</div>`;
+}
+
+/* SVG-график: серая линия — всего выученных слов, зелёная — правильных за попытку */
+function buildExamChart(hist) {
+  const title = `<h3 class="exam-chart-title">${t('exam_chart_title')}</h3>`;
+  if (!hist.length) return title + `<div class="exam-chart-empty">—</div>`;
+
+  const W = 320, H = 160, pad = 28;
+  const n = hist.length;
+  const maxY = Math.max(...hist.map(a => a.total), 1);
+  const xOf = i => pad + (n === 1 ? (W-2*pad)/2 : (W - 2*pad) * i / (n - 1));
+  const yOf = v => H - pad - (H - 2*pad) * (v / maxY);
+
+  const lineOf = (key, color) => {
+    const pts = hist.map((a,i) => `${xOf(i).toFixed(1)},${yOf(a[key]).toFixed(1)}`).join(' ');
+    const dots = hist.map((a,i) => `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(a[key]).toFixed(1)}" r="3" fill="${color}"/>`).join('');
+    return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>${dots}`;
+  };
+
+  const C_MUTED = '#7a7d9a', C_OK = '#4ecb71', C_BORDER = '#2a2f4a', C_DIM = '#4a4d65';
+  // оси
+  const axis = `<line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="${C_BORDER}" stroke-width="1"/>
+                <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${H-pad}" stroke="${C_BORDER}" stroke-width="1"/>
+                <text x="${pad-6}" y="${yOf(maxY)+4}" fill="${C_DIM}" font-size="9" text-anchor="end">${maxY}</text>
+                <text x="${pad-6}" y="${H-pad+3}" fill="${C_DIM}" font-size="9" text-anchor="end">0</text>`;
+
+  const legend = `
+    <div class="exam-legend">
+      <span><i style="background:${C_MUTED}"></i> ${t('exam_total')}</span>
+      <span><i style="background:${C_OK}"></i> ${t('exam_correct')}</span>
+    </div>`;
+
+  return title + `<svg viewBox="0 0 ${W} ${H}" class="exam-svg">${axis}${lineOf('total',C_MUTED)}${lineOf('correct',C_OK)}</svg>` + legend;
+}
+
+/* ══════════════════════════════════════════════════════════════
    ПИТОМЕЦ
 ══════════════════════════════════════════════════════════════ */
 function renderPetScreen() {
@@ -1767,6 +1910,7 @@ function initEvents() {
       else if(s==='profil')     renderProfile();
       else if(s==='shop')       renderShop();
       else if(s==='pet')        renderPetScreen();
+      else if(s==='exam')       renderExamScreen();
     });
   });
 
@@ -1790,10 +1934,11 @@ function initEvents() {
 
   /* (Притяжательные кнопки рендерятся динамически в drawCard) */
 
-  /* Umlaut buttons — вставляем символ в позицию курсора */
+  /* Umlaut buttons — вставляем символ в позицию курсора нужного поля */
   document.querySelectorAll('.uml-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const inp = $('tt-input');
+      const inExam = btn.closest('#exam-umlauts');
+      const inp = $(inExam ? 'exam-input' : 'tt-input');
       const ch  = btn.dataset.char;
       const s   = inp.selectionStart ?? inp.value.length;
       const e2  = inp.selectionEnd   ?? inp.value.length;
@@ -1802,6 +1947,13 @@ function initEvents() {
       inp.focus();
     });
   });
+
+  /* Экзамен */
+  $('exam-start')?.addEventListener('click', startExam);
+  $('exam-again')?.addEventListener('click', renderExamScreen);
+  $('exam-submit')?.addEventListener('click', handleExamSubmit);
+  $('exam-input')?.addEventListener('keydown', e=>{ if(e.key==='Enter') handleExamSubmit(); });
+  $('exam-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>

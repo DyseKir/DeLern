@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeutschLernen – Deutsch lernen mit System</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260612">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260613">
 </head>
 <body>
 
@@ -28,6 +28,7 @@
       <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
+      <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
       <a href="#" class="nav-link"        data-screen="shop"       data-i18n="nav_shop">Shop</a>
       <a href="#" class="nav-link"        data-screen="pet"        data-i18n="nav_pet">Питомец</a>
     </nav>
@@ -309,6 +310,54 @@
       <div class="pet-area" id="pet-area"></div>
     </div>
 
+    <!-- EXAM -->
+    <div id="screen-exam" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="exam-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">📝 <span data-i18n="exam_title">Глобальный экзамен</span></h2>
+      </div>
+
+      <!-- Вступление + график -->
+      <div id="exam-intro" class="exam-intro">
+        <p class="exam-desc" id="exam-desc" data-i18n="exam_desc">Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.</p>
+        <div class="exam-chart-wrap" id="exam-chart"></div>
+        <button class="btn-primary exam-start-btn" id="exam-start" data-i18n="exam_start">Начать экзамен</button>
+      </div>
+
+      <!-- Процесс экзамена -->
+      <div id="exam-run" class="exam-run hidden">
+        <div class="exam-progress-bar"><div class="exam-progress-fill" id="exam-progress-fill"></div></div>
+        <div class="exam-counter" id="exam-counter">1 / 20</div>
+        <div class="exam-emoji"   id="exam-emoji">🍎</div>
+        <div class="exam-ru"      id="exam-ru">яблоко</div>
+        <div class="tt-input-wrap">
+          <input id="exam-input" class="tt-input" type="text"
+            placeholder="der / die / das + Wort"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <button class="tt-ok-btn" id="exam-submit">→</button>
+        </div>
+        <div class="tt-umlaut-row" id="exam-umlauts">
+          <button class="uml-btn" data-char="ä">ä</button>
+          <button class="uml-btn" data-char="ö">ö</button>
+          <button class="uml-btn" data-char="ü">ü</button>
+          <button class="uml-btn" data-char="ß">ß</button>
+          <button class="uml-btn" data-char="Ä">Ä</button>
+          <button class="uml-btn" data-char="Ö">Ö</button>
+          <button class="uml-btn" data-char="Ü">Ü</button>
+        </div>
+        <div class="exam-feedback" id="exam-feedback"></div>
+        <div class="exam-score" id="exam-score">✓ 0</div>
+      </div>
+
+      <!-- Результат -->
+      <div id="exam-result" class="exam-result hidden">
+        <div class="exam-result-emoji">🎓</div>
+        <h2 id="exam-result-title">Экзамен завершён!</h2>
+        <div class="exam-result-stats" id="exam-result-stats"></div>
+        <button class="btn-primary" id="exam-again" data-i18n="exam_again">Пройти ещё раз</button>
+      </div>
+    </div>
+
   </main>
 
   <!-- GRAMMAR MODAL -->
@@ -336,9 +385,9 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260612"></script>
-  <script src="db/grammar.js?v=20260612"></script>
-  <script src="db/translations_uk.js?v=20260612"></script>
-  <script src="assets/js/app.js?v=20260612"></script>
+  <script src="db/words.js?v=20260613"></script>
+  <script src="db/grammar.js?v=20260613"></script>
+  <script src="db/translations_uk.js?v=20260613"></script>
+  <script src="assets/js/app.js?v=20260613"></script>
 </body>
 </html>
