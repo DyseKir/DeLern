@@ -1761,24 +1761,45 @@ function buildExamChart(hist) {
   const title = `<h3 class="exam-chart-title">${t('exam_chart_title')}</h3>`;
   if (!hist.length) return title + `<div class="exam-chart-empty">—</div>`;
 
-  const W = 320, H = 160, pad = 28;
+  const W = 340, H = 180, pad = 30, padB = 40;
   const n = hist.length;
   const maxY = Math.max(...hist.map(a => a.total), 1);
   const xOf = i => pad + (n === 1 ? (W-2*pad)/2 : (W - 2*pad) * i / (n - 1));
-  const yOf = v => H - pad - (H - 2*pad) * (v / maxY);
+  const yOf = v => H - padB - (H - pad - padB) * (v / maxY);
+  const fmtD = ts => { const d = new Date(ts); return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}`; };
+
+  const C_MUTED = '#7a7d9a', C_OK = '#4ecb71', C_BORDER = '#2a2f4a', C_DIM = '#6a6d8a';
 
   const lineOf = (key, color) => {
-    const pts = hist.map((a,i) => `${xOf(i).toFixed(1)},${yOf(a[key]).toFixed(1)}`).join(' ');
+    // одна попытка — рисуем горизонтальную линию через весь график
+    if (n === 1) {
+      const y = yOf(hist[0][key]).toFixed(1);
+      return `<line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="${color}" stroke-width="2.5"/>
+              <circle cx="${xOf(0).toFixed(1)}" cy="${y}" r="3.5" fill="${color}"/>`;
+    }
+    const pts  = hist.map((a,i) => `${xOf(i).toFixed(1)},${yOf(a[key]).toFixed(1)}`).join(' ');
     const dots = hist.map((a,i) => `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(a[key]).toFixed(1)}" r="3" fill="${color}"/>`).join('');
     return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>${dots}`;
   };
 
-  const C_MUTED = '#7a7d9a', C_OK = '#4ecb71', C_BORDER = '#2a2f4a', C_DIM = '#4a4d65';
   // оси
-  const axis = `<line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="${C_BORDER}" stroke-width="1"/>
-                <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${H-pad}" stroke="${C_BORDER}" stroke-width="1"/>
+  const axis = `<line x1="${pad}" y1="${H-padB}" x2="${W-pad}" y2="${H-padB}" stroke="${C_BORDER}" stroke-width="1"/>
+                <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${H-padB}" stroke="${C_BORDER}" stroke-width="1"/>
                 <text x="${pad-6}" y="${yOf(maxY)+4}" fill="${C_DIM}" font-size="9" text-anchor="end">${maxY}</text>
-                <text x="${pad-6}" y="${H-pad+3}" fill="${C_DIM}" font-size="9" text-anchor="end">0</text>`;
+                <text x="${pad-6}" y="${H-padB+3}" fill="${C_DIM}" font-size="9" text-anchor="end">0</text>`;
+
+  // подписи дат под точками (если попыток много — прореживаем)
+  const step = n > 6 ? Math.ceil(n / 6) : 1;
+  const dateLabels = hist.map((a,i) => {
+    if (i % step !== 0 && i !== n-1) return '';
+    return `<text x="${xOf(i).toFixed(1)}" y="${H-padB+15}" fill="${C_DIM}" font-size="8.5" text-anchor="middle">${fmtD(a.t)}</text>`;
+  }).join('');
+
+  // значение «правильных» над каждой точкой
+  const valLabels = hist.map((a,i) => {
+    if (n>1 && i % step !== 0 && i !== n-1) return '';
+    return `<text x="${xOf(i).toFixed(1)}" y="${(yOf(a.correct)-7).toFixed(1)}" fill="${C_OK}" font-size="9" font-weight="700" text-anchor="middle">${a.correct}</text>`;
+  }).join('');
 
   const legend = `
     <div class="exam-legend">
@@ -1786,7 +1807,7 @@ function buildExamChart(hist) {
       <span><i style="background:${C_OK}"></i> ${t('exam_correct')}</span>
     </div>`;
 
-  return title + `<svg viewBox="0 0 ${W} ${H}" class="exam-svg">${axis}${lineOf('total',C_MUTED)}${lineOf('correct',C_OK)}</svg>` + legend;
+  return title + `<svg viewBox="0 0 ${W} ${H}" class="exam-svg">${axis}${lineOf('total',C_MUTED)}${lineOf('correct',C_OK)}${dateLabels}${valLabels}</svg>` + legend;
 }
 
 /* ══════════════════════════════════════════════════════════════
