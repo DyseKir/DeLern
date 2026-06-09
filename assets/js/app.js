@@ -66,6 +66,7 @@ const TR = {
     already_lrn:   '⭐ Bereits gelernt',
     tt_phase:      'Prüfung — schreibe das Wort mit Artikel',
     peek_rule:     'Regel',
+    defer_later:   'Später',
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
@@ -123,6 +124,7 @@ const TR = {
     already_lrn:   '⭐ Уже выучено',
     tt_phase:      'Контрольная проверка — напиши слово с артиклем',
     peek_rule:     'Правило',
+    defer_later:   'На потом',
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
@@ -179,6 +181,7 @@ const TR = {
     already_lrn:   '⭐ Вже вивчено',
     tt_phase:      'Контрольна перевірка — напиши слово з артиклем',
     peek_rule:     'Правило',
+    defer_later:   'На потім',
   }
 };
 
@@ -214,6 +217,7 @@ function P() {
     shopKey: `dl_shop_${activeProfile}`,
     usedKey: `dl_used_${activeProfile}`,
     petKey:  `dl_pet_${activeProfile}`,
+    deferKey:`dl_defer_${activeProfile}`,
     petImg:  PET_IMGS[Math.max(0, idx) % PET_IMGS.length],
   };
 }
@@ -511,6 +515,25 @@ function buildWordCache() {
 ══════════════════════════════════════════════════════════════ */
 function loadProg()   { try { return JSON.parse(localStorage.getItem(P().key)||'{}'); } catch { return {}; } }
 function saveProg(p)  { localStorage.setItem(P().key, JSON.stringify(p)); }
+
+/* ── Отложенные на потом ── */
+function loadDeferred()    { try { return JSON.parse(localStorage.getItem(P().deferKey)||'[]'); } catch { return []; } }
+function saveDeferred(arr) { localStorage.setItem(P().deferKey, JSON.stringify([...new Set(arr)])); }
+function isDeferred(id)    { return loadDeferred().includes(id); }
+function addDeferred(id)   { const a = loadDeferred(); a.push(id); saveDeferred(a); }
+function removeDeferred(id){ saveDeferred(loadDeferred().filter(x => x !== id)); }
+/* виртуальная категория из отложенных слов */
+function getDeferredCategory() {
+  const ids = loadDeferred();
+  if (!ids.length) return null;
+  const words = [];
+  (window.VOCAB_DATA||[]).forEach(cat => (cat.words||[]).forEach(w => {
+    if (ids.includes(w.id)) words.push(w);
+  }));
+  if (!words.length) return null;
+  return { level: S.level, category: 'deferred', name: 'Aufschieben',
+           name_ru: 'Отложенные на потом', emoji: '⏰', words, isDeferred: true };
+}
 function loadCoins()  { return parseInt(localStorage.getItem(P().coinKey)||'0',10); }
 function saveCoins(n) { localStorage.setItem(P().coinKey, String(Math.max(0,n))); }
 
@@ -802,9 +825,10 @@ function makeCatCardHTML(cat, total, learned, p) {
 function attachCatEvents(container, level) {
   container.querySelectorAll('.cat-card').forEach(card => {
     if (card.dataset.locked) return; // заблокирована — игнорируем клики
-    const cat = findCat(level, card.dataset.cat);
-    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation();startSession(cat);});
-    card.addEventListener('click', ()=>startSession(cat));
+    const key = card.dataset.cat;
+    const resolve = () => key === 'deferred' ? getDeferredCategory() : findCat(level, key);
+    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation(); const c=resolve(); if(c) startSession(c);});
+    card.addEventListener('click', ()=>{ const c=resolve(); if(c) startSession(c); });
   });
 }
 
@@ -834,9 +858,17 @@ function renderCatPreview() {
     return bPct - aPct;
   });
 
-  wrap.innerHTML = active.length
+  // Виртуальная карточка "Отложенные на потом" — в самом начале
+  const deferredCat = getDeferredCategory();
+  let deferredHTML = '';
+  if (deferredCat) {
+    const dl = deferredCat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
+    deferredHTML = makeCatCardHTML(deferredCat, deferredCat.words.length, dl, p);
+  }
+
+  wrap.innerHTML = deferredHTML + (active.length
     ? active.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('')
-    : `<div class="loading-hint">Alle Kategorien abgeschlossen! 🎉</div>`;
+    : (deferredHTML ? '' : `<div class="loading-hint">Alle Kategorien abgeschlossen! 🎉</div>`));
   attachCatEvents(wrap, S.level);
 
   if (done.length) {
@@ -930,10 +962,16 @@ function renderVocabLearned() {
 ══════════════════════════════════════════════════════════════ */
 function startSession(cat) {
   const p = loadProg();
-  let active = (cat.words||[]).filter(w=>!p[w.id]||p[w.id].status!=='learned');
+  const isDeferredCat = cat.category === 'deferred';
+  let active = (cat.words||[]).filter(w => {
+    if (p[w.id] && p[w.id].status === 'learned') return false;
+    if (!isDeferredCat && isDeferred(w.id)) return false; // отложенные не показываем в обычных категориях
+    return true;
+  });
   shuffle(active);
   S.phase='study'; S.testCards=[]; S.testIdx=0; S.testCorrect=0; S.testRequeued=new Set();
   S.catMode = cat.mode || '';
+  S.catKey  = cat.category;
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
   S.currentCatEmoji = cat.emoji || '📁';
   S.catRuleId = cat.ruleId || null;
@@ -977,6 +1015,17 @@ function drawCard() {
   $('weiter-btn').classList.toggle('hidden', !noArt || isPoss);
   $('card-hint').classList.toggle('hidden', noArt || isPoss);
   $('possessive-area').classList.toggle('hidden', !isPoss);
+
+  // Кнопка "На потом" / "Вернуть" — только в учебной фазе
+  const deferBtn = $('defer-btn');
+  if (deferBtn) {
+    deferBtn.classList.remove('hidden');
+    if (S.catKey === 'deferred') {
+      deferBtn.innerHTML = `↩️ ${lstr('Zurück','Вернуть','Повернути')}`;
+    } else {
+      deferBtn.innerHTML = `⏰ ${lstr('Später','На потом','На потім')}`;
+    }
+  }
 
   if (isPoss) {
     // Случайно выбираем лицо из набора режима
@@ -1038,6 +1087,7 @@ function handleArticle(article) {
 }
 
 function showComplete() {
+  $('defer-btn')?.classList.add('hidden');
   $('flashcard').classList.add('hidden');
   $('typing-test').classList.add('hidden');
   $('session-complete').classList.remove('hidden');
@@ -1114,7 +1164,29 @@ function handlePossessive(chosen) {
   $('stat-wrong').textContent   = '✗ '+S.sessionWrong;
 }
 
+/* Отложить текущее слово на потом (или вернуть из отложенных) */
+function handleDefer() {
+  if (S.busy) return;
+  const card = S.cards[S.cardIdx];
+  if (!card) return;
+  if (S.catKey === 'deferred') {
+    removeDeferred(card.id);  // вернуть в обычное изучение
+  } else {
+    addDeferred(card.id);     // отложить
+  }
+  // убираем все вхождения этого слова из текущей колоды
+  S.cards = S.cards.filter(c => c.id !== card.id);
+  if (!S.cards.length) {
+    // колода опустела
+    if (S.catKey === 'deferred') { showComplete(); return; }
+    startTypingTest(); return;
+  }
+  if (S.cardIdx >= S.cards.length) S.cardIdx = 0;
+  drawCard();
+}
+
 function startTypingTest() {
+  $('defer-btn')?.classList.add('hidden');
   S.phase = 'test';
   const p = loadProg();
   // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
@@ -1694,6 +1766,9 @@ function initEvents() {
   /* Typing test */
   $('tt-submit').addEventListener('click', handleTypingSubmit);
   $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
+
+  /* Кнопка "На потом" / "Вернуть" */
+  $('defer-btn')?.addEventListener('click', handleDefer);
 
   /* (Притяжательные кнопки рендерятся динамически в drawCard) */
 

@@ -599,6 +599,19 @@ body {
 .session-stats { margin-left: auto; display: flex; gap: 14px; align-items: center; }
 .stat-correct { color: var(--correct); font-weight: 700; font-size: 15px; }
 .stat-wrong   { color: var(--wrong);   font-weight: 700; font-size: 15px; }
+.defer-btn {
+  background: rgba(245,158,11,.15);
+  border: 1.5px solid var(--warn);
+  color: var(--warn);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+  white-space: nowrap;
+}
+.defer-btn:hover  { background: rgba(245,158,11,.28); }
+.defer-btn:active { transform: scale(.94); }
 .rule-peek-btn {
   align-self: center;
   flex: 0 0 auto;
