@@ -1168,29 +1168,35 @@ function handlePossessive(chosen) {
   $('stat-wrong').textContent   = '✗ '+S.sessionWrong;
 }
 
-/* Отложить текущее слово на потом (или вернуть из отложенных) */
+/* Отложить текущее слово на потом (или вернуть из отложенных) — работает в обеих фазах */
 function handleDefer() {
   if (S.busy) return;
-  const card = S.cards[S.cardIdx];
+  const isTest = S.phase === 'test';
+  const card = isTest ? S.testCards[S.testIdx] : S.cards[S.cardIdx];
   if (!card) return;
-  if (S.catKey === 'deferred') {
-    removeDeferred(card.id);  // вернуть в обычное изучение
+
+  if (S.catKey === 'deferred') removeDeferred(card.id);  // вернуть
+  else                         addDeferred(card.id);     // отложить
+
+  // убираем все вхождения слова из обеих колод
+  S.cards     = S.cards.filter(c => c.id !== card.id);
+  S.testCards = S.testCards.filter(c => c.id !== card.id);
+
+  if (isTest) {
+    if (!S.testCards.length) { showComplete(); return; }
+    if (S.testIdx >= S.testCards.length) S.testIdx = 0;
+    drawTestCard();
   } else {
-    addDeferred(card.id);     // отложить
+    if (!S.cards.length) {
+      if (S.catKey === 'deferred') { showComplete(); return; }
+      startTypingTest(); return;
+    }
+    if (S.cardIdx >= S.cards.length) S.cardIdx = 0;
+    drawCard();
   }
-  // убираем все вхождения этого слова из текущей колоды
-  S.cards = S.cards.filter(c => c.id !== card.id);
-  if (!S.cards.length) {
-    // колода опустела
-    if (S.catKey === 'deferred') { showComplete(); return; }
-    startTypingTest(); return;
-  }
-  if (S.cardIdx >= S.cards.length) S.cardIdx = 0;
-  drawCard();
 }
 
 function startTypingTest() {
-  $('defer-btn')?.classList.add('hidden');
   S.phase = 'test';
   const p = loadProg();
   // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
@@ -1221,6 +1227,14 @@ function drawTestCard() {
   $('tt-input').value          = '';
   $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
   $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
+  // кнопка "На потом" доступна и в тесте
+  const deferBtn = $('defer-btn');
+  if (deferBtn) {
+    deferBtn.classList.remove('hidden');
+    deferBtn.innerHTML = S.catKey === 'deferred'
+      ? `↩️ ${lstr('Zurück','Вернуть','Повернути')}`
+      : `⏰ ${lstr('Später','На потом','На потім')}`;
+  }
   setTimeout(()=>{ try{$('tt-input').focus();}catch(e){} }, 100);
 }
 
