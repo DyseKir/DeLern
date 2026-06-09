@@ -328,6 +328,12 @@ const EMOJI = {
   Kopf:'🧠', Haar:'💇', Auge:'👁️', Nase:'👃', Mund:'👄', Ohr:'👂',
   Arm:'💪', Bein:'🦵', Hand:'✋', Fuß:'🦶', Bauch:'🫃', Rücken:'🔙',
   Schulter:'🤷', Finger:'☝️', Hals:'🦒', Gesicht:'😊', Knie:'🦵', Zahn:'🦷',
+  // Körper — расширение
+  Zunge:'👅', Schnurrbart:'👨', Bart:'🧔', Lippe:'👄',
+  Oberkörper:'🧍', Unterkörper:'🦵', Nacken:'💆', Handgelenk:'⌚', Taille:'📏',
+  Hintern:'🍑', Oberschenkel:'🦵', Unterschenkel:'🦵', Kniekehle:'🦵', Wade:'🦵',
+  Fußgelenk:'🦶', Knöchel:'🦶', Herz:'❤️', Lunge:'🫁', Gehirn:'🧠', Niere:'🫘',
+  Magen:'🩻', Darm:'🌀', Leber:'🫀', Blut:'🩸', Muskel:'💪', Knochen:'🦴',
   // Kleidung
   Hemd:'👔', Hose:'👖', Jacke:'🧥', Schuh:'👟', Socke:'🧦',
   Pullover:'🧶', Rock:'👗', Kleid:'👗', Mantel:'🧥', Mütze:'🧢',

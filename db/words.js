@@ -414,6 +414,37 @@ window.VOCAB_DATA = [
       { id: "a1_kb_028", article: "der", word: "Ellbogen",   translation: "локоть"               },
       { id: "a1_kb_029", article: "der", word: "Po",         translation: "попа / ягодицы (разг.)"},
       { id: "a1_kb_030", article: "der", word: "Körper",     translation: "тело"                 },
+      // Лицо
+      { id: "a1_kb_031", article: "die", word: "Zunge",        translation: "язык"                 },
+      { id: "a1_kb_032", article: "der", word: "Schnurrbart",  translation: "усы"                  },
+      { id: "a1_kb_033", article: "der", word: "Bart",         translation: "борода"               },
+      { id: "a1_kb_034", article: "die", word: "Lippe",        translation: "губа"                 },
+      // Верхняя часть тела
+      { id: "a1_kb_035", article: "der", word: "Oberkörper",   translation: "верхняя часть тела"   },
+      { id: "a1_kb_036", article: "der", word: "Unterkörper",  translation: "нижняя часть тела"    },
+      { id: "a1_kb_037", article: "der", word: "Nacken",       translation: "затылок / задняя часть шеи" },
+      { id: "a1_kb_038", article: "das", word: "Handgelenk",   translation: "запястье"             },
+      { id: "a1_kb_039", article: "die", word: "Taille",       translation: "талия"                },
+      // Нижняя часть тела
+      { id: "a1_kb_040", article: "der", word: "Hintern",      translation: "зад (разг.)"          },
+      { id: "a1_kb_041", article: "der", word: "Oberschenkel", translation: "бедро"                },
+      { id: "a1_kb_042", article: "der", word: "Unterschenkel",translation: "голень"               },
+      { id: "a1_kb_043", article: "die", word: "Kniekehle",    translation: "подколенная ямка"     },
+      { id: "a1_kb_044", article: "die", word: "Wade",         translation: "икра (ноги)"          },
+      { id: "a1_kb_045", article: "das", word: "Fußgelenk",    translation: "голеностоп"           },
+      { id: "a1_kb_046", article: "der", word: "Knöchel",      translation: "лодыжка / щиколотка"  },
+      // Внутренние органы
+      { id: "a1_kb_047", article: "das", word: "Herz",         translation: "сердце"               },
+      { id: "a1_kb_048", article: "die", word: "Lunge",        translation: "лёгкое"               },
+      { id: "a1_kb_049", article: "das", word: "Gehirn",       translation: "мозг"                 },
+      { id: "a1_kb_050", article: "die", word: "Niere",        translation: "почка"                },
+      { id: "a1_kb_051", article: "der", word: "Magen",        translation: "желудок"              },
+      { id: "a1_kb_052", article: "der", word: "Darm",         translation: "кишечник"             },
+      { id: "a1_kb_053", article: "die", word: "Leber",        translation: "печень"               },
+      // Прочее
+      { id: "a1_kb_054", article: "das", word: "Blut",         translation: "кровь"                },
+      { id: "a1_kb_055", article: "der", word: "Muskel",       translation: "мышца"                },
+      { id: "a1_kb_056", article: "der", word: "Knochen",      translation: "кость"                },
     ]
   },
 
