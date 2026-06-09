@@ -775,6 +775,7 @@ function refreshOverallBar() {
   const cats = getCats(S.level), p = loadProg();
   let total=0, learned=0, learning=0;
   cats.forEach(cat => (cat.words||[]).forEach(w => {
+    if (isDeferred(w.id)) return; // отложенные не считаем
     total++;
     if (!p[w.id]) return;
     if (p[w.id].status==='learned')   learned++;
@@ -808,8 +809,9 @@ function makeCatCardHTML(cat, total, learned, p) {
       </div>`;
   }
 
-  const pct     = total ? Math.round(learned/total*100) : 0;
-  const preview = cat.words.slice(0,4)
+  const pct      = total ? Math.round(learned/total*100) : 0;
+  const pvWords  = cat.category === 'deferred' ? cat.words : cat.words.filter(w => !isDeferred(w.id));
+  const preview  = pvWords.slice(0,4)
     .map(w=>`<div>• <span class="art-${w.article}">${w.article!=='-'?w.article:''}</span> ${w.word}</div>`).join('');
   return `
     <div class="cat-card" data-cat="${cat.category}">
@@ -842,8 +844,10 @@ function renderCatPreview() {
 
   const active = [], done = [];
   cats.forEach(cat => {
-    const total   = cat.words.length;
-    const learned = cat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
+    // отложенные слова не учитываются в общем количестве категории
+    const visible = cat.words.filter(w => !isDeferred(w.id));
+    const total   = visible.length;
+    const learned = visible.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
     (total > 0 && learned === total ? done : active).push({cat, total, learned});
   });
 
