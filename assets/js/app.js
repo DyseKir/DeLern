@@ -447,6 +447,13 @@ const EMOJI = {
   Frosch:'🐸', Igel:'🦔', Esel:'🫏', Mücke:'🦟', Maus:'🐭',
   Spinne:'🕷️', Pony:'🐴', Rind:'🐄', Gans:'🪿', Kaninchen:'🐰',
   Hahn:'🐓', Ziege:'🐐',
+  // Berufe (женские формы)
+  Ärztin:'👩‍⚕️', Lehrerin:'👩‍🏫', Studentin:'🎓', Köchin:'👩‍🍳', Bäckerin:'🥐',
+  Ingenieurin:'⚙️', Krankenpfleger:'👨‍⚕️', Polizistin:'👮‍♀️', Verkäuferin:'🛍️',
+  Fahrerin:'🚗', Kellnerin:'🍽️', Mechanikerin:'🔧', Friseurin:'💈', Sekretärin:'📝',
+  // Modalverben
+  können:'💪', müssen:'❗', dürfen:'✅', wollen:'🙋', sollen:'📋', mögen:'❤️',
+  möchten:'🙏', wissen:'🧠',
   // Krankheiten & Gesundheit
   Kopfschmerzen:'🤕', Bauchschmerzen:'😣', Halsschmerzen:'😷', Zahnschmerzen:'🦷',
   Rückenschmerzen:'🔙', Fieber:'🌡️', Erkältung:'🤧', Husten:'😮‍💨', Schnupfen:'🤧',
@@ -673,6 +680,21 @@ function resetLearnedWords() {
   localStorage.setItem('_typing_reset_v2', '1');
 }
 
+/* Сбросить прогресс одного слова (снова "новое") */
+function resetWord(id) {
+  const p = loadProg();
+  if (p[id]) { delete p[id]; saveProg(p); }
+  removeDeferred(id);
+}
+/* Сбросить прогресс всей категории */
+function resetCategory(catKey, level) {
+  const cat = findCat(level, catKey);
+  if (!cat || !cat.words) return;
+  const p = loadProg();
+  cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; removeDeferred(w.id); });
+  saveProg(p);
+}
+
 function setGrammarStudied(id) {
   const alreadyDone = isStudied(id);
   const p = loadProg();
@@ -824,8 +846,11 @@ function makeCatCardHTML(cat, total, learned, p) {
   const pvWords  = cat.category === 'deferred' ? cat.words : cat.words.filter(w => !isDeferred(w.id));
   const preview  = pvWords.slice(0,4)
     .map(w=>`<div>• <span class="art-${w.article}">${w.article!=='-'?w.article:''}</span> ${w.word}</div>`).join('');
+  const resetBtn = cat.category === 'deferred' ? '' :
+    `<button class="cat-reset-btn" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">↻</button>`;
   return `
     <div class="cat-card" data-cat="${cat.category}">
+      ${resetBtn}
       <span class="cat-emoji">${cat.emoji||'📁'}</span>
       <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
@@ -841,6 +866,16 @@ function attachCatEvents(container, level) {
     const key = card.dataset.cat;
     const resolve = () => key === 'deferred' ? getDeferredCategory() : findCat(level, key);
     card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation(); const c=resolve(); if(c) startSession(c);});
+    // кнопка сброса прогресса категории
+    card.querySelector('.cat-reset-btn')?.addEventListener('click', e=>{
+      e.stopPropagation();
+      const c = resolve();
+      const nm = c ? (c.name_ru || c.name) : key;
+      if (confirm(lstr(`«${nm}» zurücksetzen?`,`Сбросить прогресс «${nm}»?`,`Скинути прогрес «${nm}»?`))) {
+        resetCategory(key, level);
+        renderHome();
+      }
+    });
     card.addEventListener('click', ()=>{ const c=resolve(); if(c) startSession(c); });
   });
 }
@@ -959,17 +994,27 @@ function renderVocabLearned() {
   }));
   if (!learnedWords.length) { section.innerHTML=''; return; }
   const title = lstr('⭐ Gelernte Wörter','⭐ Выученные слова','⭐ Вивчені слова');
+  const hint  = lstr('Tippe ✕ um ein Wort zurückzusetzen','Нажми ✕ чтобы сбросить слово','Натисни ✕ щоб скинути слово');
   section.innerHTML = `
-    <h3 class="vocab-learned-title">${title}</h3>
+    <h3 class="vocab-learned-title">${title} <span class="vl-hint">— ${hint}</span></h3>
     <div class="vocab-learned-grid">
       ${learnedWords.map(w=>`
-        <div class="vl-word-card">
+        <div class="vl-word-card" data-wid="${w.id}">
+          <button class="vl-reset" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">✕</button>
           <span class="vl-emoji">${EMOJI[w.word]||w.catEmoji||'📝'}</span>
-          <span class="vl-art art-${w.article}">${w.article}</span>
+          <span class="vl-art art-${w.article}">${w.article!=='-'?w.article:''}</span>
           <span class="vl-word">${w.word}</span>
-          <span class="vl-trans">${w.translation}</span>
+          <span class="vl-trans">${(lang==='uk'&&window.TRANSLATIONS_UK&&window.TRANSLATIONS_UK[w.id])||w.translation}</span>
         </div>`).join('')}
     </div>`;
+  section.querySelectorAll('.vl-reset').forEach(btn =>
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = btn.closest('.vl-word-card').dataset.wid;
+      resetWord(id);
+      renderVocabLearned();
+      refreshOverallBar();
+    }));
 }
 
 /* ══════════════════════════════════════════════════════════════

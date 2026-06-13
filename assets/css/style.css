@@ -528,8 +528,33 @@ body {
   cursor: pointer;
   transition: transform .2s, border-color .2s, box-shadow .2s;
   text-align: center;
+  position: relative;
 }
 .cat-card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: var(--sh); }
+.cat-reset-btn {
+  position: absolute; top: 6px; right: 6px;
+  width: 24px; height: 24px;
+  background: var(--bg4); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text-muted);
+  font-size: 14px; cursor: pointer; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  opacity: .55; transition: opacity .15s, color .15s, border-color .15s;
+  z-index: 2;
+}
+.cat-reset-btn:hover { opacity: 1; color: var(--warn); border-color: var(--warn); }
+
+.vl-hint { font-size: 11px; font-weight: 400; color: var(--text-dim); }
+.vl-word-card { position: relative; }
+.vl-reset {
+  position: absolute; top: 4px; right: 4px;
+  width: 20px; height: 20px;
+  background: transparent; border: none;
+  color: var(--text-dim); font-size: 13px; cursor: pointer;
+  border-radius: 5px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .15s, background .15s;
+}
+.vl-reset:hover { color: var(--wrong); background: rgba(255,77,109,.12); }
 
 .cat-card-locked {
   opacity: .5;

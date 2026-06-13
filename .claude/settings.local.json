@@ -22,7 +22,19 @@
       "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js assets/js/app.js assets/css/style.css)",
       "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js assets/js/app.js)",
       "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add -A)",
-      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" status --short)"
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" status --short)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n 'category: \"gefuehle\"\\\\|category: \"laender\"\\\\|category: \"fragewörter\"\\\\|category: \"monate\"' -- db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n \"rule-peek-btn\" -- index.html assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add index.html assets/css/style.css)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/grammar.js db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n \"^];\" -- db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n \"^};\" -- db/translations_uk.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n 'a1_kp2_' -- db/words.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n \"a1_kp2_\" -- db/translations_uk.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add db/words.js db/translations_uk.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" grep -n \"a1_mo_\" -- db/translations_uk.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" add index.html assets/js/app.js)",
+      "Bash(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" revert --no-edit 754859b)"
     ]
   }
 }

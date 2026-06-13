@@ -524,20 +524,34 @@ window.VOCAB_DATA = [
   {
     level: "A1", category: "berufe", name: "Berufe", name_ru: "Профессии", emoji: "👔",
     words: [
-      { id: "a1_br_001", article: "der", word: "Arzt",         translation: "врач (м) / die Ärztin (ж)"           },
-      { id: "a1_br_002", article: "der", word: "Lehrer",       translation: "учитель (м) / die Lehrerin (ж)"      },
-      { id: "a1_br_003", article: "der", word: "Student",      translation: "студент (м) / die Studentin (ж)"     },
-      { id: "a1_br_004", article: "der", word: "Koch",         translation: "повар (м) / die Köchin (ж)"          },
-      { id: "a1_br_005", article: "der", word: "Bäcker",       translation: "пекарь (м) / die Bäckerin (ж)"      },
-      { id: "a1_br_006", article: "der", word: "Ingenieur",    translation: "инженер (м) / die Ingenieurin (ж)"   },
-      { id: "a1_br_007", article: "die", word: "Krankenschwester", translation: "медсестра / der Krankenpfleger (м)" },
-      { id: "a1_br_008", article: "der", word: "Polizist",     translation: "полицейский (м) / die Polizistin (ж)"},
-      { id: "a1_br_009", article: "der", word: "Verkäufer",    translation: "продавец (м) / die Verkäuferin (ж)"  },
-      { id: "a1_br_010", article: "der", word: "Fahrer",       translation: "водитель (м) / die Fahrerin (ж)"     },
-      { id: "a1_br_011", article: "der", word: "Kellner",      translation: "официант (м) / die Kellnerin (ж)"    },
-      { id: "a1_br_012", article: "der", word: "Mechaniker",   translation: "механик (м) / die Mechanikerin (ж)"  },
-      { id: "a1_br_013", article: "der", word: "Friseur",      translation: "парикмахер (м) / die Friseurin (ж)"  },
-      { id: "a1_br_014", article: "der", word: "Sekretär",     translation: "секретарь (м) / die Sekretärin (ж)"  },
+      { id: "a1_br_001", article: "der", word: "Arzt",            translation: "врач (м)"        },
+      { id: "a1_br_001f",article: "die", word: "Ärztin",          translation: "врач (ж)"        },
+      { id: "a1_br_002", article: "der", word: "Lehrer",          translation: "учитель"         },
+      { id: "a1_br_002f",article: "die", word: "Lehrerin",        translation: "учительница"     },
+      { id: "a1_br_003", article: "der", word: "Student",         translation: "студент"         },
+      { id: "a1_br_003f",article: "die", word: "Studentin",       translation: "студентка"       },
+      { id: "a1_br_004", article: "der", word: "Koch",            translation: "повар"           },
+      { id: "a1_br_004f",article: "die", word: "Köchin",          translation: "повариха"        },
+      { id: "a1_br_005", article: "der", word: "Bäcker",          translation: "пекарь (м)"      },
+      { id: "a1_br_005f",article: "die", word: "Bäckerin",        translation: "пекарь (ж)"      },
+      { id: "a1_br_006", article: "der", word: "Ingenieur",       translation: "инженер (м)"     },
+      { id: "a1_br_006f",article: "die", word: "Ingenieurin",     translation: "инженер (ж)"     },
+      { id: "a1_br_007", article: "der", word: "Krankenpfleger",  translation: "медбрат"         },
+      { id: "a1_br_007f",article: "die", word: "Krankenschwester",translation: "медсестра"       },
+      { id: "a1_br_008", article: "der", word: "Polizist",        translation: "полицейский"     },
+      { id: "a1_br_008f",article: "die", word: "Polizistin",      translation: "полицейская"     },
+      { id: "a1_br_009", article: "der", word: "Verkäufer",       translation: "продавец"        },
+      { id: "a1_br_009f",article: "die", word: "Verkäuferin",     translation: "продавщица"      },
+      { id: "a1_br_010", article: "der", word: "Fahrer",          translation: "водитель (м)"    },
+      { id: "a1_br_010f",article: "die", word: "Fahrerin",        translation: "водитель (ж)"    },
+      { id: "a1_br_011", article: "der", word: "Kellner",         translation: "официант"        },
+      { id: "a1_br_011f",article: "die", word: "Kellnerin",       translation: "официантка"      },
+      { id: "a1_br_012", article: "der", word: "Mechaniker",      translation: "механик (м)"     },
+      { id: "a1_br_012f",article: "die", word: "Mechanikerin",    translation: "механик (ж)"     },
+      { id: "a1_br_013", article: "der", word: "Friseur",         translation: "парикмахер (м)"  },
+      { id: "a1_br_013f",article: "die", word: "Friseurin",       translation: "парикмахер (ж)"  },
+      { id: "a1_br_014", article: "der", word: "Sekretär",        translation: "секретарь (м)"   },
+      { id: "a1_br_014f",article: "die", word: "Sekretärin",      translation: "секретарь (ж)"   },
     ]
   },
 
@@ -1123,6 +1137,23 @@ window.VOCAB_DATA = [
       { id: "a1_ar_030", article: "das", word: "Fieberthermometer", translation: "градусник"                   },
       { id: "a1_ar_031", article: "die", word: "Augentropfen",      translation: "глазные капли (мн.ч.)"       },
       { id: "a1_ar_032", article: "das", word: "Verhütungsmittel",  translation: "противозачаточное средство"  },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MODALVERBEN (Модальные глаголы)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "modalverben", name: "Modalverben", name_ru: "Модальные глаголы", emoji: "🔑", ruleId: "a1_gr_016",
+    words: [
+      { id: "a1_mv_001", article: "-", word: "können",   translation: "мочь / уметь"            },
+      { id: "a1_mv_002", article: "-", word: "müssen",   translation: "быть должным / нужно"    },
+      { id: "a1_mv_003", article: "-", word: "dürfen",   translation: "иметь разрешение / можно"},
+      { id: "a1_mv_004", article: "-", word: "wollen",   translation: "хотеть"                  },
+      { id: "a1_mv_005", article: "-", word: "sollen",   translation: "следует / должен"        },
+      { id: "a1_mv_006", article: "-", word: "mögen",    translation: "нравиться / любить"      },
+      { id: "a1_mv_007", article: "-", word: "möchten",  translation: "хотел бы (вежливо)"      },
+      { id: "a1_mv_008", article: "-", word: "wissen",   translation: "знать"                   },
     ]
   },
 
