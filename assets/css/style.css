@@ -786,7 +786,10 @@ body {
 }
 .tt-counter { font-size: 13px; color: var(--text-muted); }
 .tt-emoji   { font-size: 4.5rem; line-height: 1; }
-.tt-ru      { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.tt-ru      { font-size: 1.5rem; font-weight: 700; color: var(--text); text-align: center; line-height: 1.4; }
+.tt-conj-verb { color: var(--accent); }
+.tt-conj-tr   { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+.tt-conj-pron { font-size: 1.3rem; color: var(--text); }
 .tt-input-wrap {
   display: flex; gap: 10px; width: 100%; max-width: 340px;
 }

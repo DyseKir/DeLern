@@ -691,7 +691,11 @@ function resetCategory(catKey, level) {
   const cat = findCat(level, catKey);
   if (!cat || !cat.words) return;
   const p = loadProg();
-  cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; removeDeferred(w.id); });
+  if (cat.mode === 'conjugation') {
+    buildConjCards(cat).forEach(c => { if (p[c.id]) delete p[c.id]; });
+  } else {
+    cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; removeDeferred(w.id); });
+  }
   saveProg(p);
 }
 
@@ -890,10 +894,17 @@ function renderCatPreview() {
 
   const active = [], done = [];
   cats.forEach(cat => {
-    // отложенные слова не учитываются в общем количестве категории
-    const visible = cat.words.filter(w => !isDeferred(w.id));
-    const total   = visible.length;
-    const learned = visible.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
+    let total, learned;
+    if (cat.mode === 'conjugation') {
+      const forms = buildConjCards(cat);
+      total   = forms.length;
+      learned = forms.filter(c => p[c.id] && p[c.id].status === 'learned').length;
+    } else {
+      // отложенные слова не учитываются в общем количестве категории
+      const visible = cat.words.filter(w => !isDeferred(w.id));
+      total   = visible.length;
+      learned = visible.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
+    }
     (total > 0 && learned === total ? done : active).push({cat, total, learned});
   });
 
@@ -1022,6 +1033,10 @@ function renderVocabLearned() {
 ══════════════════════════════════════════════════════════════ */
 function startSession(cat) {
   const p = loadProg();
+
+  // Режим спряжения глаголов — сразу печатный тест по всем формам
+  if (cat.mode === 'conjugation') { startConjugation(cat); return; }
+
   const isDeferredCat = cat.category === 'deferred';
   let active = (cat.words||[]).filter(w => {
     if (p[w.id] && p[w.id].status === 'learned') return false;
@@ -1252,6 +1267,63 @@ function handleDefer() {
   }
 }
 
+/* ── Спряжение глаголов ── */
+const CONJ_PRONOUNS = [
+  ['ich', 'ich (я)'],
+  ['du',  'du (ты)'],
+  ['er',  'er / sie / es (он/она)'],
+  ['wir', 'wir (мы)'],
+  ['ihr', 'ihr (вы)'],
+  ['sie', 'sie / Sie (они/Вы)'],
+];
+const CONJ_LABEL = Object.fromEntries(CONJ_PRONOUNS);
+
+function buildConjCards(cat) {
+  const out = [];
+  (cat.words||[]).forEach(w => {
+    if (!w.conj) return;
+    CONJ_PRONOUNS.forEach(([pr]) => {
+      if (!w.conj[pr]) return;
+      out.push({
+        id: `${w.id}__${pr}`,
+        word: w.word, translation: w.translation, article: '-',
+        conjPronoun: pr, conjAnswer: w.conj[pr],
+      });
+    });
+  });
+  return out;
+}
+
+function startConjugation(cat) {
+  const p = loadProg();
+  S.catMode = 'conjugation'; S.catKey = cat.category; S.catRuleId = cat.ruleId || null;
+  S.currentCatEmoji = cat.emoji || '🔑';
+  const peekBtn = $('rule-peek-btn');
+  if (peekBtn) peekBtn.classList.toggle('hidden', !cat.ruleId);
+  $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
+  $('cards-level-badge').textContent = S.level;
+
+  const all = buildConjCards(cat);
+  S.testCards = shuffle(all.filter(c => !p[c.id] || p[c.id].status !== 'learned'));
+  S.cards = []; S.cardIdx = 0;
+  S.sessionCorrect = 0; S.sessionWrong = 0; S.sessionLearned = 0;
+  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
+  S.phase = 'test';
+
+  show('cards');
+  $('session-complete').classList.add('hidden');
+  $('all-learned').classList.add('hidden');
+  $('flashcard').classList.add('hidden');
+
+  if (!S.testCards.length) {
+    $('typing-test').classList.add('hidden');
+    $('all-learned').classList.remove('hidden');
+    return;
+  }
+  $('typing-test').classList.remove('hidden');
+  drawTestCard();
+}
+
 function startTypingTest() {
   S.phase = 'test';
   const p = loadProg();
@@ -1272,16 +1344,22 @@ function drawTestCard() {
   if (S.testIdx >= S.testCards.length) { showComplete(); return; }
   const card   = S.testCards[S.testIdx];
   const noArt  = !card.article || card.article === '-';
+  const isConj = !!card.conjPronoun;
   const streak = getWP(card.id).streak || 0;
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
-  $('tt-emoji').textContent    = EMOJI[card.word] || S.currentCatEmoji;
-  $('tt-ru').textContent       = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
+  $('tt-emoji').textContent    = isConj ? '🔑' : (EMOJI[card.word] || S.currentCatEmoji);
+  if (isConj) {
+    // показываем инфинитив + местоимение, ждём спряжённую форму
+    $('tt-ru').innerHTML = `<span class="tt-conj-verb">${card.word}</span> <span class="tt-conj-tr">(${card.translation})</span><br><span class="tt-conj-pron">${CONJ_LABEL[card.conjPronoun]} ___</span>`;
+  } else {
+    $('tt-ru').textContent = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
+  }
   $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
   $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value          = '';
-  $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
+  $('tt-input').placeholder    = isConj ? `${card.conjPronoun} ...` : (noArt ? 'Напиши слово...' : 'der / die / das + Wort');
   $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
   // кнопка "На потом" доступна и в тесте
   const deferBtn = $('defer-btn');
@@ -1299,7 +1377,9 @@ function handleTypingSubmit() {
   if (!card) return;
   const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ');
   const noArt    = !card.article || card.article === '-';
-  const expected = noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase();
+  const expected = card.conjPronoun
+    ? card.conjAnswer.toLowerCase()
+    : (noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase());
   if (!input) return;
 
   if (input === expected) {
@@ -1318,7 +1398,7 @@ function handleTypingSubmit() {
     setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 800);
   } else {
     updateWP(card.id, false);
-    const ans = noArt ? card.word : `${card.article} ${card.word}`;
+    const ans = card.conjPronoun ? `${card.conjPronoun} ${card.conjAnswer}` : (noArt ? card.word : `${card.article} ${card.word}`);
     $('tt-feedback').innerHTML = `✗ Правильно: <strong>${ans}</strong>`;
     $('tt-feedback').className = 'tt-feedback bad';
     if (!S.testRequeued.has(card.id)) {

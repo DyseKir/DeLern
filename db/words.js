@@ -1144,16 +1144,16 @@ window.VOCAB_DATA = [
   //  A1 — MODALVERBEN (Модальные глаголы)
   // ════════════════════════════════
   {
-    level: "A1", category: "modalverben", name: "Modalverben", name_ru: "Модальные глаголы", emoji: "🔑", ruleId: "a1_gr_016",
+    level: "A1", category: "modalverben", name: "Modalverben", name_ru: "Модальные глаголы (спряжение)", emoji: "🔑", ruleId: "a1_gr_016", mode: "conjugation",
     words: [
-      { id: "a1_mv_001", article: "-", word: "können",   translation: "мочь / уметь"            },
-      { id: "a1_mv_002", article: "-", word: "müssen",   translation: "быть должным / нужно"    },
-      { id: "a1_mv_003", article: "-", word: "dürfen",   translation: "иметь разрешение / можно"},
-      { id: "a1_mv_004", article: "-", word: "wollen",   translation: "хотеть"                  },
-      { id: "a1_mv_005", article: "-", word: "sollen",   translation: "следует / должен"        },
-      { id: "a1_mv_006", article: "-", word: "mögen",    translation: "нравиться / любить"      },
-      { id: "a1_mv_007", article: "-", word: "möchten",  translation: "хотел бы (вежливо)"      },
-      { id: "a1_mv_008", article: "-", word: "wissen",   translation: "знать"                   },
+      { id: "a1_mv_001", article: "-", word: "können",  translation: "мочь / уметь",             conj: { ich:"kann",  du:"kannst",   er:"kann",  wir:"können",  ihr:"könnt",  sie:"können"  } },
+      { id: "a1_mv_002", article: "-", word: "müssen",  translation: "быть должным / нужно",      conj: { ich:"muss",  du:"musst",    er:"muss",  wir:"müssen",  ihr:"müsst",  sie:"müssen"  } },
+      { id: "a1_mv_003", article: "-", word: "dürfen",  translation: "иметь разрешение / можно", conj: { ich:"darf",  du:"darfst",   er:"darf",  wir:"dürfen",  ihr:"dürft",  sie:"dürfen"  } },
+      { id: "a1_mv_004", article: "-", word: "wollen",  translation: "хотеть",                   conj: { ich:"will",  du:"willst",   er:"will",  wir:"wollen",  ihr:"wollt",  sie:"wollen"  } },
+      { id: "a1_mv_005", article: "-", word: "sollen",  translation: "следует / должен",         conj: { ich:"soll",  du:"sollst",   er:"soll",  wir:"sollen",  ihr:"sollt",  sie:"sollen"  } },
+      { id: "a1_mv_006", article: "-", word: "mögen",   translation: "нравиться / любить",        conj: { ich:"mag",   du:"magst",    er:"mag",   wir:"mögen",   ihr:"mögt",   sie:"mögen"   } },
+      { id: "a1_mv_007", article: "-", word: "möchten", translation: "хотел бы (вежливо)",        conj: { ich:"möchte",du:"möchtest", er:"möchte",wir:"möchten", ihr:"möchtet",sie:"möchten" } },
+      { id: "a1_mv_008", article: "-", word: "wissen",  translation: "знать",                    conj: { ich:"weiß",  du:"weißt",    er:"weiß",  wir:"wissen",  ihr:"wisst",  sie:"wissen"  } },
     ]
   },
 
