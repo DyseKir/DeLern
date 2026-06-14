@@ -587,32 +587,47 @@ Kein/keine — это буквально «не один», «ни одного�
     title_de: "Präpositionen Wo? + Dativ",
     title_ru: "Предлоги места + Дативный падеж",
     explanation_de: "Wechselpräpositionen stehen mit Dativ bei der Frage 'Wo?' (Lage/Position).",
-    explanation_ru: `Предлоги места отвечают на вопрос <strong>Wo?</strong> (Где?) и требуют <strong>Dativ</strong>:
+    explanation_ru: `Предлоги места отвечают на вопрос <strong>Wo?</strong> (Где?) и требуют <strong>Dativ</strong>. Представь предмет и коробку 📦:
 
-• <strong>vor</strong> — перед
-• <strong>hinter</strong> — за (позади)
-• <strong>neben</strong> — рядом
-• <strong>über</strong> — над
-• <strong>unter</strong> — под
-• <strong>an</strong> — у / возле / на (вертикальная поверхность)
-• <strong>auf</strong> — на (горизонтальная поверхность)
-• <strong>in</strong> — внутри / в
-• <strong>zwischen</strong> — между
+<strong>📦 Простые (тут редко ошибаются):</strong>
+• <strong>vor</strong> — <u>перед</u>: <em>vor dem Haus</em> (перед домом)
+• <strong>hinter</strong> — <u>за / позади</u>: <em>hinter dem Haus</em> (за домом)
+• <strong>neben</strong> — <u>рядом, сбоку</u>: <em>neben dem Bett</em> (рядом с кроватью)
+• <strong>über</strong> — <u>над</u> (не касаясь): <em>über dem Tisch</em> (лампа над столом)
+• <strong>unter</strong> — <u>под</u>: <em>unter dem Stuhl</em> (под стулом)
+• <strong>zwischen</strong> — <u>между</u> (двумя): <em>zwischen dem Bett und dem Schrank</em>
 
-Сокращения в Dativ:
-• in + dem = <strong>im</strong>
-• an + dem = <strong>am</strong>
+<strong>⚠️ Сложная тройка an / auf / in — главное запомнить:</strong>
 
-Артикли в Dativ: der → dem | die → der | das → dem`,
+🟢 <strong>auf</strong> = «на» <u>горизонтальной</u> поверхности, СВЕРХУ (предмет лежит/стоит на чём-то):
+<em>Das Buch liegt <strong>auf</strong> dem Tisch.</em> — Книга на столе.
+<em>Der Teller steht <strong>auf</strong> dem Tisch.</em>
+
+🔵 <strong>an</strong> = «на/у» <u>вертикальной</u> поверхности или ВПЛОТНУЮ, касаясь сбоку/края:
+<em>Das Bild hängt <strong>an</strong> der Wand.</em> — Картина на стене.
+<em>Ich sitze <strong>am</strong> Tisch.</em> — Я сижу за столом (вплотную).
+<em>Ich stehe <strong>an</strong> der Tür.</em> — Я у двери.
+
+🟡 <strong>in</strong> = «в / внутри» (предмет ВНУТРИ чего-то):
+<em>Die Milch ist <strong>im</strong> Kühlschrank.</em> — Молоко в холодильнике.
+<em>Ich bin <strong>im</strong> Supermarkt.</em> — Я в супермаркете.
+
+<strong>Подсказка на пальцах:</strong>
+• лежит сверху → <strong>auf</strong> (на столе)
+• висит/прислонено/вплотную сбоку → <strong>an</strong> (на стене, у двери)
+• внутри → <strong>in</strong> (в коробке, в комнате)
+
+<strong>Сокращения в Dativ:</strong> in+dem = <strong>im</strong> · an+dem = <strong>am</strong>
+Артикли в Dativ: der → dem · die → der · das → dem · мн.ч. → den`,
     examples: [
-      { de: "Das Buch liegt auf dem Tisch.",    ru: "Книга лежит на столе."          },
-      { de: "Die Katze sitzt unter dem Stuhl.", ru: "Кошка сидит под стулом."        },
-      { de: "Er steht vor dem Haus.",           ru: "Он стоит перед домом."          },
-      { de: "Ich bin im Supermarkt. (in+dem)",  ru: "Я в супермаркете. (in+dem=im)"  },
-      { de: "Wo ist der Ball?",                 ru: "Где мяч?"                        },
+      { de: "Das Buch liegt auf dem Tisch.",     ru: "Книга на столе. (сверху → auf)"             },
+      { de: "Das Bild hängt an der Wand.",       ru: "Картина на стене. (вертикально → an)"       },
+      { de: "Die Milch ist im Kühlschrank.",     ru: "Молоко в холодильнике. (внутри → in)"       },
+      { de: "Die Katze sitzt unter dem Stuhl.",  ru: "Кошка под стулом."                          },
+      { de: "Der Ball ist zwischen den Autos.",  ru: "Мяч между машинами."                        },
     ],
-    tip_de: "Wo? → Dativ (im, am). Wohin? → Akkusativ (in den, an den). Lern diese Frage!",
-    tip_ru: "Wo? (где?) → Dativ. Wohin? (куда?) → Akkusativ. Вопрос определяет падеж!",
+    tip_de: "auf = horizontal/oben. an = vertikal/Kante. in = innen. Wo? → immer Dativ!",
+    tip_ru: "auf = сверху на горизонтали. an = на вертикали / вплотную. in = внутри. Wo? → всегда Dativ!",
   },
 
   // ════════════════════════════════════════
