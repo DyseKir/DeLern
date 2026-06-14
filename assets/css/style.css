@@ -818,6 +818,7 @@ body {
 .conj-input:focus { border-color: var(--accent); }
 .conj-input.conj-ok  { border-color: var(--correct); background: rgba(78,203,113,.12); }
 .conj-input.conj-bad { border-color: var(--wrong);   background: rgba(255,77,109,.12); }
+.conj-correct { flex: 0 0 auto; font-size: 14px; font-weight: 700; color: var(--correct); white-space: nowrap; }
 .conj-submit { width: 100%; padding: 11px; font-size: 15px; }
 .conj-feedback { font-size: 15px; font-weight: 700; min-height: 22px; text-align: center; }
 .conj-feedback.ok  { color: var(--correct); }
@@ -854,6 +855,8 @@ body {
 }
 .tt-feedback.ok  { color: var(--correct); }
 .tt-feedback.bad { color: var(--wrong); }
+.tt-your-ans  { text-decoration: line-through; color: var(--wrong); }
+.tt-right-ans { color: var(--correct); }
 .tt-score { font-size: 13px; color: var(--text-muted); }
 
 .tt-umlaut-row {

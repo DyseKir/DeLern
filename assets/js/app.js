@@ -1329,6 +1329,7 @@ function drawConjCard() {
       <span class="conj-pron">${label}</span>
       <input class="conj-input" data-pron="${pr}" type="text"
         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <span class="conj-correct" data-for="${pr}"></span>
     </div>`).join('');
   $('cards-progress-fill').style.width = (CONJ.idx / CONJ.verbs.length * 100) + '%';
   // Enter в последнем поле = проверить; в остальных — переход к следующему
@@ -1355,10 +1356,17 @@ function handleConjSubmit() {
     const pron = inp.dataset.pron;
     const expected = (v.conj[pron]||'').toLowerCase().replace(/ß/g,'ss');
     const got      = inp.value.trim().toLowerCase().replace(/ß/g,'ss');
+    const hint     = $('conj-fields').querySelector(`.conj-correct[data-for="${pron}"]`);
     if (!got) anyEmpty = true;
     inp.classList.remove('conj-ok','conj-bad');
-    if (got === expected && got) { inp.classList.add('conj-ok'); }
-    else { inp.classList.add('conj-bad'); inp.value = v.conj[pron]; allOk = false; }
+    if (hint) hint.textContent = '';
+    if (got === expected && got) {
+      inp.classList.add('conj-ok');
+    } else {
+      inp.classList.add('conj-bad');
+      if (hint) hint.textContent = `→ ${v.conj[pron]}`;  // показываем правильную форму рядом
+      allOk = false;
+    }
   });
 
   if (anyEmpty && allOk) return; // ничего не введено
@@ -1434,7 +1442,8 @@ function drawTestCard() {
 function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
-  const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
+  const raw      = $('tt-input').value.trim();
+  const input    = raw.toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
   const noArt    = !card.article || card.article === '-';
   const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
   if (!input) return;
@@ -1457,7 +1466,7 @@ function handleTypingSubmit() {
   } else {
     updateWP(card.id, false);
     const ans = noArt ? card.word : `${card.article} ${card.word}`;
-    $('tt-feedback').innerHTML = `✗ Правильно: <strong>${ans}</strong>`;
+    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong>`;
     $('tt-feedback').className = 'tt-feedback bad';
     if (!S.testRequeued.has(card.id)) {
       S.testRequeued.add(card.id);
@@ -1906,9 +1915,10 @@ function drawExamCard() {
 function handleExamSubmit() {
   const card = EX.cards[EX.idx];
   if (!card) return;
-  const input    = $('exam-input').value.trim().toLowerCase().replace(/\s+/g,' ');
+  const raw      = $('exam-input').value.trim();
+  const input    = raw.toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
   const noArt    = !card.article || card.article === '-';
-  const expected = noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase();
+  const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
   if (!input) return;
 
   const fb = $('exam-feedback');
@@ -1917,7 +1927,8 @@ function handleExamSubmit() {
     fb.textContent = '✓'; fb.className = 'exam-feedback ok';
   } else {
     const ans = noArt ? card.word : `${card.article} ${card.word}`;
-    fb.innerHTML = `✗ <strong>${ans}</strong>`; fb.className = 'exam-feedback bad';
+    fb.innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong>`;
+    fb.className = 'exam-feedback bad';
   }
   $('exam-score').textContent = `✓ ${EX.correct}`;
   const delay = input === expected ? 500 : 1400;
