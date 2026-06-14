@@ -1397,14 +1397,6 @@ function startTypingTest() {
   shuffle(S.testCards);
   S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
 
-function startTypingTest() {
-  S.phase = 'test';
-  const p = loadProg();
-  // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
-  S.testCards = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
-  shuffle(S.testCards);
-  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
-
   $('flashcard').classList.add('hidden');
 
   if (!S.testCards.length) { showComplete(); return; }
