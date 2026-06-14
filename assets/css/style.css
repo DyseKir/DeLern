@@ -699,7 +699,17 @@ body {
 .card-counter { font-size: 12px; color: var(--text-dim); margin-bottom: 22px; }
 .card-emoji   { font-size: 5.2rem; display: block; margin-bottom: 18px; transition: transform .3s; }
 .flashcard:hover .card-emoji { transform: scale(1.06); }
-.card-word    { font-size: 2.3rem; font-weight: 700; margin-bottom: 7px; }
+.card-word    { font-size: 2.3rem; font-weight: 700; margin-bottom: 4px; }
+.card-translit-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px; }
+.card-translit { font-size: 14px; color: var(--accent); font-style: italic; }
+.speak-btn {
+  background: rgba(168,139,250,.15); border: 1px solid rgba(168,139,250,.3);
+  border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .1s;
+}
+.speak-btn:hover  { background: rgba(168,139,250,.3); }
+.speak-btn:active { transform: scale(.9); }
 .card-translation { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
 
 /* Article buttons */
@@ -1174,6 +1184,9 @@ body {
 .vl-art.art-das { background: rgba(78,203,113,.2);  color: var(--das); }
 .vl-word  { font-weight: 600; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vl-trans { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+.vl-translit { font-size: 11px; color: var(--accent); font-style: italic; flex-shrink: 0; }
+.vl-speak { background: none; border: none; cursor: pointer; font-size: 12px; padding: 0 2px; opacity: .7; }
+.vl-speak:hover { opacity: 1; }
 
 /* ══════════════════════════════════════════════════
    SHOP

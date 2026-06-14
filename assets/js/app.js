@@ -283,6 +283,53 @@ function applyLang() {
   }
 }
 
+/* ── Приблизительная транскрипция немецкого русскими буквами ── */
+function deTranscribe(word) {
+  if (!word) return '';
+  let s = ' ' + word.toLowerCase().replace(/ß/g,'с') + ' ';
+  s = s
+    .replace(/tsch/g,'ч')
+    .replace(/sch/g,'ш')
+    .replace(/chs/g,'кс')
+    .replace(/ch/g,'х')
+    .replace(/ck/g,'к')
+    .replace(/qu/g,'кв')
+    .replace(/ph/g,'ф')
+    .replace(/th/g,'т')
+    .replace(/tion/g,'цьон')
+    .replace(/ ст/g,' шт').replace(/ sp/g,' шп').replace(/ st/g,' шт')
+    .replace(/([aeiouäöü])h/g,'$1')         // h после гласной — удлинение, не читается
+    .replace(/ei/g,'ай').replace(/ai/g,'ай')
+    .replace(/eu/g,'ой').replace(/äu/g,'ой')
+    .replace(/ie/g,'и')
+    .replace(/ee/g,'э').replace(/aa/g,'а').replace(/oo/g,'о')
+    .replace(/ (s)([aeiouäöü])/g,' з$2')    // s в начале перед гласной → з
+    .replace(/([aeiouäöü])s([aeiouäöü])/g,'$1з$2') // s между гласными → з
+    .replace(/ig /g,'ихь ')                 // -ig на конце
+    .replace(/er /g,'эр ');
+  const map = {
+    a:'а', ä:'э', b:'б', c:'к', d:'д', e:'э', f:'ф', g:'г', h:'х', i:'и',
+    j:'й', k:'к', l:'л', m:'м', n:'н', o:'о', ö:'ё', p:'п', q:'к', r:'р',
+    s:'с', t:'т', u:'у', ü:'ю', v:'ф', w:'в', x:'кс', y:'ю', z:'ц',
+  };
+  let out = '';
+  for (const ch of s) out += (map[ch] !== undefined ? map[ch] : ch);
+  return out.trim();
+}
+
+/* ── Озвучка слова (немецкий TTS) ── */
+function speakWord(word) {
+  try {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'de-DE'; u.rate = .85;
+    const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.startsWith('de'));
+    if (v) u.voice = v;
+    speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
 /* ── Emoji по словам ── */
 const EMOJI = {
   Apfel:'🍎', Milch:'🥛', Brot:'🍞', Pizza:'🍕', Käse:'🧀',
@@ -1013,11 +1060,12 @@ function renderVocabLearned() {
     <h3 class="vocab-learned-title">${title} <span class="vl-hint">— ${hint}</span></h3>
     <div class="vocab-learned-grid">
       ${learnedWords.map(w=>`
-        <div class="vl-word-card" data-wid="${w.id}">
+        <div class="vl-word-card" data-wid="${w.id}" data-word="${w.word}">
           <button class="vl-reset" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">✕</button>
           <span class="vl-emoji">${EMOJI[w.word]||w.catEmoji||'📝'}</span>
           <span class="vl-art art-${w.article}">${w.article!=='-'?w.article:''}</span>
-          <span class="vl-word">${w.word}</span>
+          <span class="vl-word">${w.word} <button class="vl-speak" title="🔊">🔊</button></span>
+          <span class="vl-translit">[${deTranscribe(w.word)}]</span>
           <span class="vl-trans">${(lang==='uk'&&window.TRANSLATIONS_UK&&window.TRANSLATIONS_UK[w.id])||w.translation}</span>
         </div>`).join('')}
     </div>`;
@@ -1028,6 +1076,11 @@ function renderVocabLearned() {
       resetWord(id);
       renderVocabLearned();
       refreshOverallBar();
+    }));
+  section.querySelectorAll('.vl-speak').forEach(btn =>
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      speakWord(btn.closest('.vl-word-card').dataset.word);
     }));
 }
 
@@ -1083,6 +1136,8 @@ function drawCard() {
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
   $('card-emoji').textContent           = EMOJI[card.word] || S.currentCatEmoji;
   $('card-word').textContent            = card.word;
+  if ($('card-translit')) $('card-translit').textContent = `[${deTranscribe(card.word)}]`;
+  S.currentWord = card.word;
   $('card-translation').textContent     = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
@@ -2165,6 +2220,9 @@ function initEvents() {
       inp.focus();
     });
   });
+
+  /* Озвучка слова */
+  $('speak-btn')?.addEventListener('click', () => { if (S.currentWord) speakWord(S.currentWord); });
 
   /* Спряжение */
   $('conj-submit')?.addEventListener('click', handleConjSubmit);
