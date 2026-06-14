@@ -283,6 +283,15 @@ function applyLang() {
   }
 }
 
+/* нормализация ответа: нижний регистр, ß→ss, убираем ударения (é→e и т.п.) */
+function normAnswer(s) {
+  return (s||'').trim().toLowerCase()
+    .replace(/\s+/g,' ')
+    .replace(/ß/g,'ss')
+    .replace(/[éèê]/g,'e').replace(/[áàâ]/g,'a').replace(/[íìî]/g,'i')
+    .replace(/[óòô]/g,'o').replace(/[úùû]/g,'u');
+}
+
 /* ── Приблизительная транскрипция немецкого русскими буквами ── */
 function deTranscribe(word) {
   if (!word) return '';
@@ -1413,8 +1422,8 @@ function handleConjSubmit() {
   let allOk = true, anyEmpty = false;
   inputs.forEach(inp => {
     const pron = inp.dataset.pron;
-    const expected = (v.conj[pron]||'').toLowerCase().replace(/ß/g,'ss');
-    const got      = inp.value.trim().toLowerCase().replace(/ß/g,'ss');
+    const expected = normAnswer(v.conj[pron]||'');
+    const got      = normAnswer(inp.value);
     const hint     = $('conj-fields').querySelector(`.conj-correct[data-for="${pron}"]`);
     if (!got) anyEmpty = true;
     inp.classList.remove('conj-ok','conj-bad');
@@ -1502,9 +1511,9 @@ function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
   const raw      = $('tt-input').value.trim();
-  const input    = raw.toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
+  const input    = normAnswer(raw);
   const noArt    = !card.article || card.article === '-';
-  const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
+  const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
   if (!input) return;
   const isOk = input === expected;
 
@@ -1975,9 +1984,9 @@ function handleExamSubmit() {
   const card = EX.cards[EX.idx];
   if (!card) return;
   const raw      = $('exam-input').value.trim();
-  const input    = raw.toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
+  const input    = normAnswer(raw);
   const noArt    = !card.article || card.article === '-';
-  const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
+  const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
   if (!input) return;
 
   const fb = $('exam-feedback');
