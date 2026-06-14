@@ -1320,6 +1320,7 @@ function drawConjCard() {
   const streak = wp.streak || 0;
   $('conj-verb').textContent = v.word;
   $('conj-tr').textContent   = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[v.id]) || v.translation;
+  if ($('conj-hint')) { $('conj-hint').innerHTML = v.hint || ''; $('conj-hint').style.display = v.hint ? '' : 'none'; }
   $('conj-counter').textContent = `${CONJ.idx+1} / ${CONJ.verbs.length}`;
   $('conj-streak').textContent  = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak) + ` ${streak}/${LEARNED_THRESHOLD}`;
   $('conj-feedback').textContent = '';

@@ -1146,14 +1146,14 @@ window.VOCAB_DATA = [
   {
     level: "A1", category: "modalverben", name: "Modalverben", name_ru: "Модальные глаголы (спряжение)", emoji: "🔑", ruleId: "a1_gr_016", mode: "conjugation",
     words: [
-      { id: "a1_mv_001", article: "-", word: "können",  translation: "мочь / уметь (способность)",          conj: { ich:"kann",  du:"kannst",   er:"kann",  wir:"können",  ihr:"könnt",  sie:"können"  } },
-      { id: "a1_mv_002", article: "-", word: "müssen",  translation: "должен (необходимость, надо)",         conj: { ich:"muss",  du:"musst",    er:"muss",  wir:"müssen",  ihr:"müsst",  sie:"müssen"  } },
-      { id: "a1_mv_003", article: "-", word: "dürfen",  translation: "можно (разрешение)",                  conj: { ich:"darf",  du:"darfst",   er:"darf",  wir:"dürfen",  ihr:"dürft",  sie:"dürfen"  } },
-      { id: "a1_mv_004", article: "-", word: "wollen",  translation: "хотеть (намерение)",                  conj: { ich:"will",  du:"willst",   er:"will",  wir:"wollen",  ihr:"wollt",  sie:"wollen"  } },
-      { id: "a1_mv_005", article: "-", word: "sollen",  translation: "следует / должен (по указанию, совет)",conj: { ich:"soll",  du:"sollst",   er:"soll",  wir:"sollen",  ihr:"sollt",  sie:"sollen"  } },
-      { id: "a1_mv_006", article: "-", word: "mögen",   translation: "нравиться / любить",                  conj: { ich:"mag",   du:"magst",    er:"mag",   wir:"mögen",   ihr:"mögt",   sie:"mögen"   } },
-      { id: "a1_mv_007", article: "-", word: "möchten", translation: "хотел бы (вежливая просьба)",          conj: { ich:"möchte",du:"möchtest", er:"möchte",wir:"möchten", ihr:"möchtet",sie:"möchten" } },
-      { id: "a1_mv_008", article: "-", word: "wissen",  translation: "знать (факт, информацию)",             conj: { ich:"weiß",  du:"weißt",    er:"weiß",  wir:"wissen",  ihr:"wisst",  sie:"wissen"  } },
+      { id: "a1_mv_001", article: "-", word: "können",  translation: "мочь / уметь (способность)",          hint: "Ich <b>kann</b> schwimmen. — Я умею плавать. (способность)",        conj: { ich:"kann",  du:"kannst",   er:"kann",  wir:"können",  ihr:"könnt",  sie:"können"  } },
+      { id: "a1_mv_002", article: "-", word: "müssen",  translation: "должен (необходимость, надо)",         hint: "Ich <b>muss</b> arbeiten. — Я должен работать. (надо, иначе никак)",  conj: { ich:"muss",  du:"musst",    er:"muss",  wir:"müssen",  ihr:"müsst",  sie:"müssen"  } },
+      { id: "a1_mv_003", article: "-", word: "dürfen",  translation: "можно (разрешение)",                  hint: "Ich <b>darf</b> bleiben. — Мне можно остаться. (разрешение)",         conj: { ich:"darf",  du:"darfst",   er:"darf",  wir:"dürfen",  ihr:"dürft",  sie:"dürfen"  } },
+      { id: "a1_mv_004", article: "-", word: "wollen",  translation: "хотеть (намерение)",                  hint: "Ich <b>will</b> Deutsch lernen. — Я хочу учить немецкий. (намерение)",conj: { ich:"will",  du:"willst",   er:"will",  wir:"wollen",  ihr:"wollt",  sie:"wollen"  } },
+      { id: "a1_mv_005", article: "-", word: "sollen",  translation: "следует / должен (по указанию, совет)",hint: "Der Arzt sagt, ich <b>soll</b> schlafen. — Врач велит мне спать. (чужое указание)", conj: { ich:"soll",  du:"sollst",   er:"soll",  wir:"sollen",  ihr:"sollt",  sie:"sollen"  } },
+      { id: "a1_mv_006", article: "-", word: "mögen",   translation: "нравиться / любить",                  hint: "Ich <b>mag</b> Schokolade. — Я люблю шоколад.",                       conj: { ich:"mag",   du:"magst",    er:"mag",   wir:"mögen",   ihr:"mögt",   sie:"mögen"   } },
+      { id: "a1_mv_007", article: "-", word: "möchten", translation: "хотел бы (вежливая просьба)",          hint: "Ich <b>möchte</b> einen Kaffee. — Я хотел бы кофе. (вежливо)",        conj: { ich:"möchte",du:"möchtest", er:"möchte",wir:"möchten", ihr:"möchtet",sie:"möchten" } },
+      { id: "a1_mv_008", article: "-", word: "wissen",  translation: "знать (факт, информацию)",             hint: "Ich <b>weiß</b> die Antwort. — Я знаю ответ.",                        conj: { ich:"weiß",  du:"weißt",    er:"weiß",  wir:"wissen",  ihr:"wisst",  sie:"wissen"  } },
     ]
   },
 
