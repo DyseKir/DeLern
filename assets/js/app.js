@@ -1375,14 +1375,23 @@ function drawTestCard() {
 function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
-  const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ');
+  let input      = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
   const noArt    = !card.article || card.article === '-';
-  const expected = card.conjPronoun
-    ? card.conjAnswer.toLowerCase()
-    : (noArt ? card.word.toLowerCase() : (card.article + ' ' + card.word).toLowerCase());
-  if (!input) return;
+  let isOk;
 
-  if (input === expected) {
+  if (card.conjPronoun) {
+    // принимаем как "kann", так и "ich kann" / "er kann" — отбрасываем местоимение
+    const PRON = ['ich','du','er','sie','es','wir','ihr'];
+    const parts = input.split(' ');
+    if (parts.length === 2 && PRON.includes(parts[0])) input = parts[1];
+    isOk = input === card.conjAnswer.toLowerCase().replace(/ß/g,'ss');
+  } else {
+    const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
+    isOk = input === expected;
+  }
+  if (!$('tt-input').value.trim()) return;
+
+  if (isOk) {
     const wp = updateWP(card.id, true);
     S.testCorrect++;
     if (wp.status === 'learned') {
