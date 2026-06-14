@@ -918,7 +918,7 @@ window.VOCAB_DATA = [
       { id: "a1_od_001", article: "das", word: "Kino",       translation: "кинотеатр"    },
       { id: "a1_od_002", article: "das", word: "Hotel",      translation: "отель"        },
       { id: "a1_od_003", article: "das", word: "Rathaus",    translation: "ратуша"       },
-      { id: "a1_od_004", article: "das", word: "Restaurant", translation: "ресторан"     },
+      { id: "a1_od_004", article: "das", word: "Restaurant", translation: "ресторан", translit: "ресторан" },
       { id: "a1_od_005", article: "das", word: "Café",       translation: "кафе"         },
       { id: "a1_od_006", article: "das", word: "Haus",       translation: "дом"          },
       { id: "a1_od_007", article: "das", word: "Dach",       translation: "крыша"        },
@@ -1154,6 +1154,31 @@ window.VOCAB_DATA = [
       { id: "a1_mv_006", article: "-", word: "mögen",   translation: "нравиться / любить",                  hint: "Ich <b>mag</b> Schokolade. — Я люблю шоколад.",                       conj: { ich:"mag",   du:"magst",    er:"mag",   wir:"mögen",   ihr:"mögt",   sie:"mögen"   } },
       { id: "a1_mv_007", article: "-", word: "möchten", translation: "хотел бы (вежливая просьба)",          hint: "Ich <b>möchte</b> einen Kaffee. — Я хотел бы кофе. (вежливо)",        conj: { ich:"möchte",du:"möchtest", er:"möchte",wir:"möchten", ihr:"möchtet",sie:"möchten" } },
       { id: "a1_mv_008", article: "-", word: "wissen",  translation: "знать (факт, информацию)",             hint: "Ich <b>weiß</b> die Antwort. — Я знаю ответ.",                        conj: { ich:"weiß",  du:"weißt",    er:"weiß",  wir:"wissen",  ihr:"wisst",  sie:"wissen"  } },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — LAGE / WO? (Расположение объекта — предлоги места)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "lage", name: "Lage – Wo?", name_ru: "Расположение (где?)", emoji: "📍", ruleId: "a1_gr_018",
+    words: [
+      { id: "a1_lg_001", article: "-", word: "vor",        translation: "перед"                  },
+      { id: "a1_lg_002", article: "-", word: "hinter",     translation: "за / позади"            },
+      { id: "a1_lg_003", article: "-", word: "neben",      translation: "рядом / возле"          },
+      { id: "a1_lg_004", article: "-", word: "über",       translation: "над"                    },
+      { id: "a1_lg_005", article: "-", word: "unter",      translation: "под"                    },
+      { id: "a1_lg_006", article: "-", word: "an",         translation: "у / возле (вплотную)"   },
+      { id: "a1_lg_007", article: "-", word: "auf",        translation: "на (поверхности)"       },
+      { id: "a1_lg_008", article: "-", word: "in",         translation: "в / внутри"             },
+      { id: "a1_lg_009", article: "-", word: "zwischen",   translation: "между"                  },
+      { id: "a1_lg_010", article: "-", word: "gegenüber",  translation: "напротив"               },
+      { id: "a1_lg_011", article: "-", word: "links",      translation: "слева"                  },
+      { id: "a1_lg_012", article: "-", word: "rechts",     translation: "справа"                 },
+      { id: "a1_lg_013", article: "-", word: "oben",       translation: "наверху"                },
+      { id: "a1_lg_014", article: "-", word: "unten",      translation: "внизу"                  },
+      { id: "a1_lg_015", article: "-", word: "innen",      translation: "внутри"                 },
+      { id: "a1_lg_016", article: "-", word: "außen",      translation: "снаружи"                },
     ]
   },
 

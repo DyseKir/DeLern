@@ -504,6 +504,10 @@ const EMOJI = {
   // Modalverben
   können:'💪', müssen:'❗', dürfen:'✅', wollen:'🙋', sollen:'📋', mögen:'❤️',
   möchten:'🙏', wissen:'🧠',
+  // Lage / Wo?
+  vor:'⬅️', hinter:'➡️', neben:'↔️', über:'⬆️', unter:'⬇️', an:'📌', auf:'🔝',
+  in:'📥', zwischen:'↔️', gegenüber:'🔄', links:'👈', rechts:'👉',
+  oben:'🔼', unten:'🔽', innen:'🔵', außen:'⭕',
   // Krankheiten & Gesundheit
   Kopfschmerzen:'🤕', Bauchschmerzen:'😣', Halsschmerzen:'😷', Zahnschmerzen:'🦷',
   Rückenschmerzen:'🔙', Fieber:'🌡️', Erkältung:'🤧', Husten:'😮‍💨', Schnupfen:'🤧',
@@ -1065,7 +1069,7 @@ function renderVocabLearned() {
           <span class="vl-emoji">${EMOJI[w.word]||w.catEmoji||'📝'}</span>
           <span class="vl-art art-${w.article}">${w.article!=='-'?w.article:''}</span>
           <span class="vl-word">${w.word} <button class="vl-speak" title="🔊">🔊</button></span>
-          <span class="vl-translit">[${deTranscribe(w.word)}]</span>
+          <span class="vl-translit">[${w.translit || deTranscribe(w.word)}]</span>
           <span class="vl-trans">${(lang==='uk'&&window.TRANSLATIONS_UK&&window.TRANSLATIONS_UK[w.id])||w.translation}</span>
         </div>`).join('')}
     </div>`;
@@ -1136,7 +1140,7 @@ function drawCard() {
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
   $('card-emoji').textContent           = EMOJI[card.word] || S.currentCatEmoji;
   $('card-word').textContent            = card.word;
-  if ($('card-translit')) $('card-translit').textContent = `[${deTranscribe(card.word)}]`;
+  if ($('card-translit')) $('card-translit').textContent = `[${card.translit || deTranscribe(card.word)}]`;
   S.currentWord = card.word;
   $('card-translation').textContent     = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
