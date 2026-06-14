@@ -804,12 +804,22 @@ body {
 .conj-counter { font-size: 13px; color: var(--text-muted); }
 .conj-verb { font-size: 2rem; font-weight: 800; color: var(--accent); }
 .conj-tr   { font-size: 1rem; color: var(--text-muted); }
-.conj-hint {
-  font-size: 13px; color: var(--text); line-height: 1.45;
-  background: rgba(168,139,250,.1); border: 1px solid rgba(168,139,250,.25);
-  border-radius: 8px; padding: 8px 12px; text-align: center; width: 100%; box-sizing: border-box;
+.conj-legend {
+  width: 100%; box-sizing: border-box;
+  background: rgba(168,139,250,.08); border: 1px solid rgba(168,139,250,.22);
+  border-radius: 8px;
 }
-.conj-hint b { color: var(--accent); }
+.conj-legend summary {
+  cursor: pointer; padding: 9px 12px; font-size: 13px; font-weight: 600;
+  color: var(--accent); list-style: none; user-select: none;
+}
+.conj-legend summary::-webkit-details-marker { display: none; }
+.conj-legend summary::after { content: ' ▾'; }
+.conj-legend[open] summary::after { content: ' ▴'; }
+.conj-legend-body { padding: 0 12px 10px; }
+.conj-legend-body p { font-size: 12.5px; line-height: 1.5; color: var(--text); margin: 4px 0; text-align: left; }
+.conj-legend-body b { color: var(--accent); }
+.conj-legend-body i { color: var(--text-muted); font-style: italic; }
 .conj-fields { width: 100%; display: flex; flex-direction: column; gap: 8px; margin: 6px 0; }
 .conj-row { display: flex; align-items: center; gap: 10px; }
 .conj-pron {

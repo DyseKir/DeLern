@@ -16,7 +16,7 @@ const TR = {
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
-    conj_banner: 'Konjugiere das Verb in allen Personen', conj_check: 'Prüfen',
+    conj_banner: 'Konjugiere das Verb in allen Personen', conj_check: 'Prüfen', conj_legend_t: '📖 Wann welches Modalverb?',
     cart_title: 'Warenkorb', cart_empty: 'Leer', cart_total: 'Gesamt:', cart_buy: 'Kaufen!',
     home_title: 'Willkommen bei DeutschLernen!',
     home_subtitle: 'Wähle deinen Kurs aus.',
@@ -78,7 +78,7 @@ const TR = {
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
-    conj_banner: 'Спряги глагол по всем лицам', conj_check: 'Проверить',
+    conj_banner: 'Спряги глагол по всем лицам', conj_check: 'Проверить', conj_legend_t: '📖 Когда какой модальный глагол использовать',
     cart_title: 'Корзина', cart_empty: 'Пусто', cart_total: 'Итого:', cart_buy: 'Купить!',
     home_title: 'Добро пожаловать в DeutschLernen!',
     home_subtitle: 'Выбери свой курс.',
@@ -140,7 +140,7 @@ const TR = {
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
-    conj_banner: 'Відміняй дієслово за всіма особами', conj_check: 'Перевірити',
+    conj_banner: 'Відміняй дієслово за всіма особами', conj_check: 'Перевірити', conj_legend_t: '📖 Коли яке модальне дієслово вживати',
     cart_title: 'Кошик', cart_empty: 'Порожньо', cart_total: 'Разом:', cart_buy: 'Купити!',
     home_title: 'Ласкаво просимо до DeutschLernen!',
     home_subtitle: 'Обери свій курс.',
@@ -1320,7 +1320,6 @@ function drawConjCard() {
   const streak = wp.streak || 0;
   $('conj-verb').textContent = v.word;
   $('conj-tr').textContent   = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[v.id]) || v.translation;
-  if ($('conj-hint')) { $('conj-hint').innerHTML = v.hint || ''; $('conj-hint').style.display = v.hint ? '' : 'none'; }
   $('conj-counter').textContent = `${CONJ.idx+1} / ${CONJ.verbs.length}`;
   $('conj-streak').textContent  = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak) + ` ${streak}/${LEARNED_THRESHOLD}`;
   $('conj-feedback').textContent = '';

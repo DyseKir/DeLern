@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeutschLernen – Deutsch lernen mit System</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260622">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260623">
 </head>
 <body>
 
@@ -211,10 +211,21 @@
         <!-- CONJUGATION (6 полей сразу) -->
         <div class="conj-area hidden" id="conj-area">
           <div class="conj-banner">🔑 <span data-i18n="conj_banner">Спряги глагол по всем лицам</span></div>
+          <details class="conj-legend" id="conj-legend">
+            <summary data-i18n="conj_legend_t">📖 Когда какой модальный глагол использовать</summary>
+            <div class="conj-legend-body">
+              <p>🟢 <b>können</b> — способность/возможность: <i>Ich kann schwimmen</i> (умею плавать)</p>
+              <p>🔴 <b>müssen</b> — необходимость, надо (сам понимаю): <i>Ich muss arbeiten</i></p>
+              <p>🟣 <b>sollen</b> — по чужому указанию/совету: <i>Der Arzt sagt, ich soll schlafen</i></p>
+              <p>🟡 <b>dürfen</b> — разрешение: <i>Ich darf bleiben</i> (мне можно)</p>
+              <p>🔵 <b>wollen</b> — намерение, воля: <i>Ich will lernen</i></p>
+              <p>🩷 <b>möchten</b> — вежливое желание: <i>Ich möchte Kaffee</i></p>
+              <p>❤️ <b>mögen</b> — нравиться/любить</p>
+            </div>
+          </details>
           <div class="conj-counter" id="conj-counter">1 / 8</div>
           <div class="conj-verb"    id="conj-verb">können</div>
           <div class="conj-tr"      id="conj-tr">мочь / уметь</div>
-          <div class="conj-hint"    id="conj-hint"></div>
           <div class="conj-fields"  id="conj-fields"></div>
           <div class="tt-umlaut-row" id="conj-umlauts">
             <button class="uml-btn" data-char="ä">ä</button>
@@ -407,9 +418,9 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260622"></script>
-  <script src="db/grammar.js?v=20260622"></script>
-  <script src="db/translations_uk.js?v=20260622"></script>
-  <script src="assets/js/app.js?v=20260622"></script>
+  <script src="db/words.js?v=20260623"></script>
+  <script src="db/grammar.js?v=20260623"></script>
+  <script src="db/translations_uk.js?v=20260623"></script>
+  <script src="assets/js/app.js?v=20260623"></script>
 </body>
 </html>
