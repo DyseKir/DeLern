@@ -16,6 +16,7 @@ const TR = {
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
+    conj_banner: 'Konjugiere das Verb in allen Personen', conj_check: 'Prüfen',
     cart_title: 'Warenkorb', cart_empty: 'Leer', cart_total: 'Gesamt:', cart_buy: 'Kaufen!',
     home_title: 'Willkommen bei DeutschLernen!',
     home_subtitle: 'Wähle deinen Kurs aus.',
@@ -77,6 +78,7 @@ const TR = {
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
+    conj_banner: 'Спряги глагол по всем лицам', conj_check: 'Проверить',
     cart_title: 'Корзина', cart_empty: 'Пусто', cart_total: 'Итого:', cart_buy: 'Купить!',
     home_title: 'Добро пожаловать в DeutschLernen!',
     home_subtitle: 'Выбери свой курс.',
@@ -138,6 +140,7 @@ const TR = {
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
+    conj_banner: 'Відміняй дієслово за всіма особами', conj_check: 'Перевірити',
     cart_title: 'Кошик', cart_empty: 'Порожньо', cart_total: 'Разом:', cart_buy: 'Купити!',
     home_title: 'Ласкаво просимо до DeutschLernen!',
     home_subtitle: 'Обери свій курс.',
@@ -692,7 +695,7 @@ function resetCategory(catKey, level) {
   if (!cat || !cat.words) return;
   const p = loadProg();
   if (cat.mode === 'conjugation') {
-    buildConjCards(cat).forEach(c => { if (p[c.id]) delete p[c.id]; });
+    cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; });
   } else {
     cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; removeDeferred(w.id); });
   }
@@ -896,9 +899,9 @@ function renderCatPreview() {
   cats.forEach(cat => {
     let total, learned;
     if (cat.mode === 'conjugation') {
-      const forms = buildConjCards(cat);
-      total   = forms.length;
-      learned = forms.filter(c => p[c.id] && p[c.id].status === 'learned').length;
+      const verbs = cat.words.filter(w => w.conj);
+      total   = verbs.length;
+      learned = verbs.filter(w => p[w.id] && p[w.id].status === 'learned').length;
     } else {
       // отложенные слова не учитываются в общем количестве категории
       const visible = cat.words.filter(w => !isDeferred(w.id));
@@ -1056,6 +1059,8 @@ function startSession(cat) {
   $('cards-level-badge').textContent    = S.level;
   show('cards');
   $('flashcard').classList.remove('hidden');
+  $('typing-test').classList.add('hidden');
+  $('conj-area')?.classList.add('hidden');
   $('session-complete').classList.add('hidden');
   $('all-learned').classList.add('hidden');
   if (!active.length) {
@@ -1165,6 +1170,7 @@ function showComplete() {
   $('defer-btn')?.classList.add('hidden');
   $('flashcard').classList.add('hidden');
   $('typing-test').classList.add('hidden');
+  $('conj-area')?.classList.add('hidden');
   $('session-complete').classList.remove('hidden');
   $('cards-progress-fill').style.width='100%';
   $('cs-correct').textContent=S.sessionCorrect + S.testCorrect;
@@ -1267,62 +1273,129 @@ function handleDefer() {
   }
 }
 
-/* ── Спряжение глаголов ── */
+/* ── Спряжение глаголов (одна карточка = глагол, 6 полей) ── */
 const CONJ_PRONOUNS = [
-  ['ich', 'ich (я)'],
-  ['du',  'du (ты)'],
-  ['er',  'er / sie / es (он/она)'],
-  ['wir', 'wir (мы)'],
-  ['ihr', 'ihr (вы)'],
-  ['sie', 'sie / Sie (они/Вы)'],
+  ['ich', 'ich'],
+  ['du',  'du'],
+  ['er',  'er / sie / es'],
+  ['wir', 'wir'],
+  ['ihr', 'ihr'],
+  ['sie', 'sie / Sie'],
 ];
-const CONJ_LABEL = Object.fromEntries(CONJ_PRONOUNS);
-
-function buildConjCards(cat) {
-  const out = [];
-  (cat.words||[]).forEach(w => {
-    if (!w.conj) return;
-    CONJ_PRONOUNS.forEach(([pr]) => {
-      if (!w.conj[pr]) return;
-      out.push({
-        id: `${w.id}__${pr}`,
-        word: w.word, translation: w.translation, article: '-',
-        conjPronoun: pr, conjAnswer: w.conj[pr],
-      });
-    });
-  });
-  return out;
-}
+const CONJ = { verbs: [], idx: 0 };
 
 function startConjugation(cat) {
   const p = loadProg();
   S.catMode = 'conjugation'; S.catKey = cat.category; S.catRuleId = cat.ruleId || null;
   S.currentCatEmoji = cat.emoji || '🔑';
+  S.sessionCorrect = 0; S.sessionWrong = 0; S.sessionLearned = 0; S.testCorrect = 0;
   const peekBtn = $('rule-peek-btn');
   if (peekBtn) peekBtn.classList.toggle('hidden', !cat.ruleId);
   $('cards-category-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
   $('cards-level-badge').textContent = S.level;
 
-  const all = buildConjCards(cat);
-  S.testCards = shuffle(all.filter(c => !p[c.id] || p[c.id].status !== 'learned'));
-  S.cards = []; S.cardIdx = 0;
-  S.sessionCorrect = 0; S.sessionWrong = 0; S.sessionLearned = 0;
-  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
-  S.phase = 'test';
+  CONJ.verbs = shuffle((cat.words||[]).filter(w => w.conj && (!p[w.id] || p[w.id].status !== 'learned')));
+  CONJ.idx = 0;
 
   show('cards');
   $('session-complete').classList.add('hidden');
   $('all-learned').classList.add('hidden');
   $('flashcard').classList.add('hidden');
+  $('typing-test').classList.add('hidden');
+  $('defer-btn')?.classList.add('hidden');
 
-  if (!S.testCards.length) {
-    $('typing-test').classList.add('hidden');
+  if (!CONJ.verbs.length) {
+    $('conj-area').classList.add('hidden');
     $('all-learned').classList.remove('hidden');
     return;
   }
-  $('typing-test').classList.remove('hidden');
-  drawTestCard();
+  $('conj-area').classList.remove('hidden');
+  drawConjCard();
 }
+
+function drawConjCard() {
+  if (CONJ.idx >= CONJ.verbs.length) { showComplete(); return; }
+  const v = CONJ.verbs[CONJ.idx];
+  const wp = getWP(v.id);
+  const streak = wp.streak || 0;
+  $('conj-verb').textContent = v.word;
+  $('conj-tr').textContent   = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[v.id]) || v.translation;
+  $('conj-counter').textContent = `${CONJ.idx+1} / ${CONJ.verbs.length}`;
+  $('conj-streak').textContent  = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak) + ` ${streak}/${LEARNED_THRESHOLD}`;
+  $('conj-feedback').textContent = '';
+  $('conj-feedback').className = 'conj-feedback';
+  $('conj-fields').innerHTML = CONJ_PRONOUNS.map(([pr,label]) => `
+    <div class="conj-row">
+      <span class="conj-pron">${label}</span>
+      <input class="conj-input" data-pron="${pr}" type="text"
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    </div>`).join('');
+  $('cards-progress-fill').style.width = (CONJ.idx / CONJ.verbs.length * 100) + '%';
+  // Enter в последнем поле = проверить; в остальных — переход к следующему
+  const inputs = [...$('conj-fields').querySelectorAll('.conj-input')];
+  inputs.forEach((inp, i) => {
+    inp.addEventListener('focus', () => { CONJ.lastInput = inp; });
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (i < inputs.length - 1) inputs[i+1].focus();
+        else handleConjSubmit();
+      }
+    });
+  });
+  setTimeout(()=>{ try{ inputs[0].focus(); }catch(e){} }, 80);
+}
+
+function handleConjSubmit() {
+  const v = CONJ.verbs[CONJ.idx];
+  if (!v) return;
+  const inputs = [...$('conj-fields').querySelectorAll('.conj-input')];
+  let allOk = true, anyEmpty = false;
+  inputs.forEach(inp => {
+    const pron = inp.dataset.pron;
+    const expected = (v.conj[pron]||'').toLowerCase().replace(/ß/g,'ss');
+    const got      = inp.value.trim().toLowerCase().replace(/ß/g,'ss');
+    if (!got) anyEmpty = true;
+    inp.classList.remove('conj-ok','conj-bad');
+    if (got === expected && got) { inp.classList.add('conj-ok'); }
+    else { inp.classList.add('conj-bad'); inp.value = v.conj[pron]; allOk = false; }
+  });
+
+  if (anyEmpty && allOk) return; // ничего не введено
+
+  const fb = $('conj-feedback');
+  if (allOk) {
+    const wp = updateWP(v.id, true);
+    S.sessionCorrect++;
+    if (wp.status === 'learned') {
+      S.sessionLearned++;
+      addCoins(5, $('conj-area'));
+      fb.innerHTML = `✓ Выучено! 🎉 (${LEARNED_THRESHOLD}/${LEARNED_THRESHOLD})`;
+    } else {
+      addCoins(2, $('conj-area'));
+      fb.innerHTML = `✓ Всё верно! (${wp.streak}/${LEARNED_THRESHOLD})`;
+    }
+    fb.className = 'conj-feedback ok';
+    setTimeout(()=>{ CONJ.idx++; drawConjCard(); }, 1100);
+  } else {
+    updateWP(v.id, false);
+    S.sessionWrong++;
+    fb.innerHTML = `✗ Есть ошибки — правильные формы показаны`;
+    fb.className = 'conj-feedback bad';
+    // даём посмотреть и пройти заново этот глагол позже
+    if (!CONJ.requeued) CONJ.requeued = new Set();
+    if (!CONJ.requeued.has(v.id)) { CONJ.requeued.add(v.id); CONJ.verbs.push(v); }
+    setTimeout(()=>{ CONJ.idx++; drawConjCard(); }, 2600);
+  }
+}
+
+function startTypingTest() {
+  S.phase = 'test';
+  const p = loadProg();
+  // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
+  S.testCards = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
+  shuffle(S.testCards);
+  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
 
 function startTypingTest() {
   S.phase = 'test';
@@ -1344,22 +1417,16 @@ function drawTestCard() {
   if (S.testIdx >= S.testCards.length) { showComplete(); return; }
   const card   = S.testCards[S.testIdx];
   const noArt  = !card.article || card.article === '-';
-  const isConj = !!card.conjPronoun;
   const streak = getWP(card.id).streak || 0;
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
-  $('tt-emoji').textContent    = isConj ? '🔑' : (EMOJI[card.word] || S.currentCatEmoji);
-  if (isConj) {
-    // показываем инфинитив + местоимение, ждём спряжённую форму
-    $('tt-ru').innerHTML = `<span class="tt-conj-verb">${card.word}</span> <span class="tt-conj-tr">(${card.translation})</span><br><span class="tt-conj-pron">${CONJ_LABEL[card.conjPronoun]} ___</span>`;
-  } else {
-    $('tt-ru').textContent = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
-  }
+  $('tt-emoji').textContent    = EMOJI[card.word] || S.currentCatEmoji;
+  $('tt-ru').textContent       = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
   $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value          = '';
-  $('tt-input').placeholder    = isConj ? `${card.conjPronoun} ...` : (noArt ? 'Напиши слово...' : 'der / die / das + Wort');
+  $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
   $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
   // кнопка "На потом" доступна и в тесте
   const deferBtn = $('defer-btn');
@@ -1375,21 +1442,11 @@ function drawTestCard() {
 function handleTypingSubmit() {
   const card = S.testCards[S.testIdx];
   if (!card) return;
-  let input      = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
+  const input    = $('tt-input').value.trim().toLowerCase().replace(/\s+/g,' ').replace(/ß/g,'ss');
   const noArt    = !card.article || card.article === '-';
-  let isOk;
-
-  if (card.conjPronoun) {
-    // принимаем как "kann", так и "ich kann" / "er kann" — отбрасываем местоимение
-    const PRON = ['ich','du','er','sie','es','wir','ihr'];
-    const parts = input.split(' ');
-    if (parts.length === 2 && PRON.includes(parts[0])) input = parts[1];
-    isOk = input === card.conjAnswer.toLowerCase().replace(/ß/g,'ss');
-  } else {
-    const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
-    isOk = input === expected;
-  }
-  if (!$('tt-input').value.trim()) return;
+  const expected = (noArt ? card.word : `${card.article} ${card.word}`).toLowerCase().replace(/ß/g,'ss');
+  if (!input) return;
+  const isOk = input === expected;
 
   if (isOk) {
     const wp = updateWP(card.id, true);
@@ -1407,7 +1464,7 @@ function handleTypingSubmit() {
     setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 800);
   } else {
     updateWP(card.id, false);
-    const ans = card.conjPronoun ? `${card.conjPronoun} ${card.conjAnswer}` : (noArt ? card.word : `${card.article} ${card.word}`);
+    const ans = noArt ? card.word : `${card.article} ${card.word}`;
     $('tt-feedback').innerHTML = `✗ Правильно: <strong>${ans}</strong>`;
     $('tt-feedback').className = 'tt-feedback bad';
     if (!S.testRequeued.has(card.id)) {
@@ -2092,8 +2149,11 @@ function initEvents() {
   /* Umlaut buttons — вставляем символ в позицию курсора нужного поля */
   document.querySelectorAll('.uml-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const inExam = btn.closest('#exam-umlauts');
-      const inp = $(inExam ? 'exam-input' : 'tt-input');
+      let inp;
+      if (btn.closest('#exam-umlauts'))      inp = $('exam-input');
+      else if (btn.closest('#conj-umlauts')) inp = CONJ.lastInput || $('conj-fields')?.querySelector('.conj-input');
+      else                                   inp = $('tt-input');
+      if (!inp) return;
       const ch  = btn.dataset.char;
       const s   = inp.selectionStart ?? inp.value.length;
       const e2  = inp.selectionEnd   ?? inp.value.length;
@@ -2102,6 +2162,9 @@ function initEvents() {
       inp.focus();
     });
   });
+
+  /* Спряжение */
+  $('conj-submit')?.addEventListener('click', handleConjSubmit);
 
   /* Экзамен */
   $('exam-start')?.addEventListener('click', startExam);

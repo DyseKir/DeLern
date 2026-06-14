@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeutschLernen – Deutsch lernen mit System</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260617">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260618">
 </head>
 <body>
 
@@ -208,6 +208,27 @@
           <div class="tt-score"    id="tt-score">✓ 0</div>
         </div>
 
+        <!-- CONJUGATION (6 полей сразу) -->
+        <div class="conj-area hidden" id="conj-area">
+          <div class="conj-banner">🔑 <span data-i18n="conj_banner">Спряги глагол по всем лицам</span></div>
+          <div class="conj-counter" id="conj-counter">1 / 8</div>
+          <div class="conj-verb"    id="conj-verb">können</div>
+          <div class="conj-tr"      id="conj-tr">мочь / уметь</div>
+          <div class="conj-fields"  id="conj-fields"></div>
+          <div class="tt-umlaut-row" id="conj-umlauts">
+            <button class="uml-btn" data-char="ä">ä</button>
+            <button class="uml-btn" data-char="ö">ö</button>
+            <button class="uml-btn" data-char="ü">ü</button>
+            <button class="uml-btn" data-char="ß">ß</button>
+            <button class="uml-btn" data-char="Ä">Ä</button>
+            <button class="uml-btn" data-char="Ö">Ö</button>
+            <button class="uml-btn" data-char="Ü">Ü</button>
+          </div>
+          <button class="btn-primary conj-submit" id="conj-submit" data-i18n="conj_check">Проверить</button>
+          <div class="conj-feedback" id="conj-feedback"></div>
+          <div class="conj-streak"  id="conj-streak"></div>
+        </div>
+
         <div class="session-complete hidden" id="session-complete">
           <div class="complete-emoji">🎉</div>
           <h2 data-i18n="session_done">Sitzung abgeschlossen!</h2>
@@ -385,9 +406,9 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260617"></script>
-  <script src="db/grammar.js?v=20260617"></script>
-  <script src="db/translations_uk.js?v=20260617"></script>
-  <script src="assets/js/app.js?v=20260617"></script>
+  <script src="db/words.js?v=20260618"></script>
+  <script src="db/grammar.js?v=20260618"></script>
+  <script src="db/translations_uk.js?v=20260618"></script>
+  <script src="assets/js/app.js?v=20260618"></script>
 </body>
 </html>

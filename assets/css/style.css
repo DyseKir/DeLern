@@ -787,9 +787,42 @@ body {
 .tt-counter { font-size: 13px; color: var(--text-muted); }
 .tt-emoji   { font-size: 4.5rem; line-height: 1; }
 .tt-ru      { font-size: 1.5rem; font-weight: 700; color: var(--text); text-align: center; line-height: 1.4; }
-.tt-conj-verb { color: var(--accent); }
-.tt-conj-tr   { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
-.tt-conj-pron { font-size: 1.3rem; color: var(--text); }
+
+/* ── Спряжение (6 полей) ── */
+.conj-area {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px 22px;
+  width: 100%; max-width: 460px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  animation: fadeIn .3s ease;
+}
+.conj-banner {
+  background: linear-gradient(135deg, var(--accent), #7c3aed); color: #fff;
+  border-radius: 10px; padding: 7px 16px; font-size: 13px; font-weight: 600;
+  width: 100%; box-sizing: border-box; text-align: center;
+}
+.conj-counter { font-size: 13px; color: var(--text-muted); }
+.conj-verb { font-size: 2rem; font-weight: 800; color: var(--accent); }
+.conj-tr   { font-size: 1rem; color: var(--text-muted); }
+.conj-fields { width: 100%; display: flex; flex-direction: column; gap: 8px; margin: 6px 0; }
+.conj-row { display: flex; align-items: center; gap: 10px; }
+.conj-pron {
+  flex: 0 0 110px; text-align: right;
+  font-size: 14px; font-weight: 600; color: var(--text-muted);
+}
+.conj-input {
+  flex: 1; background: var(--bg3); border: 2px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 16px; font-weight: 600;
+  padding: 9px 12px; outline: none; transition: border-color .15s;
+}
+.conj-input:focus { border-color: var(--accent); }
+.conj-input.conj-ok  { border-color: var(--correct); background: rgba(78,203,113,.12); }
+.conj-input.conj-bad { border-color: var(--wrong);   background: rgba(255,77,109,.12); }
+.conj-submit { width: 100%; padding: 11px; font-size: 15px; }
+.conj-feedback { font-size: 15px; font-weight: 700; min-height: 22px; text-align: center; }
+.conj-feedback.ok  { color: var(--correct); }
+.conj-feedback.bad { color: var(--wrong); }
+.conj-streak { font-size: 13px; color: var(--text-muted); }
 .tt-input-wrap {
   display: flex; gap: 10px; width: 100%; max-width: 340px;
 }
@@ -1648,6 +1681,12 @@ body {
   .tt-input-wrap { max-width: 100%; }
   .tt-input { font-size: 16px; padding: 11px 12px; }
   .uml-btn { min-width: 34px; font-size: 15px; padding: 6px 8px; }
+
+  /* Спряжение */
+  .conj-area { padding: 18px 14px; }
+  .conj-verb { font-size: 1.6rem; }
+  .conj-pron { flex: 0 0 84px; font-size: 13px; }
+  .conj-input { font-size: 16px; padding: 8px 10px; }
 }
 
 @keyframes slideDown {
