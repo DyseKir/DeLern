@@ -1182,4 +1182,33 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — WEGBESCHREIBUNG (Как пройти / описание пути)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "weg", name: "Wegbeschreibung", name_ru: "Как пройти / дорога", emoji: "🧭", ruleId: "a1_gr_021",
+    words: [
+      { id: "a1_wg_001", article: "-", word: "geradeaus",                 translation: "прямо"                        },
+      { id: "a1_wg_002", article: "-", word: "abbiegen",                  translation: "поворачивать"                 },
+      { id: "a1_wg_003", article: "-", word: "nach links abbiegen",       translation: "повернуть налево"             },
+      { id: "a1_wg_004", article: "-", word: "nach rechts abbiegen",      translation: "повернуть направо"            },
+      { id: "a1_wg_005", article: "-", word: "überqueren",               translation: "переходить (улицу)"           },
+      { id: "a1_wg_006", article: "-", word: "die Straße überqueren",     translation: "перейти улицу"                },
+      { id: "a1_wg_007", article: "-", word: "über die Brücke gehen",     translation: "перейти через мост"           },
+      { id: "a1_wg_008", article: "-", word: "über die Kreuzung gehen",   translation: "перейти перекрёсток"          },
+      { id: "a1_wg_009", article: "-", word: "vorbeigehen",               translation: "пройти мимо"                  },
+      { id: "a1_wg_010", article: "-", word: "an ... vorbei",             translation: "мимо чего-то"                 },
+      { id: "a1_wg_011", article: "-", word: "entlang",                   translation: "вдоль"                        },
+      { id: "a1_wg_012", article: "-", word: "die erste Straße links",    translation: "первая улица налево"          },
+      { id: "a1_wg_013", article: "-", word: "die zweite Straße rechts",  translation: "вторая улица направо"         },
+      { id: "a1_wg_014", article: "-", word: "weitergehen",               translation: "идти дальше"                  },
+      { id: "a1_wg_015", article: "-", word: "bis zur Ampel",             translation: "до светофора"                 },
+      { id: "a1_wg_016", article: "-", word: "gegenüber von",             translation: "напротив (чего-то)"           },
+      { id: "a1_wg_017", article: "der", word: "Weg",                     translation: "путь / дорога"                },
+      { id: "a1_wg_018", article: "die", word: "Richtung",               translation: "направление"                  },
+      { id: "a1_wg_019", article: "-", word: "zu Fuß gehen",              translation: "идти пешком"                  },
+      { id: "a1_wg_020", article: "-", word: "die Treppe hinauf",         translation: "вверх по лестнице"            },
+    ]
+  },
+
 ];

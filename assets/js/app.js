@@ -517,6 +517,13 @@ const EMOJI = {
   vor:'⬅️', hinter:'➡️', neben:'↔️', über:'⬆️', unter:'⬇️', an:'📌', auf:'🔝',
   in:'📥', zwischen:'↔️', gegenüber:'🔄', links:'👈', rechts:'👉',
   oben:'🔼', unten:'🔽', innen:'🔵', außen:'⭕',
+  // Wegbeschreibung
+  geradeaus:'⬆️', abbiegen:'↩️', 'nach links abbiegen':'↰', 'nach rechts abbiegen':'↱',
+  'überqueren':'🚶', 'die Straße überqueren':'🚸', 'über die Brücke gehen':'🌉',
+  'über die Kreuzung gehen':'🚦', vorbeigehen:'➡️', 'an ... vorbei':'➡️', entlang:'🛣️',
+  'die erste Straße links':'1️⃣', 'die zweite Straße rechts':'2️⃣', weitergehen:'🚶',
+  'bis zur Ampel':'🚥', 'gegenüber von':'🔄', Weg:'🛤️', Richtung:'🧭',
+  'zu Fuß gehen':'🚶', 'die Treppe hinauf':'🪜',
   // Krankheiten & Gesundheit
   Kopfschmerzen:'🤕', Bauchschmerzen:'😣', Halsschmerzen:'😷', Zahnschmerzen:'🦷',
   Rückenschmerzen:'🔙', Fieber:'🌡️', Erkältung:'🤧', Husten:'😮‍💨', Schnupfen:'🤧',
