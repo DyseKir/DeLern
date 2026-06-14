@@ -394,7 +394,7 @@ body {
 ══════════════════════════════════════════════════ */
 .home-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr;   /* правая колонка с карточками шире */
   gap: 2rem;
   align-items: start;
 }
@@ -512,7 +512,15 @@ body {
 .categories-done-grid {
   opacity: .65;
   filter: grayscale(30%);
+  max-height: 300px;       /* скролл вместо растягивания сайта */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
+.categories-done-grid::-webkit-scrollbar { width: 5px; }
+.categories-done-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 .categories-full-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
