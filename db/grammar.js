@@ -507,26 +507,46 @@ Kein/keine — это буквально «не один», «ни одного�
     title_de: "Modalverben – können, müssen, dürfen, wollen, sollen, mögen",
     title_ru: "Модальные глаголы",
     explanation_de: "Modalverben verändern die Bedeutung des Hauptverbs. Das Hauptverb steht im Infinitiv am Satzende.",
-    explanation_ru: `Модальные глаголы изменяют смысл основного глагола. Основной глагол всегда стоит в инфинитиве в КОНЦЕ предложения.
+    explanation_ru: `Модальные глаголы изменяют смысл основного глагола. Основной глагол стоит в инфинитиве в КОНЦЕ предложения.
 
-<strong>können</strong> — мочь/уметь: ich kann / du kannst / er kann
-<strong>müssen</strong> — должен/нужно: ich muss / du musst / er muss
-<strong>dürfen</strong> — разрешено: ich darf / du darfst / er darf
-<strong>wollen</strong> — хотеть: ich will / du willst / er will
-<strong>sollen</strong> — следует/должен: ich soll / du sollst / er soll
-<strong>mögen</strong> — любить/нравиться: ich mag / du magst / er mag
-<strong>wissen</strong> — знать: ich weiß / du weißt / er weiß
+<strong>Когда какой использовать (главное!):</strong>
 
-⚠️ У всех модальных глаголов ich = er/sie/es (без окончания -t)!`,
+🟢 <strong>können</strong> — «мочь / уметь» = <u>способность или возможность</u>.
+<em>Ich <strong>kann</strong> schwimmen.</em> — Я умею плавать.
+
+🔴 <strong>müssen</strong> — «должен / надо» = <u>необходимость</u>, без вариантов (так надо, иначе нельзя).
+<em>Ich <strong>muss</strong> arbeiten.</em> — Я должен работать (обязан, иначе никак).
+
+🟣 <strong>sollen</strong> — «следует / должен» = <u>чужое указание, поручение, совет</u> (кто-то так велел/советует).
+<em>Der Arzt sagt, ich <strong>soll</strong> mehr schlafen.</em> — Врач говорит, мне следует больше спать.
+
+🟡 <strong>dürfen</strong> — «можно» = <u>разрешение</u> (мне разрешили).
+<em>Ich <strong>darf</strong> heute länger bleiben.</em> — Мне можно сегодня остаться дольше.
+
+🔵 <strong>wollen</strong> — «хотеть» = <u>сильное намерение, воля</u>.
+<em>Ich <strong>will</strong> Deutsch lernen.</em> — Я хочу (намерен) учить немецкий.
+
+🩷 <strong>möchten</strong> — «хотел бы» = <u>вежливое желание</u> (мягче, чем wollen).
+<em>Ich <strong>möchte</strong> einen Kaffee.</em> — Я хотел бы кофе.
+
+❤️ <strong>mögen</strong> — «нравиться / любить».
+<em>Ich <strong>mag</strong> Schokolade.</em> — Я люблю шоколад.
+
+<strong>⚖️ müssen или sollen?</strong>
+• <strong>müssen</strong> = надо по объективной необходимости (я сам понимаю, что надо).
+• <strong>sollen</strong> = надо, потому что <u>кто-то другой</u> так сказал/велел/советует.
+Пример: <em>Ich <strong>muss</strong> Medikamente nehmen</em> (мне необходимо). / <em>Ich <strong>soll</strong> Medikamente nehmen</em> (врач так велел).
+
+⚠️ У всех модальных ich = er/sie/es (без -t): ich kann = er kann.`,
     examples: [
-      { de: "Ich kann Deutsch sprechen.",     ru: "Я умею говорить по-немецки."   },
-      { de: "Du musst jetzt schlafen.",       ru: "Тебе нужно спать сейчас."      },
-      { de: "Er darf hier nicht rauchen.",    ru: "Ему нельзя здесь курить."      },
-      { de: "Wir wollen ins Kino gehen.",     ru: "Мы хотим пойти в кино."        },
-      { de: "Ich weiß nicht, wo er ist.",     ru: "Я не знаю, где он."            },
+      { de: "Ich kann Deutsch sprechen.",                  ru: "Я умею говорить по-немецки. (способность → können)" },
+      { de: "Ich muss zum Arzt gehen.",                    ru: "Мне надо к врачу. (необходимость → müssen)"          },
+      { de: "Du sollst deine Hausaufgaben machen.",        ru: "Ты должен сделать домашку. (велят → sollen)"          },
+      { de: "Darf ich hier rauchen? – Nein, du darfst nicht.", ru: "Можно здесь курить? — Нет, нельзя. (разрешение → dürfen)" },
+      { de: "Ich möchte einen Tee, bitte.",                ru: "Я хотел бы чай, пожалуйста. (вежливо → möchten)"      },
     ],
-    tip_de: "Ich kann = Er kann (kein -t!). Das Hauptverb kommt immer ans Satzende.",
-    tip_ru: "ich kann = er kann (без -t!). Основной глагол всегда уходит в конец предложения.",
+    tip_de: "müssen = eigene Notwendigkeit. sollen = jemand anderes sagt es. dürfen = Erlaubnis.",
+    tip_ru: "müssen = надо (сам понимаю). sollen = велели/советуют. dürfen = разрешено. wollen = хочу. möchten = хотел бы (вежливо).",
   },
 
   // ════════════════════════════════════════
