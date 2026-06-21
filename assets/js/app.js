@@ -326,6 +326,44 @@ function deTranscribe(word) {
   return out.trim();
 }
 
+/* ── Фото слова из немецкой Википедии (для конкретных существительных) ── */
+const imgCache = {};
+function fetchWordImage(word) {
+  return new Promise(resolve => {
+    if (imgCache[word] !== undefined) { resolve(imgCache[word]); return; }
+    let ls = null;
+    try { ls = localStorage.getItem('dl_img_' + word); } catch(e) {}
+    if (ls !== null) { const v = ls || null; imgCache[word] = v; resolve(v); return; }
+    const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(word)}&origin=*`;
+    fetch(url).then(r => r.json()).then(d => {
+      let img = null;
+      const pages = (d && d.query && d.query.pages) || {};
+      for (const k in pages) { if (pages[k].thumbnail && pages[k].thumbnail.source) { img = pages[k].thumbnail.source; break; } }
+      imgCache[word] = img;
+      try { localStorage.setItem('dl_img_' + word, img || ''); } catch(e) {}
+      resolve(img);
+    }).catch(() => { imgCache[word] = null; resolve(null); });
+  });
+}
+/* ставит фото или эмодзи в элемент карточки */
+function setCardVisual(el, card, fallbackEmoji) {
+  const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
+  el.textContent = emoji;
+  el.classList.remove('has-photo');
+  const wantImg = card.article && card.article !== '-' && !/\s/.test(card.word);
+  if (!wantImg) return;
+  const reqWord = card.word;
+  fetchWordImage(reqWord).then(src => {
+    if (!src || S.currentWord !== reqWord) return;  // карточка уже сменилась
+    const img = document.createElement('img');
+    img.className = 'card-photo';
+    img.alt = reqWord;
+    img.onerror = () => { el.textContent = emoji; el.classList.remove('has-photo'); };
+    img.onload  = () => { el.textContent = ''; el.appendChild(img); el.classList.add('has-photo'); };
+    img.src = src;
+  });
+}
+
 /* ── Озвучка слова (немецкий TTS) ── */
 function speakWord(word) {
   try {
@@ -1154,10 +1192,10 @@ function drawCard() {
   const wp   = getWP(card.id);
   $('cards-progress-fill').style.width = (S.cards.length>1 ? S.cardIdx/S.cards.length*100 : 0)+'%';
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
-  $('card-emoji').textContent           = EMOJI[card.word] || S.currentCatEmoji;
   $('card-word').textContent            = card.word;
   if ($('card-translit')) $('card-translit').textContent = `[${card.translit || deTranscribe(card.word)}]`;
   S.currentWord = card.word;
+  setCardVisual($('card-emoji'), card, S.currentCatEmoji);
   $('card-translation').textContent     = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
