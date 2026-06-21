@@ -327,20 +327,33 @@ function deTranscribe(word) {
 }
 
 /* ── Фото слова из немецкой Википедии (для конкретных существительных) ── */
+/* Уточнение статьи для многозначных слов (чтобы фото было по теме) */
+const WIKI_TITLE_FIX = {
+  // животные — «домашние» статьи, у них чёткие фото
+  Hund:'Haushund', Katze:'Hauskatze', Kuh:'Hausrind', Pferd:'Hauspferd',
+  Maus:'Hausmaus', Hahn:'Haushuhn', Gans:'Hausgans', Ziege:'Hausziege',
+  // фрукты/овощи (не лампочка/политик/цвет)
+  Birne:'Kulturbirne', Kohl:'Gemüsekohl', Orange:'Orange (Frucht)',
+  Traube:'Weintraube', Kirsche:'Kirschen', Pilz:'Pilze',
+  Paprika:'Gemüsepaprika', Salat:'Kopfsalat',
+  // транспорт
+  Bus:'Omnibus', Zug:'Reisezug',
+};
 const imgCache = {};
 function fetchWordImage(word) {
   return new Promise(resolve => {
     if (imgCache[word] !== undefined) { resolve(imgCache[word]); return; }
     let ls = null;
-    try { ls = localStorage.getItem('dl_img_' + word); } catch(e) {}
+    try { ls = localStorage.getItem('dl_img2_' + word); } catch(e) {}
     if (ls !== null) { const v = ls || null; imgCache[word] = v; resolve(v); return; }
-    const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(word)}&origin=*`;
+    const title = WIKI_TITLE_FIX[word] || word;
+    const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(title)}&origin=*`;
     fetch(url).then(r => r.json()).then(d => {
       let img = null;
       const pages = (d && d.query && d.query.pages) || {};
       for (const k in pages) { if (pages[k].thumbnail && pages[k].thumbnail.source) { img = pages[k].thumbnail.source; break; } }
       imgCache[word] = img;
-      try { localStorage.setItem('dl_img_' + word, img || ''); } catch(e) {}
+      try { localStorage.setItem('dl_img2_' + word, img || ''); } catch(e) {}
       resolve(img);
     }).catch(() => { imgCache[word] = null; resolve(null); });
   });
