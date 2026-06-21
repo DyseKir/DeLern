@@ -338,13 +338,32 @@ const WIKI_TITLE_FIX = {
   Paprika:'Gemüsepaprika', Salat:'Kopfsalat',
   // транспорт
   Bus:'Omnibus', Zug:'Reisezug',
+  // конкретные, но многозначные/неузнаваемые
+  Polizei:'Streifenwagen', Polizeiwache:'Polizeidienststelle',
+  Brücke:'Steinbrücke', Ampel:'Lichtsignalanlage', Zebrastreifen:'Fußgängerüberweg',
+  Spritze:'Injektion', Verband:'Verband (Erste Hilfe)', Rezept:'Arzneimittelrezept',
 };
+/* слова, для которых фото не передаёт смысл — оставляем эмодзи */
+const NO_PHOTO = new Set([
+  'Termin','Sprechstunde','Sprechstundenhilfe','Wartezimmer','Untersuchung',
+  'Blutentnahme','Impfung','Impfpass','Röntgenbild','Vorsorge','Überweisung',
+  'Krankschreibung','Krankmeldung','Gesundheitskarte','Krankenkasse',
+  'Behandlungsschein','Verhütungsmittel',
+  'Fahrkartenautomat','Fahrkarte','Anzeigetafel','Zugnummer','Zielstation',
+  'Ticketkontrolle','Serviceschalter','Stationen','Uhrzeit','Fahrplan','Abfahrt','Ankunft',
+  'Beziehung','Scheidung','Nationalität','Sprache','Hobby','Beruf','Wohnort',
+  'Name','Vorname','Nachname','Alter','Adresse','Geburtsort','Geburtsdatum',
+  'Geburtsname','Einkommen','Geldgeschenk','Staatsangehörigkeit','Gesundheit',
+  'Krankheit','Beschwerden','Schmerzen','Kopfschmerzen','Bauchschmerzen',
+  'Halsschmerzen','Zahnschmerzen','Rückenschmerzen','Erkältung','Depression',
+  'Richtung','Weg','Wochenende','Jahr','Formular','Telefonnummer','E-Mail',
+]);
 const imgCache = {};
 function fetchWordImage(word) {
   return new Promise(resolve => {
     if (imgCache[word] !== undefined) { resolve(imgCache[word]); return; }
     let ls = null;
-    try { ls = localStorage.getItem('dl_img2_' + word); } catch(e) {}
+    try { ls = localStorage.getItem('dl_img3_' + word); } catch(e) {}
     if (ls !== null) { const v = ls || null; imgCache[word] = v; resolve(v); return; }
     const title = WIKI_TITLE_FIX[word] || word;
     const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(title)}&origin=*`;
@@ -353,7 +372,7 @@ function fetchWordImage(word) {
       const pages = (d && d.query && d.query.pages) || {};
       for (const k in pages) { if (pages[k].thumbnail && pages[k].thumbnail.source) { img = pages[k].thumbnail.source; break; } }
       imgCache[word] = img;
-      try { localStorage.setItem('dl_img2_' + word, img || ''); } catch(e) {}
+      try { localStorage.setItem('dl_img3_' + word, img || ''); } catch(e) {}
       resolve(img);
     }).catch(() => { imgCache[word] = null; resolve(null); });
   });
@@ -363,7 +382,7 @@ function setCardVisual(el, card, fallbackEmoji) {
   const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
   el.textContent = emoji;
   el.classList.remove('has-photo');
-  const wantImg = card.article && card.article !== '-' && !/\s/.test(card.word);
+  const wantImg = card.article && card.article !== '-' && !/\s/.test(card.word) && !NO_PHOTO.has(card.word);
   if (!wantImg) return;
   const reqWord = card.word;
   fetchWordImage(reqWord).then(src => {
