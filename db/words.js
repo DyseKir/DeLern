@@ -1211,4 +1211,29 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — VERBEN MIT VOKALWECHSEL (спряжение, изменение корня)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "vokalwechsel", name: "Verben – Vokalwechsel", name_ru: "Глаголы с изменением корня", emoji: "🔄", ruleId: "a1_gr_013", mode: "conjugation",
+    words: [
+      { id: "a1_vc_001", article: "-", word: "sprechen",  translation: "говорить",   hint: "e→i: du spr<b>i</b>chst, er spr<b>i</b>cht", conj: { ich:"spreche", du:"sprichst", er:"spricht", wir:"sprechen", ihr:"sprecht", sie:"sprechen" } },
+      { id: "a1_vc_002", article: "-", word: "essen",     translation: "есть/кушать",hint: "e→i: du <b>i</b>sst, er <b>i</b>sst",       conj: { ich:"esse",    du:"isst",     er:"isst",     wir:"essen",    ihr:"esst",    sie:"essen"    } },
+      { id: "a1_vc_003", article: "-", word: "geben",     translation: "давать",     hint: "e→i: du g<b>i</b>bst, er g<b>i</b>bt",       conj: { ich:"gebe",    du:"gibst",    er:"gibt",     wir:"geben",    ihr:"gebt",    sie:"geben"    } },
+      { id: "a1_vc_004", article: "-", word: "nehmen",    translation: "брать",      hint: "e→i +mm: du n<b>imm</b>st, er n<b>imm</b>t", conj: { ich:"nehme",   du:"nimmst",   er:"nimmt",    wir:"nehmen",   ihr:"nehmt",   sie:"nehmen"   } },
+      { id: "a1_vc_005", article: "-", word: "helfen",    translation: "помогать",   hint: "e→i: du h<b>i</b>lfst, er h<b>i</b>lft",     conj: { ich:"helfe",   du:"hilfst",   er:"hilft",    wir:"helfen",   ihr:"helft",   sie:"helfen"   } },
+      { id: "a1_vc_006", article: "-", word: "treffen",   translation: "встречать",  hint: "e→i: du tr<b>i</b>ffst, er tr<b>i</b>fft",   conj: { ich:"treffe",  du:"triffst",  er:"trifft",   wir:"treffen",  ihr:"trefft",  sie:"treffen"  } },
+      { id: "a1_vc_007", article: "-", word: "lesen",     translation: "читать",     hint: "e→ie: du l<b>ie</b>st, er l<b>ie</b>st",     conj: { ich:"lese",    du:"liest",    er:"liest",    wir:"lesen",    ihr:"lest",    sie:"lesen"    } },
+      { id: "a1_vc_008", article: "-", word: "sehen",     translation: "видеть",     hint: "e→ie: du s<b>ie</b>hst, er s<b>ie</b>ht",    conj: { ich:"sehe",    du:"siehst",   er:"sieht",    wir:"sehen",    ihr:"seht",    sie:"sehen"    } },
+      { id: "a1_vc_009", article: "-", word: "empfehlen", translation: "рекомендовать",hint:"e→ie: du empf<b>ie</b>hlst, er empf<b>ie</b>hlt", conj:{ ich:"empfehle", du:"empfiehlst", er:"empfiehlt", wir:"empfehlen", ihr:"empfehlt", sie:"empfehlen" } },
+      { id: "a1_vc_010", article: "-", word: "fahren",    translation: "ехать",      hint: "a→ä: du f<b>ä</b>hrst, er f<b>ä</b>hrt",     conj: { ich:"fahre",   du:"fährst",   er:"fährt",    wir:"fahren",   ihr:"fahrt",   sie:"fahren"   } },
+      { id: "a1_vc_011", article: "-", word: "schlafen",  translation: "спать",      hint: "a→ä: du schl<b>ä</b>fst, er schl<b>ä</b>ft", conj: { ich:"schlafe", du:"schläfst", er:"schläft",  wir:"schlafen", ihr:"schlaft", sie:"schlafen" } },
+      { id: "a1_vc_012", article: "-", word: "tragen",    translation: "носить",     hint: "a→ä: du tr<b>ä</b>gst, er tr<b>ä</b>gt",     conj: { ich:"trage",   du:"trägst",   er:"trägt",    wir:"tragen",   ihr:"tragt",   sie:"tragen"   } },
+      { id: "a1_vc_013", article: "-", word: "waschen",   translation: "мыть/стирать",hint:"a→ä: du w<b>ä</b>schst, er w<b>ä</b>scht",   conj: { ich:"wasche",  du:"wäschst",  er:"wäscht",   wir:"waschen",  ihr:"wascht",  sie:"waschen"  } },
+      { id: "a1_vc_014", article: "-", word: "halten",    translation: "держать/останавливаться",hint:"a→ä: du h<b>ä</b>ltst, er h<b>ä</b>lt", conj:{ ich:"halte",  du:"hältst",   er:"hält",     wir:"halten",   ihr:"haltet",  sie:"halten"   } },
+      { id: "a1_vc_015", article: "-", word: "laufen",    translation: "бежать/идти",hint: "au→äu: du l<b>äu</b>fst, er l<b>äu</b>ft",   conj: { ich:"laufe",   du:"läufst",   er:"läuft",    wir:"laufen",   ihr:"lauft",   sie:"laufen"   } },
+      { id: "a1_vc_016", article: "-", word: "werden",    translation: "становиться",hint: "неправильный: du w<b>i</b>rst, er w<b>i</b>rd", conj: { ich:"werde", du:"wirst",  er:"wird",     wir:"werden",   ihr:"werdet",  sie:"werden"   } },
+    ]
+  },
+
 ];
