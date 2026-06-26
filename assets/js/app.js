@@ -358,22 +358,61 @@ const NO_PHOTO = new Set([
   'Halsschmerzen','Zahnschmerzen','Rückenschmerzen','Erkältung','Depression',
   'Richtung','Weg','Wochenende','Jahr','Formular','Telefonnummer','E-Mail',
 ]);
+/* слова, для которых ищем фото в Wikimedia Commons по запросу (точнее по полу/смыслу) */
+const COMMONS_FIX = {
+  Arzt:'Arzt Mann', Ärztin:'Ärztin Frau',
+  Lehrer:'Lehrer Mann Schule', Lehrerin:'Lehrerin Frau',
+  Student:'Student Mann', Studentin:'Studentin Frau',
+  Koch:'Koch Mann', Köchin:'Köchin Frau',
+  Bäcker:'Bäcker Mann', Bäckerin:'Bäckerin Frau',
+  Ingenieur:'Ingenieur Mann', Ingenieurin:'Ingenieurin Frau',
+  Krankenpfleger:'Krankenpfleger Mann', Krankenschwester:'Krankenschwester Frau',
+  Polizist:'Polizist Mann', Polizistin:'Polizistin Frau',
+  Verkäufer:'Verkäufer Mann', Verkäuferin:'Verkäuferin Frau',
+  Fahrer:'Busfahrer Mann', Fahrerin:'Fahrerin Frau',
+  Kellner:'Kellner Mann', Kellnerin:'Kellnerin Frau',
+  Mechaniker:'Mechaniker Mann', Mechanikerin:'Mechanikerin Frau',
+  Friseur:'Friseur Mann', Friseurin:'Friseurin Frau',
+  Sekretär:'Sekretär Mann', Sekretärin:'Sekretärin Frau',
+};
+function fetchCommonsImage(query) {
+  return new Promise(resolve => {
+    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=6&gsrsearch=${encodeURIComponent(query)}&gsrlimit=10&prop=imageinfo&iiprop=url|mime&iiurlwidth=360&origin=*`;
+    fetch(url).then(r => r.json()).then(d => {
+      const pages = (d && d.query && d.query.pages) || {};
+      const arr = Object.values(pages).sort((a,b)=>(a.index||0)-(b.index||0));
+      let best = null;
+      for (const p of arr) {
+        const ii = p.imageinfo && p.imageinfo[0];
+        if (ii && /jpe?g|png/i.test(ii.mime||'') && !/logo|icon|map|karte|diagram|coat|wappen|flag|flagge/i.test(p.title||'')) {
+          best = ii.thumburl || ii.url; break;
+        }
+      }
+      resolve(best);
+    }).catch(() => resolve(null));
+  });
+}
 const imgCache = {};
 function fetchWordImage(word) {
   return new Promise(resolve => {
     if (imgCache[word] !== undefined) { resolve(imgCache[word]); return; }
     let ls = null;
-    try { ls = localStorage.getItem('dl_img3_' + word); } catch(e) {}
+    try { ls = localStorage.getItem('dl_img4_' + word); } catch(e) {}
     if (ls !== null) { const v = ls || null; imgCache[word] = v; resolve(v); return; }
+    const done = (img) => {
+      imgCache[word] = img || null;
+      try { localStorage.setItem('dl_img4_' + word, img || ''); } catch(e) {}
+      resolve(img || null);
+    };
+    // профессии и т.п. — фото из Commons по точному запросу (по полу)
+    if (COMMONS_FIX[word]) { fetchCommonsImage(COMMONS_FIX[word]).then(done); return; }
     const title = WIKI_TITLE_FIX[word] || word;
     const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(title)}&origin=*`;
     fetch(url).then(r => r.json()).then(d => {
       let img = null;
       const pages = (d && d.query && d.query.pages) || {};
       for (const k in pages) { if (pages[k].thumbnail && pages[k].thumbnail.source) { img = pages[k].thumbnail.source; break; } }
-      imgCache[word] = img;
-      try { localStorage.setItem('dl_img3_' + word, img || ''); } catch(e) {}
-      resolve(img);
+      done(img);
     }).catch(() => { imgCache[word] = null; resolve(null); });
   });
 }
@@ -481,10 +520,11 @@ const EMOJI = {
   Hemd:'👔', Hose:'👖', Jacke:'🧥', Schuh:'👟', Socke:'🧦',
   Pullover:'🧶', Rock:'👗', Kleid:'👗', Mantel:'🧥', Mütze:'🧢',
   Bluse:'👚', 'T-Shirt':'👕', Jeans:'👖', Schal:'🧣', Handschuh:'🧤',
-  // Berufe
-  Arzt:'👨‍⚕️', Lehrer:'👨‍🏫', Student:'🎓', Koch:'👨‍🍳', Bäcker:'🥐',
-  Ingenieur:'⚙️', Krankenschwester:'👩‍⚕️', Polizist:'👮', Verkäufer:'🛍️',
-  Fahrer:'🚗', Kellner:'🍽️', Mechaniker:'🔧', Friseur:'💈', Sekretär:'📝',
+  // Berufe (мужской род)
+  Arzt:'👨‍⚕️', Lehrer:'👨‍🏫', Student:'👨‍🎓', Koch:'👨‍🍳', Bäcker:'👨‍🍳',
+  Ingenieur:'👨‍🔧', Krankenpfleger:'👨‍⚕️', Polizist:'👮‍♂️', Verkäufer:'👨‍💼',
+  Fahrer:'🧑‍✈️', Kellner:'🤵‍♂️', Mechaniker:'👨‍🔧', Friseur:'💇‍♂️', Sekretär:'👨‍💼',
+  Facharzt:'👨‍⚕️', Hausarzt:'👨‍⚕️', Zahnarzt:'🦷', Frauenarzt:'👨‍⚕️', Kinderarzt:'👨‍⚕️',
   // Fragewörter
   Wer:'❓', Was:'❓', Wo:'📍', Woher:'🗺️', Wohin:'➡️', Wie:'🤔',
   'Wie alt':'🎂', 'Wie viel':'🔢', Wann:'🕐', Warum:'🤷', Welcher:'☝️',
@@ -577,9 +617,9 @@ const EMOJI = {
   Spinne:'🕷️', Pony:'🐴', Rind:'🐄', Gans:'🪿', Kaninchen:'🐰',
   Hahn:'🐓', Ziege:'🐐',
   // Berufe (женские формы)
-  Ärztin:'👩‍⚕️', Lehrerin:'👩‍🏫', Studentin:'🎓', Köchin:'👩‍🍳', Bäckerin:'🥐',
-  Ingenieurin:'⚙️', Krankenpfleger:'👨‍⚕️', Polizistin:'👮‍♀️', Verkäuferin:'🛍️',
-  Fahrerin:'🚗', Kellnerin:'🍽️', Mechanikerin:'🔧', Friseurin:'💈', Sekretärin:'📝',
+  Ärztin:'👩‍⚕️', Lehrerin:'👩‍🏫', Studentin:'👩‍🎓', Köchin:'👩‍🍳', Bäckerin:'👩‍🍳',
+  Ingenieurin:'👩‍🔧', Krankenschwester:'👩‍⚕️', Polizistin:'👮‍♀️', Verkäuferin:'👩‍💼',
+  Fahrerin:'👩‍✈️', Kellnerin:'🤵‍♀️', Mechanikerin:'👩‍🔧', Friseurin:'💇‍♀️', Sekretärin:'👩‍💼',
   // Modalverben
   können:'💪', müssen:'❗', dürfen:'✅', wollen:'🙋', sollen:'📋', mögen:'❤️',
   möchten:'🙏', wissen:'🧠',
