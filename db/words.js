@@ -1173,12 +1173,6 @@ window.VOCAB_DATA = [
       { id: "a1_lg_008", article: "-", word: "in",         translation: "в / внутри"             },
       { id: "a1_lg_009", article: "-", word: "zwischen",   translation: "между"                  },
       { id: "a1_lg_010", article: "-", word: "gegenüber",  translation: "напротив"               },
-      { id: "a1_lg_011", article: "-", word: "links",      translation: "слева"                  },
-      { id: "a1_lg_012", article: "-", word: "rechts",     translation: "справа"                 },
-      { id: "a1_lg_013", article: "-", word: "oben",       translation: "наверху"                },
-      { id: "a1_lg_014", article: "-", word: "unten",      translation: "внизу"                  },
-      { id: "a1_lg_015", article: "-", word: "innen",      translation: "внутри"                 },
-      { id: "a1_lg_016", article: "-", word: "außen",      translation: "снаружи"                },
     ]
   },
 

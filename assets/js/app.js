@@ -389,12 +389,7 @@ function fetchOpenverse(query) {
     }).catch(() => resolve(null));
   });
 }
-/* остальные направления → запрос на Openverse */
-const OPENVERSE_FIX = {
-  links:'turn left road sign', rechts:'turn right road sign', oben:'top of shelf',
-  unten:'bottom shelf', innen:'inside room', 'außen':'outside building',
-  'gegenüber':'house across street',
-};
+const OPENVERSE_FIX = {};
 
 /* ── SVG-схемы предлогов места (книга + мяч, как в учебнике) ── */
 const _BOOK  = (x,y)   => `<g transform="translate(${x},${y})"><rect width="54" height="76" rx="4" fill="#e8941f" stroke="#1a1a1a" stroke-width="5"/><rect width="11" height="76" fill="#cf7d12" stroke="#1a1a1a" stroke-width="5"/></g>`;
@@ -414,14 +409,7 @@ const PREP_SVG = {
   in:         _svg(_OPENBOOK + _BALL(110,96)),
   zwischen:   _svg(_BOOK(56,42)  + _BALL(112,96) + _BOOK(130,42)),
   an:         _svg(_BOOK(96,42)  + _BALL(80,64)),
-  // остальные направления — стрелки/коробки в том же стиле
   'gegenüber':_svg(_BOOK(34,42) + `<line x1="98" y1="80" x2="150" y2="80" stroke="#1a1a1a" stroke-width="4" stroke-dasharray="7 6"/>` + _BALL(176,80)),
-  links:      _svg(_ARROW('58,80 110,44 110,66 166,66 166,94 110,94 110,116')),
-  rechts:     _svg(_ARROW('162,80 110,44 110,66 54,66 54,94 110,94 110,116')),
-  oben:       _svg(_ARROW('110,38 148,90 126,90 126,140 94,140 94,90 72,90')),
-  unten:      _svg(_ARROW('110,142 148,90 126,90 126,40 94,40 72,90')),
-  innen:      _svg(_BOX(64,44,92,82) + _BALL(110,85)),
-  'außen':    _svg(_BOX(52,44,76,82) + _BALL(178,85)),
 };
 function fetchCommonsImage(query) {
   return new Promise(resolve => {
