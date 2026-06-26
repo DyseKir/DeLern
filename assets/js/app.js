@@ -389,13 +389,29 @@ function fetchOpenverse(query) {
     }).catch(() => resolve(null));
   });
 }
-/* предлоги места/направления → понятный фото-запрос на Openverse */
+/* остальные направления → запрос на Openverse */
 const OPENVERSE_FIX = {
-  vor:'cat in front of box', hinter:'cat behind box', neben:'cat next to box',
-  'über':'lamp above table', unter:'cat under table', auf:'cat on table',
-  in:'cat inside box', zwischen:'object between two boxes', 'gegenüber':'house across street',
   links:'turn left road sign', rechts:'turn right road sign', oben:'top of shelf',
-  unten:'bottom shelf', innen:'inside room', 'außen':'outside building', an:'picture on wall',
+  unten:'bottom shelf', innen:'inside room', 'außen':'outside building',
+  'gegenüber':'house across street',
+};
+
+/* ── SVG-схемы предлогов места (книга + мяч, как в учебнике) ── */
+const _BOOK  = (x,y)   => `<g transform="translate(${x},${y})"><rect width="54" height="76" rx="4" fill="#e8941f" stroke="#1a1a1a" stroke-width="5"/><rect width="11" height="76" fill="#cf7d12" stroke="#1a1a1a" stroke-width="5"/></g>`;
+const _BOOKT = (x,y,r) => `<g transform="translate(${x},${y}) rotate(${r})"><rect width="54" height="76" rx="4" fill="#e8941f" stroke="#1a1a1a" stroke-width="5"/><rect width="11" height="76" fill="#cf7d12" stroke="#1a1a1a" stroke-width="5"/></g>`;
+const _BALL  = (x,y)   => `<circle cx="${x}" cy="${y}" r="21" fill="#5bc5c9" stroke="#1a1a1a" stroke-width="5"/><circle cx="${x+6}" cy="${y-6}" r="3.5" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>`;
+const _OPENBOOK = `<path d="M30 118 Q110 78 190 118 L190 132 Q110 92 30 132 Z" fill="#fff" stroke="#1a1a1a" stroke-width="5"/><path d="M110 86 L110 126" stroke="#1a1a1a" stroke-width="4"/>`;
+const _svg = inner => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" class="prep-svg">${inner}</svg>`;
+const PREP_SVG = {
+  vor:      _svg(_BOOK(83,38)  + _BALL(96,120)),
+  hinter:   _svg(_BALL(128,72) + _BOOK(70,40)),
+  neben:    _svg(_BOOK(98,42)  + _BALL(58,96)),
+  'über':   _svg(_BOOK(83,72)  + _BALL(110,38)),
+  unter:    _svg(_BALL(92,112) + _BOOKT(66,46,-16)),
+  auf:      _svg(`<rect x="58" y="92" width="104" height="26" rx="3" fill="#e8941f" stroke="#1a1a1a" stroke-width="5"/><rect x="58" y="92" width="104" height="8" fill="#cf7d12" stroke="#1a1a1a" stroke-width="5"/>` + _BALL(110,70)),
+  in:       _svg(_OPENBOOK + _BALL(110,96)),
+  zwischen: _svg(_BOOK(56,42)  + _BALL(112,96) + _BOOK(130,42)),
+  an:       _svg(_BOOK(96,42)  + _BALL(80,64)),
 };
 function fetchCommonsImage(query) {
   return new Promise(resolve => {
@@ -442,9 +458,15 @@ function fetchWordImage(word) {
     }).catch(() => { fetchOpenverse(word).then(done); });
   });
 }
-/* ставит фото или эмодзи в элемент карточки */
+/* ставит фото / схему / эмодзи в элемент карточки */
 function setCardVisual(el, card, fallbackEmoji) {
   const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
+  // предлоги места — рисуем готовую SVG-схему (книга + мяч)
+  if (PREP_SVG[card.word]) {
+    el.innerHTML = PREP_SVG[card.word];
+    el.classList.add('has-photo');
+    return;
+  }
   el.textContent = emoji;
   el.classList.remove('has-photo');
   const wantImg = (OPENVERSE_FIX[card.word]) ||
