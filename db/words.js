@@ -176,7 +176,7 @@ window.VOCAB_DATA = [
       { id: "a1_s2_021", article: "die", word: "Polizeiwache",  translation: "полицейский участок"       },
       { id: "a1_s2_022", article: "die", word: "Abfahrt",       translation: "отправление / выезд"       },
       { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
-      { id: "a1_s2_024", article: "der", word: "Kantenautomat", translation: "кофейный / торговый автомат"},
+      { id: "a1_s2_024", article: "der", word: "Kaffeeautomat", translation: "кофейный автомат"},
       { id: "a1_s2_025", article: "die", word: "Arztpraxis",   translation: "кабинет врача / клиника"   },
       { id: "a1_s2_026", article: "der", word: "Platz",        translation: "площадь / место"           },
       { id: "a1_s2_027", article: "die", word: "Rakete",       translation: "ракета"                    },

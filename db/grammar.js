@@ -1123,45 +1123,67 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
     title_de: "Nominativ, Akkusativ, Dativ – welcher Fall?",
     title_ru: "Падежи: Nominativ / Akkusativ / Dativ — когда какой",
     explanation_de: "Drei Fälle: Nominativ (Subjekt), Akkusativ (direktes Objekt), Dativ (indirektes Objekt).",
-    explanation_ru: `В немецком 3 главных падежа. Главное — понять <strong>роль слова в предложении</strong>.
+    explanation_ru: `Три падежа = три <strong>роли</strong> слова в предложении. Цвета родов: <span class="art-der">der</span> муж., <span class="art-die">die</span> жен., <span class="art-das">das</span> сред.
 
-<strong>🟢 NOMINATIV — кто/что делает (подлежащее)</strong>
+<strong>🟢 NOMINATIV — подлежащее (кто делает?)</strong>
 Вопрос: <strong>Wer? Was?</strong> (Кто? Что?)
-Это тот, кто выполняет действие.
-<em><strong>Der Mann</strong> trinkt Kaffee.</em> — Мужчина пьёт кофе. (мужчина = подлежащее)
+Тот, кто выполняет действие. Артикль в словарной форме.
+<em><span class="art-der">Der</span> Mann trinkt Kaffee.</em> — Мужчина пьёт кофе.
 
-<strong>🔴 AKKUSATIV — кого/что (прямое дополнение)</strong>
-Вопрос: <strong>Wen? Was?</strong> (Кого? Что?)
-На кого направлено действие. Часто после: haben, sehen, kaufen, brauchen, essen, trinken, nehmen, suchen.
-<em>Ich sehe <strong>den Mann</strong>.</em> — Я вижу мужчину.
-<em>Ich habe <strong>einen Hund</strong>.</em>
+<strong>🔴 AKKUSATIV — прямое дополнение (кого? что?)</strong>
+Вопрос: <strong>Wen? Was?</strong>
+На кого направлено действие. После глаголов: haben, sehen, kaufen, brauchen, essen, trinken, nehmen, suchen, lieben.
+<em>Ich sehe <span class="art-der">den</span> Mann.</em> — Я вижу мужчину. (der → <span class="art-der">den</span>!)
 
-<strong>🔵 DATIV — кому/чему (косвенное дополнение)</strong>
-Вопрос: <strong>Wem?</strong> (Кому?)
-Кому адресовано действие. После: helfen, danken, geben, gehören, gefallen, и предлогов mit, zu, aus, bei, von, nach, seit.
-<em>Ich helfe <strong>dem Mann</strong>.</em> — Я помогаю мужчине.
-<em>Ich fahre mit <strong>dem Bus</strong>.</em>
+<strong>🔵 DATIV — косвенное дополнение (кому?)</strong>
+Вопрос: <strong>Wem?</strong>
+Кому адресовано действие. После: helfen, danken, geben, gehören, gefallen + предлоги mit, zu, aus, bei, von, nach, seit.
+<em>Ich helfe <span class="art-der">dem</span> Mann.</em> · <em>Ich fahre mit <span class="art-der">dem</span> Bus.</em>
 
-<strong>📋 Таблица артиклей:</strong>
-<table style="border-collapse:collapse">
-<tr><td></td><td><b>der</b></td><td><b>die</b></td><td><b>das</b></td><td><b>мн.</b></td></tr>
-<tr><td><b>Nom.</b></td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
-<tr><td><b>Akk.</b></td><td><span style="color:#ff6b8a">den</span></td><td>die</td><td>das</td><td>die</td></tr>
-<tr><td><b>Dat.</b></td><td>dem</td><td>der</td><td>dem</td><td>den+n</td></tr>
+<strong>📋 ТАБЛИЦА (учи её!) — роды по цветам:</strong>
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr>
+  <td style="padding:5px;border:1px solid #2a2f4a"></td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">der<br>муж.</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">die<br>жен.</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4ecb71;font-weight:800">das<br>сред.</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;font-weight:800">мн.ч.</td>
+</tr>
+<tr>
+  <td style="padding:5px;border:1px solid #2a2f4a;font-weight:700">Nom.<br><small>кто?</small></td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4a9eff">der</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#ff6b8a">die</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4ecb71">das</td>
+  <td style="padding:5px;border:1px solid #2a2f4a">die</td>
+</tr>
+<tr>
+  <td style="padding:5px;border:1px solid #2a2f4a;font-weight:700">Akk.<br><small>кого?</small></td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800;background:rgba(74,158,255,.18)">den</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#ff6b8a">die</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4ecb71">das</td>
+  <td style="padding:5px;border:1px solid #2a2f4a">die</td>
+</tr>
+<tr>
+  <td style="padding:5px;border:1px solid #2a2f4a;font-weight:700">Dat.<br><small>кому?</small></td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">dem</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">der</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;color:#4ecb71;font-weight:800">dem</td>
+  <td style="padding:5px;border:1px solid #2a2f4a;font-weight:800">den&nbsp;+n</td>
+</tr>
 </table>
 
-<strong>💡 Самое важное:</strong>
-• Меняется заметнее всего <u>мужской род (der)</u>: der → den (Akk) → dem (Dat).
-• Женский и средний в Akkusativ <u>НЕ меняются</u> (die/das остаются).
-• Спроси себя: <strong>Кто делает?</strong> → Nom. <strong>Кого/что?</strong> → Akk. <strong>Кому?</strong> → Dat.`,
+<strong>💡 Запомни 3 вещи:</strong>
+• Сильнее всего меняется <span class="art-der">der</span>: <span class="art-der">der → den → dem</span>.
+• <span class="art-die">die</span> и <span class="art-das">das</span> в Akkusativ <u>НЕ меняются</u>.
+• В Dativ муж. и сред. одинаковы → <span class="art-der">dem</span> / <span class="art-das">dem</span>; жен. → <span class="art-die">der</span>.`,
     examples: [
-      { de: "Der Hund (Nom.) sieht die Katze (Akk.).", ru: "Собака (кто? Nom.) видит кошку (кого? Akk.)." },
-      { de: "Ich gebe dem Kind (Dat.) einen Ball (Akk.).", ru: "Я даю ребёнку (кому? Dat.) мяч (что? Akk.)." },
-      { de: "Der Mann → Ich sehe den Mann → Ich helfe dem Mann.", ru: "der → den (Akk) → dem (Dat) — меняется мужской род." },
-      { de: "Ich fahre mit dem Auto. (mit → Dativ)", ru: "Я еду на машине. (mit всегда Dativ)" },
+      { de: "Der Hund sieht die Katze.",                 ru: "Собака (Nom.) видит кошку (Akk.)." },
+      { de: "Ich gebe dem Kind einen Ball.",             ru: "Я даю ребёнку (Dat.) мяч (Akk.)." },
+      { de: "Der Mann → den Mann → dem Mann.",           ru: "der → den (Akk) → dem (Dat)." },
+      { de: "Ich fahre mit dem Auto.",                   ru: "Я еду на машине. (mit → Dativ)" },
     ],
-    tip_de: "Wer/Was? → Nominativ. Wen/Was? → Akkusativ. Wem? → Dativ. Nur der ändert sich stark!",
-    tip_ru: "Кто/Что? → Nominativ. Кого/Что? → Akkusativ. Кому? → Dativ. Сильнее всего меняется только der!",
+    tip_de: "Wer? → Nominativ. Wen? → Akkusativ. Wem? → Dativ. Nur der ändert sich stark!",
+    tip_ru: "Кто? → Nominativ. Кого? → Akkusativ. Кому? → Dativ. Сильнее всего меняется der (der→den→dem)!",
   },
 
   // ════════════════════════════════════════

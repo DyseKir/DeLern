@@ -749,7 +749,7 @@ const EMOJI = {
   Post:'📬', Straße:'🛣️', Kirche:'⛪', Bibliothek:'📚', Wiese:'🌿',
   'S-Bahn':'🚆', Tankstelle:'⛽', Zeitung:'📰', Moschee:'🕌',
   Polizei:'👮', Polizeiwache:'🚔', Abfahrt:'🚀', Ankunft:'🛬',
-  Kantenautomat:'🤖',
+  Kaffeeautomat:'☕',
   // Verwandte
   Cousin:'👦', Cousine:'👧', Ehemann:'💍', Ehefrau:'💍',
   Eltern:'👨‍👩‍👧', Geschwister:'👫', Großeltern:'👴👵', Verwandten:'👨‍👩‍👧‍👦',
