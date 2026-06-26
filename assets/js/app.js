@@ -375,6 +375,28 @@ const COMMONS_FIX = {
   Friseur:'Friseur Mann', Friseurin:'Friseurin Frau',
   Sekretär:'Sekretär Mann', Sekretärin:'Sekretärin Frau',
 };
+/* Openverse — открытый банк изображений (CC) по запросу */
+function fetchOpenverse(query) {
+  return new Promise(resolve => {
+    const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(query)}&page_size=8&mature=false`;
+    fetch(url).then(r => r.json()).then(d => {
+      const res = (d && d.results) || [];
+      for (const r of res) {
+        const src = r.thumbnail || r.url;
+        if (src && !/\.svg($|\?)/i.test(src)) { resolve(src); return; }
+      }
+      resolve(null);
+    }).catch(() => resolve(null));
+  });
+}
+/* предлоги места/направления → понятный фото-запрос на Openverse */
+const OPENVERSE_FIX = {
+  vor:'cat in front of box', hinter:'cat behind box', neben:'cat next to box',
+  'über':'lamp above table', unter:'cat under table', auf:'cat on table',
+  in:'cat inside box', zwischen:'object between two boxes', 'gegenüber':'house across street',
+  links:'turn left road sign', rechts:'turn right road sign', oben:'top of shelf',
+  unten:'bottom shelf', innen:'inside room', 'außen':'outside building', an:'picture on wall',
+};
 function fetchCommonsImage(query) {
   return new Promise(resolve => {
     const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=6&gsrsearch=${encodeURIComponent(query)}&gsrlimit=10&prop=imageinfo&iiprop=url|mime&iiurlwidth=360&origin=*`;
@@ -397,23 +419,27 @@ function fetchWordImage(word) {
   return new Promise(resolve => {
     if (imgCache[word] !== undefined) { resolve(imgCache[word]); return; }
     let ls = null;
-    try { ls = localStorage.getItem('dl_img4_' + word); } catch(e) {}
+    try { ls = localStorage.getItem('dl_img5_' + word); } catch(e) {}
     if (ls !== null) { const v = ls || null; imgCache[word] = v; resolve(v); return; }
     const done = (img) => {
       imgCache[word] = img || null;
-      try { localStorage.setItem('dl_img4_' + word, img || ''); } catch(e) {}
+      try { localStorage.setItem('dl_img5_' + word, img || ''); } catch(e) {}
       resolve(img || null);
     };
-    // профессии и т.п. — фото из Commons по точному запросу (по полу)
+    // профессии — фото из Commons по точному запросу (по полу)
     if (COMMONS_FIX[word]) { fetchCommonsImage(COMMONS_FIX[word]).then(done); return; }
+    // предлоги места — фото из Openverse по описательному запросу
+    if (OPENVERSE_FIX[word]) { fetchOpenverse(OPENVERSE_FIX[word]).then(done); return; }
     const title = WIKI_TITLE_FIX[word] || word;
     const url = `https://de.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize=320&redirects=1&titles=${encodeURIComponent(title)}&origin=*`;
     fetch(url).then(r => r.json()).then(d => {
       let img = null;
       const pages = (d && d.query && d.query.pages) || {};
       for (const k in pages) { if (pages[k].thumbnail && pages[k].thumbnail.source) { img = pages[k].thumbnail.source; break; } }
-      done(img);
-    }).catch(() => { imgCache[word] = null; resolve(null); });
+      if (img) { done(img); return; }
+      // нет картинки в Википедии → пробуем Openverse по самому слову
+      fetchOpenverse(word).then(done);
+    }).catch(() => { fetchOpenverse(word).then(done); });
   });
 }
 /* ставит фото или эмодзи в элемент карточки */
@@ -421,7 +447,8 @@ function setCardVisual(el, card, fallbackEmoji) {
   const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
   el.textContent = emoji;
   el.classList.remove('has-photo');
-  const wantImg = card.article && card.article !== '-' && !/\s/.test(card.word) && !NO_PHOTO.has(card.word);
+  const wantImg = (OPENVERSE_FIX[card.word]) ||
+    (card.article && card.article !== '-' && !/\s/.test(card.word) && !NO_PHOTO.has(card.word));
   if (!wantImg) return;
   const reqWord = card.word;
   fetchWordImage(reqWord).then(src => {
