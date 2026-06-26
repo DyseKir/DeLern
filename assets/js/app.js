@@ -1676,7 +1676,7 @@ function drawTestCard() {
   const noArt  = !card.article || card.article === '-';
   const streak = getWP(card.id).streak || 0;
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
-  $('tt-emoji').textContent    = EMOJI[card.word] || S.currentCatEmoji;
+  setCardVisual($('tt-emoji'), card, S.currentCatEmoji);
   $('tt-ru').textContent       = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
   $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
@@ -2156,7 +2156,7 @@ function startExam() {
 function drawExamCard() {
   if (EX.idx >= EX.cards.length) { finishExam(); return; }
   const card = EX.cards[EX.idx];
-  $('exam-emoji').textContent = EMOJI[card.word] || '📝';
+  setCardVisual($('exam-emoji'), card, '📝');
   $('exam-ru').textContent    = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
   $('exam-counter').textContent = `${EX.idx+1} / ${EX.cards.length}`;
   $('exam-score').textContent   = `✓ ${EX.correct}`;
