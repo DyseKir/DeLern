@@ -1165,6 +1165,75 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — ПАДЕЖИ: ШПАРГАЛКА ПО СЛОВАМ-МАРКЕРАМ
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_034", level: "A1",
+    title_de: "Fälle erkennen – Signalwörter (Präpositionen & Verben)",
+    title_ru: "Как определить падеж по словам-маркерам (предлоги и глаголы)",
+    explanation_de: "Bestimmte Präpositionen und Verben zeigen dir sofort den Fall.",
+    explanation_ru: `Самый простой способ — <strong>смотреть на слово-маркер</strong> (предлог или глагол). Оно подсказывает падеж. Разбираем по шагам.
+
+<strong>━━━ ШАГ 1. Есть предлог? Смотри какой ━━━</strong>
+
+<strong>🔵 Эти предлоги → ВСЕГДА Dativ</strong> (заучи их как стих!):
+<strong>aus, bei, mit, nach, seit, von, zu</strong> (+ gegenüber)
+• <em>Ich fahre <strong>mit</strong> dem Bus.</em> — mit → Dativ → der Bus стал <strong>dem</strong> Bus.
+• <em>Ich komme <strong>aus</strong> der Türkei.</em>
+• <em>Ich gehe <strong>zu</strong> dem (=zum) Arzt.</em>
+• <em>Nach <strong>dem</strong> Essen.</em>
+👉 Увидел mit / aus / bei / von / zu / nach / seit — ставь Dativ, не думай.
+
+<strong>🔴 Эти предлоги → ВСЕГДА Akkusativ:</strong>
+<strong>durch, für, gegen, ohne, um</strong> (+ bis)
+• <em>Ich kaufe ein Geschenk <strong>für</strong> den Mann.</em> — für → Akk → <strong>den</strong> Mann.
+• <em>Ich gehe <strong>durch</strong> den Park.</em>
+• <em>Ich habe nichts <strong>gegen</strong> dich.</em>
+👉 Увидел für / durch / gegen / ohne / um — ставь Akkusativ.
+
+<strong>🟡 «Хитрые» предлоги (an, auf, in, über, unter, vor, hinter, neben, zwischen):</strong>
+Зависит от вопроса:
+• <strong>Wo?</strong> (Где? — предмет на месте) → <strong>Dativ</strong>: <em>Das Buch ist <strong>auf dem</strong> Tisch.</em>
+• <strong>Wohin?</strong> (Куда? — движение) → <strong>Akkusativ</strong>: <em>Ich lege das Buch <strong>auf den</strong> Tisch.</em>
+
+<strong>━━━ ШАГ 2. Предлога нет? Смотри на глагол ━━━</strong>
+
+<strong>🔵 Эти глаголы требуют Dativ</strong> (кому?):
+<strong>helfen, danken, gefallen, gehören, antworten, glauben, passen</strong>
+• <em>Ich helfe <strong>dem</strong> Mann.</em> (помогаю кому?)
+• <em>Das Auto gehört <strong>dem</strong> Vater.</em>
+
+<strong>🔴 Большинство остальных глаголов → Akkusativ</strong> (кого/что?):
+<strong>haben, sehen, kaufen, brauchen, essen, trinken, nehmen, suchen, lieben, fragen</strong>
+• <em>Ich habe <strong>einen</strong> Hund.</em>
+• <em>Ich sehe <strong>den</strong> Mann.</em>
+
+<strong>📋 Таблица (главное — мужской род der!):</strong>
+<table style="border-collapse:collapse">
+<tr><td></td><td><b>der</b> (м)</td><td><b>die</b> (ж)</td><td><b>das</b> (ср)</td><td><b>мн.</b></td></tr>
+<tr><td><b>Nom.</b> (кто?)</td><td>der / ein</td><td>die / eine</td><td>das / ein</td><td>die</td></tr>
+<tr><td><b>Akk.</b> (кого?)</td><td style="color:#ff6b8a"><b>den / einen</b></td><td>die / eine</td><td>das / ein</td><td>die</td></tr>
+<tr><td><b>Dat.</b> (кому?)</td><td><b>dem / einem</b></td><td><b>der / einer</b></td><td><b>dem / einem</b></td><td><b>den</b>+n</td></tr>
+</table>
+
+<strong>🧠 Запомни короткое правило:</strong>
+1. Есть mit/aus/bei/von/zu/nach/seit? → <strong>Dativ</strong>
+2. Есть für/durch/gegen/ohne/um? → <strong>Akkusativ</strong>
+3. Есть helfen/danken/gehören? → <strong>Dativ</strong>
+4. Ничего такого, просто «кого/что»? → <strong>Akkusativ</strong>
+5. Кто делает действие? → <strong>Nominativ</strong> (он не меняется).`,
+    examples: [
+      { de: "Ich fahre mit dem Bus.",            ru: "mit → Dativ: der Bus → dem Bus." },
+      { de: "Ein Geschenk für den Mann.",        ru: "für → Akkusativ: der Mann → den Mann." },
+      { de: "Ich helfe dem Kind.",               ru: "helfen → Dativ: das Kind → dem Kind." },
+      { de: "Ich kaufe den Apfel.",              ru: "kaufen (нет предлога) → Akkusativ: der → den." },
+      { de: "Ich komme aus der Schweiz.",        ru: "aus → Dativ: die Schweiz → der Schweiz." },
+    ],
+    tip_de: "DATIV: aus,bei,mit,nach,seit,von,zu | AKKUSATIV: durch,für,gegen,ohne,um. Verben: helfen→Dativ, sonst meist Akkusativ.",
+    tip_ru: "DATIV-предлоги: aus,bei,mit,nach,seit,von,zu. AKKUSATIV-предлоги: durch,für,gegen,ohne,um. helfen/danken/gehören → Dativ, остальное чаще Akkusativ.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 
