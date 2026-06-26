@@ -458,30 +458,43 @@ function fetchWordImage(word) {
     }).catch(() => { fetchOpenverse(word).then(done); });
   });
 }
-/* ставит фото / схему / эмодзи в элемент карточки */
-function setCardVisual(el, card, fallbackEmoji) {
-  const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
-  // предлоги места — рисуем готовую SVG-схему (книга + мяч)
-  if (PREP_SVG[card.word]) {
-    el.innerHTML = PREP_SVG[card.word];
-    el.classList.add('has-photo');
-    return;
+/* эмодзи → код OpenMoji (хекс кодпойнтов, паддинг до 4) */
+function emojiToCode(e) {
+  if (!e) return '';
+  const cps = [];
+  for (const ch of e) {
+    const cp = ch.codePointAt(0).toString(16).toUpperCase();
+    cps.push(cp.length < 4 ? cp.padStart(4,'0') : cp);
   }
-  el.textContent = emoji;
-  el.classList.remove('has-photo');
-  const wantImg = (OPENVERSE_FIX[card.word]) ||
-    (card.article && card.article !== '-' && !/\s/.test(card.word) && !NO_PHOTO.has(card.word));
-  if (!wantImg) return;
-  const reqWord = card.word;
-  fetchWordImage(reqWord).then(src => {
-    if (!src || S.currentWord !== reqWord) return;  // карточка уже сменилась
-    const img = document.createElement('img');
-    img.className = 'card-photo';
-    img.alt = reqWord;
-    img.onerror = () => { el.textContent = emoji; el.classList.remove('has-photo'); };
-    img.onload  = () => { el.textContent = ''; el.appendChild(img); el.classList.add('has-photo'); };
-    img.src = src;
-  });
+  return cps.join('-');
+}
+function openmojiUrl(code) { return `https://openmoji.org/data/color/svg/${code}.svg`; }
+
+/* ставит схему / OpenMoji-иллюстрацию / системный эмодзи в элемент карточки */
+function setCardVisual(el, card, fallbackEmoji) {
+  // предлоги места — готовая SVG-схема (книга + мяч)
+  if (PREP_SVG[card.word]) { el.innerHTML = PREP_SVG[card.word]; el.classList.add('has-photo'); return; }
+
+  const emoji = EMOJI[card.word] || fallbackEmoji || '📝';
+  const code  = emojiToCode(emoji);
+  if (!code) { el.textContent = emoji; el.classList.remove('has-photo'); return; }
+
+  el.textContent = '';
+  el.classList.add('has-photo');
+  const img = document.createElement('img');
+  img.className = 'card-illus';
+  img.alt = card.word;
+  img.onerror = () => {
+    // без FE0F не нашли — пробуем альтернативу, иначе системный эмодзи
+    if (!img.dataset.retried && /-FE0F/.test(img.src)) {
+      img.dataset.retried = '1';
+      img.src = openmojiUrl(code.replace(/-FE0F/g,''));
+      return;
+    }
+    el.classList.remove('has-photo'); el.textContent = emoji;
+  };
+  img.src = openmojiUrl(code);
+  el.appendChild(img);
 }
 
 /* ── Озвучка слова (немецкий TTS) ── */
