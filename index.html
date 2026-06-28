@@ -35,16 +35,8 @@
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
-      <a href="#" class="nav-link"        data-screen="shop"       data-i18n="nav_shop">Shop</a>
-      <a href="#" class="nav-link"        data-screen="pet"        data-i18n="nav_pet">Питомец</a>
     </nav>
     <div class="header-right">
-      <div class="coin-display" id="coin-display-header">
-        <span class="coin-icon"></span><span id="coin-balance-header">0</span>
-      </div>
-      <div class="euro-display" id="euro-display-header">
-        <span class="euro-icon">€</span><span id="euro-balance-header">4000</span>
-      </div>
       <button class="lang-btn" id="lang-btn" title="Sprache / Язык">DE</button>
       <button class="notif-btn">🔔</button>
       <div class="profile-switcher" id="profile-switcher">
@@ -302,37 +294,6 @@
       <div class="vocab-learned-section" id="vocab-learned-section"></div>
     </div>
 
-    <!-- SHOP -->
-    <div id="screen-shop" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="shop-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title" data-i18n="nav_shop">Shop</h2>
-        <div class="euro-display shop-euro-display"><span class="euro-icon">€</span> <span id="euro-balance-shop">4000</span></div>
-      </div>
-      <div class="shop-layout">
-        <div class="shop-items-wrap">
-          <div class="shop-items-grid" id="shop-items-grid"></div>
-        </div>
-        <div class="shop-cart-panel" id="shop-cart-panel">
-          <div class="cart-header">
-            <span data-i18n="cart_title">Корзина</span>
-            <span class="cart-count-badge" id="cart-count-badge">0</span>
-          </div>
-          <div class="cart-items-list" id="cart-items-list">
-            <div class="cart-empty" data-i18n="cart_empty">Пусто</div>
-          </div>
-          <div class="cart-footer">
-            <div class="cart-total-row">
-              <span data-i18n="cart_total">Итого:</span>
-              <span class="cart-total-val"><span class="coin-icon"></span> <strong id="cart-total-val">0</strong></span>
-            </div>
-            <button class="btn-primary cart-buy-btn" id="cart-buy-btn" disabled data-i18n="cart_buy">Купить!</button>
-          </div>
-        </div>
-      </div>
-      <div class="shop-purchased-wrap" id="shop-purchased-wrap"></div>
-    </div>
-
     <!-- GRAMMATIK -->
     <div id="screen-grammatik" class="screen">
       <div class="screen-header">
@@ -346,15 +307,6 @@
     <div id="screen-profil" class="screen">
       <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
       <div id="profile-layout" class="profile-layout"></div>
-    </div>
-
-    <!-- PET -->
-    <div id="screen-pet" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="pet-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title" data-i18n="nav_pet">Питомец</h2>
-      </div>
-      <div class="pet-area" id="pet-area"></div>
     </div>
 
     <!-- EXAM -->

@@ -882,16 +882,7 @@ function migrateCoins() {
 const COIN = '<span class="coin-symbol"></span>';
 const COINXS = '<span class="coin-xs"></span>';
 
-function showCoinPop(n, anchor) {
-  const pop = document.createElement('div');
-  pop.className = 'coin-pop';
-  pop.innerHTML = `+${n} ${COIN}`;
-  document.body.appendChild(pop);
-  const r = anchor.getBoundingClientRect();
-  pop.style.left = (r.left + r.width/2 - 24) + 'px';
-  pop.style.top  = (r.top + window.scrollY - 28) + 'px';
-  setTimeout(() => pop.remove(), 900);
-}
+function showCoinPop(n, anchor) { /* магазин убран — монеты не показываем */ }
 function getWP(id) { return loadProg()[id] || {streak:0,total:0,wrong:0,status:'new',seen:null}; }
 
 // streak накапливается ТОЛЬКО через печатный тест; learned = 3 верных ввода
@@ -984,8 +975,6 @@ function rerenderCurrent() {
   else if (S.screen==='wortschatz') renderVocabScreen();
   else if (S.screen==='grammatik')  renderGrammarScreen();
   else if (S.screen==='profil')     renderProfile();
-  else if (S.screen==='shop')       renderShop();
-  else if (S.screen==='pet')        renderPetScreen();
   else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
 }
@@ -2380,8 +2369,6 @@ function initEvents() {
       else if(s==='wortschatz') renderVocabScreen();
       else if(s==='grammatik')  renderGrammarScreen();
       else if(s==='profil')     renderProfile();
-      else if(s==='shop')       renderShop();
-      else if(s==='pet')        renderPetScreen();
       else if(s==='exam')       renderExamScreen();
     });
   });
@@ -2451,9 +2438,6 @@ function initEvents() {
   $('cards-back').addEventListener('click',  ()=>{show('home');renderHome();});
   $('grammar-back').addEventListener('click',()=>{show('home');renderHome();});
   $('vocab-back').addEventListener('click',  ()=>{show('home');renderHome();});
-  $('shop-back').addEventListener('click',   ()=>{show('home');renderHome();});
-  $('pet-back').addEventListener('click',    ()=>{show('home');renderHome();});
-  $('cart-buy-btn').addEventListener('click', checkoutCart);
 
   /* Конец сессии */
   $('btn-repeat').addEventListener('click',()=>{
