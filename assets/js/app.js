@@ -12,7 +12,7 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
+    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
@@ -74,7 +74,7 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
+    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
@@ -136,7 +136,7 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
+    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
@@ -1008,6 +1008,7 @@ function rerenderCurrent() {
   if      (S.screen==='home')       renderHome();
   else if (S.screen==='wortschatz') renderVocabScreen();
   else if (S.screen==='grammatik')  renderGrammarScreen();
+  else if (S.screen==='tables')     renderTablesScreen();
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
@@ -1801,6 +1802,206 @@ function renderGrammarScreen() {
   });
 }
 
+/* ══════════════════════════════════════════════
+   ТАБЛИЦЫ-ШПАРГАЛКИ (отдельная вкладка)
+   ══════════════════════════════════════════════ */
+function tablesData() {
+  const D='#4a9eff', F='#ff6b8a', N='#4ecb71';           // der / die / das
+  const dh = s=>`<span style="color:${D};font-weight:700">${s}</span>`;
+  const fh = s=>`<span style="color:${F};font-weight:700">${s}</span>`;
+  const nh = s=>`<span style="color:${N};font-weight:700">${s}</span>`;
+  const L=(de,ru,uk)=>lstr(de,ru,uk);
+
+  // конструктор таблицы: headers[], rows[[...]]
+  const tbl=(headers,rows,firstCol=true)=>{
+    const th=headers.map((h,i)=>`<th${i===0&&firstCol?' class="rt-rowh"':''}>${h}</th>`).join('');
+    const tr=rows.map(r=>`<tr>${r.map((c,i)=>
+      (i===0&&firstCol)?`<td class="rt-rowh">${c}</td>`:`<td>${c}</td>`).join('')}</tr>`).join('');
+    return `<div class="rt-scroll"><table class="rt"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table></div>`;
+  };
+
+  const P=['ich','du','er/sie/es','wir','ihr','sie/Sie'];
+
+  return [
+    { id:'modal', icon:'🔑', title:L('Modalverben (Präsens)','Модальные глаголы (спряжение)','Модальні дієслова (відмінювання)'),
+      html:tbl(
+        ['', 'können','müssen','dürfen','wollen','sollen','mögen','möchten'],
+        [
+          ['ich','kann','muss','darf','will','soll','mag','möchte'],
+          ['du','kannst','musst','darfst','willst','sollst','magst','möchtest'],
+          ['er/sie/es','kann','muss','darf','will','soll','mag','möchte'],
+          ['wir','können','müssen','dürfen','wollen','sollen','mögen','möchten'],
+          ['ihr','könnt','müsst','dürft','wollt','sollt','mögt','möchtet'],
+          ['sie/Sie','können','müssen','dürfen','wollen','sollen','mögen','möchten'],
+        ]) + `<p class="rt-note">💡 ${L('Modalverb steht auf Position 2, das zweite Verb im Infinitiv ans Satzende: „Ich <b>muss</b> heute <b>arbeiten</b>.“',
+          'Модальный глагол — на 2-м месте, второй глагол в инфинитиве уходит в конец: «Ich <b>muss</b> heute <b>arbeiten</b>».',
+          'Модальне дієслово — на 2-й позиції, друге дієслово в інфінітиві в кінець: «Ich <b>muss</b> heute <b>arbeiten</b>».')}</p>` },
+
+    { id:'seinhaben', icon:'⭐', title:L('sein / haben / werden','sein / haben / werden (быть / иметь / становиться)','sein / haben / werden'),
+      html:tbl(
+        ['', 'sein '+L('(быть)','(быть)','(бути)'),'haben '+L('(иметь)','(иметь)','(мати)'),'werden '+L('(станов.)','(станов.)','(става...)')],
+        [
+          ['ich','bin','habe','werde'],
+          ['du','bist','hast','wirst'],
+          ['er/sie/es','ist','hat','wird'],
+          ['wir','sind','haben','werden'],
+          ['ihr','seid','habt','werdet'],
+          ['sie/Sie','sind','haben','werden'],
+        ]) },
+
+    { id:'regular', icon:'🔤', title:L('Reguläre Verben – Endungen','Правильные глаголы — окончания','Правильні дієслова — закінчення'),
+      html:tbl(
+        ['', 'machen','arbeiten *','heißen'],
+        [
+          ['ich','mach<b>e</b>','arbeit<b>e</b>','heiß<b>e</b>'],
+          ['du','mach<b>st</b>','arbeit<b>est</b>','heiß<b>t</b>'],
+          ['er/sie/es','mach<b>t</b>','arbeit<b>et</b>','heiß<b>t</b>'],
+          ['wir','mach<b>en</b>','arbeit<b>en</b>','heiß<b>en</b>'],
+          ['ihr','mach<b>t</b>','arbeit<b>et</b>','heiß<b>t</b>'],
+          ['sie/Sie','mach<b>en</b>','arbeit<b>en</b>','heiß<b>en</b>'],
+        ]) + `<p class="rt-note">* ${L('Nach -t/-d/-n: extra <b>e</b> (du arbeit<b>e</b>st). Nach -s/-ß/-z: du bekommt nur <b>-t</b> (du heißt).',
+          'После -t/-d/-n добавляется <b>e</b> (du arbeit<b>e</b>st). После -s/-ß/-z в du только <b>-t</b> (du heißt).',
+          'Після -t/-d/-n додається <b>e</b> (du arbeit<b>e</b>st). Після -s/-ß/-z у du лише <b>-t</b> (du heißt).')}</p>` },
+
+    { id:'vokal', icon:'🔄', title:L('Verben mit Vokalwechsel','Глаголы с изменением корня','Дієслова зі зміною кореня'),
+      html:tbl(
+        ['', L('Тип','Тип','Тип'),'ich','du','er/sie/es'],
+        [
+          ['sprechen','e→i','spreche','spr<b>i</b>chst','spr<b>i</b>cht'],
+          ['essen','e→i','esse','<b>i</b>sst','<b>i</b>sst'],
+          ['nehmen','e→i','nehme','n<b>imm</b>st','n<b>imm</b>t'],
+          ['sehen','e→ie','sehe','s<b>ie</b>hst','s<b>ie</b>ht'],
+          ['lesen','e→ie','lese','l<b>ie</b>st','l<b>ie</b>st'],
+          ['fahren','a→ä','fahre','f<b>ä</b>hrst','f<b>ä</b>hrt'],
+          ['schlafen','a→ä','schlafe','schl<b>ä</b>fst','schl<b>ä</b>ft'],
+          ['laufen','au→äu','laufe','l<b>äu</b>fst','l<b>äu</b>ft'],
+        ]) + `<p class="rt-note">⚠️ ${L('Wechsel nur bei <b>du</b> und <b>er/sie/es</b>!','Изменение только у <b>du</b> и <b>er/sie/es</b>!','Зміна лише у <b>du</b> та <b>er/sie/es</b>!')}</p>` },
+
+    { id:'trennbar', icon:'✂️', title:L('Trennbare Verben','Отделяемые глаголы','Відокремлювані дієслова'),
+      html:tbl(
+        ['', 'ich','du','er/sie/es'],
+        [
+          ['aufstehen','stehe … <b>auf</b>','stehst … <b>auf</b>','steht … <b>auf</b>'],
+          ['einkaufen','kaufe … <b>ein</b>','kaufst … <b>ein</b>','kauft … <b>ein</b>'],
+          ['anrufen','rufe … <b>an</b>','rufst … <b>an</b>','ruft … <b>an</b>'],
+          ['fernsehen','sehe … <b>fern</b>','s<b>ie</b>hst … <b>fern</b>','sieht … <b>fern</b>'],
+          ['anfangen','fange … <b>an</b>','f<b>ä</b>ngst … <b>an</b>','fängt … <b>an</b>'],
+        ]) + `<p class="rt-note">${L('Vorsilben: ','Приставки: ','Префікси: ')}<b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b> → ${L('ans Satzende','в конец предложения','в кінець речення')}.</p>` },
+
+    { id:'artikel', icon:'📦', title:L('Artikel nach Fällen','Артикли по падежам','Артиклі за відмінками'),
+      html:`<p class="rt-sub">${L('Bestimmt','Определённые','Означені')} (der/die/das):</p>`+tbl(
+        ['', dh('der (м)'),fh('die (ж)'),nh('das (ср)'),'<b>'+L('мн.','мн.','мн.')+'</b>'],
+        [
+          [L('Nom. кто?','Nom. кто?','Nom. хто?'), dh('der'),fh('die'),nh('das'),'die'],
+          [L('Akk. кого?','Akk. кого?','Akk. кого?'), `<b style="color:${D}">den</b>`,fh('die'),nh('das'),'die'],
+          [L('Dat. кому?','Dat. кому?','Dat. кому?'), `<b style="color:${D}">dem</b>`,`<b style="color:${F}">der</b>`,`<b style="color:${N}">dem</b>`,'<b>den</b>+n'],
+        ])
+      +`<p class="rt-sub">${L('Unbestimmt','Неопределённые','Неозначені')} (ein/eine) / kein / mein:</p>`+tbl(
+        ['', dh('ein (м)'),fh('eine (ж)'),nh('ein (ср)'),'<b>kein/mein (мн.)</b>'],
+        [
+          ['Nom.', dh('ein'),fh('eine'),nh('ein'),'meine'],
+          ['Akk.', `<b style="color:${D}">einen</b>`,fh('eine'),nh('ein'),'meine'],
+          ['Dat.', `<b style="color:${D}">einem</b>`,`<b style="color:${F}">einer</b>`,`<b style="color:${N}">einem</b>`,'<b>meinen</b>+n'],
+        ])
+      +`<p class="rt-note">💡 ${L('Nur <b>der</b> (муж.) ändert sich stark: der → den → dem.','Сильнее всего меняется <b>der</b> (муж.): der → den → dem.','Найсильніше змінюється <b>der</b> (чол.): der → den → dem.')}</p>` },
+
+    { id:'pronomen', icon:'🙋', title:L('Personalpronomen','Личные местоимения','Особові займенники'),
+      html:tbl(
+        ['', L('Nom. (кто?)','Nom. (кто?)','Nom. (хто?)'),L('Akk. (кого?)','Akk. (кого?)','Akk. (кого?)'),L('Dat. (кому?)','Dat. (кому?)','Dat. (кому?)')],
+        [
+          ['ich','ich','mich','mir'],
+          ['du','du','dich','dir'],
+          ['er','er','ihn','ihm'],
+          ['sie (ж)','sie','sie','ihr'],
+          ['es','es','es','ihm'],
+          ['wir','wir','uns','uns'],
+          ['ihr','ihr','euch','euch'],
+          ['sie/Sie','sie/Sie','sie/Sie','ihnen/Ihnen'],
+        ]) },
+
+    { id:'possessiv', icon:'🔑', title:L('Possessivartikel','Притяжательные (мой, твой…)','Присвійні (мій, твій…)'),
+      html:tbl(
+        ['', L('основа','основа','основа'),L('+ der/das','+ der/das','+ der/das'),L('+ die/мн.','+ die/мн.','+ die/мн.')],
+        [
+          ['ich → ','mein','mein','mein<b>e</b>'],
+          ['du → ','dein','dein','dein<b>e</b>'],
+          ['er/es → ','sein','sein','sein<b>e</b>'],
+          ['sie → ','ihr','ihr','ihr<b>e</b>'],
+          ['wir → ','unser','unser','unser<b>e</b>'],
+          ['ihr → ','euer','euer','eur<b>e</b>'],
+          ['sie/Sie → ','ihr/Ihr','ihr/Ihr','ihr<b>e</b>/Ihr<b>e</b>'],
+        ]) + `<p class="rt-note">${L('Endungen wie bei ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.',
+          'Окончания как у ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.',
+          'Закінчення як у ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.')}</p>` },
+
+    { id:'praep', icon:'🧭', title:L('Präpositionen nach Fällen','Предлоги по падежам','Прийменники за відмінками'),
+      html:tbl(
+        [`<b style="color:${D}">${L('Immer DATIV','Всегда DATIV','Завжди DATIV')}</b>`,`<b style="color:${F}">${L('Immer AKKUSATIV','Всегда AKKUSATIV','Завжди AKKUSATIV')}</b>`,`<b>${L('Wechsel (Wo=Dat / Wohin=Akk)','Wechsel (Wo=Dat / Wohin=Akk)','Wechsel (Wo=Dat / Wohin=Akk)')}</b>`],
+        [
+          ['aus, bei, mit,','durch, für,','an, auf, in,'],
+          ['nach, seit,','gegen, ohne,','über, unter, vor,'],
+          ['von, zu,','um, bis','hinter, neben,'],
+          ['gegenüber','','zwischen'],
+        ], false) + `<p class="rt-note">🟡 ${L('Wechsel-Präpositionen: <b>Wohin?</b> (движение) → Akkusativ, <b>Wo?</b> (место) → Dativ.',
+          'Wechsel-предлоги: <b>Wohin?</b> (куда, движение) → Akkusativ; <b>Wo?</b> (где, место) → Dativ.',
+          'Wechsel-прийменники: <b>Wohin?</b> (куди, рух) → Akkusativ; <b>Wo?</b> (де, місце) → Dativ.')}</p>` },
+
+    { id:'frage', icon:'❓', title:L('Fragewörter','Вопросительные слова','Питальні слова'),
+      html:tbl(
+        [L('Немецкий','Немецкий','Німецька'),L('Перевод','Перевод','Переклад'),L('Падеж/примечание','Падеж/примечание','Відмінок/примітка')],
+        [
+          ['Wer?',L('кто?','кто?','хто?'),'Nominativ'],
+          ['Wen?',L('кого?','кого?','кого?'),'Akkusativ'],
+          ['Wem?',L('кому?','кому?','кому?'),'Dativ'],
+          ['Wessen?',L('чей?','чей?','чий?'),'Genitiv'],
+          ['Was?',L('что?','что?','що?'),'Nom./Akk.'],
+          ['Wo?',L('где?','где?','де?'),'→ Dativ'],
+          ['Wohin?',L('куда?','куда?','куди?'),'→ Akkusativ'],
+          ['Woher?',L('откуда?','откуда?','звідки?'),'→ Dativ'],
+          ['Wann?',L('когда?','когда?','коли?'),'—'],
+          ['Wie?',L('как?','как?','як?'),'—'],
+          ['Warum?',L('почему?','почему?','чому?'),'—'],
+          ['Wie viel?',L('сколько?','сколько?','скільки?'),'—'],
+          ['Welcher?',L('какой?','какой?','який?'),'—'],
+        ], false) },
+
+    { id:'zahlen', icon:'🔢', title:L('Zahlen','Числа','Числа'),
+      html:tbl(
+        ['', '', '', ''],
+        [
+          ['0 null','1 eins','2 zwei','3 drei'],
+          ['4 vier','5 fünf','6 sechs','7 sieben'],
+          ['8 acht','9 neun','10 zehn','11 elf'],
+          ['12 zwölf','13 dreizehn','14 vierzehn','15 fünfzehn'],
+          ['16 sechzehn','17 siebzehn','18 achtzehn','19 neunzehn'],
+          ['20 zwanzig','30 dreißig','40 vierzig','50 fünfzig'],
+          ['60 sechzig','70 siebzig','80 achtzig','90 neunzig'],
+          ['100 hundert','1000 tausend','21 einundzwanzig','100000 ...'],
+        ], false) + `<p class="rt-note">💡 ${L('21–99: „Einer <b>und</b> Zehner“ zusammen: 21 = ein<b>und</b>zwanzig, 45 = fünf<b>und</b>vierzig.',
+          '21–99: сначала единицы, потом «und» и десятки, слитно: 21 = ein<b>und</b>zwanzig, 45 = fünf<b>und</b>vierzig.',
+          '21–99: спершу одиниці, потім «und» і десятки, разом: 21 = ein<b>und</b>zwanzig, 45 = fünf<b>und</b>vierzig.')}</p>` },
+  ];
+}
+
+function renderTablesScreen() {
+  show('tables');
+  const data = tablesData();
+  const toc = $('tables-toc');
+  const body = $('tables-content');
+  if (toc) toc.innerHTML = data.map(s=>`<button class="tables-toc-btn" data-go="tbl-${s.id}">${s.icon} ${s.title}</button>`).join('');
+  if (body) body.innerHTML = data.map(s=>`
+    <section class="tbl-card" id="tbl-${s.id}">
+      <h3 class="tbl-card-title">${s.icon} ${s.title}</h3>
+      ${s.html}
+    </section>`).join('');
+  if (toc) toc.querySelectorAll('.tables-toc-btn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const el=$(b.dataset.go);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
 /* возвращает нужный языковой вариант поля правила
    uk → uk || ru || de ; ru → ru || de ; de → de */
 function ruleField(rule, field) {
@@ -2147,29 +2348,71 @@ function getLearnedWords() {
   return words;
 }
 
+const EXAM_MODULE_SIZE = 100;
+
+/* делит выученные слова на модули по 100 (последний может быть меньше) */
+function getExamModules() {
+  const learned = getLearnedWords();
+  const mods = [];
+  for (let i=0; i<learned.length; i+=EXAM_MODULE_SIZE) mods.push(learned.slice(i, i+EXAM_MODULE_SIZE));
+  return mods;
+}
+
 function renderExamScreen() {
   show('exam');
   $('exam-run').classList.add('hidden');
   $('exam-result').classList.add('hidden');
   $('exam-intro').classList.remove('hidden');
 
-  const learned = getLearnedWords();
+  const learned  = getLearnedWords();
   const startBtn = $('exam-start');
+  const modsWrap = $('exam-modules');
+  if (modsWrap) modsWrap.innerHTML = '';
+
   if (!learned.length) {
+    startBtn.classList.remove('hidden');
     startBtn.disabled = true;
     startBtn.textContent = t('exam_none');
-  } else {
+  } else if (learned.length <= EXAM_MODULE_SIZE) {
+    // мало слов — одна кнопка, как раньше
+    startBtn.classList.remove('hidden');
     startBtn.disabled = false;
     startBtn.textContent = `${t('exam_start')} (${learned.length})`;
+  } else {
+    // много слов — показываем модули по 100
+    startBtn.classList.add('hidden');
+    const mods = getExamModules();
+    modsWrap.innerHTML =
+      `<p class="exam-modules-hint">${lstr(
+        'Wähle ein Modul – max. 100 Wörter pro Prüfung:',
+        'Выбери модуль — максимум 100 слов за раз:',
+        'Обери модуль — максимум 100 слів за раз:')}</p>` +
+      mods.map((m,i)=>{
+        const from = i*EXAM_MODULE_SIZE+1, to = i*EXAM_MODULE_SIZE+m.length;
+        return `<button class="exam-module-btn" data-mod="${i}">
+          <span class="exam-mod-num">${lstr('Modul','Модуль','Модуль')} ${i+1}</span>
+          <span class="exam-mod-range">${lstr('Wörter','слова','слова')} ${from}–${to} · ${m.length} ${lstr('W.','сл.','сл.')}</span>
+        </button>`;
+      }).join('') +
+      `<button class="exam-module-btn exam-module-all" data-mod="all">
+        <span class="exam-mod-num">🎲 ${lstr('Alle gemischt','Все вперемешку','Всі впереміш')}</span>
+        <span class="exam-mod-range">${lstr('100 zufällige aus','100 случайных из','100 випадкових з')} ${learned.length}</span>
+      </button>`;
+    modsWrap.querySelectorAll('.exam-module-btn').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        if (b.dataset.mod==='all') startExam(shuffle(learned.slice()).slice(0, EXAM_MODULE_SIZE));
+        else startExam(getExamModules()[+b.dataset.mod]);
+      });
+    });
   }
   $('exam-chart').innerHTML = buildExamChart(loadExamHistory());
 }
 
-function startExam() {
-  const learned = getLearnedWords();
-  if (!learned.length) return;
-  EX.cards = shuffle(learned.slice());
-  EX.idx = 0; EX.correct = 0; EX.total = learned.length;
+function startExam(pool) {
+  const words = (pool && pool.length) ? pool : getLearnedWords();
+  if (!words.length) return;
+  EX.cards = shuffle(words.slice());
+  EX.idx = 0; EX.correct = 0; EX.total = words.length;
   $('exam-intro').classList.add('hidden');
   $('exam-result').classList.add('hidden');
   $('exam-run').classList.remove('hidden');
@@ -2402,6 +2645,7 @@ function initEvents() {
       if(s==='home'||s==='lektionen'){show('home');renderHome();}
       else if(s==='wortschatz') renderVocabScreen();
       else if(s==='grammatik')  renderGrammarScreen();
+      else if(s==='tables')     renderTablesScreen();
       else if(s==='profil')     renderProfile();
       else if(s==='exam')       renderExamScreen();
     });
@@ -2451,11 +2695,12 @@ function initEvents() {
   $('conj-submit')?.addEventListener('click', handleConjSubmit);
 
   /* Экзамен */
-  $('exam-start')?.addEventListener('click', startExam);
+  $('exam-start')?.addEventListener('click', ()=>startExam(getLearnedWords()));
   $('exam-again')?.addEventListener('click', renderExamScreen);
   $('exam-submit')?.addEventListener('click', handleExamSubmit);
   $('exam-input')?.addEventListener('keydown', e=>{ if(e.key==='Enter') handleExamSubmit(); });
   $('exam-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+  $('tables-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>

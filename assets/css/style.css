@@ -1626,6 +1626,52 @@ body {
 .exam-desc { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
 .exam-start-btn { align-self: center; padding: 12px 28px; font-size: 16px; }
 .exam-start-btn:disabled { opacity: .5; cursor: not-allowed; }
+.exam-start-btn.hidden { display: none; }
+
+/* Модули экзамена (по 100 слов) */
+.exam-modules { display: flex; flex-direction: column; gap: 10px; }
+.exam-modules:empty { display: none; }
+.exam-modules-hint { color: var(--text-muted); font-size: 14px; margin-bottom: 2px; text-align: center; }
+.exam-module-btn {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  width: 100%; padding: 14px 18px; border-radius: 14px; cursor: pointer;
+  background: var(--card); border: 1.5px solid var(--border, #2a2f4a);
+  color: inherit; font-family: inherit; transition: transform .12s, border-color .12s, background .12s;
+}
+.exam-module-btn:hover { transform: translateY(-2px); border-color: #6366f1; background: rgba(99,102,241,.08); }
+.exam-mod-num { font-weight: 800; font-size: 16px; }
+.exam-mod-range { color: var(--text-muted); font-size: 13px; }
+.exam-module-all { border-style: dashed; border-color: #6366f1; }
+
+/* ── Таблицы-шпаргалки ── */
+.tables-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.tables-toc-btn {
+  padding: 8px 14px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600;
+  background: var(--card); border: 1.5px solid var(--border, #2a2f4a); color: inherit;
+  transition: transform .1s, border-color .1s, background .1s;
+}
+.tables-toc-btn:hover { transform: translateY(-1px); border-color: #6366f1; background: rgba(99,102,241,.08); }
+.tables-content { display: flex; flex-direction: column; gap: 26px; }
+.tbl-card {
+  background: var(--card); border: 1.5px solid var(--border, #2a2f4a);
+  border-radius: 18px; padding: 18px 18px 14px; scroll-margin-top: 80px;
+}
+.tbl-card-title { font-size: 19px; font-weight: 800; margin-bottom: 14px; }
+.rt-sub { font-weight: 700; font-size: 14px; margin: 12px 0 6px; color: var(--text-muted); }
+.rt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.rt { border-collapse: collapse; width: 100%; min-width: max-content; font-size: 15px; }
+table.rt th, table.rt td {
+  border: 1px solid var(--border, #2a2f4a); padding: 7px 11px; text-align: center; white-space: nowrap;
+}
+table.rt thead th { background: rgba(99,102,241,.12); font-weight: 800; }
+table.rt .rt-rowh { font-weight: 800; text-align: left; background: rgba(255,255,255,.03); }
+table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+.rt-note { font-size: 13.5px; line-height: 1.5; color: var(--text-muted); margin-top: 12px; }
+@media (max-width: 640px) {
+  table.rt { font-size: 13.5px; }
+  table.rt th, table.rt td { padding: 6px 8px; }
+  .tbl-card-title { font-size: 17px; }
+}
 
 .exam-chart-wrap {
   background: var(--card); border: 1px solid var(--border);

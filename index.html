@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260720">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260721">
 </head>
 <body>
 
@@ -33,6 +33,7 @@
       <a href="#" class="nav-link"        data-screen="lektionen"  data-i18n="nav_lektionen">Lektionen</a>
       <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
+      <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
     </nav>
@@ -303,6 +304,16 @@
       <div class="grammar-grid" id="grammar-grid"></div>
     </div>
 
+    <!-- TABLES (шпаргалки) -->
+    <div id="screen-tables" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="tables-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">📊 <span data-i18n="tables_title">Таблицы-шпаргалки</span></h2>
+      </div>
+      <div class="tables-toc" id="tables-toc"></div>
+      <div class="tables-content" id="tables-content"></div>
+    </div>
+
     <!-- PROFIL -->
     <div id="screen-profil" class="screen">
       <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
@@ -320,6 +331,7 @@
       <div id="exam-intro" class="exam-intro">
         <p class="exam-desc" id="exam-desc" data-i18n="exam_desc">Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.</p>
         <div class="exam-chart-wrap" id="exam-chart"></div>
+        <div class="exam-modules" id="exam-modules"></div>
         <button class="btn-primary exam-start-btn" id="exam-start" data-i18n="exam_start">Начать экзамен</button>
       </div>
 
@@ -385,9 +397,9 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260720"></script>
-  <script src="db/grammar.js?v=20260720"></script>
-  <script src="db/translations_uk.js?v=20260720"></script>
-  <script src="assets/js/app.js?v=20260720"></script>
+  <script src="db/words.js?v=20260721"></script>
+  <script src="db/grammar.js?v=20260721"></script>
+  <script src="db/translations_uk.js?v=20260721"></script>
+  <script src="assets/js/app.js?v=20260721"></script>
 </body>
 </html>
