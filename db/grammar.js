@@ -1256,6 +1256,73 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — ПАДЕЖИ: ВОПРОСЫ + АЛГОРИТМ «КАК ПОНЯТЬ»
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_036", level: "A1",
+    title_de: "Welche Fragen? Fall Schritt für Schritt bestimmen",
+    title_ru: "На какие вопросы отвечают падежи + как понять какой ставить",
+    explanation_de: "Jeder Fall antwortet auf bestimmte Fragen. Stelle die Frage vom Verb aus, dann kennst du den Fall.",
+    explanation_ru: `Каждый падеж — это <strong>ответ на свой вопрос</strong>. Если знаешь вопрос — знаешь падеж. Разберём по-простому. 👇
+
+<strong>📌 ПОЛНЫЙ СПИСОК ВОПРОСОВ</strong>
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Падеж</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Вопросы</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Роль в предложении</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4ecb71;font-weight:800">NOMINATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wer?</b> (кто?)<br><b>Was?</b> (что?)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">Кто/что <u>делает</u> действие = подлежащее</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">AKKUSATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wen?</b> (кого?)<br><b>Was?</b> (что?)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">На кого/что <u>направлено</u> действие = прямой объект</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">DATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b> (кому?)<br><small>(+ Wo? где?)</small></td>
+  <td style="padding:6px;border:1px solid #2a2f4a">Кому <u>адресовано</u> = получатель / адресат</td>
+</tr>
+</table>
+
+⚠️ Обрати внимание: <b>Was?</b> (что?) подходит и к Nominativ, и к Akkusativ. Различай их так: <b>Wer/Was делает?</b> → Nominativ; <b>Wen/Was видит/берёт?</b> → Akkusativ.
+
+<strong>━━━ 🧭 АЛГОРИТМ: 3 шага для любого предложения ━━━</strong>
+
+<strong>ШАГ 1. Найди глагол</strong> — он главный, от него задаём все вопросы.
+<em>«Der Mann gibt dem Kind einen Ball.»</em> → глагол <b>gibt</b> (даёт).
+
+<strong>ШАГ 2. Спроси «Wer?» (кто делает?)</strong> → это <span class="art-der">NOMINATIV</span>.
+Кто даёт? — <b><span class="art-der">Der</span> Mann</b>. → Nominativ (словарная форма).
+
+<strong>ШАГ 3. Спроси от глагола дальше:</strong>
+• <b>«Кого/что даёт?»</b> (Wen/Was?) → <span class="art-die" style="color:#ff6b8a">AKKUSATIV</span>: <b>einen Ball</b>.
+• <b>«Кому даёт?»</b> (Wem?) → <span class="art-der">DATIV</span>: <b>dem Kind</b>.
+
+Готово: <em>Der Mann (Nom.) gibt dem Kind (Dat.) einen Ball (Akk.).</em>
+
+<strong>━━━ 🔑 НА ЧТО ОПИРАТЬСЯ (по важности) ━━━</strong>
+1️⃣ <strong>Есть предлог?</strong> — он главнее всего. <span class="art-der">mit/aus/bei/von/zu/nach/seit</span> → <b>Dativ</b>. <span style="color:#ff6b8a">für/durch/gegen/ohne/um</span> → <b>Akkusativ</b>. <em>(подробно — в правиле «Слова-маркеры»)</em>
+2️⃣ <strong>Нет предлога?</strong> — смотри на глагол. helfen/danken/gehören → <b>Dativ</b>; haben/sehen/kaufen/essen… → <b>Akkusativ</b>.
+3️⃣ <strong>Кто выполняет действие?</strong> — всегда <b>Nominativ</b> (не меняется).
+
+<strong>💡 Быстрый тест:</strong> подставь вопрос вслух. Если отвечаешь «кому?» — Dativ. «кого/что (взять, видеть)?» — Akkusativ. «кто (делает)?» — Nominativ.`,
+    examples: [
+      { de: "Wer trinkt Kaffee? – Der Mann.",       ru: "Wer? → Nominativ (кто делает)." },
+      { de: "Wen siehst du? – Den Mann.",           ru: "Wen? → Akkusativ (der → den)." },
+      { de: "Wem hilfst du? – Dem Mann.",           ru: "Wem? → Dativ (der → dem)." },
+      { de: "Der Mann gibt dem Kind einen Ball.",   ru: "Nom. (кто?) + Dat. (кому?) + Akk. (что?)." },
+      { de: "Was kaufst du? – Einen Apfel.",        ru: "Was? от глагола kaufen → Akkusativ." },
+    ],
+    tip_de: "Wer? → Nominativ. Wen?/Was? → Akkusativ. Wem? → Dativ. Frage immer vom Verb aus!",
+    tip_ru: "Вопросы: Wer?→Nominativ, Wen?/Was?→Akkusativ, Wem?→Dativ. Алгоритм: 1) найди глагол, 2) «кто делает?»=Nom, 3) «кого/что?»=Akk, «кому?»=Dat. Предлог всегда главнее глагола!",
+  },
+
+  // ════════════════════════════════════════
   //  A1 — TRENNBARE VERBEN (Отделяемые глаголы)
   // ════════════════════════════════════════
   {
