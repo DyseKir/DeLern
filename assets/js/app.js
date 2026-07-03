@@ -537,6 +537,31 @@ const EMOJI = {
   Tisch:'🪑', Stuhl:'🪑', Fenster:'🪟', Tür:'🚪', Lampe:'💡',
   Arzt:'👨‍⚕️', Ärztin:'👩‍⚕️', Lehrer:'👨‍🏫', Schule:'🏫', Büro:'🏢',
   Arbeit:'💼', Chef:'👔', Gehalt:'💶', Kollege:'🤝', Firma:'🏭',
+  // Berufe (Профессии — новые)
+  Gärtner:'👨‍🌾', Gärtnerin:'👩‍🌾', Fabrikarbeiter:'👨‍🏭', Fabrikarbeiterin:'👩‍🏭',
+  Bauarbeiter:'👷‍♂️', Bauarbeiterin:'👷‍♀️', Pfleger:'👨‍⚕️', Pflegerin:'👩‍⚕️',
+  Bürokaufmann:'👨‍💼', Bürokauffrau:'👩‍💼', Kaufmann:'👨‍💼', Kauffrau:'👩‍💼',
+  Hausmann:'🧑‍🍼', Hausfrau:'🧹', Taxifahrer:'🚕', Taxifahrerin:'🚕',
+  Techniker:'🔧', Technikerin:'🔧', Mechatroniker:'👨‍🔧', Mechatronikerin:'👩‍🔧',
+  // Arbeit (термины)
+  Arbeitgeber:'🧑‍💼', Arbeitnehmer:'🧑‍🏭', Arbeitserlaubnis:'📄', Arbeitsvertrag:'📝',
+  Arbeitszeit:'⏱️', Arbeitstag:'📆', Ausbildung:'🎓', Berufsabschluss:'🎓',
+  Berufserfahrung:'💼', Berufsanerkennung:'✅', Bewerbung:'📋', Bewerbungsgespräch:'🤝',
+  Lebenslauf:'📃', Antrag:'📝', Stellenanzeige:'📰', Anzeige:'📰',
+  Zeugnis:'📜', Zertifikat:'📜', Stundenlohn:'💶', Bruttolohn:'💰', Nettolohn:'💵',
+  Mindestlohn:'💶', Urlaub:'🏖️', Tätigkeit:'🔨', Aushilfe:'🙋', Anruf:'📞', Rückruf:'📲',
+  'pro Stunde':'⏰', 'frei haben':'🏖️', 'Stress haben':'😰',
+  // Arbeitsorte
+  Werkstatt:'🔧', 'Universität':'🎓', Fabrik:'🏭', 'Gärtnerei':'🌱', Baustelle:'🏗️',
+  Pflegeheim:'🏥', Restaurant:'🍽️', Salon:'💇', 'zu Hause':'🏠',
+  // Verben — Arbeit
+  arbeiten:'💼', backen:'🍞', organisieren:'📋', pflegen:'🧑‍⚕️', putzen:'🧹',
+  reparieren:'🔧', schneiden:'✂️', servieren:'🍽️', studieren:'📚', suchen:'🔍',
+  telefonieren:'📞', unterrichten:'👨‍🏫', untersuchen:'🩺', pflanzen:'🌱',
+  bauen:'🏗️', produzieren:'🏭', kochen:'👨‍🍳', frisieren:'💇', verkaufen:'🛍️',
+  // Am Arbeitsplatz (свойства)
+  flexibel:'🤸', freundlich:'😊', kreativ:'🎨', langweilig:'😴', interessant:'💡',
+  'pünktlich':'⏰', gern:'👍', lieber:'❤️', 'heute Morgen':'🌅', vorgestern:'📅',
   // Stadt & Orientierung
   Ampel:'🚦', Brücke:'🌉', Ecke:'📐', Seite:'↔️', Bank:'🏦',
   Bäckerei:'🥐', Kindergarten:'🧒', Park:'🌳', Theater:'🎭',

@@ -552,6 +552,26 @@ window.VOCAB_DATA = [
       { id: "a1_br_013f",article: "die", word: "Friseurin",       translation: "парикмахер (ж)"  },
       { id: "a1_br_014", article: "der", word: "Sekretär",        translation: "секретарь (м)"   },
       { id: "a1_br_014f",article: "die", word: "Sekretärin",      translation: "секретарь (ж)"   },
+      { id: "a1_br_015", article: "der", word: "Gärtner",         translation: "садовник"        },
+      { id: "a1_br_015f",article: "die", word: "Gärtnerin",       translation: "садовница"       },
+      { id: "a1_br_016", article: "der", word: "Fabrikarbeiter",  translation: "рабочий завода (м)" },
+      { id: "a1_br_016f",article: "die", word: "Fabrikarbeiterin",translation: "рабочая завода (ж)" },
+      { id: "a1_br_017", article: "der", word: "Bauarbeiter",     translation: "строитель (м)"   },
+      { id: "a1_br_017f",article: "die", word: "Bauarbeiterin",   translation: "строитель (ж)"   },
+      { id: "a1_br_018", article: "der", word: "Pfleger",         translation: "санитар / сиделка (м)" },
+      { id: "a1_br_018f",article: "die", word: "Pflegerin",       translation: "санитарка / сиделка (ж)" },
+      { id: "a1_br_019", article: "der", word: "Bürokaufmann",    translation: "офис-менеджер (м)" },
+      { id: "a1_br_019f",article: "die", word: "Bürokauffrau",    translation: "офис-менеджер (ж)" },
+      { id: "a1_br_020", article: "der", word: "Kaufmann",        translation: "коммерсант / служащий" },
+      { id: "a1_br_020f",article: "die", word: "Kauffrau",        translation: "коммерсант / служащая" },
+      { id: "a1_br_021", article: "der", word: "Hausmann",        translation: "домохозяин"      },
+      { id: "a1_br_021f",article: "die", word: "Hausfrau",        translation: "домохозяйка"     },
+      { id: "a1_br_022", article: "der", word: "Taxifahrer",      translation: "водитель такси (м)" },
+      { id: "a1_br_022f",article: "die", word: "Taxifahrerin",    translation: "водитель такси (ж)" },
+      { id: "a1_br_023", article: "der", word: "Techniker",       translation: "техник (м)"      },
+      { id: "a1_br_023f",article: "die", word: "Technikerin",     translation: "техник (ж)"      },
+      { id: "a1_br_024", article: "der", word: "Mechatroniker",   translation: "мехатроник (м)"  },
+      { id: "a1_br_024f",article: "die", word: "Mechatronikerin", translation: "мехатроник (ж)"  },
     ]
   },
 
@@ -1233,6 +1253,115 @@ window.VOCAB_DATA = [
       { id: "a1_vc_014", article: "-", word: "halten",    translation: "держать/останавливаться",hint:"a→ä: du h<b>ä</b>ltst, er h<b>ä</b>lt", conj:{ ich:"halte",  du:"hältst",   er:"hält",     wir:"halten",   ihr:"haltet",  sie:"halten"   } },
       { id: "a1_vc_015", article: "-", word: "laufen",    translation: "бежать/идти",hint: "au→äu: du l<b>äu</b>fst, er l<b>äu</b>ft",   conj: { ich:"laufe",   du:"läufst",   er:"läuft",    wir:"laufen",   ihr:"lauft",   sie:"laufen"   } },
       { id: "a1_vc_016", article: "-", word: "werden",    translation: "становиться",hint: "неправильный: du w<b>i</b>rst, er w<b>i</b>rd", conj: { ich:"werde", du:"wirst",  er:"wird",     wir:"werden",   ihr:"werdet",  sie:"werden"   } },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ARBEIT (Работа — термины, договор, зарплата)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "arbeit", name: "Arbeit", name_ru: "Работа (термины)", emoji: "💼",
+    words: [
+      { id: "a1_ab_001", article: "der", word: "Arbeitgeber",      translation: "работодатель"              },
+      { id: "a1_ab_002", article: "der", word: "Arbeitnehmer",     translation: "работник / сотрудник"      },
+      { id: "a1_ab_003", article: "die", word: "Arbeitserlaubnis", translation: "разрешение на работу"      },
+      { id: "a1_ab_004", article: "der", word: "Arbeitsvertrag",   translation: "трудовой договор"          },
+      { id: "a1_ab_005", article: "die", word: "Arbeitszeit",      translation: "рабочее время"             },
+      { id: "a1_ab_006", article: "der", word: "Arbeitstag",       translation: "рабочий день"              },
+      { id: "a1_ab_007", article: "die", word: "Ausbildung",       translation: "профобучение / образование" },
+      { id: "a1_ab_008", article: "der", word: "Berufsabschluss",  translation: "квалификация / диплом"     },
+      { id: "a1_ab_009", article: "die", word: "Berufserfahrung",  translation: "опыт работы"               },
+      { id: "a1_ab_010", article: "die", word: "Berufsanerkennung",translation: "признание профессии"       },
+      { id: "a1_ab_011", article: "die", word: "Bewerbung",        translation: "заявка о приёме на работу" },
+      { id: "a1_ab_012", article: "das", word: "Bewerbungsgespräch",translation: "собеседование"            },
+      { id: "a1_ab_013", article: "der", word: "Lebenslauf",       translation: "резюме / автобиография"    },
+      { id: "a1_ab_014", article: "der", word: "Antrag",           translation: "заявление"                 },
+      { id: "a1_ab_015", article: "die", word: "Stellenanzeige",   translation: "объявление о вакансии"     },
+      { id: "a1_ab_016", article: "die", word: "Anzeige",          translation: "объявление"                },
+      { id: "a1_ab_017", article: "das", word: "Zeugnis",          translation: "аттестат / свидетельство"  },
+      { id: "a1_ab_018", article: "das", word: "Zertifikat",       translation: "сертификат"                },
+      { id: "a1_ab_019", article: "der", word: "Stundenlohn",      translation: "почасовая оплата"          },
+      { id: "a1_ab_020", article: "der", word: "Bruttolohn",       translation: "зарплата брутто (до налогов)" },
+      { id: "a1_ab_021", article: "der", word: "Nettolohn",        translation: "зарплата нетто (на руки)"  },
+      { id: "a1_ab_022", article: "der", word: "Mindestlohn",      translation: "минимальная зарплата"      },
+      { id: "a1_ab_023", article: "der", word: "Urlaub",           translation: "отпуск"                    },
+      { id: "a1_ab_024", article: "die", word: "Tätigkeit",        translation: "деятельность / род занятий" },
+      { id: "a1_ab_025", article: "die", word: "Aushilfe",         translation: "подработка / временная помощь" },
+      { id: "a1_ab_026", article: "der", word: "Anruf",            translation: "звонок"                    },
+      { id: "a1_ab_027", article: "der", word: "Rückruf",          translation: "обратный звонок"           },
+      { id: "a1_ab_028", article: "-",   word: "pro Stunde",       translation: "за час / в час"            },
+      { id: "a1_ab_029", article: "-",   word: "frei haben",       translation: "иметь выходной"            },
+      { id: "a1_ab_030", article: "-",   word: "Stress haben",     translation: "испытывать стресс"         },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ARBEITSORTE (Места работы)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "arbeitsorte", name: "Arbeitsorte", name_ru: "Места работы", emoji: "🏢",
+    words: [
+      { id: "a1_ao_001", article: "das", word: "Büro",         translation: "офис"                 },
+      { id: "a1_ao_002", article: "die", word: "Werkstatt",    translation: "мастерская"           },
+      { id: "a1_ao_003", article: "die", word: "Universität",  translation: "университет"          },
+      { id: "a1_ao_004", article: "die", word: "Fabrik",       translation: "фабрика / завод"      },
+      { id: "a1_ao_005", article: "die", word: "Gärtnerei",    translation: "садоводство / питомник" },
+      { id: "a1_ao_006", article: "die", word: "Baustelle",    translation: "стройка"              },
+      { id: "a1_ao_007", article: "das", word: "Pflegeheim",   translation: "дом престарелых"      },
+      { id: "a1_ao_008", article: "das", word: "Krankenhaus",  translation: "больница"             },
+      { id: "a1_ao_009", article: "das", word: "Restaurant",   translation: "ресторан", translit: "ресторан" },
+      { id: "a1_ao_010", article: "der", word: "Salon",        translation: "салон"                },
+      { id: "a1_ao_011", article: "das", word: "Geschäft",     translation: "магазин"              },
+      { id: "a1_ao_012", article: "die", word: "Bäckerei",     translation: "пекарня"              },
+      { id: "a1_ao_013", article: "die", word: "Schule",       translation: "школа"                },
+      { id: "a1_ao_014", article: "-",   word: "zu Hause",     translation: "дома"                 },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — VERBEN: ARBEIT (Глаголы — работа)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "arbeitsverben", name: "Verben – Arbeit", name_ru: "Глаголы (работа)", emoji: "🛠️",
+    words: [
+      { id: "a1_av_001", article: "-", word: "arbeiten",     translation: "работать"                 },
+      { id: "a1_av_002", article: "-", word: "backen",       translation: "печь"                     },
+      { id: "a1_av_003", article: "-", word: "organisieren", translation: "организовывать"            },
+      { id: "a1_av_004", article: "-", word: "pflegen",      translation: "ухаживать / заботиться"   },
+      { id: "a1_av_005", article: "-", word: "putzen",       translation: "убирать / чистить"        },
+      { id: "a1_av_006", article: "-", word: "reparieren",   translation: "ремонтировать"            },
+      { id: "a1_av_007", article: "-", word: "schneiden",    translation: "резать"                   },
+      { id: "a1_av_008", article: "-", word: "servieren",    translation: "подавать (блюда)"         },
+      { id: "a1_av_009", article: "-", word: "studieren",    translation: "учиться (в вузе)"         },
+      { id: "a1_av_010", article: "-", word: "suchen",       translation: "искать"                   },
+      { id: "a1_av_011", article: "-", word: "telefonieren", translation: "звонить по телефону"      },
+      { id: "a1_av_012", article: "-", word: "unterrichten", translation: "преподавать"              },
+      { id: "a1_av_013", article: "-", word: "untersuchen",  translation: "осматривать (пациента)"   },
+      { id: "a1_av_014", article: "-", word: "pflanzen",     translation: "сажать (растения)"        },
+      { id: "a1_av_015", article: "-", word: "bauen",        translation: "строить"                  },
+      { id: "a1_av_016", article: "-", word: "produzieren",  translation: "производить"              },
+      { id: "a1_av_017", article: "-", word: "kochen",       translation: "готовить"                 },
+      { id: "a1_av_018", article: "-", word: "frisieren",    translation: "делать причёску"          },
+      { id: "a1_av_019", article: "-", word: "verkaufen",    translation: "продавать"                },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — AM ARBEITSPLATZ (На рабочем месте — свойства)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "arbeitsplatz", name: "Am Arbeitsplatz", name_ru: "На работе (свойства)", emoji: "🧑‍💼",
+    words: [
+      { id: "a1_ae_001", article: "-", word: "flexibel",    translation: "гибкий"                   },
+      { id: "a1_ae_002", article: "-", word: "freundlich",  translation: "дружелюбный"              },
+      { id: "a1_ae_003", article: "-", word: "kreativ",     translation: "креативный / творческий"  },
+      { id: "a1_ae_004", article: "-", word: "langweilig",  translation: "скучный"                  },
+      { id: "a1_ae_005", article: "-", word: "interessant", translation: "интересный"               },
+      { id: "a1_ae_006", article: "-", word: "pünktlich",   translation: "пунктуальный"             },
+      { id: "a1_ae_007", article: "-", word: "gern",        translation: "охотно"                   },
+      { id: "a1_ae_008", article: "-", word: "lieber",      translation: "охотнее / предпочтительнее" },
+      { id: "a1_ae_009", article: "-", word: "heute Morgen",translation: "сегодня утром"            },
+      { id: "a1_ae_010", article: "-", word: "vorgestern",  translation: "позавчера"                },
     ]
   },
 
