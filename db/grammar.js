@@ -1265,31 +1265,49 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
     explanation_de: "Jeder Fall antwortet auf bestimmte Fragen. Stelle die Frage vom Verb aus, dann kennst du den Fall.",
     explanation_ru: `Каждый падеж — это <strong>ответ на свой вопрос</strong>. Если знаешь вопрос — знаешь падеж. Разберём по-простому. 👇
 
-<strong>📌 ПОЛНЫЙ СПИСОК ВОПРОСОВ</strong>
+<strong>📌 ПОЛНЫЙ СПИСОК ВОПРОСОВ (все падежи)</strong>
 <table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
 <tr>
   <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Падеж</td>
-  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Вопросы</td>
-  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Роль в предложении</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Вопрос о человеке</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Вопрос о предмете</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Роль</td>
 </tr>
 <tr>
   <td style="padding:6px;border:1px solid #2a2f4a;color:#4ecb71;font-weight:800">NOMINATIV</td>
-  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wer?</b> (кто?)<br><b>Was?</b> (что?)</td>
-  <td style="padding:6px;border:1px solid #2a2f4a">Кто/что <u>делает</u> действие = подлежащее</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wer?</b><br>кто?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Was?</b><br>что?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">кто/что <u>делает</u> = подлежащее</td>
 </tr>
 <tr>
-  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">AKKUSATIV</td>
-  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wen?</b> (кого?)<br><b>Was?</b> (что?)</td>
-  <td style="padding:6px;border:1px solid #2a2f4a">На кого/что <u>направлено</u> действие = прямой объект</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ffcf5a;font-weight:800">GENITIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a" colspan="2"><b>Wessen?</b><br>чей? чья? чьё? чьи?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">чья это вещь = принадлежность</td>
 </tr>
 <tr>
   <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">DATIV</td>
-  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b> (кому?)<br><small>(+ Wo? где?)</small></td>
-  <td style="padding:6px;border:1px solid #2a2f4a">Кому <u>адресовано</u> = получатель / адресат</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b><br>кому?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b><br>чему?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">кому <u>адресовано</u> = получатель</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">AKKUSATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wen?</b><br>кого?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Was?</b><br>что?</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">на кого/что <u>направлено</u> = прямой объект</td>
 </tr>
 </table>
 
-⚠️ Обрати внимание: <b>Was?</b> (что?) подходит и к Nominativ, и к Akkusativ. Различай их так: <b>Wer/Was делает?</b> → Nominativ; <b>Wen/Was видит/берёт?</b> → Akkusativ.
+<strong>📍 Вопросы места и времени (тоже подсказывают падеж):</strong>
+• <b>Wo?</b> (где?) → чаще <span class="art-der">Dativ</span>: <em>Ich bin <b>in der</b> Schule.</em>
+• <b>Wohin?</b> (куда?) → <span style="color:#ff6b8a">Akkusativ</span>: <em>Ich gehe <b>in die</b> Schule.</em>
+• <b>Woher?</b> (откуда?) → <span class="art-der">Dativ</span>: <em>Ich komme <b>aus der</b> Schule.</em>
+• <b>Wann?</b> (когда?) с предлогами an/in/vor/nach → <span class="art-der">Dativ</span>: <em><b>am</b> Montag, <b>im</b> Juli.</em>
+• <b>Womit?</b> (чем? с чем?) → <span class="art-der">Dativ</span>: <em>Ich schreibe <b>mit dem</b> Stift.</em>
+
+⚠️ <b>Was?</b> (что?) подходит и к Nominativ, и к Akkusativ. Различай так: <b>Wer/Was делает?</b> → Nominativ; <b>Wen/Was берёт/видит?</b> → Akkusativ.
+
+<small>ℹ️ Genitiv (Wessen?) на уровне A1 встречается редко — сначала уверенно освой Nominativ, Akkusativ, Dativ.</small>
 
 <strong>━━━ 🧭 АЛГОРИТМ: 3 шага для любого предложения ━━━</strong>
 
