@@ -1820,19 +1820,38 @@ function tablesData() {
     return `<div class="rt-scroll"><table class="rt"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table></div>`;
   };
 
-  const P=['ich','du','er/sie/es','wir','ihr','sie/Sie'];
+  // подсветка того, что меняется
+  const hl = s=>`<span class="rt-hl">${s}</span>`;
+  // немецкое слово + перевод под ним (перевод скрыт в режиме DE)
+  const wt = (de,ru,uk)=> lang==='de' ? de : `${de}<small class="rt-tr">${lstr('',ru,uk)}</small>`;
+  // местоимения с переводом
+  const PR = {
+    ich: wt('ich','я','я'),
+    du:  wt('du','ты','ти'),
+    er:  wt('er/sie/es','он / она / оно','він / вона / воно'),
+    wir: wt('wir','мы','ми'),
+    ihr: wt('ihr','вы','ви'),
+    sie: wt('sie/Sie','они / Вы','вони / Ви'),
+  };
 
   return [
     { id:'modal', icon:'🔑', title:L('Modalverben (Präsens)','Модальные глаголы (спряжение)','Модальні дієслова (відмінювання)'),
       html:tbl(
-        ['', 'können','müssen','dürfen','wollen','sollen','mögen','möchten'],
+        ['',
+          wt('können','мочь / уметь','могти / уміти'),
+          wt('müssen','должен / надо','мусити / треба'),
+          wt('dürfen','можно','можна'),
+          wt('wollen','хотеть','хотіти'),
+          wt('sollen','следует','слід / має'),
+          wt('mögen','нравиться','подобатися'),
+          wt('möchten','хотел бы','хотів би')],
         [
-          ['ich','kann','muss','darf','will','soll','mag','möchte'],
-          ['du','kannst','musst','darfst','willst','sollst','magst','möchtest'],
-          ['er/sie/es','kann','muss','darf','will','soll','mag','möchte'],
-          ['wir','können','müssen','dürfen','wollen','sollen','mögen','möchten'],
-          ['ihr','könnt','müsst','dürft','wollt','sollt','mögt','möchtet'],
-          ['sie/Sie','können','müssen','dürfen','wollen','sollen','mögen','möchten'],
+          [PR.ich,'kann','muss','darf','will','soll','mag','möchte'],
+          [PR.du,'kann'+hl('st'),'muss'+hl('t'),'darf'+hl('st'),'will'+hl('st'),'soll'+hl('st'),'mag'+hl('st'),'möchte'+hl('st')],
+          [PR.er,'kann','muss','darf','will','soll','mag','möchte'],
+          [PR.wir,'könn'+hl('en'),'müss'+hl('en'),'dürf'+hl('en'),'woll'+hl('en'),'soll'+hl('en'),'mög'+hl('en'),'möcht'+hl('en')],
+          [PR.ihr,'könn'+hl('t'),'müss'+hl('t'),'dürf'+hl('t'),'woll'+hl('t'),'soll'+hl('t'),'mög'+hl('t'),'möcht'+hl('et')],
+          [PR.sie,'könn'+hl('en'),'müss'+hl('en'),'dürf'+hl('en'),'woll'+hl('en'),'soll'+hl('en'),'mög'+hl('en'),'möcht'+hl('en')],
         ]) + `<p class="rt-note">💡 ${L('Modalverb steht auf Position 2, das zweite Verb im Infinitiv ans Satzende: „Ich <b>muss</b> heute <b>arbeiten</b>.“',
           'Модальный глагол — на 2-м месте, второй глагол в инфинитиве уходит в конец: «Ich <b>muss</b> heute <b>arbeiten</b>».',
           'Модальне дієслово — на 2-й позиції, друге дієслово в інфінітиві в кінець: «Ich <b>muss</b> heute <b>arbeiten</b>».')}</p>` },
@@ -1841,24 +1860,27 @@ function tablesData() {
       html:tbl(
         ['', 'sein '+L('(быть)','(быть)','(бути)'),'haben '+L('(иметь)','(иметь)','(мати)'),'werden '+L('(станов.)','(станов.)','(става...)')],
         [
-          ['ich','bin','habe','werde'],
-          ['du','bist','hast','wirst'],
-          ['er/sie/es','ist','hat','wird'],
-          ['wir','sind','haben','werden'],
-          ['ihr','seid','habt','werdet'],
-          ['sie/Sie','sind','haben','werden'],
-        ]) },
+          [PR.ich,'bin','habe','werde'],
+          [PR.du,'bist','hast','wirst'],
+          [PR.er,'ist','hat','wird'],
+          [PR.wir,'sind','haben','werden'],
+          [PR.ihr,'seid','habt','werdet'],
+          [PR.sie,'sind','haben','werden'],
+        ]) + `<p class="rt-note">${L('Unregelmäßig – auswendig lernen!','Неправильные — учи наизусть!','Неправильні — вчи напам’ять!')}</p>` },
 
     { id:'regular', icon:'🔤', title:L('Reguläre Verben – Endungen','Правильные глаголы — окончания','Правильні дієслова — закінчення'),
       html:tbl(
-        ['', 'machen','arbeiten *','heißen'],
+        ['',
+          wt('machen','делать','робити'),
+          wt('arbeiten *','работать','працювати'),
+          wt('heißen','зваться','зватися')],
         [
-          ['ich','mach<b>e</b>','arbeit<b>e</b>','heiß<b>e</b>'],
-          ['du','mach<b>st</b>','arbeit<b>est</b>','heiß<b>t</b>'],
-          ['er/sie/es','mach<b>t</b>','arbeit<b>et</b>','heiß<b>t</b>'],
-          ['wir','mach<b>en</b>','arbeit<b>en</b>','heiß<b>en</b>'],
-          ['ihr','mach<b>t</b>','arbeit<b>et</b>','heiß<b>t</b>'],
-          ['sie/Sie','mach<b>en</b>','arbeit<b>en</b>','heiß<b>en</b>'],
+          [PR.ich,'mach'+hl('e'),'arbeit'+hl('e'),'heiß'+hl('e')],
+          [PR.du,'mach'+hl('st'),'arbeit'+hl('est'),'heiß'+hl('t')],
+          [PR.er,'mach'+hl('t'),'arbeit'+hl('et'),'heiß'+hl('t')],
+          [PR.wir,'mach'+hl('en'),'arbeit'+hl('en'),'heiß'+hl('en')],
+          [PR.ihr,'mach'+hl('t'),'arbeit'+hl('et'),'heiß'+hl('t')],
+          [PR.sie,'mach'+hl('en'),'arbeit'+hl('en'),'heiß'+hl('en')],
         ]) + `<p class="rt-note">* ${L('Nach -t/-d/-n: extra <b>e</b> (du arbeit<b>e</b>st). Nach -s/-ß/-z: du bekommt nur <b>-t</b> (du heißt).',
           'После -t/-d/-n добавляется <b>e</b> (du arbeit<b>e</b>st). После -s/-ß/-z в du только <b>-t</b> (du heißt).',
           'Після -t/-d/-n додається <b>e</b> (du arbeit<b>e</b>st). Після -s/-ß/-z у du лише <b>-t</b> (du heißt).')}</p>` },
@@ -1867,25 +1889,25 @@ function tablesData() {
       html:tbl(
         ['', L('Тип','Тип','Тип'),'ich','du','er/sie/es'],
         [
-          ['sprechen','e→i','spreche','spr<b>i</b>chst','spr<b>i</b>cht'],
-          ['essen','e→i','esse','<b>i</b>sst','<b>i</b>sst'],
-          ['nehmen','e→i','nehme','n<b>imm</b>st','n<b>imm</b>t'],
-          ['sehen','e→ie','sehe','s<b>ie</b>hst','s<b>ie</b>ht'],
-          ['lesen','e→ie','lese','l<b>ie</b>st','l<b>ie</b>st'],
-          ['fahren','a→ä','fahre','f<b>ä</b>hrst','f<b>ä</b>hrt'],
-          ['schlafen','a→ä','schlafe','schl<b>ä</b>fst','schl<b>ä</b>ft'],
-          ['laufen','au→äu','laufe','l<b>äu</b>fst','l<b>äu</b>ft'],
+          [wt('sprechen','говорить','говорити'),hl('e→i'),'spreche','spr'+hl('i')+'chst','spr'+hl('i')+'cht'],
+          [wt('essen','есть','їсти'),hl('e→i'),'esse',hl('i')+'sst',hl('i')+'sst'],
+          [wt('nehmen','брать','брати'),hl('e→i'),'nehme','n'+hl('imm')+'st','n'+hl('imm')+'t'],
+          [wt('sehen','видеть','бачити'),hl('e→ie'),'sehe','s'+hl('ie')+'hst','s'+hl('ie')+'ht'],
+          [wt('lesen','читать','читати'),hl('e→ie'),'lese','l'+hl('ie')+'st','l'+hl('ie')+'st'],
+          [wt('fahren','ехать','їхати'),hl('a→ä'),'fahre','f'+hl('ä')+'hrst','f'+hl('ä')+'hrt'],
+          [wt('schlafen','спать','спати'),hl('a→ä'),'schlafe','schl'+hl('ä')+'fst','schl'+hl('ä')+'ft'],
+          [wt('laufen','бежать','бігти'),hl('au→äu'),'laufe','l'+hl('äu')+'fst','l'+hl('äu')+'ft'],
         ]) + `<p class="rt-note">⚠️ ${L('Wechsel nur bei <b>du</b> und <b>er/sie/es</b>!','Изменение только у <b>du</b> и <b>er/sie/es</b>!','Зміна лише у <b>du</b> та <b>er/sie/es</b>!')}</p>` },
 
     { id:'trennbar', icon:'✂️', title:L('Trennbare Verben','Отделяемые глаголы','Відокремлювані дієслова'),
       html:tbl(
         ['', 'ich','du','er/sie/es'],
         [
-          ['aufstehen','stehe … <b>auf</b>','stehst … <b>auf</b>','steht … <b>auf</b>'],
-          ['einkaufen','kaufe … <b>ein</b>','kaufst … <b>ein</b>','kauft … <b>ein</b>'],
-          ['anrufen','rufe … <b>an</b>','rufst … <b>an</b>','ruft … <b>an</b>'],
-          ['fernsehen','sehe … <b>fern</b>','s<b>ie</b>hst … <b>fern</b>','sieht … <b>fern</b>'],
-          ['anfangen','fange … <b>an</b>','f<b>ä</b>ngst … <b>an</b>','fängt … <b>an</b>'],
+          [wt('aufstehen','вставать','вставати'),'stehe … '+hl('auf'),'stehst … '+hl('auf'),'steht … '+hl('auf')],
+          [wt('einkaufen','покупать','купувати'),'kaufe … '+hl('ein'),'kaufst … '+hl('ein'),'kauft … '+hl('ein')],
+          [wt('anrufen','звонить','телефонувати'),'rufe … '+hl('an'),'rufst … '+hl('an'),'ruft … '+hl('an')],
+          [wt('fernsehen','смотреть ТВ','дивитися ТБ'),'sehe … '+hl('fern'),'s'+hl('ie')+'hst … '+hl('fern'),'sieht … '+hl('fern')],
+          [wt('anfangen','начинать','починати'),'fange … '+hl('an'),'f'+hl('ä')+'ngst … '+hl('an'),'fängt … '+hl('an')],
         ]) + `<p class="rt-note">${L('Vorsilben: ','Приставки: ','Префікси: ')}<b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b> → ${L('ans Satzende','в конец предложения','в кінець речення')}.</p>` },
 
     { id:'artikel', icon:'📦', title:L('Artikel nach Fällen','Артикли по падежам','Артиклі за відмінками'),
@@ -1893,15 +1915,15 @@ function tablesData() {
         ['', dh('der (м)'),fh('die (ж)'),nh('das (ср)'),'<b>'+L('мн.','мн.','мн.')+'</b>'],
         [
           [L('Nom. кто?','Nom. кто?','Nom. хто?'), dh('der'),fh('die'),nh('das'),'die'],
-          [L('Akk. кого?','Akk. кого?','Akk. кого?'), `<b style="color:${D}">den</b>`,fh('die'),nh('das'),'die'],
-          [L('Dat. кому?','Dat. кому?','Dat. кому?'), `<b style="color:${D}">dem</b>`,`<b style="color:${F}">der</b>`,`<b style="color:${N}">dem</b>`,'<b>den</b>+n'],
+          [L('Akk. кого?','Akk. кого?','Akk. кого?'), hl(dh('den')),fh('die'),nh('das'),'die'],
+          [L('Dat. кому?','Dat. кому?','Dat. кому?'), hl(dh('dem')),hl(fh('der')),hl(nh('dem')),hl('den')+'+n'],
         ])
       +`<p class="rt-sub">${L('Unbestimmt','Неопределённые','Неозначені')} (ein/eine) / kein / mein:</p>`+tbl(
         ['', dh('ein (м)'),fh('eine (ж)'),nh('ein (ср)'),'<b>kein/mein (мн.)</b>'],
         [
           ['Nom.', dh('ein'),fh('eine'),nh('ein'),'meine'],
-          ['Akk.', `<b style="color:${D}">einen</b>`,fh('eine'),nh('ein'),'meine'],
-          ['Dat.', `<b style="color:${D}">einem</b>`,`<b style="color:${F}">einer</b>`,`<b style="color:${N}">einem</b>`,'<b>meinen</b>+n'],
+          ['Akk.', hl(dh('einen')),fh('eine'),nh('ein'),'meine'],
+          ['Dat.', hl(dh('einem')),hl(fh('einer')),hl(nh('einem')),hl('meinen')+'+n'],
         ])
       +`<p class="rt-note">💡 ${L('Nur <b>der</b> (муж.) ändert sich stark: der → den → dem.','Сильнее всего меняется <b>der</b> (муж.): der → den → dem.','Найсильніше змінюється <b>der</b> (чол.): der → den → dem.')}</p>` },
 
@@ -1909,27 +1931,27 @@ function tablesData() {
       html:tbl(
         ['', L('Nom. (кто?)','Nom. (кто?)','Nom. (хто?)'),L('Akk. (кого?)','Akk. (кого?)','Akk. (кого?)'),L('Dat. (кому?)','Dat. (кому?)','Dat. (кому?)')],
         [
-          ['ich','ich','mich','mir'],
-          ['du','du','dich','dir'],
-          ['er','er','ihn','ihm'],
-          ['sie (ж)','sie','sie','ihr'],
-          ['es','es','es','ihm'],
-          ['wir','wir','uns','uns'],
-          ['ihr','ihr','euch','euch'],
-          ['sie/Sie','sie/Sie','sie/Sie','ihnen/Ihnen'],
-        ]) },
+          [wt('ich','я','я'),'ich',hl('mich'),hl('mir')],
+          [wt('du','ты','ти'),'du',hl('dich'),hl('dir')],
+          [wt('er','он','він'),'er',hl('ihn'),hl('ihm')],
+          [wt('sie','она','вона'),'sie','sie',hl('ihr')],
+          [wt('es','оно','воно'),'es','es',hl('ihm')],
+          [wt('wir','мы','ми'),'wir',hl('uns'),hl('uns')],
+          [wt('ihr','вы','ви'),'ihr',hl('euch'),hl('euch')],
+          [wt('sie/Sie','они / Вы','вони / Ви'),'sie/Sie','sie/Sie',hl('ihnen')+' / '+hl('Ihnen')],
+        ]) + `<p class="rt-note">${L('Rot = ändert sich gegenüber Nominativ.','Подсвечено = меняется по сравнению с Nominativ.','Підсвічено = змінюється порівняно з Nominativ.')}</p>` },
 
     { id:'possessiv', icon:'🔑', title:L('Possessivartikel','Притяжательные (мой, твой…)','Присвійні (мій, твій…)'),
       html:tbl(
-        ['', L('основа','основа','основа'),L('+ der/das','+ der/das','+ der/das'),L('+ die/мн.','+ die/мн.','+ die/мн.')],
+        ['', L('слово (перевод)','слово (перевод)','слово (переклад)'),L('+ der/das','+ der/das','+ der/das'),L('+ die / мн.','+ die / мн.','+ die / мн.')],
         [
-          ['ich → ','mein','mein','mein<b>e</b>'],
-          ['du → ','dein','dein','dein<b>e</b>'],
-          ['er/es → ','sein','sein','sein<b>e</b>'],
-          ['sie → ','ihr','ihr','ihr<b>e</b>'],
-          ['wir → ','unser','unser','unser<b>e</b>'],
-          ['ihr → ','euer','euer','eur<b>e</b>'],
-          ['sie/Sie → ','ihr/Ihr','ihr/Ihr','ihr<b>e</b>/Ihr<b>e</b>'],
+          [PR.ich,wt('mein','мой','мій'),'mein','mein'+hl('e')],
+          [PR.du,wt('dein','твой','твій'),'dein','dein'+hl('e')],
+          [PR.er,wt('sein','его','його'),'sein','sein'+hl('e')],
+          [wt('sie','её','її'),wt('ihr','её','її'),'ihr','ihr'+hl('e')],
+          [PR.wir,wt('unser','наш','наш'),'unser','unser'+hl('e')],
+          [PR.ihr,wt('euer','ваш','ваш'),'euer','eur'+hl('e')],
+          [wt('sie/Sie','их / Ваш','їх / Ваш'),wt('ihr/Ihr','их / Ваш','їх / Ваш'),'ihr/Ihr','ihr'+hl('e')+'/Ihr'+hl('e')],
         ]) + `<p class="rt-note">${L('Endungen wie bei ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.',
           'Окончания как у ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.',
           'Закінчення як у ein/eine: mein Vater, mein<b>e</b> Mutter, mein<b>e</b> Eltern.')}</p>` },

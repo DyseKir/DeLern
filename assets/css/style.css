@@ -1667,6 +1667,10 @@ table.rt thead th { background: rgba(99,102,241,.12); font-weight: 800; }
 table.rt .rt-rowh { font-weight: 800; text-align: left; background: rgba(255,255,255,.03); }
 table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 .rt-note { font-size: 13.5px; line-height: 1.5; color: var(--text-muted); margin-top: 12px; }
+/* перевод под немецким словом */
+.rt-tr { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 1px; white-space: normal; }
+/* подсветка того, что меняется */
+.rt-hl { background: rgba(255,207,90,.20); color: #ffcf5a; font-weight: 800; border-radius: 4px; padding: 0 3px; }
 @media (max-width: 640px) {
   table.rt { font-size: 13.5px; }
   table.rt th, table.rt td { padding: 6px 8px; }
