@@ -1256,6 +1256,49 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — TRENNBARE VERBEN (Отделяемые глаголы)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_035", level: "A1",
+    title_de: "Trennbare Verben",
+    title_ru: "Отделяемые глаголы",
+    explanation_de: "Trennbare Verben haben eine betonte Vorsilbe (auf-, ein-, an-, aus-, um-, ab-, mit-, vor-, nach-, fern-). Im Hauptsatz trennt sich die Vorsilbe ab und geht ans Satzende.",
+    explanation_ru: `Многие немецкие глаголы состоят из <strong>приставки</strong> + <strong>основного глагола</strong>: <b>auf</b>stehen, <b>ein</b>kaufen, <b>an</b>rufen.
+
+<strong>Главное правило:</strong> в обычном предложении приставка <u>отрывается</u> и уезжает в самый <strong>конец</strong>. Глагол ставим на 2-е место, приставку — в конец. 👇
+
+<table style="border-collapse:collapse;margin:8px 0">
+<tr><td style="padding:3px 10px 3px 0"></td><td style="padding:3px 10px 3px 0"><strong>aufstehen</strong> (вставать)</td><td><strong>einkaufen</strong> (покупать)</td></tr>
+<tr><td style="padding:3px 10px 3px 0">ich</td><td>stehe … <strong>auf</strong></td><td>kaufe … <strong>ein</strong></td></tr>
+<tr><td style="padding:3px 10px 3px 0"><strong>du</strong></td><td>stehst … <strong>auf</strong></td><td>kaufst … <strong>ein</strong></td></tr>
+<tr><td style="padding:3px 10px 3px 0"><strong>er/sie</strong></td><td>steht … <strong>auf</strong></td><td>kauft … <strong>ein</strong></td></tr>
+<tr><td style="padding:3px 10px 3px 0">wir</td><td>stehen … <strong>auf</strong></td><td>kaufen … <strong>ein</strong></td></tr>
+</table>
+
+<strong>Как в предложении:</strong>
+• <span style="color:#4a9eff">Ich</span> <b>stehe</b> um 7 Uhr <b>auf</b>. (Я встаю в 7.)
+• <span style="color:#4a9eff">Er</span> <b>kauft</b> im Supermarkt <b>ein</b>. (Он делает покупки в супермаркете.)
+• <span style="color:#4a9eff">Ich</span> <b>rufe</b> meine Freundin <b>an</b>. (Я звоню подруге.)
+
+<strong>Вопрос:</strong> глагол — на 1-е место, приставка — в конец:
+• <b>Füllst</b> du das Formular <b>aus</b>? (Ты заполняешь бланк?)
+• <b>Räumst</b> du heute <b>auf</b>? (Ты убираешься сегодня?)
+
+⚠️ С модальным глаголом приставка НЕ отрывается — глагол стоит целиком в конце в инфинитиве:
+• Ich muss früh <b>aufstehen</b>. (Я должен рано вставать.)`,
+    examples: [
+      { de: "Ich stehe um 6 Uhr auf.",        ru: "aufstehen → stehe … auf. Я встаю в 6." },
+      { de: "Wir kaufen im Markt ein.",       ru: "einkaufen → kaufen … ein. Мы покупаем на рынке." },
+      { de: "Er ruft den Arzt an.",           ru: "anrufen → ruft … an. Он звонит врачу." },
+      { de: "Füllst du das Formular aus?",    ru: "Вопрос: глагол вперёд, приставка в конец." },
+      { de: "Der Zug fährt ab.",              ru: "abfahren → fährt ab. Поезд отправляется." },
+      { de: "Ich muss aufräumen.",            ru: "С модальным: приставка НЕ отрывается." },
+    ],
+    tip_de: "auf-, ein-, an-, aus-, um-, ab-, mit-, vor-, nach-, fern- → Vorsilbe ans Satzende!",
+    tip_ru: "Приставки auf/ein/an/aus/um/ab/mit/vor/nach/fern отрываются и едут в конец. Но после модального глагола (muss, kann…) — остаются вместе: 'Ich muss aufstehen'.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 

@@ -572,6 +572,20 @@ window.VOCAB_DATA = [
       { id: "a1_br_023f",article: "die", word: "Technikerin",     translation: "техник (ж)"      },
       { id: "a1_br_024", article: "der", word: "Mechatroniker",   translation: "мехатроник (м)"  },
       { id: "a1_br_024f",article: "die", word: "Mechatronikerin", translation: "мехатроник (ж)"  },
+      { id: "a1_br_025", article: "der", word: "Bauer",           translation: "фермер / крестьянин" },
+      { id: "a1_br_025f",article: "die", word: "Bäuerin",         translation: "фермерша / крестьянка" },
+      { id: "a1_br_026", article: "der", word: "Pilot",           translation: "пилот (м)"       },
+      { id: "a1_br_026f",article: "die", word: "Pilotin",         translation: "пилот (ж)"       },
+      { id: "a1_br_027", article: "der", word: "Journalist",      translation: "журналист"       },
+      { id: "a1_br_027f",article: "die", word: "Journalistin",    translation: "журналистка"     },
+      { id: "a1_br_028", article: "der", word: "Zahnarzt",        translation: "стоматолог (м)"  },
+      { id: "a1_br_028f",article: "die", word: "Zahnärztin",      translation: "стоматолог (ж)"  },
+      { id: "a1_br_029", article: "der", word: "Musiker",         translation: "музыкант (м)"    },
+      { id: "a1_br_029f",article: "die", word: "Musikerin",       translation: "музыкант (ж)"    },
+      { id: "a1_br_030", article: "der", word: "Fotograf",        translation: "фотограф (м)"    },
+      { id: "a1_br_030f",article: "die", word: "Fotografin",      translation: "фотограф (ж)"    },
+      { id: "a1_br_031", article: "der", word: "Maler",           translation: "художник / маляр (м)" },
+      { id: "a1_br_031f",article: "die", word: "Malerin",         translation: "художница / маляр (ж)" },
     ]
   },
 
@@ -1362,6 +1376,33 @@ window.VOCAB_DATA = [
       { id: "a1_ae_008", article: "-", word: "lieber",      translation: "охотнее / предпочтительнее" },
       { id: "a1_ae_009", article: "-", word: "heute Morgen",translation: "сегодня утром"            },
       { id: "a1_ae_010", article: "-", word: "vorgestern",  translation: "позавчера"                },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — TRENNBARE VERBEN (Отделяемые глаголы, спряжение)
+  //  Приставка «отрывается» и уходит в конец: ich stehe … auf
+  // ════════════════════════════════
+  {
+    level: "A1", category: "trennbar", name: "Trennbare Verben", name_ru: "Отделяемые глаголы", emoji: "✂️", ruleId: "a1_gr_035", mode: "conjugation",
+    words: [
+      { id: "a1_tv_001", article: "-", word: "aufstehen",   translation: "вставать",            hint: "приставка <b>auf-</b> уходит в конец: ich stehe … <b>auf</b>", conj: { ich:"stehe auf",    du:"stehst auf",    er:"steht auf",    wir:"stehen auf",    ihr:"steht auf",    sie:"stehen auf"    } },
+      { id: "a1_tv_002", article: "-", word: "einkaufen",   translation: "делать покупки",      hint: "приставка <b>ein-</b> в конец: ich kaufe … <b>ein</b>",       conj: { ich:"kaufe ein",    du:"kaufst ein",    er:"kauft ein",    wir:"kaufen ein",    ihr:"kauft ein",    sie:"kaufen ein"    } },
+      { id: "a1_tv_003", article: "-", word: "ausfüllen",   translation: "заполнять (бланк)",   hint: "приставка <b>aus-</b> в конец: ich fülle … <b>aus</b>",       conj: { ich:"fülle aus",    du:"füllst aus",    er:"füllt aus",    wir:"füllen aus",    ihr:"füllt aus",    sie:"füllen aus"    } },
+      { id: "a1_tv_004", article: "-", word: "anrufen",     translation: "звонить (кому-то)",   hint: "приставка <b>an-</b> в конец: ich rufe … <b>an</b>",          conj: { ich:"rufe an",      du:"rufst an",      er:"ruft an",      wir:"rufen an",      ihr:"ruft an",      sie:"rufen an"      } },
+      { id: "a1_tv_005", article: "-", word: "anmelden",    translation: "регистрировать(ся)",  hint: "приставка <b>an-</b>: ich melde … <b>an</b>",                 conj: { ich:"melde an",     du:"meldest an",    er:"meldet an",    wir:"melden an",     ihr:"meldet an",    sie:"melden an"     } },
+      { id: "a1_tv_006", article: "-", word: "aufräumen",   translation: "убирать (наводить порядок)", hint: "приставка <b>auf-</b>: ich räume … <b>auf</b>",         conj: { ich:"räume auf",    du:"räumst auf",    er:"räumt auf",    wir:"räumen auf",    ihr:"räumt auf",    sie:"räumen auf"    } },
+      { id: "a1_tv_007", article: "-", word: "aufmachen",   translation: "открывать",           hint: "приставка <b>auf-</b>: ich mache … <b>auf</b>",               conj: { ich:"mache auf",    du:"machst auf",    er:"macht auf",    wir:"machen auf",    ihr:"macht auf",    sie:"machen auf"    } },
+      { id: "a1_tv_008", article: "-", word: "fernsehen",   translation: "смотреть телевизор",  hint: "e→ie + <b>fern</b> в конец: ich sehe … <b>fern</b>, du s<b>ie</b>hst … fern", conj: { ich:"sehe fern",  du:"siehst fern",   er:"sieht fern",   wir:"sehen fern",    ihr:"seht fern",    sie:"sehen fern"    } },
+      { id: "a1_tv_009", article: "-", word: "anfangen",    translation: "начинать",            hint: "a→ä + <b>an</b>: ich fange … an, du f<b>ä</b>ngst … <b>an</b>", conj: { ich:"fange an",    du:"fängst an",     er:"fängt an",     wir:"fangen an",     ihr:"fangt an",     sie:"fangen an"     } },
+      { id: "a1_tv_010", article: "-", word: "aussteigen",  translation: "выходить (из транспорта)", hint: "приставка <b>aus-</b>: ich steige … <b>aus</b>",          conj: { ich:"steige aus",   du:"steigst aus",   er:"steigt aus",   wir:"steigen aus",   ihr:"steigt aus",   sie:"steigen aus"   } },
+      { id: "a1_tv_011", article: "-", word: "umsteigen",   translation: "пересаживаться",      hint: "приставка <b>um-</b>: ich steige … <b>um</b>",                conj: { ich:"steige um",    du:"steigst um",    er:"steigt um",    wir:"steigen um",    ihr:"steigt um",    sie:"steigen um"    } },
+      { id: "a1_tv_012", article: "-", word: "umtauschen",  translation: "обменивать (товар)",  hint: "приставка <b>um-</b>: ich tausche … <b>um</b>",               conj: { ich:"tausche um",   du:"tauschst um",   er:"tauscht um",   wir:"tauschen um",   ihr:"tauscht um",   sie:"tauschen um"   } },
+      { id: "a1_tv_013", article: "-", word: "abholen",     translation: "забирать (встречать)",hint: "приставка <b>ab-</b>: ich hole … <b>ab</b>",                  conj: { ich:"hole ab",      du:"holst ab",      er:"holt ab",      wir:"holen ab",      ihr:"holt ab",      sie:"holen ab"      } },
+      { id: "a1_tv_014", article: "-", word: "mitbringen",  translation: "приносить (с собой)", hint: "приставка <b>mit-</b>: ich bringe … <b>mit</b>",              conj: { ich:"bringe mit",   du:"bringst mit",   er:"bringt mit",   wir:"bringen mit",   ihr:"bringt mit",   sie:"bringen mit"   } },
+      { id: "a1_tv_015", article: "-", word: "vorbereiten", translation: "подготавливать",      hint: "приставка <b>vor-</b>: ich bereite … <b>vor</b>",             conj: { ich:"bereite vor",  du:"bereitest vor", er:"bereitet vor", wir:"bereiten vor",  ihr:"bereitet vor", sie:"bereiten vor"  } },
+      { id: "a1_tv_016", article: "-", word: "vorstellen",  translation: "представлять",        hint: "приставка <b>vor-</b>: ich stelle … <b>vor</b>",              conj: { ich:"stelle vor",   du:"stellst vor",   er:"stellt vor",   wir:"stellen vor",   ihr:"stellt vor",   sie:"stellen vor"   } },
+      { id: "a1_tv_017", article: "-", word: "nachfragen",  translation: "переспрашивать",      hint: "приставка <b>nach-</b>: ich frage … <b>nach</b>",             conj: { ich:"frage nach",   du:"fragst nach",   er:"fragt nach",   wir:"fragen nach",   ihr:"fragt nach",   sie:"fragen nach"   } },
     ]
   },
 

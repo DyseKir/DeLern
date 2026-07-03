@@ -543,6 +543,15 @@ const EMOJI = {
   Bürokaufmann:'👨‍💼', Bürokauffrau:'👩‍💼', Kaufmann:'👨‍💼', Kauffrau:'👩‍💼',
   Hausmann:'🧑‍🍼', Hausfrau:'🧹', Taxifahrer:'🚕', Taxifahrerin:'🚕',
   Techniker:'🔧', Technikerin:'🔧', Mechatroniker:'👨‍🔧', Mechatronikerin:'👩‍🔧',
+  Bauer:'🧑‍🌾', 'Bäuerin':'👩‍🌾', Pilot:'👨‍✈️', Pilotin:'👩‍✈️',
+  Journalist:'📰', Journalistin:'📰', Zahnarzt:'🦷', 'Zahnärztin':'🦷',
+  Musiker:'🎸', Musikerin:'🎸', Fotograf:'📷', Fotografin:'📷',
+  Maler:'🎨', Malerin:'🎨',
+  // Trennbare Verben (отделяемые)
+  aufstehen:'⏰', einkaufen:'🛒', 'ausfüllen':'📝', anrufen:'📞', anmelden:'✍️',
+  'aufräumen':'🧹', aufmachen:'🚪', fernsehen:'📺', anfangen:'▶️', aussteigen:'🚏',
+  umsteigen:'🔄', umtauschen:'♻️', abholen:'🚸', mitbringen:'🎁', vorbereiten:'📋',
+  vorstellen:'🙋', nachfragen:'❓',
   // Arbeit (термины)
   Arbeitgeber:'🧑‍💼', Arbeitnehmer:'🧑‍🏭', Arbeitserlaubnis:'📄', Arbeitsvertrag:'📝',
   Arbeitszeit:'⏱️', Arbeitstag:'📆', Ausbildung:'🎓', Berufsabschluss:'🎓',
