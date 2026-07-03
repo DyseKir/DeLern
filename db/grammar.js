@@ -631,6 +631,67 @@ Kein/keine — это буквально «не один», «ни одного�
   },
 
   // ════════════════════════════════════════
+  //  A1 — WOHIN? (куда) vs WO? (где) — Akkusativ или Dativ
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_037", level: "A1",
+    title_de: "Wohin? (куда) oder Wo? (где) – Akkusativ oder Dativ",
+    title_ru: "Куда? или Где? — как выбрать Akkusativ или Dativ",
+    explanation_de: "Wechselpräpositionen (an, auf, in, über, unter, vor, hinter, neben, zwischen): Wohin? (Bewegung) → Akkusativ. Wo? (Position) → Dativ.",
+    explanation_ru: `Одни и те же предлоги (<b>an, auf, in, über, unter, vor, hinter, neben, zwischen</b>) могут быть с <span style="color:#ff6b8a">Akkusativ</span> ИЛИ с <span class="art-der">Dativ</span>. Выбор зависит от <strong>вопроса</strong>:
+
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">Wohin? — КУДА?<br>(движение, перемещение)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">Wo? — ГДЕ? / НА ЧЁМ?<br>(предмет на месте, покой)</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">→ AKKUSATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">→ DATIV</td>
+</tr>
+</table>
+
+<strong>🔑 Простой тест — какой вопрос подходит?</strong>
+• Можешь спросить <b>«КУДА?»</b> (есть движение из А в Б) → <span style="color:#ff6b8a">Akkusativ</span>.
+• Можешь спросить <b>«ГДЕ? / НА ЧЁМ?»</b> (ничего не двигается, вещь просто находится) → <span class="art-der">Dativ</span>.
+
+<strong>━━━ Пары глаголов (это главное!) ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">КУДА? движение → Akkusativ</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">ГДЕ? покой → Dativ</td>
+</tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>stellen</b> — ставить (поставил куда?)</td><td style="padding:6px;border:1px solid #2a2f4a"><b>stehen</b> — стоять (стоит где?)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>legen</b> — класть (положил куда?)</td><td style="padding:6px;border:1px solid #2a2f4a"><b>liegen</b> — лежать (лежит где?)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>setzen</b> — сажать (посадил куда?)</td><td style="padding:6px;border:1px solid #2a2f4a"><b>sitzen</b> — сидеть (сидит где?)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>hängen</b> — вешать (повесил куда?)</td><td style="padding:6px;border:1px solid #2a2f4a"><b>hängen</b> — висеть (висит где?)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>gehen / fahren</b> — идти / ехать (поехал куда?)</td><td style="padding:6px;border:1px solid #2a2f4a"><b>sein / bleiben</b> — быть / оставаться (где?)</td></tr>
+</table>
+
+<strong>━━━ Сравни на одном предмете 👇 ━━━</strong>
+🔴 <b>Куда поставил?</b> <em>Ich stelle die Flasche <b>auf den</b> Tisch.</em> — движение → Akkusativ (der→<b>den</b>).
+🔵 <b>На чём стоит?</b> <em>Die Flasche steht <b>auf dem</b> Tisch.</em> — покой → Dativ (der→<b>dem</b>).
+
+🔴 <b>Куда поехал?</b> <em>Ich fahre <b>in die</b> Stadt.</em> — движение → Akkusativ.
+🔵 <b>Где ты?</b> <em>Ich bin <b>in der</b> Stadt.</em> — на месте → Dativ.
+
+🔴 <b>Куда повесил?</b> <em>Ich hänge das Bild <b>an die</b> Wand.</em> — Akkusativ.
+🔵 <b>Где висит?</b> <em>Das Bild hängt <b>an der</b> Wand.</em> — Dativ.
+
+<strong>Сокращения:</strong> Akkusativ: in+das=<b>ins</b>, an+das=<b>ans</b> · Dativ: in+dem=<b>im</b>, an+dem=<b>am</b>.`,
+    examples: [
+      { de: "Ich stelle das Glas auf den Tisch.",  ru: "Куда? движение → Akkusativ (den)." },
+      { de: "Das Glas steht auf dem Tisch.",       ru: "Где/на чём? покой → Dativ (dem)." },
+      { de: "Ich gehe in die Schule.",             ru: "Куда? → Akkusativ (die)." },
+      { de: "Ich bin in der Schule.",              ru: "Где? → Dativ (der)." },
+      { de: "Ich lege das Buch auf den Tisch.",    ru: "legen (куда?) → Akkusativ." },
+      { de: "Das Buch liegt auf dem Tisch.",       ru: "liegen (где?) → Dativ." },
+    ],
+    tip_de: "Wohin? (Bewegung) → Akkusativ (stellen/legen/gehen). Wo? (Position) → Dativ (stehen/liegen/sein).",
+    tip_ru: "Куда? (движение: поставил, поехал, повесил) → Akkusativ. Где?/на чём? (стоит, лежит, висит, находится) → Dativ. Глаголы-пары: stellen↔stehen, legen↔liegen, setzen↔sitzen.",
+  },
+
+  // ════════════════════════════════════════
   //  A1 — AKKUSATIV
   // ════════════════════════════════════════
   {
