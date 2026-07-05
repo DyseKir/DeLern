@@ -2410,24 +2410,116 @@ function genSentence(pools) {
     const inN = w.article==='die' ? 'eine' : 'ein';
     const inA = w.article==='der' ? 'einen' : (w.article==='die' ? 'eine' : 'ein');
     return _pickRand([
-      { ru:`Это ${ru}.`,        uk:`Це ${uk}.`,       de:[`das ist ${inN} ${w.word}`] },
-      { ru:`У меня есть ${ru}.`, uk:`У мене є ${uk}.`, de:[`ich habe ${inA} ${w.word}`] },
+      { ru:`Это ${ru}.`,        uk:`Це ${uk}.`,       de:[`das ist ${inN} ${w.word}`],
+        gram:{ t:'noun', kase:'nom', art:w.article, ind:inN, word:w.word, verb:'ist',  subj:'das' } },
+      { ru:`У меня есть ${ru}.`, uk:`У мене є ${uk}.`, de:[`ich habe ${inA} ${w.word}`],
+        gram:{ t:'noun', kase:'akk', art:w.article, ind:inA, word:w.word, verb:'habe', subj:'ich' } },
     ]);
   }
   if (kind === 'prof') {
     const w = _pickRand(pools.profs);
     const ru = _cleanTr(w.translation), uk = _ukTr(w);
     const f = w.article === 'die';
-    return { ru:`${f?'Она':'Он'} ${ru}.`, uk:`${f?'Вона':'Він'} ${uk}.`, de:[`${f?'sie':'er'} ist ${w.word}`] };
+    return { ru:`${f?'Она':'Он'} ${ru}.`, uk:`${f?'Вона':'Він'} ${uk}.`, de:[`${f?'sie':'er'} ist ${w.word}`],
+      gram:{ t:'prof', word:w.word, verb:'ist', subj:(f?'sie':'er') } };
   }
   // verb
   const w = _pickRand(pools.verbs);
   const ru = _cleanTr(w.translation), uk = _ukTr(w);
   return _pickRand([
-    { ru:`Я хочу ${ru}.`,   uk:`Я хочу ${uk}.`, de:[`ich möchte ${w.word}`, `ich will ${w.word}`] },
-    { ru:`Я умею ${ru}.`,   uk:`Я вмію ${uk}.`, de:[`ich kann ${w.word}`] },
-    { ru:`Я должен ${ru}.`, uk:`Я мушу ${uk}.`, de:[`ich muss ${w.word}`] },
+    { ru:`Я хочу ${ru}.`,   uk:`Я хочу ${uk}.`, de:[`ich möchte ${w.word}`, `ich will ${w.word}`], gram:{ t:'verb', word:w.word, modal:'möchte', subj:'ich' } },
+    { ru:`Я умею ${ru}.`,   uk:`Я вмію ${uk}.`, de:[`ich kann ${w.word}`],                          gram:{ t:'verb', word:w.word, modal:'kann',   subj:'ich' } },
+    { ru:`Я должен ${ru}.`, uk:`Я мушу ${uk}.`, de:[`ich muss ${w.word}`],                          gram:{ t:'verb', word:w.word, modal:'muss',   subj:'ich' } },
   ]);
+}
+
+/* ── Разбор ошибки перевода: сравниваем ответ с правильным и объясняем что не так ── */
+const _ARTS = new Set(['ein','eine','einen','einem','einer','der','die','das','dem','den']);
+function _stripUml(s){ return (s||'').replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss'); }
+function _lev(a,b){
+  const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]);
+  for(let j=0;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
+    d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return d[m][n];
+}
+function _genderName(art){ return art==='der'?'мужской':art==='die'?'женский':'средний'; }
+
+function explainTranslationError(raw, item) {
+  const exp = (item.de && item.de[0]) || '';
+  const e = normSentence(exp).split(' ').filter(Boolean);
+  const u = normSentence(raw).split(' ').filter(Boolean);
+  const g = item.gram || {};
+  const uSet = new Set(u);
+  const notes = [];
+
+  // только умлауты/ß отличаются — по сути верно, остальное не разбираем
+  if (u.length && _stripUml(u.join(' ')) === _stripUml(e.join(' ')) && u.join(' ') !== e.join(' ')) {
+    return `<div class="tr-explain">🔤 Почти верно — проверь <b>умлауты</b> (ä/ö/ü) или <b>ß</b>.</div>`;
+  }
+
+  // позиция главного слова у пользователя (для поиска артикля перед ним)
+  const mainw = _stripUml(normSentence(g.word || ''));
+  const uStrip = u.map(_stripUml);
+  const mainIdx = mainw ? uStrip.findIndex(x => x === mainw || _lev(x, mainw) <= 1) : -1;
+
+  // артикль у существительного (берём слово перед существительным, иначе — явный ein/eine…)
+  if (g.t === 'noun') {
+    const need = g.ind;
+    const INDEF = new Set(['ein','eine','einen','einem','einer']);
+    let userArt = null;
+    if (mainIdx > 0 && _ARTS.has(u[mainIdx-1])) userArt = u[mainIdx-1];
+    else userArt = u.find(x => INDEF.has(x)) || null;
+    if (!userArt) {
+      notes.push(`❌ <b>Пропущен артикль.</b> Перед существительным нужен <b>${need}</b>.`);
+      notes.push(_artWhy(need, g));
+    } else if (userArt !== need) {
+      notes.push(`❌ <b>Неверный артикль:</b> ты написал «${userArt}», а нужно <b>${need}</b>.`);
+      notes.push(_artWhy(need, g));
+    }
+  }
+  // у профессии артикль НЕ нужен
+  if (g.t === 'prof') {
+    const userArt = u.find(x => _ARTS.has(x));
+    if (userArt) notes.push(`❌ С профессией <b>артикль не нужен</b>: «${g.subj} ist <b>${g.word}</b>» — без «${userArt}».`);
+  }
+
+  // глагол ist / habe для подлежащего
+  if (g.verb === 'habe' && !uSet.has('habe')) {
+    if (uSet.has('hat') || uSet.has('haben')) notes.push('❌ Глагол «haben» для <b>ich</b> → <b>habe</b> (не hat/haben).');
+    else notes.push('❌ Пропущен глагол <b>habe</b>: «ich <b>habe</b> …».');
+  }
+  if (g.verb === 'ist' && !uSet.has('ist')) {
+    notes.push(`❌ Пропущен глагол <b>ist</b>: «${g.subj} <b>ist</b> …».`);
+  }
+
+  // главное слово (существительное / глагол / профессия)
+  if (mainw && !uStrip.includes(mainw)) {
+    const near = u.find(x => { const d=_lev(_stripUml(x), mainw); return d>0 && d<=2; });
+    if (near) notes.push(`✍️ Опечатка в слове: «${near}» → <b>${g.word}</b>.`);
+    else      notes.push(`❌ Пропущено слово <b>${g.word}</b>.`);
+  }
+
+  // модальный глагол
+  if (g.t === 'verb' && g.modal && !uSet.has(g.modal) && !(g.modal==='möchte' && uSet.has('will'))) {
+    notes.push(`❌ Не хватает глагола <b>${g.modal}</b>: «ich <b>${g.modal}</b> ${g.word}».`);
+  }
+
+  // порядок слов (набор слов совпал, но порядок другой)
+  if (!notes.length && u.length && u.slice().sort().join(' ') === e.slice().sort().join(' ')) {
+    notes.push('↔️ Слова верные, но <b>порядок слов</b> другой.');
+  }
+
+  if (!notes.length) return '';
+  return `<div class="tr-explain">${notes.join('<br>')}</div>`;
+}
+
+function _artWhy(need, g) {
+  const gn = _genderName(g.art);
+  if (g.kase === 'akk') {
+    return `💡 После «ich habe» — <b>Akkusativ</b>: der→<b>einen</b>, die→eine, das→ein. «${g.word}» — ${gn} род (<b>${g.art}</b>) → <b>${need}</b>.`;
+  }
+  return `💡 В именительном падеже: der→<b>ein</b>, die→<b>eine</b>, das→<b>ein</b>. «${g.word}» — ${gn} род (<b>${g.art}</b>) → <b>${need}</b>.`;
 }
 
 // следующий случайный элемент — только генератор, без повтора подряд
@@ -2513,7 +2605,7 @@ function handleTranslateSubmit() {
     TRP.answered = true; TRP.moving = true;
     setTimeout(()=>{ TRP.count++; drawTranslateCard(); }, 900);
   } else {
-    fb.innerHTML = `<span class="tt-your-ans">${raw}</span><br>→ <strong class="tt-right-ans">${item.de[0]}</strong>`;
+    fb.innerHTML = `<span class="tt-your-ans">${raw}</span><br>→ <strong class="tt-right-ans">${item.de[0]}</strong>` + explainTranslationError(raw, item);
     fb.className = 'exam-feedback bad';
     TRP.answered = true;   // следующий Enter/кнопка — дальше
   }

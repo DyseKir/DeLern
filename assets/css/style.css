@@ -1649,8 +1649,14 @@ body {
   font-size: 22px; font-weight: 700; text-align: center; line-height: 1.4;
   margin: 10px auto 4px; max-width: 560px;
 }
-.translate-actions { display: flex; justify-content: center; margin-top: 4px; }
+.translate-actions { display: flex; justify-content: center; gap: 10px; margin-top: 4px; flex-wrap: wrap; }
 .translate-actions .btn-secondary { font-size: 13px; padding: 7px 14px; }
+.tr-explain {
+  margin-top: 10px; padding: 10px 12px; border-radius: 10px; text-align: left;
+  background: rgba(255,207,90,.10); border: 1px solid rgba(255,207,90,.35);
+  font-size: 14px; line-height: 1.55; font-weight: 500; color: var(--text);
+}
+.tr-explain b { color: #ffcf5a; }
 
 /* ── Таблицы-шпаргалки ── */
 .tables-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
