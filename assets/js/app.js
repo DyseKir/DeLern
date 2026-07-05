@@ -2377,17 +2377,6 @@ function _pickRand(a){ return a[Math.floor(Math.random()*a.length)]; }
 function _cleanTr(s){ return (s||'').split('/')[0].replace(/\([^)]*\)/g,'').replace(/[…·]/g,'').trim(); }
 function _ukTr(w){ return _cleanTr((window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[w.id]) || w.translation); }
 
-// множество выученных немецких лемм (для банка готовых предложений)
-function learnedLemmaSet() {
-  const set = new Set();
-  getLearnedWords().forEach(w => { if (w.word) set.add(w.word); });
-  return set;
-}
-function getAvailableSentences() {
-  const set = learnedLemmaSet();
-  return (window.TRANSLATE_SENTENCES || []).filter(s => (s.use||[]).every(l => set.has(l)));
-}
-
 // собираем пулы выученных слов по типам для генератора
 function buildTranslatePools() {
   const prog = loadProg();
@@ -2441,14 +2430,11 @@ function genSentence(pools) {
   ]);
 }
 
-// следующий случайный элемент: смесь генератора и банка, без повтора подряд
+// следующий случайный элемент — только генератор, без повтора подряд
 function nextTranslateItem() {
-  const bank = getAvailableSentences();
-  const canGen = TRP.pools && (TRP.pools.nouns.length||TRP.pools.verbs.length||TRP.pools.profs.length);
   let item=null, tries=0;
   do {
-    const useGen = canGen && (Math.random() < 0.6 || !bank.length);
-    item = useGen ? genSentence(TRP.pools) : (bank.length ? _pickRand(bank) : genSentence(TRP.pools));
+    item = genSentence(TRP.pools);
     tries++;
   } while (item && item.ru === TRP.last && tries < 12);
   if (item) TRP.last = item.ru;
@@ -2457,8 +2443,7 @@ function nextTranslateItem() {
 
 function translateHasContent() {
   const pools = buildTranslatePools();
-  const canGen = pools.nouns.length||pools.verbs.length||pools.profs.length;
-  return { canGen, bank: getAvailableSentences().length };
+  return pools.nouns.length || pools.verbs.length || pools.profs.length;
 }
 
 function renderTranslateScreen() {
@@ -2467,10 +2452,10 @@ function renderTranslateScreen() {
   $('translate-result').classList.add('hidden');
   $('translate-intro').classList.remove('hidden');
 
-  const { canGen, bank } = translateHasContent();
+  const canGen = translateHasContent();
   const startBtn = $('translate-start');
   const availBox = $('translate-avail');
-  if (!canGen && !bank) {
+  if (!canGen) {
     startBtn.disabled = true;
     startBtn.textContent = t('translate_none');
     if (availBox) availBox.textContent = '';
@@ -2478,17 +2463,16 @@ function renderTranslateScreen() {
     startBtn.disabled = false;
     startBtn.textContent = t('translate_start');
     if (availBox) availBox.textContent = lstr(
-      `Unendlicher Zufall aus deinen gelernten Wörtern ♾️${bank?` + ${bank} fertige Sätze`:''}.`,
-      `Бесконечный рандом из выученных слов ♾️${bank?` + ${bank} готовых`:''}.`,
-      `Нескінченний рандом з вивчених слів ♾️${bank?` + ${bank} готових`:''}.`);
+      'Unendlicher Zufall aus deinen gelernten Wörtern ♾️',
+      'Бесконечный рандом из выученных слов ♾️',
+      'Нескінченний рандом з вивчених слів ♾️');
   }
 }
 
 function startTranslate() {
   TRP.pools = buildTranslatePools();
-  const bank = getAvailableSentences();
   const canGen = TRP.pools.nouns.length||TRP.pools.verbs.length||TRP.pools.profs.length;
-  if (!canGen && !bank.length) return;
+  if (!canGen) return;
   TRP.count = 0; TRP.correct = 0; TRP.last = null; TRP.answered = false; TRP.moving = false;
   $('translate-intro').classList.add('hidden');
   $('translate-result').classList.add('hidden');
