@@ -1326,7 +1326,7 @@ function startSession(cat) {
     return true;
   });
   shuffle(active);
-  S.phase='study'; S.testCards=[]; S.testIdx=0; S.testCorrect=0; S.testRequeued=new Set();
+  S.phase='study'; S.testQueue=[]; S.testTotal=0; S.testMastered=0; S.testCorrect=0;
   S.catMode = cat.mode || '';
   S.catKey  = cat.category;
   S.cards=active; S.cardIdx=0; S.sessionCorrect=0; S.sessionWrong=0; S.sessionLearned=0; S.busy=false; S.requeued=new Set();
@@ -1412,9 +1412,9 @@ function handleArticle(article) {
   const noArt = !card.article || card.article === '-';
   const correct = noArt || article===card.article;
 
-  // Для слов без артикля — обновляем прогресс как раньше
-  // Для слов с артиклем — только визуал, прогресс только через печатный тест
-  const wp = noArt ? updateWP(card.id, correct) : getWP(card.id);
+  // Фаза карточек — только показ/тренировка. Прогресс и стрик
+  // ("выучено") копятся ИСКЛЮЧИТЕЛЬНО в печатном тесте (3 правильных подряд).
+  const wp = getWP(card.id);
 
   const fb=$('card-feedback'), se=$('card-streak');
   document.querySelectorAll('.art-btn').forEach(b=>b.disabled=true);
@@ -1425,7 +1425,7 @@ function handleArticle(article) {
     if (!noArt) document.querySelector(`.art-btn[data-article="${article}"]`).classList.add('show-correct');
     addCoins(1, $('flashcard'));
     if (wp.status==='learned'){
-      se.textContent=t('streak_done',LEARNED_THRESHOLD); if(noArt) S.sessionLearned++;
+      se.textContent=t('already_lrn');
     } else {
       se.textContent = wp.streak>0 ? t('streak_txt',wp.streak) : '';
     }
@@ -1530,7 +1530,7 @@ function handlePossessive(chosen) {
 function handleDefer() {
   if (S.busy) return;
   const isTest = S.phase === 'test';
-  const card = isTest ? S.testCards[S.testIdx] : S.cards[S.cardIdx];
+  const card = isTest ? S.testQueue[0] : S.cards[S.cardIdx];
   if (!card) return;
 
   if (S.catKey === 'deferred') removeDeferred(card.id);  // вернуть
@@ -1538,11 +1538,10 @@ function handleDefer() {
 
   // убираем все вхождения слова из обеих колод
   S.cards     = S.cards.filter(c => c.id !== card.id);
-  S.testCards = S.testCards.filter(c => c.id !== card.id);
+  if (S.testQueue) S.testQueue = S.testQueue.filter(c => c.id !== card.id);
 
   if (isTest) {
-    if (!S.testCards.length) { showComplete(); return; }
-    if (S.testIdx >= S.testCards.length) S.testIdx = 0;
+    if (!S.testQueue.length) { showComplete(); return; }
     drawTestCard();
   } else {
     if (!S.cards.length) {
@@ -1681,34 +1680,38 @@ function handleConjSubmit() {
 function startTypingTest() {
   S.phase = 'test';
   const p = loadProg();
-  // Все слова которые ещё не выучены — с артиклем пишем "der/die/das Wort", без артикля — просто "Wort"
-  S.testCards = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
-  shuffle(S.testCards);
-  S.testIdx = 0; S.testCorrect = 0; S.testRequeued = new Set();
+  // ещё не выученные слова, без дублей (карточки могли требовать по 2 раза)
+  const pending = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
+  const seen = new Set();
+  S.testQueue = [];
+  shuffle(pending.slice()).forEach(w => { if (!seen.has(w.id)) { seen.add(w.id); S.testQueue.push(w); } });
+  S.testTotal    = S.testQueue.length;   // сколько уникальных слов нужно довести до 3/3
+  S.testMastered = 0;
+  S.testCorrect  = 0;
 
   $('flashcard').classList.add('hidden');
 
-  if (!S.testCards.length) { showComplete(); return; }
+  if (!S.testQueue.length) { showComplete(); return; }
 
   $('typing-test').classList.remove('hidden');
   drawTestCard();
 }
 
 function drawTestCard() {
-  if (S.testIdx >= S.testCards.length) { showComplete(); return; }
-  const card   = S.testCards[S.testIdx];
+  if (!S.testQueue.length) { showComplete(); return; }
+  const card   = S.testQueue[0];
   const noArt  = !card.article || card.article === '-';
-  const streak = getWP(card.id).streak || 0;
+  const streak = Math.min(getWP(card.id).streak || 0, LEARNED_THRESHOLD);
   const dots   = '⭐'.repeat(streak) + '☆'.repeat(LEARNED_THRESHOLD - streak);
   setCardVisual($('tt-emoji'), card, S.currentCatEmoji);
   $('tt-ru').textContent       = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
-  $('tt-counter').textContent  = `${S.testIdx+1} / ${S.testCards.length}`;
+  $('tt-counter').textContent  = `${lstr('Gelernt','Выучено','Вивчено')}: ${S.testMastered} / ${S.testTotal}`;
   $('tt-score').textContent    = `${dots} ${streak}/${LEARNED_THRESHOLD}`;
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value          = '';
   $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
-  $('cards-progress-fill').style.width = (S.testIdx / S.testCards.length * 100) + '%';
+  $('cards-progress-fill').style.width = (S.testTotal ? S.testMastered / S.testTotal * 100 : 0) + '%';
   // кнопка "На потом" доступна и в тесте
   const deferBtn = $('defer-btn');
   if (deferBtn) {
@@ -1721,7 +1724,7 @@ function drawTestCard() {
 }
 
 function handleTypingSubmit() {
-  const card = S.testCards[S.testIdx];
+  const card = S.testQueue[0];
   if (!card) return;
   const raw      = $('tt-input').value.trim();
   const input    = normAnswer(raw);
@@ -1730,30 +1733,34 @@ function handleTypingSubmit() {
   if (!input) return;
   const isOk = input === expected;
 
+  S.testQueue.shift();                 // убираем текущее слово из головы очереди
+
   if (isOk) {
     const wp = updateWP(card.id, true);
     S.testCorrect++;
     if (wp.status === 'learned') {
+      // 3 правильных подряд → слово выучено, больше не спрашиваем
+      S.testMastered++;
       S.sessionLearned++;
       addCoins(3, $('typing-test'));
-      $('tt-feedback').innerHTML = `✓ Выучено! 🎉 (${LEARNED_THRESHOLD}/${LEARNED_THRESHOLD})`;
+      $('tt-feedback').innerHTML = `✓ ${lstr('Gelernt','Выучено','Вивчено')}! 🎉 (${LEARNED_THRESHOLD}/${LEARNED_THRESHOLD})`;
     } else {
+      // ещё не 3 подряд → возвращаем слово в конец очереди
+      S.testQueue.push(card);
       addCoins(1, $('typing-test'));
-      $('tt-feedback').innerHTML = `✓ Richtig! (${wp.streak}/${LEARNED_THRESHOLD})`;
+      const left = LEARNED_THRESHOLD - wp.streak;
+      $('tt-feedback').innerHTML = `✓ Richtig! (${wp.streak}/${LEARNED_THRESHOLD}) — ${lstr('noch','ещё','ще')} ${left}×`;
     }
     $('tt-feedback').className  = 'tt-feedback ok';
-    $('tt-score').textContent   = `✓ ${S.testCorrect}`;
-    setTimeout(()=>{ S.testIdx++; drawTestCard(); }, 800);
+    setTimeout(()=>{ drawTestCard(); }, 800);
   } else {
+    // ошибка → стрик обнуляется, слово возвращается в конец очереди
     updateWP(card.id, false);
+    S.testQueue.push(card);
     const ans = noArt ? card.word : `${card.article} ${card.word}`;
-    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong>`;
+    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`;
     $('tt-feedback').className = 'tt-feedback bad';
-    if (!S.testRequeued.has(card.id)) {
-      S.testRequeued.add(card.id);
-      S.testCards.push(card);
-    }
-    setTimeout(()=>{ $('tt-input').value=''; S.testIdx++; drawTestCard(); }, 2000);
+    setTimeout(()=>{ $('tt-input').value=''; drawTestCard(); }, 2000);
   }
 }
 
