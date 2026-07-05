@@ -2366,7 +2366,7 @@ function checkoutCart() {
 /* ══════════════════════════════════════════════
    ПЕРЕВОД ПРЕДЛОЖЕНИЙ (RU/UK → DE)
    ══════════════════════════════════════════════ */
-const TR = { cards:[], idx:0, correct:0, answered:false };
+const TRP = { cards:[], idx:0, correct:0, answered:false };
 
 // множество выученных немецких лемм
 function learnedLemmaSet() {
@@ -2410,8 +2410,8 @@ function renderTranslateScreen() {
 function startTranslate() {
   const avail = getAvailableSentences();
   if (!avail.length) return;
-  TR.cards = shuffle(avail.slice());
-  TR.idx = 0; TR.correct = 0; TR.answered = false;
+  TRP.cards = shuffle(avail.slice());
+  TRP.idx = 0; TRP.correct = 0; TRP.answered = false;
   $('translate-intro').classList.add('hidden');
   $('translate-result').classList.add('hidden');
   $('translate-run').classList.remove('hidden');
@@ -2419,24 +2419,24 @@ function startTranslate() {
 }
 
 function drawTranslateCard() {
-  if (TR.idx >= TR.cards.length) { finishTranslate(); return; }
-  const s = TR.cards[TR.idx];
-  TR.answered = false; TR.moving = false;
+  if (TRP.idx >= TRP.cards.length) { finishTranslate(); return; }
+  const s = TRP.cards[TRP.idx];
+  TRP.answered = false; TRP.moving = false;
   const ru = (lang==='uk' && s.uk) ? s.uk : s.ru;
   $('translate-ru').textContent      = ru;
-  $('translate-counter').textContent = `${TR.idx+1} / ${TR.cards.length}`;
-  $('translate-score').textContent   = `✓ ${TR.correct}`;
+  $('translate-counter').textContent = `${TRP.idx+1} / ${TRP.cards.length}`;
+  $('translate-score').textContent   = `✓ ${TRP.correct}`;
   $('translate-feedback').textContent = '';
   $('translate-feedback').className   = 'exam-feedback';
   $('translate-input').value = '';
-  $('translate-progress-fill').style.width = (TR.idx / TR.cards.length * 100) + '%';
+  $('translate-progress-fill').style.width = (TRP.idx / TRP.cards.length * 100) + '%';
   setTimeout(()=>{ try{$('translate-input').focus();}catch(e){} }, 80);
 }
 
 function handleTranslateSubmit() {
-  if (TR.moving) return;                                         // идёт авто-переход — игнор
-  if (TR.answered) { TR.idx++; drawTranslateCard(); return; }    // Enter после ответа = дальше
-  const s = TR.cards[TR.idx];
+  if (TRP.moving) return;                                         // идёт авто-переход — игнор
+  if (TRP.answered) { TRP.idx++; drawTranslateCard(); return; }    // Enter после ответа = дальше
+  const s = TRP.cards[TRP.idx];
   if (!s) return;
   const raw = $('translate-input').value.trim();
   if (!raw) return;
@@ -2444,29 +2444,29 @@ function handleTranslateSubmit() {
   const accepted = (s.de||[]).map(normSentence);
   const fb = $('translate-feedback');
   if (accepted.includes(input)) {
-    TR.correct++;
+    TRP.correct++;
     fb.innerHTML = `✓ ${lstr('Richtig','Верно','Вірно')}!`;
     fb.className = 'exam-feedback ok';
-    $('translate-score').textContent = `✓ ${TR.correct}`;
-    TR.answered = true; TR.moving = true;
-    setTimeout(()=>{ TR.idx++; drawTranslateCard(); }, 900);
+    $('translate-score').textContent = `✓ ${TRP.correct}`;
+    TRP.answered = true; TRP.moving = true;
+    setTimeout(()=>{ TRP.idx++; drawTranslateCard(); }, 900);
   } else {
     fb.innerHTML = `<span class="tt-your-ans">${raw}</span><br>→ <strong class="tt-right-ans">${s.de[0]}</strong>`;
     fb.className = 'exam-feedback bad';
-    TR.answered = true;   // следующий Enter/кнопка — дальше
+    TRP.answered = true;   // следующий Enter/кнопка — дальше
   }
 }
 
 function revealTranslate() {
-  if (TR.moving) return;
-  const s = TR.cards[TR.idx];
+  if (TRP.moving) return;
+  const s = TRP.cards[TRP.idx];
   if (!s) return;
-  if (!TR.answered) {
+  if (!TRP.answered) {
     $('translate-feedback').innerHTML = `→ <strong class="tt-right-ans">${s.de[0]}</strong>`;
     $('translate-feedback').className = 'exam-feedback bad';
-    TR.answered = true;
+    TRP.answered = true;
   } else {
-    TR.idx++; drawTranslateCard();
+    TRP.idx++; drawTranslateCard();
   }
 }
 
@@ -2474,9 +2474,9 @@ function finishTranslate() {
   $('translate-run').classList.add('hidden');
   $('translate-result').classList.remove('hidden');
   $('translate-result-title').textContent = lstr('Fertig!','Готово!','Готово!');
-  const pct = TR.cards.length ? Math.round(TR.correct / TR.cards.length * 100) : 0;
+  const pct = TRP.cards.length ? Math.round(TRP.correct / TRP.cards.length * 100) : 0;
   $('translate-result-stats').innerHTML = `
-    <div class="exam-rs-big">${TR.correct} / ${TR.cards.length}</div>
+    <div class="exam-rs-big">${TRP.correct} / ${TRP.cards.length}</div>
     <div class="exam-rs-pct">${pct}%</div>`;
 }
 
