@@ -1643,6 +1643,15 @@ body {
 .exam-mod-range { color: var(--text-muted); font-size: 13px; }
 .exam-module-all { border-style: dashed; border-color: #6366f1; }
 
+/* ── Перевод предложений ── */
+.translate-avail { color: var(--text-muted); font-size: 14px; }
+.translate-ru {
+  font-size: 22px; font-weight: 700; text-align: center; line-height: 1.4;
+  margin: 10px auto 4px; max-width: 560px;
+}
+.translate-actions { display: flex; justify-content: center; margin-top: 4px; }
+.translate-actions .btn-secondary { font-size: 13px; padding: 7px 14px; }
+
 /* ── Таблицы-шпаргалки ── */
 .tables-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
 .tables-toc-btn {

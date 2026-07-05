@@ -12,7 +12,7 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
+    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_translate: 'Übersetzen', translate_title: 'Sätze übersetzen', translate_desc: 'Zufällige Sätze aus deinen gelernten Wörtern. Übersetze ins Deutsche.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
@@ -74,7 +74,7 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
+    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_translate: 'Перевод', translate_title: 'Перевод предложений', translate_desc: 'Случайные предложения из выученных слов. Переведи с русского на немецкий.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
@@ -136,7 +136,7 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
+    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_translate: 'Переклад', translate_title: 'Переклад речень', translate_desc: 'Випадкові речення з вивчених слів. Переклади українською→німецькою.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
@@ -1009,6 +1009,7 @@ function rerenderCurrent() {
   else if (S.screen==='wortschatz') renderVocabScreen();
   else if (S.screen==='grammatik')  renderGrammarScreen();
   else if (S.screen==='tables')     renderTablesScreen();
+  else if (S.screen==='translate')  renderTranslateScreen();
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
@@ -2362,6 +2363,123 @@ function checkoutCart() {
 /* ══════════════════════════════════════════════════════════════
    ГЛОБАЛЬНЫЙ ЭКЗАМЕН
 ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   ПЕРЕВОД ПРЕДЛОЖЕНИЙ (RU/UK → DE)
+   ══════════════════════════════════════════════ */
+const TR = { cards:[], idx:0, correct:0, answered:false };
+
+// множество выученных немецких лемм
+function learnedLemmaSet() {
+  const set = new Set();
+  getLearnedWords().forEach(w => { if (w.word) set.add(w.word); });
+  return set;
+}
+// предложения, где ВСЕ ключевые слова выучены
+function getAvailableSentences() {
+  const set = learnedLemmaSet();
+  return (window.TRANSLATE_SENTENCES || []).filter(s => (s.use||[]).every(l => set.has(l)));
+}
+// нормализация предложения для сравнения (+убираем пунктуацию)
+function normSentence(s) {
+  return normAnswer((s||'').replace(/[.,!?;:«»"'()]/g,' ')).replace(/\s+/g,' ').trim();
+}
+
+function renderTranslateScreen() {
+  show('translate');
+  $('translate-run').classList.add('hidden');
+  $('translate-result').classList.add('hidden');
+  $('translate-intro').classList.remove('hidden');
+
+  const avail = getAvailableSentences();
+  const startBtn = $('translate-start');
+  const availBox = $('translate-avail');
+  if (!avail.length) {
+    startBtn.disabled = true;
+    startBtn.textContent = t('translate_none');
+    if (availBox) availBox.textContent = '';
+  } else {
+    startBtn.disabled = false;
+    startBtn.textContent = `${t('translate_start')} (${avail.length})`;
+    if (availBox) availBox.textContent = lstr(
+      `${avail.length} Sätze verfügbar (aus deinen gelernten Wörtern).`,
+      `Доступно предложений: ${avail.length} (из выученных слов).`,
+      `Доступно речень: ${avail.length} (з вивчених слів).`);
+  }
+}
+
+function startTranslate() {
+  const avail = getAvailableSentences();
+  if (!avail.length) return;
+  TR.cards = shuffle(avail.slice());
+  TR.idx = 0; TR.correct = 0; TR.answered = false;
+  $('translate-intro').classList.add('hidden');
+  $('translate-result').classList.add('hidden');
+  $('translate-run').classList.remove('hidden');
+  drawTranslateCard();
+}
+
+function drawTranslateCard() {
+  if (TR.idx >= TR.cards.length) { finishTranslate(); return; }
+  const s = TR.cards[TR.idx];
+  TR.answered = false; TR.moving = false;
+  const ru = (lang==='uk' && s.uk) ? s.uk : s.ru;
+  $('translate-ru').textContent      = ru;
+  $('translate-counter').textContent = `${TR.idx+1} / ${TR.cards.length}`;
+  $('translate-score').textContent   = `✓ ${TR.correct}`;
+  $('translate-feedback').textContent = '';
+  $('translate-feedback').className   = 'exam-feedback';
+  $('translate-input').value = '';
+  $('translate-progress-fill').style.width = (TR.idx / TR.cards.length * 100) + '%';
+  setTimeout(()=>{ try{$('translate-input').focus();}catch(e){} }, 80);
+}
+
+function handleTranslateSubmit() {
+  if (TR.moving) return;                                         // идёт авто-переход — игнор
+  if (TR.answered) { TR.idx++; drawTranslateCard(); return; }    // Enter после ответа = дальше
+  const s = TR.cards[TR.idx];
+  if (!s) return;
+  const raw = $('translate-input').value.trim();
+  if (!raw) return;
+  const input = normSentence(raw);
+  const accepted = (s.de||[]).map(normSentence);
+  const fb = $('translate-feedback');
+  if (accepted.includes(input)) {
+    TR.correct++;
+    fb.innerHTML = `✓ ${lstr('Richtig','Верно','Вірно')}!`;
+    fb.className = 'exam-feedback ok';
+    $('translate-score').textContent = `✓ ${TR.correct}`;
+    TR.answered = true; TR.moving = true;
+    setTimeout(()=>{ TR.idx++; drawTranslateCard(); }, 900);
+  } else {
+    fb.innerHTML = `<span class="tt-your-ans">${raw}</span><br>→ <strong class="tt-right-ans">${s.de[0]}</strong>`;
+    fb.className = 'exam-feedback bad';
+    TR.answered = true;   // следующий Enter/кнопка — дальше
+  }
+}
+
+function revealTranslate() {
+  if (TR.moving) return;
+  const s = TR.cards[TR.idx];
+  if (!s) return;
+  if (!TR.answered) {
+    $('translate-feedback').innerHTML = `→ <strong class="tt-right-ans">${s.de[0]}</strong>`;
+    $('translate-feedback').className = 'exam-feedback bad';
+    TR.answered = true;
+  } else {
+    TR.idx++; drawTranslateCard();
+  }
+}
+
+function finishTranslate() {
+  $('translate-run').classList.add('hidden');
+  $('translate-result').classList.remove('hidden');
+  $('translate-result-title').textContent = lstr('Fertig!','Готово!','Готово!');
+  const pct = TR.cards.length ? Math.round(TR.correct / TR.cards.length * 100) : 0;
+  $('translate-result-stats').innerHTML = `
+    <div class="exam-rs-big">${TR.correct} / ${TR.cards.length}</div>
+    <div class="exam-rs-pct">${pct}%</div>`;
+}
+
 const EX = { cards:[], idx:0, correct:0, total:0 };
 
 function loadExamHistory()    { try { return JSON.parse(localStorage.getItem(P().examKey)||'[]'); } catch { return []; } }
@@ -2675,6 +2793,7 @@ function initEvents() {
       else if(s==='wortschatz') renderVocabScreen();
       else if(s==='grammatik')  renderGrammarScreen();
       else if(s==='tables')     renderTablesScreen();
+      else if(s==='translate')  renderTranslateScreen();
       else if(s==='profil')     renderProfile();
       else if(s==='exam')       renderExamScreen();
     });
@@ -2704,9 +2823,10 @@ function initEvents() {
   document.querySelectorAll('.uml-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       let inp;
-      if (btn.closest('#exam-umlauts'))      inp = $('exam-input');
-      else if (btn.closest('#conj-umlauts')) inp = CONJ.lastInput || $('conj-fields')?.querySelector('.conj-input');
-      else                                   inp = $('tt-input');
+      if (btn.closest('#exam-umlauts'))          inp = $('exam-input');
+      else if (btn.closest('#translate-umlauts')) inp = $('translate-input');
+      else if (btn.closest('#conj-umlauts'))     inp = CONJ.lastInput || $('conj-fields')?.querySelector('.conj-input');
+      else                                       inp = $('tt-input');
       if (!inp) return;
       const ch  = btn.dataset.char;
       const s   = inp.selectionStart ?? inp.value.length;
@@ -2730,6 +2850,14 @@ function initEvents() {
   $('exam-input')?.addEventListener('keydown', e=>{ if(e.key==='Enter') handleExamSubmit(); });
   $('exam-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('tables-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+
+  /* Перевод предложений */
+  $('translate-start')?.addEventListener('click', startTranslate);
+  $('translate-again')?.addEventListener('click', renderTranslateScreen);
+  $('translate-submit')?.addEventListener('click', handleTranslateSubmit);
+  $('translate-input')?.addEventListener('keydown', e=>{ if(e.key==='Enter') handleTranslateSubmit(); });
+  $('translate-skip')?.addEventListener('click', revealTranslate);
+  $('translate-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>

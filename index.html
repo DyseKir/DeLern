@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260723">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260724">
 </head>
 <body>
 
@@ -34,6 +34,7 @@
       <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
       <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
+      <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
     </nav>
@@ -314,6 +315,53 @@
       <div class="tables-content" id="tables-content"></div>
     </div>
 
+    <!-- TRANSLATE (перевод предложений) -->
+    <div id="screen-translate" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="translate-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">🌍 <span data-i18n="translate_title">Перевод предложений</span></h2>
+      </div>
+
+      <div id="translate-intro" class="exam-intro">
+        <p class="exam-desc" id="translate-desc" data-i18n="translate_desc">Случайные предложения из выученных слов. Переведи с русского на немецкий.</p>
+        <div class="translate-avail" id="translate-avail"></div>
+        <button class="btn-primary exam-start-btn" id="translate-start" data-i18n="translate_start">Начать перевод</button>
+      </div>
+
+      <div id="translate-run" class="exam-run hidden">
+        <div class="exam-progress-bar"><div class="exam-progress-fill" id="translate-progress-fill"></div></div>
+        <div class="exam-counter" id="translate-counter">1 / 20</div>
+        <div class="translate-ru" id="translate-ru">Предложение…</div>
+        <div class="tt-input-wrap">
+          <input id="translate-input" class="tt-input" type="text"
+            placeholder="Auf Deutsch schreiben…"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <button class="tt-ok-btn" id="translate-submit">→</button>
+        </div>
+        <div class="tt-umlaut-row" id="translate-umlauts">
+          <button class="uml-btn" data-char="ä">ä</button>
+          <button class="uml-btn" data-char="ö">ö</button>
+          <button class="uml-btn" data-char="ü">ü</button>
+          <button class="uml-btn" data-char="ß">ß</button>
+          <button class="uml-btn" data-char="Ä">Ä</button>
+          <button class="uml-btn" data-char="Ö">Ö</button>
+          <button class="uml-btn" data-char="Ü">Ü</button>
+        </div>
+        <div class="exam-feedback" id="translate-feedback"></div>
+        <div class="translate-actions">
+          <button class="btn-secondary" id="translate-skip" data-i18n="translate_skip">Показать ответ / дальше</button>
+        </div>
+        <div class="exam-score" id="translate-score">✓ 0</div>
+      </div>
+
+      <div id="translate-result" class="exam-result hidden">
+        <div class="exam-result-emoji">🌍</div>
+        <h2 id="translate-result-title">Готово!</h2>
+        <div class="exam-result-stats" id="translate-result-stats"></div>
+        <button class="btn-primary" id="translate-again" data-i18n="translate_again">Ещё раз</button>
+      </div>
+    </div>
+
     <!-- PROFIL -->
     <div id="screen-profil" class="screen">
       <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
@@ -397,9 +445,10 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260723"></script>
-  <script src="db/grammar.js?v=20260723"></script>
-  <script src="db/translations_uk.js?v=20260723"></script>
-  <script src="assets/js/app.js?v=20260723"></script>
+  <script src="db/words.js?v=20260724"></script>
+  <script src="db/grammar.js?v=20260724"></script>
+  <script src="db/translations_uk.js?v=20260724"></script>
+  <script src="db/sentences.js?v=20260724"></script>
+  <script src="assets/js/app.js?v=20260724"></script>
 </body>
 </html>
