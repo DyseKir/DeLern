@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260728">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260729">
 </head>
 <body>
 
@@ -33,6 +33,7 @@
       <a href="#" class="nav-link"        data-screen="lektionen"  data-i18n="nav_lektionen">Lektionen</a>
       <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
+      <a href="#" class="nav-link nav-prep" data-screen="prep"     data-i18n="nav_prep">Prüfung morgen</a>
       <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
       <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
@@ -305,6 +306,16 @@
       <div class="grammar-grid" id="grammar-grid"></div>
     </div>
 
+    <!-- PREP (подготовка к контрольной) -->
+    <div id="screen-prep" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="prep-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">🎯 <span data-i18n="prep_title">Подготовка к контрольной</span></h2>
+      </div>
+      <div class="tables-toc" id="prep-toc"></div>
+      <div class="tables-content" id="prep-content"></div>
+    </div>
+
     <!-- TABLES (шпаргалки) -->
     <div id="screen-tables" class="screen">
       <div class="screen-header">
@@ -446,9 +457,9 @@
     </defs>
   </svg>
 
-  <script src="db/words.js?v=20260728"></script>
-  <script src="db/grammar.js?v=20260728"></script>
-  <script src="db/translations_uk.js?v=20260728"></script>
-  <script src="assets/js/app.js?v=20260728"></script>
+  <script src="db/words.js?v=20260729"></script>
+  <script src="db/grammar.js?v=20260729"></script>
+  <script src="db/translations_uk.js?v=20260729"></script>
+  <script src="assets/js/app.js?v=20260729"></script>
 </body>
 </html>

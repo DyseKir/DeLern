@@ -12,7 +12,7 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_translate: 'Übersetzen', translate_title: 'Sätze übersetzen', translate_desc: 'Zufällige Sätze aus deinen gelernten Wörtern. Übersetze ins Deutsche.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
+    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_prep: 'Prüfung morgen', prep_title: 'Prüfungsvorbereitung', nav_translate: 'Übersetzen', translate_title: 'Sätze übersetzen', translate_desc: 'Zufällige Sätze aus deinen gelernten Wörtern. Übersetze ins Deutsche.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
@@ -74,7 +74,7 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_translate: 'Перевод', translate_title: 'Перевод предложений', translate_desc: 'Случайные предложения из выученных слов. Переведи с русского на немецкий.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
+    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_prep: 'Контрольная', prep_title: 'Подготовка к контрольной', nav_translate: 'Перевод', translate_title: 'Перевод предложений', translate_desc: 'Случайные предложения из выученных слов. Переведи с русского на немецкий.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
@@ -136,7 +136,7 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_translate: 'Переклад', translate_title: 'Переклад речень', translate_desc: 'Випадкові речення з вивчених слів. Переклади українською→німецькою.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
+    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_prep: 'Контрольна', prep_title: 'Підготовка до контрольної', nav_translate: 'Переклад', translate_title: 'Переклад речень', translate_desc: 'Випадкові речення з вивчених слів. Переклади українською→німецькою.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
@@ -1009,6 +1009,7 @@ function rerenderCurrent() {
   else if (S.screen==='wortschatz') renderVocabScreen();
   else if (S.screen==='grammatik')  renderGrammarScreen();
   else if (S.screen==='tables')     renderTablesScreen();
+  else if (S.screen==='prep')       renderPrepScreen();
   else if (S.screen==='translate')  renderTranslateScreen();
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
@@ -2032,6 +2033,261 @@ function renderTablesScreen() {
   });
 }
 
+/* ══════════════════════════════════════════════
+   ПОДГОТОВКА К КОНТРОЛЬНОЙ (отдельная вкладка)
+   ══════════════════════════════════════════════ */
+function prepData() {
+  const L = (de,ru,uk)=>lstr(de,ru,uk);
+  // таблица: пары [левое (нем., жирное), правое (перевод/пояснение)]
+  const two = (rows)=>`<div class="rt-scroll"><table class="rt"><tbody>${
+    rows.map(r=>`<tr><td class="rt-rowh">${r[0]}</td><td style="text-align:left">${r[1]}</td></tr>`).join('')
+  }</tbody></table></div>`;
+  const three = (head, rows)=>`<div class="rt-scroll"><table class="rt"><thead><tr>${
+    head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
+    rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<td class="rt-rowh">${c}</td>`:`<td style="text-align:left">${c}</td>`).join('')}</tr>`).join('')
+  }</tbody></table></div>`;
+
+  return [
+    // ───────────────────────────────────────
+    { id:'berufe', icon:'👷', title:L('Was macht ein/eine? (кто что делает)','Кто что делает (профессии)','Хто що робить (професії)'),
+      html: two([
+        ['Ein Arzt <b>hilft</b> kranken Menschen.','Врач помогает больным людям.'],
+        ['Eine Lehrerin <b>unterrichtet</b> Schüler.','Учительница учит учеников.'],
+        ['Ein Koch <b>kocht</b> das Essen.','Повар готовит еду.'],
+        ['Eine Verkäuferin <b>verkauft</b> Waren.','Продавщица продаёт товары.'],
+        ['Ein Fahrer <b>fährt</b> ein Auto oder einen Bus.','Водитель водит машину или автобус.'],
+        ['Eine Studentin <b>studiert</b> an der Universität.','Студентка учится в университете.'],
+        ['Eine Polizistin <b>hilft</b> Menschen und <b>kontrolliert</b> den Verkehr.','Полицейская помогает людям и контролирует движение.'],
+        ['Ein Bauer <b>arbeitet</b> auf dem Feld.','Фермер работает в поле.'],
+        ['Eine Friseurin <b>schneidet</b> Haare.','Парикмахер стрижёт волосы.'],
+        ['Ein Mechaniker <b>repariert</b> Autos.','Механик ремонтирует машины.'],
+        ['Ein Pilot <b>fliegt</b> ein Flugzeug.','Пилот управляет самолётом.'],
+        ['Eine Journalistin <b>schreibt</b> Artikel.','Журналистка пишет статьи.'],
+        ['Ein Bäcker <b>backt</b> Brot.','Пекарь печёт хлеб.'],
+        ['Eine Zahnärztin <b>kontrolliert</b> Zähne.','Стоматолог проверяет зубы.'],
+        ['Eine Musikerin <b>spielt</b> Musik.','Музыкант играет музыку.'],
+        ['Ein Fotograf <b>macht</b> Fotos.','Фотограф делает фото.'],
+        ['Eine Malerin <b>malt</b> Bilder.','Художница рисует картины.'],
+        ['Ein Kellner <b>serviert</b> das Essen im Restaurant.','Официант подаёт еду в ресторане.'],
+        ['Ein Gärtner <b>pflanzt</b> Blumen und Bäume.','Садовник сажает цветы и деревья.'],
+        ['Ein Bauarbeiter <b>baut</b> Häuser.','Строитель строит дома.'],
+        ['Ein Pfleger <b>pflegt</b> kranke Menschen.','Санитар ухаживает за больными.'],
+        ['Eine Krankenschwester <b>pflegt</b> Patienten.','Медсестра ухаживает за пациентами.'],
+        ['Ein Kassierer <b>arbeitet</b> an der Kasse im Supermarkt.','Кассир работает на кассе в супермаркете.'],
+        ['Eine Bürokauffrau <b>arbeitet</b> am Computer.','Офис-менеджер работает за компьютером.'],
+        ['Ein Verkäufer <b>verkauft</b> im Geschäft.','Продавец продаёт в магазине.'],
+        ['Ein Taxifahrer <b>fährt</b> Menschen durch die Stadt.','Таксист возит людей по городу.'],
+        ['Ein Techniker <b>repariert</b> Maschinen.','Техник чинит машины/оборудование.'],
+        ['Ein Fabrikarbeiter <b>produziert</b> Waren.','Рабочий завода производит товары.'],
+        ['Ein Ingenieur <b>plant</b> und <b>baut</b> Maschinen.','Инженер проектирует и строит машины.'],
+        ['Ein Sekretär <b>organisiert</b> Termine.','Секретарь организует встречи.'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'modal', icon:'🔑', title:L('Modalverben (модальные глаголы)','Модальные глаголы','Модальні дієслова'),
+      html: three(['','können<br><small>мочь</small>','müssen<br><small>должен</small>','dürfen<br><small>можно</small>','wollen<br><small>хотеть</small>','sollen<br><small>следует</small>','möchten<br><small>хотел бы</small>'],[
+        ['ich','kann','muss','darf','will','soll','möchte'],
+        ['du','kannst','musst','darfst','willst','sollst','möchtest'],
+        ['er/sie/es','kann','muss','darf','will','soll','möchte'],
+        ['wir','können','müssen','dürfen','wollen','sollen','möchten'],
+        ['ihr','könnt','müsst','dürft','wollt','sollt','möchtet'],
+        ['sie/Sie','können','müssen','dürfen','wollen','sollen','möchten'],
+      ]) + `<p class="rt-note">⚡ ${L('Regel','Правило','Правило')}: ${L('Modalverb auf Position 2, das andere Verb im <b>Infinitiv ans Satzende</b>.','модальный глагол на 2-м месте, второй глагол в <b>инфинитиве в конец</b>.','модальне дієслово на 2-й позиції, друге дієслово в <b>інфінітиві в кінець</b>.')}</p>`
+        + two([
+          ['Ich <b>muss</b> Deutsch <b>lernen</b>.','Я должен учить немецкий.'],
+          ['Ich <b>muss</b> kranke Menschen <b>pflegen</b>.','Я должен ухаживать за больными.'],
+          ['Ich <b>muss</b> Wasser <b>trinken</b>.','Я должен пить воду.'],
+          ['Ich <b>kann</b> Gitarre <b>spielen</b>.','Я умею играть на гитаре.'],
+          ['Ich <b>kann</b> Bücher <b>lesen</b>.','Я умею читать книги.'],
+          ['Ich <b>kann</b> Fahrrad <b>fahren</b>.','Я умею ездить на велосипеде.'],
+          ['Der Bäcker <b>kann</b> Brot <b>backen</b>.','Пекарь умеет печь хлеб.'],
+          ['Der Kellner <b>muss</b> das Essen <b>servieren</b>.','Официант должен подавать еду.'],
+          ['Die Krankenschwester <b>soll</b> kranke Menschen <b>pflegen</b>.','Медсестра должна ухаживать за больными.'],
+          ['Die Bürokauffrau <b>mag</b> am Computer <b>arbeiten</b>.','Офис-менеджеру нравится работать за компьютером.'],
+        ]) },
+
+    // ───────────────────────────────────────
+    { id:'trennbar', icon:'✂️', title:L('Trennbare Verben (отделяемые)','Отделяемые глаголы','Відокремлювані дієслова'),
+      html: three(['','ausfüllen<br><small>заполнять</small>','einkaufen<br><small>покупать</small>'],[
+        ['ich','fülle … aus','kaufe … ein'],
+        ['du','füllst … aus','kaufst … ein'],
+        ['er/sie/es','füllt … aus','kauft … ein'],
+        ['wir','füllen … aus','kaufen … ein'],
+      ]) + `<p class="rt-note">${L('Vorsilbe ans Satzende','Приставка уходит в конец','Префікс у кінець')}: <b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b></p>`
+        + two([
+          ['<b>Aussage:</b> Er <b>kauft</b> im Supermarkt <b>ein</b>.','Утвержд.: Он делает покупки в супермаркете.'],
+          ['Ich <b>rufe</b> meine Freundin <b>an</b>.','Я звоню подруге.'],
+          ['<b>Frage:</b> <b>Füllst</b> du das Formular <b>aus</b>?','Вопрос: Ты заполняешь бланк?'],
+          ['<b>Räumst</b> du heute <b>auf</b>?','Ты убираешься сегодня?'],
+          ['Ich <b>stehe</b> um 6 Uhr <b>auf</b>.','Я встаю в 6 часов.'],
+          ['Wir <b>sehen</b> abends <b>fern</b>.','Мы смотрим телевизор вечером.'],
+        ]) + `<p class="rt-note">⚠️ ${L('Mit Modalverb bleibt es zusammen','С модальным глаголом — не отрывается','З модальним — не відокремлюється')}: <em>Ich muss das Formular <b>ausfüllen</b>.</em></p>` },
+
+    // ───────────────────────────────────────
+    { id:'adj', icon:'😊', title:L('Adjektive + Gegenteile (прилагательные)','Прилагательные и противоположности','Прикметники і протилежності'),
+      html: three([L('positiv (+)','позитив (+)','позитив (+)'),L('negativ (–)','негатив (–)','негатив (–)'),L('перевод','перевод','переклад')],[
+        ['direkt','indirekt','прямой ↔ непрямой'],
+        ['flexibel','unflexibel','гибкий ↔ негибкий'],
+        ['fleißig','faul','трудолюбивый ↔ ленивый'],
+        ['pünktlich','unpünktlich','пунктуальный ↔ непунктуальный'],
+        ['höflich','unhöflich','вежливый ↔ невежливый'],
+        ['systematisch','unsystematisch','систематичный ↔ хаотичный'],
+        ['schnell','langsam','быстрый ↔ медленный'],
+        ['kommunikativ','ruhig','общительный ↔ спокойный/тихий'],
+      ]) + `<p class="rt-sub">${L('Weitere Adjektive für die Arbeit','Ещё прилагательные о работе','Ще прикметники про роботу')}:</p>` + two([
+        ['stressig','напряжённый / стрессовый'],
+        ['hilfsbereit','готовый помочь'],
+        ['selbstständig','самостоятельный'],
+        ['interessant','интересный'],
+        ['langweilig','скучный'],
+        ['wichtig','важный'],
+        ['freundlich','дружелюбный'],
+        ['motiviert','мотивированный'],
+        ['kreativ','креативный'],
+        ['schwer / leicht','тяжёлый / лёгкий'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'ueber', icon:'🙋', title:L('Über mich / Hobby (о себе и хобби)','Рассказ о себе и хобби','Розповідь про себе і хобі'),
+      html: two([
+        ['Ich heiße Toni. Ich bin 48 Jahre alt.','Меня зовут Тони. Мне 48 лет.'],
+        ['Ich arbeite als Pizzafahrer.','Я работаю развозчиком пиццы.'],
+        ['Ich kann vormittags, nachmittags und abends arbeiten.','Я могу работать утром, днём и вечером.'],
+        ['Ich habe einen Führerschein.','У меня есть водительские права.'],
+        ['Ich bin flexibel und pünktlich.','Я гибкий и пунктуальный.'],
+        ['Ich möchte flexibel sein.','Я хотел бы быть гибким.'],
+        ['Mein Hobby ist Musik. / In meiner Freizeit …','Моё хобби — музыка. / В свободное время…'],
+        ['Ich spiele gern Gitarre.','Я люблю играть на гитаре.'],
+        ['Ich lese gern Bücher.','Я люблю читать книги.'],
+        ['Ich fahre gern Fahrrad.','Я люблю кататься на велосипеде.'],
+      ]) + `<p class="rt-sub">gern / lieber (${L('vorlieben','предпочтения','вподобання')}):</p>` + two([
+        ['Essen Sie <b>lieber</b> Pizza oder Nudeln? – Ich esse <b>lieber</b> Pizza.','Вы предпочитаете пиццу или пасту? – Я предпочитаю пиццу.'],
+        ['Lesen Sie lieber Zeitung oder Romane? – Ich lese lieber Romane.','…газеты или романы? – Я предпочитаю романы.'],
+        ['Stehen Sie lieber früh oder spät auf? – Ich stehe lieber spät auf.','Встаёте раньше или позже? – Я встаю позже.'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'krank', icon:'🤒', title:L('Krankmeldung (сообщение о болезни)','Болезнь: сообщить на работу / врачу','Хвороба: повідомити на роботу / лікарю'),
+      html: two([
+        ['Ich bin krank.','Я болен.'],
+        ['Ich habe Fieber / Kopfschmerzen / Husten / Schnupfen / Halsschmerzen.','У меня температура / болит голова / кашель / насморк / болит горло.'],
+        ['Ich kann heute nicht kommen / nicht arbeiten.','Я не могу сегодня прийти / работать.'],
+        ['Ich muss zum Arzt gehen.','Мне нужно пойти к врачу.'],
+        ['Ich brauche einen Termin beim Arzt.','Мне нужна запись к врачу.'],
+        ['Der Arzt schreibt mich krank. (die Krankmeldung / Krankschreibung)','Врач выписывает больничный.'],
+        ['<b>Anruf:</b> „Guten Morgen, hier ist … Ich bin krank und kann heute nicht kommen.“','Звонок: «Доброе утро, это… Я болен и сегодня не смогу прийти».'],
+      ]) + `<p class="rt-note">📄 ${L('Aus dem Arbeitsvertrag §6','Из трудового договора §6','З трудового договору §6')}: ${L('Bei Krankheit muss der Arbeitnehmer den Arbeitgeber <b>sofort (unverzüglich)</b> informieren. Nach <b>3 Tagen</b> braucht man eine <b>ärztliche Bescheinigung</b>.','При болезни работник должен <b>сразу</b> сообщить работодателю. Через <b>3 дня</b> нужна <b>справка от врача</b>.','При хворобі працівник має <b>одразу</b> повідомити роботодавця. Через <b>3 дні</b> потрібна <b>довідка від лікаря</b>.')}</p>` },
+
+    // ───────────────────────────────────────
+    { id:'zeit', icon:'📅', title:L('Monate, Jahreszeiten, Tageszeiten','Месяцы, поры года, время суток','Місяці, пори року, час доби'),
+      html: `<p class="rt-sub">${L('Monate (месяцы)','Месяцы','Місяці')}:</p>` + three(['','',''],[
+        ['Januar / Februar','März / April','Mai / Juni'],
+        ['Juli / August','September / Oktober','November / Dezember'],
+      ]) + `<p class="rt-sub">${L('Jahreszeiten (поры года)','Поры года','Пори року')}:</p>` + two([
+        ['der Frühling','весна'],['der Sommer','лето'],['der Herbst','осень'],['der Winter','зима'],
+      ]) + `<p class="rt-sub">${L('Tageszeiten (время суток)','Время суток','Час доби')}:</p>` + three([L('Существительное','Существительное','Іменник'),L('Наречие (когда?)','Наречие (когда?)','Прислівник (коли?)'),L('перевод','перевод','переклад')],[
+        ['der Morgen','morgens','утро / утром'],
+        ['der Vormittag','vormittags','до обеда'],
+        ['der Mittag','mittags','полдень / в полдень'],
+        ['der Nachmittag','nachmittags','после обеда'],
+        ['der Abend','abends','вечер / вечером'],
+        ['die Nacht','nachts','ночь / ночью'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'datum', icon:'🔢', title:L('Das Datum – Ordnungszahlen (дата, порядковые)','Дата и порядковые числительные','Дата і порядкові числівники'),
+      html: `<p class="rt-note">📌 ${L('Regel','Правило','Правило')}: <b>1–19 → „-te“</b>, <b>ab 20 → „-ste“</b>.</p>` + three([L('Число','Число','Число'),L('Порядковое','Порядковое','Порядкове'),L('перевод','перевод','переклад')],[
+        ['1.','<b>erste</b> ⚡','первое'],
+        ['2.','zweite','второе'],
+        ['3.','<b>dritte</b> ⚡','третье'],
+        ['4.','vierte','четвёртое'],
+        ['5.','fünfte','пятое'],
+        ['6.','sechste','шестое'],
+        ['7.','<b>siebte</b> ⚡','седьмое'],
+        ['8.','<b>achte</b> ⚡','восьмое'],
+        ['9.','neunte','девятое'],
+        ['10.','zehnte','десятое'],
+        ['19.','neunzehnte','девятнадцатое'],
+        ['20.','zwanzig<b>ste</b>','двадцатое'],
+        ['21.','einundzwanzig<b>ste</b>','двадцать первое'],
+        ['30.','dreißig<b>ste</b>','тридцатое'],
+      ]) + `<p class="rt-note">⚡ ${L('Ausnahmen','Исключения','Винятки')}: erste, dritte, siebte, achte.</p>` + two([
+        ['Heute ist der <b>2.</b> Juli. = Heute ist der <b>zweite</b> Juli.','Сегодня 2-е июля.'],
+        ['Der wievielte ist heute?','Какое сегодня число?'],
+        ['Mein Geburtstag ist am <b>19.</b> = <b>am neunzehnten</b>.','Мой день рождения 19-го.'],
+        ['Ich habe <b>am ersten</b> Mai frei.','У меня выходной 1-го мая.'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'vertrag', icon:'📄', title:L('Arbeitsvertrag (трудовой договор)','Трудовой договор','Трудовий договір'),
+      html: two([
+        ['der <b>Arbeitgeber</b>','работодатель (шеф)'],
+        ['der <b>Arbeitnehmer</b>','работник'],
+        ['§1 Beginn des Arbeitsverhältnisses','начало трудовых отношений (unbefristet = бессрочно)'],
+        ['§2 Tätigkeit','деятельность (что делаю: Gemüse putzen, schälen, schneiden; Küche aufräumen)'],
+        ['§3 Arbeitsvergütung / Bruttovergütung','оплата труда (сумма brutto)'],
+        ['§4 Arbeitszeit','рабочее время (z.B. 36 Stunden / Woche)'],
+        ['§5 Urlaub','отпуск (z.B. 24 Arbeitstage im Jahr)'],
+        ['§6 Krankheit','болезнь (сразу сообщить; справка через 3 дня)'],
+      ]) + `<p class="rt-sub">${L('Geld (деньги)','Деньги','Гроші')}:</p>` + two([
+        ['der <b>Bruttolohn</b>','зарплата ДО налогов'],
+        ['der <b>Nettolohn</b>','зарплата НА РУКИ (после вычетов)'],
+        ['die <b>Lohnsteuer</b>','налог на зарплату'],
+        ['die <b>Sozialversicherung</b>','социальное страхование'],
+        ['der <b>Mindestlohn</b>','минимальная зарплата'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'def', icon:'📖', title:L('Definitionen (что это значит)','Определения — что означает слово','Визначення — що означає слово'),
+      html: two([
+        ['die <b>Arbeitserlaubnis</b>','Ich darf in Deutschland arbeiten. (разрешение работать)'],
+        ['die <b>Berufsanerkennung</b>','Meine Ausbildung ist akzeptiert. (признание профессии)'],
+        ['die <b>Berufserfahrung</b>','Ich arbeite schon lange in meinem Beruf. (опыт работы)'],
+        ['das <b>Zeugnis / Zertifikat</b>','Ein Dokument über meine Ausbildung. (аттестат / сертификат)'],
+        ['die <b>Ausbildung</b>','Ich lerne drei Jahre einen Beruf. (профобучение)'],
+        ['die <b>Stellenanzeige</b>','Wo kann ich arbeiten? (объявление о вакансии)'],
+        ['der <b>Arbeitsvertrag</b>','Ein Dokument: was, wie lange und wie viel ich arbeite/bekomme.'],
+        ['die <b>Arbeitszeit</b>','Von wann bis wann arbeite ich. (рабочее время)'],
+        ['die <b>Tätigkeit / Aufgaben</b>','Das muss ich machen. (обязанности)'],
+        ['der <b>Urlaub</b>','Ich muss nicht arbeiten. (отпуск)'],
+        ['die <b>Krankheit</b>','Man ist krank und kann nicht arbeiten.'],
+        ['die <b>Bewerbung</b>','заявка на работу; das <b>Bewerbungsgespräch</b> = собеседование'],
+        ['der <b>Lebenslauf</b> (CV)','Dokument mit Ausbildung und Berufserfahrung. (резюме)'],
+        ['der <b>Anruf</b> / der <b>Rückruf</b>','звонок / Jemand ruft später zurück (обратный звонок)'],
+      ]) },
+
+    // ───────────────────────────────────────
+    { id:'anzeige', icon:'📰', title:L('Anzeigen & Bewerber (объявления ↔ люди)','Объявления и кандидаты (найти пару)','Оголошення і кандидати'),
+      html: `<p class="rt-note">${L('Wichtige Wörter','Важные слова','Важливі слова')}: <b>Aushilfe</b> (подработка), <b>gesucht / sucht</b> (ищет/требуется), <b>Führerschein</b> (права), <b>pro Woche</b> (в неделю), <b>ab 14 Uhr</b> (с 14:00), <b>Kfz</b> = Auto.</p>` + three([L('Человек','Человек','Людина'),L('Какой (adjektiv)','Какой','Який'),L('Подходит объявление','Подходит','Підходить')],[
+        ['Julia (22, Automechanikerin)','pünktlich, schnell','Anzeige 2 — Kfz-Mechaniker/in'],
+        ['Jerome (31, fotografiert, Deutschkurs)','kreativ','Anzeige 4 — Aushilfe Fotostudio'],
+        ['Toni (48, Führerschein, flexibel)','flexibel','Anzeige 3 — Fahrer, Pizzeria'],
+        ['Susanne (44, Hausfrau, mit Menschen)','freundlich','Anzeige 1 — Aushilfe Supermarkt'],
+      ]) + two([
+        ['Julia ist <b>pünktlich</b>.','Юлия пунктуальная.'],
+        ['Jerome ist <b>kreativ</b>.','Жером креативный.'],
+        ['Toni ist <b>flexibel</b>.','Тони гибкий.'],
+        ['Susanne ist <b>freundlich</b>.','Сюзанна дружелюбная.'],
+      ]) },
+  ];
+}
+
+function renderPrepScreen() {
+  show('prep');
+  const data = prepData();
+  const toc  = $('prep-toc');
+  const body = $('prep-content');
+  if (toc)  toc.innerHTML  = data.map(s=>`<button class="tables-toc-btn" data-go="prep-${s.id}">${s.icon} ${s.title}</button>`).join('');
+  if (body) body.innerHTML = data.map(s=>`
+    <section class="tbl-card" id="prep-${s.id}">
+      <h3 class="tbl-card-title">${s.icon} ${s.title}</h3>
+      ${s.html}
+    </section>`).join('');
+  if (toc) toc.querySelectorAll('.tables-toc-btn').forEach(b=>{
+    b.addEventListener('click',()=>{ const el=$(b.dataset.go); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
+  });
+}
+
 /* возвращает нужный языковой вариант поля правила
    uk → uk || ru || de ; ru → ru || de ; de → de */
 function ruleField(rule, field) {
@@ -2947,6 +3203,7 @@ function initEvents() {
       else if(s==='wortschatz') renderVocabScreen();
       else if(s==='grammatik')  renderGrammarScreen();
       else if(s==='tables')     renderTablesScreen();
+      else if(s==='prep')       renderPrepScreen();
       else if(s==='translate')  renderTranslateScreen();
       else if(s==='profil')     renderProfile();
       else if(s==='exam')       renderExamScreen();
@@ -3004,6 +3261,7 @@ function initEvents() {
   $('exam-input')?.addEventListener('keydown', e=>{ if(e.key==='Enter') handleExamSubmit(); });
   $('exam-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('tables-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+  $('prep-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
 
   /* Перевод предложений */
   $('translate-start')?.addEventListener('click', startTranslate);
