@@ -2047,41 +2047,59 @@ function prepData() {
     rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<td class="rt-rowh">${c}</td>`:`<td style="text-align:left">${c}</td>`).join('')}</tr>`).join('')
   }</tbody></table></div>`;
 
+  // «кто что делает»: профессии берём ИЗ КАРТОЧЕК (категория berufe),
+  // добавляем только действие (глагол) — его в данных нет.
+  const BERUF_ACTION = {
+    Arzt:{de:'hilft kranken Menschen',ru:'помогает больным людям'},
+    Lehrer:{de:'unterrichtet Schüler',ru:'учит учеников'},
+    Student:{de:'studiert an der Universität',ru:'учится в университете'},
+    Koch:{de:'kocht das Essen',ru:'готовит еду'},
+    Bäcker:{de:'backt Brot',ru:'печёт хлеб'},
+    Ingenieur:{de:'plant Maschinen',ru:'проектирует машины'},
+    Krankenpfleger:{de:'pflegt kranke Menschen',ru:'ухаживает за больными'},
+    Polizist:{de:'hilft Menschen und kontrolliert den Verkehr',ru:'помогает людям и контролирует движение'},
+    Verkäufer:{de:'verkauft Waren im Geschäft',ru:'продаёт товары в магазине'},
+    Fahrer:{de:'fährt ein Auto oder einen Bus',ru:'водит машину или автобус'},
+    Kellner:{de:'serviert das Essen im Restaurant',ru:'подаёт еду в ресторане'},
+    Mechaniker:{de:'repariert Autos',ru:'ремонтирует машины'},
+    Friseur:{de:'schneidet Haare',ru:'стрижёт волосы'},
+    Sekretär:{de:'organisiert Termine und schreibt E-Mails',ru:'организует встречи и пишет письма'},
+    Gärtner:{de:'pflanzt Blumen und Bäume',ru:'сажает цветы и деревья'},
+    Fabrikarbeiter:{de:'produziert Waren',ru:'производит товары'},
+    Bauarbeiter:{de:'baut Häuser',ru:'строит дома'},
+    Pfleger:{de:'pflegt kranke Menschen',ru:'ухаживает за больными'},
+    Bürokaufmann:{de:'arbeitet am Computer',ru:'работает за компьютером'},
+    Kaufmann:{de:'kauft und verkauft Waren',ru:'покупает и продаёт товары'},
+    Hausmann:{de:'arbeitet zu Hause',ru:'работает дома'},
+    Taxifahrer:{de:'fährt Menschen durch die Stadt',ru:'возит людей по городу'},
+    Techniker:{de:'repariert Maschinen',ru:'чинит оборудование'},
+    Mechatroniker:{de:'repariert Maschinen und Autos',ru:'чинит машины и авто'},
+    Bauer:{de:'arbeitet auf dem Feld',ru:'работает в поле'},
+    Pilot:{de:'fliegt ein Flugzeug',ru:'управляет самолётом'},
+    Journalist:{de:'schreibt Artikel',ru:'пишет статьи'},
+    Zahnarzt:{de:'kontrolliert Zähne',ru:'проверяет зубы'},
+    Musiker:{de:'spielt Musik',ru:'играет музыку'},
+    Fotograf:{de:'macht Fotos',ru:'делает фотографии'},
+    Maler:{de:'malt Bilder',ru:'рисует картины'},
+  };
+  const berufeCat = (window.VOCAB_DATA||[]).find(c=>c.category==='berufe');
+  const berufeRows = [];
+  if (berufeCat) berufeCat.words.forEach(w=>{
+    if (String(w.id).endsWith('f')) return;          // только базовая (муж.) форма — без дублей м/ж
+    const a = BERUF_ACTION[w.word];
+    if (!a) return;
+    const rn = _cleanTr(w.translation);
+    const ruCap = rn.charAt(0).toUpperCase()+rn.slice(1);
+    berufeRows.push([`Ein ${w.word} <b>${a.de}</b>.`, `${ruCap} ${a.ru}.`]);
+  });
+  const berufeHtml = berufeRows.length
+    ? two(berufeRows)
+    : `<p class="rt-note">${L('Lerne zuerst die Karten „Berufe“.','Сначала пройди карточки «Профессии».','Спершу пройди картки «Професії».')}</p>`;
+
   return [
     // ───────────────────────────────────────
     { id:'berufe', icon:'👷', title:L('Was macht ein/eine? (кто что делает)','Кто что делает (профессии)','Хто що робить (професії)'),
-      html: two([
-        ['Ein Arzt <b>hilft</b> kranken Menschen.','Врач помогает больным людям.'],
-        ['Eine Lehrerin <b>unterrichtet</b> Schüler.','Учительница учит учеников.'],
-        ['Ein Koch <b>kocht</b> das Essen.','Повар готовит еду.'],
-        ['Eine Verkäuferin <b>verkauft</b> Waren.','Продавщица продаёт товары.'],
-        ['Ein Fahrer <b>fährt</b> ein Auto oder einen Bus.','Водитель водит машину или автобус.'],
-        ['Eine Studentin <b>studiert</b> an der Universität.','Студентка учится в университете.'],
-        ['Eine Polizistin <b>hilft</b> Menschen und <b>kontrolliert</b> den Verkehr.','Полицейская помогает людям и контролирует движение.'],
-        ['Ein Bauer <b>arbeitet</b> auf dem Feld.','Фермер работает в поле.'],
-        ['Eine Friseurin <b>schneidet</b> Haare.','Парикмахер стрижёт волосы.'],
-        ['Ein Mechaniker <b>repariert</b> Autos.','Механик ремонтирует машины.'],
-        ['Ein Pilot <b>fliegt</b> ein Flugzeug.','Пилот управляет самолётом.'],
-        ['Eine Journalistin <b>schreibt</b> Artikel.','Журналистка пишет статьи.'],
-        ['Ein Bäcker <b>backt</b> Brot.','Пекарь печёт хлеб.'],
-        ['Eine Zahnärztin <b>kontrolliert</b> Zähne.','Стоматолог проверяет зубы.'],
-        ['Eine Musikerin <b>spielt</b> Musik.','Музыкант играет музыку.'],
-        ['Ein Fotograf <b>macht</b> Fotos.','Фотограф делает фото.'],
-        ['Eine Malerin <b>malt</b> Bilder.','Художница рисует картины.'],
-        ['Ein Kellner <b>serviert</b> das Essen im Restaurant.','Официант подаёт еду в ресторане.'],
-        ['Ein Gärtner <b>pflanzt</b> Blumen und Bäume.','Садовник сажает цветы и деревья.'],
-        ['Ein Bauarbeiter <b>baut</b> Häuser.','Строитель строит дома.'],
-        ['Ein Pfleger <b>pflegt</b> kranke Menschen.','Санитар ухаживает за больными.'],
-        ['Eine Krankenschwester <b>pflegt</b> Patienten.','Медсестра ухаживает за пациентами.'],
-        ['Ein Kassierer <b>arbeitet</b> an der Kasse im Supermarkt.','Кассир работает на кассе в супермаркете.'],
-        ['Eine Bürokauffrau <b>arbeitet</b> am Computer.','Офис-менеджер работает за компьютером.'],
-        ['Ein Verkäufer <b>verkauft</b> im Geschäft.','Продавец продаёт в магазине.'],
-        ['Ein Taxifahrer <b>fährt</b> Menschen durch die Stadt.','Таксист возит людей по городу.'],
-        ['Ein Techniker <b>repariert</b> Maschinen.','Техник чинит машины/оборудование.'],
-        ['Ein Fabrikarbeiter <b>produziert</b> Waren.','Рабочий завода производит товары.'],
-        ['Ein Ingenieur <b>plant</b> und <b>baut</b> Maschinen.','Инженер проектирует и строит машины.'],
-        ['Ein Sekretär <b>organisiert</b> Termine.','Секретарь организует встречи.'],
-      ]) },
+      html: berufeHtml },
 
     // ───────────────────────────────────────
     { id:'modal', icon:'🔑', title:L('Modalverben (модальные глаголы)','Модальные глаголы','Модальні дієслова'),
