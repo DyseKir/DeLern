@@ -1844,6 +1844,19 @@ function tablesData() {
     sie: wt('sie/Sie','они / Вы','вони / Ви'),
   };
 
+  // все отделяемые глаголы берём ИЗ КАРТОЧЕК (категория trennbar, там есть спряжение)
+  const _fmtSep = form => {
+    const parts = String(form).split(' ');
+    if (parts.length < 2) return form;
+    const pre = parts.pop();
+    return parts.join(' ') + ' … ' + hl(pre);
+  };
+  const _trennCat = (window.VOCAB_DATA||[]).find(c=>c.category==='trennbar');
+  const trennRows = (_trennCat ? _trennCat.words : []).filter(w=>w.conj).map(w=>[
+    wt(w.word, _cleanTr(w.translation), _ukTr(w)),
+    _fmtSep(w.conj.ich), _fmtSep(w.conj.du), _fmtSep(w.conj.er),
+  ]);
+
   return [
     { id:'modal', icon:'🔑', title:L('Modalverben (Präsens)','Модальные глаголы (спряжение)','Модальні дієслова (відмінювання)'),
       html:tbl(
@@ -1910,15 +1923,8 @@ function tablesData() {
         ]) + `<p class="rt-note">⚠️ ${L('Wechsel nur bei <b>du</b> und <b>er/sie/es</b>!','Изменение только у <b>du</b> и <b>er/sie/es</b>!','Зміна лише у <b>du</b> та <b>er/sie/es</b>!')}</p>` },
 
     { id:'trennbar', icon:'✂️', title:L('Trennbare Verben','Отделяемые глаголы','Відокремлювані дієслова'),
-      html:tbl(
-        ['', 'ich','du','er/sie/es'],
-        [
-          [wt('aufstehen','вставать','вставати'),'stehe … '+hl('auf'),'stehst … '+hl('auf'),'steht … '+hl('auf')],
-          [wt('einkaufen','покупать','купувати'),'kaufe … '+hl('ein'),'kaufst … '+hl('ein'),'kauft … '+hl('ein')],
-          [wt('anrufen','звонить','телефонувати'),'rufe … '+hl('an'),'rufst … '+hl('an'),'ruft … '+hl('an')],
-          [wt('fernsehen','смотреть ТВ','дивитися ТБ'),'sehe … '+hl('fern'),'s'+hl('ie')+'hst … '+hl('fern'),'sieht … '+hl('fern')],
-          [wt('anfangen','начинать','починати'),'fange … '+hl('an'),'f'+hl('ä')+'ngst … '+hl('an'),'fängt … '+hl('an')],
-        ]) + `<p class="rt-note">${L('Vorsilben: ','Приставки: ','Префікси: ')}<b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b> → ${L('ans Satzende','в конец предложения','в кінець речення')}.</p>` },
+      html:tbl(['', 'ich','du','er/sie/es'], trennRows.length ? trennRows : [['—','—','—','—']])
+        + `<p class="rt-note">${L('Vorsilben: ','Приставки: ','Префікси: ')}<b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b> → ${L('ans Satzende','в конец предложения','в кінець речення')}.</p>` },
 
     { id:'artikel', icon:'📦', title:L('Artikel nach Fällen','Артикли по падежам','Артиклі за відмінками'),
       html:`<p class="rt-sub">${L('Bestimmt','Определённые','Означені')} (der/die/das):</p>`+tbl(
@@ -2032,6 +2038,7 @@ function renderTablesScreen() {
       if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
+  attachMemMarks(body, $('tables-membar'), 'tbl');
 }
 
 /* ── Отметки «запомнил» (слова/предложения в разделе Контрольная) ── */
@@ -2045,12 +2052,8 @@ function memKeyFor(html) { return (html||'').replace(/<[^>]+>/g,'').replace(/\s+
 function prepData() {
   const L = (de,ru,uk)=>lstr(de,ru,uk);
   // таблица: пары [левое (нем., жирное), правое (перевод/пояснение)]
-  // + кнопка «✓ запомнил» на каждой строке
-  const two = (rows)=>`<div class="rt-scroll"><table class="rt mem-table"><tbody>${
-    rows.map(r=>{
-      const k = encodeURIComponent(memKeyFor(r[0]));
-      return `<tr data-mem="${k}"><td class="mem-cell"><button class="mem-btn" title="Запомнил">✓</button></td><td class="rt-rowh">${r[0]}</td><td style="text-align:left">${r[1]}</td></tr>`;
-    }).join('')
+  const two = (rows)=>`<div class="rt-scroll"><table class="rt"><tbody>${
+    rows.map(r=>`<tr><td class="rt-rowh">${r[0]}</td><td style="text-align:left">${r[1]}</td></tr>`).join('')
   }</tbody></table></div>`;
   const three = (head, rows)=>`<div class="rt-scroll"><table class="rt"><thead><tr>${
     head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
@@ -2315,33 +2318,48 @@ function renderPrepScreen() {
     b.addEventListener('click',()=>{ const el=$(b.dataset.go); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
   });
 
-  // отметки «запомнил»
+  attachMemMarks(body, $('prep-membar'), 'prep');
+}
+
+/* ── Общий механизм отметок «запомнил» для таблиц (Контрольная и Таблицы) ── */
+function attachMemMarks(body, membar, prefix) {
+  if (!body) return;
   const memSet = loadMemSet();
-  const rows = body ? [...body.querySelectorAll('tr[data-mem]')] : [];
-  const total = rows.length;
-  const refreshBar = () => {
-    const done = body.querySelectorAll('tr.mem-done').length;
-    const bar = $('prep-membar');
-    if (!bar) return;
+  const refresh = () => {
+    if (!membar) return;
+    const done  = body.querySelectorAll('tr.mem-done').length;
+    const total = body.querySelectorAll('tr[data-mem-key]').length;
     const hidden = body.classList.contains('mem-hide');
-    bar.innerHTML =
+    membar.innerHTML =
       `<span class="prep-mem-count">✓ ${lstr('Gemerkt','Запомнено','Запам’ятовано')}: <b>${done}</b> / ${total}</span>` +
-      `<button class="prep-mem-toggle" id="prep-mem-toggle">${hidden ? lstr('Alle zeigen','Показать все','Показати всі') : lstr('Gemerkte ausblenden','Скрыть запомненные','Сховати запам’ятовані')}</button>`;
-    $('prep-mem-toggle')?.addEventListener('click', ()=>{ body.classList.toggle('mem-hide'); refreshBar(); });
+      `<button class="prep-mem-toggle" type="button">${hidden ? lstr('Alle zeigen','Показать все','Показати всі') : lstr('Gemerkte ausblenden','Скрыть запомненные','Сховати запам’ятовані')}</button>`;
+    membar.querySelector('.prep-mem-toggle')?.addEventListener('click', ()=>{ body.classList.toggle('mem-hide'); refresh(); });
   };
-  rows.forEach(tr=>{
-    const k = decodeURIComponent(tr.dataset.mem);
-    if (memSet.has(k)) tr.classList.add('mem-done');
-    const btn = tr.querySelector('.mem-btn');
-    if (btn) btn.addEventListener('click', ()=>{
-      const s = loadMemSet();
-      if (s.has(k)) { s.delete(k); tr.classList.remove('mem-done'); }
-      else          { s.add(k);    tr.classList.add('mem-done'); }
-      saveMemSet(s);
-      refreshBar();
+  body.querySelectorAll('.tbl-card').forEach(card=>{
+    const sid = card.id;
+    card.querySelectorAll('table.rt').forEach(table=>{
+      const hr = table.querySelector('thead tr');
+      if (hr && !hr.querySelector('th.mem-cell')) {
+        const th = document.createElement('th'); th.className = 'mem-cell'; hr.insertBefore(th, hr.firstChild);
+      }
+      table.querySelectorAll('tbody tr').forEach(tr=>{
+        if (tr.querySelector('td.mem-cell')) return;
+        const key = prefix + ':' + sid + '|' + memKeyFor(tr.textContent).slice(0,90);
+        const td = document.createElement('td'); td.className = 'mem-cell';
+        const btn = document.createElement('button'); btn.className = 'mem-btn'; btn.type = 'button'; btn.textContent = '✓'; btn.title = lstr('Gemerkt','Запомнил','Запам’ятав');
+        td.appendChild(btn); tr.insertBefore(td, tr.firstChild);
+        tr.dataset.memKey = key;
+        if (memSet.has(key)) tr.classList.add('mem-done');
+        btn.addEventListener('click', ()=>{
+          const s = loadMemSet();
+          if (s.has(key)) { s.delete(key); tr.classList.remove('mem-done'); }
+          else            { s.add(key);    tr.classList.add('mem-done'); }
+          saveMemSet(s); refresh();
+        });
+      });
     });
   });
-  refreshBar();
+  refresh();
 }
 
 /* возвращает нужный языковой вариант поля правила
