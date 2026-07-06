@@ -231,6 +231,7 @@ function P() {
     petKey:  `dl_pet_${activeProfile}`,
     deferKey:`dl_defer_${activeProfile}`,
     examKey: `dl_exam_${activeProfile}`,
+    memKey:  `dl_mem_${activeProfile}`,
     petImg:  PET_IMGS[Math.max(0, idx) % PET_IMGS.length],
   };
 }
@@ -2033,14 +2034,23 @@ function renderTablesScreen() {
   });
 }
 
+/* ── Отметки «запомнил» (слова/предложения в разделе Контрольная) ── */
+function loadMemSet() { try { return new Set(JSON.parse(localStorage.getItem(P().memKey)||'[]')); } catch { return new Set(); } }
+function saveMemSet(set) { localStorage.setItem(P().memKey, JSON.stringify([...set])); }
+function memKeyFor(html) { return (html||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().toLowerCase(); }
+
 /* ══════════════════════════════════════════════
    ПОДГОТОВКА К КОНТРОЛЬНОЙ (отдельная вкладка)
    ══════════════════════════════════════════════ */
 function prepData() {
   const L = (de,ru,uk)=>lstr(de,ru,uk);
   // таблица: пары [левое (нем., жирное), правое (перевод/пояснение)]
-  const two = (rows)=>`<div class="rt-scroll"><table class="rt"><tbody>${
-    rows.map(r=>`<tr><td class="rt-rowh">${r[0]}</td><td style="text-align:left">${r[1]}</td></tr>`).join('')
+  // + кнопка «✓ запомнил» на каждой строке
+  const two = (rows)=>`<div class="rt-scroll"><table class="rt mem-table"><tbody>${
+    rows.map(r=>{
+      const k = encodeURIComponent(memKeyFor(r[0]));
+      return `<tr data-mem="${k}"><td class="mem-cell"><button class="mem-btn" title="Запомнил">✓</button></td><td class="rt-rowh">${r[0]}</td><td style="text-align:left">${r[1]}</td></tr>`;
+    }).join('')
   }</tbody></table></div>`;
   const three = (head, rows)=>`<div class="rt-scroll"><table class="rt"><thead><tr>${
     head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${
@@ -2304,6 +2314,34 @@ function renderPrepScreen() {
   if (toc) toc.querySelectorAll('.tables-toc-btn').forEach(b=>{
     b.addEventListener('click',()=>{ const el=$(b.dataset.go); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
   });
+
+  // отметки «запомнил»
+  const memSet = loadMemSet();
+  const rows = body ? [...body.querySelectorAll('tr[data-mem]')] : [];
+  const total = rows.length;
+  const refreshBar = () => {
+    const done = body.querySelectorAll('tr.mem-done').length;
+    const bar = $('prep-membar');
+    if (!bar) return;
+    const hidden = body.classList.contains('mem-hide');
+    bar.innerHTML =
+      `<span class="prep-mem-count">✓ ${lstr('Gemerkt','Запомнено','Запам’ятовано')}: <b>${done}</b> / ${total}</span>` +
+      `<button class="prep-mem-toggle" id="prep-mem-toggle">${hidden ? lstr('Alle zeigen','Показать все','Показати всі') : lstr('Gemerkte ausblenden','Скрыть запомненные','Сховати запам’ятовані')}</button>`;
+    $('prep-mem-toggle')?.addEventListener('click', ()=>{ body.classList.toggle('mem-hide'); refreshBar(); });
+  };
+  rows.forEach(tr=>{
+    const k = decodeURIComponent(tr.dataset.mem);
+    if (memSet.has(k)) tr.classList.add('mem-done');
+    const btn = tr.querySelector('.mem-btn');
+    if (btn) btn.addEventListener('click', ()=>{
+      const s = loadMemSet();
+      if (s.has(k)) { s.delete(k); tr.classList.remove('mem-done'); }
+      else          { s.add(k);    tr.classList.add('mem-done'); }
+      saveMemSet(s);
+      refreshBar();
+    });
+  });
+  refreshBar();
 }
 
 /* возвращает нужный языковой вариант поля правила

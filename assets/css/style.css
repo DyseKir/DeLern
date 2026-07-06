@@ -1643,6 +1643,30 @@ body {
 .exam-mod-range { color: var(--text-muted); font-size: 13px; }
 .exam-module-all { border-style: dashed; border-color: #6366f1; }
 
+/* Отметки «запомнил» в разделе Контрольная */
+.mem-table td.mem-cell { width: 40px; text-align: center; padding: 4px; }
+.mem-btn {
+  width: 26px; height: 26px; border-radius: 8px; cursor: pointer; font-weight: 900; font-size: 13px; line-height: 1;
+  background: transparent; color: var(--text-muted); border: 1.5px solid var(--border);
+  transition: all .12s;
+}
+.mem-btn:hover { border-color: #4ecb71; color: #4ecb71; }
+tr.mem-done .mem-btn { background: #4ecb71; color: #fff; border-color: #4ecb71; }
+tr.mem-done td.rt-rowh, tr.mem-done td:last-child { opacity: .45; }
+.tables-content.mem-hide tr.mem-done { display: none; }
+.prep-membar {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 16px; padding: 10px 14px; border-radius: 12px;
+  background: var(--card); border: 1.5px solid var(--border);
+}
+.prep-mem-count { font-size: 14px; }
+.prep-mem-count b { color: #4ecb71; }
+.prep-mem-toggle {
+  padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 700;
+  background: transparent; border: 1.5px solid var(--border); color: inherit;
+}
+.prep-mem-toggle:hover { border-color: #6366f1; background: rgba(99,102,241,.08); }
+
 /* Вкладка «Контрольная» — выделяем */
 .nav-link.nav-prep { color: #ffcf5a; font-weight: 800; }
 .nav-link.nav-prep::before { content: "🎯 "; }
