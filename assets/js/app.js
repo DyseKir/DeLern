@@ -2109,6 +2109,19 @@ function prepData() {
     ? two(berufeRows)
     : `<p class="rt-note">${L('Lerne zuerst die Karten „Berufe“.','Сначала пройди карточки «Профессии».','Спершу пройди картки «Професії».')}</p>`;
 
+  // все отделяемые глаголы — из карточек (категория trennbar)
+  const _sepFmt = form => {
+    const p = String(form).split(' ');
+    if (p.length < 2) return form;
+    const pre = p.pop();
+    return p.join(' ') + ' … <b>' + pre + '</b>';
+  };
+  const trennCat = (window.VOCAB_DATA||[]).find(c=>c.category==='trennbar');
+  const trennPrepRows = (trennCat ? trennCat.words : []).filter(w=>w.conj).map(w=>[
+    `${w.word}<br><small class="rt-tr">${_cleanTr(w.translation)}</small>`,
+    _sepFmt(w.conj.ich), _sepFmt(w.conj.du), _sepFmt(w.conj.er),
+  ]);
+
   return [
     // ───────────────────────────────────────
     { id:'berufe', icon:'👷', title:L('Was macht ein/eine? (кто что делает)','Кто что делает (профессии)','Хто що робить (професії)'),
@@ -2139,12 +2152,8 @@ function prepData() {
 
     // ───────────────────────────────────────
     { id:'trennbar', icon:'✂️', title:L('Trennbare Verben (отделяемые)','Отделяемые глаголы','Відокремлювані дієслова'),
-      html: three(['','ausfüllen<br><small>заполнять</small>','einkaufen<br><small>покупать</small>'],[
-        ['ich','fülle … aus','kaufe … ein'],
-        ['du','füllst … aus','kaufst … ein'],
-        ['er/sie/es','füllt … aus','kauft … ein'],
-        ['wir','füllen … aus','kaufen … ein'],
-      ]) + `<p class="rt-note">${L('Vorsilbe ans Satzende','Приставка уходит в конец','Префікс у кінець')}: <b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b></p>`
+      html: three(['','ich','du','er/sie/es'], trennPrepRows.length ? trennPrepRows : [['—','—','—','—']])
+        + `<p class="rt-note">${L('Vorsilbe ans Satzende','Приставка уходит в конец','Префікс у кінець')}: <b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b></p>`
         + two([
           ['<b>Aussage:</b> Er <b>kauft</b> im Supermarkt <b>ein</b>.','Утвержд.: Он делает покупки в супермаркете.'],
           ['Ich <b>rufe</b> meine Freundin <b>an</b>.','Я звоню подруге.'],
