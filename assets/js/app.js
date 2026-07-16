@@ -572,6 +572,49 @@ const EMOJI = {
   // Am Arbeitsplatz (свойства)
   flexibel:'🤸', freundlich:'😊', kreativ:'🎨', langweilig:'😴', interessant:'💡',
   'pünktlich':'⏰', gern:'👍', lieber:'❤️', 'heute Morgen':'🌅', vorgestern:'📅',
+  // Мебель и техника
+  Teppich:'🟫', Regal:'🗄️', Heizung:'♨️', Kommode:'🗄️', Decke:'🛏️', Matratze:'🛏️',
+  Dusche:'🚿', Backofen:'🔥', Badewanne:'🛁', Waschmaschine:'🧺', 'Spülmaschine':'🍽️',
+  Toilette:'🚽', Mülleimer:'🗑️', Steckdose:'🔌', 'Glühbirne':'💡', Wasserhahn:'🚰',
+  Waschbecken:'🚰', Spiegel:'🪞', Vorhang:'🪟',
+  // Комнаты / жильё / вход
+  Wohnzimmer:'🛋️', Schlafzimmer:'🛏️', 'Küche':'🍳', Badezimmer:'🛁', Kinderzimmer:'🧸',
+  Arbeitszimmer:'💻', Balkon:'🪴', Keller:'🔦', Garage:'🚗', Garten:'🌳', Flur:'🚪', 'Waschküche':'🧺',
+  Wohnung:'🏢', Einfamilienhaus:'🏠', Mehrfamilienhaus:'🏘️', Reihenhaus:'🏘️', Hochhaus:'🏙️',
+  Erdgeschoss:'⬇️', Obergeschoss:'⬆️', Dachgeschoss:'🔺', Wohngemeinschaft:'👥', Eigentum:'🔑',
+  Fenster:'🪟', Rollladen:'🪟', Lichtschalter:'💡', Klingel:'🔔', Briefkasten:'📫',
+  Hausnummer:'🔢', Treppe:'🪜', Vermieter:'🧑‍💼', Mieter:'🧑',
+  // Аренда
+  Mietvertrag:'📄', Miete:'💶', Kaltmiete:'💶', Warmmiete:'💶', Nebenkosten:'🧾', Kaution:'💰',
+  Quadratmeter:'📐', 'Einbauküche':'🍳', Zimmer:'🚪', 'Kündigung':'✍️', Hausordnung:'📋',
+  // Время
+  'Wie spät ist es?':'🕐', 'Viertel nach':'🕐', 'Viertel vor':'🕘', halb:'🕕', 'fünf nach':'🕐',
+  'zehn nach':'🕐', 'zwanzig nach':'🕐', 'fünf vor':'🕐', 'zehn vor':'🕐', 'zwanzig vor':'🕐',
+  'geöffnet':'✅', geschlossen:'⛔',
+  // Мой день
+  'ins Bett gehen':'🛏️', 'frühstücken':'🥐', 'Frühstück machen':'🍳', 'Fußball spielen':'⚽',
+  'müde sein':'😴', 'Sport machen':'🏃', 'spazieren gehen':'🚶', 'ein Computerspiel spielen':'🎮',
+  'eine E-Mail schreiben':'📧',
+  // Работа по дому
+  Hausarbeit:'🧹', 'Wäsche waschen':'🧺', 'Wäsche trocknen':'🌬️', 'Wäsche aufhängen':'🧺',
+  'Wäsche bügeln':'🔥', 'Wäsche zusammenfalten':'🧺', 'den Müll rausbringen':'🗑️',
+  'das Bett machen':'🛏️', 'den Tisch decken':'🍽️', 'den Tisch abräumen':'🍽️',
+  'das Geschirr spülen':'🍽️', 'die Blumen gießen':'🌸', staubsaugen:'🧹', 'im Haushalt helfen':'🏠',
+  Elterngeld:'💶', Tagesmutter:'👩‍🍼', 'Teilzeit arbeiten':'⏱️', 'Vollzeit arbeiten':'⏰',
+  // Упаковки
+  Packung:'📦', 'Papiertüte':'🛍️', Dose:'🥫', Karton:'📦', Becher:'🥛', Netz:'🕸️', Schachtel:'📦',
+  // Супермаркет
+  Einkaufswagen:'🛒', Einkaufskorb:'🧺', Einkaufsliste:'📝', Frischetheke:'🧀',
+  'Gemüseabteilung':'🥬', 'Tiefkühltruhe':'🧊', Kassenzettel:'🧾',
+  // Гигиена 2
+  'Make-up':'💄', Binde:'🩹', Tampon:'🩹', 'Bürste':'🪮', Handtuch:'🧖', 'Spülmittel':'🧴',
+  Windel:'🧷', Taschentuch:'🤧', Küchenpapier:'🧻', Waschmittel:'🧴',
+  // Одежда 2
+  Kapuzenpullover:'🧥', Shorts:'🩳', Schlafanzug:'🩲', 'Unterwäsche':'🩲', 'Flip-Flops':'🩴',
+  Kappe:'🧢', Sonnenbrille:'🕶️', Gummistiefel:'🥾', Uhr:'⌚', Ring:'💍', Kopftuch:'🧕',
+  'Kleiderbügel':'🧵', Body:'👶',
+  // Как часто
+  immer:'🔁', meistens:'📊', oft:'📈', manchmal:'🤷', selten:'📉', nie:'🚫', bequem:'😌', unbequem:'😣',
   // Stadt & Orientierung
   Ampel:'🚦', Brücke:'🌉', Ecke:'📐', Seite:'↔️', Bank:'🏦',
   Bäckerei:'🥐', Kindergarten:'🧒', Park:'🌳', Theater:'🎭',

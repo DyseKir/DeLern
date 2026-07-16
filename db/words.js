@@ -1406,4 +1406,240 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════  МЕБЕЛЬ И ТЕХНИКА  ════════════════════════════════
+  {
+    level: "A1", category: "einrichtung", name: "Möbel & Einrichtung", name_ru: "Мебель и техника", emoji: "🛋️",
+    words: [
+      { id: "a1_en_001", article: "der", word: "Teppich",       translation: "ковёр"                     },
+      { id: "a1_en_002", article: "das", word: "Regal",         translation: "полка / стеллаж"           },
+      { id: "a1_en_003", article: "die", word: "Heizung",       translation: "батарея / отопление"       },
+      { id: "a1_en_004", article: "die", word: "Kommode",       translation: "комод"                     },
+      { id: "a1_en_005", article: "die", word: "Decke",         translation: "одеяло / потолок"          },
+      { id: "a1_en_006", article: "die", word: "Matratze",      translation: "матрас"                    },
+      { id: "a1_en_007", article: "die", word: "Dusche",        translation: "душ"                       },
+      { id: "a1_en_008", article: "der", word: "Backofen",      translation: "духовка"                   },
+      { id: "a1_en_009", article: "die", word: "Badewanne",     translation: "ванна"                     },
+      { id: "a1_en_010", article: "die", word: "Waschmaschine", translation: "стиральная машина"         },
+      { id: "a1_en_011", article: "die", word: "Spülmaschine",  translation: "посудомоечная машина"      },
+      { id: "a1_en_012", article: "die", word: "Toilette",      translation: "туалет"                    },
+      { id: "a1_en_013", article: "der", word: "Mülleimer",     translation: "мусорное ведро"            },
+      { id: "a1_en_014", article: "die", word: "Steckdose",     translation: "розетка"                   },
+      { id: "a1_en_015", article: "die", word: "Glühbirne",     translation: "лампочка"                  },
+      { id: "a1_en_016", article: "der", word: "Wasserhahn",    translation: "кран (водопроводный)"      },
+      { id: "a1_en_017", article: "das", word: "Waschbecken",   translation: "раковина"                  },
+      { id: "a1_en_018", article: "der", word: "Spiegel",       translation: "зеркало"                   },
+      { id: "a1_en_019", article: "der", word: "Vorhang",       translation: "штора / занавеска"         },
+    ]
+  },
+
+  // ════════════════════════════════  КОМНАТЫ  ════════════════════════════════
+  {
+    level: "A1", category: "raeume", name: "Räume", name_ru: "Комнаты в доме", emoji: "🚪",
+    words: [
+      { id: "a1_rm_001", article: "das", word: "Wohnzimmer",    translation: "гостиная"                  },
+      { id: "a1_rm_002", article: "das", word: "Schlafzimmer",  translation: "спальня"                   },
+      { id: "a1_rm_003", article: "die", word: "Küche",         translation: "кухня"                     },
+      { id: "a1_rm_004", article: "das", word: "Badezimmer",    translation: "ванная комната"            },
+      { id: "a1_rm_005", article: "das", word: "Kinderzimmer",  translation: "детская комната"           },
+      { id: "a1_rm_006", article: "das", word: "Arbeitszimmer", translation: "рабочий кабинет"           },
+      { id: "a1_rm_007", article: "der", word: "Balkon",        translation: "балкон"                    },
+      { id: "a1_rm_008", article: "der", word: "Keller",        translation: "подвал"                    },
+      { id: "a1_rm_009", article: "die", word: "Garage",        translation: "гараж"                     },
+      { id: "a1_rm_010", article: "der", word: "Garten",        translation: "сад"                       },
+      { id: "a1_rm_011", article: "der", word: "Flur",          translation: "коридор / прихожая"        },
+      { id: "a1_rm_012", article: "die", word: "Waschküche",    translation: "прачечная"                 },
+    ]
+  },
+
+  // ════════════════════════════════  ТИПЫ ЖИЛЬЯ  ════════════════════════════════
+  {
+    level: "A1", category: "wohnformen", name: "Wohnformen", name_ru: "Типы жилья", emoji: "🏠",
+    words: [
+      { id: "a1_wf_001", article: "die", word: "Wohnung",            translation: "квартира"             },
+      { id: "a1_wf_002", article: "das", word: "Einfamilienhaus",    translation: "дом на одну семью"    },
+      { id: "a1_wf_003", article: "das", word: "Mehrfamilienhaus",   translation: "многоквартирный дом"  },
+      { id: "a1_wf_004", article: "das", word: "Reihenhaus",         translation: "таунхаус"             },
+      { id: "a1_wf_005", article: "das", word: "Hochhaus",           translation: "высотка"              },
+      { id: "a1_wf_006", article: "das", word: "Erdgeschoss",        translation: "первый этаж"          },
+      { id: "a1_wf_007", article: "das", word: "Obergeschoss",       translation: "верхний этаж"         },
+      { id: "a1_wf_008", article: "das", word: "Dachgeschoss",       translation: "мансарда / верх. этаж" },
+      { id: "a1_wf_009", article: "die", word: "Wohngemeinschaft",   translation: "совместное жильё (WG)" },
+      { id: "a1_wf_010", article: "das", word: "Eigentum",           translation: "собственность"        },
+    ]
+  },
+
+  // ════════════════════════════════  ДОМ И ВХОД  ════════════════════════════════
+  {
+    level: "A1", category: "hauseingang", name: "Haus & Eingang", name_ru: "Дом и вход", emoji: "🚪",
+    words: [
+      { id: "a1_he_001", article: "das", word: "Fenster",       translation: "окно"                      },
+      { id: "a1_he_002", article: "der", word: "Rollladen",     translation: "рольставни / жалюзи"       },
+      { id: "a1_he_003", article: "der", word: "Lichtschalter", translation: "выключатель света"         },
+      { id: "a1_he_004", article: "die", word: "Klingel",       translation: "дверной звонок"            },
+      { id: "a1_he_005", article: "der", word: "Briefkasten",   translation: "почтовый ящик"             },
+      { id: "a1_he_006", article: "die", word: "Hausnummer",    translation: "номер дома"                },
+      { id: "a1_he_007", article: "die", word: "Treppe",        translation: "лестница"                  },
+      { id: "a1_he_008", article: "der", word: "Vermieter",     translation: "арендодатель"              },
+      { id: "a1_he_009", article: "der", word: "Mieter",        translation: "арендатор / квартиросъёмщик" },
+    ]
+  },
+
+  // ════════════════════════════════  АРЕНДА ЖИЛЬЯ  ════════════════════════════════
+  {
+    level: "A1", category: "mieten", name: "Wohnung mieten", name_ru: "Аренда жилья", emoji: "🔑",
+    words: [
+      { id: "a1_mt_001", article: "der", word: "Mietvertrag",   translation: "договор аренды"            },
+      { id: "a1_mt_002", article: "die", word: "Miete",         translation: "аренда / квартплата"       },
+      { id: "a1_mt_003", article: "die", word: "Kaltmiete",     translation: "аренда без комм. услуг (KM)" },
+      { id: "a1_mt_004", article: "die", word: "Warmmiete",     translation: "аренда с комм. услугами (WM)" },
+      { id: "a1_mt_005", article: "die", word: "Nebenkosten",   translation: "коммунальные расходы (NK)" },
+      { id: "a1_mt_006", article: "die", word: "Kaution",       translation: "залог (KT)"                },
+      { id: "a1_mt_007", article: "der", word: "Quadratmeter",  translation: "квадратный метр (qm)"      },
+      { id: "a1_mt_008", article: "die", word: "Einbauküche",   translation: "встроенная кухня (EBK)"    },
+      { id: "a1_mt_009", article: "das", word: "Zimmer",        translation: "комната (Zi)"              },
+      { id: "a1_mt_010", article: "die", word: "Kündigung",     translation: "расторжение / уведомление" },
+      { id: "a1_mt_011", article: "die", word: "Hausordnung",   translation: "правила проживания"        },
+    ]
+  },
+
+  // ════════════════════════════════  КОТОРЫЙ ЧАС  ════════════════════════════════
+  {
+    level: "A1", category: "uhrzeit", name: "Uhrzeit", name_ru: "Который час (время)", emoji: "🕐",
+    words: [
+      { id: "a1_uz_001", article: "-", word: "Wie spät ist es?",   translation: "который час?"           },
+      { id: "a1_uz_002", article: "-", word: "Viertel nach",       translation: "четверть после (:15)"   },
+      { id: "a1_uz_003", article: "-", word: "Viertel vor",        translation: "без четверти (:45)"     },
+      { id: "a1_uz_004", article: "-", word: "halb",               translation: "половина (:30)"         },
+      { id: "a1_uz_005", article: "-", word: "fünf nach",          translation: "пять минут после (:05)" },
+      { id: "a1_uz_006", article: "-", word: "zehn nach",          translation: "десять после (:10)"     },
+      { id: "a1_uz_007", article: "-", word: "zwanzig nach",       translation: "двадцать после (:20)"   },
+      { id: "a1_uz_008", article: "-", word: "fünf vor",           translation: "без пяти (:55)"         },
+      { id: "a1_uz_009", article: "-", word: "zehn vor",           translation: "без десяти (:50)"       },
+      { id: "a1_uz_010", article: "-", word: "zwanzig vor",        translation: "без двадцати (:40)"     },
+      { id: "a1_uz_011", article: "-", word: "geöffnet",           translation: "открыто"                },
+      { id: "a1_uz_012", article: "-", word: "geschlossen",        translation: "закрыто"                },
+    ]
+  },
+
+  // ════════════════════════════════  МОЙ ДЕНЬ  ════════════════════════════════
+  {
+    level: "A1", category: "alltag", name: "Mein Tag", name_ru: "Мой день (распорядок)", emoji: "📅",
+    words: [
+      { id: "a1_al_001", article: "-", word: "ins Bett gehen",         translation: "ложиться спать"       },
+      { id: "a1_al_002", article: "-", word: "frühstücken",            translation: "завтракать"           },
+      { id: "a1_al_003", article: "-", word: "Frühstück machen",       translation: "готовить завтрак"     },
+      { id: "a1_al_004", article: "-", word: "Fußball spielen",        translation: "играть в футбол"      },
+      { id: "a1_al_005", article: "-", word: "müde sein",              translation: "быть уставшим"        },
+      { id: "a1_al_006", article: "-", word: "Sport machen",           translation: "заниматься спортом"   },
+      { id: "a1_al_007", article: "-", word: "spazieren gehen",        translation: "гулять"               },
+      { id: "a1_al_008", article: "-", word: "ein Computerspiel spielen", translation: "играть в комп. игру" },
+      { id: "a1_al_009", article: "-", word: "eine E-Mail schreiben",  translation: "писать имейл"         },
+    ]
+  },
+
+  // ════════════════════════════════  РАБОТА ПО ДОМУ  ════════════════════════════════
+  {
+    level: "A1", category: "hausarbeit", name: "Hausarbeit & Wäsche", name_ru: "Работа по дому и бельё", emoji: "🧹",
+    words: [
+      { id: "a1_ha_001", article: "die", word: "Hausarbeit",              translation: "работа по дому"        },
+      { id: "a1_ha_002", article: "-",   word: "Wäsche waschen",          translation: "стирать бельё"         },
+      { id: "a1_ha_003", article: "-",   word: "Wäsche trocknen",         translation: "сушить бельё"          },
+      { id: "a1_ha_004", article: "-",   word: "Wäsche aufhängen",        translation: "вешать бельё"          },
+      { id: "a1_ha_005", article: "-",   word: "Wäsche bügeln",           translation: "гладить бельё"         },
+      { id: "a1_ha_006", article: "-",   word: "Wäsche zusammenfalten",   translation: "складывать бельё"      },
+      { id: "a1_ha_007", article: "-",   word: "den Müll rausbringen",    translation: "выносить мусор"        },
+      { id: "a1_ha_008", article: "-",   word: "das Bett machen",         translation: "заправлять кровать"    },
+      { id: "a1_ha_009", article: "-",   word: "den Tisch decken",        translation: "накрывать на стол"     },
+      { id: "a1_ha_010", article: "-",   word: "den Tisch abräumen",      translation: "убирать со стола"      },
+      { id: "a1_ha_011", article: "-",   word: "das Geschirr spülen",     translation: "мыть посуду"           },
+      { id: "a1_ha_012", article: "-",   word: "die Blumen gießen",       translation: "поливать цветы"        },
+      { id: "a1_ha_013", article: "-",   word: "staubsaugen",             translation: "пылесосить"            },
+      { id: "a1_ha_014", article: "-",   word: "im Haushalt helfen",      translation: "помогать по хозяйству" },
+      { id: "a1_ha_015", article: "das", word: "Elterngeld",             translation: "пособие на ребёнка"    },
+      { id: "a1_ha_016", article: "die", word: "Tagesmutter",           translation: "няня (дневная)"        },
+      { id: "a1_ha_017", article: "-",   word: "Teilzeit arbeiten",       translation: "работать на полставки" },
+      { id: "a1_ha_018", article: "-",   word: "Vollzeit arbeiten",       translation: "работать на полную ставку" },
+    ]
+  },
+
+  // ════════════════════════════════  УПАКОВКИ  ════════════════════════════════
+  {
+    level: "A1", category: "verpackung", name: "Verpackungen", name_ru: "Упаковки", emoji: "📦",
+    words: [
+      { id: "a1_vp_001", article: "die", word: "Packung",     translation: "пачка / упаковка"           },
+      { id: "a1_vp_002", article: "die", word: "Papiertüte",  translation: "бумажный пакет"             },
+      { id: "a1_vp_003", article: "die", word: "Dose",        translation: "банка (консервная)"         },
+      { id: "a1_vp_004", article: "der", word: "Karton",      translation: "картонная коробка / пакет"  },
+      { id: "a1_vp_005", article: "der", word: "Becher",      translation: "стаканчик (йогурта)"        },
+      { id: "a1_vp_006", article: "das", word: "Netz",        translation: "сетка (для овощей)"         },
+      { id: "a1_vp_007", article: "die", word: "Schachtel",   translation: "коробка (напр. конфет)"     },
+    ]
+  },
+
+  // ════════════════════════════════  В СУПЕРМАРКЕТЕ  ════════════════════════════════
+  {
+    level: "A1", category: "supermarkt", name: "Im Supermarkt", name_ru: "В супермаркете", emoji: "🛒",
+    words: [
+      { id: "a1_sm_001", article: "der", word: "Einkaufswagen",   translation: "тележка для покупок"    },
+      { id: "a1_sm_002", article: "der", word: "Einkaufskorb",    translation: "корзина для покупок"    },
+      { id: "a1_sm_003", article: "die", word: "Einkaufsliste",   translation: "список покупок"         },
+      { id: "a1_sm_004", article: "die", word: "Frischetheke",    translation: "прилавок свежих продуктов" },
+      { id: "a1_sm_005", article: "die", word: "Gemüseabteilung", translation: "овощной отдел"          },
+      { id: "a1_sm_006", article: "die", word: "Tiefkühltruhe",   translation: "морозильная камера"     },
+      { id: "a1_sm_007", article: "der", word: "Kassenzettel",    translation: "чек (кассовый)"         },
+    ]
+  },
+
+  // ════════════════════════════════  ГИГИЕНА 2  ════════════════════════════════
+  {
+    level: "A1", category: "hygiene2", name: "Hygieneartikel 2", name_ru: "Гигиена (ещё)", emoji: "🧼",
+    words: [
+      { id: "a1_hy_001", article: "das", word: "Make-up",        translation: "макияж / косметика"      },
+      { id: "a1_hy_002", article: "die", word: "Binde",          translation: "гигиеническая прокладка" },
+      { id: "a1_hy_003", article: "der", word: "Tampon",         translation: "тампон"                  },
+      { id: "a1_hy_004", article: "die", word: "Bürste",         translation: "щётка (для волос)"       },
+      { id: "a1_hy_005", article: "das", word: "Handtuch",       translation: "полотенце"               },
+      { id: "a1_hy_006", article: "das", word: "Spülmittel",     translation: "средство для мытья посуды" },
+      { id: "a1_hy_007", article: "die", word: "Windel",         translation: "подгузник"               },
+      { id: "a1_hy_008", article: "das", word: "Taschentuch",    translation: "носовой платок"          },
+      { id: "a1_hy_009", article: "das", word: "Küchenpapier",   translation: "бумажные полотенца"      },
+      { id: "a1_hy_010", article: "das", word: "Waschmittel",    translation: "стиральный порошок"      },
+    ]
+  },
+
+  // ════════════════════════════════  ОДЕЖДА 2  ════════════════════════════════
+  {
+    level: "A1", category: "kleidung2", name: "Kleidung 2", name_ru: "Одежда (ещё)", emoji: "👕",
+    words: [
+      { id: "a1_k2_001", article: "der", word: "Kapuzenpullover", translation: "худи / толстовка"       },
+      { id: "a1_k2_002", article: "die", word: "Shorts",          translation: "шорты"                  },
+      { id: "a1_k2_003", article: "der", word: "Schlafanzug",     translation: "пижама"                 },
+      { id: "a1_k2_004", article: "die", word: "Unterwäsche",     translation: "нижнее бельё"           },
+      { id: "a1_k2_005", article: "die", word: "Flip-Flops",      translation: "вьетнамки / шлёпанцы"   },
+      { id: "a1_k2_006", article: "die", word: "Kappe",           translation: "кепка"                  },
+      { id: "a1_k2_007", article: "die", word: "Sonnenbrille",    translation: "солнцезащитные очки"    },
+      { id: "a1_k2_008", article: "die", word: "Gummistiefel",    translation: "резиновые сапоги"       },
+      { id: "a1_k2_009", article: "die", word: "Uhr",             translation: "часы (наручные)"        },
+      { id: "a1_k2_010", article: "der", word: "Ring",            translation: "кольцо"                 },
+      { id: "a1_k2_011", article: "das", word: "Kopftuch",        translation: "платок (на голову)"     },
+      { id: "a1_k2_012", article: "der", word: "Kleiderbügel",    translation: "вешалка (плечики)"      },
+      { id: "a1_k2_013", article: "der", word: "Body",            translation: "боди (детский)"         },
+    ]
+  },
+
+  // ════════════════════════════════  КАК ЧАСТО  ════════════════════════════════
+  {
+    level: "A1", category: "haeufigkeit", name: "Häufigkeit", name_ru: "Как часто", emoji: "🔁",
+    words: [
+      { id: "a1_hf_001", article: "-", word: "immer",     translation: "всегда (100%)"     },
+      { id: "a1_hf_002", article: "-", word: "meistens",  translation: "чаще всего (80%)"  },
+      { id: "a1_hf_003", article: "-", word: "oft",       translation: "часто (60%)"       },
+      { id: "a1_hf_004", article: "-", word: "manchmal",  translation: "иногда (40%)"      },
+      { id: "a1_hf_005", article: "-", word: "selten",    translation: "редко (20%)"       },
+      { id: "a1_hf_006", article: "-", word: "nie",       translation: "никогда (0%)"      },
+      { id: "a1_hf_007", article: "-", word: "bequem",    translation: "удобный"           },
+      { id: "a1_hf_008", article: "-", word: "unbequem",  translation: "неудобный"         },
+    ]
+  },
+
 ];
