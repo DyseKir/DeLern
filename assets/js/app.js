@@ -208,22 +208,19 @@ function getAccounts() {
   try { return JSON.parse(localStorage.getItem('dl_accounts') || '[]'); } catch { return []; }
 }
 function saveAccounts(arr) { localStorage.setItem('dl_accounts', JSON.stringify(arr)); }
-function createAccount(name) {
-  const accounts = getAccounts();
-  const id = 'u' + Date.now().toString(36);
-  accounts.push({ id, name });
-  saveAccounts(accounts);
-  return id;
-}
+
+/* Аккаунт теперь = вошедший пользователь Supabase (currentUser / currentUserProfile) */
+let currentUser = null;
+let currentUserProfile = null;
+
+function hashStr(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); }
 
 /* Возвращает объект активного профиля */
 function P() {
-  const accounts = getAccounts();
-  const idx = accounts.findIndex(a => a.id === activeProfile);
-  const acc = idx >= 0 ? accounts[idx] : { name: '?' };
+  const name = (currentUserProfile && currentUserProfile.display_name) || '?';
   return {
-    name:    acc.name || '?',
-    avatar:  (acc.name || '?')[0].toUpperCase(),
+    name,
+    avatar:  name[0]?.toUpperCase() || '?',
     key:     `dl_prog_${activeProfile}`,
     coinKey: `dl_coins_${activeProfile}`,
     shopKey: `dl_shop_${activeProfile}`,
@@ -232,7 +229,7 @@ function P() {
     deferKey:`dl_defer_${activeProfile}`,
     examKey: `dl_exam_${activeProfile}`,
     memKey:  `dl_mem_${activeProfile}`,
-    petImg:  PET_IMGS[Math.max(0, idx) % PET_IMGS.length],
+    petImg:  PET_IMGS[activeProfile ? hashStr(activeProfile) % PET_IMGS.length : 0],
   };
 }
 
@@ -861,11 +858,11 @@ function buildWordCache() {
    ПРОГРЕСС
 ══════════════════════════════════════════════════════════════ */
 function loadProg()   { try { return JSON.parse(localStorage.getItem(P().key)||'{}'); } catch { return {}; } }
-function saveProg(p)  { localStorage.setItem(P().key, JSON.stringify(p)); }
+function saveProg(p)  { localStorage.setItem(P().key, JSON.stringify(p)); queueCloudSync(); }
 
 /* ── Отложенные на потом ── */
 function loadDeferred()    { try { return JSON.parse(localStorage.getItem(P().deferKey)||'[]'); } catch { return []; } }
-function saveDeferred(arr) { localStorage.setItem(P().deferKey, JSON.stringify([...new Set(arr)])); }
+function saveDeferred(arr) { localStorage.setItem(P().deferKey, JSON.stringify([...new Set(arr)])); queueCloudSync(); }
 function isDeferred(id)    { return loadDeferred().includes(id); }
 function addDeferred(id)   { const a = loadDeferred(); a.push(id); saveDeferred(a); }
 function removeDeferred(id){ saveDeferred(loadDeferred().filter(x => x !== id)); }
@@ -882,7 +879,7 @@ function getDeferredCategory() {
            name_ru: 'Отложенные на потом', emoji: '⏰', words, isDeferred: true };
 }
 function loadCoins()  { return parseInt(localStorage.getItem(P().coinKey)||'0',10); }
-function saveCoins(n) { localStorage.setItem(P().coinKey, String(Math.max(0,n))); }
+function saveCoins(n) { localStorage.setItem(P().coinKey, String(Math.max(0,n))); queueCloudSync(); }
 
 /* Евро — общий баланс для обоих профилей */
 const EURO_KEY      = 'dl_euros_shared';
@@ -895,11 +892,11 @@ function updateEuroDisplay() {
   if ($('euro-balance-shop'))   $('euro-balance-shop').textContent   = v;
 }
 function loadShop()   { try { return JSON.parse(localStorage.getItem(P().shopKey)||'[]'); } catch { return []; } }
-function saveShop(a)  { localStorage.setItem(P().shopKey, JSON.stringify(a)); }
+function saveShop(a)  { localStorage.setItem(P().shopKey, JSON.stringify(a)); queueCloudSync(); }
 function loadUsed()   { try { return JSON.parse(localStorage.getItem(P().usedKey)||'[]'); } catch { return []; } }
-function saveUsed(a)  { localStorage.setItem(P().usedKey, JSON.stringify(a)); }
+function saveUsed(a)  { localStorage.setItem(P().usedKey, JSON.stringify(a)); queueCloudSync(); }
 function loadPet()    { try { return JSON.parse(localStorage.getItem(P().petKey)||'{"clicks":0,"hatched":false}'); } catch { return {clicks:0,hatched:false}; } }
-function savePet(p)   { localStorage.setItem(P().petKey, JSON.stringify(p)); }
+function savePet(p)   { localStorage.setItem(P().petKey, JSON.stringify(p)); queueCloudSync(); }
 
 function getAvailableQty(itemId) {
   const bought = loadShop().filter(e=>e.id===itemId).reduce((s,e)=>s+(e.qty||1), 0);
@@ -1058,6 +1055,7 @@ function rerenderCurrent() {
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
+  else if (S.screen==='admin')      renderAdminScreen();
 }
 
 /* обновляет только динамические строки на экране карточек */
@@ -1090,44 +1088,24 @@ function renderHome() {
 
 function updateProfileUI() {
   const prof = P();
-  const accounts = getAccounts();
   if ($('header-avatar')) $('header-avatar').textContent = prof.avatar;
   if ($('user-avatar-lg')) $('user-avatar-lg').textContent = prof.avatar;
   if ($('user-hi')) $('user-hi').textContent = lang==='ru'
     ? `Привет, ${prof.name}!` : `Hi, ${prof.name}!`;
-  // перерисовываем дропдаун динамически
   const dd = $('profile-dropdown');
   if (dd) {
-    dd.innerHTML = accounts.map(acc => `
-      <div class="profile-option ${acc.id === activeProfile ? 'active' : ''}" data-profile="${acc.id}">
-        <span class="po-avatar po-av-letter">${acc.name[0]?.toUpperCase() || '?'}</span>
-        <span class="po-name">${acc.name}</span>
-        ${acc.id === activeProfile ? '<span class="po-check">✓</span>' : ''}
+    dd.innerHTML = `
+      <div class="profile-option po-info">
+        <span class="po-avatar po-av-letter">${prof.avatar}</span>
+        <span class="po-name">${(currentUserProfile && currentUserProfile.email) || prof.name}</span>
       </div>
-    `).join('') + `
-      <div class="profile-option po-new-acc" id="po-new-acc">
-        <span class="po-avatar">＋</span>
-        <span class="po-name">${lstr('Neues Konto','Новый аккаунт','Новий акаунт')}</span>
+      <div class="profile-option po-logout" id="po-logout">
+        <span class="po-avatar">⎋</span>
+        <span class="po-name">${lstr('Abmelden','Выйти','Вийти')}</span>
       </div>`;
-    dd.querySelectorAll('[data-profile]').forEach(opt =>
-      opt.addEventListener('click', e => { e.stopPropagation(); switchProfile(opt.dataset.profile); }));
-    const newBtn = $('po-new-acc');
-    if (newBtn) newBtn.addEventListener('click', e => { e.stopPropagation(); dd.classList.add('hidden'); showRegOverlay(true); });
+    const logoutBtn = $('po-logout');
+    if (logoutBtn) logoutBtn.addEventListener('click', e => { e.stopPropagation(); dd.classList.add('hidden'); doLogout(); });
   }
-}
-
-function switchProfile(id) {
-  if (!getAccounts().find(a => a.id === id)) return;
-  activeProfile = id;
-  localStorage.setItem('dl_active_id', id);
-  S.cart = {};
-  $('profile-dropdown').classList.add('hidden');
-  updateProfileUI();
-  migrateCoins();
-  updateCoinDisplay();
-  updateEuroDisplay();
-  rerenderCurrent();
-  refreshOverallBar();
 }
 
 function refreshOverallBar() {
@@ -2086,7 +2064,7 @@ function renderTablesScreen() {
 
 /* ── Отметки «запомнил» (слова/предложения в разделе Контрольная) ── */
 function loadMemSet() { try { return new Set(JSON.parse(localStorage.getItem(P().memKey)||'[]')); } catch { return new Set(); } }
-function saveMemSet(set) { localStorage.setItem(P().memKey, JSON.stringify([...set])); }
+function saveMemSet(set) { localStorage.setItem(P().memKey, JSON.stringify([...set])); queueCloudSync(); }
 function memKeyFor(html) { return (html||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().toLowerCase(); }
 
 /* ══════════════════════════════════════════════
@@ -2492,12 +2470,7 @@ function renderProfile() {
         <div class="profile-card-avatar">${prof.avatar}</div>
         <div class="profile-card-info">
           <div class="profile-card-name">${prof.name}</div>
-          <div class="profile-card-switch">
-            ${getAccounts().map(acc=>`
-              <button class="profile-switch-btn ${acc.id===activeProfile?'active':''}" data-pid="${acc.id}">
-                ${acc.name[0]?.toUpperCase()||'?'} ${acc.name}
-              </button>`).join('')}
-          </div>
+          <div class="profile-card-email">${(currentUserProfile && currentUserProfile.email) || ''}</div>
         </div>
       </div>
       <div class="stat-block"><div class="stat-big" style="color:var(--correct)">${learned.length}</div><div class="stat-label">${t('stat_learned')}</div></div>
@@ -2512,8 +2485,54 @@ function renderProfile() {
       <h3>${t('learned_sec')}</h3>
       ${learnedHtml}
     </div>`;
-  $('profile-layout').querySelectorAll('.profile-switch-btn').forEach(btn =>
-    btn.addEventListener('click', () => { switchProfile(btn.dataset.pid); renderProfile(); }));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   АДМИН-ПАНЕЛЬ
+══════════════════════════════════════════════════════════════ */
+async function renderAdminScreen() {
+  show('admin');
+  const wrap = $('admin-users-list');
+  wrap.innerHTML = `<div class="loading-hint">${lstr('Lädt…','Загрузка…','Завантаження…')}</div>`;
+  const users = await adminListProfiles();
+  if (!users.length) {
+    wrap.innerHTML = `<div class="loading-hint">${lstr('Keine Nutzer','Нет пользователей','Немає користувачів')}</div>`;
+    return;
+  }
+  wrap.innerHTML = users.map(u => `
+    <div class="admin-user-card">
+      <div class="admin-user-main">
+        <div class="admin-user-email">${u.email}${u.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
+        <div class="admin-user-meta">${lstr('Registriert','Регистрация','Реєстрація')}: ${new Date(u.created_at).toLocaleDateString('ru-RU')}</div>
+        <input type="text" class="admin-note-input" data-uid="${u.id}"
+          placeholder="${lstr('Notiz (z.B. bezahlt für Juli)','Заметка (например: оплатил июль)','Нотатка (наприклад: оплатив липень)')}"
+          value="${(u.note||'').replace(/"/g,'&quot;')}">
+      </div>
+      <div class="admin-user-actions">
+        <span class="admin-status-badge ${u.is_active ? 'active' : 'inactive'}">${u.is_active ? lstr('Aktiv','Активен','Активний') : lstr('Inaktiv','Не активен','Не активний')}</span>
+        <button class="btn-secondary admin-toggle-btn" data-uid="${u.id}" data-active="${u.is_active}">
+          ${u.is_active ? lstr('Deaktivieren','Деактивировать','Деактивувати') : lstr('Aktivieren','Активировать','Активувати')}
+        </button>
+        <button class="btn-secondary admin-reset-btn" data-email="${u.email}">${lstr('Passwort zurücksetzen','Сбросить пароль','Скинути пароль')}</button>
+      </div>
+    </div>`).join('');
+
+  wrap.querySelectorAll('.admin-toggle-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    await adminSetActive(btn.dataset.uid, btn.dataset.active !== 'true');
+    renderAdminScreen();
+  }));
+  wrap.querySelectorAll('.admin-reset-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    await authResetPassword(btn.dataset.email);
+    btn.textContent = lstr('Link gesendet ✓','Ссылка отправлена ✓','Посилання надіслано ✓');
+  }));
+  let noteTimer;
+  wrap.querySelectorAll('.admin-note-input').forEach(inp => inp.addEventListener('input', () => {
+    clearTimeout(noteTimer);
+    const uid = inp.dataset.uid, val = inp.value;
+    noteTimer = setTimeout(() => adminSetNote(uid, val), 800);
+  }));
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3019,7 +3038,7 @@ function finishTranslate() {
 const EX = { cards:[], idx:0, correct:0, total:0 };
 
 function loadExamHistory()    { try { return JSON.parse(localStorage.getItem(P().examKey)||'[]'); } catch { return []; } }
-function saveExamHistory(arr) { localStorage.setItem(P().examKey, JSON.stringify(arr)); }
+function saveExamHistory(arr) { localStorage.setItem(P().examKey, JSON.stringify(arr)); queueCloudSync(); }
 
 /* все выученные слова (status 'learned') по всем категориям */
 function getLearnedWords() {
@@ -3333,6 +3352,7 @@ function initEvents() {
       else if(s==='translate')  renderTranslateScreen();
       else if(s==='profil')     renderProfile();
       else if(s==='exam')       renderExamScreen();
+      else if(s==='admin')      renderAdminScreen();
     });
   });
 
@@ -3472,79 +3492,162 @@ function initEvents() {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   РЕГИСТРАЦИЯ / ВХОД
+   РЕГИСТРАЦИЯ / ВХОД (Supabase Auth)
 ══════════════════════════════════════════════════════════════ */
-function showRegOverlay(addingNew) {
-  renderRegCard(addingNew);
-  $('reg-overlay').classList.remove('hidden');
-}
 function hideRegOverlay() { $('reg-overlay').classList.add('hidden'); }
+function showAuthError(msg) {
+  const el = $('auth-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
 
-function renderRegCard(addingNew) {
-  const accounts = getAccounts();
+function renderAuthCard(mode) {
   const card = $('reg-card');
   const logo = `<div class="reg-logo"><div class="logo-badge">D</div><span class="logo-text">DEUTSCHLERNEN</span></div>`;
+  $('reg-overlay').classList.remove('hidden');
 
-  if (accounts.length > 0 && !addingNew) {
-    /* ── Выбор существующего аккаунта ── */
+  if (mode === 'login') {
     card.innerHTML = `
       ${logo}
-      <h2 class="reg-title">${lstr('Konto wählen','Выбери аккаунт','Оберіть акаунт')}</h2>
+      <h1 class="reg-title">${lstr('Anmelden','Вход','Вхід')}</h1>
+      <p class="reg-sub">${lstr('Melde dich mit deiner E-Mail an','Войди по своей почте и паролю','Увійди своєю поштою та паролем')}</p>
+      <div id="auth-error" class="auth-error hidden"></div>
+      <input type="email" id="auth-email" class="reg-input" placeholder="E-Mail" autocomplete="username" spellcheck="false">
+      <input type="password" id="auth-password" class="reg-input" placeholder="${lstr('Passwort','Пароль','Пароль')}" autocomplete="current-password">
+      <button class="btn-primary reg-btn" id="auth-submit-btn">${lstr('Anmelden →','Войти →','Увійти →')}</button>
+      <button class="reg-back-btn" id="auth-forgot-btn">${lstr('Passwort vergessen?','Забыли пароль?','Забули пароль?')}</button>
+      <div class="reg-divider"><span>${lstr('oder','или','або')}</span></div>
+      <button class="reg-new-btn" id="auth-goto-register">${lstr('Konto erstellen','Создать аккаунт','Створити акаунт')}</button>`;
+
+    $('auth-submit-btn').addEventListener('click', async () => {
+      const email = $('auth-email').value.trim();
+      const password = $('auth-password').value;
+      if (!email || !password) return showAuthError(lstr('Bitte alles ausfüllen','Заполните все поля','Заповніть усі поля'));
+      $('auth-submit-btn').disabled = true;
+      const { data, error } = await authSignIn(email, password);
+      $('auth-submit-btn').disabled = false;
+      if (error) return showAuthError(error.message);
+      await handleAuthenticatedSession(data.session);
+    });
+    $('auth-forgot-btn').addEventListener('click', async () => {
+      const email = $('auth-email').value.trim();
+      if (!email) return showAuthError(lstr('Gib zuerst deine E-Mail ein','Сначала введите почту','Спочатку введіть пошту'));
+      await authResetPassword(email);
+      showAuthError(lstr('Link zum Zurücksetzen wurde gesendet ✓','Ссылка для сброса пароля отправлена на почту ✓','Посилання для скидання пароля надіслано на пошту ✓'));
+    });
+    $('auth-goto-register').addEventListener('click', () => renderAuthCard('register'));
+
+  } else if (mode === 'register') {
+    card.innerHTML = `
+      ${logo}
+      <h1 class="reg-title">${lstr('Konto erstellen','Регистрация','Реєстрація')}</h1>
+      <p class="reg-sub">${lstr('Nach der Registrierung muss der Zugang vom Administrator bestätigt werden.','После регистрации доступ должен подтвердить администратор.','Після реєстрації доступ повинен підтвердити адміністратор.')}</p>
+      <div id="auth-error" class="auth-error hidden"></div>
+      <input type="text" id="auth-name" class="reg-input" placeholder="${lstr('Dein Name','Твоё имя','Твоє ім’я')}" maxlength="20" autocomplete="name">
+      <input type="email" id="auth-email" class="reg-input" placeholder="E-Mail" autocomplete="username" spellcheck="false">
+      <input type="password" id="auth-password" class="reg-input" placeholder="${lstr('Passwort (min. 6 Zeichen)','Пароль (мин. 6 символов)','Пароль (мін. 6 символів)')}" autocomplete="new-password">
+      <button class="btn-primary reg-btn" id="auth-submit-btn">${lstr('Registrieren →','Зарегистрироваться →','Зареєструватися →')}</button>
+      <button class="reg-back-btn" id="auth-goto-login">${lstr('← Zurück zur Anmeldung','← Назад ко входу','← Назад до входу')}</button>`;
+
+    $('auth-submit-btn').addEventListener('click', async () => {
+      const name = $('auth-name').value.trim();
+      const email = $('auth-email').value.trim();
+      const password = $('auth-password').value;
+      if (!name || !email || !password) return showAuthError(lstr('Bitte alles ausfüllen','Заполните все поля','Заповніть усі поля'));
+      if (password.length < 6) return showAuthError(lstr('Passwort zu kurz (min. 6 Zeichen)','Пароль слишком короткий (мин. 6 символов)','Пароль закороткий (мін. 6 символів)'));
+      $('auth-submit-btn').disabled = true;
+      const { data, error } = await authSignUp(email, password, name);
+      $('auth-submit-btn').disabled = false;
+      if (error) return showAuthError(error.message);
+      if (data.session) await handleAuthenticatedSession(data.session);
+      else renderAuthCard('confirm-email');
+    });
+    $('auth-goto-login').addEventListener('click', () => renderAuthCard('login'));
+
+  } else if (mode === 'confirm-email') {
+    card.innerHTML = `
+      ${logo}
+      <div class="reg-flag">📧</div>
+      <h1 class="reg-title">${lstr('Bestätige deine E-Mail','Подтвердите почту','Підтвердіть пошту')}</h1>
+      <p class="reg-sub">${lstr('Wir haben einen Bestätigungslink gesendet. Öffne ihn und melde dich danach an.','Мы отправили ссылку подтверждения на вашу почту. Перейдите по ней, а затем войдите.','Ми надіслали посилання підтвердження на вашу пошту. Перейдіть за ним, а потім увійдіть.')}</p>
+      <button class="reg-back-btn" id="auth-goto-login">${lstr('← Zurück zur Anmeldung','← Назад ко входу','← Назад до входу')}</button>`;
+    $('auth-goto-login').addEventListener('click', () => renderAuthCard('login'));
+
+  } else if (mode === 'pending') {
+    card.innerHTML = `
+      ${logo}
+      <div class="reg-flag">⏳</div>
+      <h1 class="reg-title">${lstr('Konto wartet auf Bestätigung','Аккаунт ожидает подтверждения','Акаунт очікує підтвердження')}</h1>
+      <p class="reg-sub">${lstr('Der Zugang wird vom Administrator manuell freigeschaltet, sobald die Zahlung eingegangen ist.','Доступ включает администратор вручную, после того как получит оплату.','Доступ вмикає адміністратор вручну, після того як отримає оплату.')}</p>
+      <button class="reg-back-btn" id="auth-logout-btn">${lstr('Abmelden','Выйти','Вийти')}</button>`;
+    $('auth-logout-btn').addEventListener('click', doLogout);
+
+  } else if (mode === 'claim') {
+    const legacy = getLegacyAccounts();
+    card.innerHTML = `
+      ${logo}
+      <h1 class="reg-title">${lstr('Alten Fortschritt übernehmen?','Перенести старый прогресс?','Перенести старий прогрес?')}</h1>
+      <p class="reg-sub">${lstr('Auf diesem Gerät wurden alte lokale Profile gefunden. Wähle deins, um den Fortschritt in dein neues Konto zu übernehmen.','На этом устройстве найдены старые локальные профили. Выберите свой, чтобы перенести прогресс в новый аккаунт.','На цьому пристрої знайдено старі локальні профілі. Оберіть свій, щоб перенести прогрес у новий акаунт.')}</p>
       <div class="reg-accounts">
-        ${accounts.map(acc => `
+        ${legacy.map(acc => `
           <div class="reg-acc-card" data-id="${acc.id}">
             <div class="reg-acc-avatar">${acc.name[0]?.toUpperCase() || '?'}</div>
             <div class="reg-acc-name">${acc.name}</div>
           </div>`).join('')}
       </div>
-      <div class="reg-divider"><span>${lstr('oder','или','або')}</span></div>
-      <button class="reg-new-btn" id="reg-new-btn">＋ ${lstr('Neues Konto erstellen','Создать новый аккаунт','Створити новий акаунт')}</button>`;
+      <button class="reg-new-btn" id="auth-skip-claim">${lstr('Nein danke, überspringen','Нет, пропустить','Ні, пропустити')}</button>`;
 
-    card.querySelectorAll('.reg-acc-card').forEach(el =>
-      el.addEventListener('click', () => {
-        activeProfile = el.dataset.id;
-        localStorage.setItem('dl_active_id', activeProfile);
-        hideRegOverlay();
-        if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
-        else startApp();
-      }));
-    $('reg-new-btn').addEventListener('click', () => renderRegCard(true));
-
-  } else {
-    /* ── Создание нового аккаунта ── */
-    const hasBack = accounts.length > 0;
-    card.innerHTML = `
-      ${logo}
-      <div class="reg-flag">🇩🇪</div>
-      <h1 class="reg-title">${hasBack
-        ? lstr('Neues Konto','Новый аккаунт','Новий акаунт')
-        : lstr('Willkommen!','Добро пожаловать!','Ласкаво просимо!')}</h1>
-      <p class="reg-sub">${hasBack
-        ? lstr('Gib einen Nicknamen für das neue Konto ein','Введи никнейм для нового аккаунта','Введи нікнейм для нового акаунта')
-        : lstr('Gib deinen Nicknamen ein, um Deutsch zu lernen','Введи свой никнейм чтобы начать учить немецкий','Введи свій нікнейм щоб почати вчити німецьку')}</p>
-      <input type="text" id="reg-input" class="reg-input" placeholder="${lstr('Dein Nickname...','Твой никнейм...','Твій нікнейм...')}" maxlength="20" autocomplete="off" spellcheck="false">
-      ${hasBack ? `<button class="reg-back-btn" id="reg-back-btn">${lstr('← Zurück','← Назад','← Назад')}</button>` : ''}
-      <button class="btn-primary reg-btn" id="reg-btn">${lstr('Starten →','Начать →','Почати →')}</button>`;
-
-    const input = $('reg-input');
-    const backBtn = $('reg-back-btn');
-
-    function submitNew() {
-      const name = input.value.trim();
-      if (!name) { input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); return; }
-      const id = createAccount(name);
-      activeProfile = id;
-      localStorage.setItem('dl_active_id', id);
-      hideRegOverlay();
-      if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
-      else startApp();
-    }
-
-    $('reg-btn').addEventListener('click', submitNew);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') submitNew(); });
-    if (backBtn) backBtn.addEventListener('click', () => renderRegCard(false));
-    setTimeout(() => input.focus(), 50);
+    card.querySelectorAll('.reg-acc-card').forEach(el => el.addEventListener('click', async () => {
+      el.style.opacity = '.5';
+      await claimLegacyAccount(currentUser.id, el.dataset.id);
+      await continueAfterClaim();
+    }));
+    $('auth-skip-claim').addEventListener('click', async () => {
+      localStorage.setItem('_legacy_claimed', '1');
+      await continueAfterClaim();
+    });
   }
+}
+
+async function doLogout() {
+  await authSignOut();
+  currentUser = null;
+  currentUserProfile = null;
+  activeProfile = null;
+  location.reload();
+}
+
+/* Продолжение входа после экрана переноса старого прогресса */
+async function continueAfterClaim() {
+  if (!currentUserProfile.is_active) { renderAuthCard('pending'); return; }
+  await finishLogin();
+}
+
+async function finishLogin() {
+  hideRegOverlay();
+  await pullCloudProgress(activeProfile);
+  if ($('nav-admin')) $('nav-admin').classList.toggle('hidden', currentUserProfile.role !== 'admin');
+  if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
+  else startApp();
+}
+
+/* Вызывается после успешного входа/регистрации, и при восстановлении сессии на старте */
+async function handleAuthenticatedSession(session) {
+  currentUser = session.user;
+  activeProfile = currentUser.id;
+  currentUserProfile = await fetchMyProfile(currentUser.id);
+  if (!currentUserProfile) { renderAuthCard('login'); return; }
+
+  if (getLegacyAccounts().length && !localStorage.getItem('_legacy_claimed')) {
+    renderAuthCard('claim');
+    return;
+  }
+  if (!currentUserProfile.is_active) {
+    renderAuthCard('pending');
+    return;
+  }
+  await finishLogin();
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3590,8 +3693,17 @@ function migrateOldProfileData() {
   localStorage.setItem('_prof_mig_done', '1');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   buildWordCache();
   migrateOldProfileData();
-  showRegOverlay(false);
+  const session = await authGetSession();
+  if (session) await handleAuthenticatedSession(session);
+  else renderAuthCard('login');
+
+  sb.auth.onAuthStateChange((event) => {
+    if (event === 'PASSWORD_RECOVERY') {
+      const newPass = prompt(lstr('Neues Passwort eingeben:','Введите новый пароль:','Введіть новий пароль:'));
+      if (newPass && newPass.length >= 6) authUpdatePassword(newPass);
+    }
+  });
 });

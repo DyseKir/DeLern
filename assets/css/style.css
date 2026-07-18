@@ -272,6 +272,9 @@ body {
 .po-avatar { font-size: 18px; }
 .po-name   { flex: 1; font-weight: 500; }
 .po-check  { color: var(--accent); font-weight: 700; font-size: 13px; }
+.po-info   { cursor: default; }
+.po-info:hover { background: none; }
+.po-logout { color: var(--wrong); }
 
 /* ── Карточка профиля на экране Профиль ── */
 .profile-card {
@@ -285,25 +288,8 @@ body {
   margin-bottom: 18px;
 }
 .profile-card-avatar { font-size: 40px; line-height: 1; }
-.profile-card-name   { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.profile-card-switch { display: flex; gap: 8px; flex-wrap: wrap; }
-.profile-switch-btn {
-  background: var(--bg4);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 5px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: border-color .15s, background .15s;
-}
-.profile-switch-btn:hover { border-color: var(--accent); }
-.profile-switch-btn.active {
-  border-color: var(--accent);
-  background: rgba(108,99,255,.18);
-  color: var(--accent);
-  font-weight: 600;
-}
+.profile-card-name   { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.profile-card-email  { font-size: 13px; color: var(--text-muted); }
 
 /* ── Евро в хедере ── */
 .euro-display {
@@ -1850,3 +1836,61 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Ошибки формы входа/регистрации ── */
+.auth-error {
+  background: rgba(255,77,109,.12);
+  border: 1px solid var(--wrong);
+  color: var(--wrong);
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.auth-error.hidden { display: none; }
+
+/* ── Админ-панель ── */
+.admin-users-list { display: flex; flex-direction: column; gap: 12px; }
+.admin-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.admin-user-main { flex: 1; min-width: 220px; }
+.admin-user-email { font-size: 15px; font-weight: 700; }
+.admin-badge-role {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(108,99,255,.15);
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin-left: 6px;
+}
+.admin-user-meta { font-size: 12px; color: var(--text-muted); margin: 4px 0 8px; }
+.admin-note-input {
+  width: 100%;
+  max-width: 320px;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 13px;
+}
+.admin-note-input:focus { outline: none; border-color: var(--accent); }
+.admin-user-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.admin-status-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.admin-status-badge.active   { background: rgba(78,203,113,.15); color: var(--correct); }
+.admin-status-badge.inactive { background: rgba(255,77,109,.15); color: var(--wrong); }

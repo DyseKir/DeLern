@@ -38,6 +38,7 @@
       <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
+      <a href="#" class="nav-link hidden" id="nav-admin" data-screen="admin">🛠 Админ</a>
     </nav>
     <div class="header-right">
       <button class="lang-btn" id="lang-btn" title="Sprache / Язык">DE</button>
@@ -432,6 +433,14 @@
       </div>
     </div>
 
+    <!-- ADMIN -->
+    <div id="screen-admin" class="screen">
+      <div class="screen-header">
+        <h2 class="screen-title">🛠 Админ-панель — пользователи</h2>
+      </div>
+      <div id="admin-users-list" class="admin-users-list"></div>
+    </div>
+
   </main>
 
   <!-- GRAMMAR MODAL -->
@@ -459,6 +468,9 @@
     </defs>
   </svg>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="assets/js/supabase-config.js?v=20260734"></script>
+  <script src="assets/js/auth.js?v=20260734"></script>
   <script src="db/words.js?v=20260734"></script>
   <script src="db/grammar.js?v=20260734"></script>
   <script src="db/translations_uk.js?v=20260734"></script>
