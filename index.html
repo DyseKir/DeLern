@@ -54,6 +54,30 @@
 
     <!-- HOME -->
     <div id="screen-home" class="screen active">
+
+      <div class="level-bar" id="level-bar">
+        <div class="level-card selected" data-level="A1">
+          <span class="level-emoji">🏁</span>
+          <span class="level-code">A1</span>
+          <span class="level-name" data-i18n="a1_name">(Anfänger)</span>
+        </div>
+        <div class="level-card" data-level="A2">
+          <span class="level-emoji">📝</span>
+          <span class="level-code">A2</span>
+          <span class="level-name" data-i18n="a2_name">(Grundlagen)</span>
+        </div>
+        <div class="level-card" data-level="B1">
+          <span class="level-emoji">📊</span>
+          <span class="level-code">B1</span>
+          <span class="level-name" data-i18n="b1_name">(Fortgeschritten)</span>
+        </div>
+        <div class="level-card" data-level="B2">
+          <span class="level-emoji">🎓</span>
+          <span class="level-code">B2</span>
+          <span class="level-name" data-i18n="b2_name">(Selbstständig)</span>
+        </div>
+      </div>
+
       <div class="home-layout">
 
         <div class="home-left">
@@ -62,32 +86,10 @@
             <span data-i18n="home_subtitle">Wähle deinen Kurs aus.</span>
           </h1>
 
-          <h2 class="section-title" data-i18n="sec_level">Dein Lernniveau wählen</h2>
-          <div class="level-grid">
-            <div class="level-card selected" data-level="A1">
-              <span class="level-emoji">🏁</span>
-              <div class="level-code">A1</div>
-              <div class="level-name" data-i18n="a1_name">(Anfänger)</div>
-              <div class="level-sub"  data-i18n="a1_sub">Active</div>
-            </div>
-            <div class="level-card" data-level="A2">
-              <span class="level-emoji">📝</span>
-              <div class="level-code">A2</div>
-              <div class="level-name" data-i18n="a2_name">(Grundlagen)</div>
-              <div class="level-sub"  data-i18n="a2_sub">Lernolagen</div>
-            </div>
-            <div class="level-card" data-level="B1">
-              <span class="level-emoji">📊</span>
-              <div class="level-code">B1</div>
-              <div class="level-name" data-i18n="b1_name">(Fortgeschritten)</div>
-              <div class="level-sub"  data-i18n="b1_sub">Lerngeschritten</div>
-            </div>
-            <div class="level-card" data-level="B2">
-              <span class="level-emoji">🎓</span>
-              <div class="level-code">B2</div>
-              <div class="level-name" data-i18n="b2_name">(Selbstständig)</div>
-              <div class="level-sub"  data-i18n="b2_sub">Lerne Selbstständig</div>
-            </div>
+          <h2 class="section-title">🏆 <span data-i18n="sec_leaderboard">Рейтинг учеников</span></h2>
+          <div class="leaderboard-card">
+            <div class="leaderboard-chart" id="leaderboard-chart"></div>
+            <div class="leaderboard-legend" id="leaderboard-legend"></div>
           </div>
         </div>
 

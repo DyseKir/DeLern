@@ -105,6 +105,28 @@ create policy "progress_insert_own" on public.progress
 create policy "progress_update_own" on public.progress
   for update using (auth.uid() = user_id);
 
+-- Дневные снимки прогресса — для общего рейтинга, видны всем активным пользователям
+create table if not exists public.progress_daily_snapshots (
+  user_id       uuid not null references public.profiles(id) on delete cascade,
+  display_name  text not null default '',
+  snapshot_date date not null,
+  learned_count int not null default 0,
+  primary key (user_id, snapshot_date)
+);
+
+alter table public.progress_daily_snapshots enable row level security;
+
+create policy "snapshots_select_active_users" on public.progress_daily_snapshots
+  for select using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active)
+  );
+
+create policy "snapshots_insert_own" on public.progress_daily_snapshots
+  for insert with check (auth.uid() = user_id);
+
+create policy "snapshots_update_own" on public.progress_daily_snapshots
+  for update using (auth.uid() = user_id);
+
 -- ══════════════════════════════════════════════════════════════
 -- ПОСЛЕ ТОГО как вы сами зарегистрируетесь на сайте под своей почтой —
 -- выполните эту строку отдельно, подставив свою почту, чтобы стать админом:

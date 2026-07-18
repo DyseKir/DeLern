@@ -23,6 +23,7 @@ const TR = {
     user_hi: 'Hi!',
     sec_level: 'Dein Lernniveau wählen',
     sec_area:  'Lernbereich wählen',
+    sec_leaderboard: 'Bestenliste',
     a1_name:'(Anfänger)',      a1_sub:'Active',
     a2_name:'(Grundlagen)',    a2_sub:'Lernolagen',
     b1_name:'(Fortgeschritten)', b1_sub:'Lerngeschritten',
@@ -85,6 +86,7 @@ const TR = {
     user_hi: 'Привет!',
     sec_level: 'Выбери уровень',
     sec_area:  'Выбери раздел',
+    sec_leaderboard: 'Рейтинг учеников',
     a1_name:'(Начинающий)',    a1_sub:'Активный',
     a2_name:'(Основы)',        a2_sub:'Учусь',
     b1_name:'(Продвинутый)',   b1_sub:'Продвигаюсь',
@@ -147,6 +149,7 @@ const TR = {
     user_hi: 'Привіт!',
     sec_level: 'Обери рівень',
     sec_area:  'Обери розділ',
+    sec_leaderboard: 'Рейтинг учнів',
     a1_name:'(Початківець)',   a1_sub:'Активний',
     a2_name:'(Основи)',        a2_sub:'Навчаюсь',
     b1_name:'(Просунутий)',    b1_sub:'Просуваюсь',
@@ -255,6 +258,10 @@ function t(key, ...args) {
 }
 /* lstr(de, ru, uk) — inline трёхъязычная строка */
 function lstr(de, ru, uk) { return lang==='de' ? de : lang==='uk' ? (uk||ru) : ru; }
+/* Экранирование пользовательского текста (имена, заметки) перед вставкой в innerHTML/SVG */
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
 /* lname(item) — имя товара по текущему языку */
 function lname(item) { return lang==='de' ? item.name_de : lang==='uk' ? (item.name_uk||item.name_ru) : item.name_ru; }
 
@@ -1123,7 +1130,7 @@ function updateProfileUI() {
     dd.innerHTML = `
       <div class="profile-option po-info">
         <span class="po-avatar po-av-letter">${prof.avatar}</span>
-        <span class="po-name">${(currentUserProfile && currentUserProfile.email) || prof.name}</span>
+        <span class="po-name">${escapeHtml((currentUserProfile && currentUserProfile.email) || prof.name)}</span>
       </div>
       <div class="profile-option po-logout" id="po-logout">
         <span class="po-avatar">⎋</span>
@@ -1150,6 +1157,80 @@ function refreshOverallBar() {
   $('overall-pct').textContent       = pct+'%';
   const wc = $('overall-words-count');
   if (wc) wc.textContent = `⭐ ${learned} / ${total} ${lstr('Wörter','слов','слів')}`;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   РЕЙТИНГ УЧЕНИКОВ (главная страница, виден всем)
+══════════════════════════════════════════════════════════════ */
+const LEADERBOARD_COLORS = ['#3987e5', '#008300', '#d55181', '#c98500', '#199e70', '#d95926', '#9085e9', '#e66767'];
+let leaderboardSeriesCache = null;
+
+async function loadLeaderboard() {
+  const rows = await fetchAllDailySnapshots();
+  const byUser = {};
+  rows.forEach(r => {
+    if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', points: [] };
+    byUser[r.user_id].points.push({ date: r.snapshot_date, value: r.learned_count });
+  });
+  leaderboardSeriesCache = Object.values(byUser)
+    .map(s => ({ ...s, points: s.points.slice().sort((a, b) => a.date.localeCompare(b.date)) }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  renderLeaderboardChart();
+}
+
+function dayOfMonth(dateStr) { return new Date(dateStr + 'T00:00:00').getDate(); }
+
+function renderLeaderboardChart() {
+  const chartWrap = $('leaderboard-chart');
+  const legendWrap = $('leaderboard-legend');
+  if (!chartWrap) return;
+  const series = leaderboardSeriesCache;
+  if (!series || !series.length || !series.some(s => s.points.length)) {
+    chartWrap.innerHTML = `<div class="loading-hint">${lstr('Noch keine Daten diesen Monat','Пока нет данных за этот месяц','Поки немає даних за цей місяць')}</div>`;
+    if (legendWrap) legendWrap.innerHTML = '';
+    return;
+  }
+
+  const maxDay = new Date().getDate();
+  const maxVal = Math.max(5, ...series.flatMap(s => s.points.map(p => p.value)));
+  const W = 640, H = 220, padL = 34, padR = 58, padT = 14, padB = 26;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const xOf = day => padL + (maxDay <= 1 ? 0 : (day - 1) / (maxDay - 1) * innerW);
+  const yOf = val => padT + innerH - (val / maxVal) * innerH;
+
+  const gridLines = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + innerH * (1 - f);
+    return `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" class="lb-grid"/><text x="${padL - 8}" y="${y + 4}" class="lb-axis-label" text-anchor="end">${Math.round(maxVal * f)}</text>`;
+  }).join('');
+  const xLabels = [...new Set([1, Math.max(1, Math.round(maxDay / 2)), maxDay])].map(day =>
+    `<text x="${xOf(day)}" y="${H - 6}" class="lb-axis-label" text-anchor="middle">${day}</text>`
+  ).join('');
+
+  const seriesHtml = series.map((s, i) => {
+    const color = LEADERBOARD_COLORS[i % LEADERBOARD_COLORS.length];
+    const name = escapeHtml(s.name);
+    if (!s.points.length) return '';
+    const pts = s.points.map(p => `${xOf(dayOfMonth(p.date))},${yOf(p.value)}`).join(' ');
+    const last = s.points[s.points.length - 1];
+    const lx = xOf(dayOfMonth(last.date)), ly = yOf(last.value);
+    const dots = s.points.map(p => {
+      const cx = xOf(dayOfMonth(p.date)), cy = yOf(p.value);
+      return `<circle cx="${cx}" cy="${cy}" r="10" fill="transparent"><title>${name} — ${new Date(p.date+'T00:00:00').toLocaleDateString('ru-RU')}: ${p.value} ${lstr('Wörter','слов','слів')}</title></circle>
+              <circle cx="${cx}" cy="${cy}" r="3.5" fill="${color}" stroke="#1a1d2e" stroke-width="1.5"/>`;
+    }).join('');
+    return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}
+      <text x="${lx + 8}" y="${ly + 4}" class="lb-series-label" fill="${color}">${name}</text>`;
+  }).join('');
+
+  chartWrap.innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="lb-svg" preserveAspectRatio="xMidYMid meet">${gridLines}${xLabels}${seriesHtml}</svg>`;
+
+  if (legendWrap) {
+    legendWrap.innerHTML = series.map((s, i) => `
+      <div class="lb-legend-item">
+        <span class="lb-legend-swatch" style="background:${LEADERBOARD_COLORS[i % LEADERBOARD_COLORS.length]}"></span>
+        <span>${escapeHtml(s.name)}</span>
+      </div>`).join('');
+  }
 }
 
 function isCatComplete(level, catKey) {
@@ -2495,8 +2576,8 @@ function renderProfile() {
       <div class="profile-card">
         <div class="profile-card-avatar">${prof.avatar}</div>
         <div class="profile-card-info">
-          <div class="profile-card-name">${prof.name}</div>
-          <div class="profile-card-email">${(currentUserProfile && currentUserProfile.email) || ''}</div>
+          <div class="profile-card-name">${escapeHtml(prof.name)}</div>
+          <div class="profile-card-email">${escapeHtml((currentUserProfile && currentUserProfile.email) || '')}</div>
         </div>
       </div>
       <div class="stat-block"><div class="stat-big" style="color:var(--correct)">${learned.length}</div><div class="stat-label">${t('stat_learned')}</div></div>
@@ -2560,11 +2641,11 @@ async function renderAdminUsersList() {
   wrap.innerHTML = users.map(u => `
     <div class="admin-user-card">
       <div class="admin-user-main">
-        <div class="admin-user-email">${u.email}${u.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
+        <div class="admin-user-email">${escapeHtml(u.email)}${u.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
         <div class="admin-user-meta">${lstr('Registriert','Регистрация','Реєстрація')}: ${new Date(u.created_at).toLocaleDateString('ru-RU')}</div>
         <input type="text" class="admin-note-input" data-uid="${u.id}"
           placeholder="${lstr('Notiz (z.B. bezahlt für Juli)','Заметка (например: оплатил июль)','Нотатка (наприклад: оплатив липень)')}"
-          value="${(u.note||'').replace(/"/g,'&quot;')}">
+          value="${escapeHtml(u.note||'')}">
         <div class="admin-payment-row">
           <label>${lstr('Nächste Zahlung','Следующий платёж','Наступний платіж')}:</label>
           <input type="date" class="admin-payment-input" data-uid="${u.id}" value="${u.next_payment_date || ''}">
@@ -2576,7 +2657,7 @@ async function renderAdminUsersList() {
         <button class="btn-secondary admin-toggle-btn" data-uid="${u.id}" data-active="${u.is_active}">
           ${u.is_active ? lstr('Deaktivieren','Деактивировать','Деактивувати') : lstr('Aktivieren','Активировать','Активувати')}
         </button>
-        <button class="btn-secondary admin-reset-btn" data-email="${u.email}">${lstr('Passwort zurücksetzen','Сбросить пароль','Скинути пароль')}</button>
+        <button class="btn-secondary admin-reset-btn" data-email="${escapeHtml(u.email)}">${lstr('Passwort zurücksetzen','Сбросить пароль','Скинути пароль')}</button>
       </div>
     </div>`).join('');
 
@@ -2619,7 +2700,7 @@ async function renderAdminDashboard() {
   }
   wrap.innerHTML = rows.map(r => `
     <div class="dash-row">
-      <div class="dash-name">${r.display_name || r.email}${r.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
+      <div class="dash-name">${escapeHtml(r.display_name || r.email)}${r.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
       <div class="dash-bar-wrap"><div class="dash-bar-fill" style="width:${r.pct}%"></div></div>
       <div class="dash-pct">${r.pct}%</div>
       <div class="dash-words">${r.learned} / ${r.total} ${lstr('Wörter','слов','слів')}</div>
@@ -3389,16 +3470,17 @@ function onEggClick() {
 
 function showPetCharacter(area, animate) {
   const prof = P();
+  const name = escapeHtml(prof.name);
   const greeting = lang==='ru'
-    ? `Питомец ${prof.name} вылупился! 🎉`
-    : `Das Haustier von ${prof.name} ist geschlüpft! 🎉`;
+    ? `Питомец ${name} вылупился! 🎉`
+    : `Das Haustier von ${name} ist geschlüpft! 🎉`;
   area.innerHTML = `
     <div class="pet-scene ${animate?'pet-appear':''}">
       <p class="pet-greeting">${animate ? greeting : ''}</p>
       <img class="pet-img" src="${prof.petImg}" alt="Pet"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <div class="pet-fallback" style="display:none">🦊</div>
-      <div class="pet-name-badge">${prof.name}</div>
+      <div class="pet-name-badge">${name}</div>
     </div>`;
 }
 
@@ -3736,6 +3818,7 @@ async function finishLogin() {
   await pullCloudProgress(activeProfile);
   if ($('nav-admin')) $('nav-admin').classList.toggle('hidden', currentUserProfile.role !== 'admin');
   updateNotifBadge();
+  loadLeaderboard();
   if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
   else startApp();
 }

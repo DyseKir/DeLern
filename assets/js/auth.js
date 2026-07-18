@@ -99,6 +99,23 @@ async function fetchCloudProgressBlob(userId) {
   return (!error && data && data.data) ? data.data : {};
 }
 
+/* ── Общий рейтинг (дневные снимки, для линейного графика на главной) ── */
+async function upsertDailySnapshot(userId, displayName, learnedCount) {
+  const today = new Date().toISOString().slice(0, 10);
+  return sb.from('progress_daily_snapshots')
+    .upsert({ user_id: userId, display_name: displayName, snapshot_date: today, learned_count: learnedCount }, { onConflict: 'user_id,snapshot_date' });
+}
+async function fetchAllDailySnapshots() {
+  const { data, error } = await sb.from('progress_daily_snapshots').select('*').order('snapshot_date', { ascending: true });
+  if (error) return [];
+  return data;
+}
+function syncDailySnapshotFromMerged(userId, merged) {
+  if (typeof computeUserStats !== 'function') return;
+  const name = (typeof currentUserProfile !== 'undefined' && currentUserProfile && currentUserProfile.display_name) || '';
+  upsertDailySnapshot(userId, name, computeUserStats(merged.prog).learned);
+}
+
 /* ── Загрузка прогресса из облака при входе — сливается с тем, что уже
    есть локально (на случай если это устройство тоже успело что-то накопить),
    и сразу отправляет объединённый результат обратно в облако. ── */
@@ -108,6 +125,7 @@ async function pullCloudProgress(userId) {
   const merged = mergeProgressBlobs(localBlob, cloudBlob);
   writeLocalProgressBlob(userId, merged);
   await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', userId);
+  syncDailySnapshotFromMerged(userId, merged);
 }
 
 /* ── Выгрузка прогресса из localStorage в облако (дебаунс) ──
@@ -125,6 +143,7 @@ async function pushCloudProgress(userId) {
   const merged = mergeProgressBlobs(localBlob, cloudBlob);
   writeLocalProgressBlob(userId, merged);
   await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', userId);
+  syncDailySnapshotFromMerged(userId, merged);
 }
 
 /* Досрочно "проталкиваем" несинхронизированные изменения при сворачивании/закрытии
@@ -174,6 +193,7 @@ async function claimLegacyAccount(newUserId, legacyId) {
   const merged = mergeProgressBlobs(legacyBlob, cloudBlob);
   writeLocalProgressBlob(newUserId, merged);
   await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', newUserId);
+  syncDailySnapshotFromMerged(newUserId, merged);
   markLegacyClaimed(legacyId);
   markLegacyDecided(newUserId);
 }

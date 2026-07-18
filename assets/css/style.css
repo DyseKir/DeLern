@@ -410,33 +410,36 @@ body {
 }
 
 /* ══════════════════════════════════════════════════
-   LEVEL GRID
+   LEVEL BAR (компактная панель уровней под навбаром)
 ══════════════════════════════════════════════════ */
-.level-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.level-bar { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
 
 .level-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 18px 16px;
+  border-radius: 999px;
+  padding: 8px 16px;
   cursor: pointer;
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
 .level-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: var(--accent);
   box-shadow: var(--sh);
 }
 .level-card.selected {
   border-color: var(--accent);
   background: linear-gradient(135deg,#1e2235,#23204a);
-  box-shadow: 0 0 0 1px var(--accent), var(--sh);
+  box-shadow: 0 0 0 1px var(--accent);
 }
-.level-emoji  { font-size: 20px; display: block; margin-bottom: 8px; }
-.level-code   { font-size: 2.1rem; font-weight: 800; line-height: 1; }
-.level-name   { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-.level-sub    { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
-.level-card.selected .level-sub { color: var(--accent); }
+.level-emoji  { font-size: 16px; line-height: 1; }
+.level-code   { font-size: 15px; font-weight: 800; line-height: 1; }
+.level-name   { font-size: 12px; color: var(--text-muted); }
+.level-card.selected .level-name { color: var(--accent); }
+@media (max-width: 640px) { .level-name { display: none; } }
 
 /* ══════════════════════════════════════════════════
    USER CARD
@@ -1971,3 +1974,18 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
   .dash-row { grid-template-columns: 1fr; gap: 6px; }
   .dash-pct, .dash-words { text-align: left; }
 }
+
+/* ── Рейтинг учеников (главная) ── */
+.leaderboard-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 18px;
+}
+.lb-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.lb-grid { stroke: var(--border); stroke-width: 1; }
+.lb-axis-label { fill: var(--text-muted); font-size: 10px; font-family: inherit; }
+.lb-series-label { font-size: 11px; font-weight: 700; font-family: inherit; }
+.leaderboard-legend { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.lb-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+.lb-legend-swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
