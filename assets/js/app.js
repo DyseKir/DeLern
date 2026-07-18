@@ -891,6 +891,32 @@ function updateEuroDisplay() {
   if ($('euro-balance-header')) $('euro-balance-header').textContent = v;
   if ($('euro-balance-shop'))   $('euro-balance-shop').textContent   = v;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ЧТО НОВОГО (колокольчик)
+══════════════════════════════════════════════════════════════ */
+function latestChangelogId() {
+  const list = window.CHANGELOG_DATA || [];
+  return list.length ? Math.max(...list.map(e => e.id)) : 0;
+}
+function getSeenChangelogId() { return parseInt(localStorage.getItem('dl_changelog_seen') || '0', 10); }
+function updateNotifBadge() {
+  const dot = $('notif-dot');
+  if (dot) dot.classList.toggle('hidden', getSeenChangelogId() >= latestChangelogId());
+}
+function openChangelogModal() {
+  const list = (window.CHANGELOG_DATA || []).slice().sort((a, b) => b.id - a.id);
+  const html = list.map(e => `
+    <div class="changelog-entry">
+      <div class="changelog-date">${new Date(e.date).toLocaleDateString('ru-RU')}</div>
+      <h3 class="changelog-title">${e.title}</h3>
+      <ul class="changelog-list">${e.items.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>`).join('') || `<div class="loading-hint">${lstr('Noch nichts Neues','Пока новостей нет','Поки новин немає')}</div>`;
+  $('changelog-modal-content').innerHTML = `<h2>🔔 ${lstr('Was ist neu','Что нового','Що нового')}</h2>${html}`;
+  $('changelog-modal').classList.remove('hidden');
+  localStorage.setItem('dl_changelog_seen', String(latestChangelogId()));
+  updateNotifBadge();
+}
 function loadShop()   { try { return JSON.parse(localStorage.getItem(P().shopKey)||'[]'); } catch { return []; } }
 function saveShop(a)  { localStorage.setItem(P().shopKey, JSON.stringify(a)); queueCloudSync(); }
 function loadUsed()   { try { return JSON.parse(localStorage.getItem(P().usedKey)||'[]'); } catch { return []; } }
@@ -2490,8 +2516,40 @@ function renderProfile() {
 /* ══════════════════════════════════════════════════════════════
    АДМИН-ПАНЕЛЬ
 ══════════════════════════════════════════════════════════════ */
+function daysUntil(dateStr) {
+  if (!dateStr) return null;
+  const target = new Date(dateStr + 'T00:00:00');
+  const now = new Date(); now.setHours(0,0,0,0);
+  return Math.round((target - now) / 86400000);
+}
+function paymentBadgeHtml(dateStr) {
+  const days = daysUntil(dateStr);
+  if (days === null) return `<span class="admin-payment-badge none">${lstr('Kein Datum','Дата не задана','Дата не задана')}</span>`;
+  const cls = days < 0 ? 'overdue' : days <= 7 ? 'soon' : 'ok';
+  const label = days < 0
+    ? lstr(`Überfällig seit ${Math.abs(days)} Tagen`, `Просрочено на ${Math.abs(days)} дн.`, `Прострочено на ${Math.abs(days)} дн.`)
+    : days === 0
+      ? lstr('Heute fällig','Платёж сегодня','Платіж сьогодні')
+      : lstr(`Noch ${days} Tage`, `Осталось ${days} дн.`, `Залишилось ${days} дн.`);
+  return `<span class="admin-payment-badge ${cls}">${label}</span>`;
+}
+function computeUserStats(prog) {
+  const p = prog || {};
+  let total = 0, learned = 0;
+  (window.VOCAB_DATA || []).forEach(cat => (cat.words || []).forEach(w => {
+    total++;
+    if (p[w.id] && p[w.id].status === 'learned') learned++;
+  }));
+  return { total, learned, pct: total ? Math.round(learned / total * 100) : 0 };
+}
+
 async function renderAdminScreen() {
   show('admin');
+  await renderAdminUsersList();
+  if (!$('admin-dashboard').classList.contains('hidden')) await renderAdminDashboard();
+}
+
+async function renderAdminUsersList() {
   const wrap = $('admin-users-list');
   wrap.innerHTML = `<div class="loading-hint">${lstr('Lädt…','Загрузка…','Завантаження…')}</div>`;
   const users = await adminListProfiles();
@@ -2507,6 +2565,11 @@ async function renderAdminScreen() {
         <input type="text" class="admin-note-input" data-uid="${u.id}"
           placeholder="${lstr('Notiz (z.B. bezahlt für Juli)','Заметка (например: оплатил июль)','Нотатка (наприклад: оплатив липень)')}"
           value="${(u.note||'').replace(/"/g,'&quot;')}">
+        <div class="admin-payment-row">
+          <label>${lstr('Nächste Zahlung','Следующий платёж','Наступний платіж')}:</label>
+          <input type="date" class="admin-payment-input" data-uid="${u.id}" value="${u.next_payment_date || ''}">
+          ${paymentBadgeHtml(u.next_payment_date)}
+        </div>
       </div>
       <div class="admin-user-actions">
         <span class="admin-status-badge ${u.is_active ? 'active' : 'inactive'}">${u.is_active ? lstr('Aktiv','Активен','Активний') : lstr('Inaktiv','Не активен','Не активний')}</span>
@@ -2520,7 +2583,7 @@ async function renderAdminScreen() {
   wrap.querySelectorAll('.admin-toggle-btn').forEach(btn => btn.addEventListener('click', async () => {
     btn.disabled = true;
     await adminSetActive(btn.dataset.uid, btn.dataset.active !== 'true');
-    renderAdminScreen();
+    renderAdminUsersList();
   }));
   wrap.querySelectorAll('.admin-reset-btn').forEach(btn => btn.addEventListener('click', async () => {
     btn.disabled = true;
@@ -2533,6 +2596,34 @@ async function renderAdminScreen() {
     const uid = inp.dataset.uid, val = inp.value;
     noteTimer = setTimeout(() => adminSetNote(uid, val), 800);
   }));
+  wrap.querySelectorAll('.admin-payment-input').forEach(inp => inp.addEventListener('change', async () => {
+    await adminSetPaymentDate(inp.dataset.uid, inp.value);
+    renderAdminUsersList();
+  }));
+}
+
+async function renderAdminDashboard() {
+  const wrap = $('admin-dashboard');
+  wrap.innerHTML = `<div class="loading-hint">${lstr('Lädt…','Загрузка…','Завантаження…')}</div>`;
+  const [users, progressRows] = await Promise.all([adminListProfiles(), adminListAllProgress()]);
+  const progByUser = {};
+  progressRows.forEach(r => { progByUser[r.user_id] = (r.data && r.data.prog) || {}; });
+
+  const rows = users
+    .map(u => ({ ...u, ...computeUserStats(progByUser[u.id]) }))
+    .sort((a, b) => b.pct - a.pct);
+
+  if (!rows.length) {
+    wrap.innerHTML = `<div class="loading-hint">${lstr('Keine Daten','Нет данных','Немає даних')}</div>`;
+    return;
+  }
+  wrap.innerHTML = rows.map(r => `
+    <div class="dash-row">
+      <div class="dash-name">${r.display_name || r.email}${r.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
+      <div class="dash-bar-wrap"><div class="dash-bar-fill" style="width:${r.pct}%"></div></div>
+      <div class="dash-pct">${r.pct}%</div>
+      <div class="dash-words">${r.learned} / ${r.total} ${lstr('Wörter','слов','слів')}</div>
+    </div>`).join('');
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3462,6 +3553,22 @@ function initEvents() {
     if(e.target===$('grammar-modal')) $('grammar-modal').classList.add('hidden');
   });
 
+  /* Колокольчик "Что нового" */
+  $('notif-btn')?.addEventListener('click', openChangelogModal);
+  $('changelog-modal-close')?.addEventListener('click', () => $('changelog-modal').classList.add('hidden'));
+  $('changelog-modal')?.addEventListener('click', e => {
+    if (e.target === $('changelog-modal')) $('changelog-modal').classList.add('hidden');
+  });
+
+  /* Вкладки админ-панели */
+  document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    const tab = btn.dataset.tab;
+    $('admin-users-list').classList.toggle('hidden', tab !== 'users');
+    $('admin-dashboard').classList.toggle('hidden', tab !== 'dashboard');
+    if (tab === 'dashboard') renderAdminDashboard();
+  }));
+
   /* Переключатель профиля */
   $('header-avatar').addEventListener('click', e => {
     e.stopPropagation();
@@ -3628,6 +3735,7 @@ async function finishLogin() {
   hideRegOverlay();
   await pullCloudProgress(activeProfile);
   if ($('nav-admin')) $('nav-admin').classList.toggle('hidden', currentUserProfile.role !== 'admin');
+  updateNotifBadge();
   if (appStarted) { S.cart = {}; updateProfileUI(); migrateCoins(); updateCoinDisplay(); updateEuroDisplay(); rerenderCurrent(); refreshOverallBar(); }
   else startApp();
 }

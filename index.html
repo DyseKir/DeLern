@@ -42,7 +42,7 @@
     </nav>
     <div class="header-right">
       <button class="lang-btn" id="lang-btn" title="Sprache / Язык">DE</button>
-      <button class="notif-btn">🔔</button>
+      <button class="notif-btn" id="notif-btn">🔔<span class="notif-dot hidden" id="notif-dot"></span></button>
       <div class="profile-switcher" id="profile-switcher">
         <div class="avatar" id="header-avatar">👨</div>
         <div class="profile-dropdown hidden" id="profile-dropdown"></div>
@@ -436,9 +436,14 @@
     <!-- ADMIN -->
     <div id="screen-admin" class="screen">
       <div class="screen-header">
-        <h2 class="screen-title">🛠 Админ-панель — пользователи</h2>
+        <h2 class="screen-title">🛠 Админ-панель</h2>
+      </div>
+      <div class="admin-tabs" id="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="users">Пользователи</button>
+        <button class="admin-tab-btn" data-tab="dashboard">Дашборд</button>
       </div>
       <div id="admin-users-list" class="admin-users-list"></div>
+      <div id="admin-dashboard" class="admin-dashboard hidden"></div>
     </div>
 
   </main>
@@ -452,6 +457,14 @@
         <button class="btn-secondary" id="modal-needs-review" data-i18n="modal_needs_review">Nochmal lernen</button>
         <button class="btn-primary"   id="modal-mark-done"    data-i18n="modal_mark_done">Verstanden ✓</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ЧТО НОВОГО -->
+  <div class="modal-overlay hidden" id="changelog-modal">
+    <div class="modal">
+      <button class="modal-close" id="changelog-modal-close">✕</button>
+      <div id="changelog-modal-content"></div>
     </div>
   </div>
 
@@ -474,6 +487,7 @@
   <script src="db/words.js?v=20260734"></script>
   <script src="db/grammar.js?v=20260734"></script>
   <script src="db/translations_uk.js?v=20260734"></script>
+  <script src="db/changelog.js?v=20260734"></script>
   <script src="assets/js/app.js?v=20260734"></script>
 </body>
 </html>

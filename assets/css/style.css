@@ -219,7 +219,16 @@ body {
 .nav-link.active { color: var(--text); border-bottom-color: var(--accent); }
 
 .header-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-.notif-btn { background: none; border: none; cursor: pointer; font-size: 18px; opacity: .7; }
+.notif-btn { position: relative; background: none; border: none; cursor: pointer; font-size: 18px; opacity: .7; }
+.notif-dot {
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 9px; height: 9px;
+  background: var(--wrong);
+  border-radius: 50%;
+  border: 2px solid var(--bg2);
+}
+.notif-dot.hidden { display: none; }
 
 .lang-btn {
   background: var(--bg4);
@@ -1081,6 +1090,14 @@ body {
   border-left: 3px solid var(--accent);
   font-size: 13px; line-height: 1.6;
 }
+
+/* ── Что нового ── */
+.changelog-entry { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+.changelog-entry:first-of-type { margin-top: 14px; padding-top: 0; border-top: none; }
+.changelog-date { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.changelog-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.changelog-list { padding-left: 20px; font-size: 14px; line-height: 1.7; color: var(--text); }
+.changelog-list li { margin-bottom: 4px; }
 .modal-footer {
   display: flex; gap: 10px; justify-content: flex-end;
   margin-top: 22px; padding-top: 18px;
@@ -1894,3 +1911,63 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 }
 .admin-status-badge.active   { background: rgba(78,203,113,.15); color: var(--correct); }
 .admin-status-badge.inactive { background: rgba(255,77,109,.15); color: var(--wrong); }
+
+.admin-payment-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap; font-size: 13px; }
+.admin-payment-row label { color: var(--text-muted); }
+.admin-payment-input {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 13px;
+}
+.admin-payment-input:focus { outline: none; border-color: var(--accent); }
+.admin-payment-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.admin-payment-badge.ok      { background: rgba(78,203,113,.15); color: var(--correct); }
+.admin-payment-badge.soon    { background: rgba(245,158,11,.15); color: var(--warn); }
+.admin-payment-badge.overdue { background: rgba(255,77,109,.15); color: var(--wrong); }
+.admin-payment-badge.none    { background: var(--bg4); color: var(--text-muted); }
+
+/* ── Вкладки админ-панели ── */
+.admin-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+.admin-tab-btn {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color .15s, color .15s;
+}
+.admin-tab-btn:hover { color: var(--text); }
+.admin-tab-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(108,99,255,.1); }
+
+/* ── Дашборд сравнения прогресса ── */
+.admin-dashboard { display: flex; flex-direction: column; gap: 10px; }
+.dash-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 48px 110px;
+  align-items: center;
+  gap: 14px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.dash-name { font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dash-bar-wrap { height: 10px; background: var(--bg4); border-radius: 5px; overflow: hidden; }
+.dash-bar-fill { height: 100%; background: linear-gradient(90deg,var(--accent),#8b5cf6); border-radius: 5px; transition: width .5s; }
+.dash-pct { font-size: 13px; font-weight: 700; color: var(--accent); text-align: right; }
+.dash-words { font-size: 12px; color: var(--text-muted); text-align: right; white-space: nowrap; }
+@media (max-width: 640px) {
+  .dash-row { grid-template-columns: 1fr; gap: 6px; }
+  .dash-pct, .dash-words { text-align: left; }
+}

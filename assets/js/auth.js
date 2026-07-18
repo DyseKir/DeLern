@@ -41,19 +41,78 @@ async function fetchMyProfile(userId) {
   return data;
 }
 
-/* ── Загрузка прогресса из облака в localStorage (при входе) ── */
-async function pullCloudProgress(userId) {
-  const { data, error } = await sb.from('progress').select('data').eq('user_id', userId).single();
-  if (error || !data || !data.data) return;
-  const blob = data.data;
+/* ── Слияние прогресса между устройствами ──
+   Синхронизация никогда не заменяет данные "последним, кто записал" —
+   всегда объединяет локальную и облачную версию так, чтобы результат
+   был не хуже, чем на любом из устройств по отдельности. */
+function mergeWordMap(a, b) {
+  const out = { ...(a || {}) };
+  Object.entries(b || {}).forEach(([id, rec]) => {
+    const cur = out[id];
+    if (!cur) { out[id] = rec; return; }
+    const score = r => (r.status === 'learned' ? 1000 : 0) + (r.streak || 0);
+    out[id] = score(rec) > score(cur) ? rec : cur;
+  });
+  return out;
+}
+function mergeArrayLog(a, b) {
+  const seen = new Set(); const out = [];
+  [...(a || []), ...(b || [])].forEach(entry => {
+    const key = JSON.stringify(entry);
+    if (!seen.has(key)) { seen.add(key); out.push(entry); }
+  });
+  return out;
+}
+function mergePet(a, b) {
+  if (!a) return b || { clicks: 0, hatched: false };
+  if (!b) return a;
+  return { clicks: Math.max(a.clicks || 0, b.clicks || 0), hatched: !!(a.hatched || b.hatched) };
+}
+function mergeProgressBlobs(local, cloud) {
+  local = local || {}; cloud = cloud || {};
+  return {
+    prog:  mergeWordMap(local.prog, cloud.prog),
+    defer: mergeArrayLog(local.defer, cloud.defer),
+    mem:   mergeArrayLog(local.mem, cloud.mem),
+    used:  mergeArrayLog(local.used, cloud.used),
+    shop:  mergeArrayLog(local.shop, cloud.shop),
+    exam:  mergeArrayLog(local.exam, cloud.exam),
+    coins: Math.max(local.coins || 0, cloud.coins || 0),
+    pet:   mergePet(local.pet, cloud.pet),
+  };
+}
+function readLocalProgressBlob(userId) {
+  const blob = {};
   PROGRESS_KEYS.forEach(kind => {
-    if (blob[kind] !== undefined) {
-      localStorage.setItem(progressLocalKey(kind, userId), JSON.stringify(blob[kind]));
-    }
+    const raw = localStorage.getItem(progressLocalKey(kind, userId));
+    if (raw !== null) { try { blob[kind] = JSON.parse(raw); } catch { /* skip bad value */ } }
+  });
+  return blob;
+}
+function writeLocalProgressBlob(userId, blob) {
+  PROGRESS_KEYS.forEach(kind => {
+    if (blob[kind] !== undefined) localStorage.setItem(progressLocalKey(kind, userId), JSON.stringify(blob[kind]));
   });
 }
+async function fetchCloudProgressBlob(userId) {
+  const { data, error } = await sb.from('progress').select('data').eq('user_id', userId).single();
+  return (!error && data && data.data) ? data.data : {};
+}
 
-/* ── Выгрузка прогресса из localStorage в облако (дебаунс) ── */
+/* ── Загрузка прогресса из облака при входе — сливается с тем, что уже
+   есть локально (на случай если это устройство тоже успело что-то накопить),
+   и сразу отправляет объединённый результат обратно в облако. ── */
+async function pullCloudProgress(userId) {
+  const cloudBlob = await fetchCloudProgressBlob(userId);
+  const localBlob = readLocalProgressBlob(userId);
+  const merged = mergeProgressBlobs(localBlob, cloudBlob);
+  writeLocalProgressBlob(userId, merged);
+  await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', userId);
+}
+
+/* ── Выгрузка прогресса из localStorage в облако (дебаунс) ──
+   Перед записью подтягивает актуальное состояние облака и сливается с ним —
+   это защищает от гонки, если другое устройство синхронизировалось только что. */
 let _syncTimer = null;
 function queueCloudSync() {
   if (!activeProfile) return;
@@ -61,13 +120,21 @@ function queueCloudSync() {
   _syncTimer = setTimeout(() => pushCloudProgress(activeProfile), 1500);
 }
 async function pushCloudProgress(userId) {
-  const blob = {};
-  PROGRESS_KEYS.forEach(kind => {
-    const raw = localStorage.getItem(progressLocalKey(kind, userId));
-    if (raw !== null) { try { blob[kind] = JSON.parse(raw); } catch { /* skip bad value */ } }
-  });
-  await sb.from('progress').update({ data: blob, updated_at: new Date().toISOString() }).eq('user_id', userId);
+  const localBlob = readLocalProgressBlob(userId);
+  const cloudBlob = await fetchCloudProgressBlob(userId);
+  const merged = mergeProgressBlobs(localBlob, cloudBlob);
+  writeLocalProgressBlob(userId, merged);
+  await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', userId);
 }
+
+/* Досрочно "проталкиваем" несинхронизированные изменения при сворачивании/закрытии
+   вкладки — иначе последние секунды прогресса могут не успеть уйти в облако. */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && activeProfile) {
+    clearTimeout(_syncTimer);
+    pushCloudProgress(activeProfile);
+  }
+});
 
 /* ── Перенос старого локального аккаунта (имя + прогресс) в облачный ──
    Несколько человек могли раньше сидеть в одном браузере (общий компьютер),
@@ -98,15 +165,15 @@ function legacyLocalKey(kind, legacyId) {
     used: 'dl_used_', pet: 'dl_pet_', mem: 'dl_mem_', exam: 'dl_exam_' }[kind] + legacyId;
 }
 async function claimLegacyAccount(newUserId, legacyId) {
-  const blob = {};
+  const legacyBlob = {};
   PROGRESS_KEYS.forEach(kind => {
     const raw = localStorage.getItem(legacyLocalKey(kind, legacyId));
-    if (raw !== null) {
-      try { blob[kind] = JSON.parse(raw); } catch { /* skip bad value */ }
-      localStorage.setItem(progressLocalKey(kind, newUserId), raw);
-    }
+    if (raw !== null) { try { legacyBlob[kind] = JSON.parse(raw); } catch { /* skip bad value */ } }
   });
-  await sb.from('progress').update({ data: blob, updated_at: new Date().toISOString() }).eq('user_id', newUserId);
+  const cloudBlob = await fetchCloudProgressBlob(newUserId);
+  const merged = mergeProgressBlobs(legacyBlob, cloudBlob);
+  writeLocalProgressBlob(newUserId, merged);
+  await sb.from('progress').update({ data: merged, updated_at: new Date().toISOString() }).eq('user_id', newUserId);
   markLegacyClaimed(legacyId);
   markLegacyDecided(newUserId);
 }
@@ -122,4 +189,12 @@ async function adminSetActive(userId, isActive) {
 }
 async function adminSetNote(userId, note) {
   return sb.from('profiles').update({ note }).eq('id', userId);
+}
+async function adminSetPaymentDate(userId, dateStr) {
+  return sb.from('profiles').update({ next_payment_date: dateStr || null }).eq('id', userId);
+}
+async function adminListAllProgress() {
+  const { data, error } = await sb.from('progress').select('user_id, data');
+  if (error) return [];
+  return data;
 }

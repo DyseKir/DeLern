@@ -11,6 +11,7 @@ create table if not exists public.profiles (
   role          text not null default 'user' check (role in ('user','admin')),
   is_active     boolean not null default false,
   note          text not null default '',
+  next_payment_date date,
   created_at    timestamptz not null default now(),
   activated_at  timestamptz
 );
@@ -73,6 +74,7 @@ begin
     new.is_active := old.is_active;
     new.note      := old.note;
     new.email     := old.email;
+    new.next_payment_date := old.next_payment_date;
   end if;
   return new;
 end;
