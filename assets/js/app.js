@@ -3584,7 +3584,7 @@ function renderAuthCard(mode) {
     $('auth-logout-btn').addEventListener('click', doLogout);
 
   } else if (mode === 'claim') {
-    const legacy = getLegacyAccounts();
+    const legacy = getUnclaimedLegacyAccounts();
     card.innerHTML = `
       ${logo}
       <h1 class="reg-title">${lstr('Alten Fortschritt übernehmen?','Перенести старый прогресс?','Перенести старий прогрес?')}</h1>
@@ -3604,7 +3604,7 @@ function renderAuthCard(mode) {
       await continueAfterClaim();
     }));
     $('auth-skip-claim').addEventListener('click', async () => {
-      localStorage.setItem('_legacy_claimed', '1');
+      markLegacyDecided(currentUser.id);
       await continueAfterClaim();
     });
   }
@@ -3639,7 +3639,7 @@ async function handleAuthenticatedSession(session) {
   currentUserProfile = await fetchMyProfile(currentUser.id);
   if (!currentUserProfile) { renderAuthCard('login'); return; }
 
-  if (getLegacyAccounts().length && !localStorage.getItem('_legacy_claimed')) {
+  if (getUnclaimedLegacyAccounts().length && !hasDecidedLegacyClaim(currentUser.id)) {
     renderAuthCard('claim');
     return;
   }

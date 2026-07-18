@@ -69,9 +69,29 @@ async function pushCloudProgress(userId) {
   await sb.from('progress').update({ data: blob, updated_at: new Date().toISOString() }).eq('user_id', userId);
 }
 
-/* ── Перенос старого локального аккаунта (имя + прогресс) в облачный ── */
+/* ── Перенос старого локального аккаунта (имя + прогресс) в облачный ──
+   Несколько человек могли раньше сидеть в одном браузере (общий компьютер),
+   поэтому "забранность" отслеживается по каждому старому профилю отдельно,
+   а не одним общим флагом на весь браузер. */
 function getLegacyAccounts() {
   try { return JSON.parse(localStorage.getItem('dl_accounts') || '[]'); } catch { return []; }
+}
+function getClaimedLegacyIds() {
+  try { return JSON.parse(localStorage.getItem('_legacy_claimed_ids') || '[]'); } catch { return []; }
+}
+function getUnclaimedLegacyAccounts() {
+  const claimed = getClaimedLegacyIds();
+  return getLegacyAccounts().filter(acc => !claimed.includes(acc.id));
+}
+function markLegacyClaimed(legacyId) {
+  const ids = getClaimedLegacyIds();
+  if (!ids.includes(legacyId)) { ids.push(legacyId); localStorage.setItem('_legacy_claimed_ids', JSON.stringify(ids)); }
+}
+function hasDecidedLegacyClaim(userId) {
+  return !!localStorage.getItem('_legacy_decided_' + userId);
+}
+function markLegacyDecided(userId) {
+  localStorage.setItem('_legacy_decided_' + userId, '1');
 }
 function legacyLocalKey(kind, legacyId) {
   return { prog: 'dl_prog_', defer: 'dl_defer_', coins: 'dl_coins_', shop: 'dl_shop_',
@@ -87,7 +107,8 @@ async function claimLegacyAccount(newUserId, legacyId) {
     }
   });
   await sb.from('progress').update({ data: blob, updated_at: new Date().toISOString() }).eq('user_id', newUserId);
-  localStorage.setItem('_legacy_claimed', '1');
+  markLegacyClaimed(legacyId);
+  markLegacyDecided(newUserId);
 }
 
 /* ── Админ-функции ── */
