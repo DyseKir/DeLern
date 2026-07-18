@@ -1210,7 +1210,11 @@ function renderLeaderboardChart() {
     const color = LEADERBOARD_COLORS[i % LEADERBOARD_COLORS.length];
     const name = escapeHtml(s.name);
     if (!s.points.length) return '';
-    const pts = s.points.map(p => `${xOf(dayOfMonth(p.date))},${yOf(p.value)}`).join(' ');
+    /* Линия всегда стартует от 0 в начале месяца — так график читается
+       как рост, даже пока накопилось мало ежедневных точек. */
+    const monthStart = s.points[0].date.slice(0, 8) + '01';
+    const linePoints = dayOfMonth(s.points[0].date) > 1 ? [{ date: monthStart, value: 0 }, ...s.points] : s.points;
+    const pts = linePoints.map(p => `${xOf(dayOfMonth(p.date))},${yOf(p.value)}`).join(' ');
     const last = s.points[s.points.length - 1];
     const lx = xOf(dayOfMonth(last.date)), ly = yOf(last.value);
     const dots = s.points.map(p => {
