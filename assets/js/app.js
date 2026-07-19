@@ -1814,6 +1814,7 @@ function handleConjSubmit() {
 
 function startTypingTest() {
   S.phase = 'test';
+  S.busy  = false; // сбрасываем флаг анимации карточек — иначе кнопки (например "На потом") молча блокируются весь тест
   const p = loadProg();
   // ещё не выученные слова, без дублей (карточки могли требовать по 2 раза)
   const pending = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
