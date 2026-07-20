@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════
    DeutschLernen — main app
    Данные: db/words.js (window.VOCAB_DATA) + db/grammar.js (window.GRAMMAR_DATA)
-   Открывай index.html напрямую — сервер не нужен.
+   Открывай app.html напрямую — сервер не нужен. (index.html — публичный лендинг)
 ══════════════════════════════════════════════════════════════ */
 
 const LEARNED_THRESHOLD = 3;

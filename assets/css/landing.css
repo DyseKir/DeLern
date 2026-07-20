@@ -1,0 +1,235 @@
+/* ══════════════════════════════════════════════════
+   LANDING — использует ту же палитру, что и приложение
+══════════════════════════════════════════════════ */
+:root {
+  --bg:    #0d0f1a;
+  --bg2:   #131625;
+  --bg3:   #1a1d2e;
+  --bg4:   #21253a;
+  --card:  #1e2235;
+  --card2: #252a40;
+  --border:#2a2f4a;
+
+  --text:      #e8e9f0;
+  --text-muted:#9497b8;
+  --text-dim:  #6a6d8a;
+
+  --der:    #4a9eff;
+  --die:    #ff6b8a;
+  --das:    #4ecb71;
+
+  --accent: #6c63ff;
+  --accent2:#8b5cf6;
+  --warn:   #f59e0b;
+
+  --r:  16px;
+  --rs: 10px;
+  --sh: 0 4px 28px rgba(0,0,0,.45);
+}
+
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; max-width: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto Slab', Georgia, serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ── HEADER ── */
+.l-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0;
+}
+.l-logo { display: flex; align-items: center; gap: 10px; }
+.l-logo-badge {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg,#3a3aff,#8b5cf6);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 18px; color: #fff; flex-shrink: 0;
+}
+.l-logo-text { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; }
+.l-header-cta {
+  background: var(--card2); color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--rs); padding: 9px 20px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: border-color .15s, transform .12s;
+}
+.l-header-cta:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.l-hero {
+  position: relative;
+  padding: 64px 0 56px;
+  text-align: center;
+  overflow: hidden;
+}
+.l-hero::before {
+  content: "";
+  position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(closest-side, rgba(108,99,255,.25), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.l-hero > * { position: relative; z-index: 1; }
+.l-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .04em;
+  color: var(--accent2);
+  background: rgba(108,99,255,.12);
+  border: 1px solid rgba(108,99,255,.25);
+  border-radius: 999px; padding: 6px 16px;
+  margin-bottom: 22px;
+}
+.l-hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -.01em;
+  max-width: 15ch;
+  margin: 0 auto 20px;
+  text-wrap: balance;
+}
+.l-hero h1 .hl {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.l-hero p.lede {
+  font-size: 17px; color: var(--text-muted); line-height: 1.65;
+  max-width: 46ch; margin: 0 auto 34px;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+.l-cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.l-btn-primary {
+  background: var(--accent); color: #fff; border: none;
+  border-radius: var(--rs); padding: 14px 30px;
+  font-size: 15.5px; font-weight: 700; cursor: pointer;
+  font-family: inherit;
+  transition: background .15s, transform .12s;
+  box-shadow: 0 8px 24px rgba(108,99,255,.35);
+}
+.l-btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.l-btn-ghost {
+  background: transparent; color: var(--text-muted); border: 1px solid var(--border);
+  border-radius: var(--rs); padding: 14px 26px;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  font-family: inherit;
+  transition: border-color .15s, color .15s;
+}
+.l-btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+.l-trust {
+  font-size: 13px; color: var(--text-dim);
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── SECTION SHARED ── */
+.l-section { padding: 64px 0; }
+.l-section-head { text-align: center; max-width: 52ch; margin: 0 auto 40px; }
+.l-section-eyebrow {
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--accent2); margin-bottom: 10px;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+.l-section h2 { font-size: clamp(24px,3vw,30px); font-weight: 800; letter-spacing: -.01em; text-wrap: balance; }
+.l-section-sub {
+  font-size: 15px; color: var(--text-muted); margin-top: 10px; line-height: 1.6;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── FEATURES ── */
+.l-feat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 900px) { .l-feat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .l-feat-grid { grid-template-columns: 1fr; } }
+.l-feat-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 24px 22px;
+  transition: transform .15s, border-color .15s;
+}
+.l-feat-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.l-feat-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 16px;
+}
+.l-feat-card h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 10px; }
+.l-feat-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.l-feat-card li {
+  font-size: 13px; color: var(--text-muted); line-height: 1.5; padding-left: 14px; position: relative;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+.l-feat-card li::before { content: "—"; position: absolute; left: 0; color: var(--text-dim); }
+
+/* ── SAMPLE / SCREENSHOT STRIP ── */
+.l-levels { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+.l-level-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card2); border: 1px solid var(--border); border-radius: 999px;
+  padding: 9px 18px; font-size: 13.5px; font-weight: 700;
+}
+.l-level-pill .lv-emoji { font-size: 15px; }
+.l-level-pill .lv-name {
+  font-weight: 400; color: var(--text-muted); font-size: 12px;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── PRICING ── */
+.l-price-card {
+  max-width: 420px; margin: 0 auto;
+  background: linear-gradient(160deg, var(--card), var(--card2));
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px 36px;
+  text-align: center;
+  box-shadow: var(--sh);
+}
+.l-price-num {
+  font-size: 56px; font-weight: 800; letter-spacing: -.02em; line-height: 1;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin: 6px 0 4px;
+}
+.l-price-num sup { font-size: 18px; font-weight: 700; -webkit-text-fill-color: var(--text-muted); margin-left: 4px; }
+.l-price-list {
+  list-style: none; text-align: left; margin: 26px 0 30px;
+  display: flex; flex-direction: column; gap: 12px;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+.l-price-list li { font-size: 14px; color: var(--text-muted); padding-left: 26px; position: relative; }
+.l-price-list li::before { content: "✓"; position: absolute; left: 0; color: var(--das); font-weight: 700; }
+.l-price-note {
+  font-size: 12.5px; color: var(--text-dim); margin-top: 16px; line-height: 1.5;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── FLEX PITCH ── */
+.l-flex {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 32px 36px;
+  display: flex; align-items: center; gap: 28px;
+}
+@media (max-width: 640px) { .l-flex { flex-direction: column; text-align: center; } }
+.l-flex-emoji { font-size: 44px; flex-shrink: 0; }
+.l-flex h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.l-flex p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── FOOTER CTA ── */
+.l-footer-cta { text-align: center; padding: 72px 0 40px; }
+.l-footer-cta h2 { font-size: clamp(22px,3vw,28px); font-weight: 800; margin-bottom: 26px; text-wrap: balance; }
+
+.l-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}

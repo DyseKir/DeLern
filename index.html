@@ -1,495 +1,151 @@
-﻿<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeutschLernen – Deutsch lernen mit System</title>
+  <title>DeutschLernen — учи немецкий системно</title>
+  <meta name="description" content="Слова, грамматика и экзамены по-немецки: карточки с артиклями, контрольные тесты, прогресс в облаке. Первые уроки — бесплатно.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1">
   <link rel="apple-touch-icon" href="assets/favicon.svg?v=1">
   <meta name="theme-color" content="#6c63ff">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260719b">
+  <link rel="stylesheet" href="assets/css/landing.css?v=20260719b">
+  <script>
+    /* Если это переход из письма Supabase (подтверждение почты / сброс пароля) —
+       сразу в приложение, а не на лендинг, сохранив параметры ссылки. */
+    if (location.hash.includes('access_token') || location.hash.includes('type=recovery') || location.search.includes('code=')) {
+      location.replace('app.html' + location.search + location.hash);
+    }
+  </script>
 </head>
 <body>
 
-  <!-- REGISTRATION / LOGIN OVERLAY -->
-  <div id="reg-overlay" class="reg-overlay">
-    <div class="reg-card" id="reg-card"></div>
+  <div class="container">
+    <header class="l-header">
+      <div class="l-logo">
+        <div class="l-logo-badge">D</div>
+        <span class="l-logo-text">DEUTSCHLERNEN</span>
+      </div>
+      <a href="app.html"><button class="l-header-cta">Войти</button></a>
+    </header>
   </div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <button class="burger-btn" id="burger-btn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="logo">
-      <div class="logo-badge">D</div>
-      <span class="logo-text">DEUTSCHLERNEN</span>
-    </div>
-    <nav class="nav" id="main-nav">
-      <a href="#" class="nav-link active" data-screen="home"       data-i18n="nav_home">Startseite</a>
-      <a href="#" class="nav-link"        data-screen="lektionen"  data-i18n="nav_lektionen">Lektionen</a>
-      <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
-      <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
-      <a href="#" class="nav-link nav-prep" data-screen="prep"     data-i18n="nav_prep">Prüfung morgen</a>
-      <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
-      <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
-      <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
-      <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
-      <a href="#" class="nav-link hidden" id="nav-admin" data-screen="admin">🛠 Админ</a>
-    </nav>
-    <div class="header-right">
-      <button class="lang-btn" id="lang-btn" title="Sprache / Язык">DE</button>
-      <button class="notif-btn" id="notif-btn">🔔<span class="notif-dot hidden" id="notif-dot"></span></button>
-      <div class="profile-switcher" id="profile-switcher">
-        <div class="avatar" id="header-avatar">👨</div>
-        <div class="profile-dropdown hidden" id="profile-dropdown"></div>
+  <section class="l-hero">
+    <div class="container">
+      <span class="l-eyebrow">🇩🇪 Немецкий с нуля до B2</span>
+      <h1>Учи немецкий <span class="hl">системно</span>, а не хаотично</h1>
+      <p class="lede">Карточки со словами и артиклями, контрольные тесты, грамматика и экзамены — в одном месте. Прогресс сохраняется в облаке и виден на любом устройстве.</p>
+      <div class="l-cta-row">
+        <a href="app.html"><button class="l-btn-primary">Начать учиться →</button></a>
+        <a href="app.html"><button class="l-btn-ghost">Уже есть аккаунт? Войти</button></a>
       </div>
+      <div class="l-trust">1400+ слов · уровни A1–B2 · немецкий / русский / украинский интерфейс</div>
     </div>
-  </header>
+  </section>
 
-  <main class="main">
-
-    <!-- HOME -->
-    <div id="screen-home" class="screen active">
-
-      <div class="level-bar" id="level-bar">
-        <div class="level-card selected" data-level="A1">
-          <span class="level-emoji">🏁</span>
-          <span class="level-code">A1</span>
-          <span class="level-name" data-i18n="a1_name">(Anfänger)</span>
-        </div>
-        <div class="level-card" data-level="A2">
-          <span class="level-emoji">📝</span>
-          <span class="level-code">A2</span>
-          <span class="level-name" data-i18n="a2_name">(Grundlagen)</span>
-        </div>
-        <div class="level-card" data-level="B1">
-          <span class="level-emoji">📊</span>
-          <span class="level-code">B1</span>
-          <span class="level-name" data-i18n="b1_name">(Fortgeschritten)</span>
-        </div>
-        <div class="level-card" data-level="B2">
-          <span class="level-emoji">🎓</span>
-          <span class="level-code">B2</span>
-          <span class="level-name" data-i18n="b2_name">(Selbstständig)</span>
-        </div>
+  <section class="l-section">
+    <div class="container">
+      <div class="l-section-head">
+        <div class="l-section-eyebrow">Что внутри</div>
+        <h2>Всё, что нужно для системного изучения</h2>
+        <p class="l-section-sub">Не набор случайных упражнений, а последовательный путь от первых слов до подготовки к экзамену.</p>
       </div>
 
-      <div class="home-layout">
-
-        <div class="home-left">
-          <h1 class="home-title">
-            <span data-i18n="home_title">Willkommen bei DeutschLernen!</span><br>
-            <span data-i18n="home_subtitle">Wähle deinen Kurs aus.</span>
-          </h1>
-
-          <h2 class="section-title">🏆 <span data-i18n="sec_leaderboard">Рейтинг учеников</span></h2>
-          <div class="leaderboard-card">
-            <div class="leaderboard-chart" id="leaderboard-chart"></div>
-            <div class="leaderboard-legend" id="leaderboard-legend"></div>
-          </div>
+      <div class="l-feat-grid">
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="background:rgba(74,158,255,.15)">📖</div>
+          <h3>Обучение</h3>
+          <ul>
+            <li>Карточки слов с артиклями der/die/das, озвучкой и транскрипцией</li>
+            <li>Слово закрепляется только после 3 верных ответов подряд в контрольном тесте</li>
+            <li>Грамматика: темы и правила с примерами</li>
+            <li>Перевод предложений и общий экзамен по всем выученным словам</li>
+          </ul>
         </div>
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="background:rgba(78,203,113,.15)">🏆</div>
+          <h3>Мотивация</h3>
+          <ul>
+            <li>«Отложить на потом» — сложные слова не теряются, к ним можно вернуться</li>
+            <li>Рейтинг учеников — виден прогресс друг друга</li>
+          </ul>
+        </div>
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="background:rgba(255,107,138,.15)">👤</div>
+          <h3>Личный кабинет</h3>
+          <ul>
+            <li>Свой аккаунт — прогресс не теряется при смене устройства</li>
+            <li>Статистика по каждой категории отдельно</li>
+            <li>Интерфейс на немецком, русском и украинском — переключается на лету</li>
+          </ul>
+        </div>
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="background:rgba(108,99,255,.15)">✨</div>
+          <h3>Гибкость</h3>
+          <ul>
+            <li>Контент подстраивается под вас — пришлите список слов, и он появится на сайте</li>
+            <li>Раздел «Что нового» — понятно, что добавилось и зачем</li>
+            <li>Живой сервис, а не безликое приложение</li>
+          </ul>
+        </div>
+      </div>
 
-        <div class="home-right">
+      <div class="l-levels">
+        <div class="l-level-pill">🏁 A1 <span class="lv-name">Начинающий</span></div>
+        <div class="l-level-pill">📝 A2 <span class="lv-name">Основы</span></div>
+        <div class="l-level-pill">📊 B1 <span class="lv-name">Продвинутый</span></div>
+        <div class="l-level-pill">🎓 B2 <span class="lv-name">Самостоятельный</span></div>
+      </div>
+    </div>
+  </section>
 
-          <div class="user-card">
-            <div class="user-greeting">
-              <div>
-                <div class="user-hi" id="user-hi">Привет!</div>
-                <div class="user-progress-row">
-                  <span class="user-level-badge" id="current-level-badge">A1</span>
-                  <div class="progress-track">
-                    <div class="progress-fill" id="overall-progress" style="width:0%"></div>
-                  </div>
-                  <span class="progress-pct" id="overall-pct">0%</span>
-                </div>
-                <div class="user-words-count" id="overall-words-count">⭐ 0 / 0</div>
-              </div>
-              <div class="avatar-lg" id="user-avatar-lg">👨</div>
-            </div>
-          </div>
-
-          <h2 class="section-title" data-i18n="sec_area">Lernbereich wählen</h2>
-          <div class="area-grid">
-            <div class="area-card grammar-card">
-              <div class="area-icons">📖 💡</div>
-              <div class="area-title" data-i18n="area_grammar_title">GRAMMATIK &amp; REGELN</div>
-              <div class="area-desc"  data-i18n="area_grammar_desc">Lerne grundlegende Grammatikthemen und Regeln.</div>
-            </div>
-            <div class="area-card vocab-card">
-              <div class="area-icons">📘 🎯</div>
-              <div class="area-title" data-i18n="area_vocab_title">WORTSCHATZ &amp; THEMEN</div>
-              <div class="area-desc"  data-i18n="area_vocab_desc">Lerne Vokabeln nach Kategorien mit Artikeln.</div>
-            </div>
-          </div>
-
-          <h2 class="section-title" id="themes-title">A1 Themen wählen</h2>
-          <div class="categories-scroll-wrap">
-            <div class="categories-grid" id="categories-preview"></div>
-          </div>
-
-          <div id="done-section" class="hidden">
-            <h2 class="section-title done-section-title">✅ <span data-i18n="done_section">Пройденное</span></h2>
-            <div class="categories-grid categories-done-grid" id="categories-done"></div>
-          </div>
-
-          <p class="attrib">Иллюстрации: <a href="https://openmoji.org" target="_blank" rel="noopener">OpenMoji</a> (CC BY-SA 4.0)</p>
-
+  <section class="l-section">
+    <div class="container">
+      <div class="l-flex">
+        <div class="l-flex-emoji">💬</div>
+        <div>
+          <h3>Нужны конкретные слова или тема?</h3>
+          <p>Пришлите список слов, фото из учебника или тему, которая нужна именно вам — она появится на сайте в ближайшее время. Это не статичное приложение, а сервис, который растёт вместе с учениками.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- CARDS -->
-    <div id="screen-cards" class="screen">
-      <div class="cards-header">
-        <button class="back-btn" id="cards-back" data-i18n="btn_back">← Zurück</button>
-        <div class="cards-info">
-          <span class="cards-title"      id="cards-category-title"></span>
-          <span class="cards-level-badge" id="cards-level-badge">A1</span>
-        </div>
-        <div class="session-stats">
-          <button class="defer-btn hidden" id="defer-btn">⏰ <span data-i18n="defer_later">На потом</span></button>
-          <span class="stat-correct" id="stat-correct">✓ 0</span>
-          <span class="stat-wrong"   id="stat-wrong">✗ 0</span>
-        </div>
+  <section class="l-section">
+    <div class="container">
+      <div class="l-section-head">
+        <div class="l-section-eyebrow">Стоимость</div>
+        <h2>Один простой тариф</h2>
       </div>
-
-      <div class="cards-progress-bar">
-        <div class="cards-progress-fill" id="cards-progress-fill" style="width:0%"></div>
-      </div>
-
-      <div class="card-container">
-
-        <button class="rule-peek-btn hidden" id="rule-peek-btn" title="Regel ansehen">📖 <span data-i18n="peek_rule">Правило</span></button>
-
-
-        <div class="flashcard" id="flashcard">
-          <div class="card-counter"    id="card-counter">1 / 10</div>
-          <div class="card-emoji"      id="card-emoji">🍎</div>
-          <div class="card-word"       id="card-word">Apfel</div>
-          <div class="card-translit-row">
-            <span class="card-translit" id="card-translit">[апфэль]</span>
-            <button class="speak-btn" id="speak-btn" title="Прослушать">🔊</button>
-          </div>
-          <div class="card-translation" id="card-translation">яблоко</div>
-          <div class="article-buttons" id="article-buttons">
-            <button class="art-btn der" data-article="der">der</button>
-            <button class="art-btn die" data-article="die">die</button>
-            <button class="art-btn das" data-article="das">das</button>
-          </div>
-          <button class="art-btn weiter-btn hidden" id="weiter-btn">Weiter →</button>
-
-          <!-- ПРИТЯЖАТЕЛЬНЫЕ МЕСТОИМЕНИЯ (mein/sein/ihr ... — кнопки рендерятся в JS) -->
-          <div class="possessive-area hidden" id="possessive-area">
-            <div class="poss-person" id="poss-person">👦 Leo</div>
-            <div class="poss-example" id="poss-example">___ Arme</div>
-            <div class="poss-btns" id="poss-btns"></div>
-          </div>
-          <div class="card-feedback" id="card-feedback"></div>
-          <div class="card-streak"   id="card-streak"></div>
-          <div class="card-hint"     id="card-hint" data-i18n="hint_keys">Tipp: Tasten [1] der &nbsp; [2] die &nbsp; [3] das</div>
-        </div>
-
-        <!-- TYPING TEST -->
-        <div class="typing-test hidden" id="typing-test">
-          <div class="tt-phase-banner">✍️ <span data-i18n="tt_phase">Контрольная проверка — напиши слово с артиклем</span></div>
-          <div class="tt-counter" id="tt-counter">1 / 5</div>
-          <div class="tt-emoji"   id="tt-emoji">🍎</div>
-          <div class="tt-ru"      id="tt-ru">яблоко</div>
-          <div class="tt-input-wrap">
-            <input id="tt-input" class="tt-input" type="text"
-              placeholder="der / die / das + Wort"
-              autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-            <button class="tt-ok-btn" id="tt-submit">→</button>
-          </div>
-          <div class="tt-umlaut-row">
-            <button class="uml-btn" data-char="ä">ä</button>
-            <button class="uml-btn" data-char="ö">ö</button>
-            <button class="uml-btn" data-char="ü">ü</button>
-            <button class="uml-btn" data-char="ß">ß</button>
-            <button class="uml-btn" data-char="Ä">Ä</button>
-            <button class="uml-btn" data-char="Ö">Ö</button>
-            <button class="uml-btn" data-char="Ü">Ü</button>
-            <button class="uml-btn" data-char="é">é</button>
-          </div>
-          <div class="tt-feedback" id="tt-feedback"></div>
-          <div class="tt-score"    id="tt-score">✓ 0</div>
-        </div>
-
-        <!-- CONJUGATION (6 полей сразу) -->
-        <div class="conj-area hidden" id="conj-area">
-          <div class="conj-banner">🔑 <span data-i18n="conj_banner">Спряги глагол по всем лицам</span></div>
-          <details class="conj-legend" id="conj-legend">
-            <summary data-i18n="conj_legend_t">📖 Когда какой модальный глагол использовать</summary>
-            <div class="conj-legend-body">
-              <p>🟢 <b>können</b> — способность/возможность: <i>Ich kann schwimmen</i> (умею плавать)</p>
-              <p>🔴 <b>müssen</b> — необходимость, надо (сам понимаю): <i>Ich muss arbeiten</i></p>
-              <p>🟣 <b>sollen</b> — по чужому указанию/совету: <i>Der Arzt sagt, ich soll schlafen</i></p>
-              <p>🟡 <b>dürfen</b> — разрешение: <i>Ich darf bleiben</i> (мне можно)</p>
-              <p>🔵 <b>wollen</b> — намерение, воля: <i>Ich will lernen</i></p>
-              <p>🩷 <b>möchten</b> — вежливое желание: <i>Ich möchte Kaffee</i></p>
-              <p>❤️ <b>mögen</b> — нравиться/любить</p>
-            </div>
-          </details>
-          <div class="conj-counter" id="conj-counter">1 / 8</div>
-          <div class="conj-verb"    id="conj-verb">können</div>
-          <div class="conj-tr"      id="conj-tr">мочь / уметь</div>
-          <div class="conj-fields"  id="conj-fields"></div>
-          <div class="tt-umlaut-row" id="conj-umlauts">
-            <button class="uml-btn" data-char="ä">ä</button>
-            <button class="uml-btn" data-char="ö">ö</button>
-            <button class="uml-btn" data-char="ü">ü</button>
-            <button class="uml-btn" data-char="ß">ß</button>
-            <button class="uml-btn" data-char="Ä">Ä</button>
-            <button class="uml-btn" data-char="Ö">Ö</button>
-            <button class="uml-btn" data-char="Ü">Ü</button>
-            <button class="uml-btn" data-char="é">é</button>
-          </div>
-          <button class="btn-primary conj-submit" id="conj-submit" data-i18n="conj_check">Проверить</button>
-          <div class="conj-feedback" id="conj-feedback"></div>
-          <div class="conj-streak"  id="conj-streak"></div>
-        </div>
-
-        <div class="session-complete hidden" id="session-complete">
-          <div class="complete-emoji">🎉</div>
-          <h2 data-i18n="session_done">Sitzung abgeschlossen!</h2>
-          <div class="complete-stats">
-            <div class="cs-stat correct">
-              <div class="cs-num" id="cs-correct">0</div>
-              <div class="cs-label" data-i18n="label_correct">Richtig</div>
-            </div>
-            <div class="cs-stat wrong">
-              <div class="cs-num" id="cs-wrong">0</div>
-              <div class="cs-label" data-i18n="label_wrong">Falsch</div>
-            </div>
-            <div class="cs-stat learned">
-              <div class="cs-num" id="cs-learned">0</div>
-              <div class="cs-label" data-i18n="label_learned">Neu gelernt</div>
-            </div>
-          </div>
-          <div class="complete-buttons">
-            <button class="btn-primary"   id="btn-repeat"  data-i18n="btn_repeat">Wiederholen</button>
-            <button class="btn-secondary" id="btn-home"    data-i18n="btn_home_ov">Zurück zur Übersicht</button>
-          </div>
-        </div>
-
-        <div class="all-learned hidden" id="all-learned">
-          <div class="complete-emoji">⭐</div>
-          <h2 data-i18n="all_learned_h">Alle Wörter gelernt!</h2>
-          <p data-i18n="all_learned_p">Du hast alle Wörter dieser Kategorie gemeistert.</p>
-          <div class="complete-buttons">
-            <button class="btn-primary"   id="btn-review-learned" data-i18n="btn_review_all">Alle wiederholen</button>
-            <button class="btn-secondary" id="btn-home2"          data-i18n="btn_home_ov">Zurück zur Übersicht</button>
-          </div>
-        </div>
-
+      <div class="l-price-card">
+        <div style="font-size:13px;color:var(--text-muted);font-weight:600">Подписка</div>
+        <div class="l-price-num">5<sup>€ / мес</sup></div>
+        <ul class="l-price-list">
+          <li>Полный доступ ко всем уровням и категориям</li>
+          <li>Прогресс синхронизируется на всех устройствах</li>
+          <li>Новые слова и темы по запросу</li>
+          <li>Без рекламы</li>
+        </ul>
+        <a href="app.html"><button class="l-btn-primary" style="width:100%">Зарегистрироваться →</button></a>
+        <div class="l-price-note">После регистрации доступ подтверждается администратором вручную — обычно в течение дня.</div>
       </div>
     </div>
+  </section>
 
-    <!-- WORTSCHATZ -->
-    <div id="screen-wortschatz" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="vocab-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title"><span data-i18n="vocab_screen_h">Wortschatz</span></h2>
-      </div>
-      <div class="vocab-level-filter" id="vocab-level-filter"></div>
-      <div class="categories-full-grid" id="vocab-categories-grid"></div>
-      <div class="vocab-learned-section" id="vocab-learned-section"></div>
-    </div>
-
-    <!-- GRAMMATIK -->
-    <div id="screen-grammatik" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="grammar-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title"><span data-i18n="grammar_screen_h">Grammatik &amp; Regeln</span> – <span id="grammar-level-title">A1</span></h2>
-      </div>
-      <div class="grammar-grid" id="grammar-grid"></div>
-    </div>
-
-    <!-- PREP (подготовка к контрольной) -->
-    <div id="screen-prep" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="prep-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title">🎯 <span data-i18n="prep_title">Подготовка к контрольной</span></h2>
-      </div>
-      <div class="tables-toc" id="prep-toc"></div>
-      <div class="prep-membar" id="prep-membar"></div>
-      <div class="tables-content" id="prep-content"></div>
-    </div>
-
-    <!-- TABLES (шпаргалки) -->
-    <div id="screen-tables" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="tables-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title">📊 <span data-i18n="tables_title">Таблицы-шпаргалки</span></h2>
-      </div>
-      <div class="tables-toc" id="tables-toc"></div>
-      <div class="prep-membar" id="tables-membar"></div>
-      <div class="tables-content" id="tables-content"></div>
-    </div>
-
-    <!-- TRANSLATE (перевод предложений) -->
-    <div id="screen-translate" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="translate-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title">🌍 <span data-i18n="translate_title">Перевод предложений</span></h2>
-      </div>
-
-      <div id="translate-intro" class="exam-intro">
-        <p class="exam-desc" id="translate-desc" data-i18n="translate_desc">Случайные предложения из выученных слов. Переведи с русского на немецкий.</p>
-        <div class="translate-avail" id="translate-avail"></div>
-        <button class="btn-primary exam-start-btn" id="translate-start" data-i18n="translate_start">Начать перевод</button>
-      </div>
-
-      <div id="translate-run" class="exam-run hidden">
-        <div class="exam-progress-bar"><div class="exam-progress-fill" id="translate-progress-fill"></div></div>
-        <div class="exam-counter" id="translate-counter">1 / 20</div>
-        <div class="translate-ru" id="translate-ru">Предложение…</div>
-        <div class="tt-input-wrap">
-          <input id="translate-input" class="tt-input" type="text"
-            placeholder="Auf Deutsch schreiben…"
-            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-          <button class="tt-ok-btn" id="translate-submit">→</button>
-        </div>
-        <div class="tt-umlaut-row" id="translate-umlauts">
-          <button class="uml-btn" data-char="ä">ä</button>
-          <button class="uml-btn" data-char="ö">ö</button>
-          <button class="uml-btn" data-char="ü">ü</button>
-          <button class="uml-btn" data-char="ß">ß</button>
-          <button class="uml-btn" data-char="Ä">Ä</button>
-          <button class="uml-btn" data-char="Ö">Ö</button>
-          <button class="uml-btn" data-char="Ü">Ü</button>
-        </div>
-        <div class="exam-feedback" id="translate-feedback"></div>
-        <div class="translate-actions">
-          <button class="btn-secondary" id="translate-skip" data-i18n="translate_skip">Показать ответ / дальше</button>
-          <button class="btn-secondary" id="translate-finish" data-i18n="translate_finish">Завершить</button>
-        </div>
-        <div class="exam-score" id="translate-score">✓ 0</div>
-      </div>
-
-      <div id="translate-result" class="exam-result hidden">
-        <div class="exam-result-emoji">🌍</div>
-        <h2 id="translate-result-title">Готово!</h2>
-        <div class="exam-result-stats" id="translate-result-stats"></div>
-        <button class="btn-primary" id="translate-again" data-i18n="translate_again">Ещё раз</button>
+  <section class="l-footer-cta">
+    <div class="container">
+      <h2>Готовы начать?</h2>
+      <div class="l-cta-row">
+        <a href="app.html"><button class="l-btn-primary">Создать аккаунт →</button></a>
       </div>
     </div>
+  </section>
 
-    <!-- PROFIL -->
-    <div id="screen-profil" class="screen">
-      <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
-      <div id="profile-layout" class="profile-layout"></div>
-    </div>
+  <footer class="l-footer">
+    <div class="container">DeutschLernen — учи немецкий системно</div>
+  </footer>
 
-    <!-- EXAM -->
-    <div id="screen-exam" class="screen">
-      <div class="screen-header">
-        <button class="back-btn" id="exam-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title">📝 <span data-i18n="exam_title">Глобальный экзамен</span></h2>
-      </div>
-
-      <!-- Вступление + график -->
-      <div id="exam-intro" class="exam-intro">
-        <p class="exam-desc" id="exam-desc" data-i18n="exam_desc">Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.</p>
-        <div class="exam-chart-wrap" id="exam-chart"></div>
-        <div class="exam-modules" id="exam-modules"></div>
-        <button class="btn-primary exam-start-btn" id="exam-start" data-i18n="exam_start">Начать экзамен</button>
-      </div>
-
-      <!-- Процесс экзамена -->
-      <div id="exam-run" class="exam-run hidden">
-        <div class="exam-progress-bar"><div class="exam-progress-fill" id="exam-progress-fill"></div></div>
-        <div class="exam-counter" id="exam-counter">1 / 20</div>
-        <div class="exam-emoji"   id="exam-emoji">🍎</div>
-        <div class="exam-ru"      id="exam-ru">яблоко</div>
-        <div class="tt-input-wrap">
-          <input id="exam-input" class="tt-input" type="text"
-            placeholder="der / die / das + Wort"
-            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-          <button class="tt-ok-btn" id="exam-submit">→</button>
-        </div>
-        <div class="tt-umlaut-row" id="exam-umlauts">
-          <button class="uml-btn" data-char="ä">ä</button>
-          <button class="uml-btn" data-char="ö">ö</button>
-          <button class="uml-btn" data-char="ü">ü</button>
-          <button class="uml-btn" data-char="ß">ß</button>
-          <button class="uml-btn" data-char="Ä">Ä</button>
-          <button class="uml-btn" data-char="Ö">Ö</button>
-          <button class="uml-btn" data-char="Ü">Ü</button>
-            <button class="uml-btn" data-char="é">é</button>
-        </div>
-        <div class="exam-feedback" id="exam-feedback"></div>
-        <div class="exam-score" id="exam-score">✓ 0</div>
-      </div>
-
-      <!-- Результат -->
-      <div id="exam-result" class="exam-result hidden">
-        <div class="exam-result-emoji">🎓</div>
-        <h2 id="exam-result-title">Экзамен завершён!</h2>
-        <div class="exam-result-stats" id="exam-result-stats"></div>
-        <button class="btn-primary" id="exam-again" data-i18n="exam_again">Пройти ещё раз</button>
-      </div>
-    </div>
-
-    <!-- ADMIN -->
-    <div id="screen-admin" class="screen">
-      <div class="screen-header">
-        <h2 class="screen-title">🛠 Админ-панель</h2>
-      </div>
-      <div class="admin-tabs" id="admin-tabs">
-        <button class="admin-tab-btn active" data-tab="users">Пользователи</button>
-        <button class="admin-tab-btn" data-tab="dashboard">Дашборд</button>
-      </div>
-      <div id="admin-users-list" class="admin-users-list"></div>
-      <div id="admin-dashboard" class="admin-dashboard hidden"></div>
-    </div>
-
-  </main>
-
-  <!-- GRAMMAR MODAL -->
-  <div class="modal-overlay hidden" id="grammar-modal">
-    <div class="modal">
-      <button class="modal-close" id="modal-close">✕</button>
-      <div id="modal-content"></div>
-      <div class="modal-footer">
-        <button class="btn-secondary" id="modal-needs-review" data-i18n="modal_needs_review">Nochmal lernen</button>
-        <button class="btn-primary"   id="modal-mark-done"    data-i18n="modal_mark_done">Verstanden ✓</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ЧТО НОВОГО -->
-  <div class="modal-overlay hidden" id="changelog-modal">
-    <div class="modal">
-      <button class="modal-close" id="changelog-modal-close">✕</button>
-      <div id="changelog-modal-content"></div>
-    </div>
-  </div>
-
-  <!-- SVG-фильтр для удаления белого/светлого фона у PNG-картинок -->
-  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="remove-white" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
-        <feColorMatrix type="matrix"
-          values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                 -1 -1 -1 0 3"/>
-      </filter>
-    </defs>
-  </svg>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260719b"></script>
-  <script src="assets/js/auth.js?v=20260719b"></script>
-  <script src="db/words.js?v=20260719b"></script>
-  <script src="db/grammar.js?v=20260719b"></script>
-  <script src="db/translations_uk.js?v=20260719b"></script>
-  <script src="db/changelog.js?v=20260719b"></script>
-  <script src="assets/js/app.js?v=20260719b"></script>
 </body>
 </html>
