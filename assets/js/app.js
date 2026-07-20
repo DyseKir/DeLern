@@ -2806,6 +2806,50 @@ async function renderAdminUsersList() {
   }));
 }
 
+/* Разбивает длинное название темы на строки под подписью столбика */
+function wrapAxisLabel(text, x, y, maxChars) {
+  const words = String(text).split(' ');
+  const lines = [];
+  let cur = '';
+  words.forEach(w => {
+    if ((cur + ' ' + w).trim().length > maxChars && cur) { lines.push(cur.trim()); cur = w; }
+    else cur = (cur + ' ' + w).trim();
+  });
+  if (cur) lines.push(cur);
+  return lines.slice(0, 2).map((line, i) =>
+    `<tspan x="${x}" dy="${i === 0 ? 0 : 12}">${escapeHtml(line)}</tspan>`).join('');
+}
+
+/* Полноценная гистограмма (оси, сетка, подписи в процентах) — популярность тем в админке */
+function categoryChartSvg(catRows, totalClicks) {
+  const W = 640, H = 300, padL = 40, padR = 16, padT = 24, padB = 56;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const n = catRows.length;
+  const pctOf = count => totalClicks ? (count / totalClicks * 100) : 0;
+  const maxPct = Math.max(5, ...catRows.map(r => pctOf(r.count)));
+  const slot = innerW / n;
+  const barW = Math.min(48, slot * 0.55);
+  const yOf = pct => padT + innerH - (pct / maxPct) * innerH;
+
+  const gridLines = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + innerH * (1 - f);
+    return `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" class="lb-grid"/><text x="${padL - 8}" y="${y + 4}" class="lb-axis-label" text-anchor="end">${Math.round(maxPct * f)}%</text>`;
+  }).join('');
+
+  const bars = catRows.map((r, i) => {
+    const pct = pctOf(r.count);
+    const cx = padL + slot * i + slot / 2;
+    const y = yOf(pct);
+    const h = Math.max((padT + innerH) - y, 2);
+    return `
+      <rect class="cat-bar-rect" x="${cx - barW / 2}" y="${y}" width="${barW}" height="${h}" rx="6"/>
+      <text x="${cx}" y="${y - 10}" text-anchor="middle" class="cat-bar-pct">${pct.toFixed(1)}%</text>
+      <text x="${cx}" y="${padT + innerH + 18}" text-anchor="middle" class="lb-axis-label">${wrapAxisLabel(r.name, cx, padT + innerH + 18, 12)}</text>`;
+  }).join('');
+
+  return `<svg viewBox="0 0 ${W} ${H}" class="lb-svg cat-svg" preserveAspectRatio="xMidYMid meet">${gridLines}${bars}</svg>`;
+}
+
 async function renderAdminDashboard() {
   const wrap = $('admin-dashboard');
   wrap.innerHTML = `<div class="loading-hint">${lstr('Lädt…','Загрузка…','Завантаження…')}</div>`;
@@ -2831,7 +2875,6 @@ async function renderAdminDashboard() {
     const cat = (window.VOCAB_DATA || []).find(c => c.level === level && c.category === category);
     return { name: cat ? (cat.name_ru || cat.name) : category, count };
   }).sort((a, b) => b.count - a.count).slice(0, 8);
-  const maxCatCount = Math.max(1, ...catRows.map(r => r.count));
 
   const statsHtml = `
     <div class="admin-stats-row">
@@ -2852,16 +2895,7 @@ async function renderAdminDashboard() {
   const chartHtml = catRows.length ? `
     <div class="admin-chart-card">
       <h3 class="admin-chart-title">${lstr('Beliebteste Themen (30 Tage)','Популярные темы за 30 дней','Популярні теми за 30 днів')}</h3>
-      <div class="cat-chart-bars">
-        ${catRows.map(r => {
-          const pct = Math.round(r.count / maxCatCount * 100);
-          return `<div class="cat-chart-col">
-            <div class="cat-chart-val">${r.count}</div>
-            <div class="cat-chart-track"><div class="cat-chart-fill" style="height:${pct}%"></div></div>
-            <div class="cat-chart-name">${escapeHtml(r.name)}</div>
-          </div>`;
-        }).join('')}
-      </div>
+      ${categoryChartSvg(catRows, catEvents.length)}
     </div>` : `<div class="loading-hint">${lstr('Noch keine Klicks erfasst','Пока нет данных по кликам','Поки немає даних по кліках')}</div>`;
 
   if (!rows.length) {
