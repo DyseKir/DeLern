@@ -218,11 +218,17 @@ async function adminSetActive(userId, isActive) {
 async function adminSetNote(userId, note) {
   return sb.from('profiles').update({ note }).eq('id', userId);
 }
-async function adminExtendAccess(userId, currentAccessUntil, days) {
-  days = days || 30;
-  const base = (currentAccessUntil && new Date(currentAccessUntil) > new Date()) ? new Date(currentAccessUntil) : new Date();
-  base.setDate(base.getDate() + days);
-  return sb.from('profiles').update({ access_until: base.toISOString() }).eq('id', userId);
+/* Продлить — всегда до 20 числа СЛЕДУЮЩЕГО месяца, считая от момента нажатия
+   (единая дата отсечки для всех, легко держать в голове: "плати до 20-го"). */
+function next20thFromNow() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() + 1, 20, 23, 59, 59);
+}
+async function adminExtendAccess(userId) {
+  return sb.from('profiles').update({ access_until: next20thFromNow().toISOString() }).eq('id', userId);
+}
+async function adminSetAccessUntil(userId, iso) {
+  return sb.from('profiles').update({ access_until: iso }).eq('id', userId);
 }
 async function adminListAllProgress() {
   const { data, error } = await sb.from('progress').select('user_id, data');

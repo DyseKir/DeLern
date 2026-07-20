@@ -1181,18 +1181,41 @@ async function loadLeaderboard() {
 function dayOfMonth(dateStr) { return new Date(dateStr + 'T00:00:00').getDate(); }
 
 /* Плавная кривая через точки (Catmull-Rom → кубический Безье), а не ломаная линия */
+/* Монотонная кубическая интерполяция (Fritsch–Carlson) — в отличие от обычного
+   Catmull-Rom не даёт "выброс"/петлю на последнем отрезке, когда значение
+   резко растёт под конец. Подходит для наших данных, т.к. счётчик слов
+   только растёт или стоит на месте, никогда не убывает. */
 function smoothPathD(points) {
-  if (!points.length) return '';
-  if (points.length === 1) return `M ${points[0][0]},${points[0][1]}`;
-  let d = `M ${points[0][0]},${points[0][1]}`;
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] || points[i];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] || p2;
-    const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
-    const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
-    d += ` C ${c1x},${c1y} ${c2x},${c2y} ${p2[0]},${p2[1]}`;
+  const n = points.length;
+  if (n === 0) return '';
+  if (n === 1) return `M ${points[0][0]},${points[0][1]}`;
+  const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+  if (n === 2) return `M ${xs[0]},${ys[0]} L ${xs[1]},${ys[1]}`;
+
+  const dx = [], dy = [], slope = [];
+  for (let i = 0; i < n - 1; i++) {
+    dx[i] = xs[i + 1] - xs[i];
+    dy[i] = ys[i + 1] - ys[i];
+    slope[i] = dx[i] !== 0 ? dy[i] / dx[i] : 0;
+  }
+  const m = new Array(n);
+  m[0] = slope[0];
+  m[n - 1] = slope[n - 2];
+  for (let i = 1; i < n - 1; i++) {
+    m[i] = (slope[i - 1] * slope[i] <= 0) ? 0 : (slope[i - 1] + slope[i]) / 2;
+  }
+  for (let i = 0; i < n - 1; i++) {
+    if (slope[i] === 0) { m[i] = 0; m[i + 1] = 0; continue; }
+    const a = m[i] / slope[i], b = m[i + 1] / slope[i];
+    const h = Math.hypot(a, b);
+    if (h > 3) { const t = 3 / h; m[i] = t * a * slope[i]; m[i + 1] = t * b * slope[i]; }
+  }
+
+  let d = `M ${xs[0]},${ys[0]}`;
+  for (let i = 0; i < n - 1; i++) {
+    const c1x = xs[i] + dx[i] / 3, c1y = ys[i] + m[i] * dx[i] / 3;
+    const c2x = xs[i + 1] - dx[i] / 3, c2y = ys[i + 1] - m[i + 1] * dx[i] / 3;
+    d += ` C ${c1x},${c1y} ${c2x},${c2y} ${xs[i + 1]},${ys[i + 1]}`;
   }
   return d;
 }
@@ -2680,6 +2703,10 @@ async function renderAchievementsAsync() {
 /* ══════════════════════════════════════════════════════════════
    АДМИН-ПАНЕЛЬ
 ══════════════════════════════════════════════════════════════ */
+/* Значение access_until "до продления" — только на время текущей сессии
+   в браузере, чтобы можно было отменить случайное продление. */
+const _extendUndoMap = {};
+
 function formatCountdown(ms) {
   const totalMinutes = Math.max(0, Math.floor(ms / 60000));
   const days = Math.floor(totalMinutes / 1440);
@@ -2730,9 +2757,13 @@ async function renderAdminUsersList() {
         <div class="admin-payment-row">
           <label>${lstr('Zugang','Доступ','Доступ')}:</label>
           ${accessBadgeHtml(u)}
-          <button class="btn-secondary admin-extend-btn" data-uid="${u.id}" data-until="${u.access_until || ''}">
-            ${lstr('+30 Tage','Продлить на месяц','Продовжити на місяць')}
+          <button class="btn-secondary admin-extend-btn" data-uid="${u.id}">
+            ${lstr('Verlängern (bis 20.)','Продлить (до 20-го числа)','Продовжити (до 20-го числа)')}
           </button>
+          ${_extendUndoMap[u.id] !== undefined ? `
+            <button class="btn-secondary admin-undo-extend-btn" data-uid="${u.id}">
+              ${lstr('Rückgängig','Отменить продление','Скасувати продовження')}
+            </button>` : ''}
         </div>
       </div>
       <div class="admin-user-actions">
@@ -2762,7 +2793,15 @@ async function renderAdminUsersList() {
   }));
   wrap.querySelectorAll('.admin-extend-btn').forEach(btn => btn.addEventListener('click', async () => {
     btn.disabled = true;
-    await adminExtendAccess(btn.dataset.uid, btn.dataset.until || null);
+    const u = users.find(x => x.id === btn.dataset.uid);
+    _extendUndoMap[btn.dataset.uid] = (u && u.access_until) || null;
+    await adminExtendAccess(btn.dataset.uid);
+    renderAdminUsersList();
+  }));
+  wrap.querySelectorAll('.admin-undo-extend-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    await adminSetAccessUntil(btn.dataset.uid, _extendUndoMap[btn.dataset.uid] ?? null);
+    delete _extendUndoMap[btn.dataset.uid];
     renderAdminUsersList();
   }));
 }
