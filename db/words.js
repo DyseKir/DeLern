@@ -300,7 +300,6 @@ window.VOCAB_DATA = [
       { id: "a1_og_009", article: "der", word: "Salat",     translation: "салат"            },
       { id: "a1_og_010", article: "die", word: "Paprika",   translation: "перец / паприка"  },
       { id: "a1_og_011", article: "die", word: "Gurke",     translation: "огурец"           },
-      { id: "a1_og_012", article: "die", word: "Möhre",     translation: "морковь"          },
       { id: "a1_og_013", article: "die", word: "Melone",    translation: "дыня / арбуз"     },
       { id: "a1_og_014", article: "der", word: "Kohl",      translation: "капуста"          },
     ]
@@ -1753,7 +1752,6 @@ window.VOCAB_DATA = [
       { id: "a2_natur_008", article: "der", word: "Ast", translation: "ветка (сук)" },
       { id: "a2_natur_009", article: "der", word: "Bach", translation: "ручей" },
       { id: "a2_natur_010", article: "der", word: "Baumstamm", translation: "ствол дерева" },
-      { id: "a2_natur_011", article: "der", word: "Boden", translation: "земля / почва" },
       { id: "a2_natur_012", article: "der", word: "Farn", translation: "папоротник" },
       { id: "a2_natur_013", article: "der", word: "Fels", translation: "скала" },
       { id: "a2_natur_014", article: "der", word: "Fluss", translation: "река" },
