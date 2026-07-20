@@ -12,6 +12,7 @@ create table if not exists public.profiles (
   is_active     boolean not null default false,
   note          text not null default '',
   next_payment_date date,
+  access_until  timestamptz,
   created_at    timestamptz not null default now(),
   activated_at  timestamptz
 );
@@ -30,11 +31,13 @@ language plpgsql
 security definer set search_path = public
 as $$
 begin
-  insert into public.profiles (id, email, display_name)
+  insert into public.profiles (id, email, display_name, is_active, access_until)
   values (
     new.id,
     new.email,
-    coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1))
+    coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)),
+    true,
+    now() + interval '7 days'
   );
   insert into public.progress (user_id, data) values (new.id, '{}'::jsonb);
   return new;
@@ -75,6 +78,7 @@ begin
     new.note      := old.note;
     new.email     := old.email;
     new.next_payment_date := old.next_payment_date;
+    new.access_until := old.access_until;
   end if;
   return new;
 end;
@@ -126,6 +130,23 @@ create policy "snapshots_insert_own" on public.progress_daily_snapshots
 
 create policy "snapshots_update_own" on public.progress_daily_snapshots
   for update using (auth.uid() = user_id);
+
+-- Клики по темам — для админской аналитики популярности категорий
+create table if not exists public.category_events (
+  id bigint generated always as identity primary key,
+  user_id uuid not null references public.profiles(id) on delete cascade,
+  level text not null,
+  category text not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.category_events enable row level security;
+
+create policy "category_events_insert_own" on public.category_events
+  for insert with check (auth.uid() = user_id);
+
+create policy "category_events_select_admin" on public.category_events
+  for select using (public.is_admin());
 
 -- ══════════════════════════════════════════════════════════════
 -- ПОСЛЕ ТОГО как вы сами зарегистрируетесь на сайте под своей почтой —

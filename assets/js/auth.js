@@ -113,6 +113,11 @@ async function fetchAllDailySnapshots() {
   if (error) return [];
   return data;
 }
+async function fetchMySnapshotDates(userId) {
+  const { data, error } = await sb.from('progress_daily_snapshots').select('snapshot_date').eq('user_id', userId).order('snapshot_date', { ascending: true });
+  if (error) return [];
+  return data.map(r => r.snapshot_date);
+}
 function syncDailySnapshotFromMerged(userId, merged) {
   if (typeof computeUserStats !== 'function') return;
   const name = (typeof currentUserProfile !== 'undefined' && currentUserProfile && currentUserProfile.display_name) || '';
@@ -213,11 +218,45 @@ async function adminSetActive(userId, isActive) {
 async function adminSetNote(userId, note) {
   return sb.from('profiles').update({ note }).eq('id', userId);
 }
-async function adminSetPaymentDate(userId, dateStr) {
-  return sb.from('profiles').update({ next_payment_date: dateStr || null }).eq('id', userId);
+async function adminExtendAccess(userId, currentAccessUntil, days) {
+  days = days || 30;
+  const base = (currentAccessUntil && new Date(currentAccessUntil) > new Date()) ? new Date(currentAccessUntil) : new Date();
+  base.setDate(base.getDate() + days);
+  return sb.from('profiles').update({ access_until: base.toISOString() }).eq('id', userId);
 }
 async function adminListAllProgress() {
   const { data, error } = await sb.from('progress').select('user_id, data');
   if (error) return [];
   return data;
+}
+async function adminListRecentSnapshots(days) {
+  const since = new Date(Date.now() - (days || 30) * 86400000).toISOString().slice(0, 10);
+  const { data, error } = await sb.from('progress_daily_snapshots').select('user_id, snapshot_date').gte('snapshot_date', since);
+  if (error) return [];
+  return data;
+}
+async function adminListCategoryEvents(days) {
+  const since = new Date(Date.now() - (days || 30) * 86400000).toISOString();
+  const { data, error } = await sb.from('category_events').select('level, category').gte('created_at', since);
+  if (error) return [];
+  return data;
+}
+
+/* ── Учёт открытий темы (для аналитики популярности категорий) ── */
+async function logCategoryEvent(level, category) {
+  if (!activeProfile) return;
+  try { await sb.from('category_events').insert({ user_id: activeProfile, level, category }); } catch { /* не критично */ }
+}
+
+/* ── Доступ по таймеру ──
+   Аккаунты без access_until (созданные до введения пробного периода) остаются
+   открытыми, пока админ явно не поставит им дату — чтобы никого не отключило задним числом. */
+function hasAccess(profile) {
+  if (!profile || !profile.is_active) return false;
+  if (!profile.access_until) return true;
+  return new Date(profile.access_until) > new Date();
+}
+function accessCountdown(accessUntil) {
+  if (!accessUntil) return null;
+  return new Date(accessUntil).getTime() - Date.now();
 }

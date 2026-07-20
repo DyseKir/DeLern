@@ -1180,6 +1180,23 @@ async function loadLeaderboard() {
 
 function dayOfMonth(dateStr) { return new Date(dateStr + 'T00:00:00').getDate(); }
 
+/* Плавная кривая через точки (Catmull-Rom → кубический Безье), а не ломаная линия */
+function smoothPathD(points) {
+  if (!points.length) return '';
+  if (points.length === 1) return `M ${points[0][0]},${points[0][1]}`;
+  let d = `M ${points[0][0]},${points[0][1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] || points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] || p2;
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+    d += ` C ${c1x},${c1y} ${c2x},${c2y} ${p2[0]},${p2[1]}`;
+  }
+  return d;
+}
+
 function renderLeaderboardChart() {
   const chartWrap = $('leaderboard-chart');
   const legendWrap = $('leaderboard-legend');
@@ -1193,7 +1210,7 @@ function renderLeaderboardChart() {
 
   const maxDay = new Date().getDate();
   const maxVal = Math.max(5, ...series.flatMap(s => s.points.map(p => p.value)));
-  const W = 640, H = 220, padL = 34, padR = 58, padT = 14, padB = 26;
+  const W = 640, H = 340, padL = 34, padR = 58, padT = 20, padB = 30;
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const xOf = day => padL + (maxDay <= 1 ? 0 : (day - 1) / (maxDay - 1) * innerW);
   const yOf = val => padT + innerH - (val / maxVal) * innerH;
@@ -1214,16 +1231,17 @@ function renderLeaderboardChart() {
        как рост, даже пока накопилось мало ежедневных точек. */
     const monthStart = s.points[0].date.slice(0, 8) + '01';
     const linePoints = dayOfMonth(s.points[0].date) > 1 ? [{ date: monthStart, value: 0 }, ...s.points] : s.points;
-    const pts = linePoints.map(p => `${xOf(dayOfMonth(p.date))},${yOf(p.value)}`).join(' ');
+    const xy = linePoints.map(p => [xOf(dayOfMonth(p.date)), yOf(p.value)]);
+    const path = smoothPathD(xy);
     const last = s.points[s.points.length - 1];
     const lx = xOf(dayOfMonth(last.date)), ly = yOf(last.value);
     const dots = s.points.map(p => {
       const cx = xOf(dayOfMonth(p.date)), cy = yOf(p.value);
-      return `<circle cx="${cx}" cy="${cy}" r="10" fill="transparent"><title>${name} — ${new Date(p.date+'T00:00:00').toLocaleDateString('ru-RU')}: ${p.value} ${lstr('Wörter','слов','слів')}</title></circle>
-              <circle cx="${cx}" cy="${cy}" r="3.5" fill="${color}" stroke="#1a1d2e" stroke-width="1.5"/>`;
+      return `<circle cx="${cx}" cy="${cy}" r="12" fill="transparent"><title>${name} — ${new Date(p.date+'T00:00:00').toLocaleDateString('ru-RU')}: ${p.value} ${lstr('Wörter','слов','слів')}</title></circle>
+              <circle cx="${cx}" cy="${cy}" r="4.5" fill="${color}" stroke="#1a1d2e" stroke-width="2"/>`;
     }).join('');
-    return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}
-      <text x="${lx + 8}" y="${ly + 4}" class="lb-series-label" fill="${color}">${name}</text>`;
+    return `<path d="${path}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${dots}
+      <text x="${lx + 10}" y="${ly + 5}" class="lb-series-label" fill="${color}">${name}</text>`;
   }).join('');
 
   chartWrap.innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="lb-svg" preserveAspectRatio="xMidYMid meet">${gridLines}${xLabels}${seriesHtml}</svg>`;
@@ -1449,6 +1467,7 @@ function renderVocabLearned() {
    КАРТОЧКИ
 ══════════════════════════════════════════════════════════════ */
 function startSession(cat) {
+  if (cat.category !== 'deferred') logCategoryEvent(cat.level, cat.category);
   const p = loadProg();
 
   // Режим спряжения глаголов — сразу печатный тест по всем формам
@@ -2596,28 +2615,85 @@ function renderProfile() {
     <div class="learned-section">
       <h3>${t('learned_sec')}</h3>
       ${learnedHtml}
+    </div>
+    <div class="achievements-section" id="achievements-section"></div>`;
+  renderAchievementsAsync();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ДОСТИЖЕНИЯ
+══════════════════════════════════════════════════════════════ */
+function computeAchievementStats(prog, examHistory, streakDays) {
+  const learned = Object.values(prog || {}).filter(w => w.status === 'learned').length;
+  let catsDone = 0, a1Done = true, a1HasCats = false;
+  (window.VOCAB_DATA || []).forEach(cat => {
+    if (cat.mode === 'conjugation') return;
+    const words = cat.words || [];
+    if (!words.length) return;
+    const allLearned = words.every(w => prog[w.id] && prog[w.id].status === 'learned');
+    if (allLearned) catsDone++;
+    if (cat.level === 'A1') { a1HasCats = true; if (!allLearned) a1Done = false; }
+  });
+  return {
+    learned, catsDone,
+    a1Done: a1HasCats && a1Done,
+    examTaken: (examHistory || []).length > 0,
+    streak: streakDays || 0,
+  };
+}
+function computeStreakFromDates(dates) {
+  if (!dates || !dates.length) return 0;
+  const set = new Set(dates);
+  const d = new Date();
+  const todayStr = d.toISOString().slice(0, 10);
+  if (!set.has(todayStr)) d.setDate(d.getDate() - 1);
+  let streak = 0;
+  while (set.has(d.toISOString().slice(0, 10))) { streak++; d.setDate(d.getDate() - 1); }
+  return streak;
+}
+function achievementsGridHtml(stats) {
+  return (window.ACHIEVEMENTS_DATA || []).map(a => {
+    const earned = a.check(stats);
+    return `<div class="ach-badge ${earned ? 'earned' : 'locked'}" title="${escapeHtml(a.desc)}">
+      <div class="ach-emoji">${earned ? a.emoji : '🔒'}</div>
+      <div class="ach-title">${escapeHtml(a.title)}</div>
     </div>`;
+  }).join('');
+}
+async function renderAchievementsAsync() {
+  const wrap = $('achievements-section');
+  if (!wrap) return;
+  const prog = loadProg();
+  const examHistory = loadExamHistory();
+  let streak = 0;
+  if (activeProfile) {
+    const dates = await fetchMySnapshotDates(activeProfile);
+    streak = computeStreakFromDates(dates);
+  }
+  const stats = computeAchievementStats(prog, examHistory, streak);
+  const earnedCount = (window.ACHIEVEMENTS_DATA || []).filter(a => a.check(stats)).length;
+  wrap.innerHTML = `
+    <h3>🎖 ${lstr('Erfolge','Достижения','Досягнення')} <span class="ach-count">${earnedCount}/${(window.ACHIEVEMENTS_DATA||[]).length}</span></h3>
+    <div class="ach-grid">${achievementsGridHtml(stats)}</div>`;
 }
 
 /* ══════════════════════════════════════════════════════════════
    АДМИН-ПАНЕЛЬ
 ══════════════════════════════════════════════════════════════ */
-function daysUntil(dateStr) {
-  if (!dateStr) return null;
-  const target = new Date(dateStr + 'T00:00:00');
-  const now = new Date(); now.setHours(0,0,0,0);
-  return Math.round((target - now) / 86400000);
+function formatCountdown(ms) {
+  const totalMinutes = Math.max(0, Math.floor(ms / 60000));
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  if (days > 0) return lstr(`${days} Tage ${hours} Std.`, `${days} дн. ${hours} ч.`, `${days} дн. ${hours} год.`);
+  const minutes = totalMinutes % 60;
+  return lstr(`${hours} Std. ${minutes} Min.`, `${hours} ч. ${minutes} мин.`, `${hours} год. ${minutes} хв.`);
 }
-function paymentBadgeHtml(dateStr) {
-  const days = daysUntil(dateStr);
-  if (days === null) return `<span class="admin-payment-badge none">${lstr('Kein Datum','Дата не задана','Дата не задана')}</span>`;
-  const cls = days < 0 ? 'overdue' : days <= 7 ? 'soon' : 'ok';
-  const label = days < 0
-    ? lstr(`Überfällig seit ${Math.abs(days)} Tagen`, `Просрочено на ${Math.abs(days)} дн.`, `Прострочено на ${Math.abs(days)} дн.`)
-    : days === 0
-      ? lstr('Heute fällig','Платёж сегодня','Платіж сьогодні')
-      : lstr(`Noch ${days} Tage`, `Осталось ${days} дн.`, `Залишилось ${days} дн.`);
-  return `<span class="admin-payment-badge ${cls}">${label}</span>`;
+function accessBadgeHtml(u) {
+  if (!u.access_until) return `<span class="admin-payment-badge none">${lstr('Ohne Limit','Без ограничения','Без обмеження')}</span>`;
+  const ms = new Date(u.access_until).getTime() - Date.now();
+  if (ms <= 0) return `<span class="admin-payment-badge overdue">${lstr('Abgelaufen','Истёк','Закінчився')}</span>`;
+  const cls = ms <= 3 * 86400000 ? 'soon' : 'ok';
+  return `<span class="admin-payment-badge ${cls}">${lstr('Noch','Осталось','Залишилось')} ${formatCountdown(ms)}</span>`;
 }
 function computeUserStats(prog) {
   const p = prog || {};
@@ -2652,9 +2728,11 @@ async function renderAdminUsersList() {
           placeholder="${lstr('Notiz (z.B. bezahlt für Juli)','Заметка (например: оплатил июль)','Нотатка (наприклад: оплатив липень)')}"
           value="${escapeHtml(u.note||'')}">
         <div class="admin-payment-row">
-          <label>${lstr('Nächste Zahlung','Следующий платёж','Наступний платіж')}:</label>
-          <input type="date" class="admin-payment-input" data-uid="${u.id}" value="${u.next_payment_date || ''}">
-          ${paymentBadgeHtml(u.next_payment_date)}
+          <label>${lstr('Zugang','Доступ','Доступ')}:</label>
+          ${accessBadgeHtml(u)}
+          <button class="btn-secondary admin-extend-btn" data-uid="${u.id}" data-until="${u.access_until || ''}">
+            ${lstr('+30 Tage','Продлить на месяц','Продовжити на місяць')}
+          </button>
         </div>
       </div>
       <div class="admin-user-actions">
@@ -2682,8 +2760,9 @@ async function renderAdminUsersList() {
     const uid = inp.dataset.uid, val = inp.value;
     noteTimer = setTimeout(() => adminSetNote(uid, val), 800);
   }));
-  wrap.querySelectorAll('.admin-payment-input').forEach(inp => inp.addEventListener('change', async () => {
-    await adminSetPaymentDate(inp.dataset.uid, inp.value);
+  wrap.querySelectorAll('.admin-extend-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    await adminExtendAccess(btn.dataset.uid, btn.dataset.until || null);
     renderAdminUsersList();
   }));
 }
@@ -2691,7 +2770,9 @@ async function renderAdminUsersList() {
 async function renderAdminDashboard() {
   const wrap = $('admin-dashboard');
   wrap.innerHTML = `<div class="loading-hint">${lstr('Lädt…','Загрузка…','Завантаження…')}</div>`;
-  const [users, progressRows] = await Promise.all([adminListProfiles(), adminListAllProgress()]);
+  const [users, progressRows, snapshots, catEvents] = await Promise.all([
+    adminListProfiles(), adminListAllProgress(), adminListRecentSnapshots(30), adminListCategoryEvents(30)
+  ]);
   const progByUser = {};
   progressRows.forEach(r => { progByUser[r.user_id] = (r.data && r.data.prog) || {}; });
 
@@ -2699,17 +2780,63 @@ async function renderAdminDashboard() {
     .map(u => ({ ...u, ...computeUserStats(progByUser[u.id]) }))
     .sort((a, b) => b.pct - a.pct);
 
+  const activeThisMonth = new Set(snapshots.map(s => s.user_id)).size;
+
+  const catCounts = {};
+  catEvents.forEach(e => {
+    const key = e.level + '|' + e.category;
+    catCounts[key] = (catCounts[key] || 0) + 1;
+  });
+  const catRows = Object.entries(catCounts).map(([key, count]) => {
+    const [level, category] = key.split('|');
+    const cat = (window.VOCAB_DATA || []).find(c => c.level === level && c.category === category);
+    return { name: cat ? (cat.name_ru || cat.name) : category, count };
+  }).sort((a, b) => b.count - a.count).slice(0, 8);
+  const maxCatCount = Math.max(1, ...catRows.map(r => r.count));
+
+  const statsHtml = `
+    <div class="admin-stats-row">
+      <div class="admin-stat-tile">
+        <div class="admin-stat-num">${users.length}</div>
+        <div class="admin-stat-label">${lstr('Registrierte Nutzer','Всего аккаунтов','Всього акаунтів')}</div>
+      </div>
+      <div class="admin-stat-tile">
+        <div class="admin-stat-num">${activeThisMonth}</div>
+        <div class="admin-stat-label">${lstr('Aktiv (30 Tage)','Активны за 30 дней','Активні за 30 днів')}</div>
+      </div>
+      <div class="admin-stat-tile">
+        <div class="admin-stat-num">${catEvents.length}</div>
+        <div class="admin-stat-label">${lstr('Themen geöffnet (30 Tage)','Открытий тем за 30 дней','Відкриттів тем за 30 днів')}</div>
+      </div>
+    </div>`;
+
+  const chartHtml = catRows.length ? `
+    <div class="admin-chart-card">
+      <h3 class="admin-chart-title">${lstr('Beliebteste Themen (30 Tage)','Популярные темы за 30 дней','Популярні теми за 30 днів')}</h3>
+      <div class="cat-chart-bars">
+        ${catRows.map(r => {
+          const pct = Math.round(r.count / maxCatCount * 100);
+          return `<div class="cat-chart-col">
+            <div class="cat-chart-val">${r.count}</div>
+            <div class="cat-chart-track"><div class="cat-chart-fill" style="height:${pct}%"></div></div>
+            <div class="cat-chart-name">${escapeHtml(r.name)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>` : `<div class="loading-hint">${lstr('Noch keine Klicks erfasst','Пока нет данных по кликам','Поки немає даних по кліках')}</div>`;
+
   if (!rows.length) {
-    wrap.innerHTML = `<div class="loading-hint">${lstr('Keine Daten','Нет данных','Немає даних')}</div>`;
+    wrap.innerHTML = statsHtml + chartHtml;
     return;
   }
-  wrap.innerHTML = rows.map(r => `
+  const rowsHtml = rows.map(r => `
     <div class="dash-row">
       <div class="dash-name">${escapeHtml(r.display_name || r.email)}${r.role==='admin' ? ' <span class="admin-badge-role">admin</span>' : ''}</div>
       <div class="dash-bar-wrap"><div class="dash-bar-fill" style="width:${r.pct}%"></div></div>
       <div class="dash-pct">${r.pct}%</div>
       <div class="dash-words">${r.learned} / ${r.total} ${lstr('Wörter','слов','слів')}</div>
     </div>`).join('');
+  wrap.innerHTML = statsHtml + chartHtml + `<h3 class="admin-chart-title" style="margin-top:8px">${lstr('Fortschritt pro Nutzer','Прогресс по ученикам','Прогрес по учнях')}</h3>` + rowsHtml;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3768,12 +3895,20 @@ function renderAuthCard(mode) {
       <button class="reg-back-btn" id="auth-goto-login">${lstr('← Zurück zur Anmeldung','← Назад ко входу','← Назад до входу')}</button>`;
     $('auth-goto-login').addEventListener('click', () => renderAuthCard('login'));
 
-  } else if (mode === 'pending') {
+  } else if (mode === 'blocked') {
+    const expired = currentUserProfile.is_active && currentUserProfile.access_until && new Date(currentUserProfile.access_until) <= new Date();
+    const icon  = expired ? '⌛' : '⏳';
+    const title = expired
+      ? lstr('Testzeitraum abgelaufen','Пробный период закончился','Пробний період закінчився')
+      : lstr('Zugang gesperrt','Доступ отключён','Доступ вимкнено');
+    const sub = expired
+      ? lstr('Um weiterzulernen, wende dich an den Administrator, damit er den Zugang verlängert.','Чтобы продолжить занятия, напишите администратору — он продлит доступ.','Щоб продовжити заняття, напишіть адміністратору — він продовжить доступ.')
+      : lstr('Der Administrator hat den Zugang deaktiviert. Wende dich an ihn für Details.','Администратор отключил доступ. Напишите ему, чтобы уточнить детали.','Адміністратор вимкнув доступ. Напишіть йому, щоб уточнити деталі.');
     card.innerHTML = `
       ${logo}
-      <div class="reg-flag">⏳</div>
-      <h1 class="reg-title">${lstr('Konto wartet auf Bestätigung','Аккаунт ожидает подтверждения','Акаунт очікує підтвердження')}</h1>
-      <p class="reg-sub">${lstr('Der Zugang wird vom Administrator manuell freigeschaltet, sobald die Zahlung eingegangen ist.','Доступ включает администратор вручную, после того как получит оплату.','Доступ вмикає адміністратор вручну, після того як отримає оплату.')}</p>
+      <div class="reg-flag">${icon}</div>
+      <h1 class="reg-title">${title}</h1>
+      <p class="reg-sub">${sub}</p>
       <button class="reg-back-btn" id="auth-logout-btn">${lstr('Abmelden','Выйти','Вийти')}</button>`;
     $('auth-logout-btn').addEventListener('click', doLogout);
 
@@ -3814,7 +3949,7 @@ async function doLogout() {
 
 /* Продолжение входа после экрана переноса старого прогресса */
 async function continueAfterClaim() {
-  if (!currentUserProfile.is_active) { renderAuthCard('pending'); return; }
+  if (!hasAccess(currentUserProfile)) { renderAuthCard('blocked'); return; }
   await finishLogin();
 }
 
@@ -3839,8 +3974,8 @@ async function handleAuthenticatedSession(session) {
     renderAuthCard('claim');
     return;
   }
-  if (!currentUserProfile.is_active) {
-    renderAuthCard('pending');
+  if (!hasAccess(currentUserProfile)) {
+    renderAuthCard('blocked');
     return;
   }
   await finishLogin();
