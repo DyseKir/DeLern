@@ -2030,4 +2030,129 @@ window.VOCAB_DATA = [
     ]
   },
 
+  // ════════════════════════════════
+  //  A1 — IM KINDERGARTEN (действия)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "kindergarten_akt", name: "Im Kindergarten", name_ru: "В детском саду (действия)", emoji: "🧒",
+    words: [
+      { id: "a1_kg_001", article: "-",   word: "turnen",  translation: "заниматься физкультурой" },
+      { id: "a1_kg_002", article: "-",   word: "feiern",  translation: "праздновать" },
+      { id: "a1_kg_003", article: "-",   word: "malen",   translation: "рисовать (красками)" },
+      { id: "a1_kg_004", article: "der", word: "Ausflug", translation: "экскурсия / поездка" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — HANDY & FUNKTIONEN
+  // ════════════════════════════════
+  {
+    level: "A2", category: "handy_funktionen", name: "Handy & Funktionen", name_ru: "Смартфон и его функции", emoji: "📱",
+    words: [
+      { id: "a2_handy_001", article: "die", word: "Mobile Daten",  translation: "мобильный интернет" },
+      { id: "a2_handy_002", article: "der", word: "Telefon-Empfang", translation: "приём сигнала (сотовая связь)" },
+      { id: "a2_handy_003", article: "das", word: "WLAN",          translation: "вай-фай" },
+      { id: "a2_handy_004", article: "der", word: "Akku-Stand",    translation: "заряд аккумулятора" },
+      { id: "a2_handy_005", article: "der", word: "An-/Aus-Knopf", translation: "кнопка вкл/выкл" },
+      { id: "a2_handy_006", article: "die", word: "SIM-Karte",     translation: "сим-карта" },
+      { id: "a2_handy_007", article: "die", word: "Nachrichten",   translation: "сообщения" },
+      { id: "a2_handy_008", article: "die", word: "Fotos",         translation: "фотографии" },
+      { id: "a2_handy_009", article: "der", word: "Bildschirm",    translation: "экран" },
+      { id: "a2_handy_010", article: "das", word: "Video",         translation: "видео" },
+      { id: "a2_handy_011", article: "die", word: "Taste",         translation: "кнопка / клавиша" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — MEDIEN & GERÄTE
+  // ════════════════════════════════
+  {
+    level: "A2", category: "medien_geraete", name: "Medien & Geräte", name_ru: "Медиа и устройства", emoji: "💻",
+    words: [
+      { id: "a2_medien_001", article: "der", word: "Laptop",       translation: "ноутбук" },
+      { id: "a2_medien_002", article: "das", word: "Radio",        translation: "радио" },
+      { id: "a2_medien_003", article: "die", word: "Fernbedienung", translation: "пульт управления" },
+      { id: "a2_medien_004", article: "das", word: "Kabel",        translation: "кабель" },
+      { id: "a2_medien_005", article: "die", word: "Tastatur",     translation: "клавиатура" },
+      { id: "a2_medien_006", article: "das", word: "Internet",     translation: "интернет" },
+      { id: "a2_medien_007", article: "der", word: "WLAN-Router",  translation: "вай-фай роутер" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — TASTATUR-TASTEN
+  // ════════════════════════════════
+  {
+    level: "A2", category: "tastatur_tasten", name: "Tastatur-Tasten", name_ru: "Клавиши клавиатуры", emoji: "⌨️",
+    words: [
+      { id: "a2_tast_001", article: "die", word: "Abbruch-Taste",  translation: "клавиша отмены (Esc)" },
+      { id: "a2_tast_002", article: "die", word: "Alt-Taste",      translation: "клавиша Alt" },
+      { id: "a2_tast_003", article: "die", word: "Eingabe-Taste",  translation: "клавиша ввода (Enter)" },
+      { id: "a2_tast_004", article: "die", word: "Groß-Taste",     translation: "клавиша заглавных букв" },
+      { id: "a2_tast_005", article: "die", word: "Löschen-Taste",  translation: "клавиша удаления" },
+      { id: "a2_tast_006", article: "die", word: "Strg-Taste",     translation: "клавиша Ctrl" },
+      { id: "a2_tast_007", article: "die", word: "Leer-Taste",     translation: "клавиша пробела" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IN DER BIBLIOTHEK
+  // ════════════════════════════════
+  {
+    level: "A2", category: "bibliothek_medien", name: "In der Bibliothek", name_ru: "В библиотеке", emoji: "📚",
+    words: [
+      { id: "a2_bib_001", article: "der", word: "Comic",           translation: "комикс" },
+      { id: "a2_bib_002", article: "der", word: "Krimi",           translation: "детектив" },
+      { id: "a2_bib_003", article: "die", word: "CD",              translation: "компакт-диск" },
+      { id: "a2_bib_004", article: "das", word: "Kochbuch",        translation: "кулинарная книга" },
+      { id: "a2_bib_005", article: "das", word: "Wörterbuch",      translation: "словарь" },
+      { id: "a2_bib_006", article: "die", word: "Liebesgeschichte", translation: "любовный роман" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — INTERNET-REGELN
+  // ════════════════════════════════
+  {
+    level: "A2", category: "internet_regeln", name: "Internet-Regeln", name_ru: "Правила в интернете", emoji: "🛡️",
+    words: [
+      { id: "a2_ireg_001", article: "die", word: "Regel",      translation: "правило" },
+      { id: "a2_ireg_002", article: "-",   word: "vorsichtig", translation: "осторожный" },
+      { id: "a2_ireg_003", article: "-",   word: "erlaubt",    translation: "разрешено" },
+      { id: "a2_ireg_004", article: "-",   word: "verboten",   translation: "запрещено" },
+      { id: "a2_ireg_005", article: "-",   word: "strafbar",   translation: "наказуемо (по закону)" },
+      { id: "a2_ireg_006", article: "die", word: "Erlaubnis",  translation: "разрешение" },
+      { id: "a2_ireg_007", article: "die", word: "Meinung",    translation: "мнение" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — DIE SCHULTÜTE (доп. предметы)
+  // ════════════════════════════════
+  {
+    level: "A2", category: "schultuete", name: "Die Schultüte", name_ru: "Школьный набор первоклассника", emoji: "🎒",
+    words: [
+      { id: "a2_schult_001", article: "der", word: "Bleistift",   translation: "карандаш" },
+      { id: "a2_schult_002", article: "der", word: "Anspitzer",   translation: "точилка" },
+      { id: "a2_schult_003", article: "das", word: "Mäppchen",    translation: "пенал" },
+      { id: "a2_schult_004", article: "der", word: "Radiergummi", translation: "ластик" },
+      { id: "a2_schult_005", article: "die", word: "Schuhe",      translation: "обувь / туфли" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — SCHULSYSTEM
+  // ════════════════════════════════
+  {
+    level: "A2", category: "schulsystem", name: "Das Schulsystem", name_ru: "Школьная система Германии", emoji: "🏫",
+    words: [
+      { id: "a2_schsys_001", article: "die", word: "Kinderkrippe", translation: "ясли (0–3 года)" },
+      { id: "a2_schsys_002", article: "die", word: "Grundschule",  translation: "начальная школа (1–4 класс)" },
+      { id: "a2_schsys_003", article: "die", word: "Hauptschule",  translation: "основная школа (базовый уровень)" },
+      { id: "a2_schsys_004", article: "die", word: "Realschule",   translation: "реальная школа (средний уровень)" },
+      { id: "a2_schsys_005", article: "das", word: "Gymnasium",    translation: "гимназия (ведёт к абитуру/университету)" },
+      { id: "a2_schsys_006", article: "die", word: "Klasse",       translation: "класс (школьный)" },
+    ]
+  },
+
 ];

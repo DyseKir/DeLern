@@ -2235,255 +2235,96 @@ function prepData() {
     rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<td class="rt-rowh">${c}</td>`:`<td style="text-align:left">${c}</td>`).join('')}</tr>`).join('')
   }</tbody></table></div>`;
 
-  // «кто что делает»: профессии берём ИЗ КАРТОЧЕК (категория berufe),
-  // добавляем только действие (глагол) — его в данных нет.
-  const BERUF_ACTION = {
-    Arzt:{de:'hilft kranken Menschen',ru:'помогает больным людям'},
-    Lehrer:{de:'unterrichtet Schüler',ru:'учит учеников'},
-    Student:{de:'studiert an der Universität',ru:'учится в университете'},
-    Koch:{de:'kocht das Essen',ru:'готовит еду'},
-    Bäcker:{de:'backt Brot',ru:'печёт хлеб'},
-    Ingenieur:{de:'plant Maschinen',ru:'проектирует машины'},
-    Krankenpfleger:{de:'pflegt kranke Menschen',ru:'ухаживает за больными'},
-    Polizist:{de:'hilft Menschen und kontrolliert den Verkehr',ru:'помогает людям и контролирует движение'},
-    Verkäufer:{de:'verkauft Waren im Geschäft',ru:'продаёт товары в магазине'},
-    Fahrer:{de:'fährt ein Auto oder einen Bus',ru:'водит машину или автобус'},
-    Kellner:{de:'serviert das Essen im Restaurant',ru:'подаёт еду в ресторане'},
-    Mechaniker:{de:'repariert Autos',ru:'ремонтирует машины'},
-    Friseur:{de:'schneidet Haare',ru:'стрижёт волосы'},
-    Sekretär:{de:'organisiert Termine und schreibt E-Mails',ru:'организует встречи и пишет письма'},
-    Gärtner:{de:'pflanzt Blumen und Bäume',ru:'сажает цветы и деревья'},
-    Fabrikarbeiter:{de:'produziert Waren',ru:'производит товары'},
-    Bauarbeiter:{de:'baut Häuser',ru:'строит дома'},
-    Pfleger:{de:'pflegt kranke Menschen',ru:'ухаживает за больными'},
-    Bürokaufmann:{de:'arbeitet am Computer',ru:'работает за компьютером'},
-    Kaufmann:{de:'kauft und verkauft Waren',ru:'покупает и продаёт товары'},
-    Hausmann:{de:'arbeitet zu Hause',ru:'работает дома'},
-    Taxifahrer:{de:'fährt Menschen durch die Stadt',ru:'возит людей по городу'},
-    Techniker:{de:'repariert Maschinen',ru:'чинит оборудование'},
-    Mechatroniker:{de:'repariert Maschinen und Autos',ru:'чинит машины и авто'},
-    Bauer:{de:'arbeitet auf dem Feld',ru:'работает в поле'},
-    Pilot:{de:'fliegt ein Flugzeug',ru:'управляет самолётом'},
-    Journalist:{de:'schreibt Artikel',ru:'пишет статьи'},
-    Zahnarzt:{de:'kontrolliert Zähne',ru:'проверяет зубы'},
-    Musiker:{de:'spielt Musik',ru:'играет музыку'},
-    Fotograf:{de:'macht Fotos',ru:'делает фотографии'},
-    Maler:{de:'malt Bilder',ru:'рисует картины'},
+  // таблица «слово — перевод» по существующей категории карточек
+  const catTable = (categoryKey) => {
+    const cat = (window.VOCAB_DATA||[]).find(c=>c.category===categoryKey);
+    if (!cat || !cat.words.length) return '';
+    return two(cat.words.map(w=>[
+      `${w.article && w.article!=='-' ? w.article+' ' : ''}<b>${w.word}</b>`,
+      _cleanTr(w.translation),
+    ]));
   };
-  const berufeCat = (window.VOCAB_DATA||[]).find(c=>c.category==='berufe');
-  const berufeRows = [];
-  if (berufeCat) berufeCat.words.forEach(w=>{
-    if (String(w.id).endsWith('f')) return;          // только базовая (муж.) форма — без дублей м/ж
-    const a = BERUF_ACTION[w.word];
-    if (!a) return;
-    const rn = _cleanTr(w.translation);
-    const ruCap = rn.charAt(0).toUpperCase()+rn.slice(1);
-    berufeRows.push([`Ein ${w.word} <b>${a.de}</b>.`, `${ruCap} ${a.ru}.`]);
-  });
-  const berufeHtml = berufeRows.length
-    ? two(berufeRows)
-    : `<p class="rt-note">${L('Lerne zuerst die Karten „Berufe“.','Сначала пройди карточки «Профессии».','Спершу пройди картки «Професії».')}</p>`;
-
-  // все отделяемые глаголы — из карточек (категория trennbar)
-  const _sepFmt = form => {
-    const p = String(form).split(' ');
-    if (p.length < 2) return form;
-    const pre = p.pop();
-    return p.join(' ') + ' … <b>' + pre + '</b>';
-  };
-  const trennCat = (window.VOCAB_DATA||[]).find(c=>c.category==='trennbar');
-  const trennPrepRows = (trennCat ? trennCat.words : []).filter(w=>w.conj).map(w=>[
-    `${w.word}<br><small class="rt-tr">${_cleanTr(w.translation)}</small>`,
-    _sepFmt(w.conj.ich), _sepFmt(w.conj.du), _sepFmt(w.conj.er),
-  ]);
 
   return [
     // ───────────────────────────────────────
-    { id:'berufe', icon:'👷', title:L('Was macht ein/eine? (кто что делает)','Кто что делает (профессии)','Хто що робить (професії)'),
-      html: berufeHtml },
-
-    // ───────────────────────────────────────
-    { id:'modal', icon:'🔑', title:L('Modalverben (модальные глаголы)','Модальные глаголы','Модальні дієслова'),
-      html: three(['','können<br><small>мочь</small>','müssen<br><small>должен</small>','dürfen<br><small>можно</small>','wollen<br><small>хотеть</small>','sollen<br><small>следует</small>','möchten<br><small>хотел бы</small>'],[
-        ['ich','kann','muss','darf','will','soll','möchte'],
-        ['du','kannst','musst','darfst','willst','sollst','möchtest'],
-        ['er/sie/es','kann','muss','darf','will','soll','möchte'],
-        ['wir','können','müssen','dürfen','wollen','sollen','möchten'],
-        ['ihr','könnt','müsst','dürft','wollt','sollt','möchtet'],
-        ['sie/Sie','können','müssen','dürfen','wollen','sollen','möchten'],
-      ]) + `<p class="rt-note">⚡ ${L('Regel','Правило','Правило')}: ${L('Modalverb auf Position 2, das andere Verb im <b>Infinitiv ans Satzende</b>.','модальный глагол на 2-м месте, второй глагол в <b>инфинитиве в конец</b>.','модальне дієслово на 2-й позиції, друге дієслово в <b>інфінітиві в кінець</b>.')}</p>`
-        + two([
-          ['Ich <b>muss</b> Deutsch <b>lernen</b>.','Я должен учить немецкий.'],
-          ['Ich <b>muss</b> kranke Menschen <b>pflegen</b>.','Я должен ухаживать за больными.'],
-          ['Ich <b>muss</b> Wasser <b>trinken</b>.','Я должен пить воду.'],
-          ['Ich <b>kann</b> Gitarre <b>spielen</b>.','Я умею играть на гитаре.'],
-          ['Ich <b>kann</b> Bücher <b>lesen</b>.','Я умею читать книги.'],
-          ['Ich <b>kann</b> Fahrrad <b>fahren</b>.','Я умею ездить на велосипеде.'],
-          ['Der Bäcker <b>kann</b> Brot <b>backen</b>.','Пекарь умеет печь хлеб.'],
-          ['Der Kellner <b>muss</b> das Essen <b>servieren</b>.','Официант должен подавать еду.'],
-          ['Die Krankenschwester <b>soll</b> kranke Menschen <b>pflegen</b>.','Медсестра должна ухаживать за больными.'],
-          ['Die Bürokauffrau <b>mag</b> am Computer <b>arbeiten</b>.','Офис-менеджеру нравится работать за компьютером.'],
+    { id:'hausarbeit', icon:'🧹', title:L('Hausarbeit & Tagesablauf','Домашние дела и распорядок дня','Домашні справи та розпорядок дня'),
+      html: catTable('hausarbeit') + catTable('alltag')
+        + `<p class="rt-sub">${L('Beispielsätze','Примеры предложений','Приклади речень')}:</p>` + two([
+          ['Ich <b>stehe</b> um 7 Uhr <b>auf</b>.','Я встаю в 7 часов.'],
+          ['Ich <b>räume</b> die Küche <b>auf</b>.','Я убираю кухню.'],
+          ['Am Abend <b>wasche</b> ich die Wäsche.','Вечером я стираю бельё.'],
+          ['Zuerst <b>frühstücke</b> ich, dann gehe ich zur Arbeit.','Сначала я завтракаю, потом иду на работу.'],
         ]) },
 
     // ───────────────────────────────────────
-    { id:'trennbar', icon:'✂️', title:L('Trennbare Verben (отделяемые)','Отделяемые глаголы','Відокремлювані дієслова'),
-      html: three(['','ich','du','er/sie/es'], trennPrepRows.length ? trennPrepRows : [['—','—','—','—']])
-        + `<p class="rt-note">${L('Vorsilbe ans Satzende','Приставка уходит в конец','Префікс у кінець')}: <b>an-, auf-, aus-, ein-, mit-, vor-, ab-, um-, nach-, fern-</b></p>`
+    { id:'moebel', icon:'🛋️', title:L('Möbel und Einrichtungen','Мебель, интерьер и прилагательные','Меблі, інтер’єр та прикметники'),
+      html: catTable('moebel') + catTable('einrichtung') + catTable('raeume')
+        + `<p class="rt-sub">${L('Wie beschreibt man Möbel und Räume?','Как описать мебель и комнаты?','Як описати меблі та кімнати?')}</p>` + two([
+          ['<b>bequem</b> ↔ <b>unbequem</b>','удобный ↔ неудобный'],
+          ['<b>groß</b> ↔ <b>klein</b>','большой ↔ маленький'],
+          ['<b>neu</b> ↔ <b>alt</b>','новый ↔ старый'],
+          ['<b>modern</b> ↔ <b>altmodisch</b>','современный ↔ старомодный'],
+          ['<b>hell</b> ↔ <b>dunkel</b>','светлый ↔ тёмный'],
+          ['<b>gemütlich</b>','уютный'],
+        ]) },
+
+    // ───────────────────────────────────────
+    { id:'wohnungssuche', icon:'🔑', title:L('Wohnungssuche & Mietvertrag','Поиск жилья, сокращения и договор аренды','Пошук житла, скорочення та договір оренди'),
+      html: catTable('mieten')
+        + `<p class="rt-sub">${L('Abkürzungen in Wohnungsanzeigen','Сокращения в объявлениях о жилье','Скорочення в оголошеннях про житло')}:</p>`
+        + three(['','',''],[
+          ['3-Zi-Whg','3-Zimmer-Wohnung','3-комнатная квартира'],
+          ['qm / m²','Quadratmeter','квадратный метр'],
+          ['KM','Kaltmiete','аренда без коммунальных'],
+          ['WM','Warmmiete','аренда с коммунальными'],
+          ['NK','Nebenkosten','коммунальные платежи'],
+          ['EBK','Einbauküche','встроенная кухня'],
+          ['DG','Dachgeschoss','мансарда'],
+          ['EG','Erdgeschoss','первый этаж'],
+          ['ca.','circa','около, примерно'],
+          ['provisionsfrei','—','без комиссии'],
+        ])
+        + `<p class="rt-sub">${L('Mietvertrag','Договор аренды','Договір оренди')}:</p>` + two([
+          ['der <b>Mietvertrag</b>','договор аренды'],
+          ['der/die <b>Vermieter/in</b>','арендодатель'],
+          ['der/die <b>Mieter/in</b>','арендатор'],
+          ['die <b>Kaution</b>','залог'],
+          ['<b>kündigen</b>','расторгнуть договор'],
+          ['<b>befristet</b> ↔ <b>unbefristet</b>','срочный ↔ бессрочный'],
+        ]) },
+
+    // ───────────────────────────────────────
+    { id:'einkaufen', icon:'🛒', title:L('Einkaufen','Покупки: одежда, продукты, упаковка, цены','Покупки: одяг, продукти, упаковка, ціни'),
+      html: catTable('einkaufen') + catTable('kleidung') + catTable('kleidung2') + catTable('verpackung')
+        + `<p class="rt-sub">${L('Beispielsätze','Примеры предложений','Приклади речень')}:</p>` + two([
+          ['Wie viel <b>kostet</b> das?','Сколько это стоит?'],
+          ['Kann ich das <b>anprobieren</b>?','Могу я это примерить?'],
+          ['Haben Sie das eine Nummer <b>größer / kleiner</b>?','У вас есть на размер больше / меньше?'],
+          ['Ich <b>bezahle</b> mit Karte.','Я плачу картой.'],
+        ]) },
+
+    // ───────────────────────────────────────
+    { id:'medien', icon:'📱', title:L('Medien','Медиа и гаджеты','Медіа та гаджети'),
+      html: catTable('handy_funktionen') + catTable('medien_geraete') + catTable('tastatur_tasten') + catTable('bibliothek_medien')
+        + `<p class="rt-sub">${L('Regeln im Internet','Правила в интернете','Правила в інтернеті')}:</p>` + catTable('internet_regeln')
         + two([
-          ['<b>Aussage:</b> Er <b>kauft</b> im Supermarkt <b>ein</b>.','Утвержд.: Он делает покупки в супермаркете.'],
-          ['Ich <b>rufe</b> meine Freundin <b>an</b>.','Я звоню подруге.'],
-          ['<b>Frage:</b> <b>Füllst</b> du das Formular <b>aus</b>?','Вопрос: Ты заполняешь бланк?'],
-          ['<b>Räumst</b> du heute <b>auf</b>?','Ты убираешься сегодня?'],
-          ['Ich <b>stehe</b> um 6 Uhr <b>auf</b>.','Я встаю в 6 часов.'],
-          ['Wir <b>sehen</b> abends <b>fern</b>.','Мы смотрим телевизор вечером.'],
-        ]) + `<p class="rt-note">⚠️ ${L('Mit Modalverb bleibt es zusammen','С модальным глаголом — не отрывается','З модальним — не відокремлюється')}: <em>Ich muss das Formular <b>ausfüllen</b>.</em></p>` },
+          ['Man <b>muss</b> um <b>Erlaubnis</b> fragen, bevor man Fotos von anderen Menschen ins Internet stellt.','Нужно спросить разрешения, прежде чем выкладывать фото других людей в интернет.'],
+          ['Die eigene <b>Meinung</b> im Internet zu schreiben ist <b>erlaubt</b>.','Писать своё мнение в интернете разрешено.'],
+        ]) },
 
     // ───────────────────────────────────────
-    { id:'adj', icon:'😊', title:L('Adjektive + Gegenteile (прилагательные)','Прилагательные и противоположности','Прикметники і протилежності'),
-      html: three([L('positiv (+)','позитив (+)','позитив (+)'),L('negativ (–)','негатив (–)','негатив (–)'),L('перевод','перевод','переклад')],[
-        ['direkt','indirekt','прямой ↔ непрямой'],
-        ['flexibel','unflexibel','гибкий ↔ негибкий'],
-        ['fleißig','faul','трудолюбивый ↔ ленивый'],
-        ['pünktlich','unpünktlich','пунктуальный ↔ непунктуальный'],
-        ['höflich','unhöflich','вежливый ↔ невежливый'],
-        ['systematisch','unsystematisch','систематичный ↔ хаотичный'],
-        ['schnell','langsam','быстрый ↔ медленный'],
-        ['kommunikativ','ruhig','общительный ↔ спокойный/тихий'],
-      ]) + `<p class="rt-sub">${L('Weitere Adjektive für die Arbeit','Ещё прилагательные о работе','Ще прикметники про роботу')}:</p>` + two([
-        ['stressig','напряжённый / стрессовый'],
-        ['hilfsbereit','готовый помочь'],
-        ['selbstständig','самостоятельный'],
-        ['interessant','интересный'],
-        ['langweilig','скучный'],
-        ['wichtig','важный'],
-        ['freundlich','дружелюбный'],
-        ['motiviert','мотивированный'],
-        ['kreativ','креативный'],
-        ['schwer / leicht','тяжёлый / лёгкий'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'ueber', icon:'🙋', title:L('Über mich / Hobby (о себе и хобби)','Рассказ о себе и хобби','Розповідь про себе і хобі'),
-      html: two([
-        ['Ich heiße Toni. Ich bin 48 Jahre alt.','Меня зовут Тони. Мне 48 лет.'],
-        ['Ich arbeite als Pizzafahrer.','Я работаю развозчиком пиццы.'],
-        ['Ich kann vormittags, nachmittags und abends arbeiten.','Я могу работать утром, днём и вечером.'],
-        ['Ich habe einen Führerschein.','У меня есть водительские права.'],
-        ['Ich bin flexibel und pünktlich.','Я гибкий и пунктуальный.'],
-        ['Ich möchte flexibel sein.','Я хотел бы быть гибким.'],
-        ['Mein Hobby ist Musik. / In meiner Freizeit …','Моё хобби — музыка. / В свободное время…'],
-        ['Ich spiele gern Gitarre.','Я люблю играть на гитаре.'],
-        ['Ich lese gern Bücher.','Я люблю читать книги.'],
-        ['Ich fahre gern Fahrrad.','Я люблю кататься на велосипеде.'],
-      ]) + `<p class="rt-sub">gern / lieber (${L('vorlieben','предпочтения','вподобання')}):</p>` + two([
-        ['Essen Sie <b>lieber</b> Pizza oder Nudeln? – Ich esse <b>lieber</b> Pizza.','Вы предпочитаете пиццу или пасту? – Я предпочитаю пиццу.'],
-        ['Lesen Sie lieber Zeitung oder Romane? – Ich lese lieber Romane.','…газеты или романы? – Я предпочитаю романы.'],
-        ['Stehen Sie lieber früh oder spät auf? – Ich stehe lieber spät auf.','Встаёте раньше или позже? – Я встаю позже.'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'krank', icon:'🤒', title:L('Krankmeldung (сообщение о болезни)','Болезнь: сообщить на работу / врачу','Хвороба: повідомити на роботу / лікарю'),
-      html: two([
-        ['Ich bin krank.','Я болен.'],
-        ['Ich habe Fieber / Kopfschmerzen / Husten / Schnupfen / Halsschmerzen.','У меня температура / болит голова / кашель / насморк / болит горло.'],
-        ['Ich kann heute nicht kommen / nicht arbeiten.','Я не могу сегодня прийти / работать.'],
-        ['Ich muss zum Arzt gehen.','Мне нужно пойти к врачу.'],
-        ['Ich brauche einen Termin beim Arzt.','Мне нужна запись к врачу.'],
-        ['Der Arzt schreibt mich krank. (die Krankmeldung / Krankschreibung)','Врач выписывает больничный.'],
-        ['<b>Anruf:</b> „Guten Morgen, hier ist … Ich bin krank und kann heute nicht kommen.“','Звонок: «Доброе утро, это… Я болен и сегодня не смогу прийти».'],
-      ]) + `<p class="rt-note">📄 ${L('Aus dem Arbeitsvertrag §6','Из трудового договора §6','З трудового договору §6')}: ${L('Bei Krankheit muss der Arbeitnehmer den Arbeitgeber <b>sofort (unverzüglich)</b> informieren. Nach <b>3 Tagen</b> braucht man eine <b>ärztliche Bescheinigung</b>.','При болезни работник должен <b>сразу</b> сообщить работодателю. Через <b>3 дня</b> нужна <b>справка от врача</b>.','При хворобі працівник має <b>одразу</b> повідомити роботодавця. Через <b>3 дні</b> потрібна <b>довідка від лікаря</b>.')}</p>` },
-
-    // ───────────────────────────────────────
-    { id:'zeit', icon:'📅', title:L('Monate, Jahreszeiten, Tageszeiten','Месяцы, поры года, время суток','Місяці, пори року, час доби'),
-      html: `<p class="rt-sub">${L('Monate (месяцы)','Месяцы','Місяці')}:</p>` + three(['','',''],[
-        ['Januar / Februar','März / April','Mai / Juni'],
-        ['Juli / August','September / Oktober','November / Dezember'],
-      ]) + `<p class="rt-sub">${L('Jahreszeiten (поры года)','Поры года','Пори року')}:</p>` + two([
-        ['der Frühling','весна'],['der Sommer','лето'],['der Herbst','осень'],['der Winter','зима'],
-      ]) + `<p class="rt-sub">${L('Tageszeiten (время суток)','Время суток','Час доби')}:</p>` + three([L('Существительное','Существительное','Іменник'),L('Наречие (когда?)','Наречие (когда?)','Прислівник (коли?)'),L('перевод','перевод','переклад')],[
-        ['der Morgen','morgens','утро / утром'],
-        ['der Vormittag','vormittags','до обеда'],
-        ['der Mittag','mittags','полдень / в полдень'],
-        ['der Nachmittag','nachmittags','после обеда'],
-        ['der Abend','abends','вечер / вечером'],
-        ['die Nacht','nachts','ночь / ночью'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'datum', icon:'🔢', title:L('Das Datum – Ordnungszahlen (дата, порядковые)','Дата и порядковые числительные','Дата і порядкові числівники'),
-      html: `<p class="rt-note">📌 ${L('Regel','Правило','Правило')}: <b>1–19 → „-te“</b>, <b>ab 20 → „-ste“</b>.</p>` + three([L('Число','Число','Число'),L('Порядковое','Порядковое','Порядкове'),L('перевод','перевод','переклад')],[
-        ['1.','<b>erste</b> ⚡','первое'],
-        ['2.','zweite','второе'],
-        ['3.','<b>dritte</b> ⚡','третье'],
-        ['4.','vierte','четвёртое'],
-        ['5.','fünfte','пятое'],
-        ['6.','sechste','шестое'],
-        ['7.','<b>siebte</b> ⚡','седьмое'],
-        ['8.','<b>achte</b> ⚡','восьмое'],
-        ['9.','neunte','девятое'],
-        ['10.','zehnte','десятое'],
-        ['19.','neunzehnte','девятнадцатое'],
-        ['20.','zwanzig<b>ste</b>','двадцатое'],
-        ['21.','einundzwanzig<b>ste</b>','двадцать первое'],
-        ['30.','dreißig<b>ste</b>','тридцатое'],
-      ]) + `<p class="rt-note">⚡ ${L('Ausnahmen','Исключения','Винятки')}: erste, dritte, siebte, achte.</p>` + two([
-        ['Heute ist der <b>2.</b> Juli. = Heute ist der <b>zweite</b> Juli.','Сегодня 2-е июля.'],
-        ['Der wievielte ist heute?','Какое сегодня число?'],
-        ['Mein Geburtstag ist am <b>19.</b> = <b>am neunzehnten</b>.','Мой день рождения 19-го.'],
-        ['Ich habe <b>am ersten</b> Mai frei.','У меня выходной 1-го мая.'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'vertrag', icon:'📄', title:L('Arbeitsvertrag (трудовой договор)','Трудовой договор','Трудовий договір'),
-      html: two([
-        ['der <b>Arbeitgeber</b>','работодатель (шеф)'],
-        ['der <b>Arbeitnehmer</b>','работник'],
-        ['§1 Beginn des Arbeitsverhältnisses','начало трудовых отношений (unbefristet = бессрочно)'],
-        ['§2 Tätigkeit','деятельность (что делаю: Gemüse putzen, schälen, schneiden; Küche aufräumen)'],
-        ['§3 Arbeitsvergütung / Bruttovergütung','оплата труда (сумма brutto)'],
-        ['§4 Arbeitszeit','рабочее время (z.B. 36 Stunden / Woche)'],
-        ['§5 Urlaub','отпуск (z.B. 24 Arbeitstage im Jahr)'],
-        ['§6 Krankheit','болезнь (сразу сообщить; справка через 3 дня)'],
-      ]) + `<p class="rt-sub">${L('Geld (деньги)','Деньги','Гроші')}:</p>` + two([
-        ['der <b>Bruttolohn</b>','зарплата ДО налогов'],
-        ['der <b>Nettolohn</b>','зарплата НА РУКИ (после вычетов)'],
-        ['die <b>Lohnsteuer</b>','налог на зарплату'],
-        ['die <b>Sozialversicherung</b>','социальное страхование'],
-        ['der <b>Mindestlohn</b>','минимальная зарплата'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'def', icon:'📖', title:L('Definitionen (что это значит)','Определения — что означает слово','Визначення — що означає слово'),
-      html: two([
-        ['die <b>Arbeitserlaubnis</b>','Ich darf in Deutschland arbeiten. (разрешение работать)'],
-        ['die <b>Berufsanerkennung</b>','Meine Ausbildung ist akzeptiert. (признание профессии)'],
-        ['die <b>Berufserfahrung</b>','Ich arbeite schon lange in meinem Beruf. (опыт работы)'],
-        ['das <b>Zeugnis / Zertifikat</b>','Ein Dokument über meine Ausbildung. (аттестат / сертификат)'],
-        ['die <b>Ausbildung</b>','Ich lerne drei Jahre einen Beruf. (профобучение)'],
-        ['die <b>Stellenanzeige</b>','Wo kann ich arbeiten? (объявление о вакансии)'],
-        ['der <b>Arbeitsvertrag</b>','Ein Dokument: was, wie lange und wie viel ich arbeite/bekomme.'],
-        ['die <b>Arbeitszeit</b>','Von wann bis wann arbeite ich. (рабочее время)'],
-        ['die <b>Tätigkeit / Aufgaben</b>','Das muss ich machen. (обязанности)'],
-        ['der <b>Urlaub</b>','Ich muss nicht arbeiten. (отпуск)'],
-        ['die <b>Krankheit</b>','Man ist krank und kann nicht arbeiten.'],
-        ['die <b>Bewerbung</b>','заявка на работу; das <b>Bewerbungsgespräch</b> = собеседование'],
-        ['der <b>Lebenslauf</b> (CV)','Dokument mit Ausbildung und Berufserfahrung. (резюме)'],
-        ['der <b>Anruf</b> / der <b>Rückruf</b>','звонок / Jemand ruft später zurück (обратный звонок)'],
-      ]) },
-
-    // ───────────────────────────────────────
-    { id:'anzeige', icon:'📰', title:L('Anzeigen & Bewerber (объявления ↔ люди)','Объявления и кандидаты (найти пару)','Оголошення і кандидати'),
-      html: `<p class="rt-note">${L('Wichtige Wörter','Важные слова','Важливі слова')}: <b>Aushilfe</b> (подработка), <b>gesucht / sucht</b> (ищет/требуется), <b>Führerschein</b> (права), <b>pro Woche</b> (в неделю), <b>ab 14 Uhr</b> (с 14:00), <b>Kfz</b> = Auto.</p>` + three([L('Человек','Человек','Людина'),L('Какой (adjektiv)','Какой','Який'),L('Подходит объявление','Подходит','Підходить')],[
-        ['Julia (22, Automechanikerin)','pünktlich, schnell','Anzeige 2 — Kfz-Mechaniker/in'],
-        ['Jerome (31, fotografiert, Deutschkurs)','kreativ','Anzeige 4 — Aushilfe Fotostudio'],
-        ['Toni (48, Führerschein, flexibel)','flexibel','Anzeige 3 — Fahrer, Pizzeria'],
-        ['Susanne (44, Hausfrau, mit Menschen)','freundlich','Anzeige 1 — Aushilfe Supermarkt'],
-      ]) + two([
-        ['Julia ist <b>pünktlich</b>.','Юлия пунктуальная.'],
-        ['Jerome ist <b>kreativ</b>.','Жером креативный.'],
-        ['Toni ist <b>flexibel</b>.','Тони гибкий.'],
-        ['Susanne ist <b>freundlich</b>.','Сюзанна дружелюбная.'],
-      ]) },
+    { id:'schulsystem', icon:'🏫', title:L('Das Schulsystem','Школьная система Германии','Шкільна система Німеччини'),
+      html: catTable('schulsystem')
+        + `<p class="rt-sub">${L('Stufen und Alter','Ступени и возраст','Ступені та вік')}:</p>`
+        + three([L('Stufe','Ступень','Ступінь'),L('Alter','Возраст','Вік'),''],[
+          ['Kinderkrippe','0–3',L('ясли','ясли','ясла')],
+          ['Kindergarten','3–6',L('детский сад','детский сад','дитячий садок')],
+          ['Grundschule (1.–4. Klasse)','6–10',L('начальная школа','начальная школа','початкова школа')],
+          ['Hauptschule (5.–9./10. Klasse)','10–15/16',L('основная школа','основная школа','основна школа')],
+          ['Realschule (5.–10. Klasse)','10–16',L('реальная школа','реальная школа','реальна школа')],
+          ['Gymnasium (5.–12./13. Klasse)','10–17/18',L('гимназия','гимназия','гімназія')],
+          ['Universität / Ausbildung','ab 18',L('университет / профобучение','университет / профобучение','університет / профнавчання')],
+        ]) },
   ];
 }
 
