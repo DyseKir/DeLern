@@ -1444,6 +1444,170 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
     tip_ru: "Приставки auf/ein/an/aus/um/ab/mit/vor/nach/fern отрываются и едут в конец. Но после модального глагола (muss, kann…) — остаются вместе: 'Ich muss aufstehen'.",
   },
 
+  {
+    id: "a1_gr_038", level: "A1",
+    title_de: "Perfekt — die Vergangenheit im Gespräch",
+    title_ru: "Perfekt — разговорное прошедшее время",
+    explanation_de: "Perfekt = haben/sein (в настоящем времени, спрягается) + Partizip II (в конце предложения). Partizip II большинства глаголов: ge + основа + t/et. У некоторых — ge + основа + en (неправильные глаголы).",
+    explanation_ru: `<strong>Perfekt</strong> — самое частое прошедшее время в разговорной немецкой речи (в отличие от Präteritum, которое чаще используется в книгах).
+
+Формула: <strong>haben / sein</strong> (спрягается по лицу, стоит на 2-м месте) + <strong>Partizip II</strong> (не меняется, уходит в конец предложения).
+
+Как образуется Partizip II:
+• Правильные глаголы: <strong>ge</strong> + основа + <strong>t</strong> (machen → ge<u>mach</u>t, kaufen → ge<u>kauf</u>t)
+• Основа на -t/-d: <strong>ge</strong> + основа + <strong>et</strong> (arbeiten → gearbeit<u>et</u>)
+• Глаголы на -ieren и глаголы с приставками be-/ver-/er-/ent-/ge- (неотделяемые): <strong>без ge-</strong>, просто основа + t (telefonieren → telefoniert, besuchen → besucht)
+• Неправильные глаголы: <strong>ge</strong> + основа (часто с изменением) + <strong>en</strong> — их нужно запоминать (finden → gefunden, geben → gegeben)
+
+Какой вспомогательный глагол выбрать?
+• <strong>sein</strong> — если глагол показывает <em>движение</em> (fahren, gehen, kommen) или <em>изменение состояния</em> (aufstehen, einschlafen)
+• <strong>haben</strong> — почти все остальные глаголы`,
+    examples: [
+      { de: "Ich habe gestern gearbeitet.", ru: "Я вчера работал." },
+      { de: "Ich habe im Supermarkt eingekauft.", ru: "Я делал покупки в супермаркете." },
+      { de: "Ich bin nach Hause gefahren.", ru: "Я поехал домой." },
+      { de: "Ich bin um 7 Uhr aufgestanden.", ru: "Я встал в 7 часов." },
+      { de: "Ich habe meine Freundin angerufen.", ru: "Я позвонил подруге." },
+    ],
+    tip_de: "sein-Verben: Bewegung oder neuer Zustand. Alle anderen: haben.",
+    tip_ru: "Глаголы с sein — это движение (fahren, gehen, kommen) или новое состояние (aufstehen). Все остальные — с haben.",
+  },
+
+  {
+    id: "a1_gr_039", level: "A1",
+    title_de: "Präteritum von haben und sein",
+    title_ru: "Прошедшее время haben и sein (Präteritum)",
+    explanation_de: "haben und sein benutzt man im Präteritum, nicht im Perfekt — auch beim Sprechen!",
+    explanation_ru: `У глаголов <strong>haben</strong> и <strong>sein</strong> есть особенность: в разговорной речи их почти всегда используют в форме <strong>Präteritum</strong> (простого прошедшего), а не в Perfekt (как остальные глаголы).
+
+То есть вместо «ich habe gehabt» говорят просто <strong>ich hatte</strong>, а вместо «ich bin gewesen» — <strong>ich war</strong>.`,
+    examples: [
+      { de: "Ich hatte gestern keine Zeit.", ru: "У меня вчера не было времени." },
+      { de: "Ich war letzte Woche krank.", ru: "Я был болен на прошлой неделе." },
+      { de: "Wir waren im Kino.", ru: "Мы были в кино." },
+      { de: "Er hatte einen Termin beim Arzt.", ru: "У него была запись к врачу." },
+    ],
+    tip_de: "haben → hatte, hattest, hatte, hatten, hattet, hatten. sein → war, warst, war, waren, wart, waren.",
+    tip_ru: "Запомни как готовые формы: hatte (у меня было) и war (я был) — это не Perfekt, это Präteritum, но используется постоянно в разговоре.",
+  },
+
+  {
+    id: "a1_gr_040", level: "A1",
+    title_de: "Das Verb werden",
+    title_ru: "Глагол werden — становиться (для профессий и будущего)",
+    explanation_de: "werden: ich werde, du wirst, er/sie/es wird, wir werden, ihr werdet, sie/Sie werden. Benutzt für Berufswünsche und für Futur.",
+    explanation_ru: `Глагол <strong>werden</strong> означает «становиться». Чаще всего в начале обучения его используют, чтобы сказать, кем хочешь <em>стать</em> (профессия) или что произойдёт в <em>будущем</em>.
+
+Спряжение: ich <strong>werde</strong>, du <strong>wirst</strong>, er/sie/es <strong>wird</strong>, wir <strong>werden</strong>, ihr <strong>werdet</strong>, sie/Sie <strong>werden</strong>.
+
+С желанием стать кем-то часто используют <strong>möchte ... werden</strong> — «хотел бы стать».`,
+    examples: [
+      { de: "Ich möchte Ärztin werden.", ru: "Я хотела бы стать врачом." },
+      { de: "Du willst Schauspieler werden.", ru: "Ты хочешь стать актёром." },
+      { de: "Er wird Musiker.", ru: "Он становится музыкантом." },
+      { de: "Was möchtest du werden?", ru: "Кем ты хотел бы стать?" },
+    ],
+    tip_de: "werden ≠ wollen! werden = становиться (результат), wollen = хотеть (желание).",
+    tip_ru: "Не путай werden (становиться) с wollen (хотеть) — это разные глаголы с разным значением.",
+  },
+
+  {
+    id: "a1_gr_041", level: "A1",
+    title_de: "Demonstrativartikel: dieser, diese, dieses",
+    title_ru: "Указательные артикли: dieser / diese / dieses (этот, эта, это)",
+    explanation_de: "dieser/diese/dieses = 'этот/эта/это'. Endungen wie der bestimmte Artikel.",
+    explanation_ru: `<strong>dieser, diese, dieses</strong> означают «этот, эта, это» — используются, когда мы показываем на конкретный предмет (как «вот этот» в русском).
+
+Склоняются похоже на определённый артикль der/die/das:
+• Nominativ: <strong>dieser</strong> Tisch, <strong>diese</strong> Lampe, <strong>dieses</strong> Bett, <strong>diese</strong> Stühle (мн. ч.)
+• Akkusativ: <strong>diesen</strong> Tisch, <strong>diese</strong> Lampe, <strong>dieses</strong> Bett, <strong>diese</strong> Stühle
+• Dativ: <strong>diesem</strong> Tisch, <strong>dieser</strong> Lampe, <strong>diesem</strong> Bett, <strong>diesen</strong> Stühlen`,
+    examples: [
+      { de: "Dieser Tisch ist neu.", ru: "Этот стол новый." },
+      { de: "Ich kaufe diese Lampe.", ru: "Я покупаю эту лампу." },
+      { de: "Ich sitze auf diesem Stuhl.", ru: "Я сижу на этом стуле." },
+      { de: "Diese Wohnung gefällt mir.", ru: "Эта квартира мне нравится." },
+    ],
+    tip_de: "dieser/diese/dieses hat fast die gleichen Endungen wie der/die/das.",
+    tip_ru: "Окончания dieser/diese/dieses почти такие же, как у der/die/das — учи их вместе с падежами.",
+  },
+
+  {
+    id: "a1_gr_042", level: "A1",
+    title_de: "Personalpronomen im Akkusativ und Dativ",
+    title_ru: "Личные местоимения в Akkusativ и Dativ (mich, mir и т.д.)",
+    explanation_de: "ich→mich/mir, du→dich/dir, er→ihn/ihm, sie→sie/ihr, es→es/ihm, wir→uns/uns, ihr→euch/euch, sie/Sie→sie,Sie/ihnen,Ihnen.",
+    explanation_ru: `Личные местоимения (я, ты, он...) меняют форму в зависимости от падежа — так же, как в русском «я → меня → мне».
+
+<strong>Nominativ → Akkusativ → Dativ:</strong>
+• ich → <strong>mich</strong> → <strong>mir</strong>
+• du → <strong>dich</strong> → <strong>dir</strong>
+• er → <strong>ihn</strong> → <strong>ihm</strong>
+• sie (она) → <strong>sie</strong> → <strong>ihr</strong>
+• es → <strong>es</strong> → <strong>ihm</strong>
+• wir → <strong>uns</strong> → <strong>uns</strong>
+• ihr → <strong>euch</strong> → <strong>euch</strong>
+• sie (они) / Sie → <strong>sie / Sie</strong> → <strong>ihnen / Ihnen</strong>`,
+    examples: [
+      { de: "Kannst du mir helfen?", ru: "Ты можешь мне помочь?" },
+      { de: "Ich sehe dich.", ru: "Я вижу тебя." },
+      { de: "Wir danken ihnen.", ru: "Мы благодарим их." },
+      { de: "Er fragt mich.", ru: "Он спрашивает меня." },
+    ],
+    tip_de: "Verben mit Dativ (helfen, danken, antworten) brauchen mir/dir/ihm, nicht mich/dich/ihn!",
+    tip_ru: "Глаголы helfen, danken, antworten требуют Dativ (mir/dir/ihm), а не Akkusativ (mich/dich/ihn) — частая ошибка!",
+  },
+
+  {
+    id: "a1_gr_043", level: "A1",
+    title_de: "Verben mit Akkusativ und Dativ",
+    title_ru: "Глаголы с двумя дополнениями (Akkusativ + Dativ)",
+    explanation_de: "Manche Verben brauchen zwei Objekte: Dativ (Person) + Akkusativ (Sache). Andere Verben brauchen nur Dativ.",
+    explanation_ru: `Некоторые глаголы требуют сразу <strong>два дополнения</strong>: кому? (<strong>Dativ</strong>, обычно человек) и что? (<strong>Akkusativ</strong>, обычно вещь).
+
+Такие глаголы: <strong>schenken, geben, bringen, erklären, sagen, schreiben, verkaufen, zeigen</strong>.
+
+Есть и глаголы, которые требуют <strong>только Dativ</strong> (без Akkusativ): <strong>antworten, helfen, danken, gratulieren</strong>.`,
+    examples: [
+      { de: "Ich schenke meiner Mutter (Dativ) ein Buch (Akkusativ).", ru: "Я дарю моей маме книгу." },
+      { de: "Er zeigt mir (Dativ) das Foto (Akkusativ).", ru: "Он показывает мне фото." },
+      { de: "Ich helfe meinem Vater (nur Dativ).", ru: "Я помогаю моему отцу." },
+      { de: "Wir danken der Lehrerin (nur Dativ).", ru: "Мы благодарим учительницу." },
+    ],
+    tip_de: "Reihenfolge im Satz meist: Verb + Dativ (Person) + Akkusativ (Sache).",
+    tip_ru: "Обычный порядок в предложении: глагол → Dativ (кому, человек) → Akkusativ (что, вещь).",
+  },
+
+  {
+    id: "a1_gr_044", level: "A1",
+    title_de: "Komparation: Komparativ und Superlativ",
+    title_ru: "Степени сравнения прилагательных (Komparativ, Superlativ)",
+    explanation_de: "Komparativ: Adjektiv + er. Superlativ: am + Adjektiv + sten. Bei kurzen Wörtern: Umlaut (a→ä, o→ö, u→ü).",
+    explanation_ru: `Чтобы сравнить предметы («больше», «самый большой»), прилагательное меняет форму:
+
+• <strong>Positiv</strong> (обычная форма): schön, alt, groß
+• <strong>Komparativ</strong> (сравнительная, «более»): прилагательное + <strong>-er</strong> → schön<strong>er</strong>, ält<strong>er</strong> (a→ä!), größ<strong>er</strong> (o→ö!)
+• <strong>Superlativ</strong> (превосходная, «самый»): <strong>am</strong> + прилагательное + <strong>-sten</strong> → am schön<strong>sten</strong>, am ält<strong>esten</strong>, am größ<strong>ten</strong>
+
+У коротких (односложных) слов часто добавляется умлаут: a→ä, o→ö, u→ü (alt→älter, jung→jünger).
+
+Особые (неправильные) формы:
+• gut → <strong>besser</strong> → am <strong>besten</strong>
+• gern → <strong>lieber</strong> → am <strong>liebsten</strong>
+• viel → <strong>mehr</strong> → am <strong>meisten</strong>
+• hoch → <strong>höher</strong> → am <strong>höchsten</strong>
+
+Сравнение: <strong>als</strong> для разных предметов («чем»), <strong>so ... wie</strong> для одинаковых («такой же ... как»).`,
+    examples: [
+      { de: "Paul ist größer als Stefan.", ru: "Пауль выше, чем Штефан." },
+      { de: "Stefan ist so groß wie Marianne.", ru: "Штефан такого же роста, как Марианна." },
+      { de: "Ich esse lieber Pizza als Nudeln.", ru: "Я предпочитаю пиццу, а не пасту." },
+      { de: "Das ist das beste Restaurant in der Stadt.", ru: "Это лучший ресторан в городе." },
+    ],
+    tip_de: "gut, gern, viel, hoch haben unregelmäßige Formen — auswendig lernen!",
+    tip_ru: "gut/gern/viel/hoch — неправильные формы, их нужно просто запомнить наизусть.",
+  },
+
   // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
