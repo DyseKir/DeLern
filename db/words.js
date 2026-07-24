@@ -674,6 +674,31 @@ window.VOCAB_DATA = [
   },
 
   // ════════════════════════════════
+  //  A1 — ORDNUNGSZAHLEN (первый, второй...)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "ordnungszahlen", name: "Ordnungszahlen", name_ru: "Порядковые числительные", emoji: "🥇",
+    words: [
+      { id: "a1_oz_001", article: "-", word: "erste",        translation: "1-й — первый" },
+      { id: "a1_oz_002", article: "-", word: "zweite",       translation: "2-й — второй" },
+      { id: "a1_oz_003", article: "-", word: "dritte",       translation: "3-й — третий" },
+      { id: "a1_oz_004", article: "-", word: "vierte",       translation: "4-й — четвёртый" },
+      { id: "a1_oz_005", article: "-", word: "fünfte",       translation: "5-й — пятый" },
+      { id: "a1_oz_006", article: "-", word: "sechste",      translation: "6-й — шестой" },
+      { id: "a1_oz_007", article: "-", word: "siebte",       translation: "7-й — седьмой" },
+      { id: "a1_oz_008", article: "-", word: "achte",        translation: "8-й — восьмой" },
+      { id: "a1_oz_009", article: "-", word: "neunte",       translation: "9-й — девятый" },
+      { id: "a1_oz_010", article: "-", word: "zehnte",       translation: "10-й — десятый" },
+      { id: "a1_oz_011", article: "-", word: "elfte",        translation: "11-й — одиннадцатый" },
+      { id: "a1_oz_012", article: "-", word: "zwölfte",      translation: "12-й — двенадцатый" },
+      { id: "a1_oz_013", article: "-", word: "neunzehnte",   translation: "19-й — девятнадцатый" },
+      { id: "a1_oz_014", article: "-", word: "zwanzigste",   translation: "20-й — двадцатый" },
+      { id: "a1_oz_015", article: "-", word: "einundzwanzigste", translation: "21-й — двадцать первый" },
+      { id: "a1_oz_016", article: "-", word: "dreißigste",   translation: "30-й — тридцатый" },
+    ]
+  },
+
+  // ════════════════════════════════
   //  A1 — GEFÜHLE (Эмоции, без артикля)
   // ════════════════════════════════
   {
@@ -842,18 +867,18 @@ window.VOCAB_DATA = [
   {
     level: "A1", category: "monate", name: "Monate", name_ru: "Месяцы", emoji: "📆",
     words: [
-      { id: "a1_mo_001", article: "-", word: "Januar",    translation: "январь"    },
-      { id: "a1_mo_002", article: "-", word: "Februar",   translation: "февраль"   },
-      { id: "a1_mo_003", article: "-", word: "März",      translation: "март"      },
-      { id: "a1_mo_004", article: "-", word: "April",     translation: "апрель"    },
-      { id: "a1_mo_005", article: "-", word: "Mai",       translation: "май"       },
-      { id: "a1_mo_006", article: "-", word: "Juni",      translation: "июнь"      },
-      { id: "a1_mo_007", article: "-", word: "Juli",      translation: "июль"      },
-      { id: "a1_mo_008", article: "-", word: "August",    translation: "август"    },
-      { id: "a1_mo_009", article: "-", word: "September", translation: "сентябрь"  },
-      { id: "a1_mo_010", article: "-", word: "Oktober",   translation: "октябрь"   },
-      { id: "a1_mo_011", article: "-", word: "November",  translation: "ноябрь"    },
-      { id: "a1_mo_012", article: "-", word: "Dezember",  translation: "декабрь"   },
+      { id: "a1_mo_001", article: "-", word: "Januar",    translation: "1 — январь"    },
+      { id: "a1_mo_002", article: "-", word: "Februar",   translation: "2 — февраль"   },
+      { id: "a1_mo_003", article: "-", word: "März",      translation: "3 — март"      },
+      { id: "a1_mo_004", article: "-", word: "April",     translation: "4 — апрель"    },
+      { id: "a1_mo_005", article: "-", word: "Mai",       translation: "5 — май"       },
+      { id: "a1_mo_006", article: "-", word: "Juni",      translation: "6 — июнь"      },
+      { id: "a1_mo_007", article: "-", word: "Juli",      translation: "7 — июль"      },
+      { id: "a1_mo_008", article: "-", word: "August",    translation: "8 — август"    },
+      { id: "a1_mo_009", article: "-", word: "September", translation: "9 — сентябрь"  },
+      { id: "a1_mo_010", article: "-", word: "Oktober",   translation: "10 — октябрь"  },
+      { id: "a1_mo_011", article: "-", word: "November",  translation: "11 — ноябрь"   },
+      { id: "a1_mo_012", article: "-", word: "Dezember",  translation: "12 — декабрь"  },
     ]
   },
 
