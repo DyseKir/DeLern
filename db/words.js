@@ -1121,6 +1121,8 @@ window.VOCAB_DATA = [
       { id: "a1_nw_019", article: "-",   word: "schwer",         translation: "тяжёлый / сложный"      },
       { id: "a1_nw_020", article: "-",   word: "leicht",         translation: "лёгкий"                 },
       { id: "a1_nw_021", article: "-",   word: "fit",            translation: "в форме / бодрый"       },
+      { id: "a1_nw_022", article: "-",   word: "man",            translation: "люди (в общем) / безличное «ты»" },
+      { id: "a1_nw_023", article: "-",   word: "es gibt",        translation: "есть / имеется (в наличии)"      },
     ]
   },
 

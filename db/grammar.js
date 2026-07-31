@@ -1609,6 +1609,136 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — JA/NEIN-FRAGEN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_045", level: "A1",
+    title_de: "Ja/Nein-Fragen: Verb auf Position 1",
+    title_ru: "Вопросы да/нет — глагол на первом месте",
+    explanation_de: "Bei Ja/Nein-Fragen (ohne Fragewort) steht das konjugierte Verb ganz am Anfang, auf Position 1. Das Subjekt folgt direkt danach, auf Position 2.",
+    explanation_ru: `Есть вопросы, на которые можно ответить только «да» (Ja) или «нет» (Nein) — без вопросительного слова. Строятся они совсем иначе, чем W-вопросы.
+
+<strong>Правило:</strong> глагол переезжает на самое первое место в предложении — туда, где обычно стоит подлежащее.
+
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr><th style="padding:6px;border:1px solid #2a2f4a">Утверждение</th><th style="padding:6px;border:1px solid #2a2f4a">Ja/Nein-вопрос</th></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a">Du kommst aus Polen.</td><td style="padding:6px;border:1px solid #2a2f4a"><strong>Kommst</strong> du aus Polen?</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a">Sie sprechen Deutsch.</td><td style="padding:6px;border:1px solid #2a2f4a"><strong>Sprechen</strong> Sie Deutsch?</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a">Du hast Zeit.</td><td style="padding:6px;border:1px solid #2a2f4a"><strong>Hast</strong> du Zeit?</td></tr>
+</table>
+
+Отвечать можно коротко:
+• <strong>Ja</strong>, ich komme aus Polen. — Да, я из Польши.
+• <strong>Nein</strong>, ich komme nicht aus Polen. — Нет, я не из Польши.
+
+⚠️ Не путай с W-вопросами: там на позиции 1 стоит вопросительное слово (Wer? Was? Wo?), а глагол — на позиции 2. В Ja/Nein-вопросе вопросительного слова нет вообще — глагол сразу первый.`,
+    examples: [
+      { de: "Kommst du aus der Ukraine?",     ru: "Ты из Украины? (глагол первый)" },
+      { de: "Sprechen Sie Englisch?",         ru: "Вы говорите по-английски?"       },
+      { de: "Ist das dein Bruder?",           ru: "Это твой брат?"                  },
+      { de: "Hast du morgen Zeit?",           ru: "У тебя завтра есть время?"       },
+      { de: "Ja, ich habe Zeit. / Nein, ich habe keine Zeit.", ru: "Да, у меня есть время. / Нет, у меня нет времени." },
+    ],
+    tip_de: "Kein Fragewort? → Verb ganz nach vorne, auf Position 1!",
+    tip_ru: "Если в вопросе нет W-слова (Wer/Was/Wo...) — глагол сразу первый, подлежащее сразу после него.",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — MAN
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_046", level: "A1",
+    title_de: "Das unpersönliche Pronomen 'man'",
+    title_ru: "Безличное местоимение man",
+    explanation_de: "'Man' bedeutet 'люди в общем / кто угодно / ты'. Es wird wie er/sie/es konjugiert und wird oft für Regeln und allgemeine Aussagen benutzt.",
+    explanation_ru: `<strong>man</strong> — очень частое слово в объявлениях, правилах и инструкциях. Оно означает «люди (в общем)», «все», «каждый», иногда переводится как обобщённое «ты» или безличная форма («здесь не курят», «нужно...»).
+
+Спрягается <strong>man</strong> точно как <em>er/sie/es</em> — окончание -t у обычных глаголов, особые формы у модальных:
+• man <strong>macht</strong>, man <strong>geht</strong>, man <strong>spricht</strong>
+• man <strong>kann</strong>, man <strong>muss</strong>, man <strong>darf</strong>, man <strong>soll</strong>
+
+Особенно часто man встречается с модальными глаголами в правилах — это ровно то, что написано на табличках и в инструкциях:
+• <strong>Man darf</strong> hier nicht rauchen. — Здесь нельзя курить.
+• <strong>Man muss</strong> eine Fahrkarte kaufen. — Нужно купить билет.
+• <strong>Man soll</strong> leise sprechen. — Следует говорить тихо.
+
+⚠️ У man нет своей формы притяжательного местоимения или винительного падежа — вместо них используют <strong>sein/seine</strong> и <strong>einen</strong>: <em>Man soll seine Sachen mitnehmen.</em> (Нужно забрать свои вещи.)`,
+    examples: [
+      { de: "Man darf hier nicht rauchen.",       ru: "Здесь нельзя курить." },
+      { de: "Man muss eine Fahrkarte kaufen.",    ru: "Нужно купить билет." },
+      { de: "In Deutschland spricht man Deutsch.",ru: "В Германии говорят по-немецки." },
+      { de: "Wie schreibt man das?",              ru: "Как это пишется?" },
+      { de: "Man soll die Regeln beachten.",      ru: "Следует соблюдать правила." },
+    ],
+    tip_de: "man = er/sie/es-Form. Sehr häufig bei Regeln: man darf/muss/soll/kann.",
+    tip_ru: "man спрягается как er/sie/es. Ищи его на табличках и в правилах: man darf (можно), man muss (нужно), man soll (следует).",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — ES GIBT
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_047", level: "A1",
+    title_de: "Es gibt + Akkusativ",
+    title_ru: "Es gibt — конструкция «есть / имеется»",
+    explanation_de: "'Es gibt' bedeutet 'существует / имеется'. Das folgende Substantiv steht immer im Akkusativ. 'Es gibt' ändert sich nicht — 'es' bleibt immer gleich, egal was folgt.",
+    explanation_ru: `<strong>Es gibt</strong> — это способ сказать «есть», «имеется», «существует», когда речь идёт не о том, что есть у конкретного человека (это было бы haben), а о том, что что-то вообще есть в наличии — в городе, в магазине, в мире.
+
+Главное правило: после <strong>es gibt</strong> всегда идёт <strong>Akkusativ</strong>, и «es» никогда не меняется:
+• <strong>Es gibt</strong> ein<strong>en</strong> Supermarkt hier. — Здесь есть супермаркет. (der → einen)
+• <strong>Es gibt</strong> ein<strong>e</strong> Apotheke. — Есть аптека. (die → eine, без изменений)
+• <strong>Es gibt</strong> ein Problem. — Есть проблема. (das → ein, без изменений)
+
+Отрицание — через <strong>kein/keine</strong>:
+• <strong>Es gibt keine</strong> Milch mehr. — Молока больше нет.
+
+Вопрос — <strong>Gibt es...?</strong> (глагол выходит вперёд, как в обычном Ja/Nein-вопросе):
+• <strong>Gibt es</strong> hier eine Toilette? — Здесь есть туалет?
+
+<strong>haben или es gibt?</strong>
+• haben — у конкретного лица/вещи есть что-то: <em>Ich habe einen Hund.</em>
+• es gibt — что-то существует в целом, без владельца: <em>Es gibt viele Hunde in der Stadt.</em>`,
+    examples: [
+      { de: "Es gibt hier einen Supermarkt.",   ru: "Здесь есть супермаркет." },
+      { de: "Gibt es hier eine Toilette?",       ru: "Здесь есть туалет?"      },
+      { de: "Es gibt keine Milch mehr.",         ru: "Молока больше нет."      },
+      { de: "In der Stadt gibt es viele Parks.", ru: "В городе много парков."  },
+    ],
+    tip_de: "es gibt + Akkusativ. 'es' ändert sich nie. Frage: Gibt es...?",
+    tip_ru: "После es gibt всегда Akkusativ (der→einen). «Es» не меняется никогда. Вопрос: Gibt es...?",
+  },
+
+  // ════════════════════════════════════════
+  //  A1 — DATUM: DER WIEVIELTE?
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_048", level: "A1",
+    title_de: "Datum: Der Wievielte ist heute?",
+    title_ru: "Дата: какое сегодня число?",
+    explanation_de: "Für das Datum benutzt man Ordnungszahlen (der erste, der zweite...). Bei 'heute ist' steht der Nominativ mit 'der', bei 'am' steht der Dativ mit der Endung -en.",
+    explanation_ru: `Чтобы назвать дату, используются порядковые числительные (erste, zweite, dritte... — та же тема, что мы уже учили в разделе «Ordnungszahlen»).
+
+<strong>Вопрос:</strong> Der Wievielte ist heute? — Какое сегодня число?
+<strong>Ответ (Nominativ, с «der»):</strong> Heute ist <strong>der</strong> erst<strong>e</strong> Mai. — Сегодня первое мая.
+
+Если дата стоит с предлогом <strong>am</strong> (когда? в какой день?), окончание меняется на <strong>-en</strong> (Dativ):
+• Mein Geburtstag ist <strong>am</strong> erst<strong>en</strong> Juni. — Мой день рождения первого июня.
+• Wir kommen <strong>am</strong> zwanzigst<strong>en</strong> Juli an. — Мы приезжаем 20 июля.
+
+На письме дату часто сокращают точкой после числа: <strong>1.</strong> = der erste, <strong>20.</strong> = der zwanzigste, <strong>am 3.</strong> = am dritten.
+
+Месяц (Januar, Februar...) при этом никогда не изменяется — меняется только число перед ним.`,
+    examples: [
+      { de: "Der Wievielte ist heute? – Heute ist der Dritte Mai.", ru: "Какое сегодня число? — Сегодня третье мая." },
+      { de: "Mein Geburtstag ist am ersten Juni.",  ru: "Мой день рождения первого июня. (am + -en)" },
+      { de: "Wir haben heute den 20. Juli.",         ru: "Сегодня у нас 20 июля." },
+      { de: "Das Kind ist am siebten März geboren.", ru: "Ребёнок родился седьмого марта." },
+    ],
+    tip_de: "heute ist der... (Nominativ, -e) | am... (Dativ, -en). Der Monat ändert sich nie.",
+    tip_ru: "«heute ist der» → окончание -e. «am» → окончание -en. Месяц всегда без изменений — меняется только число.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 
