@@ -827,10 +827,27 @@ window.VOCAB_DATA = [
       { id: "a1_vw_007", article: "die", word: "Großeltern",   translation: "дедушка и бабушка (мн.)"  },
       { id: "a1_vw_008", article: "die", word: "Verwandten",   translation: "родственники (мн. ч.)"    },
       { id: "a1_vw_009", article: "die", word: "Hochzeit",     translation: "свадьба"                  },
-      { id: "a1_vw_010", article: "-",   word: "ledig",        translation: "холостой / незамужняя"    },
-      { id: "a1_vw_011", article: "-",   word: "verheiratet",  translation: "женат / замужем"          },
-      { id: "a1_vw_012", article: "die", word: "Beziehung",    translation: "отношения"                },
-      { id: "a1_vw_013", article: "die", word: "Scheidung",    translation: "развод"                   },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — FAMILIENSTAND (Семейное положение)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "familienstand", name: "Familienstand", name_ru: "Семейное положение", emoji: "💍",
+    words: [
+      { id: "a1_fs_001", article: "der", word: "Familienstand", translation: "семейное положение" },
+      { id: "a1_vw_010", article: "-",   word: "ledig",         translation: "холост / не замужем" },
+      { id: "a1_vw_011", article: "-",   word: "verheiratet",   translation: "женат / замужем" },
+      { id: "a1_fs_004", article: "-",   word: "geschieden",    translation: "разведён / разведена" },
+      { id: "a1_fs_005", article: "-",   word: "verwitwet",     translation: "вдовец / вдова (статус)" },
+      { id: "a1_fs_006", article: "der", word: "Witwer",        translation: "вдовец" },
+      { id: "a1_fs_007", article: "die", word: "Witwe",         translation: "вдова" },
+      { id: "a1_vw_012", article: "die", word: "Beziehung",     translation: "отношения" },
+      { id: "a1_fs_009", article: "-",   word: "in einer Beziehung", translation: "состою в отношениях" },
+      { id: "a1_fs_010", article: "der", word: "Partner",       translation: "партнёр (сожитель)" },
+      { id: "a1_fs_011", article: "die", word: "Partnerin",     translation: "партнёрша (сожительница)" },
+      { id: "a1_vw_013", article: "die", word: "Scheidung",     translation: "развод" },
     ]
   },
 
@@ -2346,6 +2363,50 @@ window.VOCAB_DATA = [
       { id: "a2_vk_002", article: "die", word: "Durchsage",       translation: "объявление (по громкой связи)" },
       { id: "a2_vk_003", article: "-",   word: "einsteigen",      translation: "садиться (в транспорт)" },
       { id: "a2_vk_004", article: "die", word: "Verkehrsregeln",  translation: "правила дорожного движения (мн.ч.)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — MAHLZEITEN
+  // ════════════════════════════════
+  {
+    level: "A1", category: "mahlzeiten", name: "Mahlzeiten", name_ru: "Приёмы пищи", emoji: "🍽️",
+    words: [
+      { id: "a1_mz_001", article: "das", word: "Frühstück",    translation: "завтрак" },
+      { id: "a1_mz_002", article: "das", word: "Mittagessen",  translation: "обед" },
+      { id: "a1_mz_003", article: "das", word: "Abendessen",   translation: "ужин" },
+      { id: "a1_mz_004", article: "die", word: "Mahlzeit",     translation: "приём пищи" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — REISEN
+  // ════════════════════════════════
+  {
+    level: "A1", category: "reisen", name: "Reisen", name_ru: "Путешествия", emoji: "🧳",
+    words: [
+      { id: "a1_rs_001", article: "der", word: "Koffer",       translation: "чемодан" },
+      { id: "a1_rs_002", article: "das", word: "Gepäck",       translation: "багаж" },
+      { id: "a1_rs_003", article: "der", word: "Flughafen",    translation: "аэропорт" },
+      { id: "a1_rs_004", article: "der", word: "Reisepass",    translation: "загранпаспорт" },
+      { id: "a1_rs_005", article: "die", word: "Reise",        translation: "поездка / путешествие" },
+      { id: "a1_rs_006", article: "die", word: "Ferien",       translation: "каникулы (мн.ч.)" },
+      { id: "a1_rs_007", article: "-",   word: "buchen",       translation: "бронировать (поездку, билет)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — FESTE
+  // ════════════════════════════════
+  {
+    level: "A1", category: "feste", name: "Feste & Feiertage", name_ru: "Праздники", emoji: "🎉",
+    words: [
+      { id: "a1_fe_001", article: "der", word: "Geburtstag",   translation: "день рождения" },
+      { id: "a1_fe_002", article: "der", word: "Feiertag",     translation: "праздничный день" },
+      { id: "a1_fe_003", article: "-",   word: "Weihnachten",  translation: "Рождество" },
+      { id: "a1_fe_004", article: "-",   word: "Ostern",       translation: "Пасха" },
+      { id: "a1_fe_005", article: "-",   word: "Silvester",    translation: "канун Нового года" },
+      { id: "a1_fe_006", article: "das", word: "Neujahr",      translation: "Новый год" },
     ]
   },
 
