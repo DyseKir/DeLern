@@ -1611,6 +1611,9 @@ window.VOCAB_DATA = [
       { id: "a1_sm_005", article: "die", word: "Gemüseabteilung", translation: "овощной отдел"          },
       { id: "a1_sm_006", article: "die", word: "Tiefkühltruhe",   translation: "морозильная камера"     },
       { id: "a1_sm_007", article: "der", word: "Kassenzettel",    translation: "чек (кассовый)"         },
+      { id: "a1_sm_008", article: "das", word: "Produkt",         translation: "продукт / товар"        },
+      { id: "a1_sm_009", article: "die", word: "Tüte",            translation: "пакет"                  },
+      { id: "a1_sm_010", article: "die", word: "Quittung",        translation: "квитанция"              },
     ]
   },
 
@@ -2177,6 +2180,170 @@ window.VOCAB_DATA = [
       { id: "a2_schsys_004", article: "die", word: "Realschule",   translation: "реальная школа (средний уровень)" },
       { id: "a2_schsys_005", article: "das", word: "Gymnasium",    translation: "гимназия (ведёт к абитуру/университету)" },
       { id: "a2_schsys_006", article: "die", word: "Klasse",       translation: "класс (школьный)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — DEMOKRATIE & GRUNDGESETZ
+  // ════════════════════════════════
+  {
+    level: "A2", category: "demokratie", name: "Demokratie & Grundgesetz", name_ru: "Демократия и права", emoji: "🗳️",
+    words: [
+      { id: "a2_dk_001", article: "die", word: "Demokratie",        translation: "демократия" },
+      { id: "a2_dk_002", article: "das", word: "Volk",              translation: "народ" },
+      { id: "a2_dk_003", article: "die", word: "Regierung",         translation: "правительство" },
+      { id: "a2_dk_004", article: "die", word: "Wahl",               translation: "выборы" },
+      { id: "a2_dk_005", article: "das", word: "Grundgesetz",       translation: "основной закон (конституция Германии)" },
+      { id: "a2_dk_006", article: "die", word: "Verfassung",        translation: "конституция" },
+      { id: "a2_dk_007", article: "die", word: "Grundrechte",       translation: "основные права (мн.ч.)" },
+      { id: "a2_dk_008", article: "die", word: "Meinungsfreiheit",  translation: "свобода слова" },
+      { id: "a2_dk_009", article: "die", word: "Pressefreiheit",    translation: "свобода прессы" },
+      { id: "a2_dk_010", article: "die", word: "Gleichberechtigung",translation: "равноправие" },
+      { id: "a2_dk_011", article: "die", word: "Herkunft",          translation: "происхождение" },
+      { id: "a2_dk_012", article: "die", word: "Hautfarbe",         translation: "цвет кожи" },
+      { id: "a2_dk_013", article: "-",   word: "diskriminieren",    translation: "дискриминировать" },
+      { id: "a2_dk_014", article: "-",   word: "respektieren",      translation: "уважать" },
+      { id: "a2_dk_015", article: "-",   word: "sich kümmern (um)", translation: "заботиться (о ком-л. / чём-л.)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — REGELN IN DER UNTERKUNFT
+  // ════════════════════════════════
+  {
+    level: "A2", category: "unterkunft_regeln", name: "Regeln in der Unterkunft", name_ru: "Правила проживания в общежитии", emoji: "🏘️",
+    words: [
+      { id: "a2_uk_001", article: "die", word: "Unterkunft",   translation: "жильё (общежитие для переселенцев)" },
+      { id: "a2_uk_002", article: "der", word: "Bewohner",     translation: "жилец" },
+      { id: "a2_uk_003", article: "die", word: "Nachtruhe",    translation: "тишина в ночное время" },
+      { id: "a2_uk_004", article: "die", word: "Rücksicht",    translation: "внимательность к другим" },
+      { id: "a2_uk_005", article: "das", word: "Gelände",      translation: "территория" },
+      { id: "a2_uk_006", article: "der", word: "Besucher",     translation: "посетитель / гость" },
+      { id: "a2_uk_007", article: "die", word: "Reinigung",    translation: "уборка" },
+      { id: "a2_uk_008", article: "der", word: "Sozialarbeiter", translation: "социальный работник" },
+      { id: "a2_uk_009", article: "der", word: "Wertstoffhof", translation: "пункт приёма вторсырья" },
+      { id: "a2_uk_010", article: "-",   word: "trennen",      translation: "сортировать (мусор)" },
+      { id: "a2_uk_011", article: "-",   word: "abwesend",     translation: "отсутствующий" },
+      { id: "a2_uk_012", article: "die", word: "Drogen",       translation: "наркотики (мн.ч.)" },
+      { id: "a2_uk_013", article: "die", word: "Waffen",       translation: "оружие (мн.ч.)" },
+      { id: "a2_uk_014", article: "-",   word: "entsorgen",    translation: "утилизировать" },
+      { id: "a2_uk_015", article: "-",   word: "freihalten",   translation: "оставлять свободным" },
+      { id: "a2_uk_016", article: "der", word: "Lärm",         translation: "шум" },
+      { id: "a2_uk_017", article: "-",   word: "beleidigen",   translation: "оскорблять" },
+      { id: "a2_uk_018", article: "-",   word: "bedrohen",     translation: "угрожать" },
+      { id: "a2_uk_019", article: "die", word: "Gefahr",       translation: "опасность" },
+      { id: "a2_uk_020", article: "der", word: "Notfall",      translation: "экстренный случай" },
+      { id: "a2_uk_021", article: "der", word: "Diebstahl",    translation: "кража" },
+      { id: "a2_uk_022", article: "die", word: "Nachbarschaft",translation: "соседство" },
+      { id: "a2_uk_023", article: "die", word: "Bedrohung",    translation: "угроза" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IM AMT / BEHÖRDE
+  // ════════════════════════════════
+  {
+    level: "A2", category: "amt", name: "Im Amt", name_ru: "В ведомстве", emoji: "🗂️",
+    words: [
+      { id: "a2_am_001", article: "der", word: "Ausweis",      translation: "удостоверение личности / паспорт" },
+      { id: "a2_am_002", article: "die", word: "Unterschrift", translation: "подпись" },
+      { id: "a2_am_003", article: "die", word: "Frist",        translation: "срок (крайний срок)" },
+      { id: "a2_am_004", article: "die", word: "Nummer",       translation: "номер (талон / очередь)" },
+      { id: "a2_am_005", article: "-",   word: "vereinbaren",  translation: "договориться (о встрече)" },
+      { id: "a2_am_006", article: "-",   word: "absagen",      translation: "отменить" },
+      { id: "a2_am_007", article: "-",   word: "einhalten",    translation: "соблюдать (срок, правило)" },
+      { id: "a2_am_008", article: "-",   word: "zeigen",       translation: "показывать" },
+      { id: "a2_am_009", article: "-",   word: "überprüfen",   translation: "перепроверять (документы)" },
+      { id: "a2_am_010", article: "-",   word: "abgeben",      translation: "сдавать (документ)" },
+      { id: "a2_am_011", article: "-",   word: "ausdrucken",   translation: "распечатывать" },
+      { id: "a2_am_012", article: "-",   word: "unterschreiben", translation: "подписывать" },
+      { id: "a2_am_013", article: "-",   word: "ziehen",       translation: "взять (номерок: eine Nummer ziehen)" },
+      { id: "a2_am_014", article: "-",   word: "aufrufen",     translation: "вызывать (по номеру)" },
+      { id: "a2_am_015", article: "-",   word: "leisten",      translation: "поставить (die Unterschrift leisten)" },
+      { id: "a2_am_016", article: "-",   word: "bestätigen",   translation: "подтверждать" },
+      { id: "a2_am_017", article: "-",   word: "verlängern",   translation: "продлевать" },
+      { id: "a2_am_018", article: "-",   word: "verpassen",    translation: "пропустить (срок, приём)" },
+      { id: "a2_am_019", article: "-",   word: "angeben",      translation: "указывать (данные)" },
+      { id: "a2_am_020", article: "-",   word: "ändern",       translation: "изменять" },
+      { id: "a2_am_021", article: "-",   word: "mitteilen",    translation: "сообщать" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IM MUSEUM
+  // ════════════════════════════════
+  {
+    level: "A2", category: "museum", name: "Im Museum", name_ru: "В музее", emoji: "🖼️",
+    words: [
+      { id: "a2_mu_001", article: "die", word: "Ausstellung",   translation: "выставка" },
+      { id: "a2_mu_002", article: "das", word: "Kunstwerk",     translation: "произведение искусства" },
+      { id: "a2_mu_003", article: "die", word: "Eintrittskarte",translation: "входной билет" },
+      { id: "a2_mu_004", article: "das", word: "Schließfach",   translation: "шкафчик для вещей (камера хранения)" },
+      { id: "a2_mu_005", article: "die", word: "Absperrung",    translation: "ограждение" },
+      { id: "a2_mu_006", article: "-",   word: "beachten",      translation: "соблюдать (правила)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IM PARK
+  // ════════════════════════════════
+  {
+    level: "A2", category: "park", name: "Im Park", name_ru: "В парке", emoji: "🌷",
+    words: [
+      { id: "a2_pk_001", article: "die", word: "Leine",     translation: "поводок" },
+      { id: "a2_pk_002", article: "der", word: "Grill",     translation: "гриль / мангал" },
+      { id: "a2_pk_003", article: "die", word: "Blume",     translation: "цветок" },
+      { id: "a2_pk_004", article: "-",   word: "anleinen",  translation: "брать на поводок" },
+      { id: "a2_pk_005", article: "-",   word: "sich hinsetzen", translation: "присесть / сесть" },
+      { id: "a2_pk_006", article: "-",   word: "aufpassen", translation: "следить / приглядывать" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IM SCHWIMMBAD
+  // ════════════════════════════════
+  {
+    level: "A2", category: "schwimmbad", name: "Im Schwimmbad", name_ru: "В бассейне", emoji: "🏊",
+    words: [
+      { id: "a2_sw_001", article: "der", word: "Eintritt",         translation: "вход (плата за вход)" },
+      { id: "a2_sw_002", article: "die", word: "Umkleidekabine",   translation: "раздевалка" },
+      { id: "a2_sw_003", article: "das", word: "Schwimmbecken",    translation: "бассейн (чаша)" },
+      { id: "a2_sw_004", article: "der", word: "Nichtschwimmer",   translation: "не умеющий плавать" },
+      { id: "a2_sw_005", article: "der", word: "Bademeister",      translation: "спасатель (на бассейне)" },
+      { id: "a2_sw_006", article: "-",   word: "gefährlich",       translation: "опасный" },
+      { id: "a2_sw_007", article: "-",   word: "sich umziehen",    translation: "переодеваться" },
+      { id: "a2_sw_008", article: "-",   word: "duschen",          translation: "принимать душ" },
+      { id: "a2_sw_009", article: "-",   word: "schubsen",         translation: "толкать (человека)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IM SPRACHKURS / IN DER SCHULE
+  // ════════════════════════════════
+  {
+    level: "A2", category: "sprachkurs", name: "Im Sprachkurs", name_ru: "На языковых курсах", emoji: "📖",
+    words: [
+      { id: "a2_sk_001", article: "die", word: "Lehrkraft",  translation: "преподаватель" },
+      { id: "a2_sk_002", article: "der", word: "Kursraum",   translation: "учебный кабинет" },
+      { id: "a2_sk_003", article: "das", word: "Lehrbuch",   translation: "учебник" },
+      { id: "a2_sk_004", article: "die", word: "Aufgabe",    translation: "задание" },
+      { id: "a2_sk_005", article: "die", word: "Tafel",      translation: "доска" },
+      { id: "a2_sk_006", article: "die", word: "Pause",      translation: "перерыв" },
+      { id: "a2_sk_007", article: "-",   word: "mitarbeiten",translation: "активно участвовать (в занятии)" },
+      { id: "a2_sk_008", article: "die", word: "Ordnung",    translation: "порядок" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — IN ÖFFENTLICHEN VERKEHRSMITTELN
+  // ════════════════════════════════
+  {
+    level: "A2", category: "verkehr_oeffentlich", name: "Öffentliche Verkehrsmittel", name_ru: "Общественный транспорт (правила)", emoji: "🚏",
+    words: [
+      { id: "a2_vk_001", article: "die", word: "Haltestelle",     translation: "остановка" },
+      { id: "a2_vk_002", article: "die", word: "Durchsage",       translation: "объявление (по громкой связи)" },
+      { id: "a2_vk_003", article: "-",   word: "einsteigen",      translation: "садиться (в транспорт)" },
+      { id: "a2_vk_004", article: "die", word: "Verkehrsregeln",  translation: "правила дорожного движения (мн.ч.)" },
     ]
   },
 
