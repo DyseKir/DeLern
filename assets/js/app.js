@@ -854,6 +854,7 @@ const S = {
   testCards:[], testIdx:0, testCorrect:0, testRequeued:new Set(),
   catMode:'',      // '' | 'possessive'
   possePerson:'',  // 'leo' | 'lea'
+  lbMonth:null,    // 'YYYY-MM' — выбранный месяц в рейтинге учеников на главной
 };
 
 function buildWordCache() {
@@ -1164,18 +1165,80 @@ function refreshOverallBar() {
 ══════════════════════════════════════════════════════════════ */
 const LEADERBOARD_COLORS = ['#3987e5', '#008300', '#d55181', '#c98500', '#199e70', '#d95926', '#9085e9', '#e66767'];
 let leaderboardSeriesCache = null;
+let leaderboardAllRows = []; // все дневные снимки за всё время, без фильтра по месяцу
+
+function currentMonthKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function daysInMonthOf(monthKey) {
+  const [y, m] = monthKey.split('-').map(Number);
+  return new Date(y, m, 0).getDate();
+}
+function shiftMonthKey(monthKey, delta) {
+  const [y, m] = monthKey.split('-').map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+function monthLabel(monthKey) {
+  const [y, m] = monthKey.split('-').map(Number);
+  const locale = lang === 'de' ? 'de-DE' : lang === 'uk' ? 'uk-UA' : 'ru-RU';
+  const s = new Date(y, m - 1, 1).toLocaleDateString(locale, { month: 'long', year: 'numeric' });
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 async function loadLeaderboard() {
-  const rows = await fetchAllDailySnapshots();
-  const byUser = {};
-  rows.forEach(r => {
-    if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', points: [] };
-    byUser[r.user_id].points.push({ date: r.snapshot_date, value: r.learned_count });
-  });
-  leaderboardSeriesCache = Object.values(byUser)
-    .map(s => ({ ...s, points: s.points.slice().sort((a, b) => a.date.localeCompare(b.date)) }))
-    .sort((a, b) => a.id.localeCompare(b.id));
+  leaderboardAllRows = await fetchAllDailySnapshots();
+  if (!S.lbMonth) S.lbMonth = currentMonthKey();
+  rebuildLeaderboardSeries();
   renderLeaderboardChart();
+}
+
+/* Строим серию ТОЛЬКО для выбранного месяца (S.lbMonth). learned_count в снимках —
+   это общий счётчик выученных слов за всё время, поэтому прогресс месяца — это
+   разница между значением на дату снимка и значением на конец предыдущего месяца
+   (baseline). Без этого при переходе на новый месяц старые и новые даты
+   накладывались бы на одну ось "день месяца" и график ломался. */
+function rebuildLeaderboardSeries() {
+  const monthKey = S.lbMonth;
+  const monthStartStr = monthKey + '-01';
+  const byUser = {};
+  leaderboardAllRows.forEach(r => {
+    if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', all: [] };
+    byUser[r.user_id].all.push(r);
+  });
+  leaderboardSeriesCache = Object.values(byUser).map(u => {
+    const all = u.all.slice().sort((a, b) => a.snapshot_date.localeCompare(b.snapshot_date));
+    const monthRows = all.filter(r => r.snapshot_date.slice(0, 7) === monthKey);
+    if (!monthRows.length) return { id: u.id, name: u.name, points: [], anchor: null };
+    const before = all.filter(r => r.snapshot_date < monthStartStr);
+    const baseline = before.length ? before[before.length - 1].learned_count : 0;
+    const points = monthRows.map(r => ({ date: r.snapshot_date, value: Math.max(0, r.learned_count - baseline) }));
+    const anchor = points[0].date > monthStartStr ? { date: monthStartStr, value: 0 } : null;
+    return { id: u.id, name: u.name, points, anchor };
+  }).sort((a, b) => a.id.localeCompare(b.id));
+}
+
+function shiftLeaderboardMonth(delta) {
+  S.lbMonth = shiftMonthKey(S.lbMonth, delta);
+  rebuildLeaderboardSeries();
+  renderLeaderboardChart();
+}
+
+function renderLeaderboardMonthNav() {
+  const nav = $('leaderboard-monthnav');
+  if (!nav) return;
+  const cur = currentMonthKey();
+  const knownMonths = [...new Set(leaderboardAllRows.map(r => r.snapshot_date.slice(0, 7)))].sort();
+  const earliest = knownMonths.length ? knownMonths[0] : cur;
+  const canPrev = S.lbMonth > earliest;
+  const canNext = S.lbMonth < cur;
+  nav.innerHTML = `
+    <button class="lb-nav-btn" id="lb-prev-month" ${canPrev ? '' : 'disabled'}>‹</button>
+    <span class="lb-nav-label">${monthLabel(S.lbMonth)}</span>
+    <button class="lb-nav-btn" id="lb-next-month" ${canNext ? '' : 'disabled'}>›</button>`;
+  $('lb-prev-month')?.addEventListener('click', () => shiftLeaderboardMonth(-1));
+  $('lb-next-month')?.addEventListener('click', () => shiftLeaderboardMonth(1));
 }
 
 function dayOfMonth(dateStr) { return new Date(dateStr + 'T00:00:00').getDate(); }
@@ -1224,6 +1287,7 @@ function renderLeaderboardChart() {
   const chartWrap = $('leaderboard-chart');
   const legendWrap = $('leaderboard-legend');
   if (!chartWrap) return;
+  renderLeaderboardMonthNav();
   const series = leaderboardSeriesCache;
   if (!series || !series.length || !series.some(s => s.points.length)) {
     chartWrap.innerHTML = `<div class="loading-hint">${lstr('Noch keine Daten diesen Monat','Пока нет данных за этот месяц','Поки немає даних за цей місяць')}</div>`;
@@ -1231,7 +1295,10 @@ function renderLeaderboardChart() {
     return;
   }
 
-  const maxDay = new Date().getDate();
+  /* Для текущего месяца ось идёт до сегодняшнего дня, для прошлых месяцев —
+     до последнего числа того месяца (иначе график "сжимался" бы в первые дни
+     нового месяца, что и выглядело как сломанный график). */
+  const maxDay = S.lbMonth === currentMonthKey() ? new Date().getDate() : daysInMonthOf(S.lbMonth);
   const maxVal = Math.max(5, ...series.flatMap(s => s.points.map(p => p.value)));
   const W = 640, H = 340, padL = 34, padR = 58, padT = 20, padB = 30;
   const innerW = W - padL - padR, innerH = H - padT - padB;
@@ -1250,10 +1317,7 @@ function renderLeaderboardChart() {
     const color = LEADERBOARD_COLORS[i % LEADERBOARD_COLORS.length];
     const name = escapeHtml(s.name);
     if (!s.points.length) return '';
-    /* Линия всегда стартует от 0 в начале месяца — так график читается
-       как рост, даже пока накопилось мало ежедневных точек. */
-    const monthStart = s.points[0].date.slice(0, 8) + '01';
-    const linePoints = dayOfMonth(s.points[0].date) > 1 ? [{ date: monthStart, value: 0 }, ...s.points] : s.points;
+    const linePoints = s.anchor ? [s.anchor, ...s.points] : s.points;
     const xy = linePoints.map(p => [xOf(dayOfMonth(p.date)), yOf(p.value)]);
     const path = smoothPathD(xy);
     const last = s.points[s.points.length - 1];
