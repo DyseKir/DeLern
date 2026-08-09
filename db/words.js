@@ -771,6 +771,8 @@ window.VOCAB_DATA = [
       { id: "a1_adj_040", article: "-", word: "genau",        translation: "точно"                  },
       { id: "a1_adj_041", article: "-", word: "kostenlos",    translation: "бесплатный"              },
       { id: "a1_adj_042", article: "-", word: "arbeitslos",   translation: "безработный"             },
+      { id: "a1_hf_007",  article: "-", word: "bequem",       translation: "удобный"                 },
+      { id: "a1_hf_008",  article: "-", word: "unbequem",     translation: "неудобный"               },
     ]
   },
 
@@ -1740,8 +1742,6 @@ window.VOCAB_DATA = [
       { id: "a1_hf_004", article: "-", word: "manchmal",  translation: "иногда (40%)"      },
       { id: "a1_hf_005", article: "-", word: "selten",    translation: "редко (20%)"       },
       { id: "a1_hf_006", article: "-", word: "nie",       translation: "никогда (0%)"      },
-      { id: "a1_hf_007", article: "-", word: "bequem",    translation: "удобный"           },
-      { id: "a1_hf_008", article: "-", word: "unbequem",  translation: "неудобный"         },
     ]
   },
 
