@@ -280,6 +280,7 @@ window.VOCAB_DATA = [
       { id: "a1_wt_006", article: "der", word: "Samstag",    translation: "суббота"      },
       { id: "a1_wt_007", article: "der", word: "Sonntag",    translation: "воскресенье"  },
       { id: "a1_wt_008", article: "das", word: "Wochenende", translation: "выходные"     },
+      { id: "a1_wt_009", article: "die", word: "Woche",      translation: "неделя"       },
     ]
   },
 
@@ -758,6 +759,18 @@ window.VOCAB_DATA = [
       { id: "a1_adj_028", article: "-", word: "schmutzig",    translation: "грязный / грязная"      },
       { id: "a1_adj_029", article: "-", word: "glücklich",    translation: "счастливый"             },
       { id: "a1_adj_030", article: "-", word: "unglücklich",  translation: "несчастный"             },
+      { id: "a1_adj_031", article: "-", word: "günstig",      translation: "выгодный / недорогой"   },
+      { id: "a1_adj_032", article: "-", word: "viel",         translation: "много"                  },
+      { id: "a1_adj_033", article: "-", word: "kaputt",       translation: "сломанный"               },
+      { id: "a1_adj_034", article: "-", word: "alle",         translation: "все"                    },
+      { id: "a1_adj_035", article: "-", word: "alles",        translation: "всё"                    },
+      { id: "a1_adj_036", article: "-", word: "alleine",      translation: "один / самостоятельно"  },
+      { id: "a1_adj_037", article: "-", word: "natürlich",    translation: "конечно / естественно"  },
+      { id: "a1_adj_038", article: "-", word: "besonders",    translation: "особенно"               },
+      { id: "a1_adj_039", article: "-", word: "anders",       translation: "иначе / по-другому"     },
+      { id: "a1_adj_040", article: "-", word: "genau",        translation: "точно"                  },
+      { id: "a1_adj_041", article: "-", word: "kostenlos",    translation: "бесплатный"              },
+      { id: "a1_adj_042", article: "-", word: "arbeitslos",   translation: "безработный"             },
     ]
   },
 
@@ -1123,6 +1136,7 @@ window.VOCAB_DATA = [
       { id: "a1_vb_069", article: "-", word: "sich ausziehen", translation: "раздеваться" },
       { id: "a1_vb_070", article: "-", word: "sich ärgern",    translation: "злиться / раздражаться" },
       { id: "a1_vb_071", article: "-", word: "sich anziehen",  translation: "одеваться" },
+      { id: "a1_vb_072", article: "-", word: "reisen",         translation: "путешествовать" },
     ]
   },
 
@@ -1176,6 +1190,13 @@ window.VOCAB_DATA = [
       { id: "a1_nw_021", article: "-",   word: "fit",            translation: "в форме / бодрый"       },
       { id: "a1_nw_022", article: "-",   word: "man",            translation: "люди (в общем) / безличное «ты»" },
       { id: "a1_nw_023", article: "-",   word: "es gibt",        translation: "есть / имеется (в наличии)"      },
+      { id: "a1_nw_024", article: "die", word: "Zeit",           translation: "время" },
+      { id: "a1_nw_025", article: "der", word: "Unterricht",     translation: "урок / занятие" },
+      { id: "a1_nw_026", article: "die", word: "Übung",          translation: "упражнение" },
+      { id: "a1_nw_027", article: "die", word: "Frage",          translation: "вопрос" },
+      { id: "a1_nw_028", article: "die", word: "Antwort",        translation: "ответ" },
+      { id: "a1_nw_029", article: "das", word: "Geschenk",       translation: "подарок" },
+      { id: "a1_nw_030", article: "die", word: "Sache",          translation: "вещь / дело" },
     ]
   },
 
@@ -2443,6 +2464,37 @@ window.VOCAB_DATA = [
       { id: "a1_fe_004", article: "-",   word: "Ostern",       translation: "Пасха" },
       { id: "a1_fe_005", article: "-",   word: "Silvester",    translation: "канун Нового года" },
       { id: "a1_fe_006", article: "das", word: "Neujahr",      translation: "Новый год" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — KONJUNKTIONEN & PARTIKELN
+  // ════════════════════════════════
+  {
+    level: "A1", category: "konjunktionen", name: "Konjunktionen & Partikeln", name_ru: "Союзы и частицы", emoji: "🔗",
+    words: [
+      { id: "a1_kj_001", article: "-", word: "bald",           translation: "скоро" },
+      { id: "a1_kj_002", article: "-", word: "normalerweise",  translation: "обычно" },
+      { id: "a1_kj_003", article: "-", word: "so",             translation: "так" },
+      { id: "a1_kj_004", article: "-", word: "vielleicht",     translation: "возможно / может быть" },
+      { id: "a1_kj_005", article: "-", word: "erst",           translation: "только (в значении времени), сначала" },
+      { id: "a1_kj_006", article: "-", word: "zu",             translation: "слишком" },
+      { id: "a1_kj_007", article: "-", word: "etwa",           translation: "около / примерно" },
+      { id: "a1_kj_008", article: "-", word: "einmal",         translation: "один раз" },
+      { id: "a1_kj_009", article: "-", word: "zweimal",        translation: "дважды" },
+      { id: "a1_kj_010", article: "-", word: "oder",           translation: "или" },
+      { id: "a1_kj_011", article: "-", word: "nur",            translation: "только" },
+      { id: "a1_kj_012", article: "-", word: "bitte",          translation: "пожалуйста" },
+      { id: "a1_kj_013", article: "-", word: "aber",           translation: "но" },
+      { id: "a1_kj_014", article: "-", word: "nichts",         translation: "ничего" },
+      { id: "a1_kj_015", article: "-", word: "dieser",         translation: "этот (м.р.)" },
+      { id: "a1_kj_016", article: "-", word: "diese",          translation: "эта (ж.р.)" },
+      { id: "a1_kj_017", article: "-", word: "dieses",         translation: "это (ср.р.)" },
+      { id: "a1_kj_018", article: "-", word: "dann",           translation: "тогда / потом" },
+      { id: "a1_kj_019", article: "-", word: "bis dann",       translation: "до скорого" },
+      { id: "a1_kj_020", article: "-", word: "ach so",         translation: "а, вот оно что" },
+      { id: "a1_kj_021", article: "-", word: "da",             translation: "там" },
+      { id: "a1_kj_022", article: "-", word: "also",           translation: "итак / следовательно" },
     ]
   },
 
