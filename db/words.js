@@ -2500,6 +2500,29 @@ window.VOCAB_DATA = [
       { id: "a1_fe_004", article: "-",   word: "Ostern",       translation: "Пасха" },
       { id: "a1_fe_005", article: "-",   word: "Silvester",    translation: "канун Нового года" },
       { id: "a1_fe_006", article: "das", word: "Neujahr",      translation: "Новый год" },
+      { id: "a1_fe_007", article: "-",   word: "Herzliches Beileid",     translation: "искренние соболезнования" },
+      { id: "a1_fe_008", article: "-",   word: "Alles Gute zur Hochzeit",translation: "поздравляю со свадьбой!" },
+      { id: "a1_fe_009", article: "-",   word: "Herzlichen Glückwunsch", translation: "поздравляю! (сердечно)" },
+      { id: "a1_fe_010", article: "-",   word: "Viel Glück",             translation: "удачи!" },
+      { id: "a1_fe_011", article: "-",   word: "Frohes Neues Jahr",      translation: "с Новым годом! (пожелание)" },
+      { id: "a1_fe_012", article: "-",   word: "Gute Besserung",         translation: "выздоравливай!" },
+      { id: "a1_fe_013", article: "-",   word: "Frohe Ostern",           translation: "с Пасхой! (пожелание)" },
+      { id: "a1_fe_014", article: "-",   word: "Frohe Weihnachten",      translation: "с Рождеством! (пожелание)" },
+      { id: "a1_fe_015", article: "-",   word: "Schönes Wochenende",     translation: "хороших выходных!" },
+      { id: "a1_fe_016", article: "-",   word: "Heilige Drei Könige",    translation: "Богоявление (день трёх королей)" },
+      { id: "a1_fe_017", article: "der", word: "Tag der Arbeit",         translation: "День труда" },
+      { id: "a1_fe_018", article: "-",   word: "Allerheiligen",          translation: "День всех святых" },
+      { id: "a1_fe_019", article: "der", word: "Tag der Deutschen Einheit", translation: "День немецкого единства" },
+      { id: "a1_fe_020", article: "der", word: "Reformationstag",        translation: "День Реформации" },
+      { id: "a1_fe_021", article: "der", word: "Heiligabend",            translation: "Сочельник" },
+      { id: "a1_fe_022", article: "die", word: "Party",                  translation: "вечеринка" },
+      { id: "a1_fe_023", article: "die", word: "Gäste",                  translation: "гости" },
+      { id: "a1_fe_024", article: "die", word: "Einladung",              translation: "приглашение" },
+      { id: "a1_fe_025", article: "die", word: "Luftballons",            translation: "воздушные шарики" },
+      { id: "a1_fe_026", article: "der", word: "Osterhase",              translation: "пасхальный кролик" },
+      { id: "a1_fe_027", article: "-",   word: "Ostereier",              translation: "пасхальные яйца" },
+      { id: "a1_fe_028", article: "-",   word: "bemalen",                translation: "раскрашивать" },
+      { id: "a1_fe_029", article: "-",   word: "verstecken",             translation: "прятать" },
     ]
   },
 
@@ -2549,6 +2572,39 @@ window.VOCAB_DATA = [
       { id: "a1_kj_038", article: "-", word: "soweit",          translation: "насколько / пока что" },
       { id: "a1_kj_039", article: "-", word: "miteinander",     translation: "друг с другом / вместе" },
       { id: "a1_kj_040", article: "-", word: "bestimmt",        translation: "точно / наверняка" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — WEIHNACHTEN
+  // ════════════════════════════════
+  {
+    level: "A2", category: "weihnachten", name: "Weihnachten", name_ru: "Рождество (предметы)", emoji: "🎄",
+    words: [
+      { id: "a2_wh_001", article: "die", word: "Krippe",          translation: "рождественский вертеп / ясли" },
+      { id: "a2_wh_002", article: "der", word: "Weihnachtsbaum",  translation: "рождественская ёлка" },
+      { id: "a2_wh_003", article: "die", word: "Kerze",           translation: "свеча" },
+      { id: "a2_wh_004", article: "der", word: "Adventskranz",    translation: "рождественский (адвент) венок" },
+      { id: "a2_wh_005", article: "der", word: "Weihnachtsmann",  translation: "Дед Мороз / Санта-Клаус" },
+      { id: "a2_wh_006", article: "der", word: "Adventskalender", translation: "адвент-календарь" },
+      { id: "a2_wh_007", article: "der", word: "Stern",           translation: "звезда" },
+      { id: "a2_wh_008", article: "die", word: "Kugel",           translation: "(ёлочный) шар" },
+      { id: "a2_wh_009", article: "das", word: "Christkind",      translation: "младенец Христос (приносит подарки)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A2 — VEREINE
+  // ════════════════════════════════
+  {
+    level: "A2", category: "vereine", name: "Vereine in Deutschland", name_ru: "Клубы и объединения", emoji: "⚽",
+    words: [
+      { id: "a2_vr_001", article: "der", word: "Fußballverein", translation: "футбольный клуб" },
+      { id: "a2_vr_002", article: "der", word: "Turnverein",    translation: "спортивно-гимнастический клуб" },
+      { id: "a2_vr_003", article: "der", word: "Tennisverein",  translation: "теннисный клуб" },
+      { id: "a2_vr_004", article: "der", word: "Musikverein",   translation: "музыкальный клуб / оркестр" },
+      { id: "a2_vr_005", article: "der", word: "Tanzverein",    translation: "танцевальный клуб" },
+      { id: "a2_vr_006", article: "der", word: "Chor",          translation: "хор" },
     ]
   },
 
