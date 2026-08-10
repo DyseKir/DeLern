@@ -1549,6 +1549,12 @@ function drawCard() {
   $('cards-progress-fill').style.width = (S.cards.length>1 ? S.cardIdx/S.cards.length*100 : 0)+'%';
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
   $('card-word').textContent            = card.word;
+  const isNoun = card.article && card.article !== '-';
+  const caseHint = $('card-case-hint');
+  if (caseHint) {
+    caseHint.classList.toggle('hidden', !isNoun);
+    caseHint.textContent = 'Wer? / Was?';
+  }
   if ($('card-translit')) $('card-translit').textContent = `[${card.translit || deTranscribe(card.word)}]`;
   S.currentWord = card.word;
   setCardVisual($('card-emoji'), card, S.currentCatEmoji);

@@ -1743,10 +1743,10 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   // ════════════════════════════════════════
   {
     id: "a1_gr_049", level: "A1",
-    title_de: "Nominativ & Dativ: Fragen und Verschmelzungen (zum, zur...)",
-    title_ru: "Nominativ и Dativ: на какие вопросы отвечают + слияния (zum, zur...)",
-    explanation_de: "Nominativ antwortet auf Wer?/Was? und ändert die Artikel nicht. Dativ antwortet auf Wem? und ändert ALLE Artikel. Manche Präposition+Artikel verschmelzen zu einem kurzen Wort: zu+dem=zum, zu+der=zur.",
-    explanation_ru: `<strong>NOMINATIV</strong> и <strong>DATIV</strong> — два падежа, которые часто путают, но у каждого свой чёткий вопрос и своя логика изменения артикля.
+    title_de: "Nominativ, Akkusativ & Dativ: Fragen und Verschmelzungen (zum, zur, ins...)",
+    title_ru: "Nominativ, Akkusativ и Dativ: на какие вопросы отвечают + слияния (zum, zur, ins...)",
+    explanation_de: "Nominativ antwortet auf Wer?/Was? (Artikel bleibt gleich). Akkusativ antwortet auf Wen?/Was? (nur der→den ändert sich). Dativ antwortet auf Wem? (ALLE Artikel ändern sich). Manche Präposition+Artikel verschmelzen zu einem kurzen Wort: zu+dem=zum, in+das=ins.",
+    explanation_ru: `<strong>NOMINATIV</strong>, <strong>AKKUSATIV</strong> и <strong>DATIV</strong> — три падежа, которые часто путают, но у каждого свой чёткий вопрос и своя логика изменения артикля.
 
 <strong>━━━ 1. НА КАКОЙ ВОПРОС ОТВЕЧАЕТ КАЖДЫЙ ━━━</strong>
 <table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
@@ -1761,6 +1761,11 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   <td style="padding:6px;border:1px solid #2a2f4a">кто/что делает действие — подлежащее</td>
 </tr>
 <tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#ff6b8a;font-weight:800">AKKUSATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wen?</b> (кого?) / <b>Was?</b> (что?)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">на кого/что направлено действие — прямой объект</td>
+</tr>
+<tr>
   <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">DATIV</td>
   <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b> (кому? чему?)</td>
   <td style="padding:6px;border:1px solid #2a2f4a">кому адресовано действие — «получатель»</td>
@@ -1771,14 +1776,16 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
 <table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
 <tr><td></td><td><b>der</b> (м)</td><td><b>die</b> (ж)</td><td><b>das</b> (ср)</td><td><b>die</b> (мн.)</td></tr>
 <tr><td style="color:#4ecb71;font-weight:800">Nominativ</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+<tr><td style="color:#ff6b8a;font-weight:800">Akkusativ</td><td><b>den</b></td><td>die</td><td>das</td><td>die</td></tr>
 <tr><td style="color:#4a9eff;font-weight:800">Dativ</td><td><b>dem</b></td><td><b>der</b></td><td><b>dem</b></td><td><b>den</b> (+n)</td></tr>
 </table>
 
-В Nominativ артикль <strong>такой же, как в словаре</strong> — ничего учить не надо. А вот в Dativ меняются <strong>все без исключения</strong>: der/das → dem, die → der, а во множественном числе ещё и на конец существительного добавляется <strong>-n</strong> (den Kindern, den Häusern).
+В Nominativ артикль <strong>такой же, как в словаре</strong> — ничего учить не надо. В Akkusativ меняется <strong>только мужской род</strong>: der → den (остальные как в словаре). А вот в Dativ меняются <strong>все без исключения</strong>: der/das → dem, die → der, а во множественном числе ещё и на конец существительного добавляется <strong>-n</strong> (den Kindern, den Häusern).
 
 <strong>━━━ 3. СЛИЯНИЯ: ПРЕДЛОГ + АРТИКЛЬ = КОРОТКОЕ СЛОВО ━━━</strong>
-Когда после предлога на Dativ идёт <strong>dem</strong> или <strong>der</strong>, они часто «склеиваются» в одно короткое слово. Это не отдельное правило — это просто сокращение того же самого dem/der:
+Когда после предлога идёт <strong>dem</strong>, <strong>der</strong> или <strong>das</strong>, они часто «склеиваются» в одно короткое слово. Это не отдельное правило — просто сокращение того же самого артикля:
 
+<strong>Dativ-слияния (с dem/der):</strong>
 <table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
 <tr><td style="padding:6px;border:1px solid #2a2f4a"><b>zu + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>zum</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>zum Arzt</em> (к врачу)</td></tr>
 <tr><td style="padding:6px;border:1px solid #2a2f4a"><b>zu + der</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>zur</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>zur Schule</em> (в школу)</td></tr>
@@ -1788,19 +1795,29 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
 <tr><td style="padding:6px;border:1px solid #2a2f4a"><b>bei + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>beim</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>beim Arzt</em> (у врача)</td></tr>
 </table>
 
-⚠️ Слияние есть только с <strong>dem</strong> (м.р./ср.р.) и с <strong>der</strong> женского рода у «zu». С «der» женского рода у остальных предлогов (an, in, von, bei) слияния нет — говорят полностью: <em>an der Ampel</em>, <em>in der Schule</em>, <em>von der Arbeit</em>, <em>bei der Arbeit</em>.
+<strong>Akkusativ-слияния (с das):</strong>
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>in + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>ins</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>ins Kino</em> (в кино)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>an + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>ans</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>ans Fenster</em> (к окну)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>auf + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>aufs</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>aufs Sofa</em> (на диван)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>für + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>fürs</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>fürs Kind</em> (для ребёнка)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>durch + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>durchs</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>durchs Fenster</em> (через окно)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>um + das</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>ums</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>ums Haus</em> (вокруг дома)</td></tr>
+</table>
 
-<strong>🧠 Короткая память:</strong> Nominativ — «кто/что» — артикль как в словаре. Dativ — «кому» — der/das → dem, die → der. Если после этого dem/der стоит zu/an/in/von/bei — скорее всего они сольются в zum/zur/am/im/vom/beim.`,
+⚠️ Слияния бывают только с <strong>dem/der/das</strong> — то есть только в единственном числе. Во множественном числе (den) слияний не бывает, и с «der» женского рода у an/in/von/bei/auf слияния тоже нет — говорят полностью: <em>an der Ampel</em>, <em>in der Schule</em>, <em>von der Arbeit</em>, <em>auf der Bank</em>.
+
+<strong>🧠 Короткая память:</strong> Nominativ — «кто/что» — артикль как в словаре. Akkusativ — «кого/что» — меняется только der→den. Dativ — «кому» — der/das→dem, die→der. Если после предлога стоит dem/der/das — скорее всего они сольются в короткое слово (zum, zur, am, im, vom, beim / ins, ans, aufs, fürs, durchs, ums).`,
     examples: [
       { de: "Wer kommt? – Der Lehrer.",             ru: "Wer? → Nominativ, артикль не меняется." },
+      { de: "Wen siehst du? – Den Lehrer.",         ru: "Wen? → Akkusativ: der → den." },
       { de: "Wem gibst du das Buch? – Dem Lehrer.", ru: "Wem? → Dativ: der → dem." },
-      { de: "Ich gehe zum Arzt. (zu + dem)",         ru: "к врачу (zu+dem=zum)." },
-      { de: "Ich gehe zur Apotheke. (zu + der)",     ru: "в аптеку (zu+der=zur)." },
-      { de: "Ich bin am Bahnhof. (an + dem)",        ru: "я на вокзале (an+dem=am)." },
+      { de: "Ich gehe zum Arzt. (zu + dem)",         ru: "к врачу (zu+dem=zum, Dativ)." },
+      { de: "Ich gehe ins Kino. (in + das)",          ru: "в кино (in+das=ins, Akkusativ)." },
       { de: "Er kommt vom Training. (von + dem)",    ru: "он приходит с тренировки (von+dem=vom)." },
     ],
-    tip_de: "Nominativ: Wer?/Was?, Artikel bleibt. Dativ: Wem?, der/das→dem, die→der. Verschmelzung nur mit dem/der: zum,zur,am,im,vom,beim.",
-    tip_ru: "Nominativ = Wer?/Was?, артикль как в словаре. Dativ = Wem?, der/das→dem, die→der. Слияния только с dem/der: zum, zur, am, im, vom, beim.",
+    tip_de: "Nominativ: Wer?/Was?, Artikel bleibt. Akkusativ: Wen?/Was?, nur der→den. Dativ: Wem?, der/das→dem, die→der. Verschmelzung: zum,zur,am,im,vom,beim (Dativ) / ins,ans,aufs,fürs,durchs,ums (Akkusativ).",
+    tip_ru: "Nominativ = Wer?/Was?, артикль как в словаре. Akkusativ = Wen?/Was?, только der→den. Dativ = Wem?, der/das→dem, die→der. Слияния: zum/zur/am/im/vom/beim (Dativ) и ins/ans/aufs/fürs/durchs/ums (Akkusativ).",
   },
 
   // ════════════════════════════════════════
