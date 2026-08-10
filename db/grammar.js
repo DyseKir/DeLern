@@ -1739,6 +1739,71 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — NOMINATIV & DATIV: ВОПРОСЫ И СЛИЯНИЯ
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_049", level: "A1",
+    title_de: "Nominativ & Dativ: Fragen und Verschmelzungen (zum, zur...)",
+    title_ru: "Nominativ и Dativ: на какие вопросы отвечают + слияния (zum, zur...)",
+    explanation_de: "Nominativ antwortet auf Wer?/Was? und ändert die Artikel nicht. Dativ antwortet auf Wem? und ändert ALLE Artikel. Manche Präposition+Artikel verschmelzen zu einem kurzen Wort: zu+dem=zum, zu+der=zur.",
+    explanation_ru: `<strong>NOMINATIV</strong> и <strong>DATIV</strong> — два падежа, которые часто путают, но у каждого свой чёткий вопрос и своя логика изменения артикля.
+
+<strong>━━━ 1. НА КАКОЙ ВОПРОС ОТВЕЧАЕТ КАЖДЫЙ ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Падеж</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Вопрос</td>
+  <td style="padding:6px;border:1px solid #2a2f4a;font-weight:800">Что значит</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4ecb71;font-weight:800">NOMINATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wer?</b> (кто?) / <b>Was?</b> (что?)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">кто/что делает действие — подлежащее</td>
+</tr>
+<tr>
+  <td style="padding:6px;border:1px solid #2a2f4a;color:#4a9eff;font-weight:800">DATIV</td>
+  <td style="padding:6px;border:1px solid #2a2f4a"><b>Wem?</b> (кому? чему?)</td>
+  <td style="padding:6px;border:1px solid #2a2f4a">кому адресовано действие — «получатель»</td>
+</tr>
+</table>
+
+<strong>━━━ 2. КАК МЕНЯЕТСЯ АРТИКЛЬ ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr><td></td><td><b>der</b> (м)</td><td><b>die</b> (ж)</td><td><b>das</b> (ср)</td><td><b>die</b> (мн.)</td></tr>
+<tr><td style="color:#4ecb71;font-weight:800">Nominativ</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+<tr><td style="color:#4a9eff;font-weight:800">Dativ</td><td><b>dem</b></td><td><b>der</b></td><td><b>dem</b></td><td><b>den</b> (+n)</td></tr>
+</table>
+
+В Nominativ артикль <strong>такой же, как в словаре</strong> — ничего учить не надо. А вот в Dativ меняются <strong>все без исключения</strong>: der/das → dem, die → der, а во множественном числе ещё и на конец существительного добавляется <strong>-n</strong> (den Kindern, den Häusern).
+
+<strong>━━━ 3. СЛИЯНИЯ: ПРЕДЛОГ + АРТИКЛЬ = КОРОТКОЕ СЛОВО ━━━</strong>
+Когда после предлога на Dativ идёт <strong>dem</strong> или <strong>der</strong>, они часто «склеиваются» в одно короткое слово. Это не отдельное правило — это просто сокращение того же самого dem/der:
+
+<table style="border-collapse:collapse;width:100%;text-align:left;font-size:15px;margin:6px 0">
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>zu + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>zum</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>zum Arzt</em> (к врачу)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>zu + der</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>zur</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>zur Schule</em> (в школу)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>an + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>am</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>am Montag</em> (в понедельник)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>in + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>im</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>im Haus</em> (в доме)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>von + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>vom</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>vom Bahnhof</em> (от вокзала)</td></tr>
+<tr><td style="padding:6px;border:1px solid #2a2f4a"><b>bei + dem</b></td><td style="padding:6px;border:1px solid #2a2f4a">→ <b>beim</b></td><td style="padding:6px;border:1px solid #2a2f4a"><em>beim Arzt</em> (у врача)</td></tr>
+</table>
+
+⚠️ Слияние есть только с <strong>dem</strong> (м.р./ср.р.) и с <strong>der</strong> женского рода у «zu». С «der» женского рода у остальных предлогов (an, in, von, bei) слияния нет — говорят полностью: <em>an der Ampel</em>, <em>in der Schule</em>, <em>von der Arbeit</em>, <em>bei der Arbeit</em>.
+
+<strong>🧠 Короткая память:</strong> Nominativ — «кто/что» — артикль как в словаре. Dativ — «кому» — der/das → dem, die → der. Если после этого dem/der стоит zu/an/in/von/bei — скорее всего они сольются в zum/zur/am/im/vom/beim.`,
+    examples: [
+      { de: "Wer kommt? – Der Lehrer.",             ru: "Wer? → Nominativ, артикль не меняется." },
+      { de: "Wem gibst du das Buch? – Dem Lehrer.", ru: "Wem? → Dativ: der → dem." },
+      { de: "Ich gehe zum Arzt. (zu + dem)",         ru: "к врачу (zu+dem=zum)." },
+      { de: "Ich gehe zur Apotheke. (zu + der)",     ru: "в аптеку (zu+der=zur)." },
+      { de: "Ich bin am Bahnhof. (an + dem)",        ru: "я на вокзале (an+dem=am)." },
+      { de: "Er kommt vom Training. (von + dem)",    ru: "он приходит с тренировки (von+dem=vom)." },
+    ],
+    tip_de: "Nominativ: Wer?/Was?, Artikel bleibt. Dativ: Wem?, der/das→dem, die→der. Verschmelzung nur mit dem/der: zum,zur,am,im,vom,beim.",
+    tip_ru: "Nominativ = Wer?/Was?, артикль как в словаре. Dativ = Wem?, der/das→dem, die→der. Слияния только с dem/der: zum, zur, am, im, vom, beim.",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 
