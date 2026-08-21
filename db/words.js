@@ -68,7 +68,6 @@ window.VOCAB_DATA = [
       { id: "a1_f2_001", article: "der", word: "Roller",         translation: "самокат / скутер"          },
       { id: "a1_f2_002", article: "der", word: "LKW",            translation: "грузовик (Lastkraftwagen)" },
       { id: "a1_f2_003", article: "der", word: "Traktor",        translation: "трактор"                   },
-      { id: "a1_f2_004", article: "der", word: "Bagger",         translation: "экскаватор"                },
       { id: "a1_f2_005", article: "der", word: "Gabelstapler",   translation: "вилочный погрузчик"        },
       { id: "a1_f2_006", article: "der", word: "Hubschrauber",   translation: "вертолёт"                  },
       { id: "a1_f2_007", article: "der", word: "Heißluftballon", translation: "воздушный шар"             },
@@ -166,7 +165,6 @@ window.VOCAB_DATA = [
       { id: "a1_s2_011", article: "die", word: "Straße",        translation: "улица"                     },
       { id: "a1_s2_012", article: "die", word: "Kirche",        translation: "церковь"                   },
       { id: "a1_s2_013", article: "die", word: "Bibliothek",    translation: "библиотека"                },
-      { id: "a1_s2_014", article: "die", word: "Wiese",         translation: "луг / поляна"              },
       { id: "a1_s2_015", article: "die", word: "S-Bahn",        translation: "городская электричка"      },
       { id: "a1_s2_016", article: "die", word: "Tankstelle",    translation: "автозаправка"              },
       { id: "a1_s2_017", article: "die", word: "Schule",        translation: "школа"                     },
@@ -178,7 +176,6 @@ window.VOCAB_DATA = [
       { id: "a1_s2_023", article: "die", word: "Ankunft",       translation: "прибытие"                  },
       { id: "a1_s2_024", article: "der", word: "Kaffeeautomat", translation: "кофейный автомат"},
       { id: "a1_s2_025", article: "die", word: "Arztpraxis",   translation: "кабинет врача / клиника"   },
-      { id: "a1_s2_026", article: "der", word: "Platz",        translation: "площадь / место"           },
       { id: "a1_s2_027", article: "die", word: "Rakete",       translation: "ракета"                    },
     ]
   },
@@ -713,7 +710,6 @@ window.VOCAB_DATA = [
       { id: "a1_gf_006", article: "-", word: "krank",       translation: "больной / больна"        },
       { id: "a1_gf_007", article: "-", word: "verliebt",    translation: "влюблённый / влюблена"   },
       { id: "a1_gf_008", article: "-", word: "ängstlich",   translation: "тревожный / тревожна"    },
-      { id: "a1_gf_009", article: "-", word: "aufgeregt",   translation: "взволнованный / взволнована" },
       { id: "a1_gf_010", article: "-", word: "überrascht",  translation: "удивлённый / удивлена"   },
       { id: "a1_gf_011", article: "-", word: "nervös",      translation: "нервный / нервна"        },
       { id: "a1_gf_012", article: "-", word: "froh",        translation: "радостный / рада"        },
@@ -771,15 +767,7 @@ window.VOCAB_DATA = [
       { id: "a1_adj_040", article: "-", word: "genau",        translation: "точно"                  },
       { id: "a1_adj_041", article: "-", word: "kostenlos",    translation: "бесплатный"              },
       { id: "a1_adj_042", article: "-", word: "arbeitslos",   translation: "безработный"             },
-      { id: "a1_adj_043", article: "-", word: "sicher",       translation: "уверенный / надёжный"    },
       { id: "a1_adj_044", article: "-", word: "hart",         translation: "твёрдый / суровый"       },
-      { id: "a1_adj_045", article: "-", word: "ruhig",        translation: "спокойный"               },
-      { id: "a1_adj_046", article: "-", word: "zufällig",     translation: "случайный"               },
-      { id: "a1_adj_047", article: "-", word: "königlich",    translation: "королевский"             },
-      { id: "a1_adj_048", article: "-", word: "vornehm",      translation: "благородный / изысканный"},
-      { id: "a1_adj_049", article: "-", word: "fleißig",      translation: "прилежный / трудолюбивый"},
-      { id: "a1_adj_050", article: "-", word: "hoch",         translation: "высокий (о высоте)"      },
-      { id: "a1_adj_051", article: "-", word: "dreifach",     translation: "тройной"                 },
       { id: "a1_hf_007",  article: "-", word: "bequem",       translation: "удобный"                 },
       { id: "a1_hf_008",  article: "-", word: "unbequem",     translation: "неудобный"               },
     ]
@@ -831,7 +819,6 @@ window.VOCAB_DATA = [
       { id: "a1_m2_010", article: "der", word: "Schlüssel",  translation: "ключ"              },
       { id: "a1_m2_011", article: "der", word: "Topf",       translation: "кастрюля"          },
       { id: "a1_m2_012", article: "der", word: "Stift",      translation: "ручка / карандаш"  },
-      { id: "a1_m2_013", article: "der", word: "Brief",      translation: "письмо"            },
       { id: "a1_m2_014", article: "der", word: "Pinsel",     translation: "кисть"             },
     ]
   },
@@ -1099,8 +1086,6 @@ window.VOCAB_DATA = [
       { id: "a1_vb_021", article: "-", word: "antworten",  translation: "отвечать"                },
       { id: "a1_vb_022", article: "-", word: "machen",     translation: "делать"                  },
       { id: "a1_vb_023", article: "-", word: "suchen",     translation: "искать"                  },
-      { id: "a1_vb_024", article: "-", word: "finden",     translation: "находить"                },
-      { id: "a1_vb_025", article: "-", word: "bleiben",    translation: "оставаться"              },
       { id: "a1_vb_026", article: "-", word: "denken",     translation: "думать"                  },
       { id: "a1_vb_027", article: "-", word: "singen",     translation: "петь"                    },
       { id: "a1_vb_028", article: "-", word: "tanzen",     translation: "танцевать"               },
@@ -1109,8 +1094,6 @@ window.VOCAB_DATA = [
       { id: "a1_vb_031", article: "-", word: "arbeiten",   translation: "работать"                },
       { id: "a1_vb_032", article: "-", word: "beginnen",   translation: "начинать"                },
       { id: "a1_vb_033", article: "-", word: "helfen",     translation: "помогать"                },
-      { id: "a1_vb_034", article: "-", word: "treffen",    translation: "встречать / встречаться" },
-      { id: "a1_vb_035", article: "-", word: "rufen",      translation: "звать / звонить"         },
       { id: "a1_vb_036", article: "-", word: "träumen",    translation: "мечтать" },
       { id: "a1_vb_037", article: "-", word: "schreien",   translation: "кричать" },
       { id: "a1_vb_038", article: "-", word: "rechnen",    translation: "считать / вычислять" },
@@ -1148,17 +1131,6 @@ window.VOCAB_DATA = [
       { id: "a1_vb_070", article: "-", word: "sich ärgern",    translation: "злиться / раздражаться" },
       { id: "a1_vb_071", article: "-", word: "sich anziehen",  translation: "одеваться" },
       { id: "a1_vb_072", article: "-", word: "reisen",         translation: "путешествовать" },
-      { id: "a1_vb_073", article: "-", word: "tun",            translation: "делать / поступать" },
-      { id: "a1_vb_074", article: "-", word: "lassen",         translation: "оставлять / позволять" },
-      { id: "a1_vb_075", article: "-", word: "verschwinden",   translation: "исчезать / пропадать" },
-      { id: "a1_vb_076", article: "-", word: "beschließen",    translation: "решать / принимать решение" },
-      { id: "a1_vb_077", article: "-", word: "vermissen",      translation: "скучать (по кому-л.) / недоставать" },
-      { id: "a1_vb_078", article: "-", word: "gucken",         translation: "смотреть / глядеть (разг.)" },
-      { id: "a1_vb_079", article: "-", word: "verleihen",      translation: "выдавать напрокат / вручать (награду)" },
-      { id: "a1_vb_080", article: "-", word: "rauskommen",     translation: "выходить (наружу)" },
-      { id: "a1_vb_081", article: "-", word: "segeln",         translation: "плавать под парусом" },
-      { id: "a1_vb_082", article: "-", word: "schrubben",      translation: "тереть / оттирать (щёткой)" },
-      { id: "a1_vb_083", article: "-", word: "reinspringen",   translation: "запрыгивать (внутрь)" },
     ]
   },
 
@@ -1191,7 +1163,6 @@ window.VOCAB_DATA = [
     words: [
       { id: "a1_nw_001", article: "die", word: "Musik",          translation: "музыка"                 },
       { id: "a1_nw_002", article: "die", word: "Ruhe",           translation: "тишина / покой"         },
-      { id: "a1_nw_003", article: "der", word: "Spaß",           translation: "удовольствие / веселье" },
       { id: "a1_nw_004", article: "das", word: "Zentrum",        translation: "центр города"           },
       { id: "a1_nw_005", article: "die", word: "Haustür",        translation: "входная дверь"          },
       { id: "a1_nw_006", article: "die", word: "Schere",         translation: "ножницы"                },
@@ -1207,7 +1178,6 @@ window.VOCAB_DATA = [
       { id: "a1_nw_016", article: "-",   word: "wichtig",        translation: "важный"                 },
       { id: "a1_nw_017", article: "-",   word: "richtig",        translation: "правильный"             },
       { id: "a1_nw_018", article: "-",   word: "falsch",         translation: "неправильный"           },
-      { id: "a1_nw_019", article: "-",   word: "schwer",         translation: "тяжёлый / сложный"      },
       { id: "a1_nw_020", article: "-",   word: "leicht",         translation: "лёгкий"                 },
       { id: "a1_nw_021", article: "-",   word: "fit",            translation: "в форме / бодрый"       },
       { id: "a1_nw_022", article: "-",   word: "man",            translation: "люди (в общем) / безличное «ты»" },
@@ -1218,23 +1188,7 @@ window.VOCAB_DATA = [
       { id: "a1_nw_027", article: "die", word: "Frage",          translation: "вопрос" },
       { id: "a1_nw_028", article: "die", word: "Antwort",        translation: "ответ" },
       { id: "a1_nw_029", article: "das", word: "Geschenk",       translation: "подарок" },
-      { id: "a1_nw_030", article: "die", word: "Sache",          translation: "вещь / дело" },
-      { id: "a1_nw_031", article: "die", word: "Welt",           translation: "мир (вселенная)" },
-      { id: "a1_nw_032", article: "die", word: "Geschichte",     translation: "история / рассказ" },
-      { id: "a1_nw_033", article: "der", word: "Besuch",         translation: "визит / посещение" },
-      { id: "a1_nw_034", article: "der", word: "Schatz",         translation: "сокровище / дорогой (обращение)" },
-      { id: "a1_nw_035", article: "das", word: "Meer",           translation: "море" },
-      { id: "a1_nw_036", article: "das", word: "Zeug",           translation: "вещи / барахло (разг.)" },
-      { id: "a1_nw_037", article: "die", word: "Überraschung",   translation: "сюрприз" },
-      { id: "a1_nw_038", article: "-",   word: "schade",         translation: "жаль / досадно" },
       { id: "a1_nw_039", article: "die", word: "Königin",        translation: "королева" },
-      { id: "a1_nw_040", article: "der", word: "Palast",         translation: "дворец" },
-      { id: "a1_nw_041", article: "die", word: "Krone",          translation: "корона" },
-      { id: "a1_nw_042", article: "der", word: "Orden",          translation: "орден (награда)" },
-      { id: "a1_nw_043", article: "die", word: "Alge",           translation: "водоросль" },
-      { id: "a1_nw_044", article: "der", word: "Schrottplatz",   translation: "свалка металлолома" },
-      { id: "a1_nw_045", article: "das", word: "Feuerwehrauto",  translation: "пожарная машина" },
-      { id: "a1_nw_046", article: "der", word: "Rettungshubschrauber", translation: "спасательный вертолёт" },
     ]
   },
 
@@ -1368,7 +1322,6 @@ window.VOCAB_DATA = [
       { id: "a1_wg_006", article: "-", word: "die Straße überqueren",     translation: "перейти улицу"                },
       { id: "a1_wg_007", article: "-", word: "über die Brücke gehen",     translation: "перейти через мост"           },
       { id: "a1_wg_008", article: "-", word: "über die Kreuzung gehen",   translation: "перейти перекрёсток"          },
-      { id: "a1_wg_009", article: "-", word: "vorbeigehen",               translation: "пройти мимо"                  },
       { id: "a1_wg_010", article: "-", word: "an ... vorbei",             translation: "мимо чего-то"                 },
       { id: "a1_wg_011", article: "-", word: "entlang",                   translation: "вдоль"                        },
       { id: "a1_wg_012", article: "-", word: "die erste Straße links",    translation: "первая улица налево"          },
@@ -1478,7 +1431,6 @@ window.VOCAB_DATA = [
     words: [
       { id: "a1_av_001", article: "-", word: "arbeiten",     translation: "работать"                 },
       { id: "a1_av_002", article: "-", word: "backen",       translation: "печь"                     },
-      { id: "a1_av_003", article: "-", word: "organisieren", translation: "организовывать"            },
       { id: "a1_av_004", article: "-", word: "pflegen",      translation: "ухаживать / заботиться"   },
       { id: "a1_av_005", article: "-", word: "putzen",       translation: "убирать / чистить"        },
       { id: "a1_av_006", article: "-", word: "reparieren",   translation: "ремонтировать"            },
@@ -1490,7 +1442,6 @@ window.VOCAB_DATA = [
       { id: "a1_av_012", article: "-", word: "unterrichten", translation: "преподавать"              },
       { id: "a1_av_013", article: "-", word: "untersuchen",  translation: "осматривать (пациента)"   },
       { id: "a1_av_014", article: "-", word: "pflanzen",     translation: "сажать (растения)"        },
-      { id: "a1_av_015", article: "-", word: "bauen",        translation: "строить"                  },
       { id: "a1_av_016", article: "-", word: "produzieren",  translation: "производить"              },
       { id: "a1_av_017", article: "-", word: "kochen",       translation: "готовить"                 },
       { id: "a1_av_018", article: "-", word: "frisieren",    translation: "делать причёску"          },
@@ -1759,7 +1710,6 @@ window.VOCAB_DATA = [
       { id: "a1_k2_005", article: "die", word: "Flip-Flops",      translation: "вьетнамки / шлёпанцы"   },
       { id: "a1_k2_006", article: "die", word: "Kappe",           translation: "кепка"                  },
       { id: "a1_k2_007", article: "die", word: "Sonnenbrille",    translation: "солнцезащитные очки"    },
-      { id: "a1_k2_008", article: "die", word: "Gummistiefel",    translation: "резиновые сапоги"       },
       { id: "a1_k2_009", article: "die", word: "Uhr",             translation: "часы (наручные)"        },
       { id: "a1_k2_010", article: "der", word: "Ring",            translation: "кольцо"                 },
       { id: "a1_k2_011", article: "das", word: "Kopftuch",        translation: "платок (на голову)"     },
@@ -1816,7 +1766,6 @@ window.VOCAB_DATA = [
       { id: "a2_strassen_026", article: "der", word: "Radfahrer", translation: "велосипедист" },
       { id: "a2_strassen_027", article: "der", word: "Regenablauf", translation: "водосток" },
       { id: "a2_strassen_028", article: "der", word: "Riss", translation: "трещина" },
-      { id: "a2_strassen_029", article: "der", word: "Sand", translation: "песок" },
       { id: "a2_strassen_030", article: "der", word: "Schotter", translation: "щебень" },
       { id: "a2_strassen_031", article: "der", word: "Stein", translation: "камень" },
       { id: "a2_strassen_032", article: "der", word: "Tunnel", translation: "туннель" },
@@ -1895,7 +1844,6 @@ window.VOCAB_DATA = [
       { id: "a2_natur_012", article: "der", word: "Farn", translation: "папоротник" },
       { id: "a2_natur_013", article: "der", word: "Fels", translation: "скала" },
       { id: "a2_natur_014", article: "der", word: "Fluss", translation: "река" },
-      { id: "a2_natur_015", article: "der", word: "Himmel", translation: "небо" },
       { id: "a2_natur_016", article: "der", word: "Hügel", translation: "холм" },
       { id: "a2_natur_017", article: "der", word: "Kieselstein", translation: "галька" },
       { id: "a2_natur_018", article: "der", word: "Klee", translation: "клевер" },
@@ -1903,7 +1851,6 @@ window.VOCAB_DATA = [
       { id: "a2_natur_020", article: "der", word: "Regenbogen", translation: "радуга" },
       { id: "a2_natur_021", article: "der", word: "Schatten", translation: "тень" },
       { id: "a2_natur_022", article: "der", word: "Schlamm", translation: "грязь / ил" },
-      { id: "a2_natur_023", article: "der", word: "See", translation: "озеро" },
       { id: "a2_natur_024", article: "der", word: "Strauch", translation: "кустарник" },
       { id: "a2_natur_025", article: "der", word: "Tannenzapfen", translation: "еловая шишка" },
       { id: "a2_natur_026", article: "der", word: "Teich", translation: "пруд" },
@@ -1988,12 +1935,9 @@ window.VOCAB_DATA = [
       { id: "a2_vb_bewegung_001", article: "-", word: "anhalten", translation: "останавливать(ся)" },
       { id: "a2_vb_bewegung_002", article: "-", word: "ankommen", translation: "прибывать" },
       { id: "a2_vb_bewegung_003", article: "-", word: "entlanggehen", translation: "идти вдоль" },
-      { id: "a2_vb_bewegung_004", article: "-", word: "fallen", translation: "падать" },
       { id: "a2_vb_bewegung_005", article: "-", word: "folgen", translation: "следовать" },
-      { id: "a2_vb_bewegung_006", article: "-", word: "hüpfen", translation: "прыгать (скакать)" },
       { id: "a2_vb_bewegung_007", article: "-", word: "joggen", translation: "бегать трусцой" },
       { id: "a2_vb_bewegung_008", article: "-", word: "klettern", translation: "лазить / карабкаться" },
-      { id: "a2_vb_bewegung_009", article: "-", word: "rennen", translation: "бежать (быстро)" },
       { id: "a2_vb_bewegung_010", article: "-", word: "schieben", translation: "толкать" },
       { id: "a2_vb_bewegung_011", article: "-", word: "schleichen", translation: "красться" },
       { id: "a2_vb_bewegung_012", article: "-", word: "sitzen", translation: "сидеть" },
@@ -2021,7 +1965,6 @@ window.VOCAB_DATA = [
       { id: "a2_vb_sehen_006", article: "-", word: "entdecken", translation: "обнаруживать" },
       { id: "a2_vb_sehen_007", article: "-", word: "erkennen", translation: "узнавать / распознавать" },
       { id: "a2_vb_sehen_008", article: "-", word: "fühlen", translation: "чувствовать" },
-      { id: "a2_vb_sehen_009", article: "-", word: "riechen", translation: "нюхать / пахнуть" },
       { id: "a2_vb_sehen_010", article: "-", word: "schauen", translation: "смотреть" },
       { id: "a2_vb_sehen_011", article: "-", word: "spüren", translation: "ощущать" },
       { id: "a2_vb_sehen_012", article: "-", word: "vergleichen", translation: "сравнивать" },
@@ -2036,8 +1979,6 @@ window.VOCAB_DATA = [
       { id: "a2_vb_komm_002", article: "-", word: "beschreiben", translation: "описывать" },
       { id: "a2_vb_komm_003", article: "-", word: "buchstabieren", translation: "произносить по буквам" },
       { id: "a2_vb_komm_004", article: "-", word: "diskutieren", translation: "обсуждать" },
-      { id: "a2_vb_komm_005", article: "-", word: "erklären", translation: "объяснять" },
-      { id: "a2_vb_komm_006", article: "-", word: "erzählen", translation: "рассказывать" },
       { id: "a2_vb_komm_007", article: "-", word: "grüßen", translation: "здороваться" },
       { id: "a2_vb_komm_008", article: "-", word: "heißen", translation: "зваться (как зовут)" },
       { id: "a2_vb_komm_009", article: "-", word: "nennen", translation: "называть" },
@@ -2053,7 +1994,6 @@ window.VOCAB_DATA = [
     level: "A2", category: "vb_orient", name: "Verben – Orientierung", name_ru: "Глаголы: ориентация", emoji: "🧭",
     words: [
       { id: "a2_vb_orient_001", article: "-", word: "ankreuzen", translation: "отмечать галочкой" },
-      { id: "a2_vb_orient_002", article: "-", word: "betreten", translation: "входить (ступать)" },
       { id: "a2_vb_orient_003", article: "-", word: "durchgehen", translation: "проходить (через)" },
       { id: "a2_vb_orient_004", article: "-", word: "erreichen", translation: "достигать" },
       { id: "a2_vb_orient_005", article: "-", word: "orientieren", translation: "ориентироваться" },
@@ -2065,19 +2005,16 @@ window.VOCAB_DATA = [
   {
     level: "A2", category: "vb_alltag", name: "Verben – Alltag", name_ru: "Глаголы: повседневность", emoji: "📋",
     words: [
-      { id: "a2_vb_alltag_001", article: "-", word: "benutzen", translation: "использовать" },
       { id: "a2_vb_alltag_002", article: "-", word: "bestellen", translation: "заказывать" },
       { id: "a2_vb_alltag_003", article: "-", word: "bezahlen", translation: "оплачивать" },
       { id: "a2_vb_alltag_004", article: "-", word: "bringen", translation: "приносить" },
       { id: "a2_vb_alltag_005", article: "-", word: "einladen", translation: "приглашать" },
       { id: "a2_vb_alltag_006", article: "-", word: "fotografieren", translation: "фотографировать" },
       { id: "a2_vb_alltag_007", article: "-", word: "holen", translation: "забирать / приносить" },
-      { id: "a2_vb_alltag_008", article: "-", word: "mitnehmen", translation: "брать с собой" },
       { id: "a2_vb_alltag_009", article: "-", word: "parken", translation: "парковаться" },
       { id: "a2_vb_alltag_010", article: "-", word: "planen", translation: "планировать" },
       { id: "a2_vb_alltag_011", article: "-", word: "reservieren", translation: "бронировать" },
       { id: "a2_vb_alltag_012", article: "-", word: "schließen", translation: "закрывать" },
-      { id: "a2_vb_alltag_013", article: "-", word: "verlieren", translation: "терять" },
       { id: "a2_vb_alltag_014", article: "-", word: "verwenden", translation: "использовать (применять)" },
       { id: "a2_vb_alltag_015", article: "-", word: "öffnen", translation: "открывать" },
       { id: "a2_vb_alltag_016", article: "-", word: "üben", translation: "тренироваться / практиковаться" },
@@ -2125,17 +2062,13 @@ window.VOCAB_DATA = [
       { id: "a2_vb_weitere_001", article: "-", word: "ablegen", translation: "откладывать / снимать" },
       { id: "a2_vb_weitere_002", article: "-", word: "abschließen", translation: "запирать / завершать" },
       { id: "a2_vb_weitere_003", article: "-", word: "abstellen", translation: "выключать / отставлять" },
-      { id: "a2_vb_weitere_004", article: "-", word: "anfassen", translation: "трогать" },
       { id: "a2_vb_weitere_005", article: "-", word: "anprobieren", translation: "примерять" },
-      { id: "a2_vb_weitere_006", article: "-", word: "anziehen", translation: "надевать" },
       { id: "a2_vb_weitere_007", article: "-", word: "auspacken", translation: "распаковывать" },
       { id: "a2_vb_weitere_008", article: "-", word: "aussehen", translation: "выглядеть" },
       { id: "a2_vb_weitere_009", article: "-", word: "auswählen", translation: "выбирать" },
       { id: "a2_vb_weitere_010", article: "-", word: "begegnen", translation: "встречать(ся)" },
       { id: "a2_vb_weitere_011", article: "-", word: "behalten", translation: "оставлять себе" },
-      { id: "a2_vb_weitere_012", article: "-", word: "bekommen", translation: "получать" },
       { id: "a2_vb_weitere_013", article: "-", word: "besichtigen", translation: "осматривать (достопримечательности)" },
-      { id: "a2_vb_weitere_014", article: "-", word: "besuchen", translation: "посещать" },
       { id: "a2_vb_weitere_015", article: "-", word: "bezweifeln", translation: "сомневаться" },
       { id: "a2_vb_weitere_016", article: "-", word: "danken", translation: "благодарить" },
       { id: "a2_vb_weitere_017", article: "-", word: "drücken", translation: "нажимать" },
@@ -2177,7 +2110,6 @@ window.VOCAB_DATA = [
     level: "A1", category: "kindergarten_akt", name: "Im Kindergarten", name_ru: "В детском саду (действия)", emoji: "🧒",
     words: [
       { id: "a1_kg_001", article: "-",   word: "turnen",  translation: "заниматься физкультурой" },
-      { id: "a1_kg_002", article: "-",   word: "feiern",  translation: "праздновать" },
       { id: "a1_kg_003", article: "-",   word: "malen",   translation: "рисовать (красками)" },
       { id: "a1_kg_004", article: "der", word: "Ausflug", translation: "экскурсия / поездка" },
     ]
@@ -2365,7 +2297,6 @@ window.VOCAB_DATA = [
       { id: "a2_am_006", article: "-",   word: "absagen",      translation: "отменить" },
       { id: "a2_am_007", article: "-",   word: "einhalten",    translation: "соблюдать (срок, правило)" },
       { id: "a2_am_008", article: "-",   word: "zeigen",       translation: "показывать" },
-      { id: "a2_am_009", article: "-",   word: "überprüfen",   translation: "перепроверять (документы)" },
       { id: "a2_am_010", article: "-",   word: "abgeben",      translation: "сдавать (документ)" },
       { id: "a2_am_011", article: "-",   word: "ausdrucken",   translation: "распечатывать" },
       { id: "a2_am_012", article: "-",   word: "unterschreiben", translation: "подписывать" },
@@ -2407,7 +2338,6 @@ window.VOCAB_DATA = [
       { id: "a2_pk_003", article: "die", word: "Blume",     translation: "цветок" },
       { id: "a2_pk_004", article: "-",   word: "anleinen",  translation: "брать на поводок" },
       { id: "a2_pk_005", article: "-",   word: "sich hinsetzen", translation: "присесть / сесть" },
-      { id: "a2_pk_006", article: "-",   word: "aufpassen", translation: "следить / приглядывать" },
     ]
   },
 
@@ -2495,7 +2425,6 @@ window.VOCAB_DATA = [
     level: "A1", category: "feste", name: "Feste & Feiertage", name_ru: "Праздники", emoji: "🎉",
     words: [
       { id: "a1_fe_001", article: "der", word: "Geburtstag",   translation: "день рождения" },
-      { id: "a1_fe_002", article: "der", word: "Feiertag",     translation: "праздничный день" },
       { id: "a1_fe_003", article: "-",   word: "Weihnachten",  translation: "Рождество" },
       { id: "a1_fe_004", article: "-",   word: "Ostern",       translation: "Пасха" },
       { id: "a1_fe_005", article: "-",   word: "Silvester",    translation: "канун Нового года" },
@@ -2535,8 +2464,6 @@ window.VOCAB_DATA = [
       { id: "a1_kj_001", article: "-", word: "bald",           translation: "скоро" },
       { id: "a1_kj_002", article: "-", word: "normalerweise",  translation: "обычно" },
       { id: "a1_kj_003", article: "-", word: "so",             translation: "так" },
-      { id: "a1_kj_004", article: "-", word: "vielleicht",     translation: "возможно / может быть" },
-      { id: "a1_kj_005", article: "-", word: "erst",           translation: "только (в значении времени), сначала" },
       { id: "a1_kj_006", article: "-", word: "zu",             translation: "слишком" },
       { id: "a1_kj_007", article: "-", word: "etwa",           translation: "около / примерно" },
       { id: "a1_kj_008", article: "-", word: "einmal",         translation: "один раз" },
@@ -2555,23 +2482,6 @@ window.VOCAB_DATA = [
       { id: "a1_kj_021", article: "-", word: "da",             translation: "там" },
       { id: "a1_kj_022", article: "-", word: "also",           translation: "итак / следовательно" },
       { id: "a1_kj_023", article: "-", word: "dies",           translation: "это (указательное)" },
-      { id: "a1_kj_024", article: "-", word: "bei",             translation: "у / при / возле" },
-      { id: "a1_kj_025", article: "-", word: "schon",           translation: "уже" },
-      { id: "a1_kj_026", article: "-", word: "ganz",            translation: "совсем / целиком" },
-      { id: "a1_kj_027", article: "-", word: "wieder",          translation: "снова / опять" },
-      { id: "a1_kj_028", article: "-", word: "doch",            translation: "всё же / ведь" },
-      { id: "a1_kj_029", article: "-", word: "jemand",          translation: "кто-то / кто-нибудь" },
-      { id: "a1_kj_030", article: "-", word: "niemand",         translation: "никто" },
-      { id: "a1_kj_031", article: "-", word: "euer",            translation: "ваш (неформально, к группе)" },
-      { id: "a1_kj_032", article: "-", word: "weiter",          translation: "дальше" },
-      { id: "a1_kj_033", article: "-", word: "dafür",           translation: "за это / для этого" },
-      { id: "a1_kj_034", article: "-", word: "wohl",            translation: "пожалуй / наверное" },
-      { id: "a1_kj_035", article: "-", word: "leider",          translation: "к сожалению" },
-      { id: "a1_kj_036", article: "-", word: "zwar",            translation: "хотя (и) / правда" },
-      { id: "a1_kj_037", article: "-", word: "dran",            translation: "на очереди (разг.)" },
-      { id: "a1_kj_038", article: "-", word: "soweit",          translation: "насколько / пока что" },
-      { id: "a1_kj_039", article: "-", word: "miteinander",     translation: "друг с другом / вместе" },
-      { id: "a1_kj_040", article: "-", word: "bestimmt",        translation: "точно / наверняка" },
     ]
   },
 
@@ -2605,6 +2515,380 @@ window.VOCAB_DATA = [
       { id: "a2_vr_004", article: "der", word: "Musikverein",   translation: "музыкальный клуб / оркестр" },
       { id: "a2_vr_005", article: "der", word: "Tanzverein",    translation: "танцевальный клуб" },
       { id: "a2_vr_006", article: "der", word: "Chor",          translation: "хор" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 1
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_01", name: "Pepa 1", name_ru: "Пепа 1", emoji: "⭐",
+    words: [
+      { id: "a1_pp_001", article: "-", word: "bei", translation: "у, при, во время" },
+      { id: "a1_pp_002", article: "-", word: "unser", translation: "наш, наше, наша" },
+      { id: "a1_pp_003", article: "-", word: "tun", translation: "делать, совершать, производить" },
+      { id: "a1_pp_004", article: "-", word: "ander", translation: "другой, иной, разный" },
+      { id: "a1_pp_005", article: "-", word: "schon", translation: "уже, уж, же" },
+      { id: "a1_pp_006", article: "-", word: "einfach", translation: "простой, просто, легкий" },
+      { id: "a1_pp_007", article: "-", word: "wirklich", translation: "действительно, в самом деле, реальный" },
+      { id: "a1_pp_008", article: "-", word: "ganz", translation: "весь, целый, совсем" },
+      { id: "a1_pp_009", article: "-", word: "finden", translation: "находить, найденный, нашёл" },
+      { id: "a1_pp_010", article: "-", word: "erst", translation: "только, сначала, ещё не" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 2
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_02", name: "Pepa 2", name_ru: "Пепа 2", emoji: "⭐",
+    words: [
+      { id: "a1_pp_011", article: "-", word: "leben", translation: "жить, существовать, обитать" },
+      { id: "a1_pp_012", article: "-", word: "wieder", translation: "снова, опять, ещё" },
+      { id: "a1_pp_013", article: "-", word: "lassen", translation: "позволять, оставлять, давать" },
+      { id: "a1_pp_014", article: "-", word: "doch", translation: "однако, же, тем не менее" },
+      { id: "a1_pp_015", article: "-", word: "weg", translation: "прочь, отсюда" },
+      { id: "a1_pp_016", article: "-", word: "vielleicht", translation: "может быть, возможно, вероятно" },
+      { id: "a1_pp_017", article: "-", word: "los", translation: "прочь, свободный, вперёд (los!)" },
+      { id: "a1_pp_018", article: "-", word: "selbst", translation: "сам, сама, само" },
+      { id: "a1_pp_019", article: "-", word: "bekommen", translation: "получать, приобретать, доставать" },
+      { id: "a1_pp_020", article: "-", word: "sicher", translation: "уверенный, безопасный, надежный" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 3
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_03", name: "Pepa 3", name_ru: "Пепа 3", emoji: "⭐",
+    words: [
+      { id: "a1_pp_021", article: "-", word: "nun", translation: "теперь, сейчас" },
+      { id: "a1_pp_022", article: "-", word: "bleiben", translation: "оставаться" },
+      { id: "a1_pp_023", article: "-", word: "jemand", translation: "кто-то, некто, кое-кто" },
+      { id: "a1_pp_024", article: "die", word: "Welt", translation: "мир, вселенная, свет" },
+      { id: "a1_pp_025", article: "-", word: "hoch", translation: "высокий, высоко" },
+      { id: "a1_pp_026", article: "-", word: "treffen", translation: "встречаться, встретиться, настигать" },
+      { id: "a1_pp_027", article: "-", word: "weiter", translation: "дальше, продолжать, дальнейший" },
+      { id: "a1_pp_028", article: "-", word: "paar", translation: "пара, несколько, один-два" },
+      { id: "a1_pp_029", article: "-", word: "klar", translation: "ясно, понятно, конечно" },
+      { id: "a1_pp_030", article: "-", word: "spät", translation: "позже, поздно, поздний" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 4
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_04", name: "Pepa 4", name_ru: "Пепа 4", emoji: "⭐",
+    words: [
+      { id: "a1_pp_031", article: "-", word: "darüber", translation: "об этом, над этим, по этому поводу" },
+      { id: "a1_pp_032", article: "-", word: "dafür", translation: "за это, для этого, поэтому" },
+      { id: "a1_pp_033", article: "-", word: "dazu", translation: "к этому, для этого, кроме того" },
+      { id: "a1_pp_034", article: "-", word: "fallen", translation: "падать, нравиться, прийтись по вкусу" },
+      { id: "a1_pp_035", article: "die", word: "Sache", translation: "дело, вещь, вещи" },
+      { id: "a1_pp_036", article: "-", word: "schwer", translation: "сложный, тяжёлый, трудно" },
+      { id: "a1_pp_037", article: "der", word: "Ort", translation: "место, пункт, город" },
+      { id: "a1_pp_038", article: "-", word: "verlieren", translation: "терять, проигрывать, лишаться" },
+      { id: "a1_pp_039", article: "die", word: "Geschichte", translation: "история, рассказ" },
+      { id: "a1_pp_040", article: "-", word: "wohl", translation: "вероятно, пожалуй, хорошо бы" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 5
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_05", name: "Pepa 5", name_ru: "Пепа 5", emoji: "⭐",
+    words: [
+      { id: "a1_pp_041", article: "-", word: "möglich", translation: "возможный, вероятный, по возможности" },
+      { id: "a1_pp_042", article: "-", word: "stimmen", translation: "быть верным, соответствовать (действительности)" },
+      { id: "a1_pp_043", article: "-", word: "zuerst", translation: "сначала, прежде всего, во-первых" },
+      { id: "a1_pp_044", article: "-", word: "wahr", translation: "истинный, правдивый, действительный" },
+      { id: "a1_pp_045", article: "-", word: "ziemlich", translation: "довольно, весьма, неплохо" },
+      { id: "a1_pp_046", article: "-", word: "niemand", translation: "никто, ни один человек" },
+      { id: "a1_pp_047", article: "-", word: "tragen", translation: "носить, нести" },
+      { id: "a1_pp_048", article: "-", word: "genug", translation: "достаточно, хватит" },
+      { id: "a1_pp_049", article: "-", word: "erzählen", translation: "рассказывать, повествовать" },
+      { id: "a1_pp_050", article: "-", word: "gar", translation: "совсем, даже, совершенно" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 6
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_06", name: "Pepa 6", name_ru: "Пепа 6", emoji: "⭐",
+    words: [
+      { id: "a1_pp_051", article: "-", word: "voll", translation: "полный, наполненный" },
+      { id: "a1_pp_052", article: "-", word: "rein", translation: "чисто, чистый, невинный" },
+      { id: "a1_pp_053", article: "-", word: "benutzen", translation: "использовать, применять, употреблять" },
+      { id: "a1_pp_054", article: "-", word: "euer", translation: "ваше, ваш, ваша" },
+      { id: "a1_pp_055", article: "-", word: "gewinnen", translation: "выигрывать, получать, побеждать" },
+      { id: "a1_pp_056", article: "der", word: "Spaß", translation: "шутка, веселье, забава" },
+      { id: "a1_pp_057", article: "-", word: "rufen", translation: "звать, кричать, вызывать" },
+      { id: "a1_pp_058", article: "der", word: "Platz", translation: "место, площадь, пространство" },
+      { id: "a1_pp_059", article: "-", word: "lieb", translation: "лучше, предпочтительнее, любимый" },
+      { id: "a1_pp_060", article: "-", word: "überhaupt", translation: "вообще, ли, всё-таки" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 7
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_07", name: "Pepa 7", name_ru: "Пепа 7", emoji: "⭐",
+    words: [
+      { id: "a1_pp_061", article: "-", word: "erklären", translation: "объяснять, заявлять" },
+      { id: "a1_pp_062", article: "-", word: "bestimmt", translation: "определённо, точно, определенный" },
+      { id: "a1_pp_063", article: "-", word: "bauen", translation: "построить, возвести, строить" },
+      { id: "a1_pp_064", article: "-", word: "retten", translation: "спасти, спасать, сохранить" },
+      { id: "a1_pp_065", article: "die", word: "Kraft", translation: "сила, энергия, мощь" },
+      { id: "a1_pp_066", article: "-", word: "solltest", translation: "следует, бы, должен" },
+      { id: "a1_pp_067", article: "die", word: "Menge", translation: "количество, множество, толпа" },
+      { id: "a1_pp_068", article: "-", word: "dauern", translation: "длиться, продолжаться, занимать" },
+      { id: "a1_pp_069", article: "-", word: "besuchen", translation: "посещать, посетить" },
+      { id: "a1_pp_070", article: "-", word: "ruhig", translation: "тихий, спокойный, спокойно" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 8
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_08", name: "Pepa 8", name_ru: "Пепа 8", emoji: "⭐",
+    words: [
+      { id: "a1_pp_071", article: "-", word: "schlimm", translation: "наихудший, худший, плохой" },
+      { id: "a1_pp_072", article: "-", word: "leider", translation: "к сожалению, увы, жаль" },
+      { id: "a1_pp_073", article: "-", word: "verschwinden", translation: "пропадать, исчезнуть, скрываться" },
+      { id: "a1_pp_074", article: "-", word: "zwar", translation: "хотя, действительно, правда" },
+      { id: "a1_pp_075", article: "-", word: "woher", translation: "откуда, из чего" },
+      { id: "a1_pp_076", article: "-", word: "dran", translation: "на очереди, в контакте" },
+      { id: "a1_pp_077", article: "-", word: "zeihen", translation: "обвинять, уличать, признаваться" },
+      { id: "a1_pp_078", article: "-", word: "überprüfen", translation: "проверить, удостовериться" },
+      { id: "a1_pp_079", article: "-", word: "bestimmen", translation: "определять, устанавливать" },
+      { id: "a1_pp_080", article: "der", word: "Himmel", translation: "небо, небеса, рай" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 9
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_09", name: "Pepa 9", name_ru: "Пепа 9", emoji: "⭐",
+    words: [
+      { id: "a1_pp_081", article: "-", word: "vorher", translation: "прежде, раньше, до этого" },
+      { id: "a1_pp_082", article: "-", word: "besonder", translation: "особенный, специальный, отдельный" },
+      { id: "a1_pp_083", article: "-", word: "genauso", translation: "точно так же, в точности, равно как" },
+      { id: "a1_pp_084", article: "-", word: "wunderbar", translation: "чудесный, прекрасный" },
+      { id: "a1_pp_085", article: "-", word: "rennen", translation: "бежать, мчаться, гнать" },
+      { id: "a1_pp_086", article: "der", word: "Besuch", translation: "визит, посещение, гость" },
+      { id: "a1_pp_087", article: "-", word: "feiern", translation: "праздновать, отмечать, гулять" },
+      { id: "a1_pp_088", article: "-", word: "nimm", translation: "возьми, бери, прими" },
+      { id: "a1_pp_089", article: "-", word: "nämlich", translation: "а именно, то есть, именно" },
+      { id: "a1_pp_090", article: "der", word: "Brief", translation: "письмо" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 10
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_10", name: "Pepa 10", name_ru: "Пепа 10", emoji: "⭐",
+    words: [
+      { id: "a1_pp_091", article: "der", word: "Schatz", translation: "сокровище, клад, дорогой (обращение)" },
+      { id: "a1_pp_092", article: "-", word: "beschließen", translation: "решить, принять решение" },
+      { id: "a1_pp_093", article: "-", word: "übrig", translation: "остальной, оставшийся, лишний" },
+      { id: "a1_pp_094", article: "-", word: "wolltest", translation: "хотел, желал, хотелось" },
+      { id: "a1_pp_095", article: "-", word: "irgendein", translation: "какой-нибудь, какой-то, любой" },
+      { id: "a1_pp_096", article: "-", word: "miteinander", translation: "вместе, друг с другом" },
+      { id: "a1_pp_097", article: "-", word: "riechen", translation: "пахнуть, нюхать, чуять" },
+      { id: "a1_pp_098", article: "das", word: "Meer", translation: "море, океан" },
+      { id: "a1_pp_099", article: "-", word: "vermissen", translation: "скучать (по кому-л.), не хватать" },
+      { id: "a1_pp_100", article: "-", word: "mitnehmen", translation: "унесённый, захваченный, взятый (с собой)" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 11
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_11", name: "Pepa 11", name_ru: "Пепа 11", emoji: "⭐",
+    words: [
+      { id: "a1_pp_101", article: "-", word: "soweit", translation: "насколько, до тех пор, до сих пор" },
+      { id: "a1_pp_102", article: "das", word: "Zeug", translation: "вещь, материал, барахло" },
+      { id: "a1_pp_103", article: "-", word: "selber", translation: "сам, самостоятельно, собственно" },
+      { id: "a1_pp_104", article: "-", word: "köstlich", translation: "вкусный, восхитительный, прекрасный" },
+      { id: "a1_pp_105", article: "-", word: "betreten", translation: "входить, ступать, наступать" },
+      { id: "a1_pp_106", article: "-", word: "zufällig", translation: "случайно, случайный, внезапно" },
+      { id: "a1_pp_107", article: "-", word: "anziehen", translation: "надевать, одевать, привлекать" },
+      { id: "a1_pp_108", article: "-", word: "aufgeregt", translation: "взволнованный, встревоженный, возбуждённый" },
+      { id: "a1_pp_109", article: "die", word: "Überraschung", translation: "сюрприз, неожиданность, внезапность" },
+      { id: "a1_pp_110", article: "-", word: "irgendwas", translation: "что-то, что-нибудь, кое-что" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 12
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_12", name: "Pepa 12", name_ru: "Пепа 12", emoji: "⭐",
+    words: [
+      { id: "a1_pp_111", article: "der", word: "Gewinn", translation: "выигрыш, прибыль, выгода" },
+      { id: "a1_pp_112", article: "-", word: "steuern", translation: "управлять, вести, рулить" },
+      { id: "a1_pp_113", article: "-", word: "schade", translation: "жаль, жалко, обидно" },
+      { id: "a1_pp_114", article: "-", word: "gucken", translation: "смотреть, глядеть" },
+      { id: "a1_pp_115", article: "-", word: "geraten", translation: "попадать, советоваться, удаваться" },
+      { id: "a1_pp_116", article: "-", word: "organisieren", translation: "организовывать, устраивать" },
+      { id: "a1_pp_117", article: "der", word: "See", translation: "озеро, море" },
+      { id: "a1_pp_118", article: "-", word: "stand", translation: "стоял, стенд, позиция" },
+      { id: "a1_pp_119", article: "-", word: "aufpassen", translation: "присматривать, следить, внимательно" },
+      { id: "a1_pp_120", article: "-", word: "erwachsen", translation: "взрослый, совершеннолетний, зрелый" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 13
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_13", name: "Pepa 13", name_ru: "Пепа 13", emoji: "⭐",
+    words: [
+      { id: "a1_pp_121", article: "-", word: "fein", translation: "тонкий, хороший, прекрасный" },
+      { id: "a1_pp_122", article: "der", word: "Geruch", translation: "запах, аромат, вонь" },
+      { id: "a1_pp_123", article: "die", word: "Vorsicht", translation: "осторожность, осторожно, берегись" },
+      { id: "a1_pp_124", article: "-", word: "hervorragend", translation: "выдающийся, отличный, превосходный" },
+      { id: "a1_pp_125", article: "-", word: "guck", translation: "смотри, гляди, погляди" },
+      { id: "a1_pp_126", article: "-", word: "erstmal", translation: "пока, сначала, на данный момент" },
+      { id: "a1_pp_127", article: "der", word: "Gewinner", translation: "победитель, выигрыш, призёр" },
+      { id: "a1_pp_128", article: "-", word: "durchmachen", translation: "пережить, пройти, перенести" },
+      { id: "a1_pp_129", article: "-", word: "einnehmen", translation: "захватывать, занимать, принимать" },
+      { id: "a1_pp_130", article: "der", word: "Zeuge", translation: "свидетель" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 14
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_14", name: "Pepa 14", name_ru: "Пепа 14", emoji: "⭐",
+    words: [
+      { id: "a1_pp_131", article: "-", word: "spenden", translation: "жертвовать, спонсировать, передавать" },
+      { id: "a1_pp_132", article: "-", word: "tauschen", translation: "обменивать, менять, разменивать" },
+      { id: "a1_pp_133", article: "-", word: "glaubst", translation: "веришь, думаешь, считаешь" },
+      { id: "a1_pp_134", article: "-", word: "aufheben", translation: "поднимать, сохранять, отменять" },
+      { id: "a1_pp_135", article: "-", word: "öfter", translation: "чаще, неоднократно, много раз" },
+      { id: "a1_pp_136", article: "-", word: "tropfen", translation: "капать, сочиться" },
+      { id: "a1_pp_137", article: "-", word: "mitmachen", translation: "участвовать, присоединиться, сотрудничать" },
+      { id: "a1_pp_138", article: "-", word: "Ewigkeit", translation: "вечность, бесконечность, век" },
+      { id: "a1_pp_139", article: "-", word: "riecht", translation: "пахнет, воняет, нюхает" },
+      { id: "a1_pp_140", article: "der", word: "Sack", translation: "мешок, куль, сума" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 15
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_15", name: "Pepa 15", name_ru: "Пепа 15", emoji: "⭐",
+    words: [
+      { id: "a1_pp_141", article: "der", word: "Engel", translation: "ангел, ангелочек, ангелок" },
+      { id: "a1_pp_142", article: "der", word: "Eimer", translation: "ведро, бадья, шайка" },
+      { id: "a1_pp_143", article: "der", word: "Vorrat", translation: "запас, припас, резерв" },
+      { id: "a1_pp_144", article: "-", word: "veranstalten", translation: "проводить, устраивать, организовывать" },
+      { id: "a1_pp_145", article: "der", word: "Strich", translation: "линия, черта, штрих" },
+      { id: "a1_pp_146", article: "das", word: "Fass", translation: "бочка, кадка, ёмкость" },
+      { id: "a1_pp_147", article: "der", word: "Feiertag", translation: "праздник, выходной, торжество" },
+      { id: "a1_pp_148", article: "-", word: "schminken", translation: "красить, подкрашивать, наносить макияж" },
+      { id: "a1_pp_149", article: "-", word: "aufgepasst", translation: "внимательно, осторожно, следи" },
+      { id: "a1_pp_150", article: "die", word: "Wiese", translation: "луг, поляна, лужайка" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 16
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_16", name: "Pepa 16", name_ru: "Пепа 16", emoji: "⭐",
+    words: [
+      { id: "a1_pp_151", article: "-", word: "vorbeigehen", translation: "пройти мимо, обойти, зайти" },
+      { id: "a1_pp_152", article: "der", word: "Orden", translation: "орден, порядок, приказ" },
+      { id: "a1_pp_153", article: "-", word: "dreifach", translation: "тройной, троекратный, втрое" },
+      { id: "a1_pp_154", article: "-", word: "duftend", translation: "душистый, ароматный, пахнущий" },
+      { id: "a1_pp_155", article: "die", word: "Überlassung", translation: "передача, уступка, предоставление" },
+      { id: "a1_pp_156", article: "-", word: "hinfahren", translation: "поехать (туда), ехать" },
+      { id: "a1_pp_157", article: "die", word: "Alge", translation: "водоросли, водоросль" },
+      { id: "a1_pp_158", article: "-", word: "schlimmeres", translation: "хуже, худшее, более серьёзное" },
+      { id: "a1_pp_159", article: "-", word: "hält", translation: "держит, содержит, выдерживает" },
+      { id: "a1_pp_160", article: "die", word: "Pflaume", translation: "слива, чернослив, алыча" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 17
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_17", name: "Pepa 17", name_ru: "Пепа 17", emoji: "⭐",
+    words: [
+      { id: "a1_pp_161", article: "die", word: "Minze", translation: "мята" },
+      { id: "a1_pp_162", article: "-", word: "duften", translation: "пахнуть, благоухать, издавать запах" },
+      { id: "a1_pp_163", article: "der", word: "Ansager", translation: "диктор, объявитель, анонсер" },
+      { id: "a1_pp_164", article: "-", word: "zauberhaft", translation: "волшебный, чарующий, очаровательный" },
+      { id: "a1_pp_165", article: "-", word: "losgeworden", translation: "избавиться, сбить, утратить" },
+      { id: "a1_pp_166", article: "der", word: "Bagger", translation: "экскаватор, бульдозер, землекоп" },
+      { id: "a1_pp_167", article: "-", word: "schrubben", translation: "чистить, драить, тереть" },
+      { id: "a1_pp_168", article: "der", word: "Luftballon", translation: "воздушный шар, шарик, надувной шар" },
+      { id: "a1_pp_169", article: "-", word: "aufgegessen", translation: "съеденный, съедено" },
+      { id: "a1_pp_170", article: "-", word: "feinst", translation: "тончайший, великолепный, лучший" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 18
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_18", name: "Pepa 18", name_ru: "Пепа 18", emoji: "⭐",
+    words: [
+      { id: "a1_pp_171", article: "-", word: "stranden", translation: "сесть на мель, потерпеть кораблекрушение" },
+      { id: "a1_pp_172", article: "-", word: "reintun", translation: "вложить, вставить, поместить" },
+      { id: "a1_pp_173", article: "der", word: "Schrottplatz", translation: "свалка, автосвалка, разборка" },
+      { id: "a1_pp_174", article: "der", word: "Schokoriegel", translation: "шоколадный батончик, шоколадка, батончик" },
+      { id: "a1_pp_175", article: "-", word: "riechst", translation: "пахнешь, нюхаешь, чуешь запах" },
+      { id: "a1_pp_176", article: "-", word: "pflück", translation: "срывать, собирать, сорвать" },
+      { id: "a1_pp_177", article: "der", word: "Hilferuf", translation: "крик о помощи, зов о помощи, сигнал бедствия" },
+      { id: "a1_pp_178", article: "das", word: "Feuerwehrauto", translation: "пожарная машина, пожарный автомобиль, пожарная автоцистерна" },
+      { id: "a1_pp_179", article: "-", word: "zugucken", translation: "смотреть, наблюдать, подглядывать" },
+      { id: "a1_pp_180", article: "-", word: "hättet", translation: "были бы, имели бы, получили бы" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 19
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_19", name: "Pepa 19", name_ru: "Пепа 19", emoji: "⭐",
+    words: [
+      { id: "a1_pp_181", article: "das", word: "Püppchen", translation: "пупсик, кукла, малышка" },
+      { id: "a1_pp_182", article: "-", word: "vortrefflich", translation: "превосходный, великолепный, отличный" },
+      { id: "a1_pp_183", article: "-", word: "reinspringen", translation: "запрыгнуть, прыгнуть, впрыгнуть" },
+      { id: "a1_pp_184", article: "das", word: "Blumenbeet", translation: "клумба, цветник, цветочная клумба" },
+      { id: "a1_pp_185", article: "die", word: "Gummistiefel", translation: "резиновые сапоги, сапоги, болотники" },
+      { id: "a1_pp_186", article: "der", word: "Schminktisch", translation: "туалетный столик, гримёрный столик, трельяж" },
+      { id: "a1_pp_187", article: "-", word: "steuerst", translation: "управляешь, ведёшь, рулишь" },
+      { id: "a1_pp_188", article: "-", word: "wohlriechend", translation: "душистый, ароматный, благоухающий" },
+      { id: "a1_pp_189", article: "der", word: "Rettungshubschrauber", translation: "спасательный вертолёт, медицинский вертолёт, спасательный борт" },
+      { id: "a1_pp_190", article: "der", word: "Kräutergarten", translation: "огород, сад, травник" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ПЕПА 20
+  // ════════════════════════════════
+  {
+    level: "A1", category: "pepa_20", name: "Pepa 20", name_ru: "Пепа 20", emoji: "⭐",
+    words: [
+      { id: "a1_pp_191", article: "der", word: "Angelausflug", translation: "рыбалка, поход за рыбой, рыболовная поездка" },
+      { id: "a1_pp_192", article: "der", word: "Picknickkorb", translation: "корзина для пикника, пикник-корзина" },
+      { id: "a1_pp_193", article: "-", word: "minzig", translation: "мятный, свежий, бодрящий" },
+      { id: "a1_pp_194", article: "der", word: "Blumenduft", translation: "цветочный аромат, запах цветов, благоухание цветов" },
     ]
   },
 
