@@ -1514,6 +1514,7 @@ function startSession(cat) {
     return true;
   });
   shuffle(active);
+  if (cat.sessionLimit && active.length > cat.sessionLimit) active = active.slice(0, cat.sessionLimit);
   S.phase='study'; S.testQueue=[]; S.testTotal=0; S.testMastered=0; S.testCorrect=0;
   S.catMode = cat.mode || '';
   S.catKey  = cat.category;

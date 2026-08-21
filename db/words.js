@@ -2519,10 +2519,10 @@ window.VOCAB_DATA = [
   },
 
   // ════════════════════════════════
-  //  A1 — ПЕПА 1
+  //  A1 — ПЕПА (топ-слова, изучение по 10 за раз)
   // ════════════════════════════════
   {
-    level: "A1", category: "pepa_01", name: "Pepa 1", name_ru: "Пепа 1", emoji: "⭐",
+    level: "A1", category: "pepa", name: "Pepa", name_ru: "Пепа", emoji: "⭐", sessionLimit: 10,
     words: [
       { id: "a1_pp_001", article: "-", word: "bei", translation: "у, при, во время" },
       { id: "a1_pp_002", article: "-", word: "unser", translation: "наш, наше, наша" },
@@ -2534,15 +2534,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_008", article: "-", word: "ganz", translation: "весь, целый, совсем" },
       { id: "a1_pp_009", article: "-", word: "finden", translation: "находить, найденный, нашёл" },
       { id: "a1_pp_010", article: "-", word: "erst", translation: "только, сначала, ещё не" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 2
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_02", name: "Pepa 2", name_ru: "Пепа 2", emoji: "⭐",
-    words: [
       { id: "a1_pp_011", article: "-", word: "leben", translation: "жить, существовать, обитать" },
       { id: "a1_pp_012", article: "-", word: "wieder", translation: "снова, опять, ещё" },
       { id: "a1_pp_013", article: "-", word: "lassen", translation: "позволять, оставлять, давать" },
@@ -2553,15 +2544,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_018", article: "-", word: "selbst", translation: "сам, сама, само" },
       { id: "a1_pp_019", article: "-", word: "bekommen", translation: "получать, приобретать, доставать" },
       { id: "a1_pp_020", article: "-", word: "sicher", translation: "уверенный, безопасный, надежный" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 3
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_03", name: "Pepa 3", name_ru: "Пепа 3", emoji: "⭐",
-    words: [
       { id: "a1_pp_021", article: "-", word: "nun", translation: "теперь, сейчас" },
       { id: "a1_pp_022", article: "-", word: "bleiben", translation: "оставаться" },
       { id: "a1_pp_023", article: "-", word: "jemand", translation: "кто-то, некто, кое-кто" },
@@ -2572,15 +2554,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_028", article: "-", word: "paar", translation: "пара, несколько, один-два" },
       { id: "a1_pp_029", article: "-", word: "klar", translation: "ясно, понятно, конечно" },
       { id: "a1_pp_030", article: "-", word: "spät", translation: "позже, поздно, поздний" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 4
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_04", name: "Pepa 4", name_ru: "Пепа 4", emoji: "⭐",
-    words: [
       { id: "a1_pp_031", article: "-", word: "darüber", translation: "об этом, над этим, по этому поводу" },
       { id: "a1_pp_032", article: "-", word: "dafür", translation: "за это, для этого, поэтому" },
       { id: "a1_pp_033", article: "-", word: "dazu", translation: "к этому, для этого, кроме того" },
@@ -2591,15 +2564,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_038", article: "-", word: "verlieren", translation: "терять, проигрывать, лишаться" },
       { id: "a1_pp_039", article: "die", word: "Geschichte", translation: "история, рассказ" },
       { id: "a1_pp_040", article: "-", word: "wohl", translation: "вероятно, пожалуй, хорошо бы" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 5
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_05", name: "Pepa 5", name_ru: "Пепа 5", emoji: "⭐",
-    words: [
       { id: "a1_pp_041", article: "-", word: "möglich", translation: "возможный, вероятный, по возможности" },
       { id: "a1_pp_042", article: "-", word: "stimmen", translation: "быть верным, соответствовать (действительности)" },
       { id: "a1_pp_043", article: "-", word: "zuerst", translation: "сначала, прежде всего, во-первых" },
@@ -2610,15 +2574,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_048", article: "-", word: "genug", translation: "достаточно, хватит" },
       { id: "a1_pp_049", article: "-", word: "erzählen", translation: "рассказывать, повествовать" },
       { id: "a1_pp_050", article: "-", word: "gar", translation: "совсем, даже, совершенно" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 6
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_06", name: "Pepa 6", name_ru: "Пепа 6", emoji: "⭐",
-    words: [
       { id: "a1_pp_051", article: "-", word: "voll", translation: "полный, наполненный" },
       { id: "a1_pp_052", article: "-", word: "rein", translation: "чисто, чистый, невинный" },
       { id: "a1_pp_053", article: "-", word: "benutzen", translation: "использовать, применять, употреблять" },
@@ -2629,15 +2584,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_058", article: "der", word: "Platz", translation: "место, площадь, пространство" },
       { id: "a1_pp_059", article: "-", word: "lieb", translation: "лучше, предпочтительнее, любимый" },
       { id: "a1_pp_060", article: "-", word: "überhaupt", translation: "вообще, ли, всё-таки" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 7
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_07", name: "Pepa 7", name_ru: "Пепа 7", emoji: "⭐",
-    words: [
       { id: "a1_pp_061", article: "-", word: "erklären", translation: "объяснять, заявлять" },
       { id: "a1_pp_062", article: "-", word: "bestimmt", translation: "определённо, точно, определенный" },
       { id: "a1_pp_063", article: "-", word: "bauen", translation: "построить, возвести, строить" },
@@ -2648,15 +2594,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_068", article: "-", word: "dauern", translation: "длиться, продолжаться, занимать" },
       { id: "a1_pp_069", article: "-", word: "besuchen", translation: "посещать, посетить" },
       { id: "a1_pp_070", article: "-", word: "ruhig", translation: "тихий, спокойный, спокойно" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 8
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_08", name: "Pepa 8", name_ru: "Пепа 8", emoji: "⭐",
-    words: [
       { id: "a1_pp_071", article: "-", word: "schlimm", translation: "наихудший, худший, плохой" },
       { id: "a1_pp_072", article: "-", word: "leider", translation: "к сожалению, увы, жаль" },
       { id: "a1_pp_073", article: "-", word: "verschwinden", translation: "пропадать, исчезнуть, скрываться" },
@@ -2667,15 +2604,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_078", article: "-", word: "überprüfen", translation: "проверить, удостовериться" },
       { id: "a1_pp_079", article: "-", word: "bestimmen", translation: "определять, устанавливать" },
       { id: "a1_pp_080", article: "der", word: "Himmel", translation: "небо, небеса, рай" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 9
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_09", name: "Pepa 9", name_ru: "Пепа 9", emoji: "⭐",
-    words: [
       { id: "a1_pp_081", article: "-", word: "vorher", translation: "прежде, раньше, до этого" },
       { id: "a1_pp_082", article: "-", word: "besonder", translation: "особенный, специальный, отдельный" },
       { id: "a1_pp_083", article: "-", word: "genauso", translation: "точно так же, в точности, равно как" },
@@ -2686,15 +2614,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_088", article: "-", word: "nimm", translation: "возьми, бери, прими" },
       { id: "a1_pp_089", article: "-", word: "nämlich", translation: "а именно, то есть, именно" },
       { id: "a1_pp_090", article: "der", word: "Brief", translation: "письмо" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 10
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_10", name: "Pepa 10", name_ru: "Пепа 10", emoji: "⭐",
-    words: [
       { id: "a1_pp_091", article: "der", word: "Schatz", translation: "сокровище, клад, дорогой (обращение)" },
       { id: "a1_pp_092", article: "-", word: "beschließen", translation: "решить, принять решение" },
       { id: "a1_pp_093", article: "-", word: "übrig", translation: "остальной, оставшийся, лишний" },
@@ -2705,15 +2624,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_098", article: "das", word: "Meer", translation: "море, океан" },
       { id: "a1_pp_099", article: "-", word: "vermissen", translation: "скучать (по кому-л.), не хватать" },
       { id: "a1_pp_100", article: "-", word: "mitnehmen", translation: "унесённый, захваченный, взятый (с собой)" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 11
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_11", name: "Pepa 11", name_ru: "Пепа 11", emoji: "⭐",
-    words: [
       { id: "a1_pp_101", article: "-", word: "soweit", translation: "насколько, до тех пор, до сих пор" },
       { id: "a1_pp_102", article: "das", word: "Zeug", translation: "вещь, материал, барахло" },
       { id: "a1_pp_103", article: "-", word: "selber", translation: "сам, самостоятельно, собственно" },
@@ -2724,15 +2634,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_108", article: "-", word: "aufgeregt", translation: "взволнованный, встревоженный, возбуждённый" },
       { id: "a1_pp_109", article: "die", word: "Überraschung", translation: "сюрприз, неожиданность, внезапность" },
       { id: "a1_pp_110", article: "-", word: "irgendwas", translation: "что-то, что-нибудь, кое-что" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 12
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_12", name: "Pepa 12", name_ru: "Пепа 12", emoji: "⭐",
-    words: [
       { id: "a1_pp_111", article: "der", word: "Gewinn", translation: "выигрыш, прибыль, выгода" },
       { id: "a1_pp_112", article: "-", word: "steuern", translation: "управлять, вести, рулить" },
       { id: "a1_pp_113", article: "-", word: "schade", translation: "жаль, жалко, обидно" },
@@ -2743,15 +2644,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_118", article: "-", word: "stand", translation: "стоял, стенд, позиция" },
       { id: "a1_pp_119", article: "-", word: "aufpassen", translation: "присматривать, следить, внимательно" },
       { id: "a1_pp_120", article: "-", word: "erwachsen", translation: "взрослый, совершеннолетний, зрелый" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 13
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_13", name: "Pepa 13", name_ru: "Пепа 13", emoji: "⭐",
-    words: [
       { id: "a1_pp_121", article: "-", word: "fein", translation: "тонкий, хороший, прекрасный" },
       { id: "a1_pp_122", article: "der", word: "Geruch", translation: "запах, аромат, вонь" },
       { id: "a1_pp_123", article: "die", word: "Vorsicht", translation: "осторожность, осторожно, берегись" },
@@ -2762,15 +2654,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_128", article: "-", word: "durchmachen", translation: "пережить, пройти, перенести" },
       { id: "a1_pp_129", article: "-", word: "einnehmen", translation: "захватывать, занимать, принимать" },
       { id: "a1_pp_130", article: "der", word: "Zeuge", translation: "свидетель" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 14
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_14", name: "Pepa 14", name_ru: "Пепа 14", emoji: "⭐",
-    words: [
       { id: "a1_pp_131", article: "-", word: "spenden", translation: "жертвовать, спонсировать, передавать" },
       { id: "a1_pp_132", article: "-", word: "tauschen", translation: "обменивать, менять, разменивать" },
       { id: "a1_pp_133", article: "-", word: "glaubst", translation: "веришь, думаешь, считаешь" },
@@ -2781,15 +2664,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_138", article: "-", word: "Ewigkeit", translation: "вечность, бесконечность, век" },
       { id: "a1_pp_139", article: "-", word: "riecht", translation: "пахнет, воняет, нюхает" },
       { id: "a1_pp_140", article: "der", word: "Sack", translation: "мешок, куль, сума" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 15
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_15", name: "Pepa 15", name_ru: "Пепа 15", emoji: "⭐",
-    words: [
       { id: "a1_pp_141", article: "der", word: "Engel", translation: "ангел, ангелочек, ангелок" },
       { id: "a1_pp_142", article: "der", word: "Eimer", translation: "ведро, бадья, шайка" },
       { id: "a1_pp_143", article: "der", word: "Vorrat", translation: "запас, припас, резерв" },
@@ -2800,15 +2674,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_148", article: "-", word: "schminken", translation: "красить, подкрашивать, наносить макияж" },
       { id: "a1_pp_149", article: "-", word: "aufgepasst", translation: "внимательно, осторожно, следи" },
       { id: "a1_pp_150", article: "die", word: "Wiese", translation: "луг, поляна, лужайка" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 16
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_16", name: "Pepa 16", name_ru: "Пепа 16", emoji: "⭐",
-    words: [
       { id: "a1_pp_151", article: "-", word: "vorbeigehen", translation: "пройти мимо, обойти, зайти" },
       { id: "a1_pp_152", article: "der", word: "Orden", translation: "орден, порядок, приказ" },
       { id: "a1_pp_153", article: "-", word: "dreifach", translation: "тройной, троекратный, втрое" },
@@ -2819,15 +2684,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_158", article: "-", word: "schlimmeres", translation: "хуже, худшее, более серьёзное" },
       { id: "a1_pp_159", article: "-", word: "hält", translation: "держит, содержит, выдерживает" },
       { id: "a1_pp_160", article: "die", word: "Pflaume", translation: "слива, чернослив, алыча" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 17
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_17", name: "Pepa 17", name_ru: "Пепа 17", emoji: "⭐",
-    words: [
       { id: "a1_pp_161", article: "die", word: "Minze", translation: "мята" },
       { id: "a1_pp_162", article: "-", word: "duften", translation: "пахнуть, благоухать, издавать запах" },
       { id: "a1_pp_163", article: "der", word: "Ansager", translation: "диктор, объявитель, анонсер" },
@@ -2838,15 +2694,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_168", article: "der", word: "Luftballon", translation: "воздушный шар, шарик, надувной шар" },
       { id: "a1_pp_169", article: "-", word: "aufgegessen", translation: "съеденный, съедено" },
       { id: "a1_pp_170", article: "-", word: "feinst", translation: "тончайший, великолепный, лучший" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 18
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_18", name: "Pepa 18", name_ru: "Пепа 18", emoji: "⭐",
-    words: [
       { id: "a1_pp_171", article: "-", word: "stranden", translation: "сесть на мель, потерпеть кораблекрушение" },
       { id: "a1_pp_172", article: "-", word: "reintun", translation: "вложить, вставить, поместить" },
       { id: "a1_pp_173", article: "der", word: "Schrottplatz", translation: "свалка, автосвалка, разборка" },
@@ -2857,15 +2704,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_178", article: "das", word: "Feuerwehrauto", translation: "пожарная машина, пожарный автомобиль, пожарная автоцистерна" },
       { id: "a1_pp_179", article: "-", word: "zugucken", translation: "смотреть, наблюдать, подглядывать" },
       { id: "a1_pp_180", article: "-", word: "hättet", translation: "были бы, имели бы, получили бы" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 19
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_19", name: "Pepa 19", name_ru: "Пепа 19", emoji: "⭐",
-    words: [
       { id: "a1_pp_181", article: "das", word: "Püppchen", translation: "пупсик, кукла, малышка" },
       { id: "a1_pp_182", article: "-", word: "vortrefflich", translation: "превосходный, великолепный, отличный" },
       { id: "a1_pp_183", article: "-", word: "reinspringen", translation: "запрыгнуть, прыгнуть, впрыгнуть" },
@@ -2876,15 +2714,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_188", article: "-", word: "wohlriechend", translation: "душистый, ароматный, благоухающий" },
       { id: "a1_pp_189", article: "der", word: "Rettungshubschrauber", translation: "спасательный вертолёт, медицинский вертолёт, спасательный борт" },
       { id: "a1_pp_190", article: "der", word: "Kräutergarten", translation: "огород, сад, травник" },
-    ]
-  },
-
-  // ════════════════════════════════
-  //  A1 — ПЕПА 20
-  // ════════════════════════════════
-  {
-    level: "A1", category: "pepa_20", name: "Pepa 20", name_ru: "Пепа 20", emoji: "⭐",
-    words: [
       { id: "a1_pp_191", article: "der", word: "Angelausflug", translation: "рыбалка, поход за рыбой, рыболовная поездка" },
       { id: "a1_pp_192", article: "der", word: "Picknickkorb", translation: "корзина для пикника, пикник-корзина" },
       { id: "a1_pp_193", article: "-", word: "minzig", translation: "мятный, свежий, бодрящий" },
