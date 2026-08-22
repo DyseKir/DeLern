@@ -1821,6 +1821,64 @@ Deutschland, Russland, Italien, Spanien, Frankreich, Polen, Afghanistan, Uganda,
   },
 
   // ════════════════════════════════════════
+  //  A1 — POSSESSIVPRONOMEN ПО ПАДЕЖАМ (mein/meinem/meinen...)
+  // ════════════════════════════════════════
+  {
+    id: "a1_gr_050", level: "A1",
+    title_de: "Possessivpronomen in Nominativ, Dativ und Akkusativ",
+    title_ru: "Притяжательные местоимения по падежам (mein → meinem → meinen)",
+    explanation_de: "Possessivpronomen (mein, dein, sein...) dekliniert man genau wie den unbestimmten Artikel (ein, eine, ein). In Dativ ändern sich alle Endungen, in Akkusativ nur die männliche Form.",
+    explanation_ru: `Мы уже знаем правило «Притяжательные местоимения» — <strong>mein/meine/mein</strong> в Nominativ. Но, как и артикль, притяжательное местоимение меняет окончание в зависимости от падежа — <strong>склоняется точно так же, как ein/eine/ein</strong>.
+
+<strong>━━━ NOMINATIV (Wer?/Was?) ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr><td></td><td><b>der</b></td><td><b>die</b></td><td><b>das</b></td><td><b>die</b> (мн.)</td></tr>
+<tr><td style="text-align:left">ich</td><td>mein</td><td>meine</td><td>mein</td><td>meine</td></tr>
+<tr><td style="text-align:left">du</td><td>dein</td><td>deine</td><td>dein</td><td>deine</td></tr>
+<tr><td style="text-align:left">er/es</td><td>sein</td><td>seine</td><td>sein</td><td>seine</td></tr>
+<tr><td style="text-align:left">sie</td><td>ihr</td><td>ihre</td><td>ihr</td><td>ihre</td></tr>
+<tr><td style="text-align:left">wir</td><td>unser</td><td>unsere</td><td>unser</td><td>unsere</td></tr>
+<tr><td style="text-align:left">ihr</td><td>euer</td><td>eure</td><td>euer</td><td>eure</td></tr>
+<tr><td style="text-align:left">sie/Sie</td><td>ihr/Ihr</td><td>ihre/Ihre</td><td>ihr/Ihr</td><td>ihre/Ihre</td></tr>
+</table>
+
+<strong>━━━ AKKUSATIV (Wen?/Was?) — меняется только мужской род ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr><td></td><td><b>den</b></td><td><b>die</b></td><td><b>das</b></td><td><b>die</b> (мн.)</td></tr>
+<tr><td style="text-align:left">ich</td><td><b>meinen</b></td><td>meine</td><td>mein</td><td>meine</td></tr>
+<tr><td style="text-align:left">du</td><td><b>deinen</b></td><td>deine</td><td>dein</td><td>deine</td></tr>
+<tr><td style="text-align:left">er/es</td><td><b>seinen</b></td><td>seine</td><td>sein</td><td>seine</td></tr>
+<tr><td style="text-align:left">sie</td><td><b>ihren</b></td><td>ihre</td><td>ihr</td><td>ihre</td></tr>
+<tr><td style="text-align:left">wir</td><td><b>unseren</b></td><td>unsere</td><td>unser</td><td>unsere</td></tr>
+<tr><td style="text-align:left">ihr</td><td><b>euren</b></td><td>eure</td><td>euer</td><td>eure</td></tr>
+<tr><td style="text-align:left">sie/Sie</td><td><b>ihren</b>/Ihren</td><td>ihre/Ihre</td><td>ihr/Ihr</td><td>ihre/Ihre</td></tr>
+</table>
+
+<strong>━━━ DATIV (Wem?) — меняются ВСЕ окончания ━━━</strong>
+<table style="border-collapse:collapse;width:100%;text-align:center;font-size:15px;margin:6px 0">
+<tr><td></td><td><b>dem</b></td><td><b>der</b></td><td><b>dem</b></td><td><b>den</b> (мн., +n)</td></tr>
+<tr><td style="text-align:left">ich</td><td>meinem</td><td>meiner</td><td>meinem</td><td>meinen</td></tr>
+<tr><td style="text-align:left">du</td><td>deinem</td><td>deiner</td><td>deinem</td><td>deinen</td></tr>
+<tr><td style="text-align:left">er/es</td><td>seinem</td><td>seiner</td><td>seinem</td><td>seinen</td></tr>
+<tr><td style="text-align:left">sie</td><td>ihrem</td><td>ihrer</td><td>ihrem</td><td>ihren</td></tr>
+<tr><td style="text-align:left">wir</td><td>unserem</td><td>unserer</td><td>unserem</td><td>unseren</td></tr>
+<tr><td style="text-align:left">ihr</td><td>eurem</td><td>eurer</td><td>eurem</td><td>euren</td></tr>
+<tr><td style="text-align:left">sie/Sie</td><td>ihrem/Ihrem</td><td>ihrer/Ihrer</td><td>ihrem/Ihrem</td><td>ihren/Ihren</td></tr>
+</table>
+
+<strong>🧠 Короткая память:</strong> Possessivpronomen ведёт себя как <strong>ein/eine/ein</strong>. В Nominativ и Akkusativ окончание для das и der (муж.) «пустое» (mein, dein...), кроме Akkusativ мужского рода — там всегда <strong>-en</strong> (meinen, deinen...). В Dativ окончание есть у всех: <strong>-em</strong> (der/das), <strong>-er</strong> (die), <strong>-en</strong> (мн.ч.).`,
+    examples: [
+      { de: "Das ist mein Bruder. (Nominativ)",              ru: "Это мой брат. — артикль «пустой», как der." },
+      { de: "Ich sehe meinen Bruder. (Akkusativ)",           ru: "Я вижу моего брата. — der→den, значит mein→meinen." },
+      { de: "Ich helfe meinem Bruder. (Dativ)",              ru: "Я помогаю моему брату. — der→dem, значит mein→meinem." },
+      { de: "Ich schreibe meiner Schwester. (Dativ, die)",   ru: "Я пишу моей сестре. — die→der, значит meine→meiner." },
+      { de: "Wir lieben unsere Kinder. (Akkusativ, Plural)", ru: "Мы любим наших детей. — во мн.ч. окончание -e, не -en." },
+    ],
+    tip_de: "Possessivpronomen dekliniert wie ein/eine/ein: Nominativ/Akkusativ meist ohne Endung (außer maskulin Akkusativ: -en), Dativ immer mit Endung (-em/-er/-en).",
+    tip_ru: "mein/dein/sein... склоняются как ein/eine/ein. В Nominativ и Akkusativ обычно без окончания, кроме мужского рода в Akkusativ (всегда -en). В Dativ окончание есть всегда: -em (der/das), -er (die), -en (мн.ч.).",
+  },
+
+  // ════════════════════════════════════════
   //  СЮДА ДОБАВЛЯЙ СВОИ ПРАВИЛА:
   // ════════════════════════════════════════
 

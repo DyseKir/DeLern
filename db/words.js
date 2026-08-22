@@ -820,6 +820,11 @@ window.VOCAB_DATA = [
       { id: "a1_m2_011", article: "der", word: "Topf",       translation: "кастрюля"          },
       { id: "a1_m2_012", article: "der", word: "Stift",      translation: "ручка / карандаш"  },
       { id: "a1_m2_014", article: "der", word: "Pinsel",     translation: "кисть"             },
+      { id: "a1_m2_015", article: "das", word: "Spielzeug",  translation: "игрушка"           },
+      { id: "a1_m2_016", article: "die", word: "Schublade",  translation: "выдвижной ящик"    },
+      { id: "a1_m2_017", article: "der", word: "Besen",      translation: "метла / веник"     },
+      { id: "a1_m2_018", article: "die", word: "Schüssel",   translation: "миска"             },
+      { id: "a1_m2_019", article: "der", word: "Dachboden",  translation: "чердак"            },
     ]
   },
 
@@ -1263,6 +1268,13 @@ window.VOCAB_DATA = [
       { id: "a1_ar_030", article: "das", word: "Fieberthermometer", translation: "градусник"                   },
       { id: "a1_ar_031", article: "die", word: "Augentropfen",      translation: "глазные капли (мн.ч.)"       },
       { id: "a1_ar_032", article: "das", word: "Verhütungsmittel",  translation: "противозачаточное средство"  },
+      { id: "a1_ar_033", article: "die", word: "Symptome",          translation: "симптомы"                    },
+      { id: "a1_ar_034", article: "die", word: "Diagnose",          translation: "диагноз"                     },
+      { id: "a1_ar_035", article: "die", word: "Behandlung",        translation: "лечение"                     },
+      { id: "a1_ar_036", article: "die", word: "Genesung",          translation: "выздоровление"                },
+      { id: "a1_ar_037", article: "die", word: "Vorsorgeuntersuchung", translation: "профилактический осмотр"  },
+      { id: "a1_ar_038", article: "die", word: "Nebenwirkungen",    translation: "побочные эффекты"            },
+      { id: "a1_ar_039", article: "die", word: "Entzündung",        translation: "воспаление"                  },
     ]
   },
 
@@ -2566,7 +2578,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_040", article: "-", word: "wohl", translation: "вероятно, пожалуй, хорошо бы" },
       { id: "a1_pp_041", article: "-", word: "möglich", translation: "возможный, вероятный, по возможности" },
       { id: "a1_pp_042", article: "-", word: "stimmen", translation: "быть верным, соответствовать (действительности)" },
-      { id: "a1_pp_043", article: "-", word: "zuerst", translation: "сначала, прежде всего, во-первых" },
       { id: "a1_pp_044", article: "-", word: "wahr", translation: "истинный, правдивый, действительный" },
       { id: "a1_pp_045", article: "-", word: "ziemlich", translation: "довольно, весьма, неплохо" },
       { id: "a1_pp_046", article: "-", word: "niemand", translation: "никто, ни один человек" },
@@ -2604,7 +2615,6 @@ window.VOCAB_DATA = [
       { id: "a1_pp_078", article: "-", word: "überprüfen", translation: "проверить, удостовериться" },
       { id: "a1_pp_079", article: "-", word: "bestimmen", translation: "определять, устанавливать" },
       { id: "a1_pp_080", article: "der", word: "Himmel", translation: "небо, небеса, рай" },
-      { id: "a1_pp_081", article: "-", word: "vorher", translation: "прежде, раньше, до этого" },
       { id: "a1_pp_082", article: "-", word: "besonder", translation: "особенный, специальный, отдельный" },
       { id: "a1_pp_083", article: "-", word: "genauso", translation: "точно так же, в точности, равно как" },
       { id: "a1_pp_084", article: "-", word: "wunderbar", translation: "чудесный, прекрасный" },
@@ -2718,6 +2728,44 @@ window.VOCAB_DATA = [
       { id: "a1_pp_192", article: "der", word: "Picknickkorb", translation: "корзина для пикника, пикник-корзина" },
       { id: "a1_pp_193", article: "-", word: "minzig", translation: "мятный, свежий, бодрящий" },
       { id: "a1_pp_194", article: "der", word: "Blumenduft", translation: "цветочный аромат, запах цветов, благоухание цветов" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — ZEITFOLGE (порядок действий во времени)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "zeitfolge", name: "Zeitfolge", name_ru: "Порядок действий (сначала/потом)", emoji: "⏳",
+    words: [
+      { id: "a1_zf_001", article: "-", word: "zuerst",      translation: "сначала" },
+      { id: "a1_zf_002", article: "-", word: "zunächst",    translation: "сначала, вначале" },
+      { id: "a1_zf_003", article: "-", word: "vorher",      translation: "ранее, до этого" },
+      { id: "a1_zf_004", article: "-", word: "zuvor",       translation: "до того" },
+      { id: "a1_zf_005", article: "-", word: "anfangs",     translation: "изначально, вначале" },
+      { id: "a1_zf_006", article: "-", word: "zuletzt",     translation: "в конце, наконец" },
+      { id: "a1_zf_007", article: "-", word: "schließlich", translation: "в конечном счёте" },
+      { id: "a1_zf_008", article: "-", word: "danach",      translation: "после этого" },
+      { id: "a1_zf_009", article: "-", word: "hinterher",   translation: "после, позже" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — VERBEN MIT VOR- (глаголы с приставкой vor-)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "vor_verben", name: "Verben mit vor-", name_ru: "Глаголы с приставкой vor-", emoji: "👉",
+    words: [
+      { id: "a1_vv_001", article: "-", word: "vorhaben",     translation: "намереваться, планировать" },
+      { id: "a1_vv_002", article: "-", word: "vorbereiten",  translation: "подготавливать" },
+      { id: "a1_vv_003", article: "-", word: "vorstellen",   translation: "представлять / знакомить" },
+      { id: "a1_vv_004", article: "-", word: "sich vorstellen", translation: "представляться / представлять себе" },
+      { id: "a1_vv_005", article: "-", word: "vorschlagen",  translation: "предлагать" },
+      { id: "a1_vv_006", article: "-", word: "vorziehen",    translation: "предпочитать" },
+      { id: "a1_vv_007", article: "-", word: "vorwerfen",    translation: "упрекать, обвинять" },
+      { id: "a1_vv_008", article: "-", word: "vorhersagen",  translation: "предсказывать" },
+      { id: "a1_vv_009", article: "-", word: "vorsehen",     translation: "предусматривать" },
+      { id: "a1_vv_010", article: "-", word: "voraussetzen", translation: "предполагать, требовать как условие" },
+      { id: "a1_vv_011", article: "-", word: "vorgehen",     translation: "действовать, поступать" },
     ]
   },
 

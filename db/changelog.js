@@ -6,6 +6,18 @@
 ══════════════════════════════════════════════════════════════ */
 window.CHANGELOG_DATA = [
   {
+    id: 21,
+    date: '2026-08-22',
+    title: 'Новые слова: здоровье, порядок действий, глаголы с vor-',
+    items: [
+      'В «У врача и в аптеке» добавлены слова про лечение (Symptome, Diagnose, Behandlung, Genesung, Nebenwirkungen, Entzündung, Vorsorgeuntersuchung).',
+      'Новая карточка «Порядок действий» — zuerst, zunächst, vorher, zuvor, anfangs, zuletzt, schließlich, danach, hinterher.',
+      'Новая карточка «Глаголы с приставкой vor-» — vorhaben, vorschlagen, vorziehen, vorwerfen, vorhersagen и другие.',
+      'В «Мебель и быт» добавлены Spielzeug, Schublade, Besen, Schüssel, Dachboden.',
+      'Расширено правило про притяжательные местоимения — теперь показывает, как mein/dein/unser... склоняются в Nominativ, Akkusativ и Dativ (meinem, meinen, meiner...).',
+    ],
+  },
+  {
     id: 20,
     date: '2026-08-22',
     title: 'Исправлен сброс прогресса слов',
