@@ -998,6 +998,7 @@ function updateWP(id, correct) {
   const p  = loadProg();
   const wp = p[id] || {streak:0,total:0,wrong:0,status:'new',seen:null};
   wp.seen  = new Date().toISOString().slice(0,10);
+  wp.updatedAt = Date.now();
   if (correct) {
     wp.streak++; wp.total++;
     wp.status = wp.streak >= LEARNED_THRESHOLD ? 'learned' : 'learning';
@@ -1031,10 +1032,15 @@ function resetLearnedWords() {
   localStorage.setItem('_typing_reset_v2', '1');
 }
 
+/* Пустая запись сброшенного слова — с меткой времени, чтобы облачная
+   синхронизация не подмешала обратно старое "выучено" (см. mergeWordMap) */
+function freshResetWP() {
+  return { streak:0, total:0, wrong:0, status:'new', seen:null, updatedAt: Date.now() };
+}
 /* Сбросить прогресс одного слова (снова "новое") */
 function resetWord(id) {
   const p = loadProg();
-  if (p[id]) { delete p[id]; saveProg(p); }
+  if (p[id]) { p[id] = freshResetWP(); saveProg(p); }
   removeDeferred(id);
 }
 /* Сбросить прогресс всей категории */
@@ -1043,9 +1049,9 @@ function resetCategory(catKey, level) {
   if (!cat || !cat.words) return;
   const p = loadProg();
   if (cat.mode === 'conjugation') {
-    cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; });
+    cat.words.forEach(w => { if (p[w.id]) p[w.id] = freshResetWP(); });
   } else {
-    cat.words.forEach(w => { if (p[w.id]) delete p[w.id]; removeDeferred(w.id); });
+    cat.words.forEach(w => { if (p[w.id]) p[w.id] = freshResetWP(); removeDeferred(w.id); });
   }
   saveProg(p);
 }

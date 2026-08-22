@@ -53,6 +53,14 @@ function mergeWordMap(a, b) {
   Object.entries(b || {}).forEach(([id, rec]) => {
     const cur = out[id];
     if (!cur) { out[id] = rec; return; }
+    // Если у обеих записей есть метка времени (streak-сброс через resetWord/resetCategory
+    // тоже её ставит) — побеждает более свежая, иначе слитый сброс мог бы снова
+    // "воскресить" старое learned-состояние из облака. Без меток — старое поведение
+    // (побеждает более прогрессированная запись), для совместимости со старыми данными.
+    if (cur.updatedAt || rec.updatedAt) {
+      out[id] = (rec.updatedAt || 0) > (cur.updatedAt || 0) ? rec : cur;
+      return;
+    }
     const score = r => (r.status === 'learned' ? 1000 : 0) + (r.streak || 0);
     out[id] = score(rec) > score(cur) ? rec : cur;
   });
