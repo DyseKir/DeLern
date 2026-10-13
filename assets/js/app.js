@@ -2305,7 +2305,7 @@ function prepData() {
   return [
     // ───────────────────────────────────────
     { id:'hausarbeit', icon:'🧹', title:L('Hausarbeit & Tagesablauf','Домашние дела и распорядок дня','Домашні справи та розпорядок дня'),
-      html: catTable('hausarbeit') + catTable('alltag')
+      html: catTable('hausarbeit_n') + catTable('hausarbeit_v') + catTable('hausarbeit_o') + catTable('alltag')
         + `<p class="rt-sub">${L('Beispielsätze','Примеры предложений','Приклади речень')}:</p>` + two([
           ['Ich <b>stehe</b> um 7 Uhr <b>auf</b>.','Я встаю в 7 часов.'],
           ['Ich <b>räume</b> die Küche <b>auf</b>.','Я убираю кухню.'],
@@ -2363,7 +2363,7 @@ function prepData() {
     // ───────────────────────────────────────
     { id:'medien', icon:'📱', title:L('Medien','Медиа и гаджеты','Медіа та гаджети'),
       html: catTable('handy_funktionen') + catTable('medien_geraete') + catTable('tastatur_tasten') + catTable('bibliothek_medien')
-        + `<p class="rt-sub">${L('Regeln im Internet','Правила в интернете','Правила в інтернеті')}:</p>` + catTable('internet_regeln')
+        + `<p class="rt-sub">${L('Regeln im Internet','Правила в интернете','Правила в інтернеті')}:</p>` + catTable('internet_regeln_n') + catTable('internet_regeln_a')
         + two([
           ['Man <b>muss</b> um <b>Erlaubnis</b> fragen, bevor man Fotos von anderen Menschen ins Internet stellt.','Нужно спросить разрешения, прежде чем выкладывать фото других людей в интернет.'],
           ['Die eigene <b>Meinung</b> im Internet zu schreiben ist <b>erlaubt</b>.','Писать своё мнение в интернете разрешено.'],
@@ -3057,7 +3057,7 @@ function _ukTr(w){ return _cleanTr((window.TRANSLATIONS_UK && window.TRANSLATION
 function buildTranslatePools() {
   const prog = loadProg();
   const learned = id => prog[id] && prog[id].status === 'learned';
-  const THING = new Set(['essen','obst_gemuese','lebensmittel','moebel','tiere','transport','kleidung','koerperpflege','koerper','nuetzlich','einkaufen','arzt']);
+  const THING = new Set(['essen','obst_gemuese','lebensmittel','moebel','tiere','transport_n','kleidung','koerperpflege','koerper','nuetzlich_n','einkaufen','arzt']);
   const VERB  = new Set(['verben','arbeitsverben','vokalwechsel','trennbar']);
   const nouns=[], verbs=[], profs=[];
   (window.VOCAB_DATA||[]).forEach(cat=>{
