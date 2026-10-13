@@ -1184,6 +1184,78 @@ body {
   font-size: 13px; line-height: 1.6;
 }
 
+/* ── Текст с пропусками (Lückentext) ── */
+.cloze-open-btn { display: block; width: 100%; margin-top: 18px; }
+
+.cloze-modal { max-width: 640px; }
+
+.cloze-list { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.cloze-list-item {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 14px 18px;
+  color: var(--text); font-size: 14px; font-weight: 600; font-family: inherit;
+  cursor: pointer; text-align: left;
+  transition: border-color .15s, background .15s, transform .15s;
+}
+.cloze-list-item:hover { border-color: rgba(168,139,250,.4); background: var(--grad-accent-soft), var(--glass-bg); transform: translateX(2px); }
+.cloze-list-item.done { border-color: rgba(78,203,113,.35); }
+.cloze-list-arrow { color: var(--accent); font-weight: 800; }
+.cloze-list-done  { color: var(--correct); font-weight: 800; }
+
+.cloze-back-btn {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 13px; cursor: pointer; padding: 0; margin-bottom: 10px;
+  transition: color .15s;
+}
+.cloze-back-btn:hover { color: var(--text); }
+
+.cloze-text {
+  font-size: 17px; line-height: 2.4;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 14px; padding: 20px 22px;
+  margin: 14px 0;
+}
+.cloze-input {
+  display: inline-block;
+  min-width: 3.5ch;
+  background: var(--glass-bg-hi);
+  border: none; border-bottom: 2px solid var(--accent);
+  border-radius: 6px 6px 0 0;
+  color: var(--text);
+  font-family: inherit; font-size: 16px; font-weight: 700;
+  text-align: center;
+  padding: 2px 6px;
+  margin: 0 2px;
+  outline: none;
+  transition: border-color .15s, background .15s;
+}
+.cloze-input::placeholder { color: var(--text-dim); font-weight: 500; font-style: italic; }
+.cloze-input:focus { border-color: var(--accent3); background: var(--grad-accent-soft), var(--glass-bg-hi); }
+.cloze-input.cloze-ok   { border-color: var(--correct); color: var(--correct); background: rgba(78,203,113,.12); }
+.cloze-input.cloze-bad  { border-color: var(--wrong); color: var(--wrong); background: rgba(255,77,109,.12); text-decoration: line-through; }
+.cloze-input:disabled { opacity: .9; }
+.cloze-correct-hint {
+  display: inline-block;
+  color: var(--correct); font-weight: 700; font-size: 14px;
+  margin-left: 4px;
+}
+.cloze-correct-hint::before { content: '→ '; color: var(--text-dim); }
+
+.cloze-result { margin-top: 16px; }
+.cloze-result.hidden { display: none; }
+.cloze-score {
+  font-size: 18px; font-weight: 800; color: var(--text);
+  margin-bottom: 8px;
+}
+.cloze-score.ok { color: var(--correct); }
+.cloze-translation {
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+  background: var(--glass-bg); border-left: 3px solid var(--accent);
+  border-radius: 8px; padding: 10px 14px;
+}
+
 /* ── Выбор количества слов перед занятием ── */
 .ssm-modal { max-width: 420px; }
 .ssm-presets { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }

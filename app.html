@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260802p">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260802q">
 </head>
 <body>
 
@@ -485,6 +485,14 @@
     </div>
   </div>
 
+  <!-- ТЕКСТ С ПРОПУСКАМИ (тренировка грамматики в контексте) -->
+  <div class="modal-overlay hidden" id="cloze-modal">
+    <div class="modal cloze-modal">
+      <button class="modal-close" id="cloze-modal-close">✕</button>
+      <div id="cloze-modal-content"></div>
+    </div>
+  </div>
+
   <!-- SVG-фильтр для удаления белого/светлого фона у PNG-картинок -->
   <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -499,13 +507,14 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260802p"></script>
-  <script src="assets/js/auth.js?v=20260802p"></script>
-  <script src="db/words.js?v=20260802p"></script>
-  <script src="db/grammar.js?v=20260802p"></script>
-  <script src="db/translations_uk.js?v=20260802p"></script>
-  <script src="db/changelog.js?v=20260802p"></script>
-  <script src="db/achievements.js?v=20260802p"></script>
-  <script src="assets/js/app.js?v=20260802p"></script>
+  <script src="assets/js/supabase-config.js?v=20260802q"></script>
+  <script src="assets/js/auth.js?v=20260802q"></script>
+  <script src="db/words.js?v=20260802q"></script>
+  <script src="db/grammar.js?v=20260802q"></script>
+  <script src="db/cloze.js?v=20260802q"></script>
+  <script src="db/translations_uk.js?v=20260802q"></script>
+  <script src="db/changelog.js?v=20260802q"></script>
+  <script src="db/achievements.js?v=20260802q"></script>
+  <script src="assets/js/app.js?v=20260802q"></script>
 </body>
 </html>

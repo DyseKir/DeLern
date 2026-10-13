@@ -2468,11 +2468,106 @@ function renderModal(rule) {
       <span class="ex-de">${colorArticles(ex.de)}</span>
       <span class="ex-ru">${ex.ru}</span>
     </div>`).join('');
+  const clozeCount = (window.CLOZE_DATA||[]).filter(c=>c.ruleId===rule.id).length;
   $('modal-content').innerHTML=`
     <h2>${title}</h2>
     <div class="modal-explain">${expl}</div>
     ${rule.examples?`<div class="ex-heading">${t('examples_h')}</div>${exHtml}`:''}
-    ${tip?`<div class="modal-tip">💡 ${tip}</div>`:''}`;
+    ${tip?`<div class="modal-tip">💡 ${tip}</div>`:''}
+    ${clozeCount?`<button class="btn-primary cloze-open-btn" id="cloze-open-btn">✏️ ${lstr('Lückentext üben','Текст с пропусками','Текст із пропусками')}</button>`:''}`;
+  $('cloze-open-btn')?.addEventListener('click', ()=>openClozeList(rule.id));
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ТЕКСТ С ПРОПУСКАМИ (тренировка грамматики в контексте)
+══════════════════════════════════════════════════════════════ */
+function openClozeList(ruleId) {
+  const list = (window.CLOZE_DATA||[]).filter(c=>c.ruleId===ruleId);
+  if (!list.length) return;
+  S.clozeRuleId = ruleId;
+  const p = loadProg();
+  $('cloze-modal-content').innerHTML = `
+    <h2>✏️ ${lstr('Lückentext üben','Тексты с пропусками','Тексти з пропусками')}</h2>
+    <div class="modal-subtitle">${lstr('Setze die Wörter in der richtigen Form ein — die Grundform steht als Hinweis im Feld.','Вставь слова в правильной форме — словарная форма показана подсказкой в поле.','Встав слова у правильній формі — словникова форма показана підказкою в полі.')}</div>
+    <div class="cloze-list">
+      ${list.map(ex=>`
+        <button class="cloze-list-item ${isClozeDone(ex.id)?'done':''}" data-id="${ex.id}">
+          <span class="cloze-list-title">${escapeHtml(lstr(ex.title_de, ex.title_ru, ex.title_ru))}</span>
+          ${isClozeDone(ex.id)?'<span class="cloze-list-done">✓</span>':'<span class="cloze-list-arrow">→</span>'}
+        </button>`).join('')}
+    </div>`;
+  $('cloze-modal-content').querySelectorAll('.cloze-list-item').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const ex = list.find(c=>c.id===btn.dataset.id);
+      if (ex) openClozeExercise(ex);
+    });
+  });
+  $('cloze-modal').classList.remove('hidden');
+}
+
+function isClozeDone(id) { const p=loadProg(); return !!(p['cl_'+id]&&p['cl_'+id].done); }
+function markClozeDone(id) { const p=loadProg(); p['cl_'+id]={done:true, updatedAt:Date.now()}; saveProg(p); }
+
+function openClozeExercise(ex) {
+  S.openCloze = ex;
+  renderClozeExercise(ex);
+}
+
+function renderClozeExercise(ex) {
+  const title = lstr(ex.title_de, ex.title_ru, ex.title_ru);
+  const html = ex.text.replace(/\{\{(\d+)\}\}/g, (_, n) => {
+    const b = ex.blanks.find(x=>x.n===+n);
+    const w = Math.max((b.answer||'').length, (b.base||'').length, 5) + 4;
+    return `<input type="text" class="cloze-input" data-n="${n}" placeholder="${escapeHtml(b.base)}" style="width:${w}ch" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  });
+  $('cloze-modal-content').innerHTML = `
+    <button class="cloze-back-btn" id="cloze-back-btn">← ${lstr('Liste','Список','Список')}</button>
+    <h2>${escapeHtml(title)}</h2>
+    <div class="modal-subtitle">${lstr('Trage die richtige Form ein.','Впиши правильную форму слова.','Впиши правильну форму слова.')}</div>
+    <div class="cloze-text">${html}</div>
+    <div class="cloze-result hidden" id="cloze-result"></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="cloze-retry-btn">${lstr('Zurücksetzen','Сбросить','Скинути')}</button>
+      <button class="btn-primary" id="cloze-check-btn">${lstr('Prüfen','Проверить','Перевірити')}</button>
+    </div>`;
+  $('cloze-back-btn').addEventListener('click', ()=>openClozeList(ex.ruleId));
+  $('cloze-check-btn').addEventListener('click', ()=>checkCloze(ex));
+  $('cloze-retry-btn').addEventListener('click', ()=>renderClozeExercise(ex));
+  const inputs = [...$('cloze-modal-content').querySelectorAll('.cloze-input')];
+  inputs.forEach((inp,i)=>{
+    inp.addEventListener('keydown', e=>{
+      if (e.key==='Enter') { e.preventDefault(); (inputs[i+1]||{focus(){checkCloze(ex);}}).focus(); }
+    });
+  });
+  if (inputs[0]) inputs[0].focus();
+}
+
+function checkCloze(ex) {
+  const inputs = [...$('cloze-modal-content').querySelectorAll('.cloze-input')];
+  if (!inputs.length || inputs[0].disabled) return; // уже проверено
+  let correct = 0;
+  inputs.forEach(inp=>{
+    const b = ex.blanks.find(x=>x.n===+inp.dataset.n);
+    const ok = normAnswer(inp.value) === normAnswer(b.answer);
+    inp.classList.add(ok?'cloze-ok':'cloze-bad');
+    inp.disabled = true;
+    if (ok) correct++;
+    else {
+      const hint = document.createElement('span');
+      hint.className = 'cloze-correct-hint';
+      hint.textContent = b.answer;
+      inp.insertAdjacentElement('afterend', hint);
+    }
+  });
+  const total = inputs.length;
+  const allCorrect = correct === total;
+  const resEl = $('cloze-result');
+  resEl.classList.remove('hidden');
+  resEl.innerHTML = `
+    <div class="cloze-score ${allCorrect?'ok':''}">${correct} / ${total} ${lstr('richtig','правильно','правильно')}</div>
+    ${ex.translation_ru ? `<div class="cloze-translation">${escapeHtml(ex.translation_ru)}</div>` : ''}`;
+  $('cloze-check-btn').disabled = true;
+  if (allCorrect) { markClozeDone(ex.id); addCoins(5, $('cloze-modal')); }
 }
 
 function colorArticles(txt) {
@@ -3767,6 +3862,12 @@ function initEvents() {
   $('session-size-modal-close').addEventListener('click', closeSessionSizeModal);
   $('session-size-modal').addEventListener('click', e => {
     if (e.target === $('session-size-modal')) closeSessionSizeModal();
+  });
+
+  /* Модал "Текст с пропусками" */
+  $('cloze-modal-close').addEventListener('click', () => $('cloze-modal').classList.add('hidden'));
+  $('cloze-modal').addEventListener('click', e => {
+    if (e.target === $('cloze-modal')) $('cloze-modal').classList.add('hidden');
   });
 
   /* Вкладки админ-панели */
