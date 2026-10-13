@@ -1095,6 +1095,33 @@ body {
   font-size: 13px; line-height: 1.6;
 }
 
+/* ── Выбор количества слов перед занятием ── */
+.ssm-modal { max-width: 420px; }
+.ssm-presets { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.ssm-btn {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px; font-weight: 700;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ssm-btn:hover { border-color: var(--accent); }
+.ssm-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ssm-custom-row { display: flex; gap: 8px; }
+.ssm-custom-input {
+  flex: 1; min-width: 0;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+.ssm-custom-input:focus { outline: none; border-color: var(--accent); }
+
 /* ── Что нового ── */
 .changelog-entry { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
 .changelog-entry:first-of-type { margin-top: 14px; padding-top: 0; border-top: none; }

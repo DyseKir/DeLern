@@ -1194,6 +1194,18 @@ window.VOCAB_DATA = [
       { id: "a1_nw_028", article: "die", word: "Antwort",        translation: "ответ" },
       { id: "a1_nw_029", article: "das", word: "Geschenk",       translation: "подарок" },
       { id: "a1_nw_039", article: "die", word: "Königin",        translation: "королева" },
+      { id: "a1_nw_047", article: "-",   word: "faul",           translation: "ленивый; гнилой" },
+      { id: "a1_nw_048", article: "-",   word: "sauer",          translation: "кислый; злой, обиженный" },
+      { id: "a1_nw_049", article: "das", word: "Gebiet",         translation: "область, район, сфера" },
+      { id: "a1_nw_050", article: "die", word: "Insel",          translation: "остров (мн. Inseln)" },
+      { id: "a1_nw_051", article: "-",   word: "windstill",      translation: "безветренно" },
+      { id: "a1_nw_052", article: "-",   word: "noch warm",      translation: "ещё тёплый" },
+      { id: "a1_nw_053", article: "-",   word: "stricken",       translation: "вязать" },
+      { id: "a1_nw_054", article: "die", word: "Mikrowelle",     translation: "микроволновка" },
+      { id: "a1_nw_055", article: "die", word: "Germanistik",    translation: "германистика" },
+      { id: "a1_nw_056", article: "-",   word: "wen",            translation: "кого" },
+      { id: "a1_nw_057", article: "-",   word: "gefallen",       translation: "нравиться (+ Dativ)" },
+      { id: "a1_nw_058", article: "-",   word: "etwas",          translation: "что-нибудь" },
     ]
   },
 
@@ -2766,6 +2778,24 @@ window.VOCAB_DATA = [
       { id: "a1_vv_009", article: "-", word: "vorsehen",     translation: "предусматривать" },
       { id: "a1_vv_010", article: "-", word: "voraussetzen", translation: "предполагать, требовать как условие" },
       { id: "a1_vv_011", article: "-", word: "vorgehen",     translation: "действовать, поступать" },
+    ]
+  },
+
+  // ════════════════════════════════
+  //  A1 — REDEWENDUNGEN (разговорные фразы и реакции)
+  // ════════════════════════════════
+  {
+    level: "A1", category: "redewendungen", name: "Redewendungen", name_ru: "Разговорные фразы и реакции", emoji: "💬",
+    words: [
+      { id: "a1_rw_001", article: "-", word: "dabei",          translation: "с собой; участвовать; при этом" },
+      { id: "a1_rw_002", article: "-", word: "Guck mal",       translation: "смотри" },
+      { id: "a1_rw_003", article: "-", word: "Kein Problem",   translation: "без проблем" },
+      { id: "a1_rw_004", article: "-", word: "leider nicht",   translation: "к сожалению, нет" },
+      { id: "a1_rw_005", article: "-", word: "na gut",         translation: "ну ладно" },
+      { id: "a1_rw_006", article: "-", word: "Na klar",        translation: "ну конечно" },
+      { id: "a1_rw_007", article: "-", word: "Oh, wie dumm",   translation: "ой, как глупо / досадно" },
+      { id: "a1_rw_008", article: "-", word: "Sag mal",        translation: "слушай, скажи-ка" },
+      { id: "a1_rw_009", article: "-", word: "Stimmt",         translation: "верно, точно" },
     ]
   },
 

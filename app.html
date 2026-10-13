@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260802i">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260802n">
 </head>
 <body>
 
@@ -471,6 +471,20 @@
     </div>
   </div>
 
+  <!-- ВЫБОР КОЛИЧЕСТВА СЛОВ ПЕРЕД ЗАНЯТИЕМ -->
+  <div class="modal-overlay hidden" id="session-size-modal">
+    <div class="modal ssm-modal">
+      <button class="modal-close" id="session-size-modal-close">✕</button>
+      <h2 id="session-size-title"></h2>
+      <div class="modal-subtitle" id="session-size-sub"></div>
+      <div class="ssm-presets" id="session-size-presets"></div>
+      <div class="ssm-custom-row">
+        <input type="number" min="1" id="session-size-custom" class="ssm-custom-input">
+        <button class="btn-primary" id="session-size-go"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- SVG-фильтр для удаления белого/светлого фона у PNG-картинок -->
   <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -485,13 +499,13 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260802m"></script>
-  <script src="assets/js/auth.js?v=20260802m"></script>
-  <script src="db/words.js?v=20260802m"></script>
-  <script src="db/grammar.js?v=20260802m"></script>
-  <script src="db/translations_uk.js?v=20260802m"></script>
-  <script src="db/changelog.js?v=20260802m"></script>
-  <script src="db/achievements.js?v=20260802m"></script>
-  <script src="assets/js/app.js?v=20260802m"></script>
+  <script src="assets/js/supabase-config.js?v=20260802n"></script>
+  <script src="assets/js/auth.js?v=20260802n"></script>
+  <script src="db/words.js?v=20260802n"></script>
+  <script src="db/grammar.js?v=20260802n"></script>
+  <script src="db/translations_uk.js?v=20260802n"></script>
+  <script src="db/changelog.js?v=20260802n"></script>
+  <script src="db/achievements.js?v=20260802n"></script>
+  <script src="assets/js/app.js?v=20260802n"></script>
 </body>
 </html>

@@ -1338,7 +1338,7 @@ function attachCatEvents(container, level) {
     if (card.dataset.locked) return; // заблокирована — игнорируем клики
     const key = card.dataset.cat;
     const resolve = () => key === 'deferred' ? getDeferredCategory() : findCat(level, key);
-    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation(); const c=resolve(); if(c) startSession(c);});
+    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation(); const c=resolve(); if(c) openSessionSizeModal(c);});
     // кнопка сброса прогресса категории
     card.querySelector('.cat-reset-btn')?.addEventListener('click', e=>{
       e.stopPropagation();
@@ -1349,7 +1349,7 @@ function attachCatEvents(container, level) {
         renderHome();
       }
     });
-    card.addEventListener('click', ()=>{ const c=resolve(); if(c) startSession(c); });
+    card.addEventListener('click', ()=>{ const c=resolve(); if(c) openSessionSizeModal(c); });
   });
 }
 
@@ -1455,8 +1455,8 @@ function renderVocabScreen() {
     wrap.querySelectorAll('.cat-card').forEach(card => {
       const cat = (window.VOCAB_DATA||[]).find(c=>c.category===card.dataset.cat&&c.level===card.dataset.lvl)||{};
       if (!cat.words) return;
-      card.querySelector('.cat-start-btn').addEventListener('click',e=>{e.stopPropagation();startSession(cat);});
-      card.addEventListener('click',()=>startSession(cat));
+      card.querySelector('.cat-start-btn').addEventListener('click',e=>{e.stopPropagation();openSessionSizeModal(cat);});
+      card.addEventListener('click',()=>openSessionSizeModal(cat));
     });
   }
 
@@ -1506,21 +1506,54 @@ function renderVocabLearned() {
 /* ══════════════════════════════════════════════════════════════
    КАРТОЧКИ
 ══════════════════════════════════════════════════════════════ */
-function startSession(cat) {
-  if (cat.category !== 'deferred') logCategoryEvent(cat.level, cat.category);
+/* Слова категории, которые ещё можно изучать в этом занятии
+   (не выучены и — вне самой категории "На потом" — не отложены) */
+function getAvailableWords(cat) {
   const p = loadProg();
-
-  // Режим спряжения глаголов — сразу печатный тест по всем формам
-  if (cat.mode === 'conjugation') { startConjugation(cat); return; }
-
   const isDeferredCat = cat.category === 'deferred';
-  let active = (cat.words||[]).filter(w => {
+  return (cat.words||[]).filter(w => {
     if (p[w.id] && p[w.id].status === 'learned') return false;
     if (!isDeferredCat && isDeferred(w.id)) return false; // отложенные не показываем в обычных категориях
     return true;
   });
+}
+
+/* Модалка выбора количества слов перед началом занятия —
+   открывается вместо прямого старта на всех точках входа в категорию */
+function openSessionSizeModal(cat) {
+  // Спряжение глаголов — отдельный фиксированный режим, выбор размера тут не нужен
+  if (cat.mode === 'conjugation') { startSession(cat); return; }
+  const total = getAvailableWords(cat).length;
+  if (total <= 1) { startSession(cat); return; } // выбирать не из чего — сразу начинаем
+
+  S.pendingSessionCat = cat;
+  const presets = [5, 10, 20].filter(n => n < total);
+  const defaultPreset = cat.sessionLimit && presets.includes(cat.sessionLimit) ? cat.sessionLimit : null;
+
+  $('session-size-title').textContent = cat.name_ru ? `${cat.name} (${cat.name_ru})` : cat.name;
+  $('session-size-sub').textContent   = lstr(`${total} Wörter verfügbar — wie viele möchtest du jetzt lernen?`,
+    `Доступно слов: ${total} — сколько хочешь выучить сейчас?`,
+    `Доступно слів: ${total} — скільки хочеш вивчити зараз?`);
+  $('session-size-presets').innerHTML = presets
+    .map(n => `<button class="ssm-btn ${defaultPreset===n?'active':''}" data-n="${n}">${n}</button>`).join('')
+    + `<button class="ssm-btn ${defaultPreset===null?'active':''}" data-n="all">${lstr('Alle','Все','Всі')} (${total})</button>`;
+  $('session-size-custom').value = '';
+  $('session-size-custom').placeholder = lstr('Eigene Zahl','Своё число','Своє число');
+  $('session-size-custom').max = total;
+  $('session-size-go').textContent = lstr('Los','Начать','Почати');
+  $('session-size-modal').classList.remove('hidden');
+}
+
+function startSession(cat, overrideLimit) {
+  if (cat.category !== 'deferred') logCategoryEvent(cat.level, cat.category);
+
+  // Режим спряжения глаголов — сразу печатный тест по всем формам
+  if (cat.mode === 'conjugation') { startConjugation(cat); return; }
+
+  let active = getAvailableWords(cat);
   shuffle(active);
-  if (cat.sessionLimit && active.length > cat.sessionLimit) active = active.slice(0, cat.sessionLimit);
+  const limit = overrideLimit != null ? overrideLimit : cat.sessionLimit;
+  if (limit && active.length > limit) active = active.slice(0, limit);
   S.phase='study'; S.testQueue=[]; S.testTotal=0; S.testMastered=0; S.testCorrect=0;
   S.catMode = cat.mode || '';
   S.catKey  = cat.category;
@@ -3710,6 +3743,30 @@ function initEvents() {
   $('changelog-modal-close')?.addEventListener('click', () => $('changelog-modal').classList.add('hidden'));
   $('changelog-modal')?.addEventListener('click', e => {
     if (e.target === $('changelog-modal')) $('changelog-modal').classList.add('hidden');
+  });
+
+  /* Модал выбора количества слов перед занятием */
+  function closeSessionSizeModal() { $('session-size-modal').classList.add('hidden'); S.pendingSessionCat = null; }
+  function goSessionSize(limit) {
+    const cat = S.pendingSessionCat;
+    closeSessionSizeModal();
+    if (cat) startSession(cat, limit);
+  }
+  $('session-size-presets').addEventListener('click', e => {
+    const btn = e.target.closest('.ssm-btn');
+    if (!btn) return;
+    goSessionSize(btn.dataset.n === 'all' ? null : parseInt(btn.dataset.n, 10));
+  });
+  $('session-size-go').addEventListener('click', () => {
+    const val = parseInt($('session-size-custom').value, 10);
+    goSessionSize(val > 0 ? val : null);
+  });
+  $('session-size-custom').addEventListener('keydown', e => {
+    if (e.key === 'Enter') $('session-size-go').click();
+  });
+  $('session-size-modal-close').addEventListener('click', closeSessionSizeModal);
+  $('session-size-modal').addEventListener('click', e => {
+    if (e.target === $('session-size-modal')) closeSessionSizeModal();
   });
 
   /* Вкладки админ-панели */
