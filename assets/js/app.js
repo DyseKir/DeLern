@@ -296,16 +296,20 @@ function formVariants(form) {
     return acc.flatMap(pre => alts.map(a => (pre ? pre + ' ' : '') + a));
   }, ['']).map(normAnswer);
 }
-/* Проверка ответа для карточек с формами глагола: "Infinitiv, Präsens, Perfekt".
-   Präsens можно писать с местоимением ("er bäckt") или без. */
-function checkVerbForms(raw, card) {
-  const parts = (raw||'').split(/[,;]/).map(s => normAnswer(s)).filter(Boolean);
-  if (parts.length !== 3) return false;
-  const praes = parts[1].replace(/^(er|sie|es|er\/sie\/es)\s+/, '');
-  return parts[0] === normAnswer(card.word)
-      && formVariants(card.forms.praes).includes(praes)
-      && formVariants(card.forms.perf).includes(parts[2]);
+/* Проверка трёх отдельных полей для карточек с формами глагола.
+   Präsens можно писать с местоимением ("er bäckt") или без.
+   Возвращает результат по каждому полю. */
+function checkVerbForms(inf, praes, perf, card) {
+  const p = normAnswer(praes).replace(/^(er|sie|es|er\/sie\/es)\s+/, '');
+  const r = {
+    inf:   normAnswer(inf) === normAnswer(card.word),
+    praes: formVariants(card.forms.praes).includes(p),
+    perf:  formVariants(card.forms.perf).includes(normAnswer(perf)),
+  };
+  r.all = r.inf && r.praes && r.perf;
+  return r;
 }
+const TT_FORM_IDS = ['tt-f-inf', 'tt-f-praes', 'tt-f-perf'];
 
 /* нормализация ответа: нижний регистр, ß→ss, убираем ударения (é→e и т.п.) */
 function normAnswer(s) {
@@ -2007,12 +2011,16 @@ function drawTestCard() {
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value          = '';
+  // карточки с формами глагола — три отдельных поля вместо одного
+  $('tt-single').classList.toggle('hidden', !!card.forms);
+  $('tt-forms').classList.toggle('hidden', !card.forms);
+  TT_FORM_IDS.forEach(id => { const el = $(id); el.value = ''; el.disabled = false; el.classList.remove('tt-f-ok','tt-f-bad'); });
+  S.ttBusy = false;
   const banner = document.querySelector('.tt-phase-banner span');
   if (banner) banner.textContent = card.forms
-    ? lstr('Schreibe: Infinitiv, Präsens (er), Perfekt — durch Komma','Напиши через запятую: инфинитив, Präsens (er), Perfekt','Напиши через кому: інфінітив, Präsens (er), Perfekt')
+    ? lstr('Schreibe alle drei Formen','Напиши все три формы глагола','Напиши всі три форми дієслова')
     : t('tt_phase');
-  $('tt-input').placeholder    = card.forms ? 'Infinitiv, Präsens, Perfekt'
-                               : noArt ? 'Напиши слово...' : 'der / die / das + Wort';
+  $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
   $('cards-progress-fill').style.width = (S.testTotal ? S.testMastered / S.testTotal * 100 : 0) + '%';
   // кнопка "На потом" доступна и в тесте
   const deferBtn = $('defer-btn');
@@ -2022,18 +2030,35 @@ function drawTestCard() {
       ? `↩️ ${lstr('Zurück','Вернуть','Повернути')}`
       : `⏰ ${lstr('Später','На потом','На потім')}`;
   }
-  setTimeout(()=>{ try{$('tt-input').focus();}catch(e){} }, 100);
+  setTimeout(()=>{ try{ $(card.forms ? 'tt-f-inf' : 'tt-input').focus(); }catch(e){} }, 100);
 }
 
 function handleTypingSubmit() {
   const card = S.testQueue[0];
   if (!card) return;
-  const raw      = $('tt-input').value.trim();
-  const input    = normAnswer(raw);
-  const noArt    = !card.article || card.article === '-';
-  const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
-  if (!input) return;
-  const isOk = card.forms ? checkVerbForms(raw, card) : input === expected;
+  let raw, isOk;
+  const noArt = !card.article || card.article === '-';
+  if (card.forms) {
+    if (S.ttBusy) return;
+    const vals = TT_FORM_IDS.map(id => $(id).value.trim());
+    const empty = TT_FORM_IDS.find((id, i) => !vals[i]);
+    if (empty) { $(empty).focus(); return; }       // сначала заполни все три поля
+    const res = checkVerbForms(vals[0], vals[1], vals[2], card);
+    ['inf','praes','perf'].forEach((k, i) => {
+      const el = $(TT_FORM_IDS[i]);
+      el.classList.add(res[k] ? 'tt-f-ok' : 'tt-f-bad');
+      el.disabled = true;
+    });
+    S.ttBusy = true;
+    raw  = vals.join(' · ');
+    isOk = res.all;
+  } else {
+    raw = $('tt-input').value.trim();
+    const input    = normAnswer(raw);
+    const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
+    if (!input) return;
+    isOk = input === expected;
+  }
 
   S.testQueue.shift();                 // убираем текущее слово из головы очереди
 
@@ -2059,7 +2084,7 @@ function handleTypingSubmit() {
     // ошибка → стрик обнуляется, слово возвращается в конец очереди
     updateWP(card.id, false);
     S.testQueue.push(card);
-    const ans = card.forms ? `${card.word}, ${card.forms.praes}, ${card.forms.perf}`
+    const ans = card.forms ? `${card.word} · ${card.forms.praes} · ${card.forms.perf}`
               : noArt ? card.word : `${card.article} ${card.word}`;
     $('tt-feedback').innerHTML = `<span class="tt-your-ans">${escapeHtml(raw)||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`;
     $('tt-feedback').className = 'tt-feedback bad';
@@ -3820,6 +3845,17 @@ function initEvents() {
   /* Typing test */
   $('tt-submit').addEventListener('click', handleTypingSubmit);
   $('tt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') handleTypingSubmit(); });
+  /* Три поля форм глагола: Enter → следующее поле, на последнем — проверка */
+  TT_FORM_IDS.forEach((id, i) => {
+    $(id).addEventListener('focus', () => { S.ttLastInput = $(id); });
+    $(id).addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      if (i < TT_FORM_IDS.length - 1) $(TT_FORM_IDS[i+1]).focus();
+      else handleTypingSubmit();
+    });
+  });
+  $('tt-f-submit').addEventListener('click', handleTypingSubmit);
 
   /* Кнопка "На потом" / "Вернуть" */
   $('defer-btn')?.addEventListener('click', handleDefer);
@@ -3833,6 +3869,7 @@ function initEvents() {
       if (btn.closest('#exam-umlauts'))          inp = $('exam-input');
       else if (btn.closest('#translate-umlauts')) inp = $('translate-input');
       else if (btn.closest('#conj-umlauts'))     inp = CONJ.lastInput || $('conj-fields')?.querySelector('.conj-input');
+      else if (!$('tt-forms').classList.contains('hidden')) inp = S.ttLastInput || $('tt-f-inf');
       else                                       inp = $('tt-input');
       if (!inp) return;
       const ch  = btn.dataset.char;
