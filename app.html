@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260802q">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260802r">
 </head>
 <body>
 
@@ -176,6 +176,7 @@
             <button class="speak-btn" id="speak-btn" title="Прослушать">🔊</button>
           </div>
           <div class="card-translation" id="card-translation">яблоко</div>
+          <div class="card-forms hidden" id="card-forms"></div>
           <div class="article-buttons" id="article-buttons">
             <button class="art-btn der" data-article="der">der</button>
             <button class="art-btn die" data-article="die">die</button>
@@ -482,6 +483,16 @@
         <input type="number" min="1" id="session-size-custom" class="ssm-custom-input">
         <button class="btn-primary" id="session-size-go"></button>
       </div>
+      <button class="ssm-pick-toggle" id="session-pick-toggle"></button>
+      <div class="ssm-pick hidden" id="session-pick">
+        <div class="ssm-pick-actions">
+          <input type="text" id="session-pick-search" class="ssm-custom-input" autocomplete="off" spellcheck="false">
+          <button class="btn-secondary" id="session-pick-all"></button>
+          <button class="btn-secondary" id="session-pick-none"></button>
+        </div>
+        <div class="ssm-pick-list" id="session-pick-list"></div>
+        <button class="btn-primary ssm-pick-go" id="session-pick-go"></button>
+      </div>
     </div>
   </div>
 
@@ -507,14 +518,15 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260802q"></script>
-  <script src="assets/js/auth.js?v=20260802q"></script>
-  <script src="db/words.js?v=20260802q"></script>
-  <script src="db/grammar.js?v=20260802q"></script>
-  <script src="db/cloze.js?v=20260802q"></script>
-  <script src="db/translations_uk.js?v=20260802q"></script>
-  <script src="db/changelog.js?v=20260802q"></script>
-  <script src="db/achievements.js?v=20260802q"></script>
-  <script src="assets/js/app.js?v=20260802q"></script>
+  <script src="assets/js/supabase-config.js?v=20260802r"></script>
+  <script src="assets/js/auth.js?v=20260802r"></script>
+  <script src="db/words.js?v=20260802r"></script>
+  <script src="db/irregular_verbs.js?v=20260802r"></script>
+  <script src="db/grammar.js?v=20260802r"></script>
+  <script src="db/cloze.js?v=20260802r"></script>
+  <script src="db/translations_uk.js?v=20260802r"></script>
+  <script src="db/changelog.js?v=20260802r"></script>
+  <script src="db/achievements.js?v=20260802r"></script>
+  <script src="assets/js/app.js?v=20260802r"></script>
 </body>
 </html>

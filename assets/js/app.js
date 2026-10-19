@@ -288,6 +288,25 @@ function applyLang() {
   }
 }
 
+/* Все допустимые варианты формы: "ist/hat gefahren" → ["ist gefahren","hat gefahren"],
+   "bäckt/backt" → ["bäckt","backt"] (каждое слово может иметь варианты через "/") */
+function formVariants(form) {
+  return (form||'').trim().split(/\s+/).reduce((acc, tok) => {
+    const alts = tok.split('/');
+    return acc.flatMap(pre => alts.map(a => (pre ? pre + ' ' : '') + a));
+  }, ['']).map(normAnswer);
+}
+/* Проверка ответа для карточек с формами глагола: "Infinitiv, Präsens, Perfekt".
+   Präsens можно писать с местоимением ("er bäckt") или без. */
+function checkVerbForms(raw, card) {
+  const parts = (raw||'').split(/[,;]/).map(s => normAnswer(s)).filter(Boolean);
+  if (parts.length !== 3) return false;
+  const praes = parts[1].replace(/^(er|sie|es|er\/sie\/es)\s+/, '');
+  return parts[0] === normAnswer(card.word)
+      && formVariants(card.forms.praes).includes(praes)
+      && formVariants(card.forms.perf).includes(parts[2]);
+}
+
 /* нормализация ответа: нижний регистр, ß→ss, убираем ударения (é→e и т.п.) */
 function normAnswer(s) {
   return (s||'').trim().toLowerCase()
@@ -1541,7 +1560,35 @@ function openSessionSizeModal(cat) {
   $('session-size-custom').placeholder = lstr('Eigene Zahl','Своё число','Своє число');
   $('session-size-custom').max = total;
   $('session-size-go').textContent = lstr('Los','Начать','Почати');
+  renderSessionPicker(cat);
   $('session-size-modal').classList.remove('hidden');
+}
+
+/* Ручной выбор конкретных слов перед занятием (список с галочками) */
+function renderSessionPicker(cat) {
+  const words = getAvailableWords(cat);
+  $('session-pick').classList.add('hidden');
+  $('session-pick-toggle').textContent = `☑️ ${lstr('Wörter selbst auswählen','Выбрать слова вручную','Вибрати слова вручну')}`;
+  $('session-pick-search').value = '';
+  $('session-pick-search').placeholder = lstr('Suchen…','Поиск…','Пошук…');
+  $('session-pick-all').textContent  = lstr('Alle','Все','Всі');
+  $('session-pick-none').textContent = lstr('Keine','Ни одного','Жодного');
+  $('session-pick-list').innerHTML = words.map(w => {
+    const tr = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[w.id]) || w.translation;
+    const art = w.article && w.article !== '-' ? `<span class="art-${w.article}">${w.article}</span> ` : '';
+    const forms = w.forms ? ` <span class="ssm-pick-forms">· ${escapeHtml(w.forms.praes)} · ${escapeHtml(w.forms.perf)}</span>` : '';
+    return `<label class="ssm-pick-item" data-search="${escapeHtml(normAnswer(w.word + ' ' + tr))}">
+      <input type="checkbox" value="${w.id}">
+      <span class="ssm-pick-word">${art}<b>${escapeHtml(w.word)}</b>${forms}</span>
+      <span class="ssm-pick-tr">${escapeHtml(tr)}</span>
+    </label>`;
+  }).join('');
+  updateSessionPickCount();
+}
+function updateSessionPickCount() {
+  const n = document.querySelectorAll('#session-pick-list input:checked').length;
+  $('session-pick-go').textContent = `${lstr('Ausgewählte lernen','Учить выбранные','Вчити вибрані')} (${n})`;
+  $('session-pick-go').disabled = n === 0;
 }
 
 function startSession(cat, overrideLimit) {
@@ -1551,9 +1598,16 @@ function startSession(cat, overrideLimit) {
   if (cat.mode === 'conjugation') { startConjugation(cat); return; }
 
   let active = getAvailableWords(cat);
-  shuffle(active);
-  const limit = overrideLimit != null ? overrideLimit : cat.sessionLimit;
-  if (limit && active.length > limit) active = active.slice(0, limit);
+  if (Array.isArray(overrideLimit)) {
+    // выбраны конкретные слова вручную — берём ровно их, без лимита
+    const picked = new Set(overrideLimit);
+    active = active.filter(w => picked.has(w.id));
+    shuffle(active);
+  } else {
+    shuffle(active);
+    const limit = overrideLimit != null ? overrideLimit : cat.sessionLimit;
+    if (limit && active.length > limit) active = active.slice(0, limit);
+  }
   S.phase='study'; S.testQueue=[]; S.testTotal=0; S.testMastered=0; S.testCorrect=0;
   S.catMode = cat.mode || '';
   S.catKey  = cat.category;
@@ -1599,6 +1653,14 @@ function drawCard() {
   S.currentWord = card.word;
   setCardVisual($('card-emoji'), card, S.currentCatEmoji);
   $('card-translation').textContent     = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[card.id]) || card.translation;
+  const formsEl = $('card-forms');
+  if (formsEl) {
+    formsEl.classList.toggle('hidden', !card.forms);
+    if (card.forms) formsEl.innerHTML = `
+      <div><span class="cf-label">Infinitiv</span><b>${escapeHtml(card.word)}</b></div>
+      <div><span class="cf-label">Präsens (er/sie/es)</span><b>${escapeHtml(card.forms.praes)}</b></div>
+      <div><span class="cf-label">Perfekt</span><b>${escapeHtml(card.forms.perf)}</b></div>`;
+  }
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
   $('card-streak').textContent = wp.status==='learned' ? t('already_lrn') : wp.streak>0 ? t('streak_txt',wp.streak) : '';
@@ -1945,7 +2007,12 @@ function drawTestCard() {
   $('tt-feedback').textContent = '';
   $('tt-feedback').className   = 'tt-feedback';
   $('tt-input').value          = '';
-  $('tt-input').placeholder    = noArt ? 'Напиши слово...' : 'der / die / das + Wort';
+  const banner = document.querySelector('.tt-phase-banner span');
+  if (banner) banner.textContent = card.forms
+    ? lstr('Schreibe: Infinitiv, Präsens (er), Perfekt — durch Komma','Напиши через запятую: инфинитив, Präsens (er), Perfekt','Напиши через кому: інфінітив, Präsens (er), Perfekt')
+    : t('tt_phase');
+  $('tt-input').placeholder    = card.forms ? 'Infinitiv, Präsens, Perfekt'
+                               : noArt ? 'Напиши слово...' : 'der / die / das + Wort';
   $('cards-progress-fill').style.width = (S.testTotal ? S.testMastered / S.testTotal * 100 : 0) + '%';
   // кнопка "На потом" доступна и в тесте
   const deferBtn = $('defer-btn');
@@ -1966,7 +2033,7 @@ function handleTypingSubmit() {
   const noArt    = !card.article || card.article === '-';
   const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
   if (!input) return;
-  const isOk = input === expected;
+  const isOk = card.forms ? checkVerbForms(raw, card) : input === expected;
 
   S.testQueue.shift();                 // убираем текущее слово из головы очереди
 
@@ -1992,8 +2059,9 @@ function handleTypingSubmit() {
     // ошибка → стрик обнуляется, слово возвращается в конец очереди
     updateWP(card.id, false);
     S.testQueue.push(card);
-    const ans = noArt ? card.word : `${card.article} ${card.word}`;
-    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`;
+    const ans = card.forms ? `${card.word}, ${card.forms.praes}, ${card.forms.perf}`
+              : noArt ? card.word : `${card.article} ${card.word}`;
+    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${escapeHtml(raw)||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`;
     $('tt-feedback').className = 'tt-feedback bad';
     setTimeout(()=>{ $('tt-input').value=''; drawTestCard(); }, 2000);
   }
@@ -2153,6 +2221,17 @@ function tablesData() {
           [wt('schlafen','спать','спати'),hl('a→ä'),'schlafe','schl'+hl('ä')+'fst','schl'+hl('ä')+'ft'],
           [wt('laufen','бежать','бігти'),hl('au→äu'),'laufe','l'+hl('äu')+'fst','l'+hl('äu')+'ft'],
         ]) + `<p class="rt-note">⚠️ ${L('Wechsel nur bei <b>du</b> und <b>er/sie/es</b>!','Изменение только у <b>du</b> и <b>er/sie/es</b>!','Зміна лише у <b>du</b> та <b>er/sie/es</b>!')}</p>` },
+
+    { id:'unregelmaessig', icon:'🔀', title:L('Unregelmäßige Verben','Неправильные глаголы (инфинитив · Präsens · Perfekt)','Неправильні дієслова (інфінітив · Präsens · Perfekt)'),
+      html:tbl(
+        [L('Infinitiv','Инфинитив','Інфінітив'),'Präsens (er/sie/es)','Perfekt'],
+        (window.IRREGULAR_VERBS||[]).map(([inf, praes, perf, ru]) => [
+          wt(inf, ru, ru),
+          praes.replace(/\//g, ' / '),
+          (([aux, ...rest]) => aux.split('/').map(a => a==='ist' ? hl('ist') : a).join(' / ')
+            + ' ' + rest.join(' ').replace(/\//g, ' / '))(perf.split(' ')),
+        ]))
+        + `<p class="rt-note">${L('<b>ist</b> = Bewegung / Zustandsänderung (gehen, fahren, werden). Rest meist <b>hat</b>.','<b>ist</b> — движение или изменение состояния (gehen, fahren, werden, sterben). Остальные почти всегда с <b>hat</b>.','<b>ist</b> — рух або зміна стану (gehen, fahren, werden, sterben). Решта майже завжди з <b>hat</b>.')}</p>` },
 
     { id:'trennbar', icon:'✂️', title:L('Trennbare Verben','Отделяемые глаголы','Відокремлювані дієслова'),
       html:tbl(['', 'ich','du','er/sie/es'], trennRows.length ? trennRows : [['—','—','—','—']])
@@ -3858,6 +3937,26 @@ function initEvents() {
   });
   $('session-size-custom').addEventListener('keydown', e => {
     if (e.key === 'Enter') $('session-size-go').click();
+  });
+  $('session-pick-toggle').addEventListener('click', () => $('session-pick').classList.toggle('hidden'));
+  $('session-pick-list').addEventListener('change', updateSessionPickCount);
+  const setVisiblePicks = on => {
+    document.querySelectorAll('#session-pick-list .ssm-pick-item').forEach(l => {
+      if (l.style.display !== 'none') l.querySelector('input').checked = on;
+    });
+    updateSessionPickCount();
+  };
+  $('session-pick-all').addEventListener('click', () => setVisiblePicks(true));
+  $('session-pick-none').addEventListener('click', () => setVisiblePicks(false));
+  $('session-pick-search').addEventListener('input', e => {
+    const q = normAnswer(e.target.value);
+    document.querySelectorAll('#session-pick-list .ssm-pick-item').forEach(l => {
+      l.style.display = !q || l.dataset.search.includes(q) ? '' : 'none';
+    });
+  });
+  $('session-pick-go').addEventListener('click', () => {
+    const ids = [...document.querySelectorAll('#session-pick-list input:checked')].map(i => i.value);
+    if (ids.length) goSessionSize(ids);
   });
   $('session-size-modal-close').addEventListener('click', closeSessionSizeModal);
   $('session-size-modal').addEventListener('click', e => {
