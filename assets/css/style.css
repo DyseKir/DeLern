@@ -1267,6 +1267,19 @@ body {
   border-radius: 12px; padding: 8px 6px;
   display: flex; flex-direction: column; gap: 3px; font-size: 15px;
 }
+.card-forms > div { transition: border-color .2s, box-shadow .2s, background .2s; }
+.card-forms > div.cf-speaking {
+  border-color: var(--accent3);
+  background: var(--grad-accent-soft), var(--glass-bg-hi);
+  box-shadow: 0 0 0 1px rgba(192,132,252,.4), 0 0 18px rgba(168,139,250,.35);
+}
+.loop-btn.hidden { display: none; }
+.loop-btn.active {
+  background: var(--grad-accent); border-color: transparent;
+  box-shadow: 0 0 14px rgba(168,139,250,.55);
+  animation: loopPulse 1.6s ease-in-out infinite;
+}
+@keyframes loopPulse { 50% { box-shadow: 0 0 22px rgba(192,132,252,.8); } }
 .cf-label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); font-weight: 600; }
 @media (max-width: 520px) { .card-forms { grid-template-columns: 1fr; } }
 

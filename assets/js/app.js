@@ -548,6 +548,44 @@ function speakWord(word) {
   } catch(e) {}
 }
 
+/* ── Зацикленная озвучка форм глагола: Infinitiv → er + Präsens → er + Perfekt → … ── */
+const VLOOP = { on: false, token: 0, timer: null };
+function verbLoopSeq(card) {
+  const say = s => s.replace(/\//g, ' oder ');       // "ist/hat gefahren" → "ist oder hat gefahren"
+  return [card.word, 'er ' + say(card.forms.praes), 'er ' + say(card.forms.perf)];
+}
+function startVerbLoop(card) {
+  stopVerbLoop(false);
+  if (!('speechSynthesis' in window) || !card || !card.forms) return;
+  VLOOP.on = true;
+  const tok = ++VLOOP.token, seq = verbLoopSeq(card);
+  const boxes = [...document.querySelectorAll('#card-forms > div')];
+  const step = i => {
+    if (!VLOOP.on || tok !== VLOOP.token) return;
+    boxes.forEach((b, k) => b.classList.toggle('cf-speaking', k === i));
+    const u = new SpeechSynthesisUtterance(seq[i]);
+    u.lang = 'de-DE'; u.rate = .8;
+    const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.startsWith('de'));
+    if (v) u.voice = v;
+    u.onend = u.onerror = () => {
+      if (!VLOOP.on || tok !== VLOOP.token) return;
+      const last = i === seq.length - 1;
+      VLOOP.timer = setTimeout(() => step(last ? 0 : i + 1), last ? 1400 : 650);
+    };
+    speechSynthesis.speak(u);
+  };
+  $('loop-btn')?.classList.add('active');
+  step(0);
+}
+function stopVerbLoop(keepFlag) {
+  VLOOP.token++;
+  clearTimeout(VLOOP.timer);
+  if (!keepFlag) VLOOP.on = false;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  document.querySelectorAll('#card-forms > div').forEach(b => b.classList.remove('cf-speaking'));
+  if (!VLOOP.on) $('loop-btn')?.classList.remove('active');
+}
+
 /* ── Emoji по словам ── */
 const EMOJI = {
   Apfel:'🍎', Milch:'🥛', Brot:'🍞', Pizza:'🍕', Käse:'🧀',
@@ -1092,6 +1130,7 @@ function isStudied(id) { const p=loadProg(); return !!(p['g_'+id]&&p['g_'+id].st
    РОУТИНГ
 ══════════════════════════════════════════════════════════════ */
 function show(name) {
+  if (name !== 'cards' && VLOOP.on) stopVerbLoop();
   if (S.screen !== name) {
     // переход на другой экран — анимация
     document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
@@ -1665,6 +1704,9 @@ function drawCard() {
       <div><span class="cf-label">Präsens (er/sie/es)</span><b>${escapeHtml(card.forms.praes)}</b></div>
       <div><span class="cf-label">Perfekt</span><b>${escapeHtml(card.forms.perf)}</b></div>`;
   }
+  // кнопка зацикленной озвучки — только у карточек с формами; если включена, продолжает на следующем глаголе
+  $('loop-btn')?.classList.toggle('hidden', !card.forms);
+  if (VLOOP.on) { if (card.forms) startVerbLoop(card); else stopVerbLoop(); }
   $('stat-correct').textContent         = '✓ '+S.sessionCorrect;
   $('stat-wrong').textContent           = '✗ '+S.sessionWrong;
   $('card-streak').textContent = wp.status==='learned' ? t('already_lrn') : wp.streak>0 ? t('streak_txt',wp.streak) : '';
@@ -1978,6 +2020,7 @@ function handleConjSubmit() {
 }
 
 function startTypingTest() {
+  if (VLOOP.on) stopVerbLoop();   // в контрольной не подсказываем голосом
   S.phase = 'test';
   S.busy  = false; // сбрасываем флаг анимации карточек — иначе кнопки (например "На потом") молча блокируются весь тест
   const p = loadProg();
@@ -3882,7 +3925,12 @@ function initEvents() {
   });
 
   /* Озвучка слова */
-  $('speak-btn')?.addEventListener('click', () => { if (S.currentWord) speakWord(S.currentWord); });
+  $('speak-btn')?.addEventListener('click', () => { if (VLOOP.on) stopVerbLoop(); if (S.currentWord) speakWord(S.currentWord); });
+  $('loop-btn')?.addEventListener('click', () => {
+    if (VLOOP.on) { stopVerbLoop(); return; }
+    const card = S.cards && S.cards[S.cardIdx];
+    if (card && card.forms) startVerbLoop(card);
+  });
 
   /* Спряжение */
   $('conj-submit')?.addEventListener('click', handleConjSubmit);
