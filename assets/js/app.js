@@ -1153,6 +1153,7 @@ function rerenderCurrent() {
   else if (S.screen==='tables')     renderTablesScreen();
   else if (S.screen==='prep')       renderPrepScreen();
   else if (S.screen==='translate')  renderTranslateScreen();
+  else if (S.screen==='puzzle')     pzDraw();
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
   else if (S.screen==='cards')      rerenderCardsUI();
@@ -1238,6 +1239,7 @@ function renderDashboard() {
       ${tile('karten','📚',lstr('Alle Karten','Все карточки','Усі картки'))}
       ${tile('grammatik','📖',lstr('Grammatik','Грамматика','Граматика'))}
       ${tile('translate','✍️',lstr('Sätze üben','Предложения','Речення'))}
+      ${tile('puzzle','🧩',lstr('Verb bauen','Собери глагол','Збери дієслово'))}
       ${tile('tables','📊',lstr('Tabellen','Таблицы','Таблиці'))}
       ${tile('prep','🎯',lstr('Prüfung morgen','Контрольная','Контрольна'))}
       ${tile('exam','🏆',lstr('Prüfung','Экзамен','Іспит'))}
@@ -1249,6 +1251,7 @@ function renderDashboard() {
     else if (g === 'karten') openKarten();
     else if (g === 'grammatik') renderGrammarScreen();
     else if (g === 'translate') renderTranslateScreen();
+    else if (g === 'puzzle') renderPuzzleScreen();
     else if (g === 'tables') renderTablesScreen();
     else if (g === 'prep') renderPrepScreen();
     else if (g === 'exam') renderExamScreen();
@@ -1686,7 +1689,9 @@ function renderVocabScreen() {
       <span class="karten-theme-h">${th.emoji} ${escapeHtml(themeName(th))}</span>`;
     $('karten-back').addEventListener('click', () => { S.kartenTheme = null; renderVocabScreen(); });
     const list = catsOfTheme(th, S.vocabFilter);
-    wrap.innerHTML = list.length ? cards(list) : `<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`;
+    wrap.innerHTML = (th.id === 'verben' ? `<button class="pz-banner" id="pz-banner"><span class="pz-banner-ic">🧩</span><span><b>${lstr('Mini-Spiel: Verb zusammenbauen','Мини-игра: собери отделяемый глагол','Міні-гра: збери відокремлюване дієслово')}</b><small>auf + stehen = aufstehen · ${lstr('Vorsilbe zum Verb ziehen','перетаскивай приставку к глаголу','перетягуй префікс до дієслова')}</small></span></button>` : '')
+      + (list.length ? cards(list) : `<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`);
+    $('pz-banner')?.addEventListener('click', renderPuzzleScreen);
     attachCatEvents(wrap);
     return;
   }
@@ -3866,6 +3871,227 @@ function finishTranslate() {
     <div class="exam-rs-pct">${pct}%</div>`;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   МИНИ-ИГРА «СОБЕРИ ГЛАГОЛ» — trennbare Verben
+   Перетащи приставку к основе (или тап по приставке → тап по строке).
+   Глаголы собираются из всего словаря автоматически.
+══════════════════════════════════════════════════════════════ */
+const SEP_PREFIXES = ['zurück','zusammen','voraus','vorbei','vorher','weiter','kennen','fern','fest','statt','teil',
+  'nach','frei','fort','hin','her','los','mit','weg','vor','auf','aus','bei','ein','ab','an','um','zu'];
+const SEP_SKIP = new Set(['vorgestern','antworten','losgeworden','aufgegessen']);
+const SEP_TR = {
+  mitnehmen:   { ru: 'брать с собой',                    uk: 'брати з собою' },
+  aufpassen:   { ru: 'быть внимательным, присматривать', uk: 'бути уважним, наглядати' },
+  einnehmen:   { ru: 'принимать (лекарство)',            uk: 'приймати (ліки)' },
+  aufheben:    { ru: 'поднимать; сохранять',             uk: 'піднімати; зберігати' },
+  vorbeigehen: { ru: 'проходить мимо; заходить',         uk: 'проходити повз; заходити' },
+  zugucken:    { ru: 'наблюдать, смотреть',              uk: 'спостерігати, дивитися' },
+};
+const PZ_DISTRACT = ['ab','an','auf','aus','ein','mit','vor','zu','um','weg','nach','zurück','fern','los'];
+const PZ_SIZE = 5;
+const PZ = { level: null, round: [], chips: [], sel: null, rounds: 0, firstTry: 0, total: 0, recent: [] };
+
+let _sepCache = null;
+function sepVerbs() {
+  if (_sepCache) return _sepCache;
+  const pre = SEP_PREFIXES.slice().sort((a, b) => b.length - a.length);
+  const seen = new Map();
+  for (const c of (window.VOCAB_DATA || [])) {
+    if (c.mode === 'conjugation' && c.category !== 'trennbar') continue;
+    for (const w of c.words) {
+      const inf = w.word.replace(/^sich /, '');
+      if (!/^[a-zäöü]+$/.test(inf) || !/(en|ern|eln)$/.test(inf) || SEP_SKIP.has(inf)) continue;
+      const p = pre.find(x => inf.startsWith(x) && inf.length - x.length >= 4);
+      if (!p) continue;
+      const ex = (window.EXAMPLES && window.EXAMPLES[w.id])
+        || (w.conj ? [`Ich ${w.conj.ich.replace(/ (\S+)$/, ' … $1')}.`, ''] : null);
+      const prev = seen.get(inf);
+      if (prev && prev.ex) continue;
+      seen.set(inf, { id: w.id, inf, sich: /^sich /.test(w.word), prefix: p, stem: inf.slice(p.length), level: c.level, w, ex });
+    }
+  }
+  return (_sepCache = [...seen.values()]);
+}
+function sepTr(v) {
+  const o = SEP_TR[v.inf];
+  if (o) return lang === 'uk' ? o.uk : o.ru;
+  return (lang === 'uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[v.id]) || v.w.translation;
+}
+// пример: подсвечиваем оторванную приставку (последнее вхождение) или весь глагол
+function sepExampleHTML(v) {
+  if (!v.ex) return '';
+  const s = v.ex[0];
+  const re = new RegExp(`(?<![\\p{L}])(${v.prefix}|${v.inf})(?![\\p{L}])`, 'giu');
+  const ms = [...s.matchAll(re)];
+  let html = escapeHtml(s);
+  if (ms.length) {
+    const m = ms[ms.length - 1];
+    html = escapeHtml(s.slice(0, m.index)) + `<b>${escapeHtml(m[0])}</b>` + escapeHtml(s.slice(m.index + m[0].length));
+  }
+  return `<div class="pz-ex-de">${html}</div>` + (v.ex[1] ? `<div class="pz-ex-tr">${escapeHtml(v.ex[1])}</div>` : '');
+}
+
+function pzPool() {
+  const all = sepVerbs();
+  return PZ.level === 'all' ? all : all.filter(v => v.level === PZ.level);
+}
+function pzNewRound() {
+  const pool = pzPool();
+  let fresh = shuffle(pool.filter(v => !PZ.recent.includes(v.inf)));
+  if (fresh.length < PZ_SIZE) fresh = shuffle(pool.slice());
+  const round = [];
+  for (const v of fresh) {
+    if (round.length >= PZ_SIZE) break;
+    if (round.filter(r => r.v.prefix === v.prefix).length >= 2) continue;   // не больше двух одинаковых приставок
+    round.push({ v, done: false, err: 0 });
+  }
+  PZ.round = round;
+  PZ.recent = [...round.map(r => r.v.inf), ...PZ.recent].slice(0, Math.max(0, pool.length - PZ_SIZE));
+  const need = round.map(r => r.v.prefix);
+  const distract = shuffle(PZ_DISTRACT.filter(p => !need.includes(p))).slice(0, 2);
+  PZ.chips = shuffle([...need, ...distract]).map(p => ({ p, used: false }));
+  PZ.sel = null;
+  PZ.rounds++;
+  pzDraw();
+}
+
+function renderPuzzleScreen() {
+  show('puzzle');
+  if (!PZ.level) {
+    let saved = null; try { saved = localStorage.getItem('dl_pz_level'); } catch {}
+    PZ.level = saved || (['A1', 'A2'].includes(S.level) ? S.level : 'all');
+  }
+  if (!PZ.round.length) pzNewRound(); else pzDraw();
+}
+
+function pzDraw() {
+  $('puzzle-title').textContent = lstr('Verb zusammenbauen', 'Собери глагол', 'Збери дієслово');
+  $('pz-desc').innerHTML = lstr(
+    'Zieh die Vorsilbe zum passenden Verb (oder tippe erst die Vorsilbe, dann das Verb). Im Satz wandert sie ans Ende: Ich stehe um 7 Uhr <b>auf</b>.',
+    'Перетащи приставку к нужному глаголу (или нажми на приставку, потом на глагол). В предложении она отрывается и уходит в конец: Ich stehe um 7 Uhr <b>auf</b>.',
+    'Перетягни префікс до потрібного дієслова (або натисни на префікс, потім на дієслово). У реченні він відривається і йде в кінець: Ich stehe um 7 Uhr <b>auf</b>.');
+  const lv = [['A1', 'A1'], ['A2', 'A2'], ['all', lstr('Alle', 'Все', 'Усі')]];
+  $('pz-levels').innerHTML = lv.map(([k, l]) =>
+    `<button class="sc-chip ${PZ.level === k ? 'active' : ''}" data-l="${k}">${l}</button>`).join('')
+    + `<span class="sc-note">${pzPool().length} ${lstr('Verben', 'глаголов', 'дієслів')}</span>`;
+  $('pz-levels').querySelectorAll('[data-l]').forEach(b => b.addEventListener('click', () => {
+    if (PZ.level === b.dataset.l) return;
+    PZ.level = b.dataset.l; PZ.recent = [];
+    try { localStorage.setItem('dl_pz_level', PZ.level); } catch {}
+    pzNewRound();
+  }));
+  $('pz-stats').innerHTML = `<span>${lstr('Runde', 'Раунд', 'Раунд')} ${PZ.rounds}</span>`
+    + `<span>✓ ${lstr('beim ersten Versuch', 'с первой попытки', 'з першої спроби')}: ${PZ.firstTry} / ${PZ.total}</span>`;
+
+  $('pz-tray').innerHTML = PZ.chips.map((c, i) =>
+    `<button class="pz-chip ${c.used ? 'used' : ''} ${PZ.sel === i ? 'sel' : ''}" data-c="${i}">${c.p}-</button>`).join('');
+  $('pz-rows').innerHTML = PZ.round.map((r, i) => {
+    const v = r.v;
+    const word = r.done
+      ? `<span class="pz-glued">${v.sich ? 'sich ' : ''}<b>${v.prefix}</b>${v.stem}</span><button class="ce-speak pz-say" data-i="${i}">🔊</button>`
+      : `${v.sich ? '<span class="pz-sich">sich</span>' : ''}<span class="pz-slot">${r.err >= 2 ? v.prefix[0] + '…' : '?'}</span><span class="pz-stem">${v.stem}</span>`;
+    return `<div class="pz-row ${r.done ? 'done' : ''}" data-i="${i}">
+      <div class="pz-tr">${escapeHtml(sepTr(v))}</div>
+      <div class="pz-word">${word}</div>
+      ${r.done ? `<div class="pz-ex">${sepExampleHTML(v)}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const allDone = PZ.round.every(r => r.done);
+  const done = $('pz-done');
+  done.classList.toggle('hidden', !allDone);
+  if (allDone) {
+    const ok = PZ.round.filter(r => !r.err).length;
+    done.innerHTML = `<div class="pz-done-h">${ok === PZ.round.length ? '🎉 ' + lstr('Perfekt!', 'Идеально!', 'Ідеально!') : '👍 ' + lstr('Runde geschafft', 'Раунд пройден', 'Раунд пройдено')}</div>
+      <div>${lstr('Beim ersten Versuch', 'С первой попытки', 'З першої спроби')}: ${ok} / ${PZ.round.length}</div>
+      <button class="btn-primary" id="pz-next">${lstr('Nächste Runde', 'Следующий раунд', 'Наступний раунд')} →</button>`;
+    $('pz-next').addEventListener('click', pzNewRound);
+  }
+
+  $('pz-tray').querySelectorAll('.pz-chip').forEach(pzAttachChip);
+  $('pz-rows').querySelectorAll('.pz-row').forEach(row => row.addEventListener('click', e => {
+    if (e.target.closest('.pz-say')) return;
+    if (PZ.sel != null && !row.classList.contains('done')) pzTry(PZ.sel, +row.dataset.i);
+  }));
+  $('pz-rows').querySelectorAll('.pz-say').forEach(b => b.addEventListener('click', () => speakWord(PZ.round[+b.dataset.i].v.inf)));
+}
+
+function pzAttachChip(chip) {
+  const ci = +chip.dataset.c;
+  chip.addEventListener('pointerdown', e => {
+    if (PZ.chips[ci].used || e.button > 0) return;
+    e.preventDefault();
+    const sx = e.clientX, sy = e.clientY;
+    let ghost = null, lastY = sy, raf = 0;
+    // автопрокрутка, когда тащишь к краю экрана
+    const edgeScroll = () => {
+      if (!ghost) { raf = 0; return; }
+      const top = 120, bottom = window.innerHeight - 60;
+      if (lastY < top) window.scrollBy(0, -Math.ceil((top - lastY) / 6));
+      else if (lastY > bottom) window.scrollBy(0, Math.ceil((lastY - bottom) / 4));
+      raf = requestAnimationFrame(edgeScroll);
+    };
+    const clearOver = () => document.querySelectorAll('.pz-row.over').forEach(r => r.classList.remove('over'));
+    const rowAt = (x, y) => { const el = document.elementFromPoint(x, y); return el && el.closest('.pz-row:not(.done)'); };
+    const move = ev => {
+      if (!ghost && Math.hypot(ev.clientX - sx, ev.clientY - sy) > 6) {
+        ghost = chip.cloneNode(true);
+        ghost.className = 'pz-chip pz-ghost';
+        document.body.appendChild(ghost);
+        chip.classList.add('dragging');
+      }
+      if (!ghost) return;
+      lastY = ev.clientY;
+      if (!raf) raf = requestAnimationFrame(edgeScroll);
+      ghost.style.left = ev.clientX + 'px'; ghost.style.top = ev.clientY + 'px';
+      clearOver();
+      const row = rowAt(ev.clientX, ev.clientY);
+      if (row) row.classList.add('over');
+    };
+    const up = ev => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      clearOver();
+      chip.classList.remove('dragging');
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      if (ghost) {
+        ghost.remove(); ghost = null;
+        const row = ev.type === 'pointerup' && rowAt(ev.clientX, ev.clientY);
+        if (row) pzTry(ci, +row.dataset.i);
+      } else {
+        PZ.sel = PZ.sel === ci ? null : ci;     // тап — выбрать приставку
+        $('pz-tray').querySelectorAll('.pz-chip').forEach(c => c.classList.toggle('sel', +c.dataset.c === PZ.sel));
+      }
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  });
+}
+
+function pzTry(ci, ri) {
+  const chip = PZ.chips[ci], r = PZ.round[ri];
+  if (!chip || chip.used || !r || r.done) return;
+  if (chip.p === r.v.prefix) {
+    chip.used = true; r.done = true; PZ.sel = null;
+    PZ.total++; if (!r.err) PZ.firstTry++;
+    speakWord(r.v.inf);
+    if (PZ.round.every(x => x.done) && PZ.round.every(x => !x.err)) addCoins(3, $('pz-rows'));
+    pzDraw();
+    const row = $('pz-rows').querySelector(`.pz-row[data-i="${ri}"]`);
+    if (row) row.classList.add('snap');
+    if (PZ.round.every(x => x.done)) setTimeout(() => $('pz-done').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+  } else {
+    r.err++;
+    PZ.sel = null;
+    pzDraw();
+    const row = $('pz-rows').querySelector(`.pz-row[data-i="${ri}"]`);
+    if (row) row.classList.add('shake');
+  }
+}
+
 const EX = { cards:[], idx:0, correct:0, total:0 };
 
 function loadExamHistory()    { try { return JSON.parse(localStorage.getItem(P().examKey)||'[]'); } catch { return []; } }
@@ -4266,6 +4492,7 @@ function initEvents() {
   $('translate-skip')?.addEventListener('click', revealTranslate);
   $('translate-finish')?.addEventListener('click', finishTranslate);
   $('translate-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+  $('puzzle-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>
