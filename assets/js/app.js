@@ -1885,6 +1885,76 @@ function startSession(cat, overrideLimit) {
   drawCard();
 }
 
+/* ── пример предложения на карточке + члены предложения цветом ── */
+const ROLE_ORDER = ['S', 'V', 'A', 'D', 'E', 'Z'];
+const ROLE_NAMES = {
+  S: ['Subjekt',     'подлежащее',     'підмет'],
+  V: ['Verb',        'глагол',         'дієслово'],
+  A: ['Akkusativ',   'кого? что? (Akk)', 'кого? що? (Akk)'],
+  D: ['Dativ',       'кому? (Dat)',    'кому? (Dat)'],
+  E: ['Prädikativ',  'кто/какой? (после sein)', 'хто/який? (після sein)'],
+  Z: ['Angabe',      'когда? где? как?', 'коли? де? як?'],
+};
+function roleName(r) { return lstr(...ROLE_NAMES[r]); }
+function exRolesOn() { try { return localStorage.getItem('dl_ex_roles') !== '0'; } catch { return true; } }
+// text + "S0,3 V4,9" + [start,end] выучиваемого слова → HTML
+function exampleHTML(text, roles, hit) {
+  const spans = roles ? roles.split(' ').map(x => { const [a, b] = x.slice(1).split(','); return [+a, +b, x[0]]; }) : [];
+  const cuts = new Set([0, text.length]);
+  spans.forEach(([a, b]) => { cuts.add(a); cuts.add(b); });
+  if (hit) { cuts.add(hit[0]); cuts.add(hit[1]); }
+  const pts = [...cuts].sort((x, y) => x - y);
+  let html = '', open = null;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const a = pts[i], b = pts[i + 1];
+    const sp = spans.find(([s, e]) => a >= s && b <= e);
+    const r = sp ? sp : null;
+    if (open && open !== r) { html += '</span>'; open = null; }
+    if (r && open !== r) { html += `<span class="ce-r ce-r-${r[2]}" title="${roleName(r[2])}">`; open = r; }
+    const seg = escapeHtml(text.slice(a, b));
+    html += hit && a >= hit[0] && b <= hit[1] ? `<b class="ce-hit">${seg}</b>` : seg;
+  }
+  if (open) html += '</span>';
+  return html;
+}
+function renderCardExample(card) {
+  const exEl = $('card-example');
+  const ex = window.EXAMPLES && window.EXAMPLES[card.id];
+  if (exEl) {
+    exEl.classList.toggle('hidden', !ex);
+    if (ex) {
+      // подсвечиваем само слово (без артикля), если оно встречается в предложении как есть
+      // кандидаты: само слово, а у глаголов с формами — ещё Präsens и Partizip (geht, gegangen)
+      const cands = [card.word.replace(/^sich\s+/, '').split(/\s+/)[0]];
+      if (card.forms) {
+        card.forms.praes.split(/[\s/]+/).forEach(x => x !== 'sich' && cands.push(x));
+        card.forms.perf.split(/[\s/]+/).filter(x => !/^(hat|ist|sich)$/.test(x)).forEach(x => cands.push(x));
+      }
+      let hit = null;
+      for (const c of cands.filter(c => c.length > 2)) {
+        const m = new RegExp(`(?<![\\p{L}])${c.replace(/[.*+?^${}()|[\]\\]/g, '\\function drawCard() {')}(?![\\p{L}])`, 'iu').exec(ex[0]);
+        if (m) { hit = [m.index, m.index + m[0].length]; break; }
+      }
+      const roles = exRolesOn() && window.EXAMPLE_ROLES && window.EXAMPLE_ROLES[card.id];
+      const used = roles ? [...new Set(roles.split(' ').map(s => s[0]))] : [];
+      exEl.innerHTML = `
+        <div class="ce-de"><span>${exampleHTML(ex[0], roles, hit)}</span>
+          <span class="ce-btns">
+            ${window.EXAMPLE_ROLES && window.EXAMPLE_ROLES[card.id] ? `<button class="ce-speak ce-roles-btn ${exRolesOn() ? 'on' : ''}" id="ce-roles" title="${lstr('Satzglieder farbig','Члены предложения цветом','Члени речення кольором')}">🎨</button>` : ''}
+            <button class="ce-speak" id="ce-speak" title="🔊">🔊</button>
+          </span></div>
+        <div class="ce-tr">${escapeHtml(ex[1])}</div>
+        ${used.length ? `<div class="ce-legend">${ROLE_ORDER.filter(r => used.includes(r)).map(r => `<span class="ce-r-${r}"><i></i>${roleName(r)}</span>`).join('')}</div>` : ''}`;
+      $('ce-speak').addEventListener('click', e => { e.stopPropagation(); if (VLOOP.on) stopVerbLoop(); speakWord(ex[0]); });
+      $('ce-roles')?.addEventListener('click', e => {
+        e.stopPropagation();
+        try { localStorage.setItem('dl_ex_roles', exRolesOn() ? '0' : '1'); } catch {}
+        renderCardExample(card);
+      });
+    }
+  }
+}
+
 function drawCard() {
   if (S.cardIdx >= S.cards.length) {
     if (S.phase === 'study') { startTypingTest(); } else { showComplete(); }
@@ -1913,30 +1983,7 @@ function drawCard() {
       <div><span class="cf-label">Präsens (er/sie/es)</span><b>${escapeHtml(card.forms.praes)}</b></div>
       <div><span class="cf-label">Perfekt</span><b>${escapeHtml(card.forms.perf)}</b></div>`;
   }
-  // пример предложения со словом — только при заучивании (в тесте не показываем)
-  const exEl = $('card-example');
-  const ex = window.EXAMPLES && window.EXAMPLES[card.id];
-  if (exEl) {
-    exEl.classList.toggle('hidden', !ex);
-    if (ex) {
-      // подсвечиваем само слово (без артикля), если оно встречается в предложении как есть
-      // кандидаты: само слово, а у глаголов с формами — ещё Präsens и Partizip (geht, gegangen)
-      const cands = [card.word.replace(/^sich\s+/, '').split(/\s+/)[0]];
-      if (card.forms) {
-        card.forms.praes.split(/[\s/]+/).forEach(x => x !== 'sich' && cands.push(x));
-        card.forms.perf.split(/[\s/]+/).filter(x => !/^(hat|ist|sich)$/.test(x)).forEach(x => cands.push(x));
-      }
-      const de = escapeHtml(ex[0]);
-      const hit = cands.filter(c => c.length > 2)
-        .map(c => new RegExp(`(^|[^\\p{L}])(${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(?=[^\\p{L}]|$)`, 'iu'))
-        .find(re => re.test(de));
-      exEl.innerHTML = `
-        <div class="ce-de"><span>${hit ? de.replace(hit, '$1<b>$2</b>') : de}</span>
-          <button class="ce-speak" id="ce-speak" title="🔊">🔊</button></div>
-        <div class="ce-tr">${escapeHtml(ex[1])}</div>`;
-      $('ce-speak').addEventListener('click', e => { e.stopPropagation(); if (VLOOP.on) stopVerbLoop(); speakWord(ex[0]); });
-    }
-  }
+  renderCardExample(card);   // пример предложения — только при заучивании (в тесте не показываем)
   // кнопка зацикленной озвучки — только у карточек с формами; если включена, продолжает на следующем глаголе
   $('loop-btn')?.classList.toggle('hidden', !card.forms);
   if (VLOOP.on) { if (card.forms) startVerbLoop(card); else stopVerbLoop(); }

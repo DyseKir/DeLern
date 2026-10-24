@@ -2510,3 +2510,20 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 .pz-banner b { display: block; font-size: 15.5px; }
 .pz-banner small { color: var(--text-muted); font-size: 12.5px; }
 @media (max-width: 600px) { .pz-tray { top: 56px; } .pz-word { font-size: 19px; } }
+
+/* ── Члены предложения цветом в примерах ── */
+.ce-r { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+.ce-r-S { color: #60a5fa; }   /* подлежащее */
+.ce-r-V { color: #f87171; }   /* глагол */
+.ce-r-A { color: #4ade80; }   /* Akkusativ */
+.ce-r-D { color: #fbbf24; }   /* Dativ */
+.ce-r-E { color: #c084fc; }   /* Prädikativ */
+.ce-r-Z { color: #2dd4bf; }   /* обстоятельство */
+.ce-de b.ce-hit { color: inherit; font-weight: 800; background: rgba(255,255,255,.14); border-radius: 4px; padding: 0 2px; }
+.ce-de > span:first-child { line-height: 1.7; }
+.ce-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.ce-roles-btn { opacity: .45; }
+.ce-roles-btn.on { opacity: 1; }
+.ce-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--glass-border); font-size: 11.5px; }
+.ce-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.ce-legend i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; display: inline-block; }
