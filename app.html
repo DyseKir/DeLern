@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260802t">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260802u">
 </head>
 <body>
 
@@ -30,8 +30,7 @@
     </div>
     <nav class="nav" id="main-nav">
       <a href="#" class="nav-link active" data-screen="home"       data-i18n="nav_home">Startseite</a>
-      <a href="#" class="nav-link"        data-screen="lektionen"  data-i18n="nav_lektionen">Lektionen</a>
-      <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Wortschatz</a>
+      <a href="#" class="nav-link"        data-screen="wortschatz" data-i18n="nav_wortschatz">Karten</a>
       <a href="#" class="nav-link"        data-screen="grammatik"  data-i18n="nav_grammatik">Grammatik</a>
       <a href="#" class="nav-link nav-prep" data-screen="prep"     data-i18n="nav_prep">Prüfung morgen</a>
       <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
@@ -78,67 +77,46 @@
         </div>
       </div>
 
-      <div class="home-layout">
-
-        <div class="home-left">
-          <h1 class="home-title">
-            <span data-i18n="home_title">Willkommen bei DeutschLernen!</span><br>
-            <span data-i18n="home_subtitle">Wähle deinen Kurs aus.</span>
-          </h1>
-
-          <h2 class="section-title">🏆 <span data-i18n="sec_leaderboard">Рейтинг учеников</span></h2>
-          <div class="leaderboard-card">
-            <div class="leaderboard-chart" id="leaderboard-chart"></div>
-            <div class="leaderboard-legend" id="leaderboard-legend"></div>
+      <div class="dash">
+        <div class="dash-hero user-card">
+          <div class="dash-hero-main">
+            <div class="user-hi" id="user-hi">Привет!</div>
+            <div class="user-progress-row">
+              <span class="user-level-badge" id="current-level-badge">A1</span>
+              <div class="progress-track"><div class="progress-fill" id="overall-progress" style="width:0%"></div></div>
+              <span class="progress-pct" id="overall-pct">0%</span>
+            </div>
+            <div class="user-words-count" id="overall-words-count">⭐ 0 / 0</div>
           </div>
+          <div class="avatar-lg" id="user-avatar-lg">👨</div>
         </div>
 
-        <div class="home-right">
+        <div class="dash-stats" id="dash-stats"></div>
+        <div class="dash-actions" id="dash-actions"></div>
 
-          <div class="user-card">
-            <div class="user-greeting">
-              <div>
-                <div class="user-hi" id="user-hi">Привет!</div>
-                <div class="user-progress-row">
-                  <span class="user-level-badge" id="current-level-badge">A1</span>
-                  <div class="progress-track">
-                    <div class="progress-fill" id="overall-progress" style="width:0%"></div>
-                  </div>
-                  <span class="progress-pct" id="overall-pct">0%</span>
-                </div>
-                <div class="user-words-count" id="overall-words-count">⭐ 0 / 0</div>
-              </div>
-              <div class="avatar-lg" id="user-avatar-lg">👨</div>
+        <div class="dash-grid">
+          <section class="dash-panel">
+            <h2 class="section-title" id="dash-themes-title"></h2>
+            <div id="dash-themes"></div>
+          </section>
+          <section class="dash-panel">
+            <h2 class="section-title">🏆 <span data-i18n="sec_leaderboard">Рейтинг учеников</span></h2>
+            <div class="leaderboard-card">
+              <div class="leaderboard-chart" id="leaderboard-chart"></div>
+              <div class="leaderboard-legend" id="leaderboard-legend"></div>
             </div>
-          </div>
-
-          <h2 class="section-title" data-i18n="sec_area">Lernbereich wählen</h2>
-          <div class="area-grid">
-            <div class="area-card grammar-card">
-              <div class="area-icons">📖 💡</div>
-              <div class="area-title" data-i18n="area_grammar_title">GRAMMATIK &amp; REGELN</div>
-              <div class="area-desc"  data-i18n="area_grammar_desc">Lerne grundlegende Grammatikthemen und Regeln.</div>
-            </div>
-            <div class="area-card vocab-card">
-              <div class="area-icons">📘 🎯</div>
-              <div class="area-title" data-i18n="area_vocab_title">WORTSCHATZ &amp; THEMEN</div>
-              <div class="area-desc"  data-i18n="area_vocab_desc">Lerne Vokabeln nach Kategorien mit Artikeln.</div>
-            </div>
-          </div>
-
-          <h2 class="section-title" id="themes-title">A1 Themen wählen</h2>
-          <div class="categories-scroll-wrap">
-            <div class="categories-grid" id="categories-preview"></div>
-          </div>
-
-          <div id="done-section" class="hidden">
-            <h2 class="section-title done-section-title">✅ <span data-i18n="done_section">Пройденное</span></h2>
-            <div class="categories-grid categories-done-grid" id="categories-done"></div>
-          </div>
-
-          <p class="attrib">Иллюстрации: <a href="https://openmoji.org" target="_blank" rel="noopener">OpenMoji</a> (CC BY-SA 4.0)</p>
-
+          </section>
+          <section class="dash-panel">
+            <h2 class="section-title" id="dash-levels-title"></h2>
+            <div id="dash-levels"></div>
+          </section>
+          <section class="dash-panel">
+            <h2 class="section-title" id="dash-news-title"></h2>
+            <div id="dash-news"></div>
+          </section>
         </div>
+
+        <p class="attrib">Иллюстрации: <a href="https://openmoji.org" target="_blank" rel="noopener">OpenMoji</a> (CC BY-SA 4.0)</p>
       </div>
     </div>
 
@@ -306,9 +284,13 @@
     <div id="screen-wortschatz" class="screen">
       <div class="screen-header">
         <button class="back-btn" id="vocab-back" data-i18n="btn_back">← Zurück</button>
-        <h2 class="screen-title"><span data-i18n="vocab_screen_h">Wortschatz</span></h2>
+        <h2 class="screen-title" id="karten-title"><span data-i18n="vocab_screen_h">Karten</span></h2>
       </div>
-      <div class="vocab-level-filter" id="vocab-level-filter"></div>
+      <div class="karten-toolbar">
+        <div class="vocab-level-filter" id="vocab-level-filter"></div>
+        <input type="text" id="karten-search" class="ssm-custom-input karten-search" autocomplete="off" spellcheck="false">
+      </div>
+      <div id="karten-crumbs" class="karten-crumbs"></div>
       <div class="categories-full-grid" id="vocab-categories-grid"></div>
       <div class="vocab-learned-section" id="vocab-learned-section"></div>
     </div>
@@ -529,15 +511,16 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260802t"></script>
-  <script src="assets/js/auth.js?v=20260802t"></script>
-  <script src="db/words.js?v=20260802t"></script>
-  <script src="db/irregular_verbs.js?v=20260802t"></script>
-  <script src="db/grammar.js?v=20260802t"></script>
-  <script src="db/cloze.js?v=20260802t"></script>
-  <script src="db/translations_uk.js?v=20260802t"></script>
-  <script src="db/changelog.js?v=20260802t"></script>
-  <script src="db/achievements.js?v=20260802t"></script>
-  <script src="assets/js/app.js?v=20260802t"></script>
+  <script src="assets/js/supabase-config.js?v=20260802u"></script>
+  <script src="assets/js/auth.js?v=20260802u"></script>
+  <script src="db/words.js?v=20260802u"></script>
+  <script src="db/irregular_verbs.js?v=20260802u"></script>
+  <script src="db/themes.js?v=20260802u"></script>
+  <script src="db/grammar.js?v=20260802u"></script>
+  <script src="db/cloze.js?v=20260802u"></script>
+  <script src="db/translations_uk.js?v=20260802u"></script>
+  <script src="db/changelog.js?v=20260802u"></script>
+  <script src="db/achievements.js?v=20260802u"></script>
+  <script src="assets/js/app.js?v=20260802u"></script>
 </body>
 </html>

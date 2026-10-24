@@ -12,7 +12,7 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Wortschatz',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_prep: 'Prüfung morgen', prep_title: 'Prüfungsvorbereitung', nav_translate: 'Übersetzen', translate_title: 'Sätze übersetzen', translate_desc: 'Zufällige Sätze aus deinen gelernten Wörtern. Übersetze ins Deutsche.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
+    nav_wortschatz: 'Karten',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_prep: 'Prüfung morgen', prep_title: 'Prüfungsvorbereitung', nav_translate: 'Übersetzen', translate_title: 'Sätze übersetzen', translate_desc: 'Zufällige Sätze aus deinen gelernten Wörtern. Übersetze ins Deutsche.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung',
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
@@ -43,7 +43,7 @@ const TR = {
     label_correct:'Richtig',   label_wrong:'Falsch',  label_learned:'Neu gelernt',
     all_learned_h:'Alle Wörter gelernt!',
     all_learned_p:'Du hast alle Wörter dieser Kategorie gemeistert.',
-    vocab_screen_h:   'Wortschatz',
+    vocab_screen_h:   'Karten',
     grammar_screen_h: 'Grammatik & Regeln',
     profile_title: 'Mein Profil & Fortschritt',
     // динамические
@@ -75,7 +75,7 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словарь',    nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_prep: 'Контрольная', prep_title: 'Подготовка к контрольной', nav_translate: 'Перевод', translate_title: 'Перевод предложений', translate_desc: 'Случайные предложения из выученных слов. Переведи с русского на немецкий.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
+    nav_wortschatz: 'Карточки',   nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_prep: 'Контрольная', prep_title: 'Подготовка к контрольной', nav_translate: 'Перевод', translate_title: 'Перевод предложений', translate_desc: 'Случайные предложения из выученных слов. Переведи с русского на немецкий.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен',
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
@@ -106,7 +106,7 @@ const TR = {
     label_correct:'Правильно', label_wrong:'Неверно', label_learned:'Выучено',
     all_learned_h:'Все слова выучены!',
     all_learned_p:'Ты освоил все слова этой категории.',
-    vocab_screen_h:   'Словарь',
+    vocab_screen_h:   'Карточки',
     grammar_screen_h: 'Грамматика',
     profile_title: 'Мой профиль и прогресс',
     // динамические
@@ -138,7 +138,7 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Словник',    nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_prep: 'Контрольна', prep_title: 'Підготовка до контрольної', nav_translate: 'Переклад', translate_title: 'Переклад речень', translate_desc: 'Випадкові речення з вивчених слів. Переклади українською→німецькою.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
+    nav_wortschatz: 'Картки',     nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_prep: 'Контрольна', prep_title: 'Підготовка до контрольної', nav_translate: 'Переклад', translate_title: 'Переклад речень', translate_desc: 'Випадкові речення з вивчених слів. Переклади українською→німецькою.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит',
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
@@ -169,7 +169,7 @@ const TR = {
     label_correct:'Правильно', label_wrong:'Невірно', label_learned:'Вивчено',
     all_learned_h:'Всі слова вивчені!',
     all_learned_p:'Ти освоїв усі слова цієї категорії.',
-    vocab_screen_h:   'Словник',
+    vocab_screen_h:   'Картки',
     grammar_screen_h: 'Граматика',
     profile_title: 'Мій профіль і прогрес',
     themes_title:    (lvl) => `${lvl} — теми`,
@@ -1180,11 +1180,122 @@ function renderHome() {
   document.querySelectorAll('.level-card').forEach(c =>
     c.classList.toggle('selected', c.dataset.level === S.level));
   $('current-level-badge').textContent = S.level;
-  $('themes-title').textContent        = t('themes_title', S.level);
   if ($('grammar-level-title')) $('grammar-level-title').textContent = S.level;
   updateProfileUI();
-  renderCatPreview();
   refreshOverallBar();
+  renderDashboard();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ГЛАВНАЯ — сводка: статистика, быстрые действия, прогресс, новости
+══════════════════════════════════════════════════════════════ */
+function renderDashboard() {
+  const p = loadProg();
+  const all = window.VOCAB_DATA || [];
+
+  /* ─ цифры ─ */
+  let learned = 0, learning = 0;
+  const seen = new Set();
+  all.forEach(c => c.words.forEach(w => {
+    if (seen.has(w.id)) return; seen.add(w.id);
+    const r = p[w.id]; if (!r) return;
+    if (r.status === 'learned') learned++; else if (r.streak > 0 || r.status === 'learning') learning++;
+  }));
+  const rules = (window.GRAMMAR_DATA||[]).filter(r => r.level === S.level);
+  const rulesDone = rules.filter(r => isStudied(r.id)).length;
+  const cloze = window.CLOZE_DATA || [];
+  const clozeDone = cloze.filter(c => isClozeDone(c.id)).length;
+  const stat = (icon, val, label, id) =>
+    `<div class="dash-stat"><div class="dash-stat-icon">${icon}</div><div class="dash-stat-val" ${id?`id="${id}"`:''}>${val}</div><div class="dash-stat-label">${label}</div></div>`;
+  $('dash-stats').innerHTML =
+      stat('⭐', learned, lstr('Wörter gelernt','слов выучено','слів вивчено'))
+    + stat('📈', learning, lstr('in Arbeit','в процессе','в процесі'))
+    + stat('📖', `${rulesDone}/${rules.length}`, lstr(`Regeln ${S.level}`,`правил ${S.level}`,`правил ${S.level}`))
+    + stat('✏️', `${clozeDone}/${cloze.length}`, lstr('Lückentexte','текстов с пропусками','текстів з пропусками'))
+    + stat('🔥', '…', lstr('Tage in Folge','дней подряд','днів поспіль'), 'dash-streak');
+  if (activeProfile) fetchMySnapshotDates(activeProfile).then(d => { const el = $('dash-streak'); if (el) el.textContent = computeStreakFromDates(d); }).catch(()=>{});
+  else $('dash-streak').textContent = 0;
+
+  /* ─ быстрые действия ─ */
+  const favs = getFavCats(p);
+  const last = p.last_cat && all.find(c => c.level === p.last_cat.level && c.category === p.last_cat.category);
+  const tile = (id, icon, label) => `<button class="dash-tile" data-go="${id}"><span>${icon}</span>${label}</button>`;
+  $('dash-actions').innerHTML = `
+    <div class="dash-main-actions">
+      <button class="dash-cta ${favs.length?'':'empty'}" data-go="favs">
+        <span class="dash-cta-icon">★</span>
+        <span><b>${lstr('Ausgewählte Karten','Выбранные карточки','Вибрані картки')}</b>
+        <small>${favs.length
+          ? lstr(`${favs.length} Karten markiert — weiterlernen`,`отмечено ${favs.length} — перейти к ним`,`позначено ${favs.length} — перейти до них`)
+          : lstr('Markiere Karten mit ☆ im Bereich „Karten“','Отмечай карточки ☆ во вкладке «Карточки»','Позначай картки ☆ у вкладці «Картки»')}</small></span>
+      </button>
+      ${last ? `<button class="dash-cta dash-cta-alt" data-go="last">
+        <span class="dash-cta-icon">▶</span>
+        <span><b>${lstr('Weiterlernen','Продолжить','Продовжити')}</b><small>${last.emoji||''} ${escapeHtml(last.name_ru||last.name)}</small></span>
+      </button>` : ''}
+    </div>
+    <div class="dash-tiles">
+      ${tile('karten','📚',lstr('Alle Karten','Все карточки','Усі картки'))}
+      ${tile('grammatik','📖',lstr('Grammatik','Грамматика','Граматика'))}
+      ${tile('translate','✍️',lstr('Sätze üben','Предложения','Речення'))}
+      ${tile('tables','📊',lstr('Tabellen','Таблицы','Таблиці'))}
+      ${tile('prep','🎯',lstr('Prüfung morgen','Контрольная','Контрольна'))}
+      ${tile('exam','🏆',lstr('Prüfung','Экзамен','Іспит'))}
+    </div>`;
+  $('dash-actions').querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
+    const g = b.dataset.go;
+    if (g === 'favs') openKarten({ fav: favs.length > 0 });
+    else if (g === 'last' && last) openSessionSizeModal(last);
+    else if (g === 'karten') openKarten();
+    else if (g === 'grammatik') renderGrammarScreen();
+    else if (g === 'translate') renderTranslateScreen();
+    else if (g === 'tables') renderTablesScreen();
+    else if (g === 'prep') renderPrepScreen();
+    else if (g === 'exam') renderExamScreen();
+  }));
+
+  /* ─ прогресс по темам (текущий уровень) ─ */
+  $('dash-themes-title').textContent = `📚 ${lstr('Themen','Прогресс по темам','Прогрес за темами')} — ${S.level}`;
+  const rows = allThemes().map(th => {
+    const list = catsOfTheme(th, S.level);
+    let total = 0, l = 0;
+    list.forEach(c => { const r = catCounts(c, p); total += r.total; l += r.learned; });
+    return { th, total, l, pct: total ? Math.round(l / total * 100) : 0 };
+  }).filter(r => r.total).sort((a, b) => b.pct - a.pct || b.total - a.total);
+  $('dash-themes').innerHTML = rows.length ? rows.map(r => `
+    <button class="dash-bar-row" data-theme="${r.th.id}">
+      <span class="dash-bar-label">${r.th.emoji} ${escapeHtml(themeName(r.th))}</span>
+      <span class="dash-bar"><span style="width:${Math.max(r.pct, r.l ? 3 : 0)}%"></span></span>
+      <span class="dash-bar-num">${r.l}/${r.total}</span>
+    </button>`).join('') : `<div class="loading-hint">${t('no_cats', S.level)}</div>`;
+  $('dash-themes').querySelectorAll('[data-theme]').forEach(b =>
+    b.addEventListener('click', () => { S.vocabFilter = S.level; openKarten({ theme: b.dataset.theme }); }));
+
+  /* ─ по уровням ─ */
+  $('dash-levels-title').textContent = `🎓 ${lstr('Fortschritt nach Niveau','Прогресс по уровням','Прогрес за рівнями')}`;
+  $('dash-levels').innerHTML = LEVELS.map(lv => {
+    let total = 0, l = 0;
+    getCats(lv).forEach(c => { const r = catCounts(c, p); total += r.total; l += r.learned; });
+    if (!total) return '';
+    const pct = Math.round(l / total * 100);
+    return `<button class="dash-bar-row ${lv===S.level?'current':''}" data-lvl="${lv}">
+      <span class="dash-bar-label"><b>${lv}</b></span>
+      <span class="dash-bar"><span style="width:${Math.max(pct, l ? 3 : 0)}%"></span></span>
+      <span class="dash-bar-num">${pct}%</span>
+    </button>`;
+  }).join('');
+  $('dash-levels').querySelectorAll('[data-lvl]').forEach(b =>
+    b.addEventListener('click', () => { S.level = b.dataset.lvl; renderHome(); }));
+
+  /* ─ что нового ─ */
+  $('dash-news-title').textContent = `🔔 ${lstr('Was ist neu','Что нового','Що нового')}`;
+  const news = (window.CHANGELOG_DATA||[]).slice().sort((a, b) => b.id - a.id).slice(0, 4);
+  $('dash-news').innerHTML = news.map(n => `
+    <div class="dash-news-item">
+      <div class="dash-news-date">${n.date}</div>
+      <div class="dash-news-title">${escapeHtml(n.title)}</div>
+    </div>`).join('') + `<button class="btn-secondary dash-news-all" id="dash-news-all">${lstr('Alle Neuigkeiten','Все обновления','Усі оновлення')}</button>`;
+  $('dash-news-all').addEventListener('click', openChangelogModal);
 }
 
 function updateProfileUI() {
@@ -1364,13 +1475,75 @@ function isCatComplete(level, catKey) {
   return cat.words.every(w => p[w.id] && p[w.id].status === 'learned');
 }
 
-function makeCatCardHTML(cat, total, learned, p) {
+/* ══════════════════════════════════════════════════════════════
+   ИЗБРАННЫЕ КАРТОЧКИ («хочу учить сейчас»)
+   Хранятся в общем прогрессе (fav_<уровень>:<категория>) с updatedAt —
+   значит синхронизируются между устройствами, как и слова.
+══════════════════════════════════════════════════════════════ */
+function favKey(cat) { return 'fav_' + cat.level + ':' + cat.category; }
+function isFav(cat, p = loadProg()) { const r = p[favKey(cat)]; return !!(r && r.on); }
+function toggleFav(cat) {
+  const p = loadProg();
+  const on = !isFav(cat, p);
+  p[favKey(cat)] = { on, updatedAt: Date.now() };
+  saveProg(p);
+  return on;
+}
+function getFavCats(p = loadProg()) { return (window.VOCAB_DATA||[]).filter(c => isFav(c, p)); }
+
+/* Виртуальная карточка из всех избранных — учить всё выбранное разом */
+function getFavoritesCategory(p = loadProg()) {
+  const seen = new Set(), words = [];
+  getFavCats(p).filter(c => c.mode !== 'conjugation').forEach(c => (c.words||[]).forEach(w => {
+    if (!seen.has(w.id)) { seen.add(w.id); words.push(w); }
+  }));
+  if (!words.length) return null;
+  return { level: S.level, category: 'favorites', name: 'Ausgewählt', name_ru: 'Выбранные карточки',
+           emoji: '⭐', words, isVirtual: true };
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ТЕМЫ (db/themes.js): категория → тема по ключу без суффикса _n/_v/_a/_o
+══════════════════════════════════════════════════════════════ */
+const OTHER_THEME = { id: 'other', emoji: '📦', de: 'Sonstiges', ru: 'Другое', uk: 'Інше', cats: [] };
+const POS_ORDER = { n: 0, v: 1, a: 2, o: 3 };
+function catBaseKey(cat) { return cat.category.replace(/_(n|v|a|o)$/, ''); }
+function catPos(cat) { const m = cat.category.match(/_(n|v|a|o)$/); return m ? m[1] : ''; }
+function themeOfCat(cat) {
+  const base = catBaseKey(cat);
+  return (window.THEMES_DATA||[]).find(th => th.cats.includes(base)) || OTHER_THEME;
+}
+function allThemes() {
+  const list = (window.THEMES_DATA||[]).slice();
+  if ((window.VOCAB_DATA||[]).some(c => themeOfCat(c) === OTHER_THEME)) list.push(OTHER_THEME);
+  return list;
+}
+function themeName(th) { return lstr(th.de, th.ru, th.uk); }
+function catsOfTheme(th, level) {
+  return (window.VOCAB_DATA||[])
+    .filter(c => themeOfCat(c).id === th.id && (level === 'all' || c.level === level))
+    .sort((a, b) => {
+      const ia = th.cats.indexOf(catBaseKey(a)), ib = th.cats.indexOf(catBaseKey(b));
+      if (ia !== ib) return ia - ib;
+      if (a.level !== b.level) return a.level.localeCompare(b.level);
+      return (POS_ORDER[catPos(a)] ?? 9) - (POS_ORDER[catPos(b)] ?? 9);
+    });
+}
+/* Сколько слов в карточке и сколько выучено (отложенные не считаются) */
+function catCounts(cat, p) {
+  const words = cat.mode === 'conjugation' ? cat.words.filter(w => w.conj)
+              : cat.category === 'deferred' ? cat.words
+              : cat.words.filter(w => !isDeferred(w.id));
+  return { total: words.length, learned: words.filter(w => p[w.id] && p[w.id].status === 'learned').length };
+}
+
+function makeCatCardHTML(cat, total, learned, p, opts = {}) {
   // Проверяем блокировку
   if (cat.requiresCategory && !isCatComplete(cat.level, cat.requiresCategory)) {
     const reqCat = findCat(cat.level, cat.requiresCategory);
     const reqName = reqCat ? (reqCat.name_ru || reqCat.name) : cat.requiresCategory;
     return `
-      <div class="cat-card cat-card-locked" data-cat="${cat.category}" data-locked="1">
+      <div class="cat-card cat-card-locked" data-cat="${cat.category}" data-lvl="${cat.level}" data-locked="1">
         <span class="cat-emoji">🔒</span>
         <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
         <div class="cat-locked-hint">${lstr(`Erst «${reqName}» lernen`,`Сначала выучи «${reqName}»`,`Спочатку вивчи «${reqName}»`)}</div>
@@ -1378,15 +1551,21 @@ function makeCatCardHTML(cat, total, learned, p) {
   }
 
   const pct      = total ? Math.round(learned/total*100) : 0;
+  const done     = total > 0 && learned === total;
   const pvWords  = cat.category === 'deferred' ? cat.words : cat.words.filter(w => !isDeferred(w.id));
   const preview  = pvWords.slice(0,4)
     .map(w=>`<div>• <span class="art-${w.article}">${w.article!=='-'?w.article:''}</span> ${w.word}</div>`).join('');
-  const resetBtn = cat.category === 'deferred' ? '' :
+  const virtual  = cat.category === 'deferred' || cat.isVirtual;
+  const resetBtn = virtual ? '' :
     `<button class="cat-reset-btn" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">↻</button>`;
+  const fav = !virtual && isFav(cat, p);
+  const favBtn = virtual ? '' :
+    `<button class="cat-fav-btn ${fav?'on':''}" title="${lstr('Jetzt lernen (markieren)','Отметить: учить сейчас','Позначити: вчити зараз')}">${fav?'★':'☆'}</button>`;
   return `
-    <div class="cat-card" data-cat="${cat.category}">
-      ${resetBtn}
+    <div class="cat-card ${done?'cat-complete':''} ${fav?'cat-fav':''}" data-cat="${cat.category}" data-lvl="${cat.level}">
+      ${favBtn}${resetBtn}
       <span class="cat-emoji">${cat.emoji||'📁'}</span>
+      ${opts.showLevel && !virtual ? `<div class="cat-level-chip">${cat.level}</div>` : ''}
       <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
       <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
@@ -1395,134 +1574,153 @@ function makeCatCardHTML(cat, total, learned, p) {
     </div>`;
 }
 
-function attachCatEvents(container, level) {
+function attachCatEvents(container) {
   container.querySelectorAll('.cat-card').forEach(card => {
     if (card.dataset.locked) return; // заблокирована — игнорируем клики
-    const key = card.dataset.cat;
-    const resolve = () => key === 'deferred' ? getDeferredCategory() : findCat(level, key);
-    card.querySelector('.cat-start-btn')?.addEventListener('click', e=>{e.stopPropagation(); const c=resolve(); if(c) openSessionSizeModal(c);});
+    const key = card.dataset.cat, lvl = card.dataset.lvl;
+    const resolve = () => key === 'deferred' ? getDeferredCategory()
+                        : key === 'favorites' ? getFavoritesCategory()
+                        : (window.VOCAB_DATA||[]).find(c => c.level === lvl && c.category === key);
+    const open = () => { const c = resolve(); if (c && c.words) openSessionSizeModal(c); };
+    card.querySelector('.cat-start-btn')?.addEventListener('click', e => { e.stopPropagation(); open(); });
+    // ☆/★ — пометить «хочу учить сейчас»
+    card.querySelector('.cat-fav-btn')?.addEventListener('click', e => {
+      e.stopPropagation();
+      const c = resolve(); if (!c) return;
+      const on = toggleFav(c);
+      // в режиме «Только выбранные» снятая звёздочка убирает карточку из списка
+      if (!on && S.screen === 'wortschatz' && S.kartenFavOnly) { renderVocabScreen(); return; }
+      e.currentTarget.classList.toggle('on', on);
+      e.currentTarget.textContent = on ? '★' : '☆';
+      card.classList.toggle('cat-fav', on);
+      updateKartenFavChip();
+    });
     // кнопка сброса прогресса категории
-    card.querySelector('.cat-reset-btn')?.addEventListener('click', e=>{
+    card.querySelector('.cat-reset-btn')?.addEventListener('click', e => {
       e.stopPropagation();
       const c = resolve();
       const nm = c ? (c.name_ru || c.name) : key;
       if (confirm(lstr(`«${nm}» zurücksetzen?`,`Сбросить прогресс «${nm}»?`,`Скинути прогрес «${nm}»?`))) {
-        resetCategory(key, level);
-        renderHome();
+        resetCategory(key, lvl);
+        rerenderCurrent();
       }
     });
-    card.addEventListener('click', ()=>{ const c=resolve(); if(c) openSessionSizeModal(c); });
+    card.addEventListener('click', open);
   });
-}
-
-function renderCatPreview() {
-  const wrap     = $('categories-preview');
-  const doneWrap = $('categories-done');
-  const doneSec  = $('done-section');
-  const cats = getCats(S.level);
-  if (!cats.length) { wrap.innerHTML=`<div class="loading-hint">${t('no_cats',S.level)}</div>`; doneSec.classList.add('hidden'); return; }
-  const p = loadProg();
-
-  const active = [], done = [];
-  cats.forEach(cat => {
-    let total, learned;
-    if (cat.mode === 'conjugation') {
-      const verbs = cat.words.filter(w => w.conj);
-      total   = verbs.length;
-      learned = verbs.filter(w => p[w.id] && p[w.id].status === 'learned').length;
-    } else {
-      // отложенные слова не учитываются в общем количестве категории
-      const visible = cat.words.filter(w => !isDeferred(w.id));
-      total   = visible.length;
-      learned = visible.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
-    }
-    (total > 0 && learned === total ? done : active).push({cat, total, learned});
-  });
-
-  // Сортировка активных: по проценту выученного (по убыванию);
-  // заблокированные карточки уходят в конец списка
-  active.sort((a, b) => {
-    const aLocked = a.cat.requiresCategory && !isCatComplete(a.cat.level, a.cat.requiresCategory);
-    const bLocked = b.cat.requiresCategory && !isCatComplete(b.cat.level, b.cat.requiresCategory);
-    if (aLocked !== bLocked) return aLocked ? 1 : -1;
-    const aPct = a.total ? a.learned / a.total : 0;
-    const bPct = b.total ? b.learned / b.total : 0;
-    return bPct - aPct;
-  });
-
-  // Виртуальная карточка "Отложенные на потом" — в самом начале
-  const deferredCat = getDeferredCategory();
-  let deferredHTML = '';
-  if (deferredCat) {
-    const dl = deferredCat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
-    deferredHTML = makeCatCardHTML(deferredCat, deferredCat.words.length, dl, p);
-  }
-
-  wrap.innerHTML = deferredHTML + (active.length
-    ? active.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('')
-    : (deferredHTML ? '' : `<div class="loading-hint">Alle Kategorien abgeschlossen! 🎉</div>`));
-  attachCatEvents(wrap, S.level);
-
-  if (done.length) {
-    doneSec.classList.remove('hidden');
-    doneWrap.innerHTML = done.map(({cat,total,learned})=>makeCatCardHTML(cat,total,learned,p)).join('');
-    attachCatEvents(doneWrap, S.level);
-  } else {
-    doneSec.classList.add('hidden');
-    doneWrap.innerHTML = '';
-  }
 }
 
 /* ══════════════════════════════════════════════════════════════
-   WORTSCHATZ
+   КАРТОЧКИ (вкладка): темы → карточки темы; поиск; «★ Выбранные»
 ══════════════════════════════════════════════════════════════ */
 const LEVELS = ['A1','A2','B1','B2'];
 
+function openKarten(opts = {}) {
+  S.kartenTheme   = opts.theme || null;
+  S.kartenFavOnly = !!opts.fav;
+  S.kartenSearch  = '';
+  renderVocabScreen();
+}
+
+function updateKartenFavChip() {
+  const chip = document.querySelector('#vocab-level-filter .vlf-fav');
+  if (chip) chip.textContent = `★ ${lstr('Ausgewählt','Выбранные','Вибрані')} (${getFavCats().length})`;
+}
+
 function renderVocabScreen() {
   show('wortschatz');
+  const p = loadProg();
 
-  /* ─ фильтр уровней ─ */
+  /* ─ фильтр уровней + «★ Выбранные» ─ */
   const filterWrap = $('vocab-level-filter');
-  const allLabel   = lstr('Alle','Все','Всі');
-  filterWrap.innerHTML = `<button class="vlf-btn ${S.vocabFilter==='all'?'active':''}" data-vf="all">${allLabel}</button>`
-    + LEVELS.map(lv=>`<button class="vlf-btn ${S.vocabFilter===lv?'active':''}" data-vf="${lv}">${lv}</button>`).join('');
-  filterWrap.querySelectorAll('.vlf-btn').forEach(btn =>
-    btn.addEventListener('click', () => { S.vocabFilter = btn.dataset.vf; renderVocabScreen(); }));
+  filterWrap.innerHTML =
+      `<button class="vlf-btn ${S.vocabFilter==='all'?'active':''}" data-vf="all">${lstr('Alle','Все','Всі')}</button>`
+    + LEVELS.map(lv=>`<button class="vlf-btn ${S.vocabFilter===lv?'active':''}" data-vf="${lv}">${lv}</button>`).join('')
+    + `<button class="vlf-btn vlf-fav ${S.kartenFavOnly?'active':''}"></button>`;
+  updateKartenFavChip();
+  filterWrap.querySelectorAll('.vlf-btn').forEach(btn => btn.addEventListener('click', () => {
+    if (btn.classList.contains('vlf-fav')) { S.kartenFavOnly = !S.kartenFavOnly; S.kartenTheme = null; }
+    else S.vocabFilter = btn.dataset.vf;
+    renderVocabScreen();
+  }));
 
-  /* ─ категории ─ */
-  const wrap = $('vocab-categories-grid');
-  const cats = S.vocabFilter==='all'
-    ? (window.VOCAB_DATA||[])
-    : (window.VOCAB_DATA||[]).filter(c=>c.level===S.vocabFilter);
+  const search = $('karten-search');
+  search.placeholder = lstr('Karte oder Wort suchen…','Поиск карточки или слова…','Пошук картки або слова…');
+  if (search.value !== (S.kartenSearch||'')) search.value = S.kartenSearch || '';
 
-  if (!cats.length) { wrap.innerHTML=`<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`; }
-  else {
-    const p = loadProg();
-    wrap.innerHTML = cats.map(cat => {
-      const total   = cat.words.length;
-      const learned = cat.words.filter(w=>p[w.id]&&p[w.id].status==='learned').length;
-      const pct     = total ? Math.round(learned/total*100) : 0;
-      const done    = total > 0 && learned === total;
-      return `
-        <div class="cat-card ${done?'cat-complete':''}" data-cat="${cat.category}" data-lvl="${cat.level}">
-          ${done?'<div class="cat-star-badge">⭐</div>':''}
-          <span class="cat-emoji" style="font-size:2.5rem">${cat.emoji||'📁'}</span>
-          <div class="cat-level-chip">${cat.level}</div>
-          <span class="cat-name" style="font-size:14px;font-weight:700;display:block;margin:6px 0">${cat.name}${cat.name_ru ? `<span class="cat-name-ru"> (${cat.name_ru})</span>` : ''}</span>
-          <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
-          <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
-          <button class="cat-start-btn" style="margin-top:14px">${t('btn_learn')}</button>
-        </div>`;
-    }).join('');
-    wrap.querySelectorAll('.cat-card').forEach(card => {
-      const cat = (window.VOCAB_DATA||[]).find(c=>c.category===card.dataset.cat&&c.level===card.dataset.lvl)||{};
-      if (!cat.words) return;
-      card.querySelector('.cat-start-btn').addEventListener('click',e=>{e.stopPropagation();openSessionSizeModal(cat);});
-      card.addEventListener('click',()=>openSessionSizeModal(cat));
-    });
+  const wrap   = $('vocab-categories-grid');
+  const crumbs = $('karten-crumbs');
+  const lvlOk  = c => S.vocabFilter === 'all' || c.level === S.vocabFilter;
+  const cards  = list => list.map(c => { const { total, learned } = catCounts(c, p); return makeCatCardHTML(c, total, learned, p, { showLevel: true }); }).join('');
+  const q = normAnswer(S.kartenSearch || '');
+  wrap.className = 'categories-full-grid';
+  $('vocab-learned-section').innerHTML = '';
+
+  if (q) {
+    /* ─ поиск: по названию карточки или по словам внутри ─ */
+    const hits = (window.VOCAB_DATA||[]).filter(c => lvlOk(c) && (
+      normAnswer(`${c.name} ${c.name_ru||''}`).includes(q) ||
+      c.words.some(w => normAnswer(`${w.word} ${w.translation}`).includes(q))));
+    crumbs.innerHTML = `🔎 ${lstr('Suche','Поиск','Пошук')}: «${escapeHtml(S.kartenSearch)}» — ${hits.length}`;
+    wrap.innerHTML = hits.length ? cards(hits) : `<div class="loading-hint">${lstr('Nichts gefunden','Ничего не найдено','Нічого не знайдено')}</div>`;
+    attachCatEvents(wrap);
+    return;
   }
 
-  /* ─ выученные слова ─ */
+  if (S.kartenFavOnly) {
+    /* ─ только выбранные ─ */
+    const favs = getFavCats(p).filter(lvlOk);
+    const favCat = getFavoritesCategory(p);
+    crumbs.innerHTML = `<span>★ ${lstr('Ausgewählte Karten','Выбранные карточки','Вибрані картки')}</span>`
+      + (favCat ? ` <button class="btn-primary karten-fav-all" id="karten-fav-all">▶ ${lstr('Alle ausgewählten lernen','Учить всё выбранное','Вчити все вибране')} (${favCat.words.length})</button>` : '');
+    wrap.innerHTML = favs.length ? cards(favs)
+      : `<div class="karten-empty">${lstr('Noch keine Karten markiert. Tippe auf ☆ an einer Karte, um sie hier zu sammeln.','Пока ничего не отмечено. Нажми ☆ на любой карточке — она появится здесь и на главной.','Поки нічого не позначено. Натисни ☆ на будь-якій картці — вона з\'явиться тут і на головній.')}</div>`;
+    $('karten-fav-all')?.addEventListener('click', () => { const c = getFavoritesCategory(); if (c) openSessionSizeModal(c); });
+    attachCatEvents(wrap);
+    return;
+  }
+
+  if (S.kartenTheme) {
+    /* ─ карточки одной темы ─ */
+    const th = allThemes().find(x => x.id === S.kartenTheme) || OTHER_THEME;
+    crumbs.innerHTML = `<button class="karten-back" id="karten-back">← ${lstr('Alle Themen','Все темы','Усі теми')}</button>
+      <span class="karten-theme-h">${th.emoji} ${escapeHtml(themeName(th))}</span>`;
+    $('karten-back').addEventListener('click', () => { S.kartenTheme = null; renderVocabScreen(); });
+    const list = catsOfTheme(th, S.vocabFilter);
+    wrap.innerHTML = list.length ? cards(list) : `<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`;
+    attachCatEvents(wrap);
+    return;
+  }
+
+  /* ─ обзор тем ─ */
+  crumbs.innerHTML = `<span>${lstr('Wähle ein Thema','Выбери тему','Обери тему')}</span>`;
+  wrap.className = 'karten-themes-grid';
+  const deferredCat = getDeferredCategory();
+  let html = '';
+  if (deferredCat) {
+    const { total, learned } = catCounts(deferredCat, p);
+    html += makeCatCardHTML(deferredCat, total, learned, p);
+  }
+  html += allThemes().map(th => {
+    const list = catsOfTheme(th, S.vocabFilter);
+    if (!list.length) return '';
+    let total = 0, learned = 0, favN = 0;
+    list.forEach(c => { const r = catCounts(c, p); total += r.total; learned += r.learned; if (isFav(c, p)) favN++; });
+    const pct = total ? Math.round(learned / total * 100) : 0;
+    return `<div class="theme-tile" data-theme="${th.id}">
+      ${favN ? `<span class="theme-fav">★ ${favN}</span>` : ''}
+      <div class="theme-emoji">${th.emoji}</div>
+      <div class="theme-name">${escapeHtml(themeName(th))}</div>
+      <div class="theme-meta">${list.length} ${lstr('Karten','карточек','карток')} · ${total} ${lstr('Wörter','слов','слів')}</div>
+      <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
+      <div class="theme-pct">${pct}% ${lstr('gelernt','выучено','вивчено')}</div>
+    </div>`;
+  }).join('');
+  wrap.innerHTML = html;
+  attachCatEvents(wrap);
+  wrap.querySelectorAll('.theme-tile').forEach(tile =>
+    tile.addEventListener('click', () => { S.kartenTheme = tile.dataset.theme; renderVocabScreen(); window.scrollTo({ top: 0 }); }));
+
+  /* ─ выученные слова — только в обзоре ─ */
   renderVocabLearned();
 }
 
@@ -1635,7 +1833,13 @@ function updateSessionPickCount() {
 }
 
 function startSession(cat, overrideLimit) {
-  if (cat.category !== 'deferred') logCategoryEvent(cat.level, cat.category);
+  if (!cat.isVirtual && cat.category !== 'deferred') {
+    logCategoryEvent(cat.level, cat.category);
+    // запоминаем для кнопки «Продолжить» на главной
+    const pr = loadProg(); pr.last_cat = { level: cat.level, category: cat.category, updatedAt: Date.now() }; saveProg(pr);
+  }
+  // «← Назад» с карточек возвращает туда, откуда пришли
+  if (S.screen !== 'cards') S.cardsReturnTo = S.screen;
 
   // Режим спряжения глаголов — сразу печатный тест по всем формам
   if (cat.mode === 'conjugation') { startConjugation(cat); return; }
@@ -3863,7 +4067,7 @@ function initEvents() {
       closeMobileNav();
       const s=link.dataset.screen;
       if(s==='home'||s==='lektionen'){show('home');renderHome();}
-      else if(s==='wortschatz') renderVocabScreen();
+      else if(s==='wortschatz') openKarten();
       else if(s==='grammatik')  renderGrammarScreen();
       else if(s==='tables')     renderTablesScreen();
       else if(s==='prep')       renderPrepScreen();
@@ -3879,8 +4083,8 @@ function initEvents() {
     card.addEventListener('click',()=>{S.level=card.dataset.level;renderHome();}));
 
   /* Разделы */
-  document.querySelector('.grammar-card').addEventListener('click',renderGrammarScreen);
-  document.querySelector('.vocab-card').addEventListener('click',  renderVocabScreen);
+  /* Поиск во вкладке «Карточки» */
+  $('karten-search').addEventListener('input', e => { S.kartenSearch = e.target.value; renderVocabScreen(); });
 
   /* Weiter (для слов без артикля) */
   $('weiter-btn').addEventListener('click', ()=>{ if(!S.busy) handleArticle('-'); });
@@ -3965,7 +4169,8 @@ function initEvents() {
   });
 
   /* Кнопки назад */
-  $('cards-back').addEventListener('click',  ()=>{show('home');renderHome();});
+  const backFromCards = () => { if (S.cardsReturnTo === 'wortschatz') renderVocabScreen(); else { show('home'); renderHome(); } };
+  $('cards-back').addEventListener('click', backFromCards);
   $('grammar-back').addEventListener('click',()=>{show('home');renderHome();});
   $('vocab-back').addEventListener('click',  ()=>{show('home');renderHome();});
 
@@ -3976,8 +4181,8 @@ function initEvents() {
     $('flashcard').classList.remove('hidden');
     drawCard();
   });
-  $('btn-home').addEventListener('click', ()=>{show('home');renderHome();});
-  $('btn-home2').addEventListener('click',()=>{show('home');renderHome();});
+  $('btn-home').addEventListener('click', backFromCards);
+  $('btn-home2').addEventListener('click', backFromCards);
   $('btn-review-learned').addEventListener('click',()=>{
     S.cardIdx=S.sessionCorrect=S.sessionWrong=S.sessionLearned=0;
     $('all-learned').classList.add('hidden');
