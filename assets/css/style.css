@@ -2424,3 +2424,23 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
   background: rgba(168,139,250,.15); border: 1px solid rgba(168,139,250,.3);
 }
 .ce-speak:hover { background: rgba(168,139,250,.3); }
+
+/* ── Генератор предложений: настройки ── */
+.sent-cfg { display: flex; flex-direction: column; gap: 12px; margin: 18px auto; max-width: 720px; text-align: left; }
+.sc-row { display: flex; flex-direction: column; gap: 6px; }
+.sc-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+.sc-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sc-chip {
+  padding: 7px 12px; border-radius: 999px; cursor: pointer; font-size: 13.5px; color: inherit;
+  background: var(--glass-bg-hi); border: 1px solid var(--glass-border); transition: background .15s, border-color .15s;
+}
+.sc-chip:hover { border-color: rgba(168,139,250,.5); }
+.sc-chip.active { background: linear-gradient(135deg, rgba(168,139,250,.35), rgba(96,165,250,.3)); border-color: rgba(168,139,250,.7); font-weight: 600; }
+.sc-note { font-size: 12px; color: var(--text-muted); margin-left: 4px; }
+.sent-cfg.learned-mode .sc-gen-only { opacity: .35; pointer-events: none; }
+.translate-meta { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+.translate-meta:empty { display: none; }
+.translate-meta span { font-size: 11.5px; padding: 3px 9px; border-radius: 999px; background: rgba(168,139,250,.15); border: 1px solid rgba(168,139,250,.3); }
+.tr-read-ru { font-size: 16px; color: var(--text-muted); margin-bottom: 8px; }
+.tr-alt { margin-top: 6px; font-size: 13px; color: var(--text-muted); }
+#translate-ru .ce-speak { vertical-align: middle; margin-left: 6px; }

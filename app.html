@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260802v">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260802w">
 </head>
 <body>
 
@@ -337,14 +337,16 @@
       <div id="translate-intro" class="exam-intro">
         <p class="exam-desc" id="translate-desc" data-i18n="translate_desc">Случайные предложения из выученных слов. Переведи с русского на немецкий.</p>
         <div class="translate-avail" id="translate-avail"></div>
+        <div class="sent-cfg" id="sent-cfg"></div>
         <button class="btn-primary exam-start-btn" id="translate-start" data-i18n="translate_start">Начать перевод</button>
       </div>
 
       <div id="translate-run" class="exam-run hidden">
         <div class="exam-progress-bar"><div class="exam-progress-fill" id="translate-progress-fill"></div></div>
         <div class="exam-counter" id="translate-counter">1 / 20</div>
+        <div class="translate-meta" id="translate-meta"></div>
         <div class="translate-ru" id="translate-ru">Предложение…</div>
-        <div class="tt-input-wrap">
+        <div class="tt-input-wrap" id="translate-input-wrap">
           <input id="translate-input" class="tt-input" type="text"
             placeholder="Auf Deutsch schreiben…"
             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -512,17 +514,18 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260802v"></script>
-  <script src="assets/js/auth.js?v=20260802v"></script>
-  <script src="db/words.js?v=20260802v"></script>
-  <script src="db/irregular_verbs.js?v=20260802v"></script>
-  <script src="db/themes.js?v=20260802v"></script>
-  <script src="db/examples.js?v=20260802v"></script>
-  <script src="db/grammar.js?v=20260802v"></script>
-  <script src="db/cloze.js?v=20260802v"></script>
-  <script src="db/translations_uk.js?v=20260802v"></script>
-  <script src="db/changelog.js?v=20260802v"></script>
-  <script src="db/achievements.js?v=20260802v"></script>
-  <script src="assets/js/app.js?v=20260802v"></script>
+  <script src="assets/js/supabase-config.js?v=20260802w"></script>
+  <script src="assets/js/auth.js?v=20260802w"></script>
+  <script src="db/words.js?v=20260802w"></script>
+  <script src="db/irregular_verbs.js?v=20260802w"></script>
+  <script src="db/themes.js?v=20260802w"></script>
+  <script src="db/examples.js?v=20260802w"></script>
+  <script src="db/sentences.js?v=20260802w"></script>
+  <script src="db/grammar.js?v=20260802w"></script>
+  <script src="db/cloze.js?v=20260802w"></script>
+  <script src="db/translations_uk.js?v=20260802w"></script>
+  <script src="db/changelog.js?v=20260802w"></script>
+  <script src="db/achievements.js?v=20260802w"></script>
+  <script src="assets/js/app.js?v=20260802w"></script>
 </body>
 </html>
