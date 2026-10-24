@@ -1888,12 +1888,12 @@ function startSession(cat, overrideLimit) {
 /* ── пример предложения на карточке + члены предложения цветом ── */
 const ROLE_ORDER = ['S', 'V', 'A', 'D', 'E', 'Z'];
 const ROLE_NAMES = {
-  S: ['Subjekt',     'подлежащее',     'підмет'],
-  V: ['Verb',        'глагол',         'дієслово'],
-  A: ['Akkusativ',   'кого? что? (Akk)', 'кого? що? (Akk)'],
-  D: ['Dativ',       'кому? (Dat)',    'кому? (Dat)'],
-  E: ['Prädikativ',  'кто/какой? (после sein)', 'хто/який? (після sein)'],
-  Z: ['Angabe',      'когда? где? как?', 'коли? де? як?'],
+  S: ['Subjekt (wer? was?)',          'подлежащее (Subjekt)',               'підмет (Subjekt)'],
+  V: ['Prädikat (Verb)',              'глагол (Prädikat)',                  'дієслово (Prädikat)'],
+  A: ['Akkusativobjekt (wen? was?)',  'кого? что? (Akkusativobjekt)',       'кого? що? (Akkusativobjekt)'],
+  D: ['Dativobjekt (wem?)',           'кому? (Dativobjekt)',                'кому? (Dativobjekt)'],
+  E: ['Prädikativ (nach sein)',       'кто/какой? после sein (Prädikativ)', 'хто/який? після sein (Prädikativ)'],
+  Z: ['Angabe (wann? wo? wie?)',      'когда? где? как? (Angabe)',          'коли? де? як? (Angabe)'],
 };
 function roleName(r) { return lstr(...ROLE_NAMES[r]); }
 function exRolesOn() { try { return localStorage.getItem('dl_ex_roles') !== '0'; } catch { return true; } }
