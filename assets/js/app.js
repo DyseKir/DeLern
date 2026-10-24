@@ -1908,6 +1908,30 @@ function drawCard() {
       <div><span class="cf-label">Präsens (er/sie/es)</span><b>${escapeHtml(card.forms.praes)}</b></div>
       <div><span class="cf-label">Perfekt</span><b>${escapeHtml(card.forms.perf)}</b></div>`;
   }
+  // пример предложения со словом — только при заучивании (в тесте не показываем)
+  const exEl = $('card-example');
+  const ex = window.EXAMPLES && window.EXAMPLES[card.id];
+  if (exEl) {
+    exEl.classList.toggle('hidden', !ex);
+    if (ex) {
+      // подсвечиваем само слово (без артикля), если оно встречается в предложении как есть
+      // кандидаты: само слово, а у глаголов с формами — ещё Präsens и Partizip (geht, gegangen)
+      const cands = [card.word.replace(/^sich\s+/, '').split(/\s+/)[0]];
+      if (card.forms) {
+        card.forms.praes.split(/[\s/]+/).forEach(x => x !== 'sich' && cands.push(x));
+        card.forms.perf.split(/[\s/]+/).filter(x => !/^(hat|ist|sich)$/.test(x)).forEach(x => cands.push(x));
+      }
+      const de = escapeHtml(ex[0]);
+      const hit = cands.filter(c => c.length > 2)
+        .map(c => new RegExp(`(^|[^\\p{L}])(${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(?=[^\\p{L}]|$)`, 'iu'))
+        .find(re => re.test(de));
+      exEl.innerHTML = `
+        <div class="ce-de"><span>${hit ? de.replace(hit, '$1<b>$2</b>') : de}</span>
+          <button class="ce-speak" id="ce-speak" title="🔊">🔊</button></div>
+        <div class="ce-tr">${escapeHtml(ex[1])}</div>`;
+      $('ce-speak').addEventListener('click', e => { e.stopPropagation(); if (VLOOP.on) stopVerbLoop(); speakWord(ex[0]); });
+    }
+  }
   // кнопка зацикленной озвучки — только у карточек с формами; если включена, продолжает на следующем глаголе
   $('loop-btn')?.classList.toggle('hidden', !card.forms);
   if (VLOOP.on) { if (card.forms) startVerbLoop(card); else stopVerbLoop(); }
