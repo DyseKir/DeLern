@@ -320,6 +320,22 @@ function normAnswer(s) {
     .replace(/[óòô]/g,'o').replace(/[úùû]/g,'u');
 }
 
+/* ── Проверка ответа на слово-карточку ──
+   'ok' | 'case' (всё верно, но существительное с маленькой буквы) | 'wrong'.
+   У существительных (есть артикль) слова, которые в оригинале с большой буквы,
+   и в ответе должны быть с большой. Артикль — в любом регистре. */
+function checkWordAnswer(raw, card) {
+  const noArt = !card.article || card.article === '-';
+  const expectedRaw = noArt ? card.word : `${card.article} ${card.word}`;
+  if (normAnswer(raw) !== normAnswer(expectedRaw)) return 'wrong';
+  if (noArt) return 'ok';
+  const isUp = ch => !!ch && ch !== ch.toLowerCase();
+  const got  = raw.trim().split(/\s+/).slice(1);          // без артикля
+  const want = card.word.trim().split(/\s+/);
+  return want.every((w, i) => !isUp(w[0]) || isUp((got[i] || '')[0])) ? 'ok' : 'case';
+}
+const CASE_HINT = () => lstr('Nomen schreibt man groß!', 'Существительные пишутся с большой буквы!', 'Іменники пишуться з великої літери!');
+
 /* ── Приблизительная транскрипция немецкого русскими буквами ── */
 function deTranscribe(word) {
   if (!word) return '';
@@ -2359,7 +2375,7 @@ function drawTestCard() {
 function handleTypingSubmit() {
   const card = S.testQueue[0];
   if (!card) return;
-  let raw, isOk;
+  let raw, isOk, caseErr = false;
   const noArt = !card.article || card.article === '-';
   if (card.forms) {
     if (S.ttBusy) return;
@@ -2377,10 +2393,9 @@ function handleTypingSubmit() {
     isOk = res.all;
   } else {
     raw = $('tt-input').value.trim();
-    const input    = normAnswer(raw);
-    const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
-    if (!input) return;
-    isOk = input === expected;
+    if (!normAnswer(raw)) return;
+    caseErr = checkWordAnswer(raw, card) === 'case';
+    isOk = checkWordAnswer(raw, card) === 'ok';
   }
 
   S.testQueue.shift();                 // убираем текущее слово из головы очереди
@@ -2409,9 +2424,10 @@ function handleTypingSubmit() {
     S.testQueue.push(card);
     const ans = card.forms ? `${card.word} · ${card.forms.praes} · ${card.forms.perf}`
               : noArt ? card.word : `${card.article} ${card.word}`;
-    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${escapeHtml(raw)||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`;
+    $('tt-feedback').innerHTML = `<span class="tt-your-ans">${escapeHtml(raw)||'—'}</span> → <strong class="tt-right-ans">${ans}</strong> <small>(${lstr('Streak zurück','стрик сброшен','стрик скинуто')} → 0)</small>`
+      + (caseErr ? `<div class="tt-case-hint">🔠 ${CASE_HINT()}</div>` : '');
     $('tt-feedback').className = 'tt-feedback bad';
-    setTimeout(()=>{ $('tt-input').value=''; drawTestCard(); }, 2000);
+    setTimeout(()=>{ $('tt-input').value=''; drawTestCard(); }, caseErr ? 2600 : 2000);
   }
 }
 
@@ -3725,7 +3741,7 @@ function _artWhy(need, g) {
    модальные глаголы, местоимения, режим). Движок — db/sentences.js
 ══════════════════════════════════════════════════════════════ */
 const SENT_CFG_KEY = 'dl_sent_cfg';
-const SENT_DEFAULT = { mode: 'translate', topic: 'all', level: 'A1', tenses: ['praes'], modals: 'no', pronouns: true };
+const SENT_DEFAULT = { mode: 'translate', topic: 'all', level: 'A1', tenses: ['praes'], modals: 'no', pronouns: true, mix: false };
 function loadSentCfg() {
   try { return { ...SENT_DEFAULT, ...JSON.parse(localStorage.getItem(SENT_CFG_KEY) || '{}') }; } catch { return { ...SENT_DEFAULT }; }
 }
@@ -3754,6 +3770,9 @@ function renderSentCfg() {
       ${chip('tenses','praes','Präsens · '+lstr('Gegenwart','настоящее','теперішній'), c.tenses.includes('praes'))}
       ${chip('tenses','perf','Perfekt · '+lstr('Vergangenheit (gesprochen)','прошедшее (разговорное)','минулий (розмовний)'), c.tenses.includes('perf'))}
       ${chip('tenses','praet','Präteritum · '+lstr('Vergangenheit (geschrieben)','прошедшее (книжное)','минулий (книжний)'), c.tenses.includes('praet'))}
+      <span class="sc-note">${lstr('mehrere wählbar','можно выбрать несколько','можна обрати кілька')}</span>
+    </div><div class="sc-chips">
+      ${chip('mix','1','🔀 '+lstr('Zwei Zeiten in einem Satz: „Gestern habe ich …, aber heute …“','Два времени в одном предложении: «Вчера я …, а сегодня …»','Два часи в одному реченні: «Вчора я …, а сьогодні …»'), c.mix)}
     </div></div>
     <div class="sc-row sc-gen-only"><div class="sc-label">${lstr('Modalverben','Модальные глаголы','Модальні дієслова')}</div><div class="sc-chips">
       ${chip('modals','no',lstr('Nein','Нет','Ні'), c.modals==='no')}
@@ -3774,6 +3793,11 @@ function renderSentCfg() {
       if (!set.size) set.add(v);                 // хотя бы одно время
       cfg.tenses = ['praes','perf','praet'].filter(x => set.has(x));
     } else if (g === 'pronouns') cfg.pronouns = v === '1';
+    else if (g === 'mix') {
+      cfg.mix = !cfg.mix;
+      // для смешанных предложений нужны Präsens и хотя бы одно прошедшее
+      if (cfg.mix) { const set = new Set(cfg.tenses); set.add('praes'); if (!set.has('perf') && !set.has('praet')) set.add('perf'); cfg.tenses = ['praes','perf','praet'].filter(x => set.has(x)); }
+    }
     else cfg[g] = v;
     saveSentCfg(cfg);
     renderTranslateScreen();
@@ -3786,7 +3810,8 @@ function nextTranslateItem() {
   const make = () => cfg.topic === 'learned'
     ? genSentence(TRP.pools)
     : window.SentenceGen.generate({ topic: cfg.topic, level: cfg.level, tenses: cfg.tenses,
-        modals: cfg.modals === 'always' ? 'always' : cfg.modals === 'some', pronouns: cfg.pronouns });
+        modals: cfg.modals === 'always' ? 'always' : cfg.modals === 'some', pronouns: cfg.pronouns,
+        mix: !!cfg.mix && cfg.tenses.some(x => x !== 'praes') });
   let item = null, tries = 0;
   do { item = make(); tries++; } while (item && item.ru === TRP.last && tries < 12);
   if (item) TRP.last = item.ru;
@@ -3847,7 +3872,7 @@ function drawTranslateCard() {
   TRP.current = item; TRP.answered = false; TRP.moving = false;
   const read = TRP.cfg && TRP.cfg.mode === 'read';
   const m = item.meta;
-  $('translate-meta').innerHTML = m ? [TENSE_LABEL[m.tense], m.modal, m.level].filter(Boolean).map(x => `<span>${x}</span>`).join('') : '';
+  $('translate-meta').innerHTML = m ? [m.mixLabel || TENSE_LABEL[m.tense], m.modal, m.level].filter(Boolean).map(x => `<span>${x}</span>`).join('') : '';
   $('translate-counter').textContent  = `№ ${TRP.count+1}`;
   $('translate-score').textContent    = `✓ ${TRP.correct}`;
   $('translate-input').value = '';
@@ -4245,22 +4270,22 @@ function handleExamSubmit() {
   const card = EX.cards[EX.idx];
   if (!card) return;
   const raw      = $('exam-input').value.trim();
-  const input    = normAnswer(raw);
   const noArt    = !card.article || card.article === '-';
-  const expected = normAnswer(noArt ? card.word : `${card.article} ${card.word}`);
-  if (!input) return;
+  if (!normAnswer(raw)) return;
+  const res = checkWordAnswer(raw, card);
 
   const fb = $('exam-feedback');
-  if (input === expected) {
+  if (res === 'ok') {
     EX.correct++;
     fb.textContent = '✓'; fb.className = 'exam-feedback ok';
   } else {
     const ans = noArt ? card.word : `${card.article} ${card.word}`;
-    fb.innerHTML = `<span class="tt-your-ans">${raw||'—'}</span> → <strong class="tt-right-ans">${ans}</strong>`;
+    fb.innerHTML = `<span class="tt-your-ans">${escapeHtml(raw)||'—'}</span> → <strong class="tt-right-ans">${ans}</strong>`
+      + (res === 'case' ? `<div class="tt-case-hint">🔠 ${CASE_HINT()}</div>` : '');
     fb.className = 'exam-feedback bad';
   }
   $('exam-score').textContent = `✓ ${EX.correct}`;
-  const delay = input === expected ? 500 : 1400;
+  const delay = res === 'ok' ? 500 : res === 'case' ? 2200 : 1400;
   setTimeout(()=>{ EX.idx++; drawExamCard(); }, delay);
 }
 

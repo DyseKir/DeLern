@@ -262,6 +262,7 @@
 
   /* ══ Сборка одного предложения ══ */
   function generate(opts = {}) {
+    if (opts.mix && !opts._raw) return generateMixed(opts);
     const tenses = (opts.tenses && opts.tenses.length) ? opts.tenses : ['praes'];
     const lvl = LVL[opts.level] || 1;
     const topics = opts.topic && opts.topic !== 'all' ? TOPICS.filter(t => t.id === opts.topic) : TOPICS;
@@ -269,7 +270,7 @@
     const frame = pick(topic.frames);
     const [objDe, objRu] = pick(frame.objs);
     const V = DE_VERBS[frame.de], R = RU_VERBS[frame.ru];
-    const subj = pick(opts.pronouns === false ? NOUNS : PRONOUNS);
+    const subj = opts._subj || pick(opts.pronouns === false ? NOUNS : PRONOUNS);
     const rp = subj.rp != null ? subj.rp : subj.p;          // лицо русского глагола
     let tense = pick(tenses);
 
@@ -312,7 +313,7 @@
 
     // ─ обстоятельство времени ─
     const pastLike = tense !== 'praes';
-    const useTime = Math.random() < (pastLike ? 0.75 : 0.4);
+    const useTime = opts._forceTime || Math.random() < (pastLike ? 0.75 : 0.4);
     const time = useTime ? pick(pastLike ? TIME_PAST : TIME_NOW) : null;
 
     const subjDe = subj.de;
@@ -339,6 +340,12 @@
     const ruClause = [subj.ru, time && time[1], ruVerb, objRu].filter(Boolean).join(' ');
     const ruMainFront = time ? [time[1], subj.ru, ruVerb, objRu].join(' ') : ruClause;
 
+    // сырая часть для сложного предложения (generateMixed): без заглавной буквы и точки
+    if (opts._raw) return {
+      deRaw: inverted ? [main, main === inverted ? straight : inverted] : [main],
+      ruRaw: ruMainFront, hints, subj, finite, meta: { topic: topic.id, tense, modal: modalKey && MODAL_NAMES[modalKey] },
+    };
+
     let de = [cap(main) + '.'];
     if (inverted) de.push(cap(main === inverted ? straight : inverted) + '.');
     let ru = cap(ruMainFront) + '.';
@@ -358,6 +365,34 @@
       ru, uk: ru, de,
       hint: hints.join('<br>'),
       meta: { topic: topic.id, tense, modal: modalKey && MODAL_NAMES[modalKey], level: opts.level },
+    };
+  }
+
+  // ─ два времени в одном предложении: «Gestern habe ich …, aber heute …» ─
+  const TENSE_DE = { praes: 'Präsens', perf: 'Perfekt', praet: 'Präteritum' };
+  const last = str => str.split(' ').slice(-1)[0];
+  function generateMixed(opts) {
+    const tenses = opts.tenses || [];
+    const past = tenses.filter(t => t !== 'praes');
+    const sub = { ...opts, mix: false, _raw: true, _forceTime: true, level: (LVL[opts.level] || 1) >= 2 ? 'A2' : 'A1' };
+    const A = generate({ ...sub, tenses: [pick(past.length ? past : ['perf'])] });
+    let B, tries = 0;
+    // во второй части существительное заменяем местоимением: der Mann … , aber er …
+    const s2 = PRONOUNS.includes(A.subj) ? A.subj
+      : A.subj.g === 'pl' ? { de: 'sie', ru: 'они', p: 5, g: 'pl', rp: 5 }
+      : { de: /^das /.test(A.subj.de) ? 'es' : A.subj.g === 'f' ? 'sie' : 'er', ru: A.subj.g === 'f' ? 'она' : 'он', p: 2, g: A.subj.g };
+    do { B = generate({ ...sub, _subj: s2, topic: A.meta.topic, tenses: ['praes'] }); tries++; }
+    while (tries < 12 && (last(B.deRaw[0]) === last(A.deRaw[0]) || last(B.ruRaw) === last(A.ruRaw)));
+    const de = [];
+    for (const conj of ['aber', 'und']) for (const a of A.deRaw) for (const b of B.deRaw) de.push(`${cap(a)}, ${conj} ${b}.`);
+    const ru = `${cap(A.ruRaw)}, а ${B.ruRaw}.`;
+    const hint = ['<b>Два времени в одном предложении.</b> Первая часть — ' + TENSE_DE[A.meta.tense] + ':', ...A.hints,
+      'Вторая часть — Präsens (после <b>aber/und</b>, они не занимают место, глагол снова на 2-й позиции):',
+      ...(B.hints.length ? B.hints : [`Präsens: <b>${B.finite}</b> на 2-м месте.`])].join('<br>');
+    return {
+      ru, uk: ru, de, hint,
+      meta: { topic: A.meta.topic, tense: 'mix', mixLabel: TENSE_DE[A.meta.tense] + ' + Präsens',
+              modal: A.meta.modal || B.meta.modal, level: opts.level },
     };
   }
 
