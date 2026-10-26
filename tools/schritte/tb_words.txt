@@ -1,0 +1,1142 @@
+# 0|Meine Wörter im Kurs|Слова на уроке|Слова на уроці|✏️
+v||ansehen|Sehen Sie die Fotos an.
+n|das|Bild|Sehen Sie die Bilder an.
+v||hören|Hören Sie.
+o||noch einmal|Hören Sie noch einmal.
+v||ankreuzen|Kreuzen Sie an.
+v||zuordnen|Ordnen Sie zu.
+v||ergänzen|Ergänzen Sie.
+v||machen|Machen Sie einen Film.
+n|der|Kurs|Sprechen Sie im Kurs.
+v||sprechen|Sprechen Sie im Kurs.
+v||lesen|Lesen Sie.
+n|das|Gespräch|Lesen Sie die Gespräche.
+v||spielen|Spielen Sie die Gespräche im Kurs.
+v||suchen|Suchen Sie.
+v||zeigen|Zeigen Sie.
+v||fragen|Fragen Sie im Kurs.
+v||markieren|Markieren Sie.
+n|die|Frage|Ergänzen Sie Fragen.
+v||nachsprechen|Hören Sie und sprechen Sie nach.
+v||raten|Raten Sie.
+n|das|Wort|Raten Sie Wörter.
+n|die|Lektion|Raten Sie Wörter aus der Lektion.
+v||meinen|Was meinen Sie?
+v||sagen|Was sagen die Personen?
+v||notieren|Notieren Sie.
+v||vergleichen|Vergleichen Sie.
+v||schreiben|Schreiben Sie Gespräche.
+v||variieren|Variieren Sie.
+v||erzählen|Erzählen Sie.
+v||arbeiten|Arbeiten Sie zu zweit.
+v||zeichnen|Zeichnen Sie.
+v||verbinden|Hören Sie und verbinden Sie.
+n|die|Antwort|Schreiben Sie Fragen und Antworten.
+# 1|Guten Tag. Mein Name ist …|Знакомство|Знайомство|👋
+o||ich|Ich bin Lili.
+v||heißen|Ich heiße Lara Nowak.
+n|der|Name|Mein Name ist Walter Baumann.
+v||kommen|Ich komme aus Deutschland.
+o||Deutschland|Ich komme aus Deutschland.
+v||sprechen|Ich spreche Polnisch.
+n|das|Deutsch|Ich spreche Deutsch.
+o||und|Ich spreche Deutsch und Englisch.
+o||ein bisschen|Ich spreche ein bisschen Spanisch.
+o||Guten Tag|Guten Tag.
+o||hallo|Hallo! – Guten Tag.
+o||Auf Wiedersehen|Auf Wiedersehen.
+o||tschüs|Tschüs.
+n|der|Herr|Guten Tag, Herr Díaz.
+n|das|Kind|Tschüs, Kinder.
+o||Guten Abend|Guten Abend, meine Damen und Herren.
+n|die|Dame|Guten Abend, meine Damen und Herren.
+o||willkommen|Willkommen bei „Musik international“.
+o||bei|Willkommen bei „Musik international“.
+n|die|Musik|Willkommen bei „Musik international“.
+a||international|Willkommen bei „Musik international“.
+o||Guten Morgen|Guten Morgen, Frau Fleischer.
+n|die|Frau|Guten Morgen, Frau Fleischer.
+o||danke|Oh, danke.
+o||Gute Nacht|Gute Nacht.
+n|der|Papa|Nacht, Papa.
+v||sein|Ich bin Sofia Baumann.
+n|die|Entschuldigung|Entschuldigung, wie heißen Sie?
+o||wie|Wie heißen Sie?
+o||Sie|Wie heißen Sie?
+o||wer|Wer ist das?
+o||ja|Ja, stimmt.
+o||nein|Nein, das ist Lara.
+o||woher|Woher kommst du?
+o||aus|Ich bin aus der Ukraine.
+o||du|Wer bist du?
+o||Österreich|Ich komme aus Österreich.
+n|die|Schweiz|Ich komme aus der Schweiz.
+o||aha|Aha!
+a||toll|Ah, toll.
+a||interessant|Aus Thailand? Interessant.
+o||was|Was sprechen Sie, Frau Tufan?
+o||auch|Aha, auch Türkisch.
+n|die|Sprache|Sprache: Deutsch, Polnisch …
+n|der|Buchstabe|Buchstabe: a, k, s …
+n|das|Alphabet|Das Alphabet: A, B, C …
+o||Wie bitte?|Wie bitte?
+v||buchstabieren|Ich buchstabiere: K-O-S-T-A-D-I-N-O-V.
+o||bitte|Buchstabieren Sie, bitte.
+n|die|Firma|Firma Microlab, guten Tag.
+o||Vielen Dank|Vielen Dank.
+o||Auf Wiederhören|Auf Wiederhören, Herr Kostadinov.
+n|die|Adresse|Adresse: Hofgasse 8, 6020 Innsbruck
+n|die|Visitenkarte|Schreiben Sie Ihre Visitenkarte.
+n|der|Vorname|Vorname: Lorenzo, Lucie, Jürgen …
+n|der|Familienname|Familienname: Menardi, Plank …
+n|die|Straße|Straße: Hofgasse, Bahnhofstraße …
+n|die|Stadt|Stadt: Berlin, Linz, Schaan …
+n|das|Land|Land: Österreich, Schweiz …
+n|die|E-Mail|E-Mail: l-eigner@dk.de
+n|das|Telefon|Telefon: 041 227 11 00
+n|das|Formular|Ergänzen Sie das Formular.
+n|der|Kurs|Kurs A1/1 Deutsch als Fremdsprache
+n|die|Fremdsprache|Ich spreche eine Fremdsprache: Deutsch.
+n|die|Anmeldung|Kurs A1/1 Deutsch als Fremdsprache – Anmeldung
+n|die|Postleitzahl|Die Postleitzahl ist 50676.
+o||Polen|Ich komme aus Polen.
+n|die|Türkei|Ich komme aus der Türkei.
+o||Spanien|Ich komme aus Spanien.
+o||Ungarn|Ich komme aus Ungarn.
+o||Rumänien|Ich komme aus Rumänien.
+o||Syrien|Ich komme aus Syrien.
+o||Bulgarien|Ich komme aus Bulgarien.
+o||Italien|Ich komme aus Italien.
+o||Griechenland|Ich komme aus Griechenland.
+o||Polnisch|Ich spreche Polnisch.
+o||Türkisch|Ich spreche Türkisch.
+o||Spanisch|Ich spreche Spanisch.
+o||Ungarisch|Ich spreche Ungarisch.
+o||Rumänisch|Ich spreche Rumänisch.
+o||Arabisch|Ich spreche Arabisch.
+o||Bulgarisch|Ich spreche Bulgarisch.
+o||Italienisch|Ich spreche Italienisch.
+o||Griechisch|Ich spreche Griechisch.
+# 2|Meine Familie|Моя семья|Моя сім'я|👨‍👩‍👧
+v||lernen|Tim lernt auch Deutsch.
+n|der|Park|Tim und Lara lernen im Park.
+n|die|Pause|Tim und Lara haben Pause.
+n|die|Familie|Das ist meine Familie.
+n|der|Vater|Das ist Laras Vater.
+n|die|Großeltern|Das sind Laras Großeltern.
+n|die|Mutter|Das ist Laras Mutter.
+n|die|Eltern|Das sind Tims Eltern.
+n|der|Bruder|Das ist Tims Bruder.
+n|die|Geschwister|Lara hat Geschwister.
+n|das|Jahr|Lara ist zwanzig Jahre alt.
+v||leben|Laras Vater lebt in Poznań.
+o||in|Laras Vater lebt in Poznań.
+a||gut|Wie geht's? – Gut, danke.
+a||super|Wie geht's? – Super.
+o||na ja|Wie geht's? – Na ja, es geht.
+o||ach|Ach, nicht so gut.
+o||so|Nicht so gut.
+o||sehr|Danke, sehr gut.
+n|der|Enkel|Lili ist Walters Enkelin.
+n|die|Enkelin|Lili ist Walters Enkelin.
+n|die|Tochter|Sofia ist Walters Tochter.
+n|der|Sohn|Tobias ist Walters Sohn.
+n|die|Schwester|Sofia ist Tobias' Schwester.
+n|die|Oma|Luise ist Lilis Oma.
+n|der|Mann|Walter ist Luises Mann.
+n|der|Opa|Walter ist Lilis Opa.
+o||dein|Wer ist das? Dein Bruder?
+o||mein|Das ist mein Vater.
+o||Ihr|Lili ist Ihre Tochter.
+n|der|Ehemann|Maria ist deine Ehefrau.
+n|die|Ehefrau|Maria ist deine Ehefrau.
+a||falsch|Nein, falsch.
+o||sie (Singular)|Das ist Lara. Sie kommt aus Polen.
+o||zusammen|Laras Eltern leben nicht zusammen.
+o||sie (Plural)|Das sind Laras Eltern. Sie sind geschieden.
+a||geschieden|Sie sind geschieden.
+o||er|Das ist Tim. Er kommt aus Kanada.
+v||wohnen|Tim wohnt jetzt in München.
+o||jetzt|Tim wohnt jetzt in München.
+o||ihr|Wer seid ihr? – Wir sind Merima und Anisa.
+o||wir|Wir kommen aus Bosnien.
+n|die|Zahl|Zahl: 0, 1, 2 …
+o||wo|Wo wohnen Sie?
+a||geboren|Wo sind Sie geboren?
+n|die|Nummer|Wie ist Ihre Telefonnummer?
+a||verheiratet|Ich bin verheiratet.
+v||haben|Haben Sie Kinder?
+n|der|Geburtsort|Geburtsort: Madrid
+n|der|Wohnort|Wohnort: 20249 Hamburg
+n|der|Familienstand|Familienstand: geschieden
+a||ledig|Ich bin ledig.
+a||verwitwet|Ich bin verwitwet.
+n|das|Alter|Alter: 8 und 5
+n|der|Norden|Hamburg ist im Norden.
+n|der|Osten|Leipzig ist im Osten.
+n|der|Süden|München ist im Süden.
+n|der|Westen|Köln ist im Westen.
+n|die|Hauptstadt|Berlin ist die Hauptstadt von Deutschland.
+n|der|Lehrer|Mein Vater ist Lehrer.
+n|die|Lehrerin|Meine Mutter ist Lehrerin.
+n|der|Deutsche|Mein Vater ist Deutscher.
+n|die|Deutsche|Mein Vater ist Kroate, meine Mutter ist Deutsche.
+# 3|Einkaufen|Покупки|Покупки|🛒
+n|die|Banane|Lara und Sofia haben Bananen.
+n|die|Butter|Lara und Sofia haben Butter.
+n|das|Ei|Sie haben Eier.
+n|das|Mehl|Lara und Sofia haben Mehl.
+n|die|Milch|Lara und Sofia haben Milch.
+n|der|Zucker|Lara und Sofia haben Zucker.
+n|der|Pfannkuchen|Superlecker … Bananenpfannkuchen!
+n|die|Schokolade|Das ist Schokolade.
+v||brauchen|Sie brauchen Eier.
+v||kaufen|Lili kauft Bananen.
+n|der|Hunger|Ich habe Hunger.
+n|der|Euro|Das macht dann 3 Euro 87.
+n|das|Fleisch|Haben wir Fleisch?
+n|das|Bier|Haben wir Bier?
+n|der|Käse|Ich habe Käse.
+n|das|Salz|Haben Sie Salz?
+n|der|Tee|Haben wir Tee?
+n|das|Brot|Sind das Brote?
+n|der|Wein|Brauchen wir Wein?
+n|das|Mineralwasser|Haben wir Mineralwasser?
+n|der|Reis|Brauchst du Reis?
+n|der|Fisch|Brauchen wir Fisch?
+o||ein|Das ist ein Schokoladenei.
+o||kein|Das ist doch kein Ei!
+n|der|Apfel|Das ist kein Apfel.
+n|die|Orange|Das ist eine Orange.
+n|der|Kuchen|Das ist kein Kuchen.
+n|der|Kaffee|Das ist kein Kaffee.
+n|der|Saft|Das ist kein Saft.
+n|das|Brötchen|Das ist doch kein Brötchen.
+n|das|Würstchen|Ist das ein Würstchen?
+n|die|Birne|Das ist keine Birne.
+n|die|Tomate|Das ist eine Tomate.
+n|die|Kartoffel|Nein, das sind keine Kartoffeln.
+n|der|Joghurt|Ist das ein Joghurt?
+n|die|Zwiebel|Sind das Zwiebeln?
+n|das|Regal|In Regal A sind drei Bananen.
+n|der|Preis|Preis: 2,45 Euro.
+n|der|Cent|Das macht 2 Euro und 45 Cent.
+n|der|Prospekt|Sehen Sie den Prospekt an.
+n|das|Sonderangebot|Heute im Sonderangebot: 4 Kiwis für 0,80 €!
+n|das|Lebensmittel|Lebensmittel: Milch, Brot, Eier …
+o||wie viel|Wie viel kostet ein Brot?
+v||kosten|Ein Brot kostet 2,49 €.
+n|das|Kilo|Wie viel kostet ein Kilo Orangen?
+n|das|Gramm|Was kosten 100 Gramm Käse?
+n|das|Pfund|Wie viel kostet ein Pfund Äpfel?
+n|der|Liter|Ein Liter Milch kostet 75 Cent.
+n|die|Flasche|Eine Flasche Saft kostet 1,09 €.
+n|die|Dose|Eine Dose Tomaten kostet 0,49 €.
+n|die|Sahne|Ein Becher Sahne kostet 39 Cent.
+n|die|Wurst|100 Gramm Wurst kosten 2,29 €.
+n|das|Hackfleisch|Wie viel kostet ein Kilo Hackfleisch?
+n|der|Verkäufer|Ich bin Verkäufer.
+n|die|Verkäuferin|Ich bin Verkäuferin.
+n|der|Kunde|Ich bin Kunde.
+n|die|Kundin|Ich bin Kundin.
+o||noch|Ich brauche auch noch Äpfel.
+o||alles|Das ist alles.
+v||möchten|Ich möchte Birnen.
+v||finden|Wo finde ich Spinat?
+n|der|Laden|Im Obstladen: 3 Birnen kosten 1,40 €.
+n|das|Obst|Sie möchten Obst kaufen: 3 Birnen, 2 Äpfel.
+n|das|Gemüse|Sie möchten Gemüse kaufen: 1 Kilo Lauch, 1 Pfund Spinat.
+n|die|Bäckerei|In der Bäckerei: Ein Brötchen kostet 0,30 €.
+n|das|Rezept|Teigtaschen: internationale Rezepte
+o||für|Hier ist mein Rezept für „Schwäbische Maultaschen“.
+n|das|Wasser|Sie brauchen nur 100 ml Wasser.
+n|der|Pfeffer|Sie brauchen Salz und Pfeffer.
+# 4|Meine Wohnung|Моя квартира|Моя квартира|🏠
+n|die|Wohnung|Sie sind in Laras Wohnung.
+n|die|Lampe|Walter hat eine Lampe für Lara.
+n|das|Zimmer|Das ist Laras Zimmer.
+n|die|Küche|Das ist die Küche.
+n|das|Bad|Das ist das Bad.
+a||alt|Die Lampe ist alt.
+a||neu|Die Lampe ist neu.
+a||groß|Das Bad ist groß.
+a||klein|Das Bad ist klein.
+a||hell|Laras Zimmer ist hell.
+a||dunkel|Laras Zimmer ist dunkel.
+a||teuer|Das Zimmer ist teuer.
+a||billig|Das Zimmer ist billig.
+a||schön|Die Küche ist schön.
+a||hässlich|Die Küche ist hässlich.
+v||kennen|Walter kennt Tim.
+n|der|Flur|Der Flur ist groß.
+n|die|Toilette|Die Toilette ist klein.
+n|der|Balkon|Der Balkon ist schön.
+n|das|Wohnzimmer|Das Wohnzimmer ist hell.
+n|das|Haus|Das ist das Haus.
+o||hier|Hier ist der Flur.
+o||dort|Das Arbeitszimmer ist dort.
+o||aber|Das Zimmer ist sehr schön, aber teuer.
+o||nicht|Das Zimmer ist nicht teuer.
+n|der|Monat|Mein Zimmer kostet 350 Euro im Monat.
+a||schmal|Mein Haus ist sehr schmal.
+a||richtig|Ja, richtig.
+a||breit|Die Straße ist breit.
+n|der|Schrank|Hier ist noch ein Schrank.
+n|der|Kühlschrank|Was kostet der Kühlschrank?
+n|das|Sofa|Was kostet das Sofa?
+n|der|Tisch|Der Tisch ist sehr groß.
+n|der|Stuhl|Hier sind Stühle.
+n|das|Bett|Wo sind denn die Betten?
+n|der|Fernseher|Wie viel kostet der Fernseher?
+n|die|Dusche|In der Wohnung ist ein Bad mit Dusche.
+n|der|Herd|Hier ist der Herd.
+n|die|Badewanne|In der Wohnung ist ein Bad mit Badewanne.
+n|der|Teppich|Der Teppich ist schön.
+n|der|Sessel|Der Sessel ist schön.
+n|die|Möbel|Die Möbel sind sehr schön.
+n|das|Gerät|Elektrogeräte: Kühlschrank, Fernseher, Lampe …
+v||gefallen|Wie gefallen Ihnen die Stühle?
+n|die|Farbe|Die Farbe ist sehr schön.
+o||ganz|Wie gefällt dir die Lampe dort? – Ganz gut.
+a||modern|Die Lampe ist sehr modern!
+a||schwarz|Meine Stühle sind schwarz.
+a||grau|Mein Kühlschrank ist grau.
+a||weiß|Mein Kühlschrank ist weiß.
+a||grün|Die Lampe ist grün.
+a||braun|Meine Stühle sind braun.
+a||blau|Mein Kühlschrank ist blau.
+a||rot|Mein Kühlschrank ist rot.
+a||gelb|Der Teppich ist gelb.
+a||hellrot|Mein Kühlschrank ist hellrot.
+a||dunkelrot|Mein Kühlschrank ist dunkelrot.
+n|der|Zentimeter|Ungefähr 60 Zentimeter breit.
+o||mal|Das Kinderbett ist 60 mal 120 Zentimeter groß.
+n|das|Handy|Meine Handynummer ist: 0163/235621147.
+n|die|Arbeit|Meine Nummer bei der Arbeit ist: …
+n|die|Anzeige|Hallo Maria, in der Zeitung sind heute Anzeigen.
+a||nett|Nettes Ehepaar mit Kind.
+n|das|Ehepaar|Nettes Ehepaar mit Kind.
+v||suchen|Sie suchen ein Zimmer.
+n|der|Garten|Ehepaar mit Kind sucht eine 3-4-Zimmer-Wohnung mit Garten.
+v||vermieten|Vermiete Apartment, 36 m².
+n|das|Apartment|Das Apartment kostet 440 Euro im Monat.
+n|der|Raum|Der Wohnraum ist groß, 36 qm.
+n|der|Stock|Ich suche eine Wohnung im 1. Stock.
+o||circa|3-Zimmer-Wohnung, ca. 60 m².
+a||privat|Von privat: helle 4-Zimmer-Wohnung.
+o||ab|Ich suche ab sofort eine 2-Zimmer-Wohnung.
+o||sofort|Ich suche ab sofort eine 2-Zimmer-Wohnung.
+o||maximal|2-Zimmer-Wohnung mit Balkon bis maximal 750 Euro.
+n|der|Anruf|Ich freue mich auf Ihren Anruf.
+a||möbliert|Das Zimmer ist möbliert.
+n|das|TV|Schöne möblierte 1-Zi.-Wohnung mit Balkon und TV.
+n|die|Garage|Sie möchten eine Wohnung mit Garage.
+n|der|Quadratmeter|Das Zimmer ist 21 m² groß.
+o||nur|Sie möchten nur 400 bis 500 Euro Miete bezahlen.
+n|die|Miete|Sie möchten nur 400 bis 500 Euro Miete bezahlen.
+v||bezahlen|Sie möchten nur 400 bis 500 Euro Miete bezahlen.
+v||verkaufen|Was verkauft er?
+o||etwas|Wer verkauft etwas?
+n|der|Computer|Sie verkauft einen Computertisch.
+n|der|Schreibtisch|Er verkauft einen Schreibtisch.
+o||heute|Sind Sie heute Abend zu Hause?
+o||welch-|Welche Farbe hat der Tisch?
+o||also|Also, der Tisch ist dunkelbraun.
+o||ungefähr|Der Tisch ist ungefähr 60 cm breit.
+n|der|Meter|Ungefähr zwei Meter lang.
+a||lang|Ungefähr zwei Meter lang.
+a||genau|Hm … Wie lang ist er denn genau?
+v||sehen|Ich möchte den Tisch gern sehen.
+a||hoch|Der Kühlschrank ist 85 Zentimeter hoch.
+o||morgen|Sind Sie morgen zu Hause?
+# 5|Mein Tag|Мой день|Мій день|☀️
+v||machen|Lara macht eine Präsentation.
+n|die|Präsentation|Lara macht eine Präsentation.
+v||frühstücken|Lara, Sofia und Lili frühstücken zusammen.
+v||einkaufen|Lara kauft ein.
+v||hören|Lara hört Musik.
+v||kochen|Lara kocht das Abendessen.
+v||spazieren gehen|Lara geht spazieren.
+v||aufräumen|Lara räumt die Küche auf.
+v||aufstehen|Lara steht um Viertel nach sieben auf.
+v||gehen|Lara geht zum Deutschkurs.
+o||oder|Lara geht am Nachmittag spazieren oder kauft ein.
+a||müde|Sofia ist am Abend müde.
+v||anrufen|Lara ruft ihre Familie an.
+a||früh|Lara steht früh auf.
+n|der|Supermarkt|Sie kauft im Supermarkt ein.
+v||fernsehen|Sie sieht fern.
+o||mit|Sie frühstückt mit Lara und Lili.
+v||arbeiten|Sofia arbeitet sehr viel und ist am Abend müde.
+o||lange|Sie arbeitet lange.
+v||spielen|Sie spielt mit Lili.
+v||essen|Sofia isst mit Lara und Lili.
+o||gern|Stehst du gern früh auf?
+a||spät|Wie spät ist es jetzt?
+o||schon|Ist es schon zwölf?
+o||erst|Es ist erst elf.
+n|das|Viertel|Es ist Viertel vor zwölf.
+o||vor|Es ist Viertel vor zwölf.
+o||nach|Es ist Viertel nach eins.
+o||halb|Es ist halb zwei.
+n|die|Uhr|Es ist ein Uhr.
+a||kurz|Es ist kurz vor zwölf.
+o||gleich|Es ist gleich zwölf.
+n|der|Intensivkurs|Ich mache einen Intensivkurs.
+v||anfangen|Der Deutschkurs fängt morgen an.
+o||am|Ich mache am Freitag einen Intensivkurs.
+n|der|Montag|Fangen die Kurse am Montag an?
+n|der|Dienstag|Nein, erst am Dienstag.
+n|der|Mittwoch|Was macht Tim am Mittwoch?
+n|der|Donnerstag|Was machst du am Donnerstag?
+n|der|Freitag|Was machst du am Freitag?
+o||wann|Wann fängt der Deutschkurs an?
+o||um|Um halb neun.
+v||enden|Wann endet der Kurs?
+o||von … bis|Der Kurs ist von neun bis zwölf.
+n|die|Party|Ich mache am Freitag eine Party.
+n|die|Zeit|Hast du Zeit?
+n|der|Fußball|Ich spiele Fußball.
+n|der|Samstag|Heute ist Samstag.
+n|der|Sonntag|Am Sonntag?
+n|die|Hausaufgabe|Sina macht Hausaufgaben.
+n|die|Mama|Wann ruft Tim Mama an?
+v||schlafen|He, Lisa, schläfst du schon?
+n|das|Wochenende|Julia steht am Wochenende früh auf.
+o||nächst-|Der Terminkalender für nächste Woche: …
+n|die|Woche|Der Terminkalender für nächste Woche: …
+n|der|Morgen|Am Morgen frühstückt Robert.
+n|der|Vormittag|Am Vormittag räumt er auf.
+n|der|Mittag|Am Mittag isst er mit Nina.
+n|der|Nachmittag|Am Nachmittag macht er Sport.
+n|der|Abend|Am Abend spielt er Fußball.
+n|die|Nacht|In der Nacht geht er spazieren.
+n|das|Kino|Am Abend geht er ins Kino.
+n|der|Sport|Am Nachmittag macht Robert Sport.
+v||trinken|Er trinkt nur Kaffee.
+n|die|Pizza|Er isst eine Pizza.
+v||chatten|In der Nacht chattet Robert.
+a||geöffnet|Bis 17 Uhr geöffnet.
+n|der|Termin|Der Termin ist um 17 Uhr.
+n|der|Kindergarten|Der Kindergarten ist bis 17 Uhr geöffnet.
+n|das|Geschäft|Am Samstag ist das Geschäft von 8 Uhr 30 bis 13 Uhr geöffnet.
+n|die|Bibliothek|Die Bibliothek ist von Montag bis Freitag geöffnet.
+a||geschlossen|An Feiertagen ist die Bibliothek geschlossen.
+v||öffnen|Die Bibliothek öffnet von Montag bis Freitag um 13 Uhr.
+v||schließen|Die Praxis schließt um 16 Uhr 30.
+n|die|Praxis|Die Praxis schließt um 16 Uhr 30.
+n|der|Tag|Ich habe die Kinder am Wochenende den ganzen Tag.
+o||jed-|Ich habe die Kinder jeden Morgen und jeden Abend.
+n|die|Kita|Tom und Luka gehen in die Kita.
+v||bringen|Um 7.15 Uhr bringt Vera die Kinder in die Kita.
+v||abholen|Um 17 Uhr holt sie die Kinder ab.
+o||mehr|Ich hätte gern mehr Zeit für mich.
+n|das|Beispiel|Zum Beispiel möchte ich mal wieder ins Kino gehen.
+o||zum Beispiel|Zum Beispiel möchte ich mal wieder ins Kino gehen.
+o||wieder|Zum Beispiel möchte ich mal wieder ins Kino gehen.
+n|der|Freund|Mein Freund hat heute keine Zeit.
+n|die|Freundin|Meine Freundinnen fragen: „Wann hast du denn mal Zeit, Vera?“
+v||fragen|Meine Freundinnen fragen: „Wann hast du denn mal Zeit?“
+v||antworten|Und ich antworte: „Heute nicht.“
+o||total|Tut mir leid, ich bin total fertig.
+# 6|Freizeit|Свободное время|Вільний час|⚽
+n|der|Ausflug|Familie Baumann und Lara machen einen Ausflug.
+n|das|Auto|Sofia fährt gern Auto.
+v||wandern|Ich wandere sehr gern.
+n|das|Picknick|Lili hat Hunger und sie machen ein Picknick.
+n|die|Gitarre|Walter spielt Gitarre.
+v||telefonieren|Tim telefoniert.
+n|das|Wetter|Das Wetter ist nicht so gut.
+n|die|Sonne|Die Sonne scheint.
+v||scheinen|Die Sonne scheint.
+v||regnen|Es regnet.
+o||viel-|Es gibt viele Wolken.
+n|die|Wolke|Es gibt viele Wolken.
+v||losgehen|Sie gehen los.
+v||vergessen|Sofia vergisst die Dose.
+n|der|Durst|Hast du keinen Durst?
+n|das|Grad|Es sind 25 Grad.
+a||warm|Es ist warm.
+a||windig|Es ist windig.
+a||kalt|Es ist kalt.
+v||schneien|Es schneit.
+a||bewölkt|Es ist bewölkt.
+n|der|Wetterbericht|Hier kommt der Wetterbericht für morgen.
+n|die|Mitte|In der Mitte Deutschlands scheint heute überall die Sonne.
+o||überall|In der Mitte Deutschlands scheint heute überall die Sonne.
+n|die|Temperatur|Die Temperaturen: bis zu 20 Grad.
+v||steigen|Die Temperaturen steigen auf bis zu 20 Grad an der Küste.
+a||sonnig|Es ist sonnig und warm.
+a||leicht|Nur im Osten ist es leicht bewölkt.
+v||bleiben|Auch morgen bleibt es warm.
+n|der|Regen|Ich finde Regen gut.
+n|der|Schnee|Ich mag Schnee.
+o||plus|Es sind plus fünf Grad.
+o||minus|Es ist minus ein Grad.
+n|das|Radio|Im Radio kommt der Wetterbericht für morgen.
+n|das|Internet|Der Wetterbericht im Internet: www.europawetter-heute.de
+n|der|Sommer|Im Sommer ist das Wetter sehr gut.
+a||heiß|Es ist heiß und es sind circa 30 Grad.
+n|der|Frühling|Im Frühling ist das Wetter oft schön.
+n|der|Herbst|Im Herbst regnet es viel.
+a||schlecht|Am Nachmittag ist das Wetter schlecht.
+n|der|Winter|Im Winter ist es kalt.
+n|der|Wind|Ich finde Wind gut.
+a||angenehm|Wind ist angenehm.
+n|die|Speisekarte|Wo ist die Speisekarte?
+n|der|Hamburger|Also, ich möchte einen Hamburger.
+n|die|Speise|Kleine Speisen: Hamburger, Currywurst …
+n|die|Pommes frites|Ich möchte bitte Pommes und eine Currywurst.
+n|die|Portion|Ich möchte eine Portion Pommes.
+n|der|Ketchup|Ich möchte bitte Pommes mit Ketchup.
+n|der|Salat|Ich möchte einen Salat.
+n|der|Schinken|Ich möchte einen Salat mit Schinken und Ei.
+n|das|Getränk|Papa kauft die Getränke.
+n|die|Cola|Ich möchte eine Cola.
+o||doch|Haben wir den Käse nicht dabei? – Doch.
+o||lieber|Aber ich möchte lieber Käse.
+v||nehmen|Nimmst du keine Wurst?
+o||warum|Warum nicht?
+n|der|Hund|Hast du einen Hund?
+n|das|Eis|Ich möchte ein Eis.
+v||tanzen|Ich tanze gern.
+v||schwimmen|Ich schwimme viel.
+v||treffen|Und ich treffe gern meine Freunde.
+n|das|Fahrrad|Ich finde Fahrrad fahren super.
+v||fahren|Im Sommer mache ich gern Sport: Wandern und Fahrrad fahren.
+v||grillen|Im Sommer grille ich gern.
+n|die|Freizeit|Was machst du gern in der Freizeit?
+n|das|Hobby|Was sind deine Hobbys?
+v||lesen|Ich lese gern.
+n|der|Krimi|Ich finde Krimis gut.
+o||Lieblings-|Mein Lieblingsfilm ist der James-Bond-Film Skyfall.
+n|der|Film|Mein Lieblingsfilm ist der James-Bond-Film Skyfall.
+a||wichtig|Das ist wichtig: meine Familie.
+n|der|Grill|Das ist wichtig: gute Grillwürstchen.
+v||sammeln|Alma sammelt Wolkenfotos.
+n|der|Beruf|Was ist dein Beruf?
+n|das|Foto|Das Foto gefällt mir sehr.
+o||besonders|Wolken gefallen mir besonders gut.
+v||fotografieren|Ich finde Wolken schön und ich fotografiere gern.
+n|der|Spaß|Das macht Spaß.
+n|das|Smartphone|Ich brauche nur mein Smartphone.
+a||dumm|Oh, wie dumm!
+o||oft|Spielst du oft?
+v||meinen|Du meinst das Würfelspiel?
+n|der|Würfel|Du meinst das Würfelspiel?
+n|das|Spiel|Hast du kein Backgammon-Spiel?
+o||leider|Aber da gibt es leider ein Problem.
+n|das|Problem|Aber da gibt es leider ein Problem.
+o||immer|Das Backgammon-Spiel habe ich immer mit dabei.
+o||vielleicht|Oder vielleicht doch?
+a||einfach|Ach, das ist ganz einfach.
+a||schnell|Das lernst du schnell.
+# 7|Kinder und Schule|Дети и школа|Діти і школа|🎒
+a||prima|Wir sind ein prima Team!
+n|das|Team|Wir sind ein prima Team!
+v||wecken|Weckst du Lili?
+n|das|Frühstück|Das Frühstück ist fertig!
+a||fertig|Das Frühstück ist fertig!
+o||los sein|Was ist los?
+v||schreiben|Ihr schreibt also einen Mathetest.
+n|die|Mathematik|Lara lernt mit Lili Mathe.
+n|der|Test|Lili schreibt einen Test.
+a||pünktlich|Pünktlich um Viertel nach zehn.
+o||auf jeden Fall|Sie will auf jeden Fall noch zum Deutschkurs gehen.
+v||schmecken|Das schmeckt so lecker!
+o||nach Hause|Am Nachmittag kommt Lili nach Hause.
+n|die|Schule|Lili geht in die Schule.
+v||können|Kannst du Lili wecken?
+a||krank|Ich bin krank.
+n|der|Arzt|Kannst du mit Jonas zum Arzt gehen?
+n|die|Ärztin|Sie ist Ärztin.
+v||backen|Luisa kann gut Kuchen backen.
+v||singen|Ich kann gar nicht singen.
+v||reiten|Ich kann sehr gut reiten.
+n|das|Klavier|Kannst du gut Klavier spielen?
+v||malen|Alba malt.
+n|der|Ski|Kannst du gut Ski fahren?
+n|das|Tennis|Kannst du gut Tennis spielen?
+v||wollen|Ich will nicht zu spät kommen.
+o||endlich|Willst du nicht endlich aufstehen?
+n|das|Lied|Ich will Lieder singen.
+v||üben|Ich will viel Grammatik üben.
+n|der|Text|Ich will viele Texte lesen.
+n|die|Übung|Ich will viele Übungen machen.
+n|der|Brief|Ich will Briefe schreiben.
+n|das|Diktat|Ich will kein Diktat schreiben.
+n|das|Buch|Ich habe ein Buch gelesen.
+o||schade|Ich habe heute keine Zeit. – Schade!
+n|der|Kilometer|Bist du schon einmal 100 Kilometer Fahrrad gefahren?
+n|die|Kommunikation|Sprechen = Kommunikation
+o||lieb-|Liebe Eltern …
+n|das|Mädchen|Die Mädchen und Jungen machen einen Ausflug.
+n|der|Junge|Die Mädchen und Jungen machen einen Ausflug.
+n|die|Klasse|Mein Sohn Tobias geht in die Klasse von Frau Meikert.
+n|das|Schwimmbad|Die Lehrerin will mit den Kindern ins Schwimmbad fahren.
+n|der|Eintritt|Der Eintritt kostet 7,50 Euro.
+v||losfahren|Wir fahren um 8 Uhr los.
+v||zurückkommen|Wir kommen um 14 Uhr zurück.
+n|die|Grundschule|Mein Sohn geht in die Grundschule.
+v||mitkommen|Jonas kann heute zum Ausflug mitkommen.
+n|der|Unterricht|Ich kann heute nicht zum Unterricht kommen.
+v||leidtun|Oh, das tut mir leid.
+v||Gitarre spielen|Walter spielt Gitarre.
+v||Fahrrad fahren|Im Sommer fahre ich gern Fahrrad.
+v||Freunde treffen|Am Wochenende treffe ich Freunde.
+v||Ski fahren|Kannst du gut Ski fahren?
+v||Tennis spielen|Kannst du gut Tennis spielen?
+# 8|Beruf und Arbeit|Работа и профессия|Робота і професія|💼
+n|die|Geschichte|Die Geschichte spielt in Sofias Praxis.
+n|das|Krankenhaus|Die Geschichte spielt im Krankenhaus.
+n|das|Interview|Lara und Tim machen ein Interview für den Deutschkurs.
+n|die|Zeitung|Sie machen ein Interview für eine Zeitung.
+n|das|Fernsehen|Sie machen ein Interview für das Fernsehen.
+n|die|Ausbildung|Sie sprechen mit Sofia über Ausbildung und Beruf.
+n|der|Chef|Der Mann ist Sofias Chef.
+n|die|Chefin|Meine Chefin ist sehr nett.
+n|der|Patient|Herr Koch ist Sofias Patient.
+n|die|Patientin|Die Patientin wartet.
+n|der|Hausmeister|Herr Koch ist Hausmeister von Beruf.
+n|die|Hausmeisterin|Sie ist Hausmeisterin von Beruf.
+n|der|Journalist|Er ist Journalist von Beruf.
+n|die|Journalistin|Sie ist Journalistin von Beruf.
+n|das|Thema|Das Thema ist „Arbeit und Beruf“.
+o||eigen-|Sofia hat eine eigene Praxis.
+n|der|Mechatroniker|Er arbeitet als Mechatroniker.
+n|die|Mechatronikerin|Sie arbeitet als Mechatronikerin.
+n|der|Hausmann|Er ist Hausmann.
+n|die|Hausfrau|Sie ist Hausfrau.
+n|der|Polizist|Er arbeitet als Polizist.
+n|die|Polizistin|Sie arbeitet als Polizistin.
+n|der|Krankenpfleger|Er ist Krankenpfleger von Beruf.
+n|die|Krankenschwester|Sie ist Krankenschwester von Beruf.
+a||beruflich|Was machen Sie beruflich?
+n|der|Schüler|Ich bin Schüler.
+n|die|Schülerin|Ich bin Schülerin.
+n|der|Student|Ich bin Student.
+n|die|Studentin|Ich bin Studentin.
+v||studieren|Ich studiere noch.
+n|der|Job|Ich habe einen Job als Hausmeister.
+n|die|Stelle|Ich habe eine Stelle als Ärztin.
+a||selbstständig|Ich bin selbstständig.
+a||berufstätig|Ich bin nicht berufstätig.
+a||arbeitslos|Ich bin arbeitslos.
+o||zurzeit|Ich bin zurzeit arbeitslos.
+n|der|Taxifahrer|Ich bin Student und habe einen Job als Taxifahrer.
+n|die|Taxifahrerin|Sie ist Taxifahrerin.
+v||dauern|Wie lange hat die Ausbildung gedauert? – Drei Jahre.
+o||seit|Seit wann arbeiten Sie hier? – Seit 35 Jahren.
+n|die|Bewerbung|Bewerbung um ein Praktikum im Marketing
+n|das|Praktikum|Frau Szabo möchte ein Praktikum machen.
+n|die|Abteilung|Ich möchte in Ihrer Marketing-Abteilung ein Praktikum machen.
+n|der|Leiter|Der Abteilungsleiter hat noch Fragen.
+n|die|Leiterin|Die Leiterin hat noch Fragen.
+a||geehrt|Sehr geehrter Herr Winter, …
+n|die|Wirtschaft|Ich habe in Budapest Wirtschaft studiert.
+n|das|Diplom|Ich habe gerade mein Diplom gemacht.
+o||gerade|Ich habe gerade mein Diplom gemacht.
+n|das|Büro|Ich habe im Büro gearbeitet.
+n|die|Information|Für weitere Informationen stehe ich gern zur Verfügung.
+n|der|Gruß|Mit freundlichen Grüßen
+v||heiraten|Wann hast du geheiratet?
+o||eigentlich|Wann bist du eigentlich geboren?
+o||später|Ich habe in Florenz und später in Rom gelebt.
+n|der|Reiseführer|In Rom habe ich als Reiseführer gearbeitet.
+n|die|Reiseführerin|Sie arbeitet als Reiseführerin.
+n|der|Tourist|Ich habe Touristen die Stadt gezeigt.
+n|die|Touristin|Die Touristin sucht den Bahnhof.
+v||zeigen|Ich habe Touristen die Stadt gezeigt.
+n|die|Berufserfahrung|Ich hatte noch fast keine Berufserfahrung.
+n|das|Café|Vor einem Jahr habe ich in einem Café gearbeitet.
+n|der|Stress|Ich hatte richtig viel Arbeit und oft Stress.
+o||manchmal|Ich habe die Kunden manchmal nicht verstanden.
+n|der|Kellner|Der Kellner bringt die Speisekarte.
+n|die|Kellnerin|Ich war keine gute Kellnerin.
+n|das|Restaurant|Heute arbeite ich in einem Restaurant.
+n|der|Architekt|Er ist Architekt.
+n|die|Architektin|Ich war Architektin.
+n|der|Koch|Ich war Koch.
+n|die|Köchin|Sie ist Köchin.
+n|der|Arbeiter|Ich war Arbeiter.
+n|die|Arbeiterin|Sie war Arbeiterin.
+o||wenig|Ich hatte wenig Arbeit.
+n|der|Kollege|Die Kollegen waren nett.
+n|die|Kollegin|Meine Kollegin ist nett.
+n|das|Ausland|Im Ausland arbeiten oder studieren?
+o||ander-|Auch heute gibt es noch das eine oder andere Problem.
+n|der|Arbeitsplatz|Ich habe sofort einen Arbeitsplatz bekommen.
+n|der|Traum|Das ist nicht mein Traumjob.
+o||tagsüber|Ich habe tagsüber immer Zeit.
+o||dreimal|Am Abend gehe ich dreimal pro Woche in den Deutschkurs.
+v||bekommen|Ich habe sofort einen Arbeitsplatz bekommen.
+n|der|Sekretär|Er ist Sekretär.
+n|die|Sekretärin|Ich habe eine Ausbildung als Sekretärin gemacht.
+n|die|Universität|Ich möchte an der Universität Pharmazie studieren.
+a||befristet|Wir suchen befristet für ein Jahr Verkäufer.
+n|die|Vollzeit|Wir suchen Verkäufer in Vollzeit.
+n|die|Teilzeit|Wir suchen Verkäufer in Teilzeit.
+o||ganztags|Arbeitszeit: von Montag bis Samstag, ganztags oder halbtags
+o||halbtags|Arbeitszeit: von Montag bis Samstag, ganztags oder halbtags
+o||vormittags|Vormittags von 7 bis 14 Uhr.
+o||nachmittags|Nachmittags von 13 bis 20 Uhr.
+n|die|Nachhilfe|Wer kann Nachhilfe in Englisch geben?
+o||montags|Montags und donnerstags von 16 bis 18 Uhr.
+o||donnerstags|Montags und donnerstags von 16 bis 18 Uhr.
+n|die|Senioren|Wir suchen Pflegefachkräfte für die Seniorenresidenz.
+n|die|Aushilfe|Wir suchen dringend Aushilfen.
+a||dringend|Wir suchen dringend Aushilfen.
+n|der|Service|Wir suchen eine Vollzeitkraft im Service.
+o||abends|Abends von 19 bis 21 Uhr.
+o||dienstags|Dienstags von 15 bis 19 Uhr.
+o||mittwochs|Mittwochs von 15 bis 19 Uhr.
+o||freitags|Freitags von 15 bis 19 Uhr.
+o||samstags|Jeweils samstags von 10 bis 18 Uhr.
+o||sonntags|Sonntags von 15 bis 19 Uhr.
+v||zahlen|Das Café „Rudolf“ zahlt 10 Euro pro Stunde.
+o||pro|Das Café „Rudolf“ zahlt 10 Euro pro Stunde.
+n|die|Stunde|Das Café „Rudolf“ zahlt 10 Euro pro Stunde.
+n|die|Nachfrage|Telefonische Nachfragen unter 04292/65488232.
+a||frei|Ist die Stelle noch frei?
+o||jeweils|Aushilfe gesucht, jeweils samstags von 10 bis 18 Uhr.
+# 9|Ämter und Behörden|Ведомства и учреждения|Установи та відомства|🏛️
+n|der|Führerschein|Haben Sie einen Führerschein?
+n|das|Ticket|Sie wollen ein Busticket kaufen.
+n|das|Amt|Sie sind auf einem Amt.
+a||gültig|Ist der Führerschein gültig?
+v||mieten|Sie wollen ein Auto mieten.
+a||ausländisch|Mit einem ausländischen Führerschein darf man nur sechs Monate fahren.
+a||europäisch|Lara kommt aus der Europäischen Union.
+n|die|Europäische Union|Sie kommt aus der EU.
+a||jung|Sie ist zu jung.
+n|die|Fahrt|Die Fahrt dauert nur zwei Stunden.
+n|die|Fahrkarte|Sie kaufen Fahrkarten im ZOB.
+n|der|Antrag|Tim muss einen Antrag ausfüllen.
+v||müssen|Sie müssen einen Antrag ausfüllen.
+v||ausfüllen|Tim muss einen Antrag ausfüllen.
+n|der|Ausweis|Er muss den Ausweis mitbringen.
+v||mitbringen|Er muss den Ausweis mitbringen.
+n|die|Papiere|Sie müssen viele Papiere mitbringen.
+v||unterschreiben|Sie müssen einen Antrag unterschreiben.
+o||bar|Sie müssen 15 Euro bar bezahlen.
+n|der|Automat|Der Mann versteht den Automaten nicht.
+v||funktionieren|Der Fahrkartenautomat funktioniert nicht.
+n|das|Ziel|Sie müssen das Ziel wählen.
+v||wählen|Sie müssen das Ziel wählen.
+n|der|Erwachsene|Sie müssen „Erwachsener“ oder „Kind“ auswählen.
+v||auswählen|Sie müssen „Erwachsener“ oder „Kind“ auswählen.
+o||man|Man muss das Ziel wählen.
+o||zuerst|Zuerst müssen Sie das Ziel wählen.
+o||danach|Und danach müssen Sie bezahlen.
+o||dann|Und dann muss ich noch einkaufen.
+n|der|Schluss|Zum Schluss müssen Sie die Fahrkarte stempeln.
+a||leise|Sei leise!
+v||erklären|Erklär Lili die Matheübung!
+a||laut|Seid bitte nicht so laut!
+v||ausmachen|Macht doch die Handys aus!
+v||zuhören|Hört doch bitte zu!
+v||aufstehen|Steht bitte nicht auf!
+v||warten|Warten Sie bitte im Wartebereich.
+n|die|Gebühr|Bezahlen Sie die Kursgebühren an der Kasse.
+n|die|Kasse|Bezahlen Sie die Kursgebühren an der Kasse.
+v||lachen|Lachen Sie viel!
+n|der|Moment|Tim darf im Moment nicht in Deutschland Auto fahren.
+v||beantragen|Tim muss einen internationalen Führerschein beantragen.
+v||dürfen|Lara darf in der EU Auto fahren.
+o||Achtung|Achtung! Du musst das Handy ausmachen.
+n|die|Zigarette|Ihr müsst die Zigaretten ausmachen.
+v||rauchen|Hier darf man nicht rauchen.
+a||langsam|Du musst langsam fahren.
+n|der|Parkplatz|Wir müssen einen Parkplatz suchen.
+v||parken|Hier darf man nicht parken.
+a||erlaubt|Was ist erlaubt?
+a||verboten|Was ist verboten?
+n|das|Gepäck|Man muss das Gepäck abgeben.
+v||abgeben|Man muss das Gepäck abgeben.
+v||mitnehmen|Aber man darf sein Fahrrad mitnehmen.
+o||allein|Herr Greco wohnt nicht allein.
+n|die|Behörde|Anmeldung bei der Meldebehörde
+n|die|Person|Die Anmeldung gilt für folgende Personen.
+n|der|Geburtsname|Wie ist Ihr Geburtsname?
+n|das|Geschlecht|Geschlecht: männlich oder weiblich?
+n|der|Ausländer|Was bedeutet denn „Ausländer“?
+n|die|Ausländerin|Sie ist Ausländerin.
+a||getrennt|Sind Sie verheiratet oder leben Sie getrennt?
+a||männlich|Geschlecht: männlich oder weiblich?
+a||weiblich|Geschlecht: männlich oder weiblich?
+n|der|Angehörige|Was heißt „Angehörige“?
+v||bedeuten|Was bedeutet denn „bisherige Wohnung“?
+v||wiederholen|Können Sie das bitte wiederholen?
+v||verstehen|Das habe ich nicht verstanden.
+n|die|Sprachenschule|Sie müssen einen Kurs in der Sprachenschule besuchen.
+v||besuchen|Sie möchten einen Kurs besuchen.
+v||helfen|Können Sie mir helfen?
+n|die|Auskunft|Ich brauche eine Auskunft.
+n|die|Erlaubnis|Sie hat eine Einreiseerlaubnis.
+n|die|Erklärung|Juliette braucht eine Verpflichtungserklärung.
+n|das|Dokument|Juliette muss ein Dokument unterschreiben.
+n|das|Geld|Ich habe genug Geld für eine Wohnung und Essen.
+o||genug|Ich habe genug Geld für eine Wohnung und Essen.
+n|das|Einkommen|Sie muss einen Einkommensnachweis mitbringen.
+n|die|Reise|Sie hat eine Krankenversicherung für die Reise.
+n|die|Versicherung|Sie hat eine Krankenversicherung.
+n|die|Botschaft|Zuerst muss sie zur deutschen Botschaft gehen.
+n|das|Visum|Juliette braucht ein Besuchervisum.
+v||holen|Ich hole einen Dolmetscher.
+n|der|Mitarbeiter|Der Mitarbeiter arbeitet in der Botschaft.
+n|die|Mitarbeiterin|Die Mitarbeiterin arbeitet in der Botschaft.
+n|der|Beamte|Der Beamte arbeitet bei der Behörde.
+n|die|Beamtin|Die Beamtin arbeitet bei der Behörde.
+v||verdienen|Verdient Eva Geld?
+n|der|Pass|Hier ist mein Reisepass.
+v||reisen|Juliette darf nicht zu Eva reisen.
+# 10|Gesundheit und Krankheit|Здоровье и болезнь|Здоров'я і хвороба|🩺
+n|der|Klub|Ioanna und Lara haben im Klub getanzt.
+n|die|Notaufnahme|Lara und Ioanna sind in der Notaufnahme.
+n|der|Bereich|Lara und Ioanna sind im Wartebereich.
+n|die|Tablette|Der Arzt gibt Ioanna Schmerztabletten.
+n|das|Auge|Mein Auge tut weh!
+v||wehtun|Mein Auge tut weh!
+n|der|Unfall|Meine Freundin hatte einen Unfall.
+n|der|Doktor|Der Doktor kommt gleich.
+n|der|Schmerz|Wo haben Sie denn Schmerzen?
+v||sollen|Ich soll das Auge kühlen.
+o||beide|Die beiden Frauen sind lustig und singen.
+a||lustig|Die beiden Frauen sind lustig und singen.
+a||schlimm|Es ist nicht schlimm.
+v||geben|Der Arzt gibt Ioanna Schmerztabletten.
+n|die|Idee|Wie finden Sie Laras Idee?
+n|das|Bein|Mein Bein tut weh.
+n|das|Haar|Ioannas Haare sind braun.
+n|das|Ohr|Meine Ohren tun weh.
+n|der|Arm|Mein Arm tut weh.
+n|der|Bauch|Mein Bauch tut weh.
+n|der|Finger|Mein Finger tut weh.
+n|der|Fuß|Mein Fuß tut weh.
+n|der|Hals|Mein Hals tut weh.
+n|der|Kopf|Mein Kopf tut weh.
+n|der|Rücken|Mein Rücken tut weh.
+n|die|Brust|Meine Brust tut weh.
+n|die|Hand|Meine Hand tut weh.
+n|die|Nase|Meine Nase tut weh.
+n|der|Mund|Mein Mund tut weh.
+o||sein (Possessiv)|Seine Hand tut weh.
+o||ihr (Possessiv)|Ihre Ohren tun weh.
+n|der|Zahn|Frau Hallberg hat Zahnschmerzen.
+v||informieren|Ioanna informiert Lara: Sie haben morgen keinen Unterricht.
+o||unser-|Unsere Augen sind so blau!
+v||ausfallen|Unser Unterricht fällt aus.
+n|die|Nachricht|Lesen Sie die Nachrichten. Wer schreibt was?
+n|der|Kuss|Küsse von Marie
+o||euer|Ist eure Mutter wieder gesund?
+a||gesund|Ist sie wieder gesund?
+o||hoffentlich|Ist sie wieder gesund? Hoffentlich!
+n|der|Bekannte|Alle Freunde und Bekannten kommen!
+n|der|Schritt|Ich soll ein paar Schritte gehen.
+o||ein paar|Ich soll ein paar Schritte gehen.
+n|die|Medizin|Muss ich die Medizin nehmen?
+a||ruhig|Ich soll ruhig sein und nicht so viel sprechen.
+n|die|Apotheke|Die Apotheke hat nicht auf.
+n|das|Fieber|Die Kundin hat Fieber.
+n|der|Husten|Die Tochter hat Husten.
+n|die|Salbe|Sie soll Salbe verwenden.
+v||verwenden|Sie soll Salbe verwenden.
+n|die|Gesundheit|Geben Sie Gesundheitstipps.
+n|der|Schnupfen|Meine Freundin hat Schnupfen.
+v||tun|Was kann man da tun?
+n|der|Absender|Der Absender schreibt den Brief.
+n|der|Ort|Ein anderes Wort für „die Stadt“.
+n|der|Empfänger|Der Empfänger bekommt den Brief.
+n|die|Anrede|Die Anrede steht vor dem Brieftext.
+n|das|Datum|Das Datum: 23. Mai 2016
+n|die|Unterschrift|Die Unterschrift schreiben Sie zum Schluss.
+v||schicken|Schicken Sie einen Brief an Ihre Firma.
+n|die|Sprechstunde|Sprechstunde: Mo, Di, Do, Fr 9.00–11.00 Uhr
+n|der|Notfall|Es ist ein Notfall.
+o||in der Nähe|Ich wohne ganz in der Nähe.
+n|die|Minute|Dann kommen Sie doch in 20 Minuten.
+o||in Ordnung|In Ordnung. Bis später.
+v||vorbeikommen|Dann komme ich gleich vorbei.
+n|die|Versichertenkarte|Und bringen Sie bitte Ihre Versichertenkarte mit!
+n|der|Boden|Im Büro liegt jemand auf dem Boden.
+v||liegen|Im Büro liegt jemand auf dem Boden.
+n|der|Notarzt|Sie sollen den Notarzt rufen.
+a||stark|Sie haben starke Halsschmerzen.
+n|die|Hilfe|Hilfe holen – Tipps für den Notfall
+o||plötzlich|Ein Mensch ist plötzlich sehr krank.
+v||passieren|Ein Unfall ist passiert.
+n|das|Medikament|Sie brauchen dringend ein Medikament.
+n|das|Motorrad|Ein Unfall mit einem Motorrad.
+n|die|Verletzung|Welche Verletzung?
+# 11|In der Stadt unterwegs|По городу|Містом|🏙️
+n|die|Werkstatt|Sie bringen das Auto zur Werkstatt.
+n|der|Schlüssel|Lili hat den Autoschlüssel.
+n|die|Autobahn|Wo ist bitte die Autobahn?
+n|die|Brücke|Die Autobahn ist vor der Brücke links.
+o||rechts|Fahren Sie nach rechts.
+o||geradeaus|Fahren Sie geradeaus.
+o||links|Fahren Sie nach links.
+n|der|Weg|Sie finden den Weg nicht.
+n|der|Bahnhof|Entschuldigung, ich suche den Bahnhof.
+n|die|Metzgerei|Ich suche die Metzgerei.
+n|die|Post|Wo ist hier die Post?
+n|das|Hotel|Ist hier ein Hotel in der Nähe?
+n|das|Museum|Ich suche das Museum.
+n|die|Ampel|Sie gehen zuerst geradeaus und dann an der Ampel links.
+n|die|Tankstelle|Ich suche die Tankstelle.
+n|der|Stadtplan|Sehen Sie den Stadtplan an.
+a||fremd|Tut mir leid, ich bin auch fremd hier.
+v||fliegen|Sie fliegen mit dem Flugzeug.
+n|das|Flugzeug|Sie fliegen mit dem Flugzeug.
+n|die|Straßenbahn|Sie fahren mit der Straßenbahn.
+n|der|Zug|Sie fahren mit dem Zug.
+n|die|U-Bahn|Sie fahren mit der U-Bahn.
+n|der|Bus|Sie fahren mit dem Bus.
+n|die|S-Bahn|Sie fahren mit der S-Bahn.
+o||wohin|Wohin möchten die Personen?
+n|die|Station|Fahren Sie mit dem Bus bis zur Station „Schwimmbad“.
+n|der|Lkw|Zwei Lkws stehen auf dem Parkplatz.
+n|der|Kiosk|Ein Mann kauft am Kiosk eine Zeitung.
+n|die|Haltestelle|Die Kinder warten an der Bushaltestelle.
+n|die|Buchhandlung|Ein Mann kauft ein Buch in der Buchhandlung.
+v||sitzen|Ein Paar sitzt im Café.
+n|die|Bücherei|Die Bücherei ist über der Bäckerei.
+n|der|Baum|Ein Baum steht zwischen der Post und der Bank.
+n|die|Bank|Ein Baum steht zwischen der Post und der Bank.
+o||an|Die Kinder warten an der Bushaltestelle.
+o||auf|Zwei Lkws stehen auf dem Parkplatz.
+o||hinter|Ein Baum steht hinter den Häusern.
+o||neben|Der Parkplatz ist neben der Fußgängerzone.
+o||über|Die Bücherei ist über der Bäckerei.
+o||unter|Die Bäckerei ist unter der Bücherei.
+o||zwischen|Ein Baum steht zwischen der Post und der Bank.
+n|die|Fußgängerzone|Der Parkplatz ist neben der Fußgängerzone.
+n|das|Konzert|Am Donnerstag geht er ins Konzert.
+v||ausleihen|Wo kann ich Bücher ausleihen?
+v||kopieren|Wo kann ich kopieren?
+o||vorne|Der Copyshop ist gleich da vorne.
+o||drüben|Es ist gleich da drüben.
+n|die|Ecke|Es ist da an der Ecke.
+o||hinten|Es ist gleich da hinten.
+v||abfahren|Der Zug fährt von Gleis 8 ab.
+n|das|Gleis|Der Zug fährt von Gleis 8 ab.
+v||einsteigen|Die Fahrgäste sollen einsteigen.
+n|die|Verspätung|Der Zug hat Verspätung.
+v||ankommen|Der Zug kommt zehn Minuten später an.
+v||umsteigen|Die Fahrgäste können in einen Zug nach Berlin umsteigen.
+v||aussteigen|Die Fahrgäste sollen aussteigen.
+n|die|Abfahrt|Abfahrt: 9.50 Uhr
+n|die|Ankunft|Ankunft: 11.05 Uhr
+n|der|Anschluss|Sie haben Anschluss nach Ulm.
+n|der|Bahnsteig|Der Zug fährt gleich am Bahnsteig gegenüber.
+o||direkt|Sie kann direkt fahren.
+n|die|Durchsage|Bitte achten Sie auf die Durchsagen.
+n|der|Schalter|Sie kauft die Fahrkarte am Schalter.
+o||hin und zurück|Einfach oder hin und zurück?
+n|der|Fahrplan|Der Fahrplan ist im Internet.
+n|der|Fußballplatz|Die Kinder spielen auf dem Fußballplatz.
+n|der|Platz|Das Café ist am Platz.
+# 12|Kundenservice|Сервис для клиентов|Обслуговування клієнтів|🛠️
+n|die|Tasche|Laras Tasche ist neu.
+n|die|Tüte|Der Verkäufer gibt Lara eine Plastiktüte.
+n|die|Rechnung|Lara hat noch die Rechnung.
+a||kaputt|Laras Tasche ist kaputt.
+v||reparieren|Der Verkäufer repariert die Tasche.
+a||sauer|Lara ist sauer.
+a||unfreundlich|Der Verkäufer ist unfreundlich.
+a||normal|Der Service ist normal.
+n|das|Heimatland|In meinem Heimatland ist der Service nicht so gut.
+n|das|Training|Beim Training treffe ich Lisa.
+n|die|Kleider|Vor dem Frühstück sortiert sie Taschen und Kleider.
+v||nähen|Vor der Mittagspause näht Frau Müller.
+n|die|Reparatur|Vor der Mittagspause macht sie Reparaturen.
+v||duschen|Vor dem Frühstück dusche ich.
+n|die|Aussage|Eine Aussage stimmt nicht.
+n|der|Techniker|Wann kann der Techniker kommen?
+n|die|Heizung|Meine Heizung funktioniert nicht.
+n|der|Drucker|Mein Drucker ist schon wieder kaputt.
+n|das|Modell|Was für ein Modell ist es?
+n|die|Garantie|Ich habe noch 6 Monate Garantie.
+v||vorbeibringen|Dann bringen Sie das Gerät bitte vorbei.
+v||anmachen|Könnten Sie bitte den Computer anmachen?
+n|die|Tür|Könnten Sie bitte die Tür kurz zumachen?
+v||zumachen|Könnten Sie bitte die Tür kurz zumachen?
+n|das|Fenster|Könnten Sie bitte das Fenster aufmachen?
+v||aufmachen|Könnten Sie bitte das Fenster aufmachen?
+n|das|Papier|Könnten Sie bitte Papier für den Drucker kaufen?
+n|das|Licht|Könnten Sie bitte das Licht anmachen?
+n|die|Spülmaschine|Könnten Sie bitte die Spülmaschine reparieren?
+v||empfehlen|Würden Sie Hustensaft oder Tabletten empfehlen?
+v||reservieren|Könnten Sie bitte einen Tisch im Restaurant reservieren?
+n|die|Rezeption|Sie sind im Hotel an der Rezeption.
+n|die|Ansage|Hören Sie vier Ansagen.
+v||drücken|Der Anrufer soll die Zahl 4 drücken.
+v||anmelden|Frau Brückner soll ihren Sohn anmelden.
+v||verbinden|Sie sind verbunden mit dem Anschluss von Frau Brückner.
+v||hinterlassen|Bitte hinterlassen Sie eine Nachricht.
+v||zurückrufen|Ich rufe zurück.
+v||aussehen|Frau Bertrams möchte gut aussehen.
+n|der|Urlaub|Familie Cornelis ist in Urlaub.
+o||draußen|Draußen vor ihrem Haus liegt Schnee.
+o||weg|Der Schnee muss weg.
+n|die|Kaffeemaschine|Die Kaffeemaschine funktioniert nicht mehr.
+n|der|Friseur|Der Friseur schneidet mir die Haare.
+n|die|Friseurin|Michaela Lex ist Friseurin.
+v||bestellen|Jetzt online bestellen!
+n|das|Angebot|Unsere Angebote: jede normale Pizza nur 5 Euro.
+v||anbieten|Wir bieten Nachhilfe für jede Klasse an.
+n|der|Jugendliche|Unsere Lehrer arbeiten sehr gut mit Jugendlichen zusammen.
+n|die|Gebrauchsanweisung|Lesen Sie die Gebrauchsanweisung.
+n|die|Reinigung|Reinigung: Reinigen Sie den Wasserbehälter mit Essig.
+n|der|Stecker|Ziehen Sie den Stecker aus der Steckdose.
+n|die|Steckdose|Ziehen Sie den Stecker aus der Steckdose.
+v||ziehen|Ziehen Sie den Stecker aus der Steckdose.
+o||oben|Öffnen Sie den Deckel oben am Gerät.
+n|der|Essig|Reinigen Sie den Wasserbehälter mit Essig.
+n|die|Taste|Drücken Sie die Taste auf der Rückseite der Maschine.
+n|die|Sekunde|Drücken Sie die Taste fünf Sekunden lang.
+# 13|Neue Kleider|Новая одежда|Новий одяг|👗
+n|die|Jacke|Sie kaufen eine Jacke für Lara.
+n|der|Mantel|Ist der Mantel nicht toll?
+a||dünn|Ist die Jacke nicht zu dünn?
+v||passen|Die Farbe passt gar nicht zu dir.
+a||weit|Die Jacke ist zu weit!
+n|die|Kleidung|Laras Kleidung: der Mantel, die Jacke …
+n|die|Bluse|Wie findest du die Bluse?
+n|das|T-Shirt|Wie findest du das T-Shirt?
+n|der|Schuh|Die Schuhe sind nicht so schön.
+n|die|Hose|Die Hose ist super!
+n|der|Rock|Sieh mal, der Rock da!
+n|das|Kleid|Und das Kleid?
+n|der|Stiefel|Die Stiefel finde ich auch toll.
+n|der|Pullover|Und der Pullover?
+n|die|Socke|Und die Socken?
+n|der|Strumpf|Die Strümpfe finde ich hässlich.
+n|die|Jeans|Die Jeans finde ich sehr schön.
+n|das|Tuch|Sieh mal, das Tuch da!
+n|der|Hut|Der Hut ist schwarz.
+n|das|Hemd|Das Hemd hier ist auch super!
+n|der|Anzug|Und der Anzug hier!
+n|die|Brille|Die Sonnenbrille ist nicht schlecht.
+a||langweilig|Die Schuhe sind langweilig und auch zu teuer!
+n|der|Schirm|Wie findest du den Schirm?
+a||günstig|Die Tasche finde ich günstig.
+a||perfekt|Toll, die Jacke passt dir perfekt!
+v||stehen|Die Brille steht ihr richtig gut.
+n|die|Bratwurst|Also, Bratwurst schmeckt mir nicht.
+n|die|Landschaft|Mir gefällt die Landschaft.
+n|der|Berg|Die Berge gefallen mir.
+n|das|Dorf|Das Dorf gefällt mir nicht.
+n|der|Wald|Der Wald gefällt mir.
+n|die|Nordsee|Mir gefällt die Nordsee.
+n|der|Strand|Mir gefällt der Strand.
+n|das|Meer|Mir gefallen das Meer und der Hafen.
+n|der|Hafen|Mir gefallen der Hafen und das Meer.
+o||nie|Ich habe noch nie Bratwurst gegessen.
+o||besser|Und hier, die Jacke ist noch besser.
+o||am besten|Aber mein Mantel, der steht mir am besten!
+o||rückwärts|Können Sie auch rückwärts fahren und dabei Geige spielen?
+o||vorwärts|Er kann auch vorwärts Fahrrad fahren.
+o||dabei|Er kann rückwärts Fahrrad fahren und dabei Geige spielen.
+a||schwer|Fahrrad fahren ist nicht schwer.
+n|der|Musiker|Er ist Musiker von Beruf.
+n|die|Musikerin|Sie ist Musikerin von Beruf.
+v||trainieren|Das trainiert er jeden Tag.
+v||Rad fahren|Ich fahre viel Rad.
+n|der|Rekord|Mit diesem Rekord ist er ins Guinness-Buch gekommen.
+o||am liebsten|Was macht Christian Adam in seiner Freizeit am liebsten?
+o||am meisten|Was trainiert er am meisten?
+a||zufrieden|Christian Adam ist sehr zufrieden.
+n|der|Witz|Soll das ein Witz sein?
+o||dies-|Welche Jacke meinst du? – Na, diese.
+n|der|Koffer|Welcher Koffer gehört Tom?
+v||gehören|Welcher Koffer gehört Tom?
+v||mögen|Welches Buch magst du am liebsten?
+n|der|Wochentag|Welchen Wochentag magst du am liebsten?
+n|das|Erdgeschoss|Die Drogerie finden Sie im Erdgeschoss.
+n|das|Obergeschoss|Da müssen Sie ins Obergeschoss gehen.
+n|das|Untergeschoss|Die Lampen sind im Untergeschoss.
+n|der|Ausgang|Der Ausgang ist im Untergeschoss.
+n|die|Drogerie|Die Drogerie ist im Erdgeschoss.
+n|die|Kosmetik|Kosmetik finden Sie im Erdgeschoss.
+n|der|Schmuck|Schmuck finden Sie im Erdgeschoss.
+n|das|Geschirr|Glas und Geschirr gibt es im Untergeschoss.
+n|das|Glas|Glas und Geschirr gibt es im Untergeschoss.
+n|die|Mode|Die Herrenmode ist im Obergeschoss.
+n|der|Eingang|Der Eingang ist im Obergeschoss.
+v||entschuldigen|Entschuldigen Sie bitte, ich suche Stiefel.
+v||wissen|Wo gibt es denn hier Blusen? Weißt du das?
+n|die|Seife|Ich muss auch noch Seife kaufen.
+n|die|Zahnbürste|Ich muss auch noch eine Zahnbürste kaufen.
+n|die|Zahnpasta|Ich muss Zahnpasta kaufen.
+n|die|Größe|Haben Sie die Hose auch in Größe 52?
+v||anziehen|Welchen Rock soll ich anziehen?
+v||anprobieren|Sie haben eine Jacke anprobiert.
+# 14|Feste|Праздники|Свята|🎉
+n|der|Geburtstag|Wer hat Geburtstag?
+n|der|Reifen|Wer schenkt den Hula-Hoop-Reifen?
+v||erzählen|Was erzählt Tim?
+v||feiern|Die Freunde feiern nicht nur Geburtstag.
+n|der|Abschied|Sie feiern auch Abschied.
+o||bald|Lara und Tim fahren bald nach Hause.
+v||beginnen|Um 20 Uhr beginnt der Film.
+n|die|Arbeitsstelle|Sie feiern auch die neue Arbeitsstelle.
+n|das|Glück|Ich wünsche dir viel Glück und Freude!
+n|die|Freude|Ich wünsche dir viel Glück und Freude!
+v||wünschen|Ich wünsche dir viel Glück und Freude!
+v||gratulieren|Ich gratuliere!
+n|der|Glückwunsch|Herzlichen Glückwunsch!
+v||glauben|Ich glaube, ich mache eine Pause.
+v||besuchen|Ich besuche meine Eltern in Rumänien.
+n|der|Januar|Am 15. Januar fängt Tim mit der Arbeit an.
+n|der|Februar|Ich habe am 11. Februar Geburtstag.
+n|der|März|Wann hast du Geburtstag? – Am 13. März.
+n|der|April|Ich bin am 29. April geboren.
+n|der|Mai|Ich habe am 5. Mai Geburtstag.
+n|der|Juni|Ich habe am 16. Juni Geburtstag.
+n|der|Juli|Ich bin am 20. Juli geboren.
+n|der|August|Ich habe im August Geburtstag.
+n|der|September|Ich bin im September geboren.
+n|der|Oktober|Ich habe im Oktober Geburtstag.
+n|der|November|Am 30. November fährt Lara nach Hause.
+n|der|Dezember|Ich bin am 6. Dezember geboren.
+o||erste|Ich habe am ersten Januar Geburtstag.
+o||zweite|Ich habe am zweiten Januar Geburtstag.
+o||dritte|Ich habe am dritten Januar Geburtstag.
+n|die|Blume|Am 14. Februar soll man Blumen kaufen.
+n|der|Karneval|Der Karneval dauert bis zum 12. Februar.
+o||letzt-|Die letzten sechs Karnevalstage sind vom 12.2. bis 17.2.
+v||mitmachen|Machen Sie mit und schreiben Sie.
+n|der|Feiertag|Was machen Sie an diesem Feiertag?
+n|das|Geschenk|Wir brauchen noch ein Geschenk für Andrej.
+v||lieben|Ich liebe dich.
+a||wunderbar|Wirklich? Wunderbar!
+n|der|Nachtisch|Wir müssen noch den Nachtisch machen.
+v||putzen|Wir müssen noch das Bad putzen.
+n|der|Laptop|Mein Laptop ist kaputt.
+a||schmutzig|Meine Bluse ist schmutzig.
+v||waschen|Kannst du sie bitte waschen?
+n|der|Großvater|Mein Großvater ist 80 Jahre alt.
+n|die|Großmutter|Lara muss ihre kranke Großmutter besuchen.
+n|die|Feier|Lara und Tim organisieren eine Abschiedsfeier.
+v||organisieren|Lara und Tim organisieren eine Abschiedsfeier.
+v||Bescheid geben|Bitte gib Bescheid bis 25. November.
+n|die|Einladung|Vielen Dank für die Einladung.
+n|der|Flug|Mein Flug nach Hause geht schon am Freitagmittag.
+v||werden|Am Donnerstag werde ich 30.
+v||einladen|Ich lade dich zu meiner Party ein.
+v||sich freuen|Ich würde mich freuen.
+n|das|Fest|Einladung zum Sommerfest im Kindergarten „Regenbogen“.
+a||herzlich|Wir laden alle herzlich ein.
+n|der|Gast|Wir freuen uns auf viele Gäste.
+n|der|Grund|Nennen Sie den Grund für die Einladung.
+n|die|Antwort|Bitten Sie um Antwort.
+v||bitten|Bitten Sie um Antwort.
+n|das|Weihnachten|An Weihnachten bekommen alle Geschenke.
+n|das|Ostern|An Ostern gibt es Ostereier.
+n|das|Silvester|An Silvester gibt es ein Feuerwerk.
+n|das|Neujahr|Am 1. Januar ist Neujahr.
+v||gewinnen|Dann hast du gewonnen!
+n|der|Verwandte|Man macht Besuche bei Freunden und Verwandten.
+n|die|Karte|Ich schreibe eine Karte zum Geburtstag.
+n|die|Hochzeit|Wir gratulieren zur Hochzeit.

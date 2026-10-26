@@ -1,0 +1,90 @@
+tb_008 | [V Raten] [S Sie].
+tb_009 | [V Raten] [S Sie] [A Wörter].
+tb_010 | [V Raten] [S Sie] [A Wörter aus der Lektion].
+tb_026 | [E Wer] [V bist] [S du]?
+tb_036 | [V Schreiben] [S Sie] [A Ihre Visitenkarte].
+tb_040 | [S Die Postleitzahl] [V ist] [E 50676].
+tb_054 | [E Wer] [V ist] [S das]? Dein Bruder?
+tb_062 | [E Wer] [V seid] [S ihr]? – [S Wir] [V sind] [E Merima] und [E Anisa].
+tb_076 | [S Das] [V macht] [Z dann] [A 3 Euro 87].
+tb_086 | [Z Wie viel] [V kostet] [S ein Kilo Orangen]?
+tb_087 | [A Was] [V kosten] [S 100 Gramm Käse]?
+tb_093 | [S Ich] [V brauche] [Z auch noch] [A Äpfel].
+tb_095 | [S Sie] [V möchten] [A Obst] [V kaufen]: [A 3 Birnen, 2 Äpfel].
+tb_097 | [Z Hier] [V ist] [S mein Rezept für „Schwäbische Maultaschen“].
+tb_112 | [S Das Kinderbett] [V ist] [E 60 mal 120 Zentimeter groß].
+tb_113 | [S Meine Nummer bei der Arbeit] [V ist]: …
+tb_133 | [S Sie] [V frühstückt] [Z mit Lara und Lili].
+tb_135 | [S Es] [V ist] [E Viertel vor zwölf].
+tb_136 | [S Es] [V ist] [E Viertel nach eins].
+tb_143 | [S Der Kurs] [V ist] [Z von neun bis zwölf].
+tb_146 | [Z Wann] [V ruft] [S Tim] [A Mama] [V an]?
+tb_148 | [Z Am Nachmittag] [V macht] [S Robert] [A Sport].
+tb_150 | [S Die Praxis] [V schließt] [Z um 16 Uhr 30].
+tb_151 | [S Ich] [V habe] [A die Kinder] [Z am Wochenende] [Z den ganzen Tag].
+tb_152 | [S Ich] [V habe] [A die Kinder] [Z jeden Morgen und jeden Abend].
+tb_154 | [S Ich] [V hätte] [Z gern] [A mehr Zeit] [Z für mich].
+tb_157 | [V Tut] [D mir] [Z leid], [S ich] [V bin] [E total fertig].
+tb_165 | [Z In der Mitte Deutschlands] [V scheint] [Z heute] [Z überall] [S die Sonne].
+tb_166 | [Z In der Mitte Deutschlands] [V scheint] [Z heute] [Z überall] [S die Sonne].
+tb_167 | [S Es] [V sind] [E plus fünf Grad].
+tb_168 | [S Es] [V ist] [E minus ein Grad].
+tb_176 | [A Was] [V machst] [S du] [Z gern] [Z in der Freizeit]?
+tb_177 | [S Mein Lieblingsfilm] [V ist] [E der James-Bond-Film Skyfall].
+tb_178 | [S Mein Lieblingsfilm] [V ist] [E der James-Bond-Film Skyfall].
+tb_179 | [S Ich] [V brauche] [Z nur] [A mein Smartphone].
+tb_181 | [S Du] [V meinst] [A das Würfelspiel]?
+tb_186 | [V Weckst] [S du] [A Lili]?
+tb_189 | [S Lara] [V lernt] [Z mit Lili] [A Mathe].
+tb_192 | [S Das] [V schmeckt] so [E lecker]!
+tb_195 | [V Kannst] [S du] [Z gut] [A Klavier] [V spielen]?
+tb_196 | [V Kannst] [S du] [Z gut] [A Ski] [V fahren]?
+tb_210 | [V Kannst] [S du] [Z gut] [A Ski] [V fahren]?
+tb_197 | [V Kannst] [S du] [Z gut] [A Tennis] [V spielen]?
+tb_211 | [V Kannst] [S du] [Z gut] [A Tennis] [V spielen]?
+tb_198 | [V Willst] [S du] nicht [Z endlich] [V aufstehen]?
+tb_202 | [V Bist] [S du] [Z schon einmal] [Z 100 Kilometer] [A Fahrrad] [V gefahren]?
+tb_212 | [S Lara] und [S Tim] [V machen] [A ein Interview] [Z für den Deutschkurs].
+tb_213 | [S Sie] [V machen] [A ein Interview] [Z für das Fernsehen].
+tb_220 | [S Das Thema] [V ist] „[E Arbeit und Beruf]“.
+tb_228 | [Z Seit wann] [V arbeiten] [S Sie] [Z hier]? – [Z Seit 35 Jahren].
+tb_246 | [S Ich] [V hatte] [A richtig viel Arbeit] und [Z oft] [A Stress].
+tb_252 | [Z Im Ausland] [V arbeiten] oder [V studieren]?
+tb_256 | [Z Am Abend] [V gehe] [S ich] [Z dreimal pro Woche] [Z in den Deutschkurs].
+tb_257 | [S Wir] [V suchen] [Z befristet] [Z für ein Jahr] [A Verkäufer].
+tb_269 | [S Wir] [V suchen] [A eine Vollzeitkraft] [Z im Service].
+tb_276 | [S Das Café „Rudolf“] [V zahlt] [A 10 Euro] [Z pro Stunde].
+tb_277 | [S Das Café „Rudolf“] [V zahlt] [A 10 Euro] [Z pro Stunde].
+tb_295 | [V Macht] doch [A die Handys] [V aus]!
+tb_304 | [A Was] [V bedeutet] denn „[S Ausländer]“?
+tb_306 | [V Sind] [S Sie] [E verheiratet] oder [V leben] [S Sie] [Z getrennt]?
+tb_309 | [E Was] [V heißt] „[S Angehörige]“?
+tb_310 | [A Was] [V bedeutet] denn „[S bisherige Wohnung]“?
+tb_311 | [S Sie] [V müssen] [A einen Kurs] [Z in der Sprachenschule] [V besuchen].
+tb_322 | [V Verdient] [S Eva] [A Geld]?
+tb_323 | [Z Hier] [V ist] [S mein Reisepass].
+tb_345 | [V Schicken] [S Sie] [A einen Brief] [Z an Ihre Firma].
+tb_352 | [A Hilfe] [V holen] – Tipps für den Notfall
+tb_358 | [V Tut] [D mir] [Z leid], [S ich] [V bin] [Z auch] [E fremd] [Z hier].
+tb_359 | [S Ein Mann] [V kauft] [A ein Buch] [Z in der Buchhandlung].
+tb_365 | [S Der Copyshop] [V ist] [Z gleich da vorne].
+tb_366 | [S Es] [V ist] [Z gleich da drüben].
+tb_367 | [S Es] [V ist] [Z gleich da hinten].
+tb_369 | [S Sie] [V haben] [A Anschluss] [Z nach Ulm].
+tb_382 | [E Was für ein Modell] [V ist] [S es]?
+tb_384 | [Z Dann] [V bringen] [S Sie] [A das Gerät] bitte [V vorbei].
+tb_404 | [A Die Stiefel] [V finde] [S ich] [Z auch] [E toll].
+tb_405 | [V Sieh] mal, [S das Tuch] [Z da]!
+tb_409 | Also, [S Bratwurst] [V schmeckt] [D mir] nicht.
+tb_417 | Aber mein Mantel, [S der] [V steht] [D mir] [Z am besten]!
+tb_418 | [V Können] [S Sie] [Z auch rückwärts] [V fahren] und [Z dabei] [A Geige] [V spielen]?
+tb_420 | [A Das] [V trainiert] [S er] [Z jeden Tag].
+tb_421 | [S Ich] [V fahre] [Z viel] [V Rad].
+tb_423 | [A Was] [V macht] [S Christian Adam] [Z in seiner Freizeit] [Z am liebsten]?
+tb_427 | [A Welchen Wochentag] [V magst] [S du] [Z am liebsten]?
+tb_434 | [V Haben] [S Sie] [A die Hose] [Z auch] [Z in Größe 52]?
+tb_437 | [S Sie] [V feiern] [Z auch] [A die neue Arbeitsstelle].
+tb_444 | [S Ich] [V liebe] [A dich].
+tb_447 | Bitte [V gib] [A Bescheid] [Z bis 25. November].
+tb_453 | [V Bitten] [S Sie] [Z um Antwort].
+tb_454 | [S Ich] [V schreibe] [A eine Karte] [Z zum Geburtstag].

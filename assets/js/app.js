@@ -954,9 +954,9 @@ function removeDeferred(id){ saveDeferred(loadDeferred().filter(x => x !== id));
 function getDeferredCategory() {
   const ids = loadDeferred();
   if (!ids.length) return null;
-  const words = [];
+  const words = [], seen = new Set();   // слово учебника может лежать и в основной карточке — без дублей
   (window.VOCAB_DATA||[]).forEach(cat => (cat.words||[]).forEach(w => {
-    if (ids.includes(w.id)) words.push(w);
+    if (ids.includes(w.id) && !seen.has(w.id)) { seen.add(w.id); words.push(w); }
   }));
   if (!words.length) return null;
   return { level: S.level, category: 'deferred', name: 'Aufschieben',
@@ -1342,7 +1342,9 @@ function updateProfileUI() {
 function refreshOverallBar() {
   const cats = getCats(S.level), p = loadProg();
   let total=0, learned=0, learning=0;
+  const seen = new Set();
   cats.forEach(cat => (cat.words||[]).forEach(w => {
+    if (seen.has(w.id)) return; seen.add(w.id);   // общие слова учебника считаем один раз
     if (isDeferred(w.id)) return; // отложенные не считаем
     total++;
     if (!p[w.id]) return;
@@ -1705,6 +1707,25 @@ function renderVocabScreen() {
       <span class="karten-theme-h">${th.emoji} ${escapeHtml(themeName(th))}</span>`;
     $('karten-back').addEventListener('click', () => { S.kartenTheme = null; renderVocabScreen(); });
     const list = catsOfTheme(th, S.vocabFilter);
+    if (th.textbook) {
+      // учебник: заголовок урока, под ним карточки по частям речи
+      let html = `<div class="tb-note">📘 ${lstr(
+        'Wörter aus dem Lehrbuch „Schritte international Neu“. Wörter, die es auch in anderen Karten gibt, sind dieselben — gelernt ist gelernt, überall.',
+        'Слова из учебника «Schritte international Neu». Слова, которые есть и в других карточках, — те же самые: выучил здесь — засчитано и там.',
+        'Слова з підручника «Schritte international Neu». Слова, які є й в інших картках, — ті самі: вивчив тут — зараховано й там.')}</div>`;
+      let cur = null;
+      list.forEach(c => {
+        if (c.lesson !== cur) {
+          cur = c.lesson;
+          html += `<h3 class="tb-lesson-h">${c.emoji} ${escapeHtml(lstr(...c.lesson_title))}</h3>`;
+        }
+        const { total, learned } = catCounts(c, p);
+        html += makeCatCardHTML(c, total, learned, p, { showLevel: false });
+      });
+      wrap.innerHTML = list.length ? html : `<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`;
+      attachCatEvents(wrap);
+      return;
+    }
     wrap.innerHTML = (th.id === 'verben' ? `<button class="pz-banner" id="pz-banner"><span class="pz-banner-ic">🧩</span><span><b>${lstr('Mini-Spiel: Verb zusammenbauen','Мини-игра: собери отделяемый глагол','Міні-гра: збери відокремлюване дієслово')}</b><small>auf + stehen = aufstehen · ${lstr('Vorsilbe zum Verb ziehen','перетаскивай приставку к глаголу','перетягуй префікс до дієслова')}</small></span></button>` : '')
       + (list.length ? cards(list) : `<div class="loading-hint">${t('no_cats', S.vocabFilter)}</div>`);
     $('pz-banner')?.addEventListener('click', renderPuzzleScreen);
@@ -1749,8 +1770,9 @@ function renderVocabLearned() {
   const section = $('vocab-learned-section');
   const p       = loadProg();
   const allCats = S.vocabFilter==='all' ? (window.VOCAB_DATA||[]) : (window.VOCAB_DATA||[]).filter(c=>c.level===S.vocabFilter);
-  const learnedWords = [];
+  const learnedWords = [], seenL = new Set();
   allCats.forEach(cat => cat.words.forEach(w => {
+    if (seenL.has(w.id)) return; seenL.add(w.id);
     if (p[w.id]&&p[w.id].status==='learned') learnedWords.push({...w, catEmoji: cat.emoji});
   }));
   if (!learnedWords.length) { section.innerHTML=''; return; }
@@ -3161,7 +3183,9 @@ function accessBadgeHtml(u) {
 function computeUserStats(prog) {
   const p = prog || {};
   let total = 0, learned = 0;
+  const seen = new Set();
   (window.VOCAB_DATA || []).forEach(cat => (cat.words || []).forEach(w => {
+    if (seen.has(w.id)) return; seen.add(w.id);
     total++;
     if (p[w.id] && p[w.id].status === 'learned') learned++;
   }));
@@ -4172,8 +4196,9 @@ function saveExamHistory(arr) { localStorage.setItem(P().examKey, JSON.stringify
 /* все выученные слова (status 'learned') по всем категориям */
 function getLearnedWords() {
   const p = loadProg();
-  const words = [];
+  const words = [], seen = new Set();
   (window.VOCAB_DATA||[]).forEach(cat => (cat.words||[]).forEach(w => {
+    if (seen.has(w.id)) return; seen.add(w.id);
     if (p[w.id] && p[w.id].status === 'learned') words.push(w);
   }));
   return words;
