@@ -1277,8 +1277,7 @@ function renderDashboard() {
   $('dash-themes-title').textContent = `📚 ${lstr('Themen','Прогресс по темам','Прогрес за темами')} — ${S.level}`;
   const rows = allThemes().map(th => {
     const list = catsOfTheme(th, S.level);
-    let total = 0, l = 0;
-    list.forEach(c => { const r = catCounts(c, p); total += r.total; l += r.learned; });
+    const { total, learned: l } = countsUnique(list, p);
     return { th, total, l, pct: total ? Math.round(l / total * 100) : 0 };
   }).filter(r => r.total).sort((a, b) => b.pct - a.pct || b.total - a.total);
   $('dash-themes').innerHTML = rows.length ? rows.map(r => `
@@ -1293,8 +1292,7 @@ function renderDashboard() {
   /* ─ по уровням ─ */
   $('dash-levels-title').textContent = `🎓 ${lstr('Fortschritt nach Niveau','Прогресс по уровням','Прогрес за рівнями')}`;
   $('dash-levels').innerHTML = LEVELS.map(lv => {
-    let total = 0, l = 0;
-    getCats(lv).forEach(c => { const r = catCounts(c, p); total += r.total; l += r.learned; });
+    const { total, learned: l } = countsUnique(getCats(lv), p);
     if (!total) return '';
     const pct = Math.round(l / total * 100);
     return `<button class="dash-bar-row ${lv===S.level?'current':''}" data-lvl="${lv}">
@@ -1558,6 +1556,23 @@ function catCounts(cat, p) {
   return { total: words.length, learned: words.filter(w => p[w.id] && p[w.id].status === 'learned').length };
 }
 
+/* Сумма по нескольким карточкам БЕЗ дублей: слово учебника, которое есть и в основной
+   карточке, считается один раз. tbNew — сколько из них только в учебнике. */
+function countsUnique(cats, p) {
+  const seen = new Set(), def = new Set(loadDeferred());
+  let total = 0, learned = 0, tbNew = 0;
+  cats.forEach(c => {
+    const words = c.mode === 'conjugation' ? c.words.filter(w => w.conj) : c.words;
+    words.forEach(w => {
+      if (seen.has(w.id) || (c.category !== 'deferred' && def.has(w.id))) return;
+      seen.add(w.id); total++;
+      if (String(w.id).startsWith('tb_')) tbNew++;
+      if (p[w.id] && p[w.id].status === 'learned') learned++;
+    });
+  });
+  return { total, learned, tbNew };
+}
+
 function makeCatCardHTML(cat, total, learned, p, opts = {}) {
   // Проверяем блокировку
   if (cat.requiresCategory && !isCatComplete(cat.level, cat.requiresCategory)) {
@@ -1708,16 +1723,17 @@ function renderVocabScreen() {
     $('karten-back').addEventListener('click', () => { S.kartenTheme = null; renderVocabScreen(); });
     const list = catsOfTheme(th, S.vocabFilter);
     if (th.textbook) {
-      // учебник: заголовок урока, под ним карточки по частям речи
+      // учебник: заголовок темы, под ним карточки по частям речи
+      const tbS = countsUnique(list, p);
       let html = `<div class="tb-note">📘 ${lstr(
-        'Wörter aus dem Lehrbuch „Schritte international Neu“. Wörter, die es auch in anderen Karten gibt, sind dieselben — gelernt ist gelernt, überall.',
-        'Слова из учебника «Schritte international Neu». Слова, которые есть и в других карточках, — те же самые: выучил здесь — засчитано и там.',
-        'Слова з підручника «Schritte international Neu». Слова, які є й в інших картках, — ті самі: вивчив тут — зараховано й там.')}</div>`;
+        `Wörter aus dem Lehrbuch „Schritte international Neu“ (Lektion 1–14), nach Themen sortiert: ${tbS.total} Wörter — ${tbS.tbNew} neu, ${tbS.total - tbS.tbNew} gibt es auch in anderen Karten. Das sind dieselben Karten: gelernt ist gelernt, überall, und im Gesamtzähler zählt jedes Wort nur einmal.`,
+        `Слова из учебника «Schritte international Neu» (уроки 1–14), разложены по темам: ${tbS.total} слов — ${tbS.tbNew} новых, ${tbS.total - tbS.tbNew} есть и в других карточках. Это те же самые карточки: выучил здесь — засчитано и там, а в общем счёте каждое слово считается один раз.`,
+        `Слова з підручника «Schritte international Neu» (уроки 1–14), розкладені за темами: ${tbS.total} слів — ${tbS.tbNew} нових, ${tbS.total - tbS.tbNew} є й в інших картках. Це ті самі картки: вивчив тут — зараховано й там, а в загальному рахунку кожне слово рахується один раз.`)}</div>`;
       let cur = null;
       list.forEach(c => {
-        if (c.lesson !== cur) {
-          cur = c.lesson;
-          html += `<h3 class="tb-lesson-h">${c.emoji} ${escapeHtml(lstr(...c.lesson_title))}</h3>`;
+        if (c.group !== cur) {
+          cur = c.group;
+          html += `<h3 class="tb-lesson-h">${c.emoji} ${escapeHtml(lstr(...c.group_title))}</h3>`;
         }
         const { total, learned } = catCounts(c, p);
         html += makeCatCardHTML(c, total, learned, p, { showLevel: false });
@@ -1745,14 +1761,15 @@ function renderVocabScreen() {
   html += allThemes().map(th => {
     const list = catsOfTheme(th, S.vocabFilter);
     if (!list.length) return '';
-    let total = 0, learned = 0, favN = 0;
-    list.forEach(c => { const r = catCounts(c, p); total += r.total; learned += r.learned; if (isFav(c, p)) favN++; });
+    const { total, learned, tbNew } = countsUnique(list, p);
+    const favN = list.filter(c => isFav(c, p)).length;
     const pct = total ? Math.round(learned / total * 100) : 0;
     return `<div class="theme-tile" data-theme="${th.id}">
       ${favN ? `<span class="theme-fav">★ ${favN}</span>` : ''}
       <div class="theme-emoji">${th.emoji}</div>
       <div class="theme-name">${escapeHtml(themeName(th))}</div>
       <div class="theme-meta">${list.length} ${lstr('Karten','карточек','карток')} · ${total} ${lstr('Wörter','слов','слів')}</div>
+      ${th.textbook ? `<div class="theme-meta tb-split">${lstr(`${tbNew} neu · ${total - tbNew} auch in anderen Karten`,`${tbNew} новых · ${total - tbNew} уже есть в других карточках`,`${tbNew} нових · ${total - tbNew} вже є в інших картках`)}</div>` : ''}
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
       <div class="theme-pct">${pct}% ${lstr('gelernt','выучено','вивчено')}</div>
     </div>`;

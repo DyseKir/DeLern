@@ -1,0 +1,157 @@
+# Темы учебника: каждое слово (ключ из tb_words.txt) ровно в одной теме.
+# Формат: строка «@id|эмодзи|DE|RU|UK», затем слова через «;» (можно в несколько строк).
+
+@kennen|👋|Kennenlernen & Begrüßung|Знакомство и приветствия|Знайомство і привітання
+heißen; der Name; Guten Tag; hallo; Auf Wiedersehen; tschüs; Guten Abend; Guten Morgen; Gute Nacht; willkommen; der Herr; die Dame;
+die Frau; danke; bitte; Vielen Dank; Auf Wiederhören; die Entschuldigung; Wie bitte?; ja; nein; aha; na ja; ach;
+gut; super; prima; schade; leider; Achtung; in Ordnung; leidtun; entschuldigen; kennen; der Gruß; geehrt;
+die Visitenkarte
+
+@laender|🌍|Länder & Sprachen|Страны и языки|Країни і мови
+Deutschland; das Deutsch; Österreich; die Schweiz; Polen; die Türkei; Spanien; Ungarn; Rumänien; Syrien; Bulgarien; Italien;
+Griechenland; Polnisch; Türkisch; Spanisch; Ungarisch; Rumänisch; Arabisch; Bulgarisch; Italienisch; Griechisch; die Sprache; die Fremdsprache;
+das Land; der Norden; der Osten; der Süden; der Westen; die Mitte; die Hauptstadt; der Deutsche; die Deutsche; das Ausland; das Heimatland; ausländisch;
+europäisch; die Europäische Union; der Ausländer; die Ausländerin; international
+
+@daten|📋|Persönliche Daten & Formulare|Личные данные и анкеты|Особисті дані й анкети
+der Vorname; der Familienname; der Geburtsname; die Adresse; die Postleitzahl; die Nummer; die Zahl; das Formular; die Anmeldung; geboren; der Geburtsort; der Wohnort;
+der Familienstand; ledig; verheiratet; verwitwet; geschieden; getrennt; das Alter; das Geschlecht; männlich; weiblich; die Unterschrift; das Datum;
+wohnen; leben
+
+@familie|👨‍👩‍👧|Familie & Menschen|Семья и люди|Сім'я і люди
+das Kind; der Papa; die Mama; die Familie; der Vater; die Mutter; die Eltern; die Großeltern; der Großvater; die Großmutter; der Bruder; die Schwester;
+die Geschwister; der Sohn; die Tochter; der Enkel; die Enkelin; die Oma; der Opa; der Mann; der Ehemann; die Ehefrau; das Ehepaar; der Freund;
+die Freundin; der Bekannte; der Verwandte; der Angehörige; das Mädchen; der Junge; der Erwachsene; der Jugendliche; die Senioren; die Person; heiraten; lieben;
+der Kuss
+
+@kurs|✏️|Im Deutschkurs|На курсе немецкого|На курсі німецької
+ansehen; das Bild; noch einmal; ankreuzen; zuordnen; ergänzen; der Kurs; das Gespräch; markieren; die Frage; die Antwort; nachsprechen;
+raten; das Wort; die Lektion; notieren; vergleichen; variieren; zeichnen; verbinden; der Buchstabe; das Alphabet; buchstabieren; der Intensivkurs;
+die Hausaufgabe; der Test; die Übung; der Text; das Diktat; üben; die Präsentation; das Beispiel; zum Beispiel; die Kommunikation; der Unterricht; die Sprachenschule;
+wiederholen; verstehen; bedeuten; erklären; die Aussage; das Thema; die Geschichte; die Idee; die Information; das Problem; richtig; falsch;
+lernen; anmelden; die Pause; zuhören; ausfallen
+
+@kommunikation|📱|Telefon, Post & Medien|Связь, почта и медиа|Зв'язок, пошта і медіа
+das Telefon; die E-Mail; das Handy; das Smartphone; der Anruf; anrufen; telefonieren; zurückrufen; hinterlassen; die Ansage; die Nachricht; chatten;
+der Brief; der Absender; der Empfänger; die Anrede; schicken; das Internet; das Radio; das Fernsehen; die Zeitung; das Interview; der Computer; der Laptop;
+das TV; informieren
+
+@essen|🍎|Essen & Trinken|Еда и напитки|Їжа і напої
+die Banane; die Butter; das Ei; das Mehl; die Milch; der Zucker; der Pfannkuchen; die Schokolade; der Hunger; der Durst; das Fleisch; das Bier;
+der Käse; das Salz; der Tee; das Brot; der Wein; das Mineralwasser; der Reis; der Fisch; der Apfel; die Orange; der Kuchen; der Kaffee;
+der Saft; das Brötchen; das Würstchen; die Birne; die Tomate; die Kartoffel; der Joghurt; die Zwiebel; das Lebensmittel; die Sahne; die Wurst; das Hackfleisch;
+das Obst; das Gemüse; das Rezept; das Wasser; der Pfeffer; die Pizza; die Speisekarte; der Hamburger; die Speise; die Pommes frites; die Portion; der Ketchup;
+der Salat; der Schinken; das Getränk; die Cola; das Eis; das Frühstück; der Nachtisch; die Bratwurst; der Essig; essen; trinken; kochen;
+backen; schmecken; frühstücken
+
+@einkaufen|🛒|Einkaufen & Geld|Покупки и деньги|Покупки і гроші
+brauchen; kaufen; verkaufen; kosten; bezahlen; zahlen; bestellen; der Euro; der Cent; der Preis; das Geld; bar;
+das Sonderangebot; das Angebot; anbieten; wie viel; das Kilo; das Gramm; das Pfund; der Liter; die Flasche; die Dose; der Verkäufer; die Verkäuferin;
+der Kunde; die Kundin; der Laden; der Supermarkt; die Bäckerei; die Metzgerei; das Geschäft; die Drogerie; die Kasse; die Tüte; die Rechnung; die Tasche;
+günstig; billig; teuer; möchten; das Regal; die Kosmetik; der Schmuck; das Geschirr; das Glas; das Erdgeschoss; das Obergeschoss; das Untergeschoss;
+der Eingang; der Ausgang; die Seife; die Zahnbürste; die Zahnpasta; empfehlen; einkaufen; pro; der Prospekt
+
+@wohnen|🏠|Wohnung & Möbel|Квартира и мебель|Квартира і меблі
+die Wohnung; das Zimmer; die Küche; das Bad; der Flur; die Toilette; der Balkon; das Wohnzimmer; das Haus; der Garten; die Garage; der Stock;
+der Raum; das Apartment; die Miete; vermieten; mieten; der Quadratmeter; möbliert; privat; die Anzeige; die Lampe; der Schrank; der Kühlschrank;
+das Sofa; der Tisch; der Stuhl; das Bett; der Fernseher; die Dusche; der Herd; die Badewanne; der Teppich; der Sessel; die Möbel; das Gerät;
+der Schreibtisch; die Tür; das Fenster; die Heizung; die Spülmaschine; die Kaffeemaschine; das Licht; die Steckdose; der Stecker; der Schlüssel; der Boden; der Zentimeter;
+der Meter; putzen; aufräumen
+
+@beschreiben|🎨|Farben & Eigenschaften|Цвета и описания|Кольори й описи
+die Farbe; schwarz; grau; weiß; grün; braun; blau; rot; gelb; hellrot; dunkelrot; hell;
+dunkel; alt; neu; groß; klein; schön; hässlich; lang; kurz; hoch; schmal; breit;
+modern; nett; lustig; dumm; langweilig; perfekt; normal; wichtig; einfach; schwer; leicht; schnell;
+langsam; laut; leise; stark; dünn; weit; kaputt; schmutzig; fertig; ruhig; sauer; unfreundlich;
+zufrieden; wunderbar; angenehm; toll; interessant; schlecht; genau; müde; jung
+
+@zeit|🕐|Zeit & Kalender|Время и календарь|Час і календар
+die Uhr; das Viertel; halb; vor; nach; gleich; spät; früh; schon; erst; wann; um;
+am; von … bis; die Zeit; der Termin; der Tag; die Woche; das Wochenende; der Monat; das Jahr; die Minute; die Stunde; die Sekunde;
+der Moment; der Morgen; der Vormittag; der Mittag; der Nachmittag; der Abend; die Nacht; heute; morgen; jetzt; bald; später;
+dann; danach; zuerst; der Schluss; wieder; immer; oft; manchmal; nie; lange; seit; dauern;
+enden; anfangen; beginnen; tagsüber; dreimal; jed-; nächst-; letzt-; erste; zweite; dritte; der Montag;
+der Dienstag; der Mittwoch; der Donnerstag; der Freitag; der Samstag; der Sonntag; der Wochentag; montags; dienstags; mittwochs; donnerstags; freitags;
+samstags; sonntags; abends; vormittags; nachmittags; ganztags; halbtags; jeweils; der Januar; der Februar; der März; der April;
+der Mai; der Juni; der Juli; der August; der September; der Oktober; der November; der Dezember; geöffnet; geschlossen; öffnen; schließen;
+pünktlich; sofort; ab; endlich; gerade; zurzeit; plötzlich
+
+@alltag|☀️|Alltag|Повседневные дела|Повсякденні справи
+aufstehen; spazieren gehen; schlafen; fernsehen; duschen; waschen; wecken; bringen; abholen; zurückkommen; vergessen; helfen;
+holen; warten; gehen
+
+@freizeit|⚽|Freizeit & Hobbys|Досуг и хобби|Дозвілля і хобі
+die Musik; das Kino; der Film; der Krimi; das Konzert; der Sport; der Fußball; das Hobby; die Freizeit; der Ausflug; das Picknick; wandern;
+tanzen; schwimmen; treffen; Freunde treffen; grillen; der Grill; die Gitarre; Gitarre spielen; das Klavier; das Tennis; Tennis spielen; der Ski;
+Ski fahren; reiten; malen; singen; das Lied; das Fahrrad; Fahrrad fahren; Rad fahren; fotografieren; das Foto; sammeln; das Spiel;
+der Würfel; der Spaß; der Witz; das Training; trainieren; der Rekord; der Musiker; die Musikerin; das Schwimmbad; der Eintritt; der Klub; der Urlaub;
+die Reise; reisen; der Koffer; das Gepäck; der Tourist; die Touristin; das Buch; der Hund; losgehen; losfahren; mitkommen; der Park;
+gefallen; mögen; gern; lieber; am liebsten; Lieblings-; spielen
+
+@wetter|🌦️|Wetter & Natur|Погода и природа|Погода і природа
+das Wetter; die Sonne; scheinen; regnen; die Wolke; das Grad; warm; windig; kalt; schneien; bewölkt; der Wetterbericht;
+die Temperatur; steigen; sonnig; der Regen; der Schnee; plus; minus; der Sommer; heiß; der Frühling; der Herbst; der Winter;
+der Wind; die Landschaft; der Berg; das Dorf; der Wald; die Nordsee; der Strand; das Meer; der Hafen; der Baum
+
+@schule|🎒|Kinder, Schule & Studium|Дети, школа и учёба|Діти, школа і навчання
+die Schule; die Grundschule; die Klasse; der Kindergarten; die Kita; der Schüler; die Schülerin; der Lehrer; die Lehrerin; die Mathematik; die Nachhilfe; der Student;
+die Studentin; studieren; die Universität; das Diplom
+
+@arbeit|💼|Beruf & Arbeit|Работа и профессии|Робота і професії
+die Arbeit; arbeiten; der Beruf; beruflich; der Job; die Stelle; die Arbeitsstelle; der Arbeitsplatz; die Firma; das Büro; die Abteilung; der Chef;
+die Chefin; der Leiter; die Leiterin; der Kollege; die Kollegin; der Mitarbeiter; die Mitarbeiterin; der Hausmeister; die Hausmeisterin; der Journalist; die Journalistin; der Mechatroniker;
+die Mechatronikerin; der Hausmann; die Hausfrau; der Polizist; die Polizistin; der Krankenpfleger; die Krankenschwester; der Taxifahrer; die Taxifahrerin; der Reiseführer; die Reiseführerin; der Kellner;
+die Kellnerin; der Architekt; die Architektin; der Koch; die Köchin; der Arbeiter; die Arbeiterin; der Sekretär; die Sekretärin; der Friseur; die Friseurin; der Techniker;
+selbstständig; berufstätig; arbeitslos; befristet; die Vollzeit; die Teilzeit; die Aushilfe; dringend; die Bewerbung; das Praktikum; die Berufserfahrung; die Ausbildung;
+die Wirtschaft; das Einkommen; verdienen; der Stress; der Service; die Nachfrage; frei; der Traum; das Team
+
+@aemter|🏛️|Ämter, Behörden & Regeln|Ведомства и правила|Установи та правила
+das Amt; die Behörde; der Antrag; beantragen; ausfüllen; unterschreiben; abgeben; mitbringen; mitnehmen; der Ausweis; der Pass; das Visum;
+der Führerschein; gültig; die Papiere; das Dokument; die Erlaubnis; die Erklärung; die Auskunft; die Gebühr; die Versicherung; die Botschaft; der Beamte; die Beamtin;
+erlaubt; verboten; rauchen; die Zigarette
+
+@gesundheit|🩺|Gesundheit & Körper|Здоровье и тело|Здоров'я і тіло
+der Arzt; die Ärztin; der Doktor; der Patient; die Patientin; das Krankenhaus; die Praxis; die Notaufnahme; der Notarzt; der Notfall; die Sprechstunde; die Versichertenkarte;
+die Apotheke; die Tablette; die Medizin; das Medikament; die Salbe; verwenden; das Fieber; der Husten; der Schnupfen; der Schmerz; wehtun; krank;
+gesund; die Gesundheit; schlimm; der Unfall; die Verletzung; passieren; der Schritt; der Bereich; die Hilfe; das Auge; das Bein; das Haar;
+das Ohr; der Arm; der Bauch; der Finger; der Fuß; der Hals; der Kopf; der Rücken; die Brust; die Hand; die Nase; der Mund;
+der Zahn
+
+@stadt|🏙️|Stadt & Verkehr|Город и транспорт|Місто і транспорт
+die Stadt; die Straße; das Auto; das Motorrad; der Bus; der Zug; die U-Bahn; die S-Bahn; die Straßenbahn; das Flugzeug; der Flug; fliegen;
+der Lkw; das Ticket; die Fahrkarte; die Fahrt; der Fahrplan; der Bahnhof; der Bahnsteig; das Gleis; die Station; die Haltestelle; abfahren; ankommen;
+einsteigen; aussteigen; umsteigen; die Abfahrt; die Ankunft; der Anschluss; die Verspätung; die Durchsage; der Schalter; hin und zurück; direkt; die Autobahn;
+die Brücke; die Ampel; die Tankstelle; der Parkplatz; parken; die Werkstatt; der Weg; rechts; geradeaus; links; der Stadtplan; fremd;
+wohin; die Post; das Hotel; das Museum; der Kiosk; die Buchhandlung; die Bücherei; die Bibliothek; die Bank; die Fußgängerzone; der Fußballplatz; der Platz;
+die Ecke; vorne; drüben; hinten; oben; draußen; in der Nähe; das Café; das Restaurant; die Rezeption; reservieren; der Ort;
+an; auf; hinter; neben; über; unter; zwischen; hier; dort; ausleihen; kopieren; der Automat;
+der Kilometer; nach Hause; das Ziel; wählen; auswählen
+
+@service|🛠️|Technik & Reparatur|Техника и ремонт|Техніка і ремонт
+reparieren; die Reparatur; die Garantie; das Modell; der Drucker; das Papier; anmachen; zumachen; aufmachen; ausmachen; drücken; die Taste;
+die Gebrauchsanweisung; die Reinigung; vorbeibringen; vorbeikommen; funktionieren; ziehen; nähen
+
+@kleidung|👗|Kleidung|Одежда|Одяг
+die Jacke; der Mantel; die Kleidung; die Kleider; die Bluse; das T-Shirt; der Schuh; die Hose; der Rock; das Kleid; der Stiefel; der Pullover;
+die Socke; der Strumpf; die Jeans; das Tuch; der Hut; das Hemd; der Anzug; die Brille; der Schirm; die Größe; die Mode; anziehen;
+anprobieren; passen; aussehen
+
+@feste|🎉|Feste & Feiern|Праздники|Свята
+der Geburtstag; der Reifen; feiern; der Abschied; das Glück; die Freude; wünschen; gratulieren; der Glückwunsch; die Blume; der Karneval; der Feiertag;
+das Geschenk; die Feier; organisieren; Bescheid geben; die Einladung; einladen; sich freuen; das Fest; herzlich; der Gast; der Grund; bitten;
+das Weihnachten; das Ostern; das Silvester; das Neujahr; gewinnen; die Karte; die Hochzeit; die Party; mitmachen
+
+@verben|🔤|Wichtige Verben|Важные глаголы|Важливі дієслова
+sein; haben; werden; können; wollen; dürfen; müssen; sollen; wissen; machen; kommen; geben;
+nehmen; finden; sehen; stehen; liegen; sitzen; tun; bleiben; fahren; glauben; gehören; bekommen;
+lachen; suchen; zeigen; sagen; sprechen; lesen; schreiben; fragen; antworten; erzählen; meinen; hören;
+besuchen
+
+@woerter|🧩|Kleine Wörter|Маленькие слова (местоимения, предлоги, союзы)|Маленькі слова (займенники, прийменники, сполучники)
+ich; du; Sie; er; sie (Singular); sie (Plural); wir; ihr; mein; dein; Ihr; sein (Possessiv);
+ihr (Possessiv); unser-; euer; man; ein; kein; welch-; dies-; ander-; eigen-; alles; etwas;
+viel-; wenig; mehr; genug; ein paar; ein bisschen; beide; und; oder; aber; nicht; auch;
+so; sehr; noch; nur; ganz; mal; also; doch; für; mit; bei; aus;
+in; wie; wer; was; woher; wo; warum; vielleicht; hoffentlich; eigentlich; total; besonders;
+besser; am besten; am meisten; zusammen; allein; überall; circa; ungefähr; maximal; rückwärts; vorwärts; dabei;
+weg; los sein; auf jeden Fall; lieb-

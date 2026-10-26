@@ -4,12 +4,23 @@ const SP = __dirname, ROOT = path.join(__dirname, '..', '..') + '/';
 global.window = {}; require(ROOT + 'db/words.js');
 const byId = {}; for (const c of window.VOCAB_DATA) for (const w of c.words) if (!byId[w.id]) byId[w.id] = w;
 
-// уроки
-const lessons = [];
-for (const l of fs.readFileSync(path.join(SP, 'tb_words.txt'), 'utf8').split(/\r?\n/)) {
-  if (!l.startsWith('#')) continue;
-  const [n, de, ru, uk, emoji] = l.slice(2).split('|');
-  lessons.push({ n: +n, de, ru, uk, emoji, pos: { n: [], v: [], a: [], o: [] } });
+// темы (tb_topics.txt): каждое слово учебника ровно в одной теме по смыслу
+const topics = [], topicOf = {};
+{
+  let cur = null;
+  for (const l of fs.readFileSync(path.join(SP, 'tb_topics.txt'), 'utf8').split(/\r?\n/)) {
+    if (!l.trim() || l.startsWith('#')) continue;
+    if (l.startsWith('@')) {
+      const [id, emoji, de, ru, uk] = l.slice(1).split('|');
+      cur = { id, emoji, de, ru, uk, pos: { n: [], v: [], a: [], o: [] } };
+      topics.push(cur); continue;
+    }
+    for (let k of l.split(';')) {
+      k = k.trim(); if (!k) continue;
+      if (topicOf[k]) throw new Error('word in two topics: ' + k);
+      topicOf[k] = cur;
+    }
+  }
 }
 const entries = JSON.parse(fs.readFileSync(path.join(SP, 'tb_match.json'), 'utf8'));
 
@@ -46,9 +57,9 @@ for (const e of entries) {
       if (e.ex && t.exRu) EX[id] = [e.ex, t.exRu];
     }
   }
-  const L = lessons.find(x => x.n === +e.lesson);
-  const bucket = L.pos[e.pos];
-  if (!bucket.includes(id)) bucket.push(id);
+  const T = topicOf[key];
+  if (!T) { missing.push('NO TOPIC: ' + key); continue; }
+  if (!Object.values(T.pos).some(b => b.includes(id))) T.pos[e.pos].push(id);
 }
 if (missing.length) { console.log('MISSING TR:\n' + [...new Set(missing)].join('\n')); process.exit(1); }
 const unusedTr = Object.keys(tr).filter(k => !newKey[k]);
@@ -76,11 +87,16 @@ const ROLES = {};
 }
 const POSN = { n: ['Substantive', 'существительные', 'іменники'], v: ['Verben', 'глаголы', 'дієслова'],
                a: ['Adjektive', 'прилагательные', 'прикметники'], o: ['Sonstiges', 'другое', 'інше'] };
-const LESSON_DATA = lessons.map(L => ({ n: L.n, de: L.de, ru: L.ru, uk: L.uk, emoji: L.emoji,
-  pos: Object.fromEntries(Object.entries(L.pos).filter(([, ids]) => ids.length)) }));
+// одно и то же слово (id) не должно оказаться в двух темах
+{ const where = {}; topics.forEach(T => Object.values(T.pos).flat().forEach(id => {
+    if (where[id] && where[id] !== T.id) throw new Error('id in two topics: ' + id + ' ' + where[id] + '/' + T.id);
+    where[id] = T.id; })); }
+const TOPIC_DATA = topics.map(T => ({ id: T.id, de: T.de, ru: T.ru, uk: T.uk, emoji: T.emoji,
+  pos: Object.fromEntries(Object.entries(T.pos).filter(([, ids]) => ids.length)) }));
 
 const out = `/* ══════════════════════════════════════════════════════════════
-   УЧЕБНИК «Schritte international Neu» (A1) — Lernwortschatz, уроки 1–14
+   УЧЕБНИК «Schritte international Neu» (A1) — Lernwortschatz, уроки 1–14,
+   разложенные по темам: каждое слово — в одной теме по смыслу
    Слова, которые уже есть в основных карточках, берутся ОТТУДА ЖЕ
    (тот же id) — прогресс общий: выучил в учебнике = выучил и в основной
    карточке. Новые слова учебника — id tb_NNN (новые добавлять в конец).
@@ -88,7 +104,7 @@ const out = `/* ═════════════════════�
 ══════════════════════════════════════════════════════════════ */
 (function () {
   const NEW = ${JSON.stringify(NEW, null, 0).replace(/\},"/g, '},\n    "')};
-  const LESSONS = ${JSON.stringify(LESSON_DATA, null, 0).replace(/\},\{"n"/g, '},\n    {"n"')};
+  const TOPICS = ${JSON.stringify(TOPIC_DATA, null, 0).replace(/\},\{"id"/g, '},\n    {"id"')};
   const EX = ${JSON.stringify(EX, null, 0).replace(/\],"/g, '],\n    "')};
   const UK = ${JSON.stringify(UK, null, 0).replace(/","/g, '",\n    "')};
   const ROLES = ${JSON.stringify(ROLES, null, 0).replace(/","/g, '",\n    "')};
@@ -97,19 +113,18 @@ const out = `/* ═════════════════════�
   const byId = {};
   (window.VOCAB_DATA || []).forEach(c => (c.words || []).forEach(w => { if (!byId[w.id]) byId[w.id] = w; }));
   const keys = [];
-  LESSONS.forEach(L => {
-    const nn = String(L.n).padStart(2, '0');
-    keys.push('schritte_l' + nn);
-    Object.entries(L.pos).forEach(([p, ids]) => {
+  TOPICS.forEach(T => {
+    keys.push('schritte_' + T.id);
+    Object.entries(T.pos).forEach(([p, ids]) => {
       const words = ids.map(id => NEW[id] || byId[id]).filter(Boolean);
       if (!words.length) return;
       window.VOCAB_DATA.push({
-        level: 'A1', category: 'schritte_l' + nn + '_' + p, textbook: true, lesson: L.n,
-        name: (L.n ? 'L' + L.n : 'Kurs') + ' · ' + POSN[p][0],
-        name_ru: L.ru + ' — ' + POSN[p][1],
-        name_uk: L.uk + ' — ' + POSN[p][2],
-        lesson_title: [(L.n ? 'Lektion ' + L.n + ': ' : '') + L.de, (L.n ? 'Урок ' + L.n + ': ' : '') + L.ru, (L.n ? 'Урок ' + L.n + ': ' : '') + L.uk],
-        emoji: L.emoji, words,
+        level: 'A1', category: 'schritte_' + T.id + '_' + p, textbook: true, group: T.id,
+        name: T.de + ' (' + POSN[p][0] + ')',
+        name_ru: T.ru + ' — ' + POSN[p][1],
+        name_uk: T.uk + ' — ' + POSN[p][2],
+        group_title: [T.de, T.ru, T.uk],
+        emoji: T.emoji, words,
       });
     });
   });
@@ -123,6 +138,7 @@ const out = `/* ═════════════════════�
 `;
 fs.writeFileSync(ROOT + 'db/textbook.js', out);
 fs.writeFileSync(IDS_FILE, JSON.stringify(IDS, null, 1));
-const shared = new Set(); lessons.forEach(L => Object.values(L.pos).flat().forEach(id => { if (!NEW[id]) shared.add(id); }));
+const shared = new Set(); topics.forEach(T => Object.values(T.pos).flat().forEach(id => { if (!NEW[id]) shared.add(id); }));
 console.log('new words', Object.keys(NEW).length, '| shared with main', shared.size, '| examples', Object.keys(EX).length,
-  '| categories', lessons.reduce((s, L) => s + Object.values(L.pos).filter(a => a.length).length, 0), '| KB', (out.length / 1024).toFixed(0));
+  '| topics', topics.length, '| categories', topics.reduce((s, T) => s + Object.values(T.pos).filter(a => a.length).length, 0),
+  '| KB', (out.length / 1024).toFixed(0));
