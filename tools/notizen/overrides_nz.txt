@@ -1,0 +1,26 @@
+nz_008 | [Z Bei Bewusstlosigkeit] [V rufen] [S Sie] [Z sofort] [A 112].
+nz_013 | [S Er] [V nimmt] [A Tabletten] [Z gegen Bluthochdruck].
+nz_015 | [S Ich] [V habe] [A einen Sonnenbrand] [Z auf der Nase].
+nz_020 | [S Die Einnahme] [V ist] [Z dreimal täglich].
+nz_034 | [S Ich] [V habe] [A einen Termin] [Z bei der Ausländerbehörde].
+nz_043 | [A Die Kursgebühr] [V bezahlen] [S Sie] [Z an der Kasse].
+nz_060 | [S Ich] [V möchte] [A einen Antrag] [Z auf Wohngeld] [V stellen].
+nz_074 | [S Ich] [V bin] [Z für das Lager] [E verantwortlich].
+nz_078 | [V Schalte] bitte [A den Fernseher] [V ein].
+nz_097 | [A Wie viele Kinder] [V haben] [S Sie]?
+nz_098 | [Z Seit wann] [V lernst] [S du] [A Deutsch]?
+nz_102 | [Z Weswegen] [V rufen] [S Sie] [V an]?
+nz_129 | [S Sein Name] [V steht] [Z obenan] [Z auf der Liste].
+nz_130 | [S Das Buch] [V liegt] [Z obenauf].
+nz_132 | [S Ich] [V bin] [Z gerade] [Z unterwegs].
+nz_139 | Soviel [S ich] [V weiß], [V ist] [S er] [Z im Urlaub].
+nz_140 | [Z Streng genommen] [V ist] [S das] nicht [E erlaubt].
+nz_142 | [Z In der Tat], [S das] [V ist] [E teuer].
+nz_145 | [Z Offen gesagt], [S das] [V gefällt] [D mir] nicht.
+nz_146 | [Z Ehrlich gesagt], [S ich] [V bin] [E müde].
+nz_149 | [Z Früher] [V habe] [S ich] [V geraucht], aber [Z nun] nicht [Z mehr].
+nz_160 | Hallo, [E wer] [V bist] [S du]?
+nz_163 | [S Ich] [V möchte] [Z nach Italien] [V fahren]. [A Was] [V meinst] [S du] [Z dazu]?
+nz_166 | [V Kennst] [S du] [A dieses Sprichwort]?
+nz_168 | „Komm her!“ [V ist] [E ein Befehl].
+nz_169 | [E Was] [V ist] [S der Unterschied]?

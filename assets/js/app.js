@@ -1558,7 +1558,7 @@ function catCounts(cat, p) {
 
 /* Сумма по нескольким карточкам БЕЗ дублей: слово учебника, которое есть и в основной
    карточке, считается один раз. tbNew — сколько из них только в учебнике. */
-function countsUnique(cats, p) {
+function countsUnique(cats, p, newPrefix = 'tb_') {
   const seen = new Set(), def = new Set(loadDeferred());
   let total = 0, learned = 0, tbNew = 0;
   cats.forEach(c => {
@@ -1566,7 +1566,7 @@ function countsUnique(cats, p) {
     words.forEach(w => {
       if (seen.has(w.id) || (c.category !== 'deferred' && def.has(w.id))) return;
       seen.add(w.id); total++;
-      if (String(w.id).startsWith('tb_')) tbNew++;
+      if (String(w.id).startsWith(newPrefix)) tbNew++;
       if (p[w.id] && p[w.id].status === 'learned') learned++;
     });
   });
@@ -1724,8 +1724,12 @@ function renderVocabScreen() {
     const list = catsOfTheme(th, S.vocabFilter);
     if (th.textbook) {
       // учебник: заголовок темы, под ним карточки по частям речи
-      const tbS = countsUnique(list, p);
-      let html = `<div class="tb-note">📘 ${lstr(
+      const tbS = countsUnique(list, p, th.idPrefix || 'tb_');
+      let html = th.note ? `<div class="tb-note">${th.emoji} ${lstr(...th.note)} ${lstr(
+        `${tbS.total} Wörter — ${tbS.tbNew} neu, ${tbS.total - tbS.tbNew} gibt es schon in anderen Karten oder im Lehrbuch: dieselben Karten, gelernt ist gelernt, und im Gesamtzähler zählt jedes Wort nur einmal.`,
+        `${tbS.total} слов — ${tbS.tbNew} новых, ${tbS.total - tbS.tbNew} уже есть в других карточках или в учебнике: это те же самые карточки, выучил здесь — засчитано и там, а в общем счёте каждое слово считается один раз.`,
+        `${tbS.total} слів — ${tbS.tbNew} нових, ${tbS.total - tbS.tbNew} вже є в інших картках або в підручнику: це ті самі картки, вивчив тут — зараховано й там, а в загальному рахунку кожне слово рахується один раз.`)}</div>`
+      : `<div class="tb-note">📘 ${lstr(
         `Wörter aus dem Lehrbuch „Schritte international Neu“ (Lektion 1–14), nach Themen sortiert: ${tbS.total} Wörter — ${tbS.tbNew} neu, ${tbS.total - tbS.tbNew} gibt es auch in anderen Karten. Das sind dieselben Karten: gelernt ist gelernt, überall, und im Gesamtzähler zählt jedes Wort nur einmal.`,
         `Слова из учебника «Schritte international Neu» (уроки 1–14), разложены по темам: ${tbS.total} слов — ${tbS.tbNew} новых, ${tbS.total - tbS.tbNew} есть и в других карточках. Это те же самые карточки: выучил здесь — засчитано и там, а в общем счёте каждое слово считается один раз.`,
         `Слова з підручника «Schritte international Neu» (уроки 1–14), розкладені за темами: ${tbS.total} слів — ${tbS.tbNew} нових, ${tbS.total - tbS.tbNew} є й в інших картках. Це ті самі картки: вивчив тут — зараховано й там, а в загальному рахунку кожне слово рахується один раз.`)}</div>`;
@@ -1761,7 +1765,7 @@ function renderVocabScreen() {
   html += allThemes().map(th => {
     const list = catsOfTheme(th, S.vocabFilter);
     if (!list.length) return '';
-    const { total, learned, tbNew } = countsUnique(list, p);
+    const { total, learned, tbNew } = countsUnique(list, p, th.idPrefix || 'tb_');
     const favN = list.filter(c => isFav(c, p)).length;
     const pct = total ? Math.round(learned / total * 100) : 0;
     return `<div class="theme-tile" data-theme="${th.id}">
@@ -1769,7 +1773,7 @@ function renderVocabScreen() {
       <div class="theme-emoji">${th.emoji}</div>
       <div class="theme-name">${escapeHtml(themeName(th))}</div>
       <div class="theme-meta">${list.length} ${lstr('Karten','карточек','карток')} · ${total} ${lstr('Wörter','слов','слів')}</div>
-      ${th.textbook ? `<div class="theme-meta tb-split">${lstr(`${tbNew} neu · ${total - tbNew} auch in anderen Karten`,`${tbNew} новых · ${total - tbNew} уже есть в других карточках`,`${tbNew} нових · ${total - tbNew} вже є в інших картках`)}</div>` : ''}
+      ${th.textbook ? `<div class="theme-meta tb-split">${lstr(`${tbNew} neu · ${total - tbNew} schon in anderen Karten`,`${tbNew} новых · ${total - tbNew} уже есть в других карточках`,`${tbNew} нових · ${total - tbNew} вже є в інших картках`)}</div>` : ''}
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
       <div class="theme-pct">${pct}% ${lstr('gelernt','выучено','вивчено')}</div>
     </div>`;

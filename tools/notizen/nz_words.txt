@@ -1,0 +1,445 @@
+# Мои записи: тетрадь, листы с курса, история словаря, картинки.
+# @тема|эмодзи|DE|RU|UK, затем строки pos|артикль|слово (pos: n/v/a/o)
+
+@koerper|🧍|Körperteile|Части тела|Частини тіла
+n|der|Kopf
+n|das|Gesicht
+n|die|Stirn
+n|die|Wange
+n|das|Auge
+n|die|Nase
+n|das|Ohr
+n|der|Zahn
+n|der|Mund
+n|der|Hals
+n|das|Kinn
+n|die|Schulter
+n|die|Achselhöhle
+n|die|Brust
+n|der|Rücken
+n|der|Bauch
+n|die|Taille
+n|die|Hüfte
+n|die|Hand
+n|der|Arm
+n|der|Ellbogen
+n|der|Finger
+n|das|Handgelenk
+n|das|Bein
+n|der|Schenkel
+n|das|Knie
+n|der|Knöchel
+n|der|Fuß
+
+@gesundheit|💊|Gesundheit & Notfall|Здоровье и экстренные случаи|Здоров'я і надзвичайні випадки
+n|der|Notarzt
+n|die|Notaufnahme
+n|der|Notfall
+n|der|Notdienst
+n|die|Bereitschaftspraxis
+n|die|Sprechstunde
+n|die|Versichertenkarte
+n|der|Wartebereich
+n|der|Unfall
+n|der|Unfallort
+n|die|Verletzung
+n|die|Bewusstlosigkeit
+n|die|Ohnmacht
+n|der|Schlaganfall
+n|die|Blutung
+n|die|Atemnot
+n|der|Bluthochdruck
+n|die|Heiserkeit
+n|der|Sonnenbrand
+n|die|Blasenbildung
+n|die|Schmerztablette
+n|die|Lutschtablette
+n|die|Gebrauchsinformation
+n|die|Nebenwirkung
+n|die|Einnahme
+v||einnehmen
+v||sich verletzen
+v||untersuchen lassen
+v||auftragen
+v||zergehen
+v||enthalten
+v||kühlen
+v||warmhalten
+v||stillen
+a||verletzt
+a||ärztlich
+a||schlimm
+a||entzündungshemmend
+a||feuchtigkeitsspendend
+o||in folgenden Fällen
+
+@aemter|🏛️|Ämter & Anträge|Ведомства и заявления|Установи та заяви
+n|das|Amt
+n|die|Behörde
+n|die|Ausländerbehörde
+n|das|Arbeitsamt
+n|das|Sozialamt
+n|das|Landratsamt
+n|das|Finanzamt
+n|das|Jugendamt
+n|die|Führerscheinstelle
+n|das|Kreisverwaltungsreferat
+n|der|Beamte
+n|die|Regierung
+n|der|Antrag
+n|der|Ausweis
+n|der|Personalausweis
+n|die|Gebühr
+n|die|Kursgebühr
+n|die|Parkgebühr
+n|die|Erlaubnis
+n|die|Fahrerlaubnis
+n|die|Arbeitserlaubnis
+n|die|Versicherung
+n|die|Krankenversicherung
+n|die|Kfz-Versicherung
+n|die|Lebensversicherung
+n|die|Unfallversicherung
+n|die|Rechtsschutzversicherung
+n|die|Zahnversicherung
+n|die|Hausratversicherung
+n|die|Haftpflichtversicherung
+n|das|Wohngeld
+n|das|Kindergeld
+n|die|Grundsicherung
+n|der|Betrag
+n|der|Einkommensnachweis
+n|die|Einreise
+n|die|Botschaft
+n|die|Staatenliste
+n|die|Auskunft
+n|das|Geschlecht
+n|der|Angehörige
+n|das|Gepäck
+v||einen Antrag stellen
+v||beantragen
+v||ausfüllen
+v||unterschreiben
+v||abgeben
+v||mitbringen
+v||melden
+a||gültig
+a||bisherige
+
+@termine|📅|Termine & Briefe|Встречи и письма|Зустрічі й листи
+n|der|Termin
+n|der|Betreff
+n|der|Inhalt
+n|der|Absender
+n|der|Empfänger
+n|der|Gruß
+n|die|Anrede
+n|das|Datum
+n|der|Ort
+n|die|Unterschrift
+n|die|Nachrichten
+v||vereinbaren
+v||absagen
+v||verschieben
+v||ausfallen
+o||anbei
+
+@arbeit|💼|Arbeit & Beruf|Работа и профессия|Робота і професія
+n|die|Rente
+n|der|Rentner
+n|der|Betriebswirt
+n|die|Stelle
+n|die|Bewerbung
+n|die|Abteilung
+n|die|Wirtschaft
+n|der|Verdienst
+n|die|Nachhilfe
+n|die|Nachfrage
+n|der|Erzieher
+n|die|Erziehung
+n|das|Lager
+n|die|Baustelle
+n|der|Haarschutz
+n|der|Gehörschutz
+n|das|Ausland
+n|das|Heimatland
+v||verdienen
+v||verantwortlich sein für
+v||dauern
+a||angestellt
+a||selbstständig
+a||berufstätig
+a||arbeitslos
+a||beruflich
+a||befristet
+a||dringend
+
+@paare|↔️|Gegensatz-Verben|Глаголы-противоположности|Дієслова-протилежності
+v||ziehen
+v||schieben
+v||anmachen
+v||ausmachen
+v||öffnen
+v||schließen
+v||geben
+v||nehmen
+v||bringen
+v||holen
+v||einsteigen
+v||aussteigen
+v||anziehen
+v||ausziehen
+v||einschlafen
+v||aufwachen
+v||sich hinsetzen
+v||aufstehen
+v||einpacken
+v||auspacken
+v||einschalten
+v||ausschalten
+v||heben
+v||senken
+v||füllen
+v||leeren
+v||verbinden
+v||trennen
+v||speichern
+v||löschen
+v||gewinnen
+v||verlieren
+
+@dativ|🎯|Verben mit Dativ|Глаголы с дательным (Dativ)|Дієслова з давальним (Dativ)
+v||helfen
+v||danken
+v||gefallen
+v||gratulieren
+v||vertrauen
+v||folgen
+v||schaden
+v||glauben
+v||passen
+v||gehören
+v||antworten
+v||begegnen
+v||dienen
+v||drohen
+v||fehlen
+v||gleichen
+v||verzeihen
+v||zuhören
+v||schmecken
+v||leidtun
+v||nützen
+v||zusagen
+
+@akkusativ|🎯|Verben mit Akkusativ|Глаголы с винительным (Akkusativ)|Дієслова зі знахідним (Akkusativ)
+v||haben
+v||sehen
+v||finden
+v||brauchen
+v||kaufen
+v||lesen
+v||vergessen
+v||trinken
+v||essen
+v||mögen
+v||lieben
+v||bestellen
+v||verstehen
+v||hören
+v||bekommen
+v||besuchen
+v||anrufen
+v||tragen
+
+@fragen|❓|W-Fragen|Вопросительные слова|Питальні слова
+o||wer
+o||wen
+o||wem
+o||wessen
+o||was
+o||welcher / welche / welches
+o||was für ein
+o||wie
+o||wie viel
+o||wie viele
+o||wann
+o||seit wann
+o||bis wann
+o||wie lange
+o||wie oft
+o||warum
+o||weshalb
+o||weswegen
+o||wieso
+o||wozu
+o||inwiefern
+o||wie teuer
+o||wie spät
+o||wie alt
+o||wie weit
+o||wie groß
+o||wie schwer
+o||wie breit
+o||wie hoch
+o||wo
+o||wohin
+o||woher
+o||worüber
+o||wovon
+o||womit
+o||woran
+o||wofür
+o||worauf
+o||über wen
+o||von wem
+o||mit wem
+o||an wen
+o||für wen
+o||auf wen
+o||zu wem
+
+@ort|📍|Ortsangaben & Wege|Где? Куда? Место и дорога|Де? Куди? Місце й дорога
+o||hier
+o||da
+o||dort
+o||draußen
+o||drinnen
+o||innen
+o||außen
+o||rechts
+o||links
+o||oben
+o||unten
+o||überall
+o||irgendwo
+o||nirgendwo
+o||nirgends
+o||vorne
+o||hinten
+o||obenan
+o||obenauf
+o||nebenan
+o||unterwegs
+o||auf dem Heimweg
+n|der|Heimweg
+n|die|Kreuzung
+n|der|Flughafen
+n|der|Bahnhof
+n|der|Verkehr
+n|die|Allee
+v||überholen
+v||ankommen
+v||umsteigen
+
+@satz|💬|Satzanfänge & kleine Wörter|Как начать фразу и маленькие слова|Як почати фразу і маленькі слова
+o||übrigens
+o||soviel ich weiß
+o||streng genommen
+o||im Prinzip
+o||eigentlich
+o||in der Tat
+o||einerseits
+o||andererseits
+o||offen gesagt
+o||ehrlich gesagt
+o||also
+o||sozusagen
+o||außerdem
+o||überhaupt
+o||nämlich
+o||nun
+o||aber nun
+o||denn
+o||bestimmt
+o||wirklich
+o||hoffentlich
+o||leider
+o||schade
+o||ungefähr
+o||anders
+o||besonders
+o||gemeinsam
+o||dabei
+o||durch
+o||bei
+o||beide
+o||jemand
+o||wenig
+o||eigen
+
+@zeit|🕐|Zeitangaben|Когда? Как долго?|Коли? Як довго?
+o||schon ganz lange
+o||früh
+o||zuerst
+o||endlich
+o||plötzlich
+o||zurzeit
+o||gerade
+o||täglich
+o||tagsüber
+o||wochenlang
+o||tagelang
+o||gleich vorbei
+o||nach dem Tod
+o||jeweils
+
+@gespraech|👋|Gespräch & Ausdrücke|Разговор и выражения|Розмова і вирази
+o||Freut mich!
+o||Wer bist du?
+o||Wie geht's?
+o||Na ja, es geht.
+o||Tut mir leid.
+o||Was meinst du dazu?
+o||Mach das Fenster zu!
+o||Sei leise!
+n|das|Sprichwort
+n|das|Vorurteil
+n|der|Befehl
+n|das|Glück
+n|der|Spaß
+n|der|Unterschied
+n|der|Teil
+n|die|Gunst
+n|die|Ordnung
+n|der|Bekannte
+n|die|Geschwister
+n|die|Tränen
+v||weinen
+v||streben
+v||verwenden
+v||lassen
+v||reden
+v||hergeben
+v||aufpassen
+a||still
+a||ruhig
+a||einfach
+a||zufrieden
+
+@alltag|☀️|Alltag & Freizeit|Быт и досуг|Побут і дозвілля
+n|der|Ausflug
+n|der|Strand
+n|das|Pferd
+n|die|Säge
+n|die|Pappel
+n|das|Wechselgeld
+n|die|Kleidung
+n|der|Bleistift
+n|die|Schritte
+v||basteln
+v||segeln
+v||zelten
+v||entspannen
+v||aufbleiben
+v||umziehen
+v||herunterladen
+v||ausdrucken
+v||verstecken
+v||klopfen
+v||legen
+v||sich setzen
+v||merken
+v||teilen
+v||wiedersehen
+v||abbekommen
