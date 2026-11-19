@@ -1838,14 +1838,14 @@ function renderVocabScreen() {
     if (th.textbook) {
       // учебник: заголовок темы, под ним карточки по частям речи
       const tbS = countsUnique(list, p, th.idPrefix || 'tb_');
-      let html = th.note ? `<div class="tb-note">${th.emoji} ${lstr(...th.note)} ${lstr(
-        `${tbS.total} Wörter — ${tbS.tbNew} neu, ${tbS.total - tbS.tbNew} gibt es schon in anderen Karten oder im Lehrbuch: dieselben Karten, gelernt ist gelernt, und im Gesamtzähler zählt jedes Wort nur einmal.`,
-        `${tbS.total} слов — ${tbS.tbNew} новых, ${tbS.total - tbS.tbNew} уже есть в других карточках или в учебнике: это те же самые карточки, выучил здесь — засчитано и там, а в общем счёте каждое слово считается один раз.`,
-        `${tbS.total} слів — ${tbS.tbNew} нових, ${tbS.total - tbS.tbNew} вже є в інших картках або в підручнику: це ті самі картки, вивчив тут — зараховано й там, а в загальному рахунку кожне слово рахується один раз.`)}</div>`
-      : `<div class="tb-note">📘 ${lstr(
-        `Wörter aus dem Lehrbuch „Schritte international Neu“ (Lektion 1–14), nach Themen sortiert: ${tbS.total} Wörter — ${tbS.tbNew} neu, ${tbS.total - tbS.tbNew} gibt es auch in anderen Karten. Das sind dieselben Karten: gelernt ist gelernt, überall, und im Gesamtzähler zählt jedes Wort nur einmal.`,
-        `Слова из учебника «Schritte international Neu» (уроки 1–14), разложены по темам: ${tbS.total} слов — ${tbS.tbNew} новых, ${tbS.total - tbS.tbNew} есть и в других карточках. Это те же самые карточки: выучил здесь — засчитано и там, а в общем счёте каждое слово считается один раз.`,
-        `Слова з підручника «Schritte international Neu» (уроки 1–14), розкладені за темами: ${tbS.total} слів — ${tbS.tbNew} нових, ${tbS.total - tbS.tbNew} є й в інших картках. Це ті самі картки: вивчив тут — зараховано й там, а в загальному рахунку кожне слово рахується один раз.`)}</div>`;
+      // каждое слово живёт только в одной карточке (db/dedupe.js): учебник A1 → A2.1 → основные → «Мои записи»
+      const note = th.note || ['Wörter aus dem Lehrbuch „Schritte international Neu“ (Lektion 1–14), nach Themen sortiert.',
+        'Слова из учебника «Schritte international Neu» (уроки 1–14), разложены по темам.',
+        'Слова з підручника «Schritte international Neu» (уроки 1–14), розкладені за темами.'];
+      let html = `<div class="tb-note">${th.emoji} ${lstr(...note)} ${lstr(
+        `${tbS.total} Wörter. Jedes Wort steht nur in einer Karte (das Lehrbuch hat Vorrang).`,
+        `${tbS.total} слов. Каждое слово лежит только в одной карточке (учебник в приоритете).`,
+        `${tbS.total} слів. Кожне слово лежить лише в одній картці (підручник у пріоритеті).`)}</div>`;
       let cur = null;
       list.forEach(c => {
         if (c.group !== cur) {
@@ -1886,7 +1886,6 @@ function renderVocabScreen() {
       <div class="theme-emoji">${th.emoji}</div>
       <div class="theme-name">${escapeHtml(themeName(th))}</div>
       <div class="theme-meta">${list.length} ${lstr('Karten','карточек','карток')} · ${total} ${lstr('Wörter','слов','слів')}</div>
-      ${th.textbook ? `<div class="theme-meta tb-split">${lstr(`${tbNew} neu · ${total - tbNew} schon in anderen Karten`,`${tbNew} новых · ${total - tbNew} уже есть в других карточках`,`${tbNew} нових · ${total - tbNew} вже є в інших картках`)}</div>` : ''}
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
       <div class="theme-pct">${pct}% ${lstr('gelernt','выучено','вивчено')}</div>
     </div>`;
@@ -3093,7 +3092,7 @@ function tablesData() {
     const pre = parts.pop();
     return parts.join(' ') + ' … ' + hl(pre);
   };
-  const _trennCat = (window.VOCAB_DATA||[]).find(c=>c.category==='trennbar');
+  const _trennCat = (window.VOCAB_FULL||window.VOCAB_DATA||[]).find(c=>c.category==='trennbar');
   const trennRows = (_trennCat ? _trennCat.words : []).filter(w=>w.conj).map(w=>[
     wt(w.word, _cleanTr(w.translation), _ukTr(w)),
     _fmtSep(w.conj.ich), _fmtSep(w.conj.du), _fmtSep(w.conj.er),
@@ -3315,7 +3314,7 @@ function prepData() {
 
   // таблица «слово — перевод» по существующей категории карточек
   const catTable = (categoryKey) => {
-    const cat = (window.VOCAB_DATA||[]).find(c=>c.category===categoryKey);
+    const cat = (window.VOCAB_FULL||window.VOCAB_DATA||[]).find(c=>c.category===categoryKey);
     if (!cat || !cat.words.length) return '';
     return two(cat.words.map(w=>[
       `${w.article && w.article!=='-' ? w.article+' ' : ''}<b>${w.word}</b>`,
@@ -4199,7 +4198,7 @@ function buildTranslatePools() {
   const THING = new Set(['essen','obst_gemuese','lebensmittel','moebel','tiere','transport_n','kleidung','koerperpflege','koerper','nuetzlich_n','einkaufen','arzt']);
   const VERB  = new Set(['verben','arbeitsverben','vokalwechsel','trennbar']);
   const nouns=[], verbs=[], profs=[];
-  (window.VOCAB_DATA||[]).forEach(cat=>{
+  (window.VOCAB_FULL||window.VOCAB_DATA||[]).forEach(cat=>{
     (cat.words||[]).forEach(w=>{
       if (!learned(w.id)) return;
       if (cat.category === 'berufe') { if (w.article==='der'||w.article==='die') profs.push(w); }
