@@ -1228,7 +1228,7 @@ function renderDashboard() {
   $('dash-stats').innerHTML =
       stat('⭐', learned, lstr('Wörter gelernt','слов выучено','слів вивчено'))
     + stat('📈', learning, lstr('in Arbeit','в процессе','в процесі'))
-    + stat('📖', `${rulesDone}/${rules.length}`, lstr(`Regeln ${S.level}`,`правил ${S.level}`,`правил ${S.level}`))
+    + (gs => stat('📘', `${gs.done}/${gs.total}`, lstr('Grammatikthemen','тем грамматики','тем граматики')))(computeGrammarStats(p))
     + stat('✏️', `${clozeDone}/${cloze.length}`, lstr('Lückentexte','текстов с пропусками','текстів з пропусками'))
     + stat('🔥', '…', lstr('Tage in Folge','дней подряд','днів поспіль'), 'dash-streak');
   if (activeProfile) fetchMySnapshotDates(activeProfile).then(d => { const el = $('dash-streak'); if (el) el.textContent = computeStreakFromDates(d); }).catch(()=>{});
@@ -1371,6 +1371,9 @@ function computeGrammarStats(prog) {
   return { done: topics.filter(id => p['sg_' + id] && p['sg_' + id].done).length, total: topics.length };
 }
 
+let _lbResizeT = null;
+window.addEventListener('resize', () => { clearTimeout(_lbResizeT); _lbResizeT = setTimeout(() => { if (S.screen === 'home' && leaderboardSeriesCache) renderLeaderboardChart(); }, 200); });
+
 async function loadLeaderboard() {
   const rows = await fetchAllDailySnapshots();
   const byUser = {};
@@ -1492,7 +1495,8 @@ function drawLeaderboard(chartId, legendId, series, unit, minMax) {
   const maxDay = Math.max(...allDates.map(daysSinceEpoch));
   const daySpan = Math.max(1, maxDay - minDay);
   const maxVal = Math.ceil(Math.max(minMax, ...series.flatMap(s => s.points.map(p => p.value))) / 4) * 4;   // ровные деления
-  const W = 640, H = 340, padL = 34, padR = 58, padT = 20, padB = 30;
+  // размер под ширину контейнера: на телефоне подписи не превращаются в мелкие точки
+  const W = Math.max(330, Math.min(640, chartWrap.clientWidth || 640)), H = Math.round(W * 0.56), padL = 34, padR = 64, padT = 20, padB = 30;
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const xOf = dateStr => padL + (daysSinceEpoch(dateStr) - minDay) / daySpan * innerW;
   const yOf = val => padT + innerH - (val / maxVal) * innerH;

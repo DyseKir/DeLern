@@ -2639,3 +2639,30 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 @media (max-width: 520px) { .lbn-head, .lbn-row { grid-template-columns: 28px 1fr 1fr 0.7fr; gap: 6px; } .lbn-bar { display: none; } }
 .lbn-val { white-space: nowrap; }
 @media (max-width: 520px) { .lbn-val b { min-width: 0; } .lbn-head span:last-child { font-size: 0; } .lbn-head span:last-child::before { content: '📘'; font-size: 13px; } }
+
+/* ── Главная: раскладка панелей (рейтинг — на всю ширину внизу) ── */
+.dash-grid { grid-template-columns: 1fr 1fr; grid-template-areas: "themes levels" "themes news" "lb lb"; }
+.dp-themes { grid-area: themes; }
+.dp-levels { grid-area: levels; }
+.dp-news   { grid-area: news; }
+.dp-lb     { grid-area: lb; }
+.lb-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.lb-charts > div { min-width: 0; }
+.dash-tiles > .dash-tile { min-width: 0; }
+.dash-tile { overflow-wrap: anywhere; text-align: center; line-height: 1.25; }
+@media (max-width: 900px) {
+  .dash-grid { grid-template-columns: 1fr; grid-template-areas: "themes" "lb" "levels" "news"; }
+  .lb-charts { grid-template-columns: 1fr; gap: 6px; }
+  .dash-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .dash-tiles { gap: 8px; }
+  .dash-tile { padding: 10px 4px; font-size: 11.5px; }
+  .dash-tile span { font-size: 21px; }
+  .dash-stats > :last-child:nth-child(odd) { grid-column: span 2; }
+}
+@media (max-width: 520px) {
+  .dash-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dash-tile { overflow-wrap: normal; word-break: normal; font-size: 12px; padding: 10px 6px; }
+  .dash-tiles > .dash-tile:last-child:nth-child(3n+1) { grid-column: 1 / -1; flex-direction: row; justify-content: center; gap: 8px; }
+}
