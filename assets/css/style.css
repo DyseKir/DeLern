@@ -2666,3 +2666,9 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
   .dash-tile { overflow-wrap: normal; word-break: normal; font-size: 12px; padding: 10px 6px; }
   .dash-tiles > .dash-tile:last-child:nth-child(3n+1) { grid-column: 1 / -1; flex-direction: row; justify-content: center; gap: 8px; }
 }
+
+/* ── Админ: метки «без ограничений» и «скрыт с графика» ── */
+.admin-payment-badge.unlimited { background: rgba(124,92,255,.16); color: var(--accent, #7c5cff); }
+.admin-unlimited-btn.on { border-color: var(--accent, #7c5cff); }
+.admin-extend-btn:disabled { opacity: .45; cursor: not-allowed; }
+.admin-status-badge.hidden-lb { background: var(--bg4); color: var(--text-muted); }

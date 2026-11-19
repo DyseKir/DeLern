@@ -1375,15 +1375,17 @@ let _lbResizeT = null;
 window.addEventListener('resize', () => { clearTimeout(_lbResizeT); _lbResizeT = setTimeout(() => { if (S.screen === 'home' && leaderboardSeriesCache) renderLeaderboardChart(); }, 200); });
 
 async function loadLeaderboard() {
-  const rows = await fetchAllDailySnapshots();
+  const [rows, hiddenIds] = await Promise.all([fetchAllDailySnapshots(), fetchLeaderboardHiddenIds()]);
+  const hidden = new Set(hiddenIds);
   const byUser = {};
   rows.forEach(r => {
+    if (hidden.has(r.user_id)) return;
     if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', points: [], gpoints: [] };
     byUser[r.user_id].points.push({ date: r.snapshot_date, value: r.learned_count });
     if (r.grammar_count != null) byUser[r.user_id].gpoints.push({ date: r.snapshot_date, value: r.grammar_count });
   });
   // свои цифры — «прямо сейчас», не дожидаясь снимка
-  if (typeof activeProfile !== 'undefined' && activeProfile) {
+  if (typeof activeProfile !== 'undefined' && activeProfile && !hidden.has(activeProfile)) {
     const today = new Date().toISOString().slice(0, 10), p = loadProg();
     const me = byUser[activeProfile] || (byUser[activeProfile] = { id: activeProfile,
       name: (typeof currentUserProfile !== 'undefined' && currentUserProfile && currentUserProfile.display_name) || lstr('Ich', 'Я', 'Я'), points: [], gpoints: [] });
@@ -3571,6 +3573,7 @@ function formatCountdown(ms) {
   return lstr(`${hours} Std. ${minutes} Min.`, `${hours} ч. ${minutes} мин.`, `${hours} год. ${minutes} хв.`);
 }
 function accessBadgeHtml(u) {
+  if (u.unlimited) return `<span class="admin-payment-badge unlimited">♾️ ${lstr('Unbegrenzt','Без ограничений','Без обмежень')}</span>`;
   if (!u.access_until) return `<span class="admin-payment-badge none">${lstr('Ohne Limit','Без ограничения','Без обмеження')}</span>`;
   const ms = new Date(u.access_until).getTime() - Date.now();
   if (ms <= 0) return `<span class="admin-payment-badge overdue">${lstr('Abgelaufen','Истёк','Закінчився')}</span>`;
@@ -3614,7 +3617,10 @@ async function renderAdminUsersList() {
         <div class="admin-payment-row">
           <label>${lstr('Zugang','Доступ','Доступ')}:</label>
           ${accessBadgeHtml(u)}
-          <button class="btn-secondary admin-extend-btn" data-uid="${u.id}">
+          <button class="btn-secondary admin-unlimited-btn ${u.unlimited ? 'on' : ''}" data-uid="${u.id}" data-on="${!!u.unlimited}">
+            ${u.unlimited ? lstr('Limit wieder an','Снять «без ограничений»','Зняти «без обмежень»') : '♾️ ' + lstr('Ohne Limit','Без ограничений','Без обмежень')}
+          </button>
+          <button class="btn-secondary admin-extend-btn" data-uid="${u.id}" ${u.unlimited ? 'disabled' : ''}>
             ${lstr('Verlängern (bis 20.)','Продлить (до 20-го числа)','Продовжити (до 20-го числа)')}
           </button>
           ${_extendUndoMap[u.id] !== undefined ? `
@@ -3625,6 +3631,10 @@ async function renderAdminUsersList() {
       </div>
       <div class="admin-user-actions">
         <span class="admin-status-badge ${u.is_active ? 'active' : 'inactive'}">${u.is_active ? lstr('Aktiv','Активен','Активний') : lstr('Inaktiv','Не активен','Не активний')}</span>
+        ${u.hide_from_leaderboard ? `<span class="admin-status-badge hidden-lb">🙈 ${lstr('Nicht im Diagramm','Скрыт с графика','Прихований з графіка')}</span>` : ''}
+        <button class="btn-secondary admin-hide-btn" data-uid="${u.id}" data-hidden="${!!u.hide_from_leaderboard}">
+          ${u.hide_from_leaderboard ? '👁 ' + lstr('Im Diagramm zeigen','Показать на графике','Показати на графіку') : '🙈 ' + lstr('Aus Diagramm ausblenden','Скрыть с графика','Приховати з графіка')}
+        </button>
         <button class="btn-secondary admin-toggle-btn" data-uid="${u.id}" data-active="${u.is_active}">
           ${u.is_active ? lstr('Deaktivieren','Деактивировать','Деактивувати') : lstr('Aktivieren','Активировать','Активувати')}
         </button>
@@ -3636,6 +3646,19 @@ async function renderAdminUsersList() {
     btn.disabled = true;
     await adminSetActive(btn.dataset.uid, btn.dataset.active !== 'true');
     renderAdminUsersList();
+  }));
+  wrap.querySelectorAll('.admin-unlimited-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    const { error } = await adminSetUnlimited(btn.dataset.uid, btn.dataset.on !== 'true');
+    if (error) { alert(lstr('Fehler: migration_7_admin_flags.sql in Supabase ausführen.','Ошибка: выполните migration_7_admin_flags.sql в Supabase.','Помилка: виконайте migration_7_admin_flags.sql у Supabase.')); btn.disabled = false; return; }
+    renderAdminUsersList();
+  }));
+  wrap.querySelectorAll('.admin-hide-btn').forEach(btn => btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    const { error } = await adminSetHiddenFromLeaderboard(btn.dataset.uid, btn.dataset.hidden !== 'true');
+    if (error) { alert(lstr('Fehler: migration_7_admin_flags.sql in Supabase ausführen.','Ошибка: выполните migration_7_admin_flags.sql в Supabase.','Помилка: виконайте migration_7_admin_flags.sql у Supabase.')); btn.disabled = false; return; }
+    renderAdminUsersList();
+    if (typeof loadLeaderboard === 'function') loadLeaderboard();
   }));
   wrap.querySelectorAll('.admin-reset-btn').forEach(btn => btn.addEventListener('click', async () => {
     btn.disabled = true;

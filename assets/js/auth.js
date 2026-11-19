@@ -265,6 +265,20 @@ async function adminExtendAccess(userId) {
 async function adminSetAccessUntil(userId, iso) {
   return sb.from('profiles').update({ access_until: iso }).eq('id', userId);
 }
+async function adminSetUnlimited(userId, on) {
+  return sb.from('profiles').update({ unlimited: on }).eq('id', userId);
+}
+async function adminSetHiddenFromLeaderboard(userId, hidden) {
+  return sb.from('profiles').update({ hide_from_leaderboard: hidden }).eq('id', userId);
+}
+/* id скрытых с графика (пустой список, если migration_7 ещё не выполнена) */
+async function fetchLeaderboardHiddenIds() {
+  try {
+    const { data, error } = await sb.rpc('leaderboard_hidden_ids');
+    if (error || !Array.isArray(data)) return [];
+    return data.map(r => (typeof r === 'string' ? r : r.leaderboard_hidden_ids || r.id)).filter(Boolean);
+  } catch { return []; }
+}
 async function adminListAllProgress() {
   const { data, error } = await sb.from('progress').select('user_id, data');
   if (error) return [];
@@ -294,7 +308,7 @@ async function logCategoryEvent(level, category) {
    открытыми, пока админ явно не поставит им дату — чтобы никого не отключило задним числом. */
 function hasAccess(profile) {
   if (!profile || !profile.is_active) return false;
-  if (!profile.access_until) return true;
+  if (profile.unlimited || !profile.access_until) return true;
   return new Date(profile.access_until) > new Date();
 }
 function accessCountdown(accessUntil) {
