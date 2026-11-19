@@ -1713,6 +1713,71 @@ function openKarten(opts = {}) {
   renderVocabScreen();
 }
 
+/* Нормализация для поиска: регистр, ß и ударения не важны; умлауты складываются (ü → u),
+   если в самом запросе их нет — «tur» найдёт Tür, а «küche» не найдёт Kuchen. */
+function searchNorm(s, keepUml) {
+  const n = normAnswer(s);
+  return (keepUml ? n : n.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u')).replace(/[.,!?;:«»„“"()]/g, '').trim();
+}
+
+/* Поиск в «Карточках»: карточки по названию/теме + найденные слова со ссылками на их карточки */
+function renderKartenSearch(raw, wrap, crumbs, lvlOk, cards) {
+  const uml = /[äöü]/i.test(raw), nz = s => searchNorm(s, uml), q = nz(raw);
+  const all = (window.VOCAB_DATA || []).filter(lvlOk);
+  const UK = window.TRANSLATIONS_UK || {};
+  const catTitle = c => `${c.name} ${c.name_ru || ''} ${c.name_uk || ''} ${(c.group_title || []).join(' ')} ${themeName(themeOfCat(c))}`;
+  const byName = all.filter(c => nz(catTitle(c)).includes(q));
+
+  // слова: одно слово (id) — одна строка, рядом все карточки, где оно есть
+  const words = new Map();
+  all.forEach(c => (c.mode === 'conjugation' ? c.words.filter(w => w.conj) : c.words).forEach(w => {
+    const de = nz(`${w.article && w.article !== '-' ? w.article + ' ' : ''}${w.word}`);
+    const tr = nz(`${w.translation || ''} ${UK[w.id] || ''}`);
+    let rank = -1;
+    if (nz(w.word) === q || de === q) rank = 0;                         // точное совпадение
+    else if (nz(w.word).startsWith(q) || de.startsWith(q)) rank = 1;   // начинается с
+    else if (de.includes(q)) rank = 2;                                          // внутри слова
+    else if (tr.split(/[\s,;/()]+/).some(x => x.startsWith(q))) rank = 3;      // перевод: слово начинается с
+    else if (tr.includes(q)) rank = 4;
+    if (rank < 0) return;
+    const e = words.get(w.id) || { w, rank, cats: [] };
+    e.rank = Math.min(e.rank, rank);
+    if (!e.cats.includes(c)) e.cats.push(c);
+    words.set(w.id, e);
+  }));
+  const hits = [...words.values()].sort((a, b) => a.rank - b.rank || a.w.word.length - b.w.word.length || a.w.word.localeCompare(b.w.word));
+  const MAXW = 60, p = loadProg();
+
+  crumbs.innerHTML = `🔎 ${lstr('Suche', 'Поиск', 'Пошук')}: «${escapeHtml(S.kartenSearch)}» — ${byName.length} ${lstr('Karten', 'карточек', 'карток')} · ${hits.length} ${lstr('Wörter', 'слов', 'слів')}`;
+  if (!byName.length && !hits.length) {
+    wrap.innerHTML = `<div class="loading-hint">${lstr('Nichts gefunden', 'Ничего не найдено', 'Нічого не знайдено')}</div>`;
+    return;
+  }
+  let html = '';
+  if (hits.length) {
+    html += `<h3 class="ks-h">🔤 ${lstr('Wörter', 'Слова', 'Слова')} <small>${hits.length}${hits.length > MAXW ? ' · ' + lstr(`die ersten ${MAXW}`, `показаны первые ${MAXW}`, `показано перші ${MAXW}`) : ''}</small></h3>
+      <div class="ks-words">${hits.slice(0, MAXW).map(({ w, cats: cs }) => {
+        const learned = p[w.id] && p[w.id].status === 'learned';
+        const tr = (lang === 'uk' && UK[w.id]) || w.translation || '';
+        return `<div class="ks-word ${learned ? 'learned' : ''}">
+          <div class="ks-w-main"><span class="art-${w.article}">${w.article && w.article !== '-' ? w.article : ''}</span> <b>${escapeHtml(w.word)}</b>
+            ${learned ? '<span class="ks-ok" title="выучено">✓</span>' : ''}<span class="ks-tr">— ${escapeHtml(tr)}</span></div>
+          <div class="ks-cats">${cs.slice(0, 4).map(c => `<button class="ks-cat" data-cat="${c.category}" data-lvl="${c.level}">${c.emoji || '📁'} ${escapeHtml(lstr(c.name, c.name_ru || c.name, c.name_uk || c.name_ru || c.name))}</button>`).join('')}
+            ${cs.length > 4 ? `<span class="ks-more">+${cs.length - 4}</span>` : ''}</div>
+        </div>`;
+      }).join('')}</div>`;
+  }
+
+  if (byName.length) html += `<h3 class="ks-h">🗂️ ${lstr('Karten', 'Карточки', 'Картки')} <small>${byName.length}</small></h3><div class="categories-full-grid">` + cards(byName.slice(0, 40)) + '</div>';
+  wrap.className = 'karten-search-results';
+  wrap.innerHTML = html;
+  attachCatEvents(wrap);
+  wrap.querySelectorAll('.ks-cat').forEach(b => b.addEventListener('click', () => {
+    const c = (window.VOCAB_DATA || []).find(x => x.level === b.dataset.lvl && x.category === b.dataset.cat);
+    if (c) openSessionSizeModal(c);
+  }));
+}
+
 function updateKartenFavChip() {
   const chip = document.querySelector('#vocab-level-filter .vlf-fav');
   if (chip) chip.textContent = `★ ${lstr('Ausgewählt','Выбранные','Вибрані')} (${getFavCats().length})`;
@@ -1736,27 +1801,19 @@ function renderVocabScreen() {
   }));
 
   const search = $('karten-search');
-  search.placeholder = lstr('Karte oder Wort suchen…','Поиск карточки или слова…','Пошук картки або слова…');
+  search.placeholder = lstr('Karte oder Wort suchen: Tisch, Küche, стол …','Поиск карточки или слова: Tisch, кухня, стол …','Пошук картки або слова: Tisch, кухня, стіл …');
   if (search.value !== (S.kartenSearch||'')) search.value = S.kartenSearch || '';
 
   const wrap   = $('vocab-categories-grid');
   const crumbs = $('karten-crumbs');
   const lvlOk  = c => S.vocabFilter === 'all' || c.level === S.vocabFilter;
   const cards  = list => list.map(c => { const { total, learned } = catCounts(c, p); return makeCatCardHTML(c, total, learned, p, { showLevel: true }); }).join('');
-  const q = normAnswer(S.kartenSearch || '');
+  const q = (S.kartenSearch || '').trim();
+  $('karten-search-clear').classList.toggle('hidden', !S.kartenSearch);
   wrap.className = 'categories-full-grid';
   $('vocab-learned-section').innerHTML = '';
 
-  if (q) {
-    /* ─ поиск: по названию карточки или по словам внутри ─ */
-    const hits = (window.VOCAB_DATA||[]).filter(c => lvlOk(c) && (
-      normAnswer(`${c.name} ${c.name_ru||''}`).includes(q) ||
-      c.words.some(w => normAnswer(`${w.word} ${w.translation}`).includes(q))));
-    crumbs.innerHTML = `🔎 ${lstr('Suche','Поиск','Пошук')}: «${escapeHtml(S.kartenSearch)}» — ${hits.length}`;
-    wrap.innerHTML = hits.length ? cards(hits) : `<div class="loading-hint">${lstr('Nichts gefunden','Ничего не найдено','Нічого не знайдено')}</div>`;
-    attachCatEvents(wrap);
-    return;
-  }
+  if (q) { renderKartenSearch(q, wrap, crumbs, lvlOk, cards); return; }
 
   if (S.kartenFavOnly) {
     /* ─ только выбранные ─ */
@@ -5038,6 +5095,8 @@ function initEvents() {
   /* Разделы */
   /* Поиск во вкладке «Карточки» */
   $('karten-search').addEventListener('input', e => { S.kartenSearch = e.target.value; renderVocabScreen(); });
+  $('karten-search').addEventListener('keydown', e => { if (e.key === 'Escape') $('karten-search-clear').click(); });
+  $('karten-search-clear').addEventListener('click', () => { S.kartenSearch = ''; renderVocabScreen(); $('karten-search').focus(); });
 
   /* Weiter (для слов без артикля) */
   $('weiter-btn').addEventListener('click', ()=>{ if(!S.busy) handleArticle('-'); });

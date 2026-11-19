@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260803p">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260803q">
 </head>
 <body>
 
@@ -298,9 +298,13 @@
         <button class="back-btn" id="vocab-back" data-i18n="btn_back">← Zurück</button>
         <h2 class="screen-title" id="karten-title"><span data-i18n="vocab_screen_h">Karten</span></h2>
       </div>
+      <div class="karten-search-wrap">
+        <span class="ks-icon">🔎</span>
+        <input type="search" id="karten-search" class="karten-search" autocomplete="off" spellcheck="false">
+        <button class="ks-clear hidden" id="karten-search-clear" title="✕">✕</button>
+      </div>
       <div class="karten-toolbar">
         <div class="vocab-level-filter" id="vocab-level-filter"></div>
-        <input type="text" id="karten-search" class="ssm-custom-input karten-search" autocomplete="off" spellcheck="false">
       </div>
       <div id="karten-crumbs" class="karten-crumbs"></div>
       <div class="categories-full-grid" id="vocab-categories-grid"></div>
@@ -550,25 +554,25 @@
   </svg>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="assets/js/supabase-config.js?v=20260803p"></script>
-  <script src="assets/js/auth.js?v=20260803p"></script>
-  <script src="db/words.js?v=20260803p"></script>
-  <script src="db/irregular_verbs.js?v=20260803p"></script>
-  <script src="db/themes.js?v=20260803p"></script>
-  <script src="db/examples.js?v=20260803p"></script>
-  <script src="db/example_roles.js?v=20260803p"></script>
-  <script src="db/sentences.js?v=20260803p"></script>
-  <script src="db/grammar.js?v=20260803p"></script>
-  <script src="db/schritte_grammar.js?v=20260803p"></script>
-  <script src="db/schritte_grammar_a2.js?v=20260803p"></script>
-  <script src="db/cloze.js?v=20260803p"></script>
-  <script src="db/translations_uk.js?v=20260803p"></script>
-  <script src="db/textbook.js?v=20260803p"></script>
-  <script src="db/textbook_a2.js?v=20260803p"></script>
-  <script src="db/notizen.js?v=20260803p"></script>
-  <script src="db/aliases.js?v=20260803p"></script>
-  <script src="db/changelog.js?v=20260803p"></script>
-  <script src="db/achievements.js?v=20260803p"></script>
-  <script src="assets/js/app.js?v=20260803p"></script>
+  <script src="assets/js/supabase-config.js?v=20260803q"></script>
+  <script src="assets/js/auth.js?v=20260803q"></script>
+  <script src="db/words.js?v=20260803q"></script>
+  <script src="db/irregular_verbs.js?v=20260803q"></script>
+  <script src="db/themes.js?v=20260803q"></script>
+  <script src="db/examples.js?v=20260803q"></script>
+  <script src="db/example_roles.js?v=20260803q"></script>
+  <script src="db/sentences.js?v=20260803q"></script>
+  <script src="db/grammar.js?v=20260803q"></script>
+  <script src="db/schritte_grammar.js?v=20260803q"></script>
+  <script src="db/schritte_grammar_a2.js?v=20260803q"></script>
+  <script src="db/cloze.js?v=20260803q"></script>
+  <script src="db/translations_uk.js?v=20260803q"></script>
+  <script src="db/textbook.js?v=20260803q"></script>
+  <script src="db/textbook_a2.js?v=20260803q"></script>
+  <script src="db/notizen.js?v=20260803q"></script>
+  <script src="db/aliases.js?v=20260803q"></script>
+  <script src="db/changelog.js?v=20260803q"></script>
+  <script src="db/achievements.js?v=20260803q"></script>
+  <script src="assets/js/app.js?v=20260803q"></script>
 </body>
 </html>
