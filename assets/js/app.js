@@ -23,7 +23,7 @@ const TR = {
     user_hi: 'Hi!',
     sec_level: 'Dein Lernniveau wählen',
     sec_area:  'Lernbereich wählen',
-    sec_leaderboard: 'Bestenliste',
+    sec_leaderboard: 'Bestenliste', lb_words: 'Wörter', lb_grammar: 'Grammatik (Themen aus dem Lehrbuch)',
     a1_name:'(Anfänger)',      a1_sub:'Active',
     a2_name:'(Grundlagen)',    a2_sub:'Lernolagen',
     b1_name:'(Fortgeschritten)', b1_sub:'Lerngeschritten',
@@ -86,7 +86,7 @@ const TR = {
     user_hi: 'Привет!',
     sec_level: 'Выбери уровень',
     sec_area:  'Выбери раздел',
-    sec_leaderboard: 'Рейтинг учеников',
+    sec_leaderboard: 'Рейтинг учеников', lb_words: 'Слова', lb_grammar: 'Грамматика (темы по учебнику)',
     a1_name:'(Начинающий)',    a1_sub:'Активный',
     a2_name:'(Основы)',        a2_sub:'Учусь',
     b1_name:'(Продвинутый)',   b1_sub:'Продвигаюсь',
@@ -149,7 +149,7 @@ const TR = {
     user_hi: 'Привіт!',
     sec_level: 'Обери рівень',
     sec_area:  'Обери розділ',
-    sec_leaderboard: 'Рейтинг учнів',
+    sec_leaderboard: 'Рейтинг учнів', lb_words: 'Слова', lb_grammar: 'Граматика (теми з підручника)',
     a1_name:'(Початківець)',   a1_sub:'Активний',
     a2_name:'(Основи)',        a2_sub:'Навчаюсь',
     b1_name:'(Просунутий)',    b1_sub:'Просуваюсь',
@@ -1364,15 +1364,34 @@ function refreshOverallBar() {
 const LEADERBOARD_COLORS = ['#3987e5', '#008300', '#d55181', '#c98500', '#199e70', '#d95926', '#9085e9', '#e66767'];
 let leaderboardSeriesCache = null;
 
+/* Грамматика: сколько тем «по учебнику» пройдено (sg_<тема>.done, без тестов уроков) */
+function computeGrammarStats(prog) {
+  const p = prog || {};
+  const topics = (window.SG_LESSONS || []).flatMap(L => L.topics.map(t => t.id));
+  return { done: topics.filter(id => p['sg_' + id] && p['sg_' + id].done).length, total: topics.length };
+}
+
 async function loadLeaderboard() {
   const rows = await fetchAllDailySnapshots();
   const byUser = {};
   rows.forEach(r => {
-    if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', points: [] };
+    if (!byUser[r.user_id]) byUser[r.user_id] = { id: r.user_id, name: r.display_name || '?', points: [], gpoints: [] };
     byUser[r.user_id].points.push({ date: r.snapshot_date, value: r.learned_count });
+    if (r.grammar_count != null) byUser[r.user_id].gpoints.push({ date: r.snapshot_date, value: r.grammar_count });
   });
+  // свои цифры — «прямо сейчас», не дожидаясь снимка
+  if (typeof activeProfile !== 'undefined' && activeProfile) {
+    const today = new Date().toISOString().slice(0, 10), p = loadProg();
+    const me = byUser[activeProfile] || (byUser[activeProfile] = { id: activeProfile,
+      name: (typeof currentUserProfile !== 'undefined' && currentUserProfile && currentUserProfile.display_name) || lstr('Ich', 'Я', 'Я'), points: [], gpoints: [] });
+    // 0 не перекрывает сохранённый результат (на новом устройстве прогресс может ещё не подтянуться из облака)
+    const put = (arr, v) => { if (!v && arr.some(x => x.value > 0)) return; const last = arr.find(x => x.date === today); if (last) last.value = v; else arr.push({ date: today, value: v }); };
+    put(me.points, computeUserStats(p).learned);
+    put(me.gpoints, computeGrammarStats(p).done);
+  }
   leaderboardSeriesCache = Object.values(byUser)
-    .map(s => ({ ...s, points: s.points.slice().sort((a, b) => a.date.localeCompare(b.date)) }))
+    .map(s => ({ ...s, points: s.points.slice().sort((a, b) => a.date.localeCompare(b.date)),
+                       gpoints: s.gpoints.slice().sort((a, b) => a.date.localeCompare(b.date)) }))
     .sort((a, b) => a.id.localeCompare(b.id));
   renderLeaderboardChart();
 }
@@ -1428,10 +1447,40 @@ function smoothPathD(points) {
 }
 
 function renderLeaderboardChart() {
-  const chartWrap = $('leaderboard-chart');
-  const legendWrap = $('leaderboard-legend');
+  renderLeaderboardNow();
+  const all = leaderboardSeriesCache || [];
+  drawLeaderboard('leaderboard-chart', 'leaderboard-legend', all, lstr('Wörter', 'слов', 'слів'), 5);
+  drawLeaderboard('leaderboard-gchart', 'leaderboard-glegend', all.map(s => ({ ...s, points: s.gpoints || [] })),
+    lstr('Grammatikthemen', 'тем грамматики', 'тем граматики'), 4);
+}
+
+/* Таблица «Сейчас»: кто сколько знает слов и грамматики (последний снимок) */
+function renderLeaderboardNow() {
+  const wrap = $('leaderboard-now');
+  if (!wrap) return;
+  const series = leaderboardSeriesCache || [];
+  const gTotal = computeGrammarStats({}).total;
+  const rows = series.map((s, i) => ({
+    s, color: LEADERBOARD_COLORS[i % LEADERBOARD_COLORS.length],
+    words: s.points.length ? s.points[s.points.length - 1].value : 0,
+    gram: s.gpoints && s.gpoints.length ? s.gpoints[s.gpoints.length - 1].value : null,
+  })).sort((a, b) => b.words - a.words || (b.gram || 0) - (a.gram || 0));
+  if (!rows.length) { wrap.innerHTML = ''; return; }
+  const me = typeof activeProfile !== 'undefined' ? activeProfile : null;
+  const maxW = Math.max(1, ...rows.map(r => r.words));
+  wrap.innerHTML = `<div class="lbn-head"><span></span><span>${lstr('Name', 'Имя', "Ім'я")}</span><span>📚 ${lstr('Wörter', 'Слова', 'Слова')}</span><span>📘 ${lstr('Grammatik', 'Грамматика', 'Граматика')}</span></div>`
+    + rows.map((r, i) => `<div class="lbn-row ${r.s.id === me ? 'me' : ''}">
+        <span class="lbn-place">${['🥇', '🥈', '🥉'][i] || (i + 1)}</span>
+        <span class="lbn-name"><i style="background:${r.color}"></i>${escapeHtml(r.s.name)}${r.s.id === me ? ` <small>(${lstr('du', 'ты', 'ти')})</small>` : ''}</span>
+        <span class="lbn-val"><b>${r.words}</b><span class="lbn-bar"><span style="width:${r.words / maxW * 100}%;background:${r.color}"></span></span></span>
+        <span class="lbn-val"><b>${r.gram == null ? '—' : r.gram}</b><small>/ ${gTotal}</small></span>
+      </div>`).join('');
+}
+
+function drawLeaderboard(chartId, legendId, series, unit, minMax) {
+  const chartWrap = $(chartId);
+  const legendWrap = $(legendId);
   if (!chartWrap) return;
-  const series = leaderboardSeriesCache;
   if (!series || !series.length || !series.some(s => s.points.length)) {
     chartWrap.innerHTML = `<div class="loading-hint">${lstr('Noch keine Daten','Пока нет данных','Поки немає даних')}</div>`;
     if (legendWrap) legendWrap.innerHTML = '';
@@ -1442,7 +1491,7 @@ function renderLeaderboardChart() {
   const minDay = Math.min(...allDates.map(daysSinceEpoch));
   const maxDay = Math.max(...allDates.map(daysSinceEpoch));
   const daySpan = Math.max(1, maxDay - minDay);
-  const maxVal = Math.max(5, ...series.flatMap(s => s.points.map(p => p.value)));
+  const maxVal = Math.ceil(Math.max(minMax, ...series.flatMap(s => s.points.map(p => p.value))) / 4) * 4;   // ровные деления
   const W = 640, H = 340, padL = 34, padR = 58, padT = 20, padB = 30;
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const xOf = dateStr => padL + (daysSinceEpoch(dateStr) - minDay) / daySpan * innerW;
@@ -1470,11 +1519,11 @@ function renderLeaderboardChart() {
     const lx = xOf(last.date), ly = yOf(last.value);
     const dots = s.points.map(p => {
       const cx = xOf(p.date), cy = yOf(p.value);
-      return `<circle cx="${cx}" cy="${cy}" r="12" fill="transparent"><title>${name} — ${new Date(p.date+'T00:00:00').toLocaleDateString('ru-RU')}: ${p.value} ${lstr('Wörter','слов','слів')}</title></circle>
+      return `<circle cx="${cx}" cy="${cy}" r="12" fill="transparent"><title>${name} — ${new Date(p.date+'T00:00:00').toLocaleDateString('ru-RU')}: ${p.value} ${unit}</title></circle>
               <circle cx="${cx}" cy="${cy}" r="4.5" fill="${color}" stroke="#1a1d2e" stroke-width="2"/>`;
     }).join('');
     return `<path d="${path}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${dots}
-      <text x="${lx + 10}" y="${ly + 5}" class="lb-series-label" fill="${color}">${name}</text>`;
+      <text x="${lx + 10}" y="${ly + 5}" class="lb-series-label" fill="${color}">${name} · ${last.value}</text>`;
   }).join('');
 
   chartWrap.innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="lb-svg" preserveAspectRatio="xMidYMid meet">${gridLines}${xLabels}${seriesHtml}</svg>`;

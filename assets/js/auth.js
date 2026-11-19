@@ -129,11 +129,19 @@ async function fetchCloudProgressBlob(userId) {
 }
 
 /* ── Общий рейтинг (дневные снимки, для линейного графика на главной) ── */
-async function upsertDailySnapshot(userId, displayName, learnedCount) {
+let _snapGrammarCol = true;   // false, если в таблице ещё нет grammar_count (migration_6 не выполнена)
+async function upsertDailySnapshot(userId, displayName, learnedCount, grammarCount) {
   const today = new Date().toISOString().slice(0, 10);
-  return sb.from('progress_daily_snapshots')
-    .upsert({ user_id: userId, display_name: displayName, snapshot_date: today, learned_count: learnedCount }, { onConflict: 'user_id,snapshot_date' });
+  const row = { user_id: userId, display_name: displayName, snapshot_date: today, learned_count: learnedCount };
+  if (_snapGrammarCol && grammarCount != null) {
+    const res = await sb.from('progress_daily_snapshots').upsert({ ...row, grammar_count: grammarCount }, { onConflict: 'user_id,snapshot_date' });
+    if (!res.error) return res;
+    if (!/grammar_count/i.test(res.error.message || '')) return res;
+    _snapGrammarCol = false;   // колонки нет — пишем по-старому
+  }
+  return sb.from('progress_daily_snapshots').upsert(row, { onConflict: 'user_id,snapshot_date' });
 }
+
 async function fetchAllDailySnapshots() {
   const { data, error } = await sb.from('progress_daily_snapshots').select('*').order('snapshot_date', { ascending: true });
   if (error) return [];
@@ -147,7 +155,8 @@ async function fetchMySnapshotDates(userId) {
 function syncDailySnapshotFromMerged(userId, merged) {
   if (typeof computeUserStats !== 'function') return;
   const name = (typeof currentUserProfile !== 'undefined' && currentUserProfile && currentUserProfile.display_name) || '';
-  upsertDailySnapshot(userId, name, computeUserStats(merged.prog).learned);
+  const g = typeof computeGrammarStats === 'function' ? computeGrammarStats(merged.prog).done : null;
+  upsertDailySnapshot(userId, name, computeUserStats(merged.prog).learned, g);
 }
 
 /* ── Загрузка прогресса из облака при входе — сливается с тем, что уже
