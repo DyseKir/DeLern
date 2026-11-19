@@ -2616,7 +2616,7 @@ function sgLessons() { return window.SG_LESSONS || []; }
 const sgLn = L => 'Lektion ' + (L.ln || L.n);   // номер урока в книге (у A2 n = 101…, ln = 1…)
 const SG_BOOKS = { A1: ['Schritte international Neu 1+2', 'A1'], 'A2.1': ['Schritte international Neu 3', 'A2.1'], 'A2.2': ['Schritte international Neu 4', 'A2.2'] };
 function sgProg(key) { const p = loadProg(); return p['sg_' + key] || null; }
-/* best — % верных с первой попытки; done — тема пройдена: от 80% сразу
+/* best — % верных (исправленные ошибки тоже считаются верными); done — тема пройдена: от 80%
    или когда все ошибки исправлены (complete). */
 function sgSave(key, pct, complete) {
   const p = loadProg(), cur = p['sg_' + key] || {};
@@ -2877,7 +2877,8 @@ function sgCheck(choice) {
   }
   SG.answered = true;
   // ошибки копятся в SG.wrong — в конце их можно исправить отдельным раундом
-  if (SG.fix) { if (ok) SG.wrong.delete(it.k); }
+  // исправленная ошибка засчитывается как верный ответ
+  if (SG.fix) { if (ok) { SG.wrong.delete(it.k); SG.firstTry++; } }
   else if (ok) SG.firstTry++;
   else SG.wrong.add(it.k);
   sgRunSave(SG.idx + 1);
@@ -2913,7 +2914,7 @@ function finishSGPractice() {
         <button class="btn-secondary" id="sg-again">${sgL('Neu anfangen', 'Начать заново')}</button>${btnRule}${btnBook}
       </div>`;
   } else {
-    if (!SG.fix) SG.pct = SG.total ? Math.round(SG.firstTry / SG.total * 100) : 0;
+    SG.pct = SG.total ? Math.round(SG.firstTry / SG.total * 100) : 0;
     const pct = SG.pct, left = SG.wrong.size, complete = left === 0;
     const first = sgSave(key, pct, complete);
     if (first) addCoins(5);
@@ -2921,7 +2922,7 @@ function finishSGPractice() {
     if (complete) sgRunClear(key); else sgRunSave(SG.items.length);
     html = `<div class="sg-res-emoji">${complete ? '🎉' : pct >= 50 ? '👍' : '💪'}</div>
       <div class="sg-res-big">${pct}%</div>
-      <div>${sgL('Beim ersten Versuch richtig', 'Верно с первой попытки')}: ${SG.firstTry} / ${SG.total}</div>
+      <div>${sgL('Richtig', 'Верно')}: ${SG.firstTry} / ${SG.total}</div>
       ${left ? `<div class="sg-res-left">${sgL('Noch falsch', 'Осталось ошибок')}: <b>${left}</b></div>` : ''}
       <div class="sg-res-note">${done
         ? sgL('Thema geschafft ✓', 'Тема пройдена ✓') + (left ? ' ' + sgL('Korrigiere trotzdem die Fehler.', 'Но ошибки лучше исправить.') : '')
