@@ -1,0 +1,563 @@
+# Учебник «Schritte international Neu 3» (A2.1), Lernwortschatz уроков 1–7, по темам (по смыслу).
+# @тема|эмодзи|DE|RU|UK, затем pos|артикль|слово|пример (pos: n/v/a/o)
+
+@ankommen|🧳|Ankommen & Umzug|Переезд и новое место|Переїзд і нове місце
+n|der|Einkauf|Tim geht es nach dem Einkauf besser.
+n|das|Zentrum|Bis zum Hotel im Zentrum muss Tim vierzig Minuten fahren.
+n|der|Anfang|Aller Anfang ist schwer.
+n|der|Mensch|Ich bin traurig, weil ich hier keinen Menschen kenne.
+n|der|Umzug|Ich war gestern Abend nach dem Umzug sehr müde.
+n|die|Sachen|Ich habe nur noch ein paar Sachen ausgepackt.
+n|der|Nachbar|Die beiden Personen im Supermarkt sind Nachbarn von Tim.
+n|die|Nachbarin|Meine Nachbarin hilft mir oft.
+n|das|Gefühl|Tim hat das Gefühl: „Ich bin allein.“
+v||vermissen|Ich vermisse meine Familie sehr.
+v||umziehen|Mein Arbeitgeber zieht um.
+v||sich kennenlernen|Ich habe schon zwei Nachbarn kennengelernt.
+v||auspacken|Ich habe nur noch ein paar Sachen ausgepackt.
+v||einschlafen|Meine Nachbarn haben laut Musik gehört, aber ich bin sofort eingeschlafen.
+v||klappen|Es hat geklappt: Tim hat im Hotel ein Zimmer für Mitarbeiter bekommen.
+v||ansehen|Tim sieht sich Fotos von Lara an.
+
+@familie|👨‍👩‍👧|Familie & Verwandte|Семья и родственники|Сім'я і родичі
+n|der|Onkel|Stefan ist Annas Onkel.
+n|die|Tante|Daniela ist Annas Tante.
+n|der|Cousin|Paul ist Annas Cousin.
+n|die|Cousine|Maria ist Annas Cousine.
+n|der|Neffe|Luca ist Annas Neffe.
+n|die|Nichte|Esther ist Annas Nichte.
+n|das|Mitglied|Welches Familienmitglied ist besonders wichtig für Sie?
+n|der|Schwiegervater|Mein Schwiegervater kocht sehr gut.
+n|die|Schwiegermutter|Meine Schwiegermutter lebt in der Türkei.
+n|der|Schwager|Mein Schwager wohnt in Berlin.
+n|der|Ehemann|Elke und ihr Ehemann haben zwei Kinder.
+n|die|Großmutter|Meine Großmutter ist 85 Jahre alt.
+n|der|Großvater|Mein Großvater erzählt gern Geschichten.
+n|der|Haushalt|Sie hilft ihrer Tochter im Haushalt.
+n|die|Rente|Mein Vater ist seit zwei Jahren in Rente.
+a||schwanger|Frau Wasilewski ist schwanger.
+
+@pannen|😬|Alltag & Pannen|Быт и неудачи|Побут і невдачі
+n|der|Wecker|Zuerst habe ich heute Morgen den Wecker nicht gehört.
+n|der|Arbeitstag|Aber zum Glück noch nie am ersten Arbeitstag.
+n|die|Panne|Pannen im Alltag
+n|der|Alltag|Erik hat viel Stress im Alltag.
+n|die|Geldbörse|Jan hat seine Geldbörse verloren.
+n|das|Pech|So ein Pech!
+n|die|Kreditkarte|Mit Papieren und Kreditkarte?
+v||merken|Ich bin in die falsche S-Bahn eingestiegen und habe es erst zwei Stationen später gemerkt.
+v||klingen|Das klingt aber nicht gut.
+v||erleben|So was hast du noch nicht erlebt!
+v||verpassen|Ich habe die S-Bahn verpasst.
+v||bemerken|Ich habe den Schlüssel zu Hause vergessen und es jetzt erst bemerkt.
+v||erfahren|Ich habe gerade erfahren: Heute muss ich lange arbeiten.
+v||sich vorstellen|Stell dir vor, Jan hat seine Geldbörse verloren.
+v||verlieren|Ich habe zehn Euro verloren.
+v||stoßen|Ich bin vor dem Büro mit meinem Chef zusammengestoßen.
+a||peinlich|Wie peinlich!
+
+@wohnen|🏢|Wohnen & Mietshaus|Жильё и многоквартирный дом|Житло і багатоквартирний будинок
+n|die|Wohngemeinschaft|Im dritten Stock wohnt die Wohngemeinschaft.
+n|das|Dach|In der Dachwohnung wohnt der Single.
+n|das|Viertel|In unserem Viertel werden jeden Monat neue Häuser fertig.
+n|der|Mieter|Vor einer Woche sind die Mieter eingezogen.
+n|die|Mieterin|Die Mieterin im ersten Stock ist sehr nett.
+n|das|Mal|Ich wohne zum ersten Mal allein.
+n|der|Platz|Alle sind ausgezogen und wir brauchen nicht mehr so viel Platz.
+n|die|Mitteilung|Welche Mitteilungen hängen in einem Mietshaus aus?
+n|der|Bewohner|Sehr geehrter Hausbewohner, …
+n|die|Bewohnerin|Die Bewohnerin im Erdgeschoss hat einen Hund.
+n|der|Müll|Die Glühbirne kommt da rein – in den Müll.
+n|der|Biomüll|Leider liegt im Biomüll immer wieder anderer Abfall.
+n|der|Abfall|Leider liegt im Biomüll immer wieder anderer Abfall.
+n|das|Plastik|Wohin kommt der Plastikmüll?
+n|die|Müllabfuhr|Die Müllabfuhr leert falsch befüllte Mülltonnen nicht.
+n|die|Mülltonne|Die Müllabfuhr leert falsch befüllte Mülltonnen nicht.
+n|die|Einfahrt|Das ist doch Ihr Auto in der Einfahrt.
+n|der|Hof|Das Abstellen von Autos im Hof ist verboten.
+n|der|Vertrag|Der Mietvertrag ist nicht befristet.
+n|das|Verständnis|Vielen Dank für Ihr Verständnis.
+n|die|Kosten|Wir freuen uns über niedrige Heizkosten.
+n|der|Gegenstand|Bitte entfernen Sie Möbel und Gegenstände vor den Heizungen.
+n|der|Kinderwagen|Kinderwagen und Fahrräder darf man nicht vor den Aufzug stellen.
+n|der|Aufzug|Kinderwagen und Fahrräder darf man nicht vor den Aufzug stellen.
+n|die|Treppe|Kinderwagen und Fahrräder muss man unter die Treppe stellen.
+n|der|Briefkasten|Der Briefkasten ist kaputt.
+n|der|Handwerker|Morgen kommt ein Handwerker zu Ihnen.
+n|die|Energie|Glühbirnen brauchen viel Energie.
+v||einziehen|Vor einer Woche sind die Mieter eingezogen.
+v||ausziehen|Alle sind ausgezogen und wir brauchen nicht mehr so viel Platz.
+v||teilen|Wir teilen uns die Zeit: Eine Woche ist Ella bei mir, dann eine Woche bei ihrem Vater.
+v||benutzen|Aber die Küche und das Bad benutzen wir gemeinsam.
+v||reichen|Das reicht uns.
+v||trennen|Bitte trennen Sie den Müll sorgfältig.
+v||beachten|Bitte beachten Sie: Die Müllabfuhr leert falsch befüllte Mülltonnen nicht.
+v||abstellen|Bitte benutzen Sie die Parkplätze vor dem Haus oder stellen Sie Ihr Auto in der Garage ab.
+v||kündigen|Ich kündige meinen Mietvertrag für die Wohnung in der Friesenstraße 28.
+v||abschließen|Die Modernisierung im Haus ist abgeschlossen.
+v||sich erhöhen|Ab dem 1. September erhöht sich Ihre Kaltmiete auf 458 Euro.
+v||entfernen|Bitte entfernen Sie Möbel und Gegenstände vor den Heizungen.
+v||heizen|Im Winter heizen wir viel.
+v||lassen|Könnten Sie die Firma bitte in meine Wohnung lassen?
+v||werfen|Ich werfe meinen Schlüssel in Ihren Briefkasten.
+v||aufpassen|Sie ist krank und ich soll auf die Kinder aufpassen.
+v||gießen|Kannst du bitte meinen Briefkasten leeren und die Pflanzen gießen?
+v||klingeln|Ich klingle heute Abend bei Ihnen, ja?
+v||besprechen|Dann können wir alles besprechen und Sie bekommen gleich meinen Schlüssel.
+v||füttern|Können Sie bitte meine Katze füttern?
+v||wechseln|Warum kann Frau Sicinski die Glühbirne nicht selbst wechseln?
+v||reinkommen|Kommen Sie doch rein, Frau Meier.
+a||niedrig|Wir freuen uns über niedrige Heizkosten.
+a||gemeinsam|Aber die Küche und das Bad benutzen wir gemeinsam.
+
+@raum|🖼️|Dinge im Raum: stellen, legen, hängen|Вещи в комнате: ставить, класть, вешать|Речі в кімнаті: ставити, класти, вішати
+n|die|Decke|Weil sie an der Decke hängt.
+n|die|Wand|Das Bild hängt an der Wand.
+n|das|Schloss|Der Schlüssel steckt im Schloss.
+n|das|Schild|Hängen Sie ein Schild an die Tür: „Bitte nicht stören!“
+n|der|Stift|Legen Sie Papier und Stifte wieder in die Schubladen.
+n|der|Kugelschreiber|Ich sammle Kugelschreiber.
+n|die|Pflanze|Wohin soll ich die Pflanze stellen?
+n|die|Katze|In Zimmer A liegt die Katze auf dem Sessel.
+n|die|Ruhe|Gut arbeiten und lernen – das klappt am besten mit Ruhe, Licht und Ordnung.
+n|die|Menge|Was haben Sie in großer Menge?
+n|die|Vorsicht|Vorsicht, Tim! Fallen Sie nicht runter!
+v||hängen|Das Bild hängt an der Wand.
+v||stecken|Der Schlüssel steckt im Schloss.
+v||stehen|Tim steht auf der Leiter.
+v||legen|Kann ich meine Sachen auf den Tisch legen?
+v||stellen|Stellen Sie den Schreibtisch am besten ans Fenster.
+v||stören|Hängen Sie ein Schild an die Tür: „Bitte nicht stören!“
+v||bauen|Arbeiten Sie in Gruppen und bauen Sie ein Bild.
+v||fallen|Fallen Sie nicht runter!
+o||dahin|Stellen Sie die Leiter dahin.
+o||dorthin|Wohin soll ich die Pflanze stellen? – Dorthin, bitte.
+o||runter|Fallen Sie nicht runter!
+o||rein|Die Glühbirne kommt da rein – in den Müll.
+o||raus|Bringst du den Müll raus?
+
+@essen|🍽️|Essen & Mahlzeiten|Еда и приёмы пищи|Їжа і прийоми їжі
+n|die|Nachspeise|Als Nachspeise gibt es Joghurt mit Honig und Nüssen.
+n|die|Vorspeise|Zum Mittag haben wir drei Büfetts für Vorspeisen, Nachspeisen und Salat.
+n|das|Hauptgericht|Dazu gibt es drei Hauptgerichte: eins mit Fleisch, eins mit Fisch und ein vegetarisches.
+n|der|Honig|Als Nachspeise gibt es Joghurt mit Honig und Nüssen.
+n|die|Mahlzeit|Ich bin viel unterwegs und habe oft keine Zeit für eine richtige Mahlzeit.
+n|das|Essen|Ich finde gesundes Essen wichtig.
+n|das|Mittagessen|Zum Mittagessen gehe ich in die Kantine.
+n|die|Kantine|Zum Mittagessen gehe ich in die Kantine.
+n|das|Gericht|Ich nehme fast immer das vegetarische Gericht.
+n|die|Marmelade|Zum Frühstück esse ich fast immer ein Marmeladenbrot.
+n|das|Schwein|Deutsche Fleischgerichte esse ich auch manchmal, aber kein Schweinefleisch.
+n|das|Rind|Ich nehme einen Rinderbraten.
+n|der|Braten|Ich nehme einen Rinderbraten.
+n|das|Steak|Ganz selten gibt es aber auch mal Steak.
+n|das|Schnitzel|Ich nehme das Schnitzel mit Pommes und Salat.
+n|die|Suppe|Entschuldigung, aber die Suppe ist leider viel zu salzig.
+n|das|Stück|Ein Eiskaffee, ein Stück Kuchen und ein Tee mit Zitrone.
+n|die|Zitrone|Ein Eiskaffee, ein Stück Kuchen und ein Tee mit Zitrone.
+n|die|Frucht|Zum Frühstück gibt es Joghurt mit Früchten.
+n|das|Müsli|Zum Frühstück gibt es bei uns unterschiedliche Arten von Müsli.
+n|die|Art|In meinem Heimatland essen wir viele unterschiedliche Arten von Gemüse.
+n|der|Alkohol|Ich trinke nie Alkohol.
+n|die|Nudel|Pizza, Nudeln, feine Weine – Sie bestellen Ihr Wunschgericht.
+n|der|Markt|Wo kaufen Sie Ihre Lebensmittel? – Auf dem Markt.
+n|das|Produkt|Außerdem kaufe ich viele regionale Produkte.
+n|die|Umgebung|Außerdem kaufe ich viele regionale Produkte aus der Umgebung.
+n|die|Fabrik|Andere Kantinen bekommen das Essen aus Fabriken.
+n|das|Prozent|Oft nehmen fast 50 Prozent das Gemüsegericht.
+n|die|Gewohnheit|Ich lebe seit 30 Jahren in Deutschland und habe viele Gewohnheiten übernommen.
+n|die|Diät|Sie machen eine Diät oder dürfen etwas nicht essen.
+n|das|Trinkgeld|Geben Sie Trinkgeld.
+v||übernehmen|Ich lebe seit 30 Jahren in Deutschland und habe viele Gewohnheiten übernommen.
+v||leiten|Joachim Vogt leitet die Kantine einer großen Bank in München.
+v||planen|Am Nachmittag mache ich die Büroarbeit und plane die Gerichte für die nächsten Tage.
+v||probieren|Probieren Sie doch mal das Tzatziki, Herr Wagner.
+v||liefern|Sie bestellen Ihr Wunschgericht und wir liefern es Ihnen.
+a||vegetarisch|Mayla isst nur vegetarisch.
+a||regional|Außerdem kaufe ich viele regionale Produkte.
+a||frisch|Der Koch findet gesundes und frisches Essen sehr wichtig.
+a||deutsch|Deutsche Fleischgerichte esse ich auch manchmal.
+a||besetzt|Der Platz ist besetzt.
+a||zuverlässig|Wir liefern es Ihnen schnell und zuverlässig.
+
+@kueche|🍴|Geschirr & Besteck|Посуда и столовые приборы|Посуд і столові прибори
+n|der|Löffel|Du, Dimi, wo sind denn die Löffel?
+n|das|Messer|Oh, mein Messer ist runtergefallen.
+n|der|Teller|Gibst du mir deinen Teller, Tim?
+n|die|Gabel|Ich brauche eine Gabel.
+n|der|Topf|Ich brauche einen Topf. Hast du einen?
+n|die|Kanne|Ich brauche eine Kanne. Hast du eine?
+n|die|Schüssel|Ich brauche eine Schüssel. Hast du eine?
+n|die|Pfanne|Ich brauche eine Pfanne. Hast du eine?
+n|die|Tasse|Acht Tassen pro Tag sind es bestimmt.
+n|das|Glas|Ich trinke ein Glas Wasser.
+
+@geschmack|😋|Geschmack & Tischsitten|Вкус и правила за столом|Смак і правила за столом
+n|der|Appetit|Also dann: Guten Appetit.
+v||riechen|Hm, das riecht so lecker!
+v||sich ausziehen|Soll ich die Schuhe ausziehen?
+v||überraschen|Das überrascht mich.
+a||scharf|Ich koche sehr gern scharf.
+a||süß|Der Saft ist süß.
+a||salzig|Ich koche nicht gern salzig.
+a||fett|Ich koche nicht gern fett.
+a||voll|Darf man schmatzen und mit vollem Mund sprechen?
+a||satt|Sie sind satt, aber Sie dürfen nicht „Nein“ sagen.
+a||höflich|30 Minuten Verspätung – das ist nicht sehr höflich.
+a||seltsam|Das finde ich seltsam.
+a||sauber|Das Messer ist nicht sauber.
+o||okay|Ein bisschen Verspätung ist okay.
+
+@arbeit|💼|Arbeitswelt & Jobsuche|Мир работы и поиск работы|Світ роботи і пошук роботи
+n|der|Arbeitgeber|Mein Arbeitgeber zieht um.
+n|die|Arbeitgeberin|Meine Arbeitgeberin ist sehr freundlich.
+n|der|Arbeitnehmer|Arbeitnehmer haben Rechte und Pflichten.
+n|die|Arbeitnehmerin|Die Arbeitnehmerin hat einen neuen Vertrag.
+n|die|Reservierung|Das Hotel notiert die Reservierung und schickt eine Reservierungsbestätigung.
+n|die|Bestätigung|Bei der Ankunft zeigt man die Reservierungsbestätigung an der Rezeption.
+n|die|Besprechung|Karla hat eine Besprechung, Sandra und Tim sollen sie nur im Notfall anrufen.
+n|der|Fehler|Wenn Sie einen Fehler gemacht haben, dann …
+n|das|Material|Wenn du Büromaterial brauchst, dann ruf bitte die Sekretärin an.
+n|der|Teilnehmer|Was müssen neue Kursteilnehmer wissen?
+n|die|Teilnehmerin|Die Teilnehmerin kommt aus Polen.
+n|der|Tipp|Tipps für die Jobsuche: Lesen Sie regelmäßig die Stellenanzeigen.
+n|der|Zettel|Achten Sie auf Zettel und Aushänge in Kaufhäusern und Supermärkten.
+n|das|Kaufhaus|Achten Sie auf Zettel und Aushänge in Kaufhäusern und Supermärkten.
+n|die|Plattform|Nutzen Sie Plattformen, Foren und Portale im Internet.
+n|das|Forum|Nutzen Sie Plattformen, Foren und Portale im Internet.
+n|die|Agentur|Machen Sie einen Termin in der Agentur für Arbeit.
+n|die|Zeitarbeit|Rufen Sie bei Zeitarbeitsfirmen an.
+n|der|Auszubildende|Im Internet finden Sie Tipps für Auszubildende.
+n|der|Azubi|Mitgliedsbeitrag: Azubis und Studenten 6 Euro pro Monat.
+n|die|Gewerkschaft|Die Gewerkschaft hilft Ihnen und berät Sie bei Fragen.
+n|die|Sicherheit|Bitte beachten Sie die Sicherheitsvorschriften.
+n|der|Schutz|Betreten Sie die Werkstatt nie ohne Schutz.
+n|der|Betrieb|Die Betriebsversammlung findet am 15. März in der Kantine statt.
+n|die|Versammlung|Die Betriebsversammlung findet am 15. März in der Kantine statt.
+n|die|Frist|Anmeldefrist bis 31. Oktober
+n|die|Weiterbildung|In der Weiterbildung „Wie spreche ich mit schwierigen Kunden?“ sind noch Plätze frei.
+n|das|Interesse|Wenn Sie Interesse haben, dann melden Sie sich bei mir im Sekretariat an.
+n|der|Feierabend|Um fünf Uhr habe ich Feierabend.
+n|die|Überstunde|Diese Woche habe ich viele Überstunden gemacht.
+n|der|Lohn|Der Lohn kommt am Ende des Monats.
+n|der|Rentner|Mein Opa ist Rentner.
+n|die|Rentnerin|Die Rentnerin geht jeden Tag spazieren.
+n|der|Import|Die Firma arbeitet im Import.
+n|der|Export|Deutschland lebt vom Export.
+n|die|Schicht|Ich habe Frühschicht und muss schon um halb sechs weg.
+v||notieren|Das Hotel notiert die Reservierung.
+v||achten|Achten Sie auf Zettel und Aushänge in Kaufhäusern und Supermärkten.
+v||nutzen|Nutzen Sie Plattformen, Foren und Portale im Internet.
+v||ausschalten|Schalten Sie Ihr Handy aus.
+o||in Rente gehen|Aber jetzt bin ich 65 und gehe in Rente.
+a||online|Zuerst reserviert man per Telefon, E-Mail oder online ein Zimmer.
+a||regelmäßig|Lesen Sie regelmäßig die Stellenanzeigen in Zeitungen und im Internet.
+a||schwierig|Herr Krassnick ist ein schwieriger Gast und braucht ein Hotelzimmer.
+
+@sport|⚽|Sport & Fitness|Спорт и фитнес|Спорт і фітнес
+n|der|Tanz|Ich interessiere mich sehr für den Tanzsport.
+n|der|Basketball|Wann findet denn das Basketballtraining statt?
+n|das|Video|Sandra schickt Tim ein Trainingsvideo.
+n|die|Lust|Auf Tanzen hat Tim keine Lust.
+n|der|Verein|Er möchte lieber Basketball spielen und ruft bei einem Sportverein an.
+n|der|Versuch|Tim erzählt Sandra von dem Training und seinen Tanzversuchen.
+n|der|Meister|Übung macht den Meister!
+n|die|Sportart|Welche Sportart können Sie besonders gut?
+n|die|Bewegung|Bewegung: Bewegen Sie sich regelmäßig!
+n|der|Spaziergang|Schon ein kurzer Spaziergang hilft.
+n|die|Mannschaft|Morgen treffe ich mich mit ein paar Mannschaftskollegen.
+n|die|Weltmeisterschaft|Interessierst du dich für die Fußballweltmeisterschaft?
+n|das|Gold|Ich träume von einer Goldmedaille für Kroatien.
+n|die|Saison|Morgen beginnt die Eishockey-Saison.
+n|die|Gymnastik|Die Anrufer interessieren sich für Rückengymnastik.
+n|das|Tischtennis|Die Anrufer interessieren sich für Tischtennis.
+n|der|Volleyball|Ich interessiere mich für Volleyball.
+n|die|Fitness|Ich möchte mich zum Fitnesstraining anmelden.
+n|das|Tennis|Am Wochenende spiele ich Tennis.
+n|das|Eishockey|In Kanada ist Eishockey sehr beliebt.
+n|der|Beitrag|Mitgliedsbeitrag: 5 Euro pro Monat
+n|die|Gruppe|Es gibt verschiedene Gruppen.
+n|die|Ermäßigung|Gibt es eine Ermäßigung für Schüler?
+n|der|Trend|Ein Trend ist das sogenannte Nordic-Walking.
+n|der|Spielplatz|In vielen deutschen Städten gibt es Tischtennisplatten auf Spielplätzen und in Parks.
+n|die|Strecke|Für Kurzstrecken bis 5 Kilometer spart man mit dem Auto meistens keine Zeit.
+v||sich bewegen|Ich bewege mich zurzeit nicht genug.
+v||hinfallen|Doch das ist gar nicht so einfach, er fällt dabei hin.
+v||betragen|Der Mitgliedsbeitrag beträgt 5 Euro pro Monat.
+v||joggen|Sehr einfach und effektiv ist das Joggen.
+v||laufen|Wenn Sie nicht gern laufen, können Sie auch einfach schnell gehen.
+v||schaffen|Wer schnell geht, schafft 1000 Schritte in 10 Minuten.
+v||schwimmen|Im Sommer schwimme ich im See.
+v||wandern|Am Sonntag wandern wir in den Bergen.
+v||tanzen|Tim tanzt nicht gern.
+o||Ski fahren|Im Winter fahren wir Ski.
+a||fit|So werden Sie wieder fit.
+a||aktiv|Aktiv bleiben
+a||kostenlos|Die erste Stunde ist kostenlos.
+a||zusätzlich|Für weitere Sportangebote muss man eine zusätzliche Gebühr bezahlen.
+a||preiswert|Sport muss nicht teuer sein. Es geht auch preiswert.
+a||beliebt|In Deutschland ist das Radfahren sehr beliebt.
+a||flexibel|Außerdem ist man mit dem Rad flexibel.
+
+@gesund|🧴|Gesundheit & Körperpflege|Здоровье и уход за собой|Здоров'я і догляд за собою
+n|die|Entspannung|Entspannung: Machen Sie Pausen und entspannen Sie sich.
+n|die|Ernährung|Ernährung: Trinken Sie viel Wasser oder Tee und essen Sie viel Obst und Gemüse.
+n|die|Ursache|Zu wenig Bewegung ist eine häufige Ursache für Krankheiten.
+n|die|Krankheit|Zu wenig Bewegung ist eine häufige Ursache für Krankheiten.
+n|der|Bildschirm|Die meisten Menschen sitzen zu viel: am Schreibtisch, vor dem Bildschirm.
+n|der|Körper|Etwas mehr Bewegung im Alltag tut dem Körper und der Gesundheit gut.
+n|die|Luft|Gehen Sie in der Mittagspause kurz an der frischen Luft spazieren.
+n|die|Untersuchung|Untersuchungen haben gezeigt: …
+n|die|Krankenkasse|Bei vielen Krankenkassen gibt es kostenlose Sportangebote.
+n|die|Umwelt|Radfahren ist gut für die Umwelt.
+v||sich fühlen|Tim fühlt sich nicht so gut.
+v||sich ausruhen|Ruhen Sie sich regelmäßig aus.
+v||sich ernähren|Sie sollten sich gesund ernähren.
+v||sich halten|Wie halten Sie sich gesund und fit?
+v||sich schminken|Was mache ich? – Schminkst du dich?
+v||sich rasieren|Rasierst du dich? – Ja, das ist richtig.
+v||sich umziehen|Er zieht sich um.
+v||sich kämmen|Sie kämmt sich.
+v||sich waschen|Er wäscht sich.
+v||sich beeilen|Wir müssen uns beeilen.
+v||sich konzentrieren|Ich kann mich heute nicht konzentrieren.
+v||sich verletzen|Ihr Kind hat sich verletzt.
+v||bluten|Ihr Kind hat sich verletzt. Es blutet stark.
+a||häufig|Abends habe ich häufig Rückenschmerzen.
+
+@interessen|🎭|Interessen & Verben mit Präposition|Интересы и глаголы с предлогом|Інтереси і дієслова з прийменником
+n|die|Geschichte|Interessierst du dich für die deutsche Geschichte?
+n|das|Theater|Interessierst du dich für das Theater?
+n|die|Nachrichten|Interessierst du dich für die Sportnachrichten?
+n|die|Wettervorhersage|Interessierst du dich für die Wettervorhersage?
+n|die|Zeitschrift|Interessierst du dich für Modezeitschriften?
+n|der|Besuch|Ich freue mich schon sehr auf deinen Besuch!
+n|die|Angst|Ich habe Angst vor Hunden.
+n|die|Ferien|Ich denke gern an die Ferien.
+v||sich interessieren|Ich interessiere mich sehr für den Tanzsport.
+v||sich ärgern|Vielleicht ärgerst du dich zu viel.
+v||sich beschweren|Dein Klassenlehrer hat sich über dich beschwert.
+v||sich verabreden|Verabreden Sie sich mit Freunden.
+v||sich kümmern|Arbeitgeber müssen sich um den Gesundheitsschutz im Betrieb kümmern.
+v||träumen|Ich träume oft von meinem Urlaub.
+v||sich erinnern|Daran kann ich mich gar nicht mehr erinnern.
+v||denken|Ich denke gern an die Ferien.
+
+@schule|🎓|Schule & Schulfächer|Школа и школьные предметы|Школа і шкільні предмети
+n|das|Zeugnis|Zwischenzeugnis für den Schüler des Lessing-Gymnasiums Niki Kaiopoulos.
+n|das|Fach|Nur das Fach Kunst hat mich wirklich interessiert.
+n|die|Note|Niki macht ein Referat, weil er seine Erdkundenote verbessern möchte.
+n|das|Gymnasium|Das Abitur ist die Abschlussprüfung an einem Gymnasium.
+n|das|Referat|Ein Referat halten: Man spricht vor der Klasse über ein Thema.
+n|das|Abitur|Das Abitur ist die Abschlussprüfung an einem Gymnasium.
+n|der|Abschluss|Das Abitur ist die Abschlussprüfung an einem Gymnasium.
+n|die|Prüfung|Das Abitur ist die Abschlussprüfung an einem Gymnasium.
+n|das|Verhalten|Wie finden Sie das Verhalten von Eva, Niki und Tim?
+n|das|System|In Deutschland hat jedes Bundesland ein eigenes Schulsystem.
+n|die|Gesamtschule|Nach der Grundschule kann man auf die Gesamtschule gehen.
+n|die|Realschule|1998 konnte ich auf die Realschule wechseln.
+n|die|Hauptschule|Nach der Hauptschule kann man zur Berufsschule gehen.
+n|die|Mittelschule|Nach der Mittelschule kann man zur Berufsschule gehen.
+n|die|Berufsschule|Nach der Hauptschule kann man zur Berufsschule gehen.
+n|die|Krippe|Kinder müssen nicht in die Krippe gehen. Der Besuch ist freiwillig.
+n|die|Physik|Ihre Lieblingsfächer waren Mathe und Physik.
+n|die|Sozialkunde|Mein Lieblingsfach war Sozialkunde.
+n|die|Biologie|Mein Lieblingsfach war Biologie.
+n|die|Chemie|Dieses Schuljahr habe ich gute Noten in Chemie und Mathe.
+n|die|Geografie|Geografie habe ich gehasst.
+n|die|Kunst|Nur das Fach Kunst hat mich wirklich interessiert.
+n|die|Musik|Musik ist mein Lieblingsfach.
+n|die|Mathematik|Mathematik habe ich gehasst.
+n|der|Sport|Wir haben zweimal pro Woche Sport.
+v||verbessern|Niki macht ein Referat, weil er seine Erdkundenote verbessern möchte.
+v||sich streiten|Warum streiten Eva und Niki?
+v||hassen|Mathematik habe ich gehasst.
+v||bestehen|Die Abschlussprüfung hat sie sehr gut bestanden.
+a||freiwillig|Kinder müssen nicht in die Krippe gehen. Der Besuch ist freiwillig.
+a||mittlere|Er hat mittlere Noten.
+
+@kurse|📚|Kurse, Studium & Beruf|Курсы, учёба и профессия|Курси, навчання і професія
+n|die|Hochschule|Nach dem Abitur kann man die Hochschule besuchen.
+n|die|Universität|Nach den fünf Jahren an der Universität musste sie noch ein Jahr lang in einem Krankenhaus arbeiten.
+n|das|Studium|Das Studium war sehr schwer.
+n|die|Aktivität|Freizeitaktivitäten und Hobbys sind sehr wichtig.
+n|das|Frühjahr|Wir bieten im Frühjahr spezielle Deutschkurse an.
+n|der|Beginn|Beginn: 8. März
+n|die|Theorie|Sie möchten den Führerschein machen, verstehen aber die Fragen für die Theorieprüfung nicht richtig?
+n|die|Einführung|Einführung in den PC: Keine Angst mehr vor Computern!
+n|der|Migrant|Berufsvorbereitungsjahr für Migrantinnen und Migranten
+n|die|Migrantin|Berufsvorbereitungsjahr für Migrantinnen und Migranten
+n|der|Vortrag|Vortrag Bewerbungstraining
+n|der|Experte|Ein Experte erklärt die Regeln.
+n|die|Expertin|Unsere Expertin zeigt Ihnen die besten Tipps und Tricks.
+n|die|Vorbereitung|Vorbereitungskurs zum „Einbürgerungstest“
+n|das|Zertifikat|Halbjähriger Lehrgang mit Abschlusszertifikat
+n|die|Förderung|Förderung durch die Bundesagentur für Arbeit möglich
+n|die|Beratung|Anmeldung und Beratung: Frau Müller-Siechenender
+n|der|Tagesablauf|Dort habe ich zum ersten Mal den Tagesablauf in einem Krankenhaus kennengelernt.
+n|der|Migrationshintergrund|Sie war die einzige Studentin mit türkischem Migrationshintergrund.
+n|die|Technik|Ich habe mit Technik zu tun.
+n|der|Kontakt|Ich habe oft Kontakt zu Kunden.
+n|der|Bäcker|Dein Traumberuf ist Bäcker?
+n|die|Bäckerin|Die Bäckerin steht um vier Uhr auf.
+n|der|Schauspieler|Ist dein Traumberuf Schauspieler?
+n|die|Schauspielerin|Sie ist eine berühmte Schauspielerin.
+n|der|Astronaut|Du wolltest doch Astronaut werden.
+n|die|Astronautin|Als Kind wollte sie Astronautin werden.
+n|der|Wunsch|Das war sein großer Wunsch.
+n|der|Plan|Ich wollte Ärztin werden. Das war mein Plan.
+v||speichern|Lernen Sie den sicheren Umgang mit „Word“: schreiben, speichern, drucken.
+v||sich bewerben|Wie bewirbt man sich richtig?
+v||präsentieren|Wie präsentiert man sich beim Vorstellungsgespräch?
+v||anerkennen|Dafür musste er seine Ausbildung in Deutschland anerkennen lassen.
+v||prüfen|Eine Behörde hat geprüft: Ist seine Ausbildung mit der deutschen identisch?
+a||sozial|Deutsch für den Beruf lernen und berufliche und soziale Kompetenzen erwerben
+a||möglich|Förderung durch die Bundesagentur für Arbeit möglich
+a||elektrisch|Elektrische Geräte haben ihn schon immer interessiert.
+a||kompliziert|Das war ziemlich kompliziert.
+
+@feste|💒|Feste & Hochzeit|Праздники и свадьба|Свята і весілля
+n|die|Leute|Was machen die Leute auf dem Fest?
+n|die|Kirche|Wir sind schon in der Kirche.
+n|die|Trauung|In zehn Minuten beginnt die Trauung.
+n|die|Stimmung|Wahnsinnig viele Leute hier und eine ganz feierliche Stimmung.
+n|die|Torte|Hmmm, superlecker, die Hochzeitstorte!
+n|die|Unterhaltung|Mir ist die Unterhaltung wichtig.
+n|die|SMS|Man kann die Gäste per SMS einladen.
+n|die|Heimat|In meiner Heimat schenken wir gern Pralinen und Schokolade.
+n|der|Tod|Uhren sind in meinem Land als Geschenk tabu, weil sie den Tod symbolisieren.
+v||sich vorbereiten|Was bereiten die Freunde für das Fest vor?
+v||entscheiden|Wie entscheidet sich Tim?
+v||grüßen|Grüß alle von mir!
+v||weinen|Ich habe sogar geweint.
+v||treten|Valentin ist Celia auf das lange weiße Kleid getreten.
+v||tragen|Was hat die Braut getragen?
+v||sich unterhalten|Hauptsache, das Essen ist gut und wir unterhalten uns gut.
+v||dekorieren|Ich finde, wir müssen den Raum nicht dekorieren.
+v||überzeugen|Stellen Sie Ihr Fest vor und überzeugen Sie die anderen im Kurs.
+a||wahnsinnig|Wahnsinnig viele Leute hier und eine ganz feierliche Stimmung.
+a||wunderschön|Es war wunderschön.
+a||wild|Du, das war noch eine wilde Feier.
+o||per|Man kann die Gäste per SMS einladen.
+
+@geschenke|🎁|Geschenke|Подарки|Подарунки
+n|das|Baby|Ich kaufe meinem Baby einen Teddy.
+n|die|Kette|Jan schenkt Lena eine Kette.
+n|die|Puppe|Die Oma bringt Pia eine Puppe mit.
+n|die|DVD|Schenkst du deinem Opa einen DVD-Player?
+n|das|Parfüm|Er kauft seiner Frau ein Parfüm.
+n|die|Creme|Schenkst du deiner Mutter eine Handcreme?
+n|der|Geldbeutel|Gibst du mir bitte meinen Geldbeutel?
+n|die|Praline|In meiner Heimat schenken wir gern Pralinen.
+n|die|Schokolade|Zum Geburtstag bekommt sie Schokolade.
+n|das|Buch|Ich schenke meinem Bruder ein Buch.
+n|die|Schachtel|Kannst du mir die Schachtel da rübergeben?
+n|die|Briefmarke|Kannst du mir bitte die Briefmarken geben?
+n|das|Herz|Hauptsache, es kommt von Herzen.
+n|der|Sonderwunsch|Sie haben einen Sonderwunsch?
+v||schenken|Ich habe meinem Mann mal Gartenstühle geschenkt.
+v||raten|Spielen Sie zu zweit und raten Sie.
+v||basteln|Betty bastelt eine Karte.
+v||ausdrucken|Ich muss nur noch schnell die Rechnung ausdrucken.
+v||nennen|Sie haben einen Sonderwunsch? Nennen Sie ihn uns einfach.
+v||ausgeben|Für ein Geschenk sollte man nicht zu viel Geld ausgeben.
+a||persönlich|Ein Gutschein ist nicht persönlich genug, finde ich.
+
+@eigenschaften|🙂|Eigenschaften & Eindrücke|Черты характера и впечатления|Риси характеру і враження
+a||glücklich|Tim ist glücklich.
+a||sympathisch|Anna sieht sehr sympathisch aus.
+a||komisch|Das ist noch ein bisschen komisch für mich.
+a||verschieden|Luisa, Teresa und Patricia kommen aus verschiedenen Ländern.
+a||freundlich|Tim war freundlich und klug.
+a||klug|Tim war freundlich und klug.
+a||faul|Ich denke, dass du vielleicht ein bisschen faul bist.
+a||schrecklich|Meine Schulzeit war einfach nur schrecklich!
+a||fleißig|Wenn ihr Abitur machen wollt, dann müsst ihr fleißig sein.
+a||intelligent|Sie ist sehr intelligent.
+a||streng|Er ist nett, aber auch ein bisschen streng.
+a||stolz|Ihre Eltern sind sehr stolz auf Ayşe.
+a||ehrlich|Ehrlich gesagt: nein.
+a||blöd|Oh Mann, so blöd, dass ich krank bin!
+a||typisch|Und ja: Typisch Celia!
+a||nervös|Da war Valentin wohl ein bisschen nervös, was?
+a||wach|Miri, bist du schon wach?
+a||unbekannt|Wer ist der unbekannte Mann?
+a||unterschiedlich|Zum Frühstück gibt es bei uns unterschiedliche Arten von Müsli.
+a||klar|Das ist doch klar.
+a||selbstverständlich|Das ist doch selbstverständlich.
+v||übertreiben|Das finde ich etwas übertrieben.
+
+@woerter|🔗|Kleine Wörter: weil, dass, sogar …|Маленькие слова: weil, dass, sogar …|Маленькі слова: weil, dass, sogar …
+o||weil|Ich bin traurig, weil ich hier keinen Menschen kenne.
+o||wenn|Wenn Sie reserviert haben, dann haben Sie sicher eine Reservierungsbestätigung bekommen.
+o||dass|Tim meint, dass Niki zu dumm für das Gymnasium ist.
+o||gestern|Ich war gestern Abend nach dem Umzug sehr müde.
+o||schließlich|Aber ich bin schließlich sogar noch pünktlich im Hotel angekommen.
+o||sogar|Aber ich bin schließlich sogar noch pünktlich im Hotel angekommen.
+o||wahrscheinlich|Das ist wahrscheinlich die WG.
+o||bisher|Hristo Radev hat bisher bei seinem Bruder gewohnt.
+o||jemand|Dort ist immer jemand da.
+o||jeder / jede / jedes|Jede von uns hat ihr eigenes Zimmer.
+o||sonst|Ich möchte aber auch sonst nicht allein wohnen.
+o||nun|Nun komme ich nach Hause und es ist fast immer jemand da.
+o||normalerweise|Wir treffen uns normalerweise in der Küche.
+o||selbst|Warum kann Frau Sicinski die Glühbirne nicht selbst wechseln?
+o||nichts|Nichts, weil Tim kein Geschenk möchte.
+o||ziemlich|Das Treppenhaus ist ziemlich schmutzig.
+o||wirklich|Das wäre wirklich nett.
+o||meistens|Ich esse meistens Fleisch.
+o||selten|Ich esse selten Fleisch.
+o||unterwegs|Ich bin viel unterwegs und habe oft keine Zeit für eine richtige Mahlzeit.
+o||mittags|Dann hole ich mir mittags oft nur schnell eine Wurst.
+o||morgens|Morgens, mittags, abends – Kaffee kann ich immer trinken.
+o||bestimmt|Acht Tassen pro Tag sind es bestimmt.
+o||fast|Ich nehme fast immer das vegetarische Gericht.
+o||zweimal|Ich koche zweimal am Tag.
+o||vorher|Man muss den Gastgeber vorher fragen.
+o||anders|Bei uns ist das anders.
+o||genauso|Bei uns ist das genauso.
+o||rund|In unserer Firma haben wir rund 500 Mitarbeiter.
+o||gegen|Gegen 9 Uhr bin ich in der Kantine.
+o||täglich|Herr Vogt kocht täglich für circa 500 Personen.
+o||nämlich|Herr Krassnick ist kein Gast. Er hat nämlich kein Gepäck dabei.
+o||sicher|Wenn Sie reserviert haben, dann haben Sie sicher eine Reservierungsbestätigung bekommen.
+o||zu wenig|Tim fühlt sich nicht so gut, weil er zu wenig Sport macht.
+o||überhaupt|Nein, überhaupt nicht.
+o||außerdem|Nehmen Sie außerdem öfter mal die Treppe und nicht den Aufzug.
+o||extra|Wer tagsüber neun Kilometer Fahrrad fährt, muss abends nicht noch extra Sport machen.
+o||vorhin|Es tut mir leid, dass ich das vorhin gesagt habe.
+o||übrigens|Übrigens haben sich Celia und Valentin total über dein Geschenk gefreut.
+o||wohl|Da war Valentin wohl ein bisschen nervös, was?
+o||wenigstens|Wenigstens die Eltern können tanzen!
+o||recht haben|Da haben Sie recht.
+n|die|Bitte|Ich habe eine Bitte: …
+n|die|Frage|Ich habe eine Frage: …
+n|die|Absicht|Oh Entschuldigung. Das war keine Absicht.
+n|die|Lösung|Finden Sie eine Lösung für das Problem.
+n|der|Dank|Was gibt Frau Sicinski Tim zum Dank und warum?
+v||stimmen|Aber das stimmt doch nicht, oder?
+v||hoffen|Wir hoffen auf Ihr Verständnis.
+
+@perfekt|🕰️|Verben ohne ge- im Perfekt|Глаголы без ge- в Perfekt|Дієслова без ge- у Perfekt
+v||bestellen|Ich habe eine Pizza bestellt.
+v||erklären|Die Lehrerin hat die Regel erklärt.
+v||erzählen|Er hat von seinem Urlaub erzählt.
+v||besichtigen|Wir haben die Wohnung besichtigt.
+v||verkaufen|Sie hat ihr altes Auto verkauft.
+v||studieren|Ich habe in Kiew studiert.
+v||besuchen|Wir haben unsere Großeltern besucht.
+v||verstehen|Ich habe die Frage nicht verstanden.
+v||bedeuten|Was hat das Wort bedeutet?
+v||versuchen|Ich habe es dreimal versucht.
+v||beantragen|Ich habe einen neuen Pass beantragt.
+v||beginnen|Der Kurs hat um neun Uhr begonnen.
+v||telefonieren|Ich habe lange mit meiner Mutter telefoniert.
+v||verwenden|Welche Wörter hast du verwendet?
+v||bezahlen|Hast du die Rechnung schon bezahlt?
+v||verdienen|Er hat gut verdient.
+v||passieren|Was ist passiert?
+v||vergessen|Ich habe meinen Schlüssel vergessen.
+v||reparieren|Der Handwerker hat die Heizung repariert.
+v||bekommen|Ich habe einen Brief bekommen.
+v||erlauben|Der Vermieter hat uns eine Katze erlaubt.
+v||vermieten|Sie haben die Wohnung an Studenten vermietet.

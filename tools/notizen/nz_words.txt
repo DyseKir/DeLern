@@ -72,6 +72,21 @@ a||schlimm
 a||entzündungshemmend
 a||feuchtigkeitsspendend
 o||in folgenden Fällen
+n|die|Verstopfung
+n|die|Blasenentzündung
+n|der|Bruch
+n|die|Betäubung
+n|der|Krampf
+v||röntgen
+v||sich auskurieren
+o||Mir ist schwindelig.
+o||Tut das weh?
+o||Der Hals ist entzündet.
+o||Rufen Sie einen Krankenwagen, bitte!
+o||Das ist ein Notfall!
+o||Das ist gebrochen.
+o||Sie bekommen eine Spritze.
+o||Das muss operiert werden.
 
 @aemter|🏛️|Ämter & Anträge|Ведомства и заявления|Установи та заяви
 n|das|Amt
@@ -125,6 +140,24 @@ v||mitbringen
 v||melden
 a||gültig
 a||bisherige
+n|die|Duldung
+n|der|Flüchtling
+n|der|Aufenthalt
+n|die|Staatsangehörigkeit
+n|der|Staat
+n|die|Niveaustufe
+n|die|Geburtsurkunde
+n|das|Einwohnermeldeamt
+n|das|Standesamt
+n|die|Wahl
+n|die|Partei
+n|das|Gesetz
+n|das|Grundgesetz
+v||ablaufen
+v||verlängern
+v||angehören
+a||befristet
+a||unbefristet
 
 @termine|📅|Termine & Briefe|Встречи и письма|Зустрічі й листи
 n|der|Termin
@@ -171,8 +204,27 @@ a||selbstständig
 a||berufstätig
 a||arbeitslos
 a||beruflich
-a||befristet
 a||dringend
+n|das|Anschreiben
+n|der|Lebenslauf
+n|das|Arbeitszeugnis
+n|das|Sprachzertifikat
+n|das|Vorstellungsgespräch
+n|die|Absage
+n|die|Zusage
+n|die|Personalabteilung
+n|der|Angestellte
+n|die|Vollzeit
+n|die|Teilzeit
+n|die|Festanstellung
+n|die|Schwarzarbeit
+n|das|Gehalt
+n|die|Gehaltsabrechnung
+n|die|Rentenversicherung
+n|die|Arbeitslosenversicherung
+n|die|Messe
+v||sich krankmelden
+o||Überstunden machen
 
 @paare|↔️|Gegensatz-Verben|Глаголы-противоположности|Дієслова-протилежності
 v||ziehen
@@ -416,6 +468,20 @@ a||still
 a||ruhig
 a||einfach
 a||zufrieden
+o||Gern geschehen!
+o||Das macht nichts!
+o||Herzlichen Glückwunsch!
+o||Auf keinen Fall!
+o||Ich bin erkältet.
+o||Ich bin sauer.
+o||Ich schaffe es nicht.
+o||Mir ist etwas dazwischengekommen.
+o||Ich habe den Bus verpasst.
+o||Das ist schade.
+o||Für wen ist das?
+o||Wem gehört das?
+o||Herzliches Beileid!
+o||Guten Rutsch!
 
 @alltag|☀️|Alltag & Freizeit|Быт и досуг|Побут і дозвілля
 n|der|Ausflug
@@ -443,3 +509,417 @@ v||merken
 v||teilen
 v||wiedersehen
 v||abbekommen
+n|der|Kugelschreiber
+v||nähen
+v||erreichen
+v||stattfinden
+v||aussehen
+v||bieten
+v||frieren
+v||klappen
+a||kommend
+a||gesamt
+a||behindert
+o||heraus
+o||unbedingt
+o||Ich wohne auf dem Land.
+o||Ich wohne bei Freunden.
+
+@frauenarzt|🤰|Frauenarzt & Schwangerschaft|Гинеколог и беременность|Гінеколог і вагітність
+n|die|Scheide
+n|die|Gebärmutter
+n|der|Eierstock
+n|der|Abstrich
+n|der|Ultraschall
+n|das|Verhütungsmittel
+n|die|Pille
+n|die|Spirale
+n|das|Kondom
+n|die|Schwangerschaft
+n|der|Schwangerschaftstest
+n|die|Vorsorgeuntersuchung
+n|die|Wehe
+n|die|Geburt
+n|die|PDA
+n|der|Kaiserschnitt
+n|die|Fehlgeburt
+n|die|Regel
+o||Im wievielten Monat sind Sie?
+o||Ich bin im vierten Monat schwanger.
+o||Es wird ein Junge.
+
+@baby|👶|Baby & Kinderbetreuung|Малыш и уход за детьми|Малюк і догляд за дітьми
+n|der|Schnuller
+n|das|Fläschchen
+n|die|Windel
+n|das|Spielzeug
+n|das|Kuscheltier
+n|die|Betreuung
+n|der|Babysitter
+
+@verkehr|🚆|Verkehr & Reisen|Транспорт и поездки|Транспорт і подорожі
+n|der|Nahverkehr
+n|die|Verspätung
+n|die|Fähre
+n|die|Fahrkarte
+n|das|Ticket
+n|das|Abteil
+n|der|Großraumwagen
+n|der|Geldautomat
+n|die|öffentliche Toilette
+n|die|Ampel
+n|die|Pension
+n|die|Jugendherberge
+n|das|Einzelzimmer
+n|das|Doppelzimmer
+n|das|Mehrbettzimmer
+n|die|Buchung
+n|die|Rundreise
+n|der|Eingang
+n|die|Rolltreppe
+n|die|Entfernung
+v||verreisen
+v||abbiegen
+v||stornieren
+v||buchen
+a||ausgebucht
+a||belegt
+o||einfache Fahrt
+o||hin und zurück
+o||am Fenster
+o||am Gang
+o||Nehmen Sie die nächste Straße links.
+o||vom 10. bis zum 24. August
+
+@essen|🛒|Essen & Einkaufen|Еда и покупки|Їжа і покупки
+n|die|Tüte
+n|das|Sonderangebot
+n|das|Rindfleisch
+n|das|Schweinefleisch
+n|das|Hähnchen
+n|die|Pflaume
+n|die|Erdbeere
+n|die|Traube
+n|die|Himbeere
+n|das|Obst
+n|das|Gemüse
+n|der|Kohl
+n|der|Brokkoli
+n|das|Radieschen
+n|das|Bund
+n|die|Aubergine
+n|das|stille Wasser
+n|der|Sprudel
+n|das|Sauerkraut
+n|der|Nachtisch
+n|die|Hauptspeise
+n|das|Gummibärchen
+n|das|Bonbon
+n|das|Kaugummi
+n|die|Erdnuss
+n|das|Popcorn
+n|die|Kugel
+v||akzeptieren
+a||sauer
+a||bitter
+o||Ich bin satt.
+o||Schmeckt es dir?
+
+@kochen|🍳|Kochen & Tisch decken|Готовка и сервировка стола|Готування і сервірування столу
+n|die|Tischdecke
+n|der|Suppenteller
+n|das|Geschirr
+n|das|Besteck
+n|die|Serviette
+n|die|Scheibe
+v||schälen
+v||schneiden
+v||braten
+v||umrühren
+v||würzen
+v||hinzufügen
+v||vorheizen
+v||aufstellen
+v||abräumen
+a||hartgekocht
+a||weichgekocht
+
+@kleidung|👕|Kleidung|Одежда|Одяг
+n|das|Hemd
+n|die|Hose
+n|der|Gürtel
+n|der|Mantel
+n|der|Hut
+n|die|Mütze
+n|der|Schal
+n|der|Stiefel
+n|der|Hausschuh
+n|die|Socke
+n|die|Strumpfhose
+n|die|Unterhose
+n|der|BH
+n|das|Unterhemd
+n|der|Schlafanzug
+n|der|Regenschirm
+n|das|Taschentuch
+o||Das passt mir nicht.
+o||Das steht dir gut.
+o||Zieh dich warm an!
+
+@wohnung|🏠|Wohnung & Haushalt|Квартира и хозяйство|Квартира і господарство
+n|das|Erdgeschoss
+n|die|Etage
+n|die|Haustür
+n|die|Klingel
+n|der|Vorhang
+n|der|Herd
+n|der|Backofen
+n|die|Mikrowelle
+n|der|Toaster
+n|der|Wasserkocher
+n|das|Spülbecken
+n|das|Gefrierfach
+n|die|Stehlampe
+n|die|Fernbedienung
+n|das|Doppelbett
+n|das|Bettlaken
+n|die|Bettdecke
+n|das|Kopfkissen
+n|der|Nachttisch
+n|die|Jalousie
+n|das|Waschbecken
+n|der|Staubsauger
+n|der|Wasserhahn
+n|der|Abfluss
+n|das|Rohr
+n|das|Putzmittel
+n|der|Putzlappen
+n|das|Altglas
+n|das|Ersatzteil
+n|die|Rückseite
+n|der|Deckel
+n|der|Wasserbehälter
+n|das|Feuerzeug
+v||aufhängen
+v||fegen
+v||wischen
+v||rausbringen
+v||entkalken
+a||schmutzig
+a||verkalkt
+o||Wie hoch ist die Miete?
+o||Das muss repariert werden.
+o||Das Licht geht nicht.
+o||Das Wasser läuft nicht ab.
+o||Das Fenster geht nicht zu.
+
+@bank|🏦|Bank & Geld|Банк и деньги|Банк і гроші
+n|das|Bankkonto
+n|der|Kontoauszug
+n|die|Überweisung
+n|der|Zins
+n|die|Kontonummer
+n|die|Geheimzahl
+n|der|Dauerauftrag
+n|der|Verwendungszweck
+n|die|Ausführung
+n|die|Verwaltung
+v||eröffnen
+v||überweisen
+v||abheben
+v||einzahlen
+v||einrichten
+
+@computer|💻|Computer & Internet|Компьютер и интернет|Комп'ютер та інтернет
+n|der|Rechner
+n|das|Tablet
+n|die|Tastatur
+n|die|Maus
+n|die|Datei
+n|der|Ordner
+n|der|USB-Stick
+n|die|Festplatte
+n|der|Drucker
+n|die|URL
+n|der|Link
+n|die|Durchwahl
+n|der|Anrufbeantworter
+v||runterfahren
+v||erstellen
+v||sich einloggen
+v||ausloggen
+v||abmelden
+v||googeln
+v||mailen
+v||zusenden
+a||verbunden
+
+@fussball|⚽|Fußball & Ausgehen|Футбол и развлечения|Футбол і розваги
+n|der|Torwart
+n|der|Stürmer
+n|das|Tor
+n|der|Verteidiger
+n|der|Schiedsrichter
+n|die|Kneipe
+v||ausgehen
+v||klettern
+a||betrunken
+o||Es steht unentschieden.
+o||Für wen bist du?
+o||Ich gebe dir einen aus.
+
+@schoenheit|💄|Kosmetik & Friseur|Косметика и парикмахерская|Косметика і перукарня
+n|die|Wimperntusche
+n|der|Lippenstift
+n|der|Lidschatten
+n|das|Rouge
+n|der|Puder
+n|der|Nagellack
+n|die|Schere
+n|der|Kamm
+n|der|Pony
+n|die|Frisur
+n|der|Zopf
+n|der|Föhn
+v||lackieren
+a||hübsch
+o||Ich lasse mir die Haare schneiden.
+
+@schule|🎒|Schule & Studium|Школа и учёба|Школа і навчання
+n|das|Zeugnis
+n|der|Elternsprechtag
+n|die|Schulferien
+n|der|Füller
+n|der|Spitzer
+n|die|Turnhalle
+n|der|Numerus clausus
+v||sitzenbleiben
+v||sich einschreiben
+
+@auto|🚗|Auto & Fahrrad|Машина и велосипед|Машина і велосипед
+n|die|Reparatur
+n|der|Reifen
+n|die|Bremse
+n|die|Kupplung
+n|das|Lenkrad
+n|der|Tacho
+n|der|Sitz
+n|der|Gurt
+n|der|Gebrauchtwagen
+n|der|TÜV
+n|der|Platten
+n|die|Luftpumpe
+n|der|Sattel
+n|die|Gangschaltung
+n|das|Vorderlicht
+n|das|Rücklicht
+n|der|Fahrradhelm
+n|die|Fahrzeugpapiere
+v||sich anschnallen
+v||tanken
+
+@polizei|🚓|Polizei & Diebstahl|Полиция и кража|Поліція і крадіжка
+n|der|Zeuge
+n|der|Diebstahl
+n|der|Einbruch
+n|die|Wertsache
+n|die|Aussage
+n|der|Täter
+n|die|Körperverletzung
+n|die|Warnung
+v||beschreiben
+v||erstatten
+
+@natur|🌳|Natur, Tiere & Umwelt|Природа, животные и экология|Природа, тварини й довкілля
+n|das|Tier
+n|die|Kuh
+n|das|Huhn
+n|das|Tierfutter
+n|der|Hase
+n|das|Murmeltier
+n|die|Umwelt
+n|das|Klima
+n|der|Umweltschutz
+n|die|Umweltverschmutzung
+n|das|Meer
+n|der|See
+n|der|Fluss
+n|die|Wiese
+n|der|Berg
+n|die|Pflanze
+n|der|Baum
+n|der|Tannenbaum
+n|der|Weihnachtsbaum
+n|der|Busch
+n|das|Gras
+n|der|Ast
+n|das|Blatt
+n|die|Wurzel
+n|die|Feuchtigkeit
+n|die|Luft
+v||verändern
+a||nass
+a||trocken
+a||feucht
+a||giftig
+o||weltweit
+
+@beziehungen|💞|Beziehungen & Lebensereignisse|Отношения и события жизни|Стосунки й події життя
+n|der|Fremde
+n|der|Single
+n|die|Beziehung
+n|das|Lob
+n|die|Mühe
+n|der|Erfolg
+n|das|Missverständnis
+n|die|Trauer
+n|der|Tod
+n|die|Beerdigung
+n|der|Friedhof
+n|die|Waise
+n|die|Hochzeit
+n|der|Verwandte
+n|die|Veranstaltung
+n|der|Hinweis
+v||zustimmen
+v||ablehnen
+v||sich streiten
+a||befreundet
+
+@gefuehle|🎭|Gefühle & Emotionen|Чувства и эмоции|Почуття й емоції
+n|die|Laune
+a||ängstlich
+a||besorgt
+a||nervös
+a||unsicher
+a||überrascht
+a||verwirrt
+a||neugierig
+a||gelassen
+a||gelangweilt
+a||wütend
+a||genervt
+a||frustriert
+a||eifersüchtig
+a||neidisch
+a||empört
+a||ungeduldig
+a||misstrauisch
+a||angewidert
+a||traurig
+a||enttäuscht
+a||einsam
+a||verzweifelt
+a||beschämt
+a||schuldig
+a||sehnsüchtig
+a||nostalgisch
+a||glücklich
+a||fröhlich
+a||begeistert
+a||dankbar
+a||verliebt
+a||stolz
+a||hoffnungsvoll
+a||erleichtert
+a||gierig

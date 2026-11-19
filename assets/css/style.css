@@ -2672,3 +2672,9 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 .admin-unlimited-btn.on { border-color: var(--accent, #7c5cff); }
 .admin-extend-btn:disabled { opacity: .45; cursor: not-allowed; }
 .admin-status-badge.hidden-lb { background: var(--bg4); color: var(--text-muted); }
+
+/* ── Грамматика: заголовки книг (A1 / A2.1 / A2.2) ── */
+.sg-book-h { display: flex; align-items: center; gap: 10px; margin: 26px 0 12px; font-size: 17px; font-weight: 800; }
+.sg-book-h:first-of-type { margin-top: 8px; }
+.sg-book-h small { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--text-muted); }
+.sg-book-lvl { background: var(--accent); color: #fff; border-radius: 8px; padding: 2px 9px; font-size: 13px; letter-spacing: .3px; }

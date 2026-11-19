@@ -1802,8 +1802,8 @@
     });
   });
   window.THEMES_DATA = window.THEMES_DATA || [];
-  window.THEMES_DATA.unshift({ id: 'schritte', emoji: '📘', de: 'Lehrbuch (Schritte)', ru: 'Учебник (Schritte)',
-                               uk: 'Підручник (Schritte)', cats: keys, textbook: true });
+  window.THEMES_DATA.unshift({ id: 'schritte', emoji: '📘', de: 'Lehrbuch A1 (Schritte 1+2)', ru: 'Учебник A1 (Schritte 1+2)',
+                               uk: 'Підручник A1 (Schritte 1+2)', cats: keys, textbook: true });
   window.EXAMPLES = Object.assign(window.EXAMPLES || {}, EX);
   window.TRANSLATIONS_UK = Object.assign(window.TRANSLATIONS_UK || {}, UK);
   window.EXAMPLE_ROLES = Object.assign(window.EXAMPLE_ROLES || {}, ROLES);

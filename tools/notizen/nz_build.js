@@ -4,7 +4,9 @@ const fs = require('fs'), path = require('path');
 const SP = __dirname, ROOT = path.join(__dirname, '..', '..');
 global.window = { THEMES_DATA: [], EXAMPLES: {}, TRANSLATIONS_UK: {}, EXAMPLE_ROLES: {} };
 require(path.join(ROOT, 'db', 'words.js'));
+require(path.join(ROOT, 'db', 'irregular_verbs.js'));
 require(path.join(ROOT, 'db', 'textbook.js'));
+require(path.join(ROOT, 'db', 'textbook_a2.js'));
 const known = new Set(); window.VOCAB_DATA.forEach(c => c.words.forEach(w => known.add(w.id)));
 
 // темы
@@ -17,9 +19,10 @@ for (const l of fs.readFileSync(path.join(SP, 'nz_words.txt'), 'utf8').split(/\r
 const entries = JSON.parse(fs.readFileSync(path.join(SP, 'nz_match.json'), 'utf8'));
 
 // переводы и алиасы
-const alias = {}, tr = {};
+const alias = {}, tr = {}, forceNew = new Set();   // @new ключ — отдельное слово (на сайте то же написание, другой смысл)
 for (const l of fs.readFileSync(path.join(SP, 'nz_tr.txt'), 'utf8').split(/\r?\n/)) {
   if (!l.trim()) continue;
+  if (l.startsWith('@new ')) { forceNew.add(l.slice(5).trim()); continue; }
   if (l.startsWith('@alias ')) { const [k, id] = l.slice(7).split('='); alias[k] = id; continue; }
   const [k, ru, uk, exDe, exRu] = l.split('|');
   if (tr[k]) throw new Error('dup tr ' + k);
@@ -34,7 +37,7 @@ let seq = Math.max(0, ...Object.values(IDS).map(v => +v.slice(3)));
 const NEW = {}, EX = {}, UK = {}, missing = [], where = {};
 for (const e of entries) {
   const key = (e.art ? e.art + ' ' : '') + e.word;
-  let id = alias[key] || e.ref;
+  let id = alias[key] || (forceNew.has(key) ? null : e.ref);
   if (!id) {
     const t = tr[key];
     if (!t) { missing.push(key); continue; }
@@ -110,7 +113,7 @@ const out = `/* ═════════════════════�
     });
   });
   window.THEMES_DATA = window.THEMES_DATA || [];
-  const at = window.THEMES_DATA.findIndex(t => t.id === 'schritte') + 1;   // сразу после учебника
+  const at = Math.max(...['schritte', 'schritte3'].map(id => window.THEMES_DATA.findIndex(t => t.id === id))) + 1;   // сразу после учебников
   window.THEMES_DATA.splice(at, 0, { id: 'notizen', emoji: '📝', de: 'Meine Notizen', ru: 'Мои записи', uk: 'Мої записи',
     cats: keys, textbook: true, idPrefix: 'nz_',
     note: ['Wörter aus deinen Notizen, Kursblättern und dem Wörterbuch, nach Themen sortiert.',

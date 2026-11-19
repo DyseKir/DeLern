@@ -3,11 +3,14 @@ const fs = require('fs'), path = require('path');
 const ROOT = path.join(__dirname, '..', '..');
 global.window = { THEMES_DATA: [], EXAMPLES: {}, TRANSLATIONS_UK: {}, EXAMPLE_ROLES: {} };
 require(path.join(ROOT, 'db', 'words.js'));
+require(path.join(ROOT, 'db', 'irregular_verbs.js'));
 require(path.join(ROOT, 'db', 'textbook.js'));
+require(path.join(ROOT, 'db', 'textbook_a2.js'));
 const norm = s => s.toLowerCase().replace(/^sich\s+/, '').replace(/[.!?]/g, '').replace(/ß/g, 'ss').trim();
 const idx = new Map();
 const cats = window.VOCAB_DATA.slice().sort((a, b) => (a.mode === 'conjugation') - (b.mode === 'conjugation') || a.level.localeCompare(b.level));
 for (const c of cats) for (const w of c.words) {
+  if (w.id.startsWith('nz_')) continue;   // свои слова (их копии лежат в textbook_a2.js)
   const art = w.article && w.article !== '-' ? w.article : '';
   for (const k of [norm(w.word) + '|' + art, norm(w.word) + '|*']) if (!idx.has(k)) idx.set(k, w);
 }

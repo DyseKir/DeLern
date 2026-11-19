@@ -2613,6 +2613,8 @@ function handleTypingSubmit() {
 const SG = { lesson: null, topic: null, items: [], idx: 0, firstTry: 0, total: 0, answered: false, retried: new Set(), order: [] };
 const sgL = (de, ru) => lstr(de, ru, ru);
 function sgLessons() { return window.SG_LESSONS || []; }
+const sgLn = L => 'Lektion ' + (L.ln || L.n);   // номер урока в книге (у A2 n = 101…, ln = 1…)
+const SG_BOOKS = { A1: ['Schritte international Neu 1+2', 'A1'], 'A2.1': ['Schritte international Neu 3', 'A2.1'], 'A2.2': ['Schritte international Neu 4', 'A2.2'] };
 function sgProg(key) { const p = loadProg(); return p['sg_' + key] || null; }
 function sgSave(key, pct) {
   const p = loadProg(), cur = p['sg_' + key] || {};
@@ -2635,14 +2637,20 @@ function renderSGBook(wrap) {
   const lessons = sgLessons();
   let allT = 0, doneT = 0;
   lessons.forEach(L => L.topics.forEach(t => { allT++; if ((sgProg(t.id) || {}).done) doneT++; }));
-  wrap.innerHTML = `<div class="sg-intro">📘 ${sgL('Grammatik wie im Lehrbuch „Schritte international Neu 1+2“ — Lektion für Lektion. Zu jedem Thema: kurze Regel und Übungen genau dazu.',
-      'Грамматика как в учебнике «Schritte international Neu 1+2» — урок за уроком. К каждой теме: короткое правило и задания именно по ней.')}
+  wrap.innerHTML = `<div class="sg-intro">📘 ${sgL('Grammatik wie im Lehrbuch „Schritte international Neu“ (A1–A2) — Lektion für Lektion. Zu jedem Thema: kurze Regel und Übungen genau dazu.',
+      'Грамматика как в учебнике «Schritte international Neu» (A1–A2) — урок за уроком. К каждой теме: короткое правило и задания именно по ней.')}
       <div class="sg-total">${sgL('Geschafft', 'Пройдено тем')}: <b>${doneT} / ${allT}</b></div></div>`
-    + lessons.map(L => {
+    + lessons.map((L, i) => {
+      const book = L.book || 'A1', prev = i ? (lessons[i - 1].book || 'A1') : null;
+      const head = book !== prev ? (() => {
+        const bl = lessons.filter(x => (x.book || 'A1') === book), bt = bl.flatMap(x => x.topics);
+        return `<h3 class="sg-book-h"><span class="sg-book-lvl">${SG_BOOKS[book][1]}</span> ${SG_BOOKS[book][0]}
+          <small>${bt.filter(t => (sgProg(t.id) || {}).done).length} / ${bt.length}</small></h3>`;
+      })() : '';
       const done = L.topics.filter(t => (sgProg(t.id) || {}).done).length;
       const lt = sgProg('L' + L.n);
-      return `<div class="sg-lesson ${done === L.topics.length ? 'complete' : ''}">
-        <div class="sg-lesson-h"><span class="sg-ln">${L.emoji} Lektion ${L.n}</span>
+      return head + `<div class="sg-lesson ${done === L.topics.length ? 'complete' : ''}">
+        <div class="sg-lesson-h"><span class="sg-ln">${L.emoji} ${sgLn(L)}</span>
           <span class="sg-lt">${escapeHtml(L.de)} <small>· ${escapeHtml(L.ru)}</small></span>
           <span class="sg-lp">${done}/${L.topics.length}</span></div>
         <div class="sg-topics">${L.topics.map(t => {
@@ -2672,7 +2680,7 @@ function sgTable(rows) {
 function openSGTopic(L, t) {
   SG.lesson = L; SG.topic = t;
   show('sgram');
-  $('sg-title').textContent = `Lektion ${L.n} · ${sgL(t.de, t.ru)}`;
+  $('sg-title').textContent = `${sgLn(L)} · ${sgL(t.de, t.ru)}`;
   const rules = (t.rules || []).map(id => (window.GRAMMAR_DATA || []).find(r => r.id === id)).filter(Boolean);
   const pr = sgProg(t.id);
   $('sg-body').innerHTML = `
@@ -2703,7 +2711,7 @@ function startSGPractice(L, t) {
   }
   SG.items = items; SG.idx = 0; SG.firstTry = 0; SG.total = items.length; SG.retried = new Set();
   show('sgram');
-  $('sg-title').textContent = `Lektion ${L.n} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
+  $('sg-title').textContent = `${sgLn(L)} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
   drawSGItem();
 }
 
