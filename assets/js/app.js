@@ -1166,6 +1166,7 @@ function rerenderCurrent() {
   if      (S.screen==='home')       renderHome();
   else if (S.screen==='wortschatz') renderVocabScreen();
   else if (S.screen==='grammatik')  renderGrammarScreen();
+  else if (S.screen==='sgram')      { if (SG.topic) openSGTopic(SG.lesson, SG.topic); else renderGrammarScreen(); }
   else if (S.screen==='tables')     renderTablesScreen();
   else if (S.screen==='prep')       renderPrepScreen();
   else if (S.screen==='translate')  renderTranslateScreen();
@@ -2548,10 +2549,261 @@ function handleTypingSubmit() {
 /* ══════════════════════════════════════════════════════════════
    ГРАММАТИКА
 ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   ГРАММАТИКА ПО УЧЕБНИКУ (db/schritte_grammar.js): уроки → темы →
+   тренировка именно этой темы: вставить слово, выбрать форму,
+   собрать предложение, перевести, текст с пропусками.
+   Прогресс: prog['sg_<topicId>'] = { best, done, updatedAt }, тест урока — 'sg_L<n>'.
+══════════════════════════════════════════════════════════════ */
+const SG = { lesson: null, topic: null, items: [], idx: 0, firstTry: 0, total: 0, answered: false, retried: new Set(), order: [] };
+const sgL = (de, ru) => lstr(de, ru, ru);
+function sgLessons() { return window.SG_LESSONS || []; }
+function sgProg(key) { const p = loadProg(); return p['sg_' + key] || null; }
+function sgSave(key, pct) {
+  const p = loadProg(), cur = p['sg_' + key] || {};
+  const best = Math.max(cur.best || 0, pct), firstDone = !cur.done && pct >= 80;
+  p['sg_' + key] = { best, done: best >= 80, updatedAt: Date.now() };
+  saveProg(p);
+  return firstDone;
+}
+function sgParse(line) {
+  const f = line.split('|');
+  if (f[0] === 'g') return { type: 'g', de: f[1], ans: f[2].split('/'), ru: f[3] };
+  if (f[0] === 'c') return { type: 'c', de: f[1], ans: [f[2]], wrong: f[3].split(','), ru: f[4] };
+  if (f[0] === 'o') return { type: 'o', de: f[1], ru: f[2] };
+  if (f[0] === 't') return { type: 't', ru: f[1], ans: f.slice(2).join('|').split('||').map(s => s.trim()).filter(Boolean) };
+  return null;
+}
+const sgNorm = s => normSentence(String(s || '').replace(/…/g, ' '));
+
+function renderSGBook(wrap) {
+  const lessons = sgLessons();
+  let allT = 0, doneT = 0;
+  lessons.forEach(L => L.topics.forEach(t => { allT++; if ((sgProg(t.id) || {}).done) doneT++; }));
+  wrap.innerHTML = `<div class="sg-intro">📘 ${sgL('Grammatik wie im Lehrbuch „Schritte international Neu 1+2“ — Lektion für Lektion. Zu jedem Thema: kurze Regel und Übungen genau dazu.',
+      'Грамматика как в учебнике «Schritte international Neu 1+2» — урок за уроком. К каждой теме: короткое правило и задания именно по ней.')}
+      <div class="sg-total">${sgL('Geschafft', 'Пройдено тем')}: <b>${doneT} / ${allT}</b></div></div>`
+    + lessons.map(L => {
+      const done = L.topics.filter(t => (sgProg(t.id) || {}).done).length;
+      const lt = sgProg('L' + L.n);
+      return `<div class="sg-lesson ${done === L.topics.length ? 'complete' : ''}">
+        <div class="sg-lesson-h"><span class="sg-ln">${L.emoji} Lektion ${L.n}</span>
+          <span class="sg-lt">${escapeHtml(L.de)} <small>· ${escapeHtml(L.ru)}</small></span>
+          <span class="sg-lp">${done}/${L.topics.length}</span></div>
+        <div class="sg-topics">${L.topics.map(t => {
+          const pr = sgProg(t.id);
+          return `<button class="sg-topic ${pr && pr.done ? 'done' : ''}" data-l="${L.n}" data-t="${t.id}">
+            <span class="sg-ti">${pr && pr.done ? '✓' : '○'}</span>
+            <span class="sg-tt"><b>${escapeHtml(sgL(t.de, t.ru))}</b><small>${escapeHtml(lang === 'de' ? '' : t.de)}</small></span>
+            ${pr ? `<span class="sg-best">${pr.best}%</span>` : ''}</button>`;
+        }).join('')}
+          <button class="sg-topic sg-test" data-l="${L.n}" data-test="1"><span class="sg-ti">📝</span>
+            <span class="sg-tt"><b>${sgL('Test zur Lektion', 'Тест урока')}</b><small>${sgL('alle Themen + Text', 'все темы + текст')}</small></span>
+            ${lt ? `<span class="sg-best">${lt.best}%</span>` : ''}</button>
+        </div></div>`;
+    }).join('');
+  wrap.querySelectorAll('.sg-topic').forEach(b => b.addEventListener('click', () => {
+    const L = sgLessons().find(x => x.n === +b.dataset.l);
+    if (b.dataset.test) startSGPractice(L, null);
+    else openSGTopic(L, L.topics.find(t => t.id === b.dataset.t));
+  }));
+}
+
+function sgTable(rows) {
+  if (!rows) return '';
+  return `<div class="rt-scroll"><table class="rt sg-table">${rows.map((r, i) =>
+    `<tr>${r.map(c => i === 0 ? `<th>${c}</th>` : `<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+}
+function openSGTopic(L, t) {
+  SG.lesson = L; SG.topic = t;
+  show('sgram');
+  $('sg-title').textContent = `Lektion ${L.n} · ${sgL(t.de, t.ru)}`;
+  const rules = (t.rules || []).map(id => (window.GRAMMAR_DATA || []).find(r => r.id === id)).filter(Boolean);
+  const pr = sgProg(t.id);
+  $('sg-body').innerHTML = `
+    <div class="sg-card">
+      <div class="sg-de">${escapeHtml(t.de)}</div>
+      <div class="sg-explain">${t.explain}</div>
+      ${sgTable(t.table)}
+      ${rules.length ? `<div class="sg-rules">${sgL('Ausführliche Regel', 'Подробное правило')}: ${rules.map(r => `<button class="sg-rule" data-r="${r.id}">📖 ${escapeHtml(ruleField(r, 'title'))}</button>`).join('')}</div>` : ''}
+    </div>
+    <div class="sg-start">
+      <button class="btn-primary" id="sg-go">▶ ${sgL('Üben', 'Тренировать')} (${t.ex.length} ${sgL('Aufgaben', 'заданий')})</button>
+      ${pr ? `<div class="sg-prev">${sgL('Bestes Ergebnis', 'Лучший результат')}: <b>${pr.best}%</b>${pr.done ? ' ✓' : ''}</div>` : ''}
+      <div class="sg-types">✍️ ${sgL('Lücke füllen', 'вставить слово')} · 🔘 ${sgL('Form wählen', 'выбрать форму')} · 🧩 ${sgL('Satz bauen', 'собрать предложение')} · 🌍 ${sgL('übersetzen', 'перевести')}</div>
+    </div>`;
+  $('sg-go').addEventListener('click', () => startSGPractice(L, t));
+  $('sg-body').querySelectorAll('.sg-rule').forEach(b => b.addEventListener('click', () =>
+    openModal((window.GRAMMAR_DATA || []).find(r => r.id === b.dataset.r))));
+}
+
+function startSGPractice(L, t) {
+  SG.lesson = L; SG.topic = t;
+  let items;
+  if (t) items = shuffle(t.ex.map(sgParse).filter(Boolean));
+  else {
+    // тест урока: по 3 задания из каждой темы + текст в конце
+    items = shuffle(L.topics.flatMap(tp => shuffle(tp.ex.map(sgParse).filter(Boolean)).slice(0, 3)));
+    if (L.text) items.push({ type: 'text', title: L.text.title, de: L.text.de, ru: L.text.ru });
+  }
+  SG.items = items; SG.idx = 0; SG.firstTry = 0; SG.total = items.length; SG.retried = new Set();
+  show('sgram');
+  $('sg-title').textContent = `Lektion ${L.n} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
+  drawSGItem();
+}
+
+const SG_TYPE = { g: ['✍️', 'Lücke füllen', 'Вставь слово'], c: ['🔘', 'Richtige Form wählen', 'Выбери правильный вариант'],
+  o: ['🧩', 'Satz bauen', 'Собери предложение'], t: ['🌍', 'Übersetzen', 'Переведи на немецкий'], text: ['📄', 'Text ergänzen', 'Заполни пропуски в тексте'] };
+
+function drawSGItem() {
+  const it = SG.items[SG.idx];
+  if (!it) { finishSGPractice(); return; }
+  SG.answered = false;
+  const ty = SG_TYPE[it.type];
+  const head = `<div class="sg-run-top"><span>${SG.idx + 1} / ${SG.items.length}</span>
+      <div class="sg-run-bar"><div style="width:${SG.idx / SG.items.length * 100}%"></div></div>
+      <span>✓ ${SG.firstTry}</span></div>
+    <div class="sg-type">${ty[0]} ${sgL(ty[1], ty[2])}${it.retry ? ` <span class="sg-again">${sgL('noch einmal', 'ещё раз')}</span>` : ''}</div>`;
+  let body = '';
+  if (it.type === 'g') {
+    const parts = it.de.split('___');
+    body = `<div class="sg-sent">${parts.map((p, i) => escapeHtml(p) + (i < parts.length - 1 ? `<input class="sg-gap" data-i="${i}" autocomplete="off" spellcheck="false">` : '')).join('')}</div>
+      <div class="sg-ru">${escapeHtml(it.ru || '')}</div>`;
+  } else if (it.type === 'c') {
+    const opts = shuffle([...it.ans, ...it.wrong]);
+    body = `<div class="sg-sent">${escapeHtml(it.de).replace('___', '<span class="sg-blank">___</span>')}</div>
+      <div class="sg-ru">${escapeHtml(it.ru || '')}</div>
+      <div class="sg-opts">${opts.map(o => `<button class="sg-opt" data-v="${escapeHtml(o)}">${escapeHtml(o)}</button>`).join('')}</div>`;
+  } else if (it.type === 'o') {
+    SG.order = [];
+    const toks = it.de.split(/\s+/);
+    let sh; do { sh = shuffle(toks.map((w, i) => ({ w, i }))); } while (toks.length > 2 && sh.every((x, i) => x.i === i));
+    body = `<div class="sg-ru big">${escapeHtml(it.ru)}</div>
+      <div class="sg-build" id="sg-build"></div>
+      <div class="sg-pool" id="sg-pool">${sh.map(x => `<button class="sg-chip" data-i="${x.i}">${escapeHtml(x.w.replace(/[.,!?;:]+$/, ''))}</button>`).join('')}</div>`;
+  } else if (it.type === 't') {
+    body = `<div class="sg-ru big">${escapeHtml(it.ru)}</div>
+      <input class="sg-input" id="sg-tr" placeholder="${sgL('Auf Deutsch …', 'По-немецки …')}" autocomplete="off" spellcheck="false">
+      <div class="tt-umlaut-row sg-uml">${['ä','ö','ü','ß'].map(c => `<button class="uml-btn sg-uml-b" data-char="${c}">${c}</button>`).join('')}</div>`;
+  } else if (it.type === 'text') {
+    let gi = 0;
+    const html = escapeHtml(it.de).replace(/\{\{([^}]+)\}\}/g, (m, a) => `<input class="sg-gap sg-tgap" data-i="${gi++}" data-a="${a}" autocomplete="off" spellcheck="false">`);
+    body = `<div class="sg-text-title">${escapeHtml(it.title)}</div><div class="sg-text">${html}</div>`;
+  }
+  $('sg-body').innerHTML = `<div class="sg-run">${head}${body}
+    <div class="sg-fb" id="sg-fb"></div>
+    <div class="sg-actions"><button class="btn-primary" id="sg-check">${sgL('Prüfen', 'Проверить')}</button>
+      <button class="btn-secondary" id="sg-quit">${sgL('Beenden', 'Завершить')}</button></div></div>`;
+
+  // события по типу
+  if (it.type === 'c') $('sg-body').querySelectorAll('.sg-opt').forEach(b => b.addEventListener('click', () => { if (!SG.answered) sgCheck(b.dataset.v); }));
+  if (it.type === 'o') {
+    const build = $('sg-build'), pool = $('sg-pool');
+    pool.querySelectorAll('.sg-chip').forEach(ch => ch.addEventListener('click', () => {
+      if (SG.answered) return;
+      if (ch.parentNode === pool) { build.appendChild(ch); } else { pool.appendChild(ch); }
+    }));
+  }
+  $('sg-body').querySelectorAll('.sg-uml-b').forEach(b => b.addEventListener('click', () => {
+    const inp = $('sg-tr'); inp.value += b.dataset.char; inp.focus(); }));
+  $('sg-body').querySelectorAll('input').forEach(inp => inp.addEventListener('keydown', e => { if (e.key === 'Enter') $('sg-check').click(); }));
+  $('sg-check').addEventListener('click', () => { if (SG.answered) { SG.idx++; drawSGItem(); } else sgCheck(); });
+  $('sg-quit').addEventListener('click', finishSGPractice);
+  if (it.type === 'c') $('sg-check').classList.add('hidden');
+  setTimeout(() => { const f = $('sg-body').querySelector('input'); if (f) f.focus(); }, 60);
+}
+
+function sgCheck(choice) {
+  const it = SG.items[SG.idx];
+  let ok = false, right = '';
+  if (it.type === 'g') {
+    const vals = [...$('sg-body').querySelectorAll('.sg-gap')].map(i => i.value.trim());
+    if (vals.every(v => !v)) return;
+    const given = sgNorm(vals.join(' '));
+    ok = it.ans.some(a => sgNorm(a) === given);
+    right = it.ans[0].replace(/\s*…\s*/g, ' … ');
+    $('sg-body').querySelectorAll('.sg-gap').forEach(i => i.classList.add(ok ? 'ok' : 'bad'));
+  } else if (it.type === 'c') {
+    ok = choice === it.ans[0]; right = it.ans[0];
+    $('sg-body').querySelectorAll('.sg-opt').forEach(b => {
+      if (b.dataset.v === it.ans[0]) b.classList.add('ok'); else if (b.dataset.v === choice) b.classList.add('bad');
+    });
+  } else if (it.type === 'o') {
+    const chips = [...$('sg-build').querySelectorAll('.sg-chip')];
+    if (!chips.length) return;
+    const got = chips.map(c => c.textContent).join(' ');
+    ok = sgNorm(got) === sgNorm(it.de) && !$('sg-pool').children.length; right = it.de;
+  } else if (it.type === 't') {
+    const v = $('sg-tr').value.trim(); if (!v) return;
+    ok = it.ans.some(a => sgNorm(a) === sgNorm(v)); right = it.ans[0];
+    $('sg-tr').classList.add(ok ? 'ok' : 'bad');
+  } else if (it.type === 'text') {
+    let good = 0; const gaps = [...$('sg-body').querySelectorAll('.sg-tgap')];
+    gaps.forEach(g => {
+      const alts = g.dataset.a.split('/');
+      const isOk = alts.some(a => sgNorm(a) === sgNorm(g.value));
+      g.classList.add(isOk ? 'ok' : 'bad'); if (isOk) good++;
+      else g.insertAdjacentHTML('afterend', `<span class="sg-corr">${escapeHtml(alts[0])}</span>`);
+      g.disabled = true;
+    });
+    ok = good === gaps.length;
+    $('sg-fb').innerHTML = `<div class="${ok ? 'ok' : 'bad'}">${good} / ${gaps.length} ${sgL('richtig', 'верно')}</div><div class="sg-text-ru">${escapeHtml(it.ru)}</div>`;
+  }
+  SG.answered = true;
+  if (ok && !it.retry) SG.firstTry++;
+  if (!ok && !it.retry && it.type !== 'text') SG.items.push({ ...it, retry: true });   // ошибку — ещё раз в конце
+  if (it.type !== 'text') {
+    $('sg-fb').innerHTML = ok ? `<div class="ok">✓ ${sgL('Richtig!', 'Верно!')}</div>`
+      : `<div class="bad">✗ ${sgL('Richtig ist', 'Правильно')}: <b>${escapeHtml(right)}</b></div>`
+        + (it.type === 't' && it.ans.length > 1 ? `<div class="sg-alt">${sgL('auch richtig', 'тоже верно')}: ${escapeHtml(it.ans.slice(1).join(' / '))}</div>` : '');
+  }
+  if (ok) addCoins(1, $('sg-fb'));
+  $('sg-body').querySelectorAll('input').forEach(i => i.disabled = true);
+  const btn = $('sg-check');
+  btn.classList.remove('hidden');
+  btn.textContent = SG.idx + 1 < SG.items.length ? sgL('Weiter →', 'Дальше →') : sgL('Ergebnis', 'Результат');
+  btn.focus();
+}
+
+function finishSGPractice() {
+  const L = SG.lesson, t = SG.topic;
+  const pct = SG.total ? Math.round(SG.firstTry / SG.total * 100) : 0;
+  const first = sgSave(t ? t.id : 'L' + L.n, pct);
+  if (first) addCoins(5);
+  $('sg-body').innerHTML = `<div class="sg-result">
+      <div class="sg-res-emoji">${pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '💪'}</div>
+      <div class="sg-res-big">${pct}%</div>
+      <div>${sgL('Beim ersten Versuch richtig', 'Верно с первой попытки')}: ${SG.firstTry} / ${SG.total}</div>
+      <div class="sg-res-note">${pct >= 80 ? sgL('Thema geschafft ✓', 'Тема пройдена ✓') : sgL('Ab 80 % gilt das Thema als geschafft.', 'Тема засчитывается от 80%. Попробуй ещё раз!')}</div>
+      <div class="sg-actions">
+        <button class="btn-primary" id="sg-again">${sgL('Noch einmal', 'Ещё раз')}</button>
+        ${t ? `<button class="btn-secondary" id="sg-rule">${sgL('Regel ansehen', 'К правилу')}</button>` : ''}
+        <button class="btn-secondary" id="sg-tobook">${sgL('Zu den Lektionen', 'К урокам')}</button>
+      </div></div>`;
+  $('sg-again').addEventListener('click', () => startSGPractice(L, t));
+  $('sg-rule')?.addEventListener('click', () => openSGTopic(L, t));
+  $('sg-tobook').addEventListener('click', renderGrammarScreen);
+}
+
 function renderGrammarScreen() {
   show('grammatik');
   $('grammar-level-title').textContent = S.level;
   const wrap  = $('grammar-grid');
+  // вкладки: по учебнику (по умолчанию) / все правила
+  const tab = S.grammarTab || 'book';
+  $('grammar-tabs').innerHTML =
+      `<button class="vlf-btn ${tab==='book'?'active':''}" data-gt="book">📘 ${sgL('Nach dem Lehrbuch','По учебнику (Schritte)')}</button>`
+    + `<button class="vlf-btn ${tab==='rules'?'active':''}" data-gt="rules">📚 ${sgL('Alle Regeln','Все правила')}</button>`;
+  $('grammar-tabs').querySelectorAll('[data-gt]').forEach(b => b.addEventListener('click', () => { S.grammarTab = b.dataset.gt; renderGrammarScreen(); }));
+  const oldBar = $('grammar-progress-bar-wrap');
+  if (tab === 'book') {
+    if (oldBar) oldBar.style.display = 'none';
+    wrap.className = 'sg-book';
+    renderSGBook(wrap);
+    return;
+  }
+  if (oldBar) oldBar.style.display = '';
+  wrap.className = 'grammar-grid';
   const rules = (window.GRAMMAR_DATA||[]).filter(r=>r.level===S.level);
   if (!rules.length) { wrap.innerHTML=`<div class="loading-hint">${t('no_cats',S.level)}</div>`; return; }
 
@@ -4672,6 +4924,7 @@ function initEvents() {
   $('exam-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('tables-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('prep-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+  $('sg-back')?.addEventListener('click', renderGrammarScreen);
 
   /* Перевод предложений */
   $('translate-start')?.addEventListener('click', startTranslate);
