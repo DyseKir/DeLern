@@ -1832,6 +1832,67 @@ function renderVocabLearned() {
 ══════════════════════════════════════════════════════════════ */
 /* Слова категории, которые ещё можно изучать в этом занятии
    (не выучены и — вне самой категории "На потом" — не отложены) */
+/* ══════════════════════════════════════════════════════════════
+   СЛОЖНОСТЬ СЛОВА (0…10): лёгкие слова идут в уроке первыми.
+   Учитываются длина, фраза из нескольких слов, уровень, артикль,
+   умлауты/ß и трудные сочетания, неправильные формы, sich,
+   похожесть на русский (такси, отель — легко) и личные ошибки.
+══════════════════════════════════════════════════════════════ */
+let _wordLevelCache = null;
+function wordLevelIdx(id) {
+  if (!_wordLevelCache) {
+    _wordLevelCache = {};
+    const L = { A1: 0, A2: 1, B1: 2, B2: 3 };
+    (window.VOCAB_DATA || []).forEach(c => {
+      if (c.textbook) return;                   // учебник/записи помечены A1 условно
+      c.words.forEach(w => { const v = L[c.level] ?? 0; if (_wordLevelCache[w.id] == null || v < _wordLevelCache[w.id]) _wordLevelCache[w.id] = v; });
+    });
+  }
+  return _wordLevelCache[id] || 0;
+}
+function _similar(a, b) {
+  // доля совпадения по расстоянию Левенштейна (0…1)
+  if (!a || !b) return 0;
+  const m = a.length, n = b.length, d = Array.from({ length: m + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= n; j++) d[0][j] = j;
+  for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++)
+    d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+  return 1 - d[m][n] / Math.max(m, n);
+}
+const _diffCache = {};
+function wordBaseDifficulty(w) {
+  if (_diffCache[w.id] != null) return _diffCache[w.id];
+  const word = String(w.word || '').replace(/^sichs+/, '').replace(/[.!?,…]/g, '').trim();
+  const parts = word.split(/s+/).filter(Boolean);
+  const letters = parts.join('').length;
+  let d = 1;
+  d += Math.min(4, Math.max(0, (letters - 4) * 0.35));         // длина
+  d += Math.max(0, parts.length - 1) * 0.5;                     // фраза
+  d += wordLevelIdx(w.id) * 0.8;                                // уровень
+  if (w.article && w.article !== '-') d += 0.8;                 // артикль запомнить
+  if (/[äöüß]/i.test(word)) d += 0.4;
+  if (/tsch|sch|chs|pf|zw|qu|ng|ei|ie|eu|äu/i.test(word)) d += 0.3;
+  if (w.forms) d += 1.5;                                        // неправильные формы
+  if (/^sichs/.test(w.word || '')) d += 0.5;
+  // похоже на русский перевод → легко (Taxi—такси, Hotel—отель)
+  const tr = String(w.translation || '').toLowerCase().split(/[,/;(]/)[0].trim();
+  const tx = (typeof deTranscribe === 'function' ? deTranscribe(word) : '').replace(/[^а-яё]/g, '');
+  const sim = _similar(tx, tr.replace(/[^а-яё]/g, ''));
+  if (sim >= 0.6) d -= 2.2; else if (sim >= 0.45) d -= 1;
+  return (_diffCache[w.id] = Math.max(0, Math.min(10, d)));
+}
+function wordDifficulty(w, p = loadProg()) {
+  const r = p[w.id];
+  const personal = r ? Math.min(3, (r.wrong || 0) * 0.7) : 0;   // где ошибался — позже
+  return Math.min(10, wordBaseDifficulty(w) + personal);
+}
+function difficultyLevel(w, p) { const d = wordDifficulty(w, p); return d < 3 ? 1 : d < 5 ? 2 : 3; }
+// лёгкие сначала; небольшой разброс, чтобы порядок не был каждый раз одинаковым
+function orderByDifficulty(words, p = loadProg()) {
+  return words.map(w => ({ w, k: wordDifficulty(w, p) + Math.random() * 1.2 }))
+              .sort((a, b) => a.k - b.k).map(x => x.w);
+}
+
 function getAvailableWords(cat) {
   const p = loadProg();
   const isDeferredCat = cat.category === 'deferred';
@@ -1912,10 +1973,9 @@ function startSession(cat, overrideLimit) {
   if (Array.isArray(overrideLimit)) {
     // выбраны конкретные слова вручную — берём ровно их, без лимита
     const picked = new Set(overrideLimit);
-    active = active.filter(w => picked.has(w.id));
-    shuffle(active);
+    active = orderByDifficulty(active.filter(w => picked.has(w.id)));
   } else {
-    shuffle(active);
+    active = orderByDifficulty(active);                // лёгкие слова — первыми
     const limit = overrideLimit != null ? overrideLimit : cat.sessionLimit;
     if (limit && active.length > limit) active = active.slice(0, limit);
   }
@@ -1976,6 +2036,16 @@ function exampleHTML(text, roles, hit) {
   if (open) html += '</span>';
   return html;
 }
+function renderDifficultyBadge(card) {
+  const el = $('card-difficulty');
+  if (!el) return;
+  const lv = difficultyLevel(card);
+  const txt = [null, lstr('leicht','лёгкое','легке'), lstr('mittel','среднее','середнє'), lstr('schwer','сложное','складне')][lv];
+  el.className = 'card-difficulty d' + lv;
+  el.innerHTML = '<i></i><i></i><i></i> ' + txt;
+  el.title = lstr('Schwierigkeit — leichte Wörter kommen zuerst', 'Сложность — лёгкие слова идут первыми', 'Складність — легкі слова йдуть першими');
+}
+
 function renderCardExample(card) {
   const exEl = $('card-example');
   const ex = window.EXAMPLES && window.EXAMPLES[card.id];
@@ -2023,6 +2093,7 @@ function drawCard() {
   const wp   = getWP(card.id);
   $('cards-progress-fill').style.width = (S.cards.length>1 ? S.cardIdx/S.cards.length*100 : 0)+'%';
   $('card-counter').textContent         = (S.cardIdx+1)+' / '+S.cards.length;
+  renderDifficultyBadge(card);
   $('card-word').textContent            = card.word;
   const isNoun = card.article && card.article !== '-';
   const caseHint = $('card-case-hint');
@@ -2367,7 +2438,7 @@ function startTypingTest() {
   const pending = S.cards.filter(w => !p[w.id] || p[w.id].status !== 'learned');
   const seen = new Set();
   S.testQueue = [];
-  shuffle(pending.slice()).forEach(w => { if (!seen.has(w.id)) { seen.add(w.id); S.testQueue.push(w); } });
+  orderByDifficulty(pending.slice(), p).forEach(w => { if (!seen.has(w.id)) { seen.add(w.id); S.testQueue.push(w); } });
   S.testTotal    = S.testQueue.length;   // сколько уникальных слов нужно довести до 3/3
   S.testMastered = 0;
   S.testCorrect  = 0;
@@ -4926,8 +4997,19 @@ async function handleAuthenticatedSession(session) {
 ══════════════════════════════════════════════════════════════ */
 let appStarted = false;
 
+/* локальный прогресс: перенос с id-дублей на основные (db/aliases.js) */
+function migrateAliasProgress() {
+  try {
+    const p = loadProg();
+    if (typeof applyIdAliases === 'function' && applyIdAliases(p)) saveProg(p);
+    const A = window.ID_ALIASES || {}, d = loadDeferred();
+    if (d.some(id => A[id])) saveDeferred(d.map(id => A[id] || id));
+  } catch (e) { console.warn('alias migration', e); }
+}
+
 function startApp() {
   appStarted = true;
+  migrateAliasProgress();
   resetLearnedWords();
   initEvents();
   applyLang();

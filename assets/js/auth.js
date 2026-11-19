@@ -66,6 +66,24 @@ function mergeWordMap(a, b) {
   });
   return out;
 }
+/* Дубли слов (db/aliases.js): прогресс с id-дубля переносится на основной id.
+   Один раз: перенесённая запись помечается migrated (со свежей меткой времени),
+   чтобы облачная копия дубля потом не "воскресила" старое состояние. */
+function applyIdAliases(prog) {
+  const A = (typeof window !== 'undefined' && window.ID_ALIASES) || {};
+  const p = prog || {};
+  let changed = false;
+  const score = r => (r.status === 'learned' ? 1000 : 0) + (r.streak || 0) * 10 + (r.total || 0);
+  Object.entries(A).forEach(([dup, canon]) => {
+    const d = p[dup];
+    if (!d || d.migrated) return;
+    const c = p[canon], now = Date.now();
+    if (!c || score(d) > score(c)) p[canon] = { ...d, updatedAt: Math.max(now, (c && c.updatedAt) || 0, d.updatedAt || 0) };
+    p[dup] = { ...d, migrated: true, updatedAt: now };
+    changed = true;
+  });
+  return changed;
+}
 function mergeArrayLog(a, b) {
   const seen = new Set(); const out = [];
   [...(a || []), ...(b || [])].forEach(entry => {
@@ -82,8 +100,8 @@ function mergePet(a, b) {
 function mergeProgressBlobs(local, cloud) {
   local = local || {}; cloud = cloud || {};
   return {
-    prog:  mergeWordMap(local.prog, cloud.prog),
-    defer: mergeArrayLog(local.defer, cloud.defer),
+    prog:  (m => (applyIdAliases(m), m))(mergeWordMap(local.prog, cloud.prog)),
+    defer: mergeArrayLog(local.defer, cloud.defer).map(id => ((typeof window !== 'undefined' && window.ID_ALIASES) || {})[id] || id).filter((id, i, arr) => arr.indexOf(id) === i),
     mem:   mergeArrayLog(local.mem, cloud.mem),
     used:  mergeArrayLog(local.used, cloud.used),
     shop:  mergeArrayLog(local.shop, cloud.shop),
