@@ -2616,12 +2616,33 @@ function sgLessons() { return window.SG_LESSONS || []; }
 const sgLn = L => 'Lektion ' + (L.ln || L.n);   // номер урока в книге (у A2 n = 101…, ln = 1…)
 const SG_BOOKS = { A1: ['Schritte international Neu 1+2', 'A1'], 'A2.1': ['Schritte international Neu 3', 'A2.1'], 'A2.2': ['Schritte international Neu 4', 'A2.2'] };
 function sgProg(key) { const p = loadProg(); return p['sg_' + key] || null; }
-function sgSave(key, pct) {
+/* best — % верных с первой попытки; done — тема пройдена: от 80% сразу
+   или когда все ошибки исправлены (complete). */
+function sgSave(key, pct, complete) {
   const p = loadProg(), cur = p['sg_' + key] || {};
-  const best = Math.max(cur.best || 0, pct), firstDone = !cur.done && pct >= 80;
-  p['sg_' + key] = { best, done: best >= 80, updatedAt: Date.now() };
+  const best = Math.max(cur.best || 0, pct), done = !!cur.done || best >= 80 || !!complete;
+  p['sg_' + key] = { best, done, updatedAt: Date.now() };
   saveProg(p);
-  return firstDone;
+  return done && !cur.done;
+}
+/* Незаконченное прохождение (вышел посередине / остались ошибки) — в localStorage,
+   чтобы можно было допройти или исправить только ошибки. */
+const sgRunKey = (L, t) => t ? t.id : 'L' + L.n;
+const sgRunStore = key => 'dl_sgrun_' + P().key + '_' + key;
+function sgRunLoad(key) { try { return JSON.parse(localStorage.getItem(sgRunStore(key)) || 'null'); } catch { return null; } }
+function sgRunClear(key) { try { localStorage.removeItem(sgRunStore(key)); } catch {} }
+function sgRunSave(idx) {
+  try {
+    localStorage.setItem(sgRunStore(SG.key), JSON.stringify({ all: SG.all, items: SG.items, idx, firstTry: SG.firstTry,
+      total: SG.total, wrong: [...SG.wrong], fix: SG.fix, pct: SG.pct }));
+  } catch {}
+}
+/* подпись для кнопки продолжения: «Допройти (5 из 11)» или «Исправить ошибки (3)» */
+function sgRunLabel(run) {
+  if (!run) return '';
+  return run.idx < run.items.length
+    ? `▶ ${sgL('Weitermachen', 'Допройти')} (${run.idx} ${sgL('von', 'из')} ${run.items.length})`
+    : `🔁 ${sgL('Fehler korrigieren', 'Исправить ошибки')} (${run.wrong.length})`;
 }
 function sgParse(line) {
   const f = line.split('|');
@@ -2654,9 +2675,9 @@ function renderSGBook(wrap) {
           <span class="sg-lt">${escapeHtml(L.de)} <small>· ${escapeHtml(L.ru)}</small></span>
           <span class="sg-lp">${done}/${L.topics.length}</span></div>
         <div class="sg-topics">${L.topics.map(t => {
-          const pr = sgProg(t.id);
-          return `<button class="sg-topic ${pr && pr.done ? 'done' : ''}" data-l="${L.n}" data-t="${t.id}">
-            <span class="sg-ti">${pr && pr.done ? '✓' : '○'}</span>
+          const pr = sgProg(t.id), run = !(pr && pr.done) && sgRunLoad(t.id);
+          return `<button class="sg-topic ${pr && pr.done ? 'done' : ''} ${run ? 'paused' : ''}" data-l="${L.n}" data-t="${t.id}">
+            <span class="sg-ti">${pr && pr.done ? '✓' : run ? '⏸' : '○'}</span>
             <span class="sg-tt"><b>${escapeHtml(sgL(t.de, t.ru))}</b><small>${escapeHtml(lang === 'de' ? '' : t.de)}</small></span>
             ${pr ? `<span class="sg-best">${pr.best}%</span>` : ''}</button>`;
         }).join('')}
@@ -2667,7 +2688,7 @@ function renderSGBook(wrap) {
     }).join('');
   wrap.querySelectorAll('.sg-topic').forEach(b => b.addEventListener('click', () => {
     const L = sgLessons().find(x => x.n === +b.dataset.l);
-    if (b.dataset.test) startSGPractice(L, null);
+    if (b.dataset.test) { if (sgRunLoad('L' + L.n)) sgResumeChoice(L, null); else startSGPractice(L, null); }
     else openSGTopic(L, L.topics.find(t => t.id === b.dataset.t));
   }));
 }
@@ -2682,7 +2703,7 @@ function openSGTopic(L, t) {
   show('sgram');
   $('sg-title').textContent = `${sgLn(L)} · ${sgL(t.de, t.ru)}`;
   const rules = (t.rules || []).map(id => (window.GRAMMAR_DATA || []).find(r => r.id === id)).filter(Boolean);
-  const pr = sgProg(t.id);
+  const pr = sgProg(t.id), run = sgRunLoad(t.id);
   $('sg-body').innerHTML = `
     <div class="sg-card">
       <div class="sg-de">${escapeHtml(t.de)}</div>
@@ -2691,26 +2712,68 @@ function openSGTopic(L, t) {
       ${rules.length ? `<div class="sg-rules">${sgL('Ausführliche Regel', 'Подробное правило')}: ${rules.map(r => `<button class="sg-rule" data-r="${r.id}">📖 ${escapeHtml(ruleField(r, 'title'))}</button>`).join('')}</div>` : ''}
     </div>
     <div class="sg-start">
-      <button class="btn-primary" id="sg-go">▶ ${sgL('Üben', 'Тренировать')} (${t.ex.length} ${sgL('Aufgaben', 'заданий')})</button>
+      ${run ? `<button class="btn-primary" id="sg-resume">${sgRunLabel(run)}</button>` : ''}
+      <button class="${run ? 'btn-secondary' : 'btn-primary'}" id="sg-go">▶ ${run ? sgL('Neu anfangen', 'Начать заново') : sgL('Üben', 'Тренировать')} (${t.ex.length} ${sgL('Aufgaben', 'заданий')})</button>
       ${pr ? `<div class="sg-prev">${sgL('Bestes Ergebnis', 'Лучший результат')}: <b>${pr.best}%</b>${pr.done ? ' ✓' : ''}</div>` : ''}
       <div class="sg-types">✍️ ${sgL('Lücke füllen', 'вставить слово')} · 🔘 ${sgL('Form wählen', 'выбрать форму')} · 🧩 ${sgL('Satz bauen', 'собрать предложение')} · 🌍 ${sgL('übersetzen', 'перевести')}</div>
     </div>`;
   $('sg-go').addEventListener('click', () => startSGPractice(L, t));
+  $('sg-resume')?.addEventListener('click', () => startSGPractice(L, t, true));
   $('sg-body').querySelectorAll('.sg-rule').forEach(b => b.addEventListener('click', () =>
     openModal((window.GRAMMAR_DATA || []).find(r => r.id === b.dataset.r))));
 }
 
-function startSGPractice(L, t) {
+/* Тест урока с незаконченным прохождением: допройти или начать заново */
+function sgResumeChoice(L, t) {
+  const run = sgRunLoad(sgRunKey(L, t));
   SG.lesson = L; SG.topic = t;
-  let items;
-  if (t) items = shuffle(t.ex.map(sgParse).filter(Boolean));
-  else {
-    // тест урока: по 3 задания из каждой темы + текст в конце
-    items = shuffle(L.topics.flatMap(tp => shuffle(tp.ex.map(sgParse).filter(Boolean)).slice(0, 3)));
-    if (L.text) items.push({ type: 'text', title: L.text.title, de: L.text.de, ru: L.text.ru });
-  }
-  SG.items = items; SG.idx = 0; SG.firstTry = 0; SG.total = items.length; SG.retried = new Set();
   show('sgram');
+  $('sg-title').textContent = `${sgLn(L)} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
+  $('sg-body').innerHTML = `<div class="sg-result">
+      <div class="sg-res-emoji">⏸</div>
+      <div>${sgL('Du hast diesen Test noch nicht abgeschlossen.', 'Ты не закончил этот тест.')}</div>
+      <div class="sg-actions">
+        <button class="btn-primary" id="sg-resume">${sgRunLabel(run)}</button>
+        <button class="btn-secondary" id="sg-new">${sgL('Neu anfangen', 'Начать заново')}</button>
+        <button class="btn-secondary" id="sg-tobook">${sgL('Zu den Lektionen', 'К урокам')}</button>
+      </div></div>`;
+  $('sg-resume').addEventListener('click', () => startSGPractice(L, t, true));
+  $('sg-new').addEventListener('click', () => startSGPractice(L, t));
+  $('sg-tobook').addEventListener('click', renderGrammarScreen);
+}
+
+function startSGPractice(L, t, resume) {
+  SG.lesson = L; SG.topic = t; SG.key = sgRunKey(L, t);
+  const run = resume && sgRunLoad(SG.key);
+  if (run) {
+    Object.assign(SG, { all: run.all, items: run.items, idx: run.idx, firstTry: run.firstTry, total: run.total,
+      wrong: new Set(run.wrong), fix: run.fix, pct: run.pct });
+    // все задания раунда уже отвечены, остались ошибки → сразу раунд исправления
+    if (SG.idx >= SG.items.length) { sgStartFix(); return; }
+  } else {
+    let items;
+    if (t) items = shuffle(t.ex.map(sgParse).filter(Boolean));
+    else {
+      // тест урока: по 3 задания из каждой темы + текст в конце
+      items = shuffle(L.topics.flatMap(tp => shuffle(tp.ex.map(sgParse).filter(Boolean)).slice(0, 3)));
+      if (L.text) items.push({ type: 'text', title: L.text.title, de: L.text.de, ru: L.text.ru });
+    }
+    items.forEach((it, k) => { it.k = k; });
+    Object.assign(SG, { all: items, items, idx: 0, firstTry: 0, total: items.length, wrong: new Set(), fix: false, pct: null });
+    sgRunClear(SG.key);
+  }
+  show('sgram');
+  $('sg-title').textContent = `${sgLn(L)} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
+  drawSGItem();
+}
+
+/* Раунд исправления: только задания, отвеченные неверно */
+function sgStartFix() {
+  SG.items = shuffle(SG.all.filter(it => SG.wrong.has(it.k)));
+  SG.idx = 0; SG.fix = true;
+  sgRunSave(0);
+  show('sgram');
+  const L = SG.lesson, t = SG.topic;
   $('sg-title').textContent = `${sgLn(L)} · ${t ? sgL(t.de, t.ru) : sgL('Test zur Lektion', 'Тест урока')}`;
   drawSGItem();
 }
@@ -2726,7 +2789,7 @@ function drawSGItem() {
   const head = `<div class="sg-run-top"><span>${SG.idx + 1} / ${SG.items.length}</span>
       <div class="sg-run-bar"><div style="width:${SG.idx / SG.items.length * 100}%"></div></div>
       <span>✓ ${SG.firstTry}</span></div>
-    <div class="sg-type">${ty[0]} ${sgL(ty[1], ty[2])}${it.retry ? ` <span class="sg-again">${sgL('noch einmal', 'ещё раз')}</span>` : ''}</div>`;
+    <div class="sg-type">${ty[0]} ${sgL(ty[1], ty[2])}${SG.fix ? ` <span class="sg-again">${sgL('Fehler korrigieren', 'исправление ошибки')}</span>` : ''}</div>`;
   let body = '';
   if (it.type === 'g') {
     const parts = it.de.split('___');
@@ -2813,8 +2876,11 @@ function sgCheck(choice) {
     $('sg-fb').innerHTML = `<div class="${ok ? 'ok' : 'bad'}">${good} / ${gaps.length} ${sgL('richtig', 'верно')}</div><div class="sg-text-ru">${escapeHtml(it.ru)}</div>`;
   }
   SG.answered = true;
-  if (ok && !it.retry) SG.firstTry++;
-  if (!ok && !it.retry && it.type !== 'text') SG.items.push({ ...it, retry: true });   // ошибку — ещё раз в конце
+  // ошибки копятся в SG.wrong — в конце их можно исправить отдельным раундом
+  if (SG.fix) { if (ok) SG.wrong.delete(it.k); }
+  else if (ok) SG.firstTry++;
+  else SG.wrong.add(it.k);
+  sgRunSave(SG.idx + 1);
   if (it.type !== 'text') {
     $('sg-fb').innerHTML = ok ? `<div class="ok">✓ ${sgL('Richtig!', 'Верно!')}</div>`
       : `<div class="bad">✗ ${sgL('Richtig ist', 'Правильно')}: <b>${escapeHtml(right)}</b></div>`
@@ -2829,20 +2895,45 @@ function sgCheck(choice) {
 }
 
 function finishSGPractice() {
-  const L = SG.lesson, t = SG.topic;
-  const pct = SG.total ? Math.round(SG.firstTry / SG.total * 100) : 0;
-  const first = sgSave(t ? t.id : 'L' + L.n, pct);
-  if (first) addCoins(5);
-  $('sg-body').innerHTML = `<div class="sg-result">
-      <div class="sg-res-emoji">${pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '💪'}</div>
+  const L = SG.lesson, t = SG.topic, key = SG.key;
+  // ответил на всё в этом раунде? («Завершить» после проверки последнего задания — тоже да)
+  const roundDone = SG.idx >= SG.items.length || (SG.idx === SG.items.length - 1 && SG.answered);
+  const btnRule = t ? `<button class="btn-secondary" id="sg-rule">${sgL('Regel ansehen', 'К правилу')}</button>` : '';
+  const btnBook = `<button class="btn-secondary" id="sg-tobook">${sgL('Zu den Lektionen', 'К урокам')}</button>`;
+  let html;
+  if (!roundDone) {
+    // вышел посередине — прохождение сохранено, можно допройти
+    const left = SG.items.length - SG.idx - (SG.answered ? 1 : 0);
+    if (left < SG.items.length || SG.fix) sgRunSave(SG.idx + (SG.answered ? 1 : 0));
+    html = `<div class="sg-res-emoji">⏸</div>
+      <div>${sgL('Pausiert', 'Пауза')}: ${sgL('noch', 'осталось')} <b>${left}</b> ${sgL('Aufgaben', 'заданий')}${SG.fix ? ` (${sgL('Korrektur', 'исправление ошибок')})` : ''}</div>
+      <div class="sg-res-note">${sgL('Dein Fortschritt ist gespeichert — du kannst später weitermachen.', 'Прогресс сохранён — можно допройти позже с этого места.')}</div>
+      <div class="sg-actions">
+        <button class="btn-primary" id="sg-resume">▶ ${sgL('Weitermachen', 'Допройти')}</button>
+        <button class="btn-secondary" id="sg-again">${sgL('Neu anfangen', 'Начать заново')}</button>${btnRule}${btnBook}
+      </div>`;
+  } else {
+    if (!SG.fix) SG.pct = SG.total ? Math.round(SG.firstTry / SG.total * 100) : 0;
+    const pct = SG.pct, left = SG.wrong.size, complete = left === 0;
+    const first = sgSave(key, pct, complete);
+    if (first) addCoins(5);
+    const done = (sgProg(key) || {}).done;
+    if (complete) sgRunClear(key); else sgRunSave(SG.items.length);
+    html = `<div class="sg-res-emoji">${complete ? '🎉' : pct >= 50 ? '👍' : '💪'}</div>
       <div class="sg-res-big">${pct}%</div>
       <div>${sgL('Beim ersten Versuch richtig', 'Верно с первой попытки')}: ${SG.firstTry} / ${SG.total}</div>
-      <div class="sg-res-note">${pct >= 80 ? sgL('Thema geschafft ✓', 'Тема пройдена ✓') : sgL('Ab 80 % gilt das Thema als geschafft.', 'Тема засчитывается от 80%. Попробуй ещё раз!')}</div>
+      ${left ? `<div class="sg-res-left">${sgL('Noch falsch', 'Осталось ошибок')}: <b>${left}</b></div>` : ''}
+      <div class="sg-res-note">${done
+        ? sgL('Thema geschafft ✓', 'Тема пройдена ✓') + (left ? ' ' + sgL('Korrigiere trotzdem die Fehler.', 'Но ошибки лучше исправить.') : '')
+        : sgL('Korrigiere die Fehler — dann gilt das Thema als geschafft.', 'Исправь ошибки — и тема засчитается.')}</div>
       <div class="sg-actions">
-        <button class="btn-primary" id="sg-again">${sgL('Noch einmal', 'Ещё раз')}</button>
-        ${t ? `<button class="btn-secondary" id="sg-rule">${sgL('Regel ansehen', 'К правилу')}</button>` : ''}
-        <button class="btn-secondary" id="sg-tobook">${sgL('Zu den Lektionen', 'К урокам')}</button>
-      </div></div>`;
+        ${left ? `<button class="btn-primary" id="sg-fix">🔁 ${sgL('Fehler korrigieren', 'Исправить ошибки')} (${left})</button>` : ''}
+        <button class="${left ? 'btn-secondary' : 'btn-primary'}" id="sg-again">${sgL('Noch einmal', 'Пройти заново')}</button>${btnRule}${btnBook}
+      </div>`;
+  }
+  $('sg-body').innerHTML = `<div class="sg-result">${html}</div>`;
+  $('sg-resume')?.addEventListener('click', () => { if (SG.answered) SG.idx++; SG.answered = false; drawSGItem(); });
+  $('sg-fix')?.addEventListener('click', sgStartFix);
   $('sg-again').addEventListener('click', () => startSGPractice(L, t));
   $('sg-rule')?.addEventListener('click', () => openSGTopic(L, t));
   $('sg-tobook').addEventListener('click', renderGrammarScreen);

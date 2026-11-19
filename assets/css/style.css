@@ -2678,3 +2678,8 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 .sg-book-h:first-of-type { margin-top: 8px; }
 .sg-book-h small { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--text-muted); }
 .sg-book-lvl { background: var(--accent); color: #fff; border-radius: 8px; padding: 2px 9px; font-size: 13px; letter-spacing: .3px; }
+
+/* ── Грамматика: незаконченное прохождение и исправление ошибок ── */
+.sg-topic.paused { border-color: var(--warn); }
+.sg-topic.paused .sg-ti { color: var(--warn); }
+.sg-res-left { margin-top: 6px; color: var(--wrong); }
