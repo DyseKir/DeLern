@@ -28,6 +28,21 @@ window.ID_ALIASES = {
   a1_av_010: 'a1_vb_023',   // suchen
   a1_av_001: 'a1_vb_031',   // arbeiten
   a1_pp_107: 'a1_vb_071',   // anziehen
+  a1_pp_066: 'a1_mv_005',   // solltest → sollen (бывшая карточка «Пепа»)
+  a1_pp_077: 'a2_am_013',   // zeihen (ошибка распознавания) → ziehen (бывшая карточка «Пепа»)
+  a1_pp_088: 'a1_vb_014',   // nimm → nehmen (бывшая карточка «Пепа»)
+  a1_pp_094: 'a1_mv_004',   // wolltest → wollen (бывшая карточка «Пепа»)
+  a1_pp_118: 'a2_vb_bewegung_015',   // stand → stehen (бывшая карточка «Пепа»)
+  a1_pp_125: 'a1_pp_114',   // guck → gucken (бывшая карточка «Пепа»)
+  a1_pp_133: 'a2_vb_weitere_026',   // glaubst → glauben (бывшая карточка «Пепа»)
+  a1_pp_139: 'a1_pp_097',   // riecht → riechen (бывшая карточка «Пепа»)
+  a1_pp_149: 'a1_pp_119',   // aufgepasst → aufpassen (бывшая карточка «Пепа»)
+  a1_pp_158: 'a1_pp_071',   // schlimmeres → schlimm (бывшая карточка «Пепа»)
+  a1_pp_159: 'a1_vc_014',   // hält → halten (бывшая карточка «Пепа»)
+  a1_pp_170: 'a1_pp_121',   // feinst → fein (бывшая карточка «Пепа»)
+  a1_pp_175: 'a1_pp_097',   // riechst → riechen (бывшая карточка «Пепа»)
+  a1_pp_180: 'a1_uv_045',   // hättet → haben (бывшая карточка «Пепа»)
+  a1_pp_187: 'a1_pp_112',   // steuerst → steuern (бывшая карточка «Пепа»)
 };
 
 (function () {

@@ -29,5 +29,5 @@ window.THEMES_DATA = [
   { id: "verben",     emoji: "🔀", de: "Verben",               ru: "Глаголы",                uk: "Дієслова",
     cats: ["verben","unreg_verben","vokalwechsel","modalverben","trennbar","vor_verben","vb_bewegung","vb_sehen","vb_komm","vb_alltag","vb_weitere"] },
   { id: "basis",      emoji: "🧩", de: "Grundwortschatz",      ru: "Базовые слова",          uk: "Базові слова",
-    cats: ["pepa","nuetzlich","adjektive","farben","zahlen","ordnungszahlen","fragewörter","konjunktionen","redewendungen"] },
+    cats: ["begriffe","dinge","nuetzlich","adjektive","farben","zahlen","ordnungszahlen","fragewörter","konjunktionen","redewendungen"] },
 ];
