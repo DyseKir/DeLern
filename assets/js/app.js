@@ -1226,7 +1226,7 @@ function renderDashboard() {
   const stat = (icon, val, label, id) =>
     `<div class="dash-stat"><div class="dash-stat-icon">${icon}</div><div class="dash-stat-val" ${id?`id="${id}"`:''}>${val}</div><div class="dash-stat-label">${label}</div></div>`;
   $('dash-stats').innerHTML =
-      stat('⭐', learned, lstr('Wörter gelernt','слов выучено','слів вивчено'))
+      stat('⭐', learned, lstr('Wörter gelernt (alle Niveaus)','слов выучено (все уровни)','слів вивчено (усі рівні)'))
     + stat('📈', learning, lstr('in Arbeit','в процессе','в процесі'))
     + (gs => stat('📘', `${gs.done}/${gs.total}`, lstr('Grammatikthemen','тем грамматики','тем граматики')))(computeGrammarStats(p))
     + stat('✏️', `${clozeDone}/${cloze.length}`, lstr('Lückentexte','текстов с пропусками','текстів з пропусками'))
@@ -1355,7 +1355,12 @@ function refreshOverallBar() {
   $('overall-progress').style.width = pct+'%';
   $('overall-pct').textContent       = pct+'%';
   const wc = $('overall-words-count');
-  if (wc) wc.textContent = `⭐ ${learned} / ${total} ${lstr('Wörter','слов','слів')}`;
+  // сверху — только текущий уровень; «всего» — все уровни, как в карточке «слов выучено» и в рейтинге
+  if (wc) {
+    const seenAll = new Set(); let allLearned = 0;
+    (window.VOCAB_DATA || []).forEach(c => c.words.forEach(w => { if (seenAll.has(w.id)) return; seenAll.add(w.id); if (p[w.id] && p[w.id].status === 'learned') allLearned++; }));
+    wc.textContent = `⭐ ${S.level}: ${learned} / ${total} ${lstr('Wörter','слов','слів')} · ${lstr('alle Niveaus','всего на всех уровнях','усього на всіх рівнях')}: ${allLearned}`;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════
