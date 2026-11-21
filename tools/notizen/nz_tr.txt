@@ -15,205 +15,205 @@
 @alias eigen=tb_221
 @alias Tut mir leid.=a1_gu_011
 @alias die Schritte=tb_338
-die Achselhöhle|подмышка|пахва|Das Thermometer kommt unter die Achselhöhle.|Градусник кладут под мышку.
-die Hüfte|бедро (таз)|стегно (таз)|Meine Hüfte tut weh.|У меня болит бедро.
+die Achselhöhle|подмышка|пахва|Das Thermometer kommt unter die Achselhöhle.|Термометр идёт (kommt) под мышку.
+die Hüfte|бедро (таз)|стегно (таз)|Meine Hüfte tut weh.|У меня болит бедро (досл.: моё бедро делает больно).
 der Schenkel|бедро (часть ноги)|стегно (частина ноги)|Der Schenkel ist der obere Teil vom Bein.|Бедро — верхняя часть ноги.
-der Notdienst|дежурная (экстренная) служба|чергова (екстрена) служба|Am Wochenende rufe ich den ärztlichen Notdienst an.|На выходных я звоню в дежурную врачебную службу.
-die Bereitschaftspraxis|дежурный врачебный кабинет|черговий лікарський кабінет|Nachts gehe ich in die Bereitschaftspraxis.|Ночью я иду в дежурный кабинет.
+der Notdienst|дежурная (экстренная) служба|чергова (екстрена) служба|Am Wochenende rufe ich den ärztlichen Notdienst an.|На выходных я звоню в дежурную врачебную службу (anrufen).
+die Bereitschaftspraxis|дежурный врачебный кабинет|черговий лікарський кабінет|Nachts gehe ich in die Bereitschaftspraxis.|Ночью я иду в дежурную практику.
 der Wartebereich|зона ожидания|зона очікування|Bitte warten Sie im Wartebereich.|Пожалуйста, подождите в зоне ожидания.
 der Unfallort|место аварии|місце аварії|Die Polizei ist schon am Unfallort.|Полиция уже на месте аварии.
-die Bewusstlosigkeit|потеря сознания|втрата свідомості|Bei Bewusstlosigkeit rufen Sie sofort 112.|При потере сознания сразу звоните 112.
-die Ohnmacht|обморок|непритомність|Sie ist in Ohnmacht gefallen.|Она упала в обморок.
-der Schlaganfall|инсульт|інсульт|Mein Opa hatte einen Schlaganfall.|У моего дедушки был инсульт.
-die Blutung|кровотечение|кровотеча|Die Blutung hört nicht auf.|Кровотечение не останавливается.
-die Atemnot|одышка, затруднённое дыхание|задишка, утруднене дихання|Bei Atemnot müssen Sie zum Arzt.|При одышке нужно идти к врачу.
+die Bewusstlosigkeit|потеря сознания|втрата свідомості|Bei Bewusstlosigkeit rufen Sie sofort 112.|При потере сознания звоните сразу 112.
+die Ohnmacht|обморок|непритомність|Sie ist in Ohnmacht gefallen.|Она упала в обморок (досл.: она есть в обморок упавшая).
+der Schlaganfall|инсульт|інсульт|Mein Opa hatte einen Schlaganfall.|У моего дедушки был инсульт (досл.: мой дедушка имел инсульт).
+die Blutung|кровотечение|кровотеча|Die Blutung hört nicht auf.|Кровотечение не прекращается (aufhören).
+die Atemnot|одышка, затруднённое дыхание|задишка, утруднене дихання|Bei Atemnot müssen Sie zum Arzt.|При одышке вы должны идти к врачу.
 der Bluthochdruck|высокое давление|високий тиск|Er nimmt Tabletten gegen Bluthochdruck.|Он принимает таблетки от высокого давления.
 die Heiserkeit|хрипота|хрипота|Gegen Heiserkeit hilft warmer Tee.|От хрипоты помогает тёплый чай.
-der Sonnenbrand|солнечный ожог|сонячний опік|Ich habe einen Sonnenbrand auf der Nase.|У меня солнечный ожог на носу.
+der Sonnenbrand|солнечный ожог|сонячний опік|Ich habe einen Sonnenbrand auf der Nase.|У меня солнечный ожог на носу (досл.: я имею солнечный ожог).
 die Blasenbildung|образование пузырей (волдырей)|утворення пухирів|Bei Blasenbildung gehen Sie zum Arzt.|При образовании волдырей идите к врачу.
 die Schmerztablette|обезболивающая таблетка|знеболювальна таблетка|Der Arzt gibt mir eine Schmerztablette.|Врач даёт мне обезболивающее.
-die Lutschtablette|таблетка для рассасывания|таблетка для розсмоктування|Die Lutschtabletten helfen gegen Halsschmerzen.|Таблетки для рассасывания помогают от боли в горле.
-die Gebrauchsinformation|инструкция по применению (лекарства)|інструкція із застосування (ліків)|Lesen Sie die Gebrauchsinformation genau.|Внимательно прочитайте инструкцию.
-die Einnahme|приём (лекарства)|прийом (ліків)|Die Einnahme ist dreimal täglich.|Принимать три раза в день.
-sich verletzen|пораниться, травмироваться|поранитися, травмуватися|Ich habe mich beim Sport verletzt.|Я травмировался на спорте.
-untersuchen lassen|дать себя осмотреть, провериться|дати себе оглянути, перевіритися|Lassen Sie sich vom Arzt untersuchen.|Покажитесь врачу.
-auftragen|наносить (крем, мазь)|наносити (крем, мазь)|Tragen Sie die Creme zweimal am Tag auf.|Наносите крем два раза в день.
-zergehen|таять, растворяться|танути, розчинятися|Lassen Sie die Tablette im Mund zergehen.|Дайте таблетке раствориться во рту.
+die Lutschtablette|таблетка для рассасывания|таблетка для розсмоктування|Die Lutschtabletten helfen gegen Halsschmerzen.|Таблетки для рассасывания помогают от болей в горле.
+die Gebrauchsinformation|инструкция по применению (лекарства)|інструкція із застосування (ліків)|Lesen Sie die Gebrauchsinformation genau.|Прочитайте инструкцию точно.
+die Einnahme|приём (лекарства)|прийом (ліків)|Die Einnahme ist dreimal täglich.|Приём — три раза ежедневно.
+sich verletzen|пораниться, травмироваться|поранитися, травмуватися|Ich habe mich beim Sport verletzt.|Я травмировался на спорте (ich habe mich verletzt; досл.: я имею себя поранил).
+untersuchen lassen|дать себя осмотреть, провериться|дати себе оглянути, перевіритися|Lassen Sie sich vom Arzt untersuchen.|Дайте себя обследовать врачу (lassen Sie sich untersuchen).
+auftragen|наносить (крем, мазь)|наносити (крем, мазь)|Tragen Sie die Creme zweimal am Tag auf.|Наносите (auftragen) крем два раза в день.
+zergehen|таять, растворяться|танути, розчинятися|Lassen Sie die Tablette im Mund zergehen.|Дайте таблетке раствориться во рту (lassen … zergehen).
 enthalten|содержать|містити|Das Medikament enthält keinen Zucker.|Лекарство не содержит сахара.
-kühlen|охлаждать|охолоджувати|Ich soll das Auge kühlen.|Мне нужно охлаждать глаз.
-warmhalten|держать в тепле|тримати в теплі|Halten Sie den Hals warm.|Держите горло в тепле.
-stillen|кормить грудью|годувати грудьми|In der Stillzeit dürfen Sie das Medikament nicht nehmen.|В период кормления грудью это лекарство принимать нельзя.
-verletzt|травмированный, раненый|травмований, поранений|Bei dem Unfall ist niemand verletzt.|В аварии никто не пострадал.
-ärztlich|врачебный|лікарський|Ich brauche eine ärztliche Bescheinigung.|Мне нужна справка от врача.
+kühlen|охлаждать|охолоджувати|Ich soll das Auge kühlen.|Я должен (soll) охлаждать глаз.
+warmhalten|держать в тепле|тримати в теплі|Halten Sie den Hals warm.|Держите горло в тепле (досл.: держите шею тёплой).
+stillen|кормить грудью|годувати грудьми|In der Stillzeit dürfen Sie das Medikament nicht nehmen.|В период кормления вам нельзя (dürfen nicht) принимать это лекарство.
+verletzt|травмированный, раненый|травмований, поранений|Bei dem Unfall ist niemand verletzt.|При аварии никто не ранен.
+ärztlich|врачебный|лікарський|Ich brauche eine ärztliche Bescheinigung.|Мне нужна врачебная справка (досл.: я нуждаюсь во врачебной справке).
 entzündungshemmend|противовоспалительный|протизапальний|Die Salbe ist entzündungshemmend.|Мазь противовоспалительная.
 feuchtigkeitsspendend|увлажняющий|зволожувальний|Ich kaufe eine feuchtigkeitsspendende Creme.|Я покупаю увлажняющий крем.
-in folgenden Fällen|в следующих случаях|у таких випадках|In folgenden Fällen dürfen Sie das Medikament nicht nehmen.|В следующих случаях лекарство принимать нельзя.
-die Ausländerbehörde|ведомство по делам иностранцев|відомство у справах іноземців|Ich habe einen Termin bei der Ausländerbehörde.|У меня запись в ведомство по делам иностранцев.
-das Arbeitsamt|биржа труда (Arbeitsamt)|біржа праці (Arbeitsamt)|Er meldet sich beim Arbeitsamt.|Он регистрируется на бирже труда.
+in folgenden Fällen|в следующих случаях|у таких випадках|In folgenden Fällen dürfen Sie das Medikament nicht nehmen.|В следующих случаях вам нельзя (dürfen nicht) принимать лекарство.
+die Ausländerbehörde|ведомство по делам иностранцев|відомство у справах іноземців|Ich habe einen Termin bei der Ausländerbehörde.|У меня термин в ведомстве по делам иностранцев (досл.: я имею термин у Ausländerbehörde).
+das Arbeitsamt|биржа труда (Arbeitsamt)|біржа праці (Arbeitsamt)|Er meldet sich beim Arbeitsamt.|Он регистрируется в бюро по труду (er meldet sich; досл.: сообщает себя).
 das Sozialamt|социальная служба (Sozialamt)|соціальна служба (Sozialamt)|Das Sozialamt hilft bei der Miete.|Социальная служба помогает с арендой.
-das Landratsamt|районная администрация|районна адміністрація|Den Führerschein bekomme ich im Landratsamt.|Права я получаю в районной администрации.
-das Finanzamt|налоговая инспекция|податкова інспекція|Das Finanzamt schickt mir einen Brief.|Налоговая присылает мне письмо.
+das Landratsamt|районная администрация|районна адміністрація|Den Führerschein bekomme ich im Landratsamt.|Права я получаю в районном управлении (Landratsamt).
+das Finanzamt|налоговая инспекция|податкова інспекція|Das Finanzamt schickt mir einen Brief.|Налоговая посылает мне письмо.
 das Jugendamt|ведомство по делам молодёжи|служба у справах дітей|Das Jugendamt hilft Familien mit Kindern.|Служба по делам молодёжи помогает семьям с детьми.
 die Führerscheinstelle|отдел водительских прав|відділ водійських посвідчень|Den Antrag gebe ich bei der Führerscheinstelle ab.|Заявление я сдаю в отдел водительских прав.
-das Kreisverwaltungsreferat|окружное управление (KVR в Мюнхене)|окружне управління (KVR у Мюнхені)|Im Kreisverwaltungsreferat melde ich meine Wohnung an.|В окружном управлении я регистрирую квартиру.
+das Kreisverwaltungsreferat|окружное управление (KVR в Мюнхене)|окружне управління (KVR у Мюнхені)|Im Kreisverwaltungsreferat melde ich meine Wohnung an.|В окружном управлении я регистрирую свою квартиру (anmelden).
 der Personalausweis|удостоверение личности (ID-карта)|посвідчення особи (ID-картка)|Bitte zeigen Sie Ihren Personalausweis.|Пожалуйста, покажите удостоверение личности.
-die Kursgebühr|плата за курс|плата за курс|Die Kursgebühr bezahlen Sie an der Kasse.|Плату за курс вы вносите в кассе.
-die Fahrerlaubnis|право на вождение, водительское удостоверение|право на керування, водійське посвідчення|Ohne Fahrerlaubnis dürfen Sie nicht fahren.|Без прав вам нельзя водить.
-die Krankenversicherung|медицинская страховка|медичне страхування|In Deutschland braucht jeder eine Krankenversicherung.|В Германии каждому нужна медстраховка.
+die Kursgebühr|плата за курс|плата за курс|Die Kursgebühr bezahlen Sie an der Kasse.|Плату за курс вы оплачиваете в кассе.
+die Fahrerlaubnis|право на вождение, водительское удостоверение|право на керування, водійське посвідчення|Ohne Fahrerlaubnis dürfen Sie nicht fahren.|Без прав вам нельзя (dürfen nicht) ехать.
+die Krankenversicherung|медицинская страховка|медичне страхування|In Deutschland braucht jeder eine Krankenversicherung.|В Германии каждому нужна медстраховка (досл.: каждый нуждается в медстраховке).
 die Kfz-Versicherung|автостраховка|автострахування|Die Kfz-Versicherung kostet 40 Euro im Monat.|Автостраховка стоит 40 евро в месяц.
-die Lebensversicherung|страхование жизни|страхування життя|Mein Vater hat eine Lebensversicherung.|У моего отца есть страхование жизни.
+die Lebensversicherung|страхование жизни|страхування життя|Mein Vater hat eine Lebensversicherung.|У моего отца есть страхование жизни (досл.: мой отец имеет страхование жизни).
 die Unfallversicherung|страхование от несчастных случаев|страхування від нещасних випадків|Die Unfallversicherung bezahlt den Arzt.|Страховка от несчастных случаев оплачивает врача.
 die Rechtsschutzversicherung|страхование юридической защиты|страхування юридичного захисту|Mit Rechtsschutzversicherung kostet der Anwalt nichts.|Со страховкой юридической защиты адвокат ничего не стоит.
 die Zahnversicherung|стоматологическая страховка|стоматологічне страхування|Die Zahnversicherung bezahlt einen Teil.|Стоматологическая страховка оплачивает часть.
 die Hausratversicherung|страхование домашнего имущества|страхування домашнього майна|Die Hausratversicherung hilft nach einem Diebstahl.|Страховка имущества помогает после кражи.
-die Haftpflichtversicherung|страхование гражданской ответственности|страхування цивільної відповідальності|Jeder sollte eine Haftpflichtversicherung haben.|У каждого должна быть страховка ответственности.
+die Haftpflichtversicherung|страхование гражданской ответственности|страхування цивільної відповідальності|Jeder sollte eine Haftpflichtversicherung haben.|Каждому следует (sollte) иметь страховку ответственности.
 das Wohngeld|пособие на жильё|допомога на житло|Wir beantragen Wohngeld.|Мы подаём заявление на пособие на жильё.
-das Kindergeld|пособие на ребёнка|допомога на дитину|Für jedes Kind bekommt man Kindergeld.|На каждого ребёнка получают пособие.
+das Kindergeld|пособие на ребёнка|допомога на дитину|Für jedes Kind bekommt man Kindergeld.|На каждого ребёнка man получает детское пособие.
 die Grundsicherung|базовое соцобеспечение|базове соцзабезпечення|Er bekommt Grundsicherung.|Он получает базовое соцобеспечение.
 der Betrag|сумма|сума|Bitte überweisen Sie den Betrag bis Freitag.|Пожалуйста, переведите сумму до пятницы.
-der Einkommensnachweis|справка о доходах|довідка про доходи|Für den Antrag brauchen Sie einen Einkommensnachweis.|Для заявления вам нужна справка о доходах.
-die Einreise|въезд|в'їзд|Für die Einreise braucht sie ein Visum.|Для въезда ей нужна виза.
-die Staatenliste|список государств|список держав|Steht Ihr Land auf der Staatenliste?|Ваша страна есть в списке государств?
-einen Antrag stellen|подать заявление|подати заяву|Ich möchte einen Antrag auf Wohngeld stellen.|Я хочу подать заявление на пособие на жильё.
+der Einkommensnachweis|справка о доходах|довідка про доходи|Für den Antrag brauchen Sie einen Einkommensnachweis.|Для заявления вам нужна справка о доходах (досл.: вы нуждаетесь в справке).
+die Einreise|въезд|в'їзд|Für die Einreise braucht sie ein Visum.|Для въезда ей нужна виза (досл.: она нуждается в визе).
+die Staatenliste|список государств|список держав|Steht Ihr Land auf der Staatenliste?|Стоит ваша страна в списке государств?
+einen Antrag stellen|подать заявление|подати заяву|Ich möchte einen Antrag auf Wohngeld stellen.|Я хотел бы подать заявление на пособие на жильё (einen Antrag stellen; досл.: поставить заявление).
 bisherige|прежний, предыдущий|попередній|Bitte schreiben Sie Ihre bisherige Adresse.|Пожалуйста, напишите ваш прежний адрес.
-der Betreff|тема (письма)|тема (листа)|Im Betreff steht: Termin am Montag.|В теме написано: встреча в понедельник.
+der Betreff|тема (письма)|тема (листа)|Im Betreff steht: Termin am Montag.|В теме (Betreff) стоит: термин в понедельник.
 der Inhalt|содержание, содержимое|зміст, вміст|Der Inhalt des Briefes ist wichtig.|Содержание письма важно.
-verschieben|переносить (на другое время)|переносити (на інший час)|Ich muss den Termin verschieben.|Мне нужно перенести встречу.
-anbei|в приложении, прилагаю|у додатку, додаю|Anbei schicke ich Ihnen meinen Lebenslauf.|В приложении отправляю вам своё резюме.
+verschieben|переносить (на другое время)|переносити (на інший час)|Ich muss den Termin verschieben.|Я должен перенести термин (verschieben; досл.: сдвинуть).
+anbei|в приложении, прилагаю|у додатку, додаю|Anbei schicke ich Ihnen meinen Lebenslauf.|В приложении (anbei) посылаю вам моё резюме.
 die Rente|пенсия|пенсія|Meine Oma bekommt eine kleine Rente.|Моя бабушка получает маленькую пенсию.
-der Betriebswirt|экономист (специалист по управлению)|економіст (фахівець з управління)|Mein Bruder ist Betriebswirt.|Мой брат — экономист.
+der Betriebswirt|экономист (специалист по управлению)|економіст (фахівець з управління)|Mein Bruder ist Betriebswirt.|Мой брат — специалист по экономике предприятия (Betriebswirt).
 der Verdienst|заработок|заробіток|Der Verdienst ist gut.|Заработок хороший.
 der Erzieher|воспитатель|вихователь|Der Erzieher spielt mit den Kindern.|Воспитатель играет с детьми.
-die Erziehung|воспитание|виховання|Die Erziehung von Kindern ist nicht leicht.|Воспитывать детей непросто.
+die Erziehung|воспитание|виховання|Die Erziehung von Kindern ist nicht leicht.|Воспитание детей нелёгкое.
 das Lager|склад|склад|Ich arbeite im Lager.|Я работаю на складе.
-der Haarschutz|защита для волос (сетка, шапочка)|захист для волосся (сітка, шапочка)|In der Küche trägt man einen Haarschutz.|На кухне носят защиту для волос.
+der Haarschutz|защита для волос (сетка, шапочка)|захист для волосся (сітка, шапочка)|In der Küche trägt man einen Haarschutz.|На кухне носят (man trägt) защиту для волос.
 der Gehörschutz|защита органов слуха|захист органів слуху|Auf der Baustelle trage ich einen Gehörschutz.|На стройке я ношу защиту для ушей.
-verantwortlich sein für|отвечать за, быть ответственным за|відповідати за, бути відповідальним за|Ich bin für das Lager verantwortlich.|Я отвечаю за склад.
-angestellt|работающий по найму|найманий працівник|Ich bin bei einer Firma angestellt.|Я работаю по найму в фирме.
+verantwortlich sein für|отвечать за, быть ответственным за|відповідати за, бути відповідальним за|Ich bin für das Lager verantwortlich.|Я ответственный за склад (verantwortlich für).
+angestellt|работающий по найму|найманий працівник|Ich bin bei einer Firma angestellt.|Я наёмный работник в фирме (досл.: я есть у фирмы «нанят»).
 einschlafen|засыпать|засинати|Das Baby schläft schnell ein.|Малыш быстро засыпает.
-aufwachen|просыпаться|прокидатися|Ich wache um sechs Uhr auf.|Я просыпаюсь в шесть часов.
-einschalten|включать|вмикати|Schalte bitte den Fernseher ein.|Включи, пожалуйста, телевизор.
-ausschalten|выключать|вимикати|Schalten Sie das Handy aus.|Выключите телефон.
+aufwachen|просыпаться|прокидатися|Ich wache um sechs Uhr auf.|Я просыпаюсь в шесть часов (aufwachen).
+einschalten|включать|вмикати|Schalte bitte den Fernseher ein.|Включи, пожалуйста, телевизор (einschalten).
+ausschalten|выключать|вимикати|Schalten Sie das Handy aus.|Выключите телефон (ausschalten).
 heben|поднимать|піднімати|Ich hebe die schwere Kiste.|Я поднимаю тяжёлый ящик.
-senken|опускать, снижать|опускати, знижувати|Der Laden senkt die Preise.|Магазин снижает цены.
+senken|опускать, снижать|опускати, знижувати|Der Laden senkt die Preise.|Магазин понижает цены.
 füllen|наполнять|наповнювати|Ich fülle das Glas mit Wasser.|Я наполняю стакан водой.
-leeren|опустошать|спорожняти|Wer leert heute den Mülleimer?|Кто сегодня выносит мусор?
+leeren|опустошать|спорожняти|Wer leert heute den Mülleimer?|Кто сегодня опорожняет мусорное ведро (leeren)?
 speichern|сохранять|зберігати|Speichern Sie die Datei.|Сохраните файл.
 löschen|удалять, стирать|видаляти, стирати|Ich lösche die alten Fotos.|Я удаляю старые фото.
-vertrauen|доверять (+ Dat)|довіряти (+ Dat)|Ich vertraue meinem Freund.|Я доверяю своему другу.
-schaden|вредить (+ Dat)|шкодити (+ Dat)|Rauchen schadet der Gesundheit.|Курение вредит здоровью.
+vertrauen|доверять (+ Dat)|довіряти (+ Dat)|Ich vertraue meinem Freund.|Я доверяю моему другу (vertrauen + Dat.).
+schaden|вредить (+ Dat)|шкодити (+ Dat)|Rauchen schadet der Gesundheit.|Курение вредит здоровью (schaden + Dat.).
 dienen|служить (+ Dat)|служити (+ Dat)|Das Geld dient einem guten Zweck.|Деньги служат доброй цели.
-drohen|угрожать (+ Dat)|погрожувати (+ Dat)|Er droht seinem Nachbarn.|Он угрожает своему соседу.
-fehlen|не хватать, отсутствовать (+ Dat)|бракувати, бути відсутнім (+ Dat)|Du fehlst mir.|Мне тебя не хватает.
-gleichen|быть похожим (+ Dat)|бути схожим (+ Dat)|Sie gleicht ihrer Mutter.|Она похожа на свою маму.
-verzeihen|прощать (+ Dat)|пробачати (+ Dat)|Bitte verzeih mir!|Пожалуйста, прости меня!
-nützen|быть полезным (+ Dat)|бути корисним (+ Dat)|Das nützt mir nichts.|Мне от этого никакой пользы.
-zusagen|подходить, нравиться; соглашаться (+ Dat)|підходити, подобатися; погоджуватися (+ Dat)|Die Wohnung sagt mir zu.|Квартира мне подходит.
-wem|кому (Dativ)|кому (Dativ)|Wem gehört das Buch?|Кому принадлежит книга?
-wessen|чей (Genitiv)|чий (Genitiv)|Wessen Tasche ist das?|Чья это сумка?
-wie viele|сколько (исчисляемых)|скільки (злічуваних)|Wie viele Kinder haben Sie?|Сколько у вас детей?
+drohen|угрожать (+ Dat)|погрожувати (+ Dat)|Er droht seinem Nachbarn.|Он угрожает своему соседу (drohen + Dat.).
+fehlen|не хватать, отсутствовать (+ Dat)|бракувати, бути відсутнім (+ Dat)|Du fehlst mir.|Мне тебя не хватает (досл.: ты отсутствуешь мне — fehlen + Dat.).
+gleichen|быть похожим (+ Dat)|бути схожим (+ Dat)|Sie gleicht ihrer Mutter.|Она похожа на свою маму (gleichen + Dat.; досл.: она равна своей маме).
+verzeihen|прощать (+ Dat)|пробачати (+ Dat)|Bitte verzeih mir!|Пожалуйста, прости меня (verzeihen + Dat.; досл.: прости мне)!
+nützen|быть полезным (+ Dat)|бути корисним (+ Dat)|Das nützt mir nichts.|Мне это ничего не даёт (nützen + Dat.; досл.: это не приносит мне пользы).
+zusagen|подходить, нравиться; соглашаться (+ Dat)|підходити, подобатися; погоджуватися (+ Dat)|Die Wohnung sagt mir zu.|Квартира мне подходит (zusagen + Dat.; досл.: квартира «говорит мне да»).
+wem|кому (Dativ)|кому (Dativ)|Wem gehört das Buch?|Кому принадлежит книга (gehören + Dat.)?
+wessen|чей (Genitiv)|чий (Genitiv)|Wessen Tasche ist das?|Чья это сумка? (wessen — Genitiv)
+wie viele|сколько (исчисляемых)|скільки (злічуваних)|Wie viele Kinder haben Sie?|Сколько у вас детей? (досл.: как много детей имеете вы?)
 seit wann|с каких пор|відколи|Seit wann lernst du Deutsch?|С каких пор ты учишь немецкий?
-bis wann|до какого времени|до якого часу|Bis wann ist die Praxis geöffnet?|До скольки открыт кабинет?
+bis wann|до какого времени|до якого часу|Bis wann ist die Praxis geöffnet?|До каких пор открыт кабинет? (досл.: до когда?)
 wie oft|как часто|як часто|Wie oft gehst du ins Kino?|Как часто ты ходишь в кино?
-weshalb|почему, по какой причине|чому, з якої причини|Weshalb kommst du so spät?|Почему ты так поздно?
-weswegen|из-за чего|через що|Weswegen rufen Sie an?|По какому поводу вы звоните?
-wieso|почему, как так|чому, як так|Wieso hast du keine Zeit?|Почему у тебя нет времени?
-wozu|зачем, для чего|навіщо, для чого|Wozu brauchst du das Geld?|Зачем тебе деньги?
-inwiefern|в какой мере, насколько|якою мірою, наскільки|Inwiefern ist das ein Problem?|Насколько это проблема?
-wie teuer|сколько стоит, насколько дорогой|скільки коштує, наскільки дорогий|Wie teuer ist die Wohnung?|Сколько стоит квартира?
+weshalb|почему, по какой причине|чому, з якої причини|Weshalb kommst du so spät?|Почему ты приходишь так поздно?
+weswegen|из-за чего|через що|Weswegen rufen Sie an?|По какой причине вы звоните (anrufen)?
+wieso|почему, как так|чому, як так|Wieso hast du keine Zeit?|Почему у тебя нет времени? (досл.: почему имеешь ты никакое время?)
+wozu|зачем, для чего|навіщо, для чого|Wozu brauchst du das Geld?|Зачем тебе нужны деньги? (досл.: для чего нуждаешься ты в деньгах?)
+inwiefern|в какой мере, насколько|якою мірою, наскільки|Inwiefern ist das ein Problem?|В какой мере это проблема?
+wie teuer|сколько стоит, насколько дорогой|скільки коштує, наскільки дорогий|Wie teuer ist die Wohnung?|Насколько дорогая квартира? (досл.: как дорога квартира?)
 wie weit|как далеко|як далеко|Wie weit ist es zum Bahnhof?|Как далеко до вокзала?
-wie groß|какого размера, какой площади|якого розміру, якої площі|Wie groß ist die Wohnung?|Какая площадь у квартиры?
-wie schwer|сколько весит|скільки важить|Wie schwer ist der Koffer?|Сколько весит чемодан?
-wie breit|какой ширины|якої ширини|Wie breit ist der Tisch?|Какой ширины стол?
-wie hoch|какой высоты|якої висоти|Wie hoch ist der Berg?|Какой высоты гора?
-worüber|о чём|про що|Worüber sprecht ihr?|О чём вы говорите?
-wovon|о чём, от чего|про що, від чого|Wovon träumst du?|О чём ты мечтаешь?
-womit|чем, с помощью чего|чим, за допомогою чого|Womit fährst du zur Arbeit?|На чём ты ездишь на работу?
-woran|о чём (denken an)|про що (denken an)|Woran denkst du?|О чём ты думаешь?
-wofür|за что, для чего|за що, для чого|Wofür brauchst du das?|Для чего тебе это?
-worauf|на что, чего (warten auf)|на що, чого (warten auf)|Worauf wartest du?|Чего ты ждёшь?
+wie groß|какого размера, какой площади|якого розміру, якої площі|Wie groß ist die Wohnung?|Насколько большая квартира? (досл.: как велика квартира?)
+wie schwer|сколько весит|скільки важить|Wie schwer ist der Koffer?|Насколько тяжёлый чемодан? (досл.: как тяжёл чемодан?)
+wie breit|какой ширины|якої ширини|Wie breit ist der Tisch?|Насколько широкий стол? (досл.: как широк стол?)
+wie hoch|какой высоты|якої висоти|Wie hoch ist der Berg?|Насколько высокая гора? (досл.: как высока гора?)
+worüber|о чём|про що|Worüber sprecht ihr?|О чём вы говорите? (worüber = über + was)
+wovon|о чём, от чего|про що, від чого|Wovon träumst du?|О чём ты мечтаешь? (wovon = von + was)
+womit|чем, с помощью чего|чим, за допомогою чого|Womit fährst du zur Arbeit?|На чём ты едешь на работу? (womit = mit + was; досл.: с чем)
+woran|о чём (denken an)|про що (denken an)|Woran denkst du?|О чём ты думаешь? (woran = an + was)
+wofür|за что, для чего|за що, для чого|Wofür brauchst du das?|Для чего тебе это нужно? (wofür = für + was; досл.: для чего нуждаешься ты в этом?)
+worauf|на что, чего (warten auf)|на що, чого (warten auf)|Worauf wartest du?|Чего ты ждёшь? (worauf = auf + was; досл.: на что ждёшь ты?)
 über wen|о ком|про кого|Über wen sprecht ihr?|О ком вы говорите?
 von wem|от кого, о ком|від кого, про кого|Von wem ist der Brief?|От кого письмо?
 mit wem|с кем|з ким|Mit wem gehst du ins Kino?|С кем ты идёшь в кино?
-an wen|кому (schreiben an), о ком (denken an)|кому (schreiben an), про кого (denken an)|An wen schreibst du?|Кому ты пишешь?
+an wen|кому (schreiben an), о ком (denken an)|кому (schreiben an), про кого (denken an)|An wen schreibst du?|Кому ты пишешь? (досл.: к кому — an wen?)
 für wen|для кого|для кого|Für wen ist das Geschenk?|Для кого подарок?
-auf wen|кого (warten auf)|кого (warten auf)|Auf wen wartest du?|Кого ты ждёшь?
+auf wen|кого (warten auf)|кого (warten auf)|Auf wen wartest du?|Кого ты ждёшь? (досл.: на кого — auf wen?)
 zu wem|к кому|до кого|Zu wem gehst du?|К кому ты идёшь?
 drinnen|внутри (в помещении)|всередині (у приміщенні)|Es regnet, wir bleiben drinnen.|Идёт дождь, мы остаёмся внутри.
 irgendwo|где-нибудь, где-то|десь|Mein Schlüssel ist irgendwo hier.|Мой ключ где-то здесь.
-nirgendwo|нигде|ніде|Ich finde meine Brille nirgendwo.|Я нигде не могу найти очки.
-nirgends|нигде|ніде|Hier gibt es nirgends einen Parkplatz.|Здесь нигде нет парковки.
-obenan|наверху (на первом месте)|нагорі (на першому місці)|Sein Name steht obenan auf der Liste.|Его имя стоит первым в списке.
+nirgendwo|нигде|ніде|Ich finde meine Brille nirgendwo.|Я нигде не нахожу свои очки.
+nirgends|нигде|ніде|Hier gibt es nirgends einen Parkplatz.|Здесь нигде нет парковки (досл.: здесь даёт это нигде парковку).
+obenan|наверху (на первом месте)|нагорі (на першому місці)|Sein Name steht obenan auf der Liste.|Его имя стоит наверху (obenan) в списке.
 obenauf|сверху (на поверхности)|зверху (на поверхні)|Das Buch liegt obenauf.|Книга лежит сверху.
-nebenan|рядом, по соседству|поруч, по сусідству|Die Bäckerei ist gleich nebenan.|Пекарня прямо рядом.
+nebenan|рядом, по соседству|поруч, по сусідству|Die Bäckerei ist gleich nebenan.|Пекарня — прямо по соседству (nebenan).
 unterwegs|в пути, в дороге|у дорозі|Ich bin gerade unterwegs.|Я сейчас в дороге.
 auf dem Heimweg|по дороге домой|дорогою додому|Auf dem Heimweg kaufe ich Brot.|По дороге домой я покупаю хлеб.
-der Heimweg|дорога домой|дорога додому|Der Heimweg dauert eine Stunde.|Дорога домой занимает час.
-der Verkehr|движение (транспорта)|рух (транспорту)|Am Morgen ist viel Verkehr.|Утром сильное движение.
+der Heimweg|дорога домой|дорога додому|Der Heimweg dauert eine Stunde.|Дорога домой длится час.
+der Verkehr|движение (транспорта)|рух (транспорту)|Am Morgen ist viel Verkehr.|Утром много движения (Verkehr).
 die Allee|аллея|алея|Wir gehen durch die Allee.|Мы идём по аллее.
-überholen|обгонять|обганяти|Das Auto überholt den Bus.|Машина обгоняет автобус.
-übrigens|кстати|до речі|Übrigens, morgen habe ich keine Zeit.|Кстати, завтра у меня нет времени.
+überholen|обгонять|обганяти|Das Auto überholt den Bus.|Машина обгоняет автобус (überholen).
+übrigens|кстати|до речі|Übrigens, morgen habe ich keine Zeit.|Кстати, завтра у меня нет времени (досл.: завтра имею я никакое время).
 soviel ich weiß|насколько я знаю|наскільки мені відомо|Soviel ich weiß, ist er im Urlaub.|Насколько я знаю, он в отпуске.
 streng genommen|строго говоря|строго кажучи|Streng genommen ist das nicht erlaubt.|Строго говоря, это не разрешено.
-im Prinzip|в принципе|у принципі|Im Prinzip hast du recht.|В принципе ты прав.
-in der Tat|действительно, в самом деле|дійсно, справді|In der Tat, das ist teuer.|Действительно, это дорого.
+im Prinzip|в принципе|у принципі|Im Prinzip hast du recht.|В принципе ты прав (досл.: в принципе имеешь ты право).
+in der Tat|действительно, в самом деле|дійсно, справді|In der Tat, das ist teuer.|На деле (действительно), это дорого.
 einerseits|с одной стороны|з одного боку|Einerseits ist die Wohnung schön …|С одной стороны, квартира красивая…
 andererseits|с другой стороны|з іншого боку|… andererseits ist sie zu teuer.|…с другой стороны, она слишком дорогая.
-offen gesagt|откровенно говоря|відверто кажучи|Offen gesagt, das gefällt mir nicht.|Откровенно говоря, мне это не нравится.
-ehrlich gesagt|честно говоря|чесно кажучи|Ehrlich gesagt, ich bin müde.|Честно говоря, я устал.
+offen gesagt|откровенно говоря|відверто кажучи|Offen gesagt, das gefällt mir nicht.|Откровенно сказано, это мне не нравится (досл.: это нравится мне не).
+ehrlich gesagt|честно говоря|чесно кажучи|Ehrlich gesagt, ich bin müde.|Честно сказано, я устал.
 sozusagen|так сказать|так би мовити|Er ist sozusagen mein Chef.|Он, так сказать, мой начальник.
-außerdem|кроме того|крім того|Außerdem brauche ich noch Milch.|Кроме того, мне ещё нужно молоко.
-aber nun|но теперь|але тепер|Früher habe ich geraucht, aber nun nicht mehr.|Раньше я курил, но теперь нет.
-denn|потому что, ведь|бо, тому що|Ich bleibe zu Hause, denn ich bin krank.|Я остаюсь дома, потому что болен.
+außerdem|кроме того|крім того|Außerdem brauche ich noch Milch.|Кроме того, мне ещё нужно молоко (досл.: я нуждаюсь ещё в молоке).
+aber nun|но теперь|але тепер|Früher habe ich geraucht, aber nun nicht mehr.|Раньше я курил, но теперь больше нет.
+denn|потому что, ведь|бо, тому що|Ich bleibe zu Hause, denn ich bin krank.|Я остаюсь дома, ведь (denn) я болен.
 gemeinsam|вместе, совместно|разом, спільно|Wir kochen gemeinsam.|Мы готовим вместе.
 durch|через; благодаря|через; завдяки|Wir gehen durch den Park.|Мы идём через парк.
-schon ganz lange|уже очень давно|вже дуже давно|Ich warte schon ganz lange.|Я жду уже очень давно.
+schon ganz lange|уже очень давно|вже дуже давно|Ich warte schon ganz lange.|Я жду уже совсем долго.
 täglich|ежедневно|щодня|Nehmen Sie die Tablette täglich.|Принимайте таблетку ежедневно.
-wochenlang|неделями|тижнями|Es hat wochenlang geregnet.|Неделями шёл дождь.
-tagelang|целыми днями, днями напролёт|цілими днями|Er war tagelang krank.|Он болел несколько дней подряд.
-gleich vorbei|скоро закончится; сейчас зайду|скоро закінчиться; зараз зайду|Der Kurs ist gleich vorbei.|Курс скоро закончится.
-nach dem Tod|после смерти|після смерті|Nach dem Tod ihres Mannes lebt sie allein.|После смерти мужа она живёт одна.
-Freut mich!|Приятно познакомиться!|Приємно познайомитися!|Ich bin Anna. – Freut mich!|Я Анна. — Приятно познакомиться!
+wochenlang|неделями|тижнями|Es hat wochenlang geregnet.|Неделями шёл дождь (досл.: это имеет неделями дождило).
+tagelang|целыми днями, днями напролёт|цілими днями|Er war tagelang krank.|Он был днями болен (tagelang).
+gleich vorbei|скоро закончится; сейчас зайду|скоро закінчиться; зараз зайду|Der Kurs ist gleich vorbei.|Курс сейчас закончится (gleich vorbei).
+nach dem Tod|после смерти|після смерті|Nach dem Tod ihres Mannes lebt sie allein.|После смерти её мужа она живёт одна.
+Freut mich!|Приятно познакомиться!|Приємно познайомитися!|Ich bin Anna. – Freut mich!|Я Анна. — Рад! (Freut mich — досл.: «радует меня»)
 Wer bist du?|Кто ты?|Хто ти?|Hallo, wer bist du?|Привет, кто ты?
-Wie geht's?|Как дела?|Як справи?|Hallo Tim, wie geht's?|Привет, Тим, как дела?
-Na ja, es geht.|Так себе.|Так собі.|Wie geht's? – Na ja, es geht.|Как дела? — Так себе.
-Was meinst du dazu?|Что ты об этом думаешь?|Що ти про це думаєш?|Ich möchte nach Italien fahren. Was meinst du dazu?|Я хочу поехать в Италию. Что ты об этом думаешь?
-Mach das Fenster zu!|Закрой окно!|Зачини вікно!|Es ist kalt. Mach das Fenster zu!|Холодно. Закрой окно!
-Sei leise!|Будь тише!|Будь тихіше!|Das Baby schläft. Sei leise!|Малыш спит. Тише!
+Wie geht's?|Как дела?|Як справи?|Hallo Tim, wie geht's?|Привет, Тим, как дела? (досл.: как идёт это?)
+Na ja, es geht.|Так себе.|Так собі.|Wie geht's? – Na ja, es geht.|Как дела? — Ну, так себе (досл.: ну, это идёт).
+Was meinst du dazu?|Что ты об этом думаешь?|Що ти про це думаєш?|Ich möchte nach Italien fahren. Was meinst du dazu?|Я хотел бы поехать в Италию. Что ты думаешь к этому (dazu)?
+Mach das Fenster zu!|Закрой окно!|Зачини вікно!|Es ist kalt. Mach das Fenster zu!|Холодно (досл.: это холодно). Закрой окно (zumachen)!
+Sei leise!|Будь тише!|Будь тихіше!|Das Baby schläft. Sei leise!|Малыш спит. Будь тихим!
 das Sprichwort|пословица, поговорка|прислів'я, приказка|Kennst du dieses Sprichwort?|Ты знаешь эту пословицу?
-das Vorurteil|предрассудок|упередження|Das ist nur ein Vorurteil.|Это просто предрассудок.
+das Vorurteil|предрассудок|упередження|Das ist nur ein Vorurteil.|Это только предрассудок.
 der Befehl|приказ, команда|наказ, команда|„Komm her!“ ist ein Befehl.|«Иди сюда!» — это приказ.
-der Unterschied|разница|різниця|Was ist der Unterschied?|В чём разница?
+der Unterschied|разница|різниця|Was ist der Unterschied?|Что разница? (В чём разница?)
 der Teil|часть|частина|Ein Teil der Arbeit ist fertig.|Часть работы готова.
-die Gunst|благосклонность|прихильність|Er kämpft um ihre Gunst.|Он добивается её расположения.
-die Tränen|слёзы|сльози|Sie hat Tränen in den Augen.|У неё слёзы на глазах.
+die Gunst|благосклонность|прихильність|Er kämpft um ihre Gunst.|Он борется за её благосклонность (kämpfen um).
+die Tränen|слёзы|сльози|Sie hat Tränen in den Augen.|У неё слёзы в глазах (досл.: она имеет слёзы в глазах).
 streben|стремиться|прагнути|Er strebt nach Erfolg.|Он стремится к успеху.
-hergeben|отдавать|віддавати|Gib mir bitte das Buch her!|Отдай мне, пожалуйста, книгу!
-still|тихий, спокойный|тихий, спокійний|Seid bitte still!|Тише, пожалуйста!
-die Säge|пила|пила|Mit der Säge schneide ich das Holz.|Пилой я пилю дерево.
-die Pappel|тополь|тополя|Vor dem Haus steht eine Pappel.|Перед домом растёт тополь.
+hergeben|отдавать|віддавати|Gib mir bitte das Buch her!|Дай мне, пожалуйста, книгу сюда (hergeben)!
+still|тихий, спокойный|тихий, спокійний|Seid bitte still!|Будьте, пожалуйста, тихими!
+die Säge|пила|пила|Mit der Säge schneide ich das Holz.|Пилой я режу дерево.
+die Pappel|тополь|тополя|Vor dem Haus steht eine Pappel.|Перед домом стоит тополь.
 das Wechselgeld|сдача|решта|Hier ist Ihr Wechselgeld.|Вот ваша сдача.
 basteln|мастерить, делать поделки|майструвати, робити вироби|Die Kinder basteln Sterne.|Дети мастерят звёздочки.
-segeln|ходить под парусом|ходити під вітрилом|Im Sommer segeln wir auf dem See.|Летом мы ходим под парусом по озеру.
-zelten|жить в палатке, ходить в поход|жити в наметі, ходити в похід|Wir zelten am See.|Мы ставим палатку у озера.
-entspannen|расслабляться, отдыхать|розслаблятися, відпочивати|Am Wochenende entspanne ich mich.|На выходных я расслабляюсь.
-aufbleiben|не ложиться спать|не лягати спати|Heute darfst du lange aufbleiben.|Сегодня можешь долго не ложиться.
-herunterladen|скачивать|завантажувати|Ich lade die App herunter.|Я скачиваю приложение.
+segeln|ходить под парусом|ходити під вітрилом|Im Sommer segeln wir auf dem See.|Летом мы ходим под парусом по озеру (segeln).
+zelten|жить в палатке, ходить в поход|жити в наметі, ходити в похід|Wir zelten am See.|Мы живём в палатке у озера (zelten).
+entspannen|расслабляться, отдыхать|розслаблятися, відпочивати|Am Wochenende entspanne ich mich.|На выходных я расслабляюсь (ich entspanne mich; досл.: расслабляю себя).
+aufbleiben|не ложиться спать|не лягати спати|Heute darfst du lange aufbleiben.|Сегодня тебе можно долго не ложиться (досл.: сегодня смеешь ты долго «оставаться бодрым»).
+herunterladen|скачивать|завантажувати|Ich lade die App herunter.|Я скачиваю приложение (herunterladen; досл.: загружаю вниз).
 legen|класть (горизонтально)|класти (горизонтально)|Ich lege das Buch auf den Tisch.|Я кладу книгу на стол.
-sich setzen|садиться|сідати|Setzen Sie sich bitte!|Садитесь, пожалуйста!
-wiedersehen|увидеться снова|побачитися знову|Wann sehen wir uns wieder?|Когда мы снова увидимся?
-abbekommen|получить (свою долю), достаться|отримати (свою частку), дістатися|Hast du auch ein Stück Kuchen abbekommen?|Тебе тоже достался кусок торта?
+sich setzen|садиться|сідати|Setzen Sie sich bitte!|Садитесь, пожалуйста (setzen Sie sich; досл.: посадите себя)!
+wiedersehen|увидеться снова|побачитися знову|Wann sehen wir uns wieder?|Когда мы увидимся снова (wir sehen uns wieder; досл.: видим себя снова)?
+abbekommen|получить (свою долю), достаться|отримати (свою частку), дістатися|Hast du auch ein Stück Kuchen abbekommen?|Тебе тоже достался кусок пирога? (abbekommen; досл.: имеешь ты тоже кусок «отполучено»?)
 @new die Regel
 @new die Überweisung
-die Regel|менструация (месячные)|менструація|Ich habe meine Regel.|У меня месячные.
-die Überweisung|банковский перевод|банківський переказ|Ich mache eine Überweisung.|Я делаю банковский перевод.
-die Verstopfung|запор|закреп|Ich habe Verstopfung.|У меня запор.
-die Blasenentzündung|воспаление мочевого пузыря (цистит)|запалення сечового міхура (цистит)|Sie hat eine Blasenentzündung.|У неё цистит.
+die Regel|менструация (месячные)|менструація|Ich habe meine Regel.|У меня месячные (досл.: я имею свою «регулу»).
+die Überweisung|банковский перевод|банківський переказ|Ich mache eine Überweisung.|Я делаю перевод.
+die Verstopfung|запор|закреп|Ich habe Verstopfung.|У меня запор (досл.: я имею запор).
+die Blasenentzündung|воспаление мочевого пузыря (цистит)|запалення сечового міхура (цистит)|Sie hat eine Blasenentzündung.|У неё цистит (досл.: она имеет воспаление мочевого пузыря).
 der Bruch|перелом|перелом|Der Arzt sieht den Bruch auf dem Röntgenbild.|Врач видит перелом на рентгеновском снимке.
-die Betäubung|обезболивание, наркоз|знеболення, наркоз|Sie bekommen eine Betäubung.|Вам сделают обезболивание.
-der Krampf|судорога, спазм|судома, спазм|Ich habe Krämpfe im Bauch.|У меня спазмы в животе.
-röntgen|делать рентген|робити рентген|Wir müssen das Bein röntgen.|Нам нужно сделать рентген ноги.
-sich auskurieren|вылечиться, долечиться|вилікуватися, одужати|Bleib zu Hause und kuriere dich aus!|Оставайся дома и долечись!
+die Betäubung|обезболивание, наркоз|знеболення, наркоз|Sie bekommen eine Betäubung.|Вы получаете обезболивание.
+der Krampf|судорога, спазм|судома, спазм|Ich habe Krämpfe im Bauch.|У меня спазмы в животе (досл.: я имею судороги в животе).
+röntgen|делать рентген|робити рентген|Wir müssen das Bein röntgen.|Мы должны сделать рентген ноги.
+sich auskurieren|вылечиться, долечиться|вилікуватися, одужати|Bleib zu Hause und kuriere dich aus!|Оставайся дома и долечись (kuriere dich aus; досл.: вылечи себя)!
 Mir ist schwindelig.|У меня кружится голова.|У мене паморочиться голова.||
 Tut das weh?|Это больно?|Це боляче?||
 Der Hals ist entzündet.|Горло воспалено.|Горло запалене.||
@@ -222,36 +222,36 @@ Das ist ein Notfall!|Это экстренный случай!|Це екстре
 Das ist gebrochen.|Это перелом.|Це перелом.||
 Sie bekommen eine Spritze.|Вам сделают укол.|Вам зроблять укол.||
 Das muss operiert werden.|Это нужно оперировать.|Це треба оперувати.||
-die Duldung|временное разрешение на пребывание (Duldung)|тимчасовий дозвіл на перебування (Duldung)|Er hat nur eine Duldung.|У него только «дульдунг».
+die Duldung|временное разрешение на пребывание (Duldung)|тимчасовий дозвіл на перебування (Duldung)|Er hat nur eine Duldung.|У него только «дульдунг» (досл.: он имеет только Duldung).
 der Flüchtling|беженец|біженець|Viele Flüchtlinge lernen Deutsch.|Многие беженцы учат немецкий.
-der Aufenthalt|пребывание|перебування|Der befristete Aufenthalt läuft im Mai ab.|Срок временного пребывания заканчивается в мае.
+der Aufenthalt|пребывание|перебування|Der befristete Aufenthalt läuft im Mai ab.|Ограниченное по сроку пребывание истекает (ablaufen) в мае.
 der Staat|государство|держава|Deutschland ist ein demokratischer Staat.|Германия — демократическое государство.
-die Niveaustufe|уровень владения языком|рівень володіння мовою|Welche Niveaustufe haben Sie? – B1.|Какой у вас уровень? — B1.
-die Geburtsurkunde|свидетельство о рождении|свідоцтво про народження|Bringen Sie bitte Ihre Geburtsurkunde mit.|Принесите, пожалуйста, свидетельство о рождении.
-das Einwohnermeldeamt|отдел регистрации по месту жительства|установа з реєстрації місця проживання|Nach dem Umzug muss ich zum Einwohnermeldeamt.|После переезда мне нужно в отдел регистрации.
-das Standesamt|ЗАГС|РАЦС (загс)|Wir heiraten im Standesamt.|Мы женимся в ЗАГСе.
-die Partei|партия|партія|Welche Partei wählst du?|За какую партию ты голосуешь?
+die Niveaustufe|уровень владения языком|рівень володіння мовою|Welche Niveaustufe haben Sie? – B1.|Какой у вас уровень? (досл.: какую ступень уровня имеете вы?) — B1.
+die Geburtsurkunde|свидетельство о рождении|свідоцтво про народження|Bringen Sie bitte Ihre Geburtsurkunde mit.|Принесите (mitbringen), пожалуйста, ваше свидетельство о рождении.
+das Einwohnermeldeamt|отдел регистрации по месту жительства|установа з реєстрації місця проживання|Nach dem Umzug muss ich zum Einwohnermeldeamt.|После переезда я должен в отдел регистрации.
+das Standesamt|ЗАГС|РАЦС (загс)|Wir heiraten im Standesamt.|Мы женимся в ЗАГСе (Standesamt).
+die Partei|партия|партія|Welche Partei wählst du?|Какую партию ты выбираешь (wählen)?
 das Gesetz|закон|закон|Das Gesetz gilt für alle.|Закон действует для всех.
-ablaufen|истекать, заканчиваться (о сроке)|спливати, закінчуватися (про строк)|Mein Visum läuft bald ab.|Моя виза скоро заканчивается.
-angehören|принадлежать, состоять (в чём-то)|належати, бути членом|Er gehört keiner Partei an.|Он не состоит ни в какой партии.
-unbefristet|бессрочный|безстроковий|Ich habe einen unbefristeten Vertrag.|У меня бессрочный договор.
-das Anschreiben|сопроводительное письмо|супровідний лист|Das Anschreiben ist eine Seite lang.|Сопроводительное письмо — на одну страницу.
-das Arbeitszeugnis|характеристика с места работы|рекомендаційний лист|Mein Chef schreibt mir ein gutes Arbeitszeugnis.|Шеф пишет мне хорошую характеристику.
-das Sprachzertifikat|языковой сертификат|мовний сертифікат|Für die Stelle brauche ich ein Sprachzertifikat B2.|Для этой должности мне нужен языковой сертификат B2.
-das Vorstellungsgespräch|собеседование|співбесіда|Morgen habe ich ein Vorstellungsgespräch.|Завтра у меня собеседование.
-die Absage|отказ|відмова|Leider habe ich eine Absage bekommen.|К сожалению, я получил отказ.
-die Zusage|согласие, положительный ответ|згода, позитивна відповідь|Ich habe die Zusage für die Stelle!|Меня взяли на эту должность!
-die Personalabteilung|отдел кадров|відділ кадрів|Schicken Sie die Bewerbung an die Personalabteilung.|Отправьте заявление в отдел кадров.
+ablaufen|истекать, заканчиваться (о сроке)|спливати, закінчуватися (про строк)|Mein Visum läuft bald ab.|Моя виза скоро истекает (ablaufen).
+angehören|принадлежать, состоять (в чём-то)|належати, бути членом|Er gehört keiner Partei an.|Он не принадлежит ни к одной партии (angehören + Dat.; досл.: принадлежит никакой партии).
+unbefristet|бессрочный|безстроковий|Ich habe einen unbefristeten Vertrag.|У меня бессрочный договор (досл.: я имею бессрочный договор).
+das Anschreiben|сопроводительное письмо|супровідний лист|Das Anschreiben ist eine Seite lang.|Сопроводительное письмо длиной в одну страницу (досл.: одна страница длинное).
+das Arbeitszeugnis|характеристика с места работы|рекомендаційний лист|Mein Chef schreibt mir ein gutes Arbeitszeugnis.|Мой шеф пишет мне хорошую характеристику (Arbeitszeugnis).
+das Sprachzertifikat|языковой сертификат|мовний сертифікат|Für die Stelle brauche ich ein Sprachzertifikat B2.|Для этого места мне нужен языковой сертификат B2 (досл.: я нуждаюсь в...).
+das Vorstellungsgespräch|собеседование|співбесіда|Morgen habe ich ein Vorstellungsgespräch.|Завтра у меня собеседование (досл.: завтра имею я собеседование).
+die Absage|отказ|відмова|Leider habe ich eine Absage bekommen.|К сожалению, я получил отказ (досл.: имею отказ получено).
+die Zusage|согласие, положительный ответ|згода, позитивна відповідь|Ich habe die Zusage für die Stelle!|У меня согласие на это место! (досл.: я имею Zusage для места!)
+die Personalabteilung|отдел кадров|відділ кадрів|Schicken Sie die Bewerbung an die Personalabteilung.|Пошлите заявление в отдел кадров.
 der Angestellte|служащий|службовець|Er ist Angestellter bei einer Bank.|Он служащий в банке.
-die Festanstellung|постоянная работа (по найму)|постійна робота (за наймом)|Nach der Probezeit bekomme ich eine Festanstellung.|После испытательного срока меня возьмут на постоянную работу.
+die Festanstellung|постоянная работа (по найму)|постійна робота (за наймом)|Nach der Probezeit bekomme ich eine Festanstellung.|После испытательного срока я получаю постоянную ставку (Festanstellung).
 die Schwarzarbeit|нелегальная работа|нелегальна робота|Schwarzarbeit ist in Deutschland verboten.|Нелегальная работа в Германии запрещена.
 das Gehalt|зарплата (оклад)|зарплата (оклад)|Das Gehalt kommt am Monatsende.|Зарплата приходит в конце месяца.
-die Gehaltsabrechnung|расчётный лист|розрахунковий лист|Auf der Gehaltsabrechnung stehen alle Abzüge.|В расчётном листе указаны все вычеты.
-die Rentenversicherung|пенсионное страхование|пенсійне страхування|Ein Teil vom Gehalt geht an die Rentenversicherung.|Часть зарплаты идёт в пенсионное страхование.
-die Arbeitslosenversicherung|страхование на случай безработицы|страхування на випадок безробіття|Die Arbeitslosenversicherung zahlt, wenn man keine Arbeit hat.|Страхование по безработице платит, когда нет работы.
-die Messe|выставка, ярмарка|виставка, ярмарок|Im Herbst gibt es eine große Messe in Frankfurt.|Осенью во Франкфурте большая выставка.
-sich krankmelden|взять больничный|взяти лікарняний|Ich muss mich heute krankmelden.|Мне сегодня нужно взять больничный.
-Überstunden machen|работать сверхурочно|працювати понаднормово|Diese Woche muss ich Überstunden machen.|На этой неделе мне придётся работать сверхурочно.
+die Gehaltsabrechnung|расчётный лист|розрахунковий лист|Auf der Gehaltsabrechnung stehen alle Abzüge.|На расчётном листе стоят все вычеты.
+die Rentenversicherung|пенсионное страхование|пенсійне страхування|Ein Teil vom Gehalt geht an die Rentenversicherung.|Часть от зарплаты идёт в пенсионное страхование.
+die Arbeitslosenversicherung|страхование на случай безработицы|страхування на випадок безробіття|Die Arbeitslosenversicherung zahlt, wenn man keine Arbeit hat.|Страхование по безработице платит, если у человека нет работы (wenn man keine Arbeit hat; досл.: если man имеет никакую работу).
+die Messe|выставка, ярмарка|виставка, ярмарок|Im Herbst gibt es eine große Messe in Frankfurt.|Осенью есть большая выставка во Франкфурте (досл.: даёт это большую выставку).
+sich krankmelden|взять больничный|взяти лікарняний|Ich muss mich heute krankmelden.|Я должен сегодня сообщить о болезни (mich krankmelden; досл.: «больным-сообщить» себя).
+Überstunden machen|работать сверхурочно|працювати понаднормово|Diese Woche muss ich Überstunden machen.|На этой неделе я должен делать сверхурочные часы (Überstunden machen).
 Gern geschehen!|Не за что! (всегда пожалуйста)|Завжди радий! (нема за що)||
 Das macht nichts!|Ничего страшного!|Нічого страшного!||
 Auf keinen Fall!|Ни в коем случае!|У жодному разі!||
@@ -264,54 +264,54 @@ Das ist schade.|Жаль.|Шкода.||
 Für wen ist das?|Для кого это?|Для кого це?||
 Wem gehört das?|Чьё это?|Кому це належить?||
 Guten Rutsch!|С наступающим Новым годом!|З наступаючим Новим роком!||
-stattfinden|проходить, состояться|відбуватися|Das Training findet am Montag statt.|Тренировка проходит в понедельник.
-kommend|следующий, наступающий|наступний|Am kommenden Sonntag haben wir frei.|В следующее воскресенье у нас выходной.
+stattfinden|проходить, состояться|відбуватися|Das Training findet am Montag statt.|Тренировка проходит (stattfinden) в понедельник.
+kommend|следующий, наступающий|наступний|Am kommenden Sonntag haben wir frei.|В ближайшее (kommend) воскресенье у нас выходной (досл.: мы имеем свободно).
 gesamt|весь, целый, общий|весь, цілий, загальний|Die gesamte Familie kommt zum Fest.|Вся семья приходит на праздник.
-behindert|с инвалидностью|з інвалідністю|Der Eingang ist auch für behinderte Personen.|Вход и для людей с инвалидностью.
-heraus|наружу, вон отсюда|назовні, геть звідси|Komm heraus!|Выходи!
-unbedingt|обязательно, непременно|обов'язково, неодмінно|Du musst unbedingt kommen!|Ты обязательно должен прийти!
+behindert|с инвалидностью|з інвалідністю|Der Eingang ist auch für behinderte Personen.|Вход — также для людей с инвалидностью.
+heraus|наружу, вон отсюда|назовні, геть звідси|Komm heraus!|Выходи наружу (heraus)!
+unbedingt|обязательно, непременно|обов'язково, неодмінно|Du musst unbedingt kommen!|Ты обязательно (unbedingt) должен прийти!
 Ich wohne auf dem Land.|Я живу за городом.|Я живу за містом.||
 Ich wohne bei Freunden.|Я живу у друзей.|Я живу у друзів.||
 die Scheide|влагалище|піхва|Die Ärztin untersucht die Scheide.|Врач осматривает влагалище.
 die Gebärmutter|матка|матка|Das Baby wächst in der Gebärmutter.|Ребёнок растёт в матке.
-der Eierstock|яичник|яєчник|Die Frau hat zwei Eierstöcke.|У женщины два яичника.
-der Abstrich|мазок|мазок|Die Ärztin macht einen Abstrich.|Врач берёт мазок.
-der Ultraschall|УЗИ|УЗД|Beim Ultraschall sieht man das Baby.|На УЗИ видно ребёнка.
-die Pille|противозачаточная таблетка|протизаплідна таблетка|Sie nimmt die Pille.|Она пьёт противозачаточные.
+der Eierstock|яичник|яєчник|Die Frau hat zwei Eierstöcke.|У женщины два яичника (досл.: женщина имеет два яичника).
+der Abstrich|мазок|мазок|Die Ärztin macht einen Abstrich.|Врач делает мазок.
+der Ultraschall|УЗИ|УЗД|Beim Ultraschall sieht man das Baby.|При УЗИ видишь (man sieht) ребёнка.
+die Pille|противозачаточная таблетка|протизаплідна таблетка|Sie nimmt die Pille.|Она принимает таблетки (досл.: она берёт «пилюлю»).
 die Spirale|внутриматочная спираль|внутрішньоматкова спіраль|Die Spirale ist ein Verhütungsmittel.|Спираль — противозачаточное средство.
 das Kondom|презерватив|презерватив|Kondome schützen vor Krankheiten.|Презервативы защищают от болезней.
 die Schwangerschaft|беременность|вагітність|Die Schwangerschaft dauert neun Monate.|Беременность длится девять месяцев.
 der Schwangerschaftstest|тест на беременность|тест на вагітність|Der Schwangerschaftstest ist positiv.|Тест на беременность положительный.
-die Wehe|схватка|перейма|Die Wehen haben angefangen.|Начались схватки.
+die Wehe|схватка|перейма|Die Wehen haben angefangen.|Схватки начались (досл.: схватки имеют начато).
 die Geburt|роды, рождение|пологи, народження|Die Geburt war im Krankenhaus.|Роды были в больнице.
-die PDA|эпидуральная анестезия|епідуральна анестезія|Bei der Geburt hat sie eine PDA bekommen.|При родах ей сделали эпидуральную анестезию.
-der Kaiserschnitt|кесарево сечение|кесарів розтин|Das Baby kam per Kaiserschnitt.|Ребёнок родился через кесарево.
-die Fehlgeburt|выкидыш|викидень|Sie hatte leider eine Fehlgeburt.|К сожалению, у неё был выкидыш.
+die PDA|эпидуральная анестезия|епідуральна анестезія|Bei der Geburt hat sie eine PDA bekommen.|При родах она получила эпидуральную анестезию (досл.: имеет получено).
+der Kaiserschnitt|кесарево сечение|кесарів розтин|Das Baby kam per Kaiserschnitt.|Ребёнок пришёл (kam) через кесарево.
+die Fehlgeburt|выкидыш|викидень|Sie hatte leider eine Fehlgeburt.|У неё, к сожалению, был выкидыш (досл.: она имела выкидыш).
 Im wievielten Monat sind Sie?|На каком вы месяце?|На якому ви місяці?||
 Ich bin im vierten Monat schwanger.|Я на четвёртом месяце беременности.|Я на четвертому місяці вагітності.||
 Es wird ein Junge.|Будет мальчик.|Буде хлопчик.||
 der Schnuller|соска, пустышка|соска, пустушка|Das Baby will seinen Schnuller.|Малыш хочет свою пустышку.
 das Fläschchen|бутылочка (детская)|пляшечка (дитяча)|Ich mache dem Baby ein Fläschchen.|Я делаю малышу бутылочку.
 das Kuscheltier|мягкая игрушка|м'яка іграшка|Das Kind schläft mit seinem Kuscheltier.|Ребёнок спит со своей мягкой игрушкой.
-die Betreuung|уход, присмотр, опека|догляд, опіка|Wir suchen eine Betreuung für unsere Tochter.|Мы ищем присмотр для дочери.
-der Babysitter|няня|няня|Ich brauche einen Babysitter.|Мне нужна няня.
-der Nahverkehr|общественный транспорт (местный)|громадський транспорт (місцевий)|Der Nahverkehr in Berlin ist gut.|Общественный транспорт в Берлине хороший.
-das Abteil|купе|купе|Ist in diesem Abteil noch ein Platz frei?|В этом купе ещё есть свободное место?
-der Großraumwagen|вагон с общим салоном|вагон із загальним салоном|Ich sitze lieber im Großraumwagen.|Я лучше сяду в вагон с общим салоном.
+die Betreuung|уход, присмотр, опека|догляд, опіка|Wir suchen eine Betreuung für unsere Tochter.|Мы ищем присмотр (Betreuung) для нашей дочери.
+der Babysitter|няня|няня|Ich brauche einen Babysitter.|Мне нужна няня (досл.: я нуждаюсь в бебиситтере).
+der Nahverkehr|общественный транспорт (местный)|громадський транспорт (місцевий)|Der Nahverkehr in Berlin ist gut.|Местный транспорт в Берлине хороший.
+das Abteil|купе|купе|Ist in diesem Abteil noch ein Platz frei?|Есть в этом купе ещё свободное место?
+der Großraumwagen|вагон с общим салоном|вагон із загальним салоном|Ich sitze lieber im Großraumwagen.|Я охотнее (lieber) сижу в вагоне с общим салоном.
 die öffentliche Toilette|общественный туалет|громадський туалет|Wo ist hier eine öffentliche Toilette?|Где здесь общественный туалет?
 die Pension|пансион, мини-гостиница|пансіон, міні-готель|Wir übernachten in einer kleinen Pension.|Мы ночуем в маленьком пансионе.
 die Jugendherberge|молодёжный хостел|молодіжний хостел|Die Jugendherberge ist billig.|Молодёжный хостел дешёвый.
 das Einzelzimmer|одноместный номер|одномісний номер|Ich möchte ein Einzelzimmer reservieren.|Я хочу забронировать одноместный номер.
 das Doppelzimmer|двухместный номер|двомісний номер|Das Doppelzimmer kostet 90 Euro.|Двухместный номер стоит 90 евро.
-das Mehrbettzimmer|многоместный номер|багатомісний номер|In der Jugendherberge schlafen wir im Mehrbettzimmer.|В хостеле мы спим в многоместном номере.
-die Buchung|бронирование|бронювання|Ich möchte meine Buchung stornieren.|Я хочу отменить бронирование.
-die Rundreise|тур, путешествие по кругу|тур, подорож по колу|Wir machen eine Rundreise durch Italien.|Мы совершаем тур по Италии.
-die Rolltreppe|эскалатор|ескалатор|Nehmen Sie die Rolltreppe nach oben.|Поднимитесь на эскалаторе.
-die Entfernung|расстояние|відстань|Die Entfernung bis Berlin beträgt 200 Kilometer.|Расстояние до Берлина — 200 километров.
-verreisen|уезжать (в путешествие)|їхати (у подорож)|Im Sommer möchte ich verreisen.|Летом я хочу поехать в путешествие.
-stornieren|отменять (бронь)|скасовувати (бронювання)|Kann ich die Reise kostenlos stornieren?|Можно отменить поездку бесплатно?
-ausgebucht|всё забронировано, нет мест|все заброньовано, немає місць|Das Hotel ist leider ausgebucht.|Отель, к сожалению, полностью забронирован.
-belegt|занят; с начинкой (бутерброд)|зайнятий; з начинкою (бутерброд)|Alle Zimmer sind belegt. Ich nehme ein belegtes Brötchen.|Все номера заняты. Я возьму булочку с начинкой.
+das Mehrbettzimmer|многоместный номер|багатомісний номер|In der Jugendherberge schlafen wir im Mehrbettzimmer.|В хостеле мы спим в многоместной комнате.
+die Buchung|бронирование|бронювання|Ich möchte meine Buchung stornieren.|Я хотел бы отменить моё бронирование (stornieren).
+die Rundreise|тур, путешествие по кругу|тур, подорож по колу|Wir machen eine Rundreise durch Italien.|Мы делаем круговое путешествие по Италии.
+die Rolltreppe|эскалатор|ескалатор|Nehmen Sie die Rolltreppe nach oben.|Поднимитесь на эскалаторе наверх (досл.: возьмите эскалатор наверх).
+die Entfernung|расстояние|відстань|Die Entfernung bis Berlin beträgt 200 Kilometer.|Расстояние до Берлина составляет (beträgt) 200 километров.
+verreisen|уезжать (в путешествие)|їхати (у подорож)|Im Sommer möchte ich verreisen.|Летом я хотел бы уехать путешествовать (verreisen).
+stornieren|отменять (бронь)|скасовувати (бронювання)|Kann ich die Reise kostenlos stornieren?|Могу я отменить поездку бесплатно?
+ausgebucht|всё забронировано, нет мест|все заброньовано, немає місць|Das Hotel ist leider ausgebucht.|Отель, к сожалению, весь забронирован (ausgebucht).
+belegt|занят; с начинкой (бутерброд)|зайнятий; з начинкою (бутерброд)|Alle Zimmer sind belegt. Ich nehme ein belegtes Brötchen.|Все номера заняты (belegt). Я беру «покрытую» булочку (belegtes Brötchen — бутерброд).
 einfache Fahrt|билет в один конец|квиток в один кінець||
 am Fenster|у окна|біля вікна||
 am Gang|у прохода|біля проходу||
@@ -319,226 +319,226 @@ Nehmen Sie die nächste Straße links.|На следующей улице пов
 vom 10. bis zum 24. August|с 10 по 24 августа|з 10 по 24 серпня||
 das Rindfleisch|говядина|яловичина|Ich kaufe ein Kilo Rindfleisch.|Я покупаю килограмм говядины.
 das Schweinefleisch|свинина|свинина|Ich esse kein Schweinefleisch.|Я не ем свинину.
-das Hähnchen|курица (мясо)|курятина|Heute gibt es Hähnchen mit Reis.|Сегодня курица с рисом.
-die Erdbeere|клубника|полуниця|Im Juni gibt es frische Erdbeeren.|В июне бывает свежая клубника.
-die Himbeere|малина|малина|Ich mag Joghurt mit Himbeeren.|Я люблю йогурт с малиной.
+das Hähnchen|курица (мясо)|курятина|Heute gibt es Hähnchen mit Reis.|Сегодня есть курица с рисом (досл.: даёт это курицу).
+die Erdbeere|клубника|полуниця|Im Juni gibt es frische Erdbeeren.|В июне есть свежая клубника (досл.: даёт это свежую клубнику).
+die Himbeere|малина|малина|Ich mag Joghurt mit Himbeeren.|Я люблю (mag) йогурт с малиной.
 der Brokkoli|брокколи|броколі|Brokkoli ist sehr gesund.|Брокколи очень полезна.
 das Radieschen|редиска|редиска|Ein Bund Radieschen, bitte.|Пучок редиски, пожалуйста.
-das Bund|пучок, связка|пучок, в'язка|Ich nehme ein Bund Petersilie.|Я возьму пучок петрушки.
+das Bund|пучок, связка|пучок, в'язка|Ich nehme ein Bund Petersilie.|Я беру пучок петрушки.
 die Aubergine|баклажан|баклажан|Die Aubergine ist lila.|Баклажан фиолетовый.
-das stille Wasser|негазированная вода|негазована вода|Ein stilles Wasser, bitte.|Негазированную воду, пожалуйста.
-der Sprudel|газированная вода|газована вода|Ich trinke lieber Sprudel.|Я лучше пью газированную воду.
-das Sauerkraut|квашеная капуста|квашена капуста|Zur Wurst gibt es Sauerkraut.|К колбаске подают квашеную капусту.
-die Hauptspeise|основное блюдо|основна страва|Als Hauptspeise nehme ich Fisch.|На основное блюдо я возьму рыбу.
-das Gummibärchen|мармеладный мишка|желейний ведмедик|Die Kinder essen gern Gummibärchen.|Дети любят мармеладных мишек.
-das Bonbon|леденец, конфета|льодяник, цукерка|Möchtest du ein Bonbon?|Хочешь конфету?
-das Kaugummi|жевательная резинка|жувальна гумка|Im Unterricht darf man kein Kaugummi kauen.|На уроке нельзя жевать жвачку.
-die Erdnuss|арахис|арахіс|Er ist allergisch gegen Erdnüsse.|У него аллергия на арахис.
+das stille Wasser|негазированная вода|негазована вода|Ein stilles Wasser, bitte.|Одну тихую (негазированную) воду, пожалуйста.
+der Sprudel|газированная вода|газована вода|Ich trinke lieber Sprudel.|Я охотнее (lieber) пью газированную воду.
+das Sauerkraut|квашеная капуста|квашена капуста|Zur Wurst gibt es Sauerkraut.|К колбаске есть квашеная капуста (досл.: даёт это).
+die Hauptspeise|основное блюдо|основна страва|Als Hauptspeise nehme ich Fisch.|На основное блюдо я беру рыбу.
+das Gummibärchen|мармеладный мишка|желейний ведмедик|Die Kinder essen gern Gummibärchen.|Дети с удовольствием (gern) едят мармеладных мишек.
+das Bonbon|леденец, конфета|льодяник, цукерка|Möchtest du ein Bonbon?|Хотел бы ты конфету?
+das Kaugummi|жевательная резинка|жувальна гумка|Im Unterricht darf man kein Kaugummi kauen.|На уроке нельзя (man darf kein) жевать жвачку.
+die Erdnuss|арахис|арахіс|Er ist allergisch gegen Erdnüsse.|У него аллергия на арахис (досл.: он аллергичен против арахиса).
 das Popcorn|попкорн|попкорн|Im Kino essen wir Popcorn.|В кино мы едим попкорн.
 akzeptieren|принимать, соглашаться|приймати, погоджуватися|Akzeptieren Sie Kreditkarten?|Вы принимаете кредитные карты?
-bitter|горький|гіркий|Das schmeckt bitter.|Это горькое на вкус.
+bitter|горький|гіркий|Das schmeckt bitter.|Это на вкус горькое (досл.: это имеет вкус горько).
 Ich bin satt.|Я сыт.|Я ситий.||
 Schmeckt es dir?|Тебе нравится (на вкус)?|Тобі смакує?||
-die Tischdecke|скатерть|скатертина|Ich lege eine Tischdecke auf den Tisch.|Я стелю на стол скатерть.
-der Suppenteller|суповая тарелка|тарілка для супу|Die Suppe kommt in den Suppenteller.|Суп наливают в суповую тарелку.
+die Tischdecke|скатерть|скатертина|Ich lege eine Tischdecke auf den Tisch.|Я кладу скатерть на стол.
+der Suppenteller|суповая тарелка|тарілка для супу|Die Suppe kommt in den Suppenteller.|Суп идёт (kommt) в суповую тарелку.
 das Besteck|столовые приборы|столові прибори|Das Besteck liegt neben dem Teller.|Приборы лежат рядом с тарелкой.
-die Serviette|салфетка|серветка|Kannst du mir eine Serviette geben?|Можешь дать мне салфетку?
+die Serviette|салфетка|серветка|Kannst du mir eine Serviette geben?|Можешь ты дать мне салфетку?
 die Scheibe|ломтик, кусочек|скибочка|Ich esse eine Scheibe Brot.|Я ем ломтик хлеба.
 schälen|чистить (овощи, фрукты)|чистити (овочі, фрукти)|Ich schäle die Kartoffeln.|Я чищу картошку.
-umrühren|помешивать|перемішувати|Bitte die Suppe ab und zu umrühren.|Пожалуйста, время от времени помешивай суп.
-würzen|приправлять|приправляти|Mit Salz und Pfeffer würzen.|Посолить и поперчить.
-hinzufügen|добавлять|додавати|Dann fügen Sie das Mehl hinzu.|Затем добавьте муку.
-vorheizen|разогревать (заранее)|розігрівати (заздалегідь)|Den Ofen auf 180 Grad vorheizen.|Разогреть духовку до 180 градусов.
-aufstellen|ставить, расставлять|ставити, розставляти|Ich stelle die Teller auf.|Я расставляю тарелки.
+umrühren|помешивать|перемішувати|Bitte die Suppe ab und zu umrühren.|Пожалуйста, время от времени помешивать суп.
+würzen|приправлять|приправляти|Mit Salz und Pfeffer würzen.|Приправить солью и перцем.
+hinzufügen|добавлять|додавати|Dann fügen Sie das Mehl hinzu.|Затем добавьте муку (hinzufügen).
+vorheizen|разогревать (заранее)|розігрівати (заздалегідь)|Den Ofen auf 180 Grad vorheizen.|Духовку разогреть до 180 градусов (vorheizen).
+aufstellen|ставить, расставлять|ставити, розставляти|Ich stelle die Teller auf.|Я расставляю тарелки (aufstellen).
 abräumen|убирать (со стола)|прибирати (зі столу)|Nach dem Essen räumen wir den Tisch ab.|После еды мы убираем со стола.
 hartgekocht|сваренный вкрутую|зварений круто|Ich esse ein hartgekochtes Ei.|Я ем яйцо вкрутую.
-weichgekocht|сваренный всмятку|зварений некруто|Zum Frühstück gibt es ein weichgekochtes Ei.|На завтрак яйцо всмятку.
+weichgekocht|сваренный всмятку|зварений некруто|Zum Frühstück gibt es ein weichgekochtes Ei.|На завтрак есть яйцо всмятку (досл.: даёт это...).
 der Hausschuh|тапочек|капець|Zu Hause trage ich Hausschuhe.|Дома я ношу тапочки.
 die Strumpfhose|колготки|колготки|Im Winter trage ich eine Strumpfhose.|Зимой я ношу колготки.
 die Unterhose|трусы|труси|Ich kaufe neue Unterhosen.|Я покупаю новые трусы.
-der BH|бюстгальтер|бюстгальтер|Der BH passt nicht.|Бюстгальтер не подходит.
+der BH|бюстгальтер|бюстгальтер|Der BH passt nicht.|Бюстгальтер не подходит (passt nicht).
 das Unterhemd|майка (нижнее бельё)|майка (спідня білизна)|Unter dem Hemd trägt er ein Unterhemd.|Под рубашкой он носит майку.
 Das passt mir nicht.|Мне это не подходит (по размеру).|Мені це не пасує.||
 Das steht dir gut.|Тебе это идёт.|Тобі це личить.||
 Zieh dich warm an!|Одевайся тепло!|Одягайся тепло!||
 die Etage|этаж|поверх|Wir wohnen in der dritten Etage.|Мы живём на третьем этаже.
 der Toaster|тостер|тостер|Das Brot ist im Toaster.|Хлеб в тостере.
-der Wasserkocher|электрочайник|електрочайник|Der Wasserkocher ist verkalkt.|Электрочайник покрылся накипью.
+der Wasserkocher|электрочайник|електрочайник|Der Wasserkocher ist verkalkt.|Электрочайник покрыт известью (verkalkt).
 das Spülbecken|раковина (кухонная мойка)|раковина (кухонна мийка)|Das Geschirr steht im Spülbecken.|Посуда стоит в мойке.
-das Gefrierfach|морозильная камера|морозильна камера|Das Eis ist im Gefrierfach.|Мороженое в морозилке.
+das Gefrierfach|морозильная камера|морозильна камера|Das Eis ist im Gefrierfach.|Мороженое — в морозилке.
 die Stehlampe|торшер|торшер|Die Stehlampe steht neben dem Sofa.|Торшер стоит рядом с диваном.
 das Doppelbett|двуспальная кровать|двоспальне ліжко|Im Schlafzimmer steht ein Doppelbett.|В спальне стоит двуспальная кровать.
 das Bettlaken|простыня|простирадло|Ich wechsle das Bettlaken.|Я меняю простыню.
 die Bettdecke|одеяло|ковдра|Die Bettdecke ist sehr warm.|Одеяло очень тёплое.
-das Kopfkissen|подушка|подушка|Ich brauche ein weiches Kopfkissen.|Мне нужна мягкая подушка.
+das Kopfkissen|подушка|подушка|Ich brauche ein weiches Kopfkissen.|Мне нужна мягкая подушка (досл.: я нуждаюсь в мягкой подушке).
 der Nachttisch|прикроватная тумбочка|приліжкова тумбочка|Das Handy liegt auf dem Nachttisch.|Телефон лежит на тумбочке.
-die Jalousie|жалюзи|жалюзі|Mach bitte die Jalousie zu.|Закрой, пожалуйста, жалюзи.
-der Staubsauger|пылесос|пилосос|Der Staubsauger ist kaputt.|Пылесос сломался.
-der Abfluss|сток, слив|злив, стік|Der Abfluss ist verstopft.|Слив засорился.
-das Rohr|труба|труба|Das Rohr ist undicht.|Труба протекает.
+die Jalousie|жалюзи|жалюзі|Mach bitte die Jalousie zu.|Закрой, пожалуйста, жалюзи (zumachen).
+der Staubsauger|пылесос|пилосос|Der Staubsauger ist kaputt.|Пылесос сломан (kaputt).
+der Abfluss|сток, слив|злив, стік|Der Abfluss ist verstopft.|Сток засорён (verstopft).
+das Rohr|труба|труба|Das Rohr ist undicht.|Труба негерметична (undicht).
 das Putzmittel|моющее средство|засіб для миття|Das Putzmittel steht unter der Spüle.|Моющее средство стоит под мойкой.
-der Putzlappen|тряпка для уборки|ганчірка|Ich wische den Tisch mit dem Putzlappen ab.|Я вытираю стол тряпкой.
-das Altglas|стеклотара (старое стекло)|склотара (старе скло)|Ich bringe das Altglas weg.|Я выношу стеклотару.
-das Ersatzteil|запчасть|запчастина|Für die Maschine brauchen wir ein Ersatzteil.|Для машины нам нужна запчасть.
+der Putzlappen|тряпка для уборки|ганчірка|Ich wische den Tisch mit dem Putzlappen ab.|Я вытираю стол тряпкой (abwischen).
+das Altglas|стеклотара (старое стекло)|склотара (старе скло)|Ich bringe das Altglas weg.|Я отношу (wegbringen) стеклотару.
+das Ersatzteil|запчасть|запчастина|Für die Maschine brauchen wir ein Ersatzteil.|Для машины нам нужна запчасть (досл.: мы нуждаемся в запчасти).
 die Rückseite|обратная сторона|зворотний бік|Lesen Sie die Rückseite.|Прочитайте обратную сторону.
-der Deckel|крышка|кришка|Mach den Deckel auf den Topf.|Накрой кастрюлю крышкой.
+der Deckel|крышка|кришка|Mach den Deckel auf den Topf.|Сделай крышку на кастрюлю (накрой кастрюлю).
 der Wasserbehälter|резервуар для воды|резервуар для води|Füllen Sie den Wasserbehälter der Kaffeemaschine.|Наполните резервуар для воды кофемашины.
-das Feuerzeug|зажигалка|запальничка|Hast du ein Feuerzeug?|У тебя есть зажигалка?
-aufhängen|вешать|вішати|Ich hänge das Bild auf.|Я вешаю картину.
+das Feuerzeug|зажигалка|запальничка|Hast du ein Feuerzeug?|У тебя есть зажигалка? (досл.: имеешь ты зажигалку?)
+aufhängen|вешать|вішати|Ich hänge das Bild auf.|Я вешаю картину (aufhängen).
 fegen|подметать|замітати|Ich fege den Boden.|Я подметаю пол.
 wischen|вытирать, мыть (пол)|витирати, мити (підлогу)|Ich wische den Boden.|Я мою пол.
-rausbringen|выносить|виносити|Kannst du den Müll rausbringen?|Можешь вынести мусор?
-entkalken|удалять накипь|видаляти накип|Ich muss den Wasserkocher entkalken.|Мне нужно удалить накипь из чайника.
-verkalkt|покрытый накипью|покритий накипом|Die Kaffeemaschine ist verkalkt.|Кофемашина покрыта накипью.
+rausbringen|выносить|виносити|Kannst du den Müll rausbringen?|Можешь ты вынести мусор (rausbringen)?
+entkalken|удалять накипь|видаляти накип|Ich muss den Wasserkocher entkalken.|Я должен удалить накипь из чайника (entkalken).
+verkalkt|покрытый накипью|покритий накипом|Die Kaffeemaschine ist verkalkt.|Кофемашина покрыта известью (verkalkt).
 Wie hoch ist die Miete?|Сколько стоит аренда?|Яка вартість оренди?||
 Das muss repariert werden.|Это нужно починить.|Це треба полагодити.||
 Das Licht geht nicht.|Свет не работает.|Світло не працює.||
 Das Wasser läuft nicht ab.|Вода не уходит.|Вода не стікає.||
 Das Fenster geht nicht zu.|Окно не закрывается.|Вікно не зачиняється.||
-das Bankkonto|банковский счёт|банківський рахунок|Ich möchte ein Bankkonto eröffnen.|Я хочу открыть банковский счёт.
+das Bankkonto|банковский счёт|банківський рахунок|Ich möchte ein Bankkonto eröffnen.|Я хотел бы открыть банковский счёт.
 der Zins|процент (по вкладу, кредиту)|відсоток (за вкладом, кредитом)|Die Bank zahlt nur wenig Zinsen.|Банк платит лишь небольшие проценты.
-die Kontonummer|номер счёта|номер рахунку|Wie ist Ihre Kontonummer?|Какой у вас номер счёта?
+die Kontonummer|номер счёта|номер рахунку|Wie ist Ihre Kontonummer?|Какой ваш номер счёта? (досл.: как ваш номер счёта?)
 die Geheimzahl|ПИН-код|ПІН-код|Ich habe meine Geheimzahl vergessen.|Я забыл свой ПИН-код.
-der Dauerauftrag|постоянное поручение (автоплатёж)|постійне доручення (автоплатіж)|Ich richte einen Dauerauftrag für die Miete ein.|Я настраиваю автоплатёж за аренду.
-der Verwendungszweck|назначение платежа|призначення платежу|Schreiben Sie die Rechnungsnummer in den Verwendungszweck.|Укажите номер счёта в назначении платежа.
-die Ausführung|выполнение, исполнение|виконання|Die Ausführung der Überweisung dauert einen Tag.|Выполнение перевода занимает один день.
-die Verwaltung|управление, администрация|управління, адміністрація|Die Hausverwaltung kümmert sich um Reparaturen.|Управление домом занимается ремонтом.
+der Dauerauftrag|постоянное поручение (автоплатёж)|постійне доручення (автоплатіж)|Ich richte einen Dauerauftrag für die Miete ein.|Я устанавливаю постоянное поручение для аренды (einrichten).
+der Verwendungszweck|назначение платежа|призначення платежу|Schreiben Sie die Rechnungsnummer in den Verwendungszweck.|Напишите номер счёта (Rechnungsnummer) в назначение платежа.
+die Ausführung|выполнение, исполнение|виконання|Die Ausführung der Überweisung dauert einen Tag.|Выполнение перевода длится один день.
+die Verwaltung|управление, администрация|управління, адміністрація|Die Hausverwaltung kümmert sich um Reparaturen.|Управление домом заботится о ремонтах (kümmert sich um; досл.: заботит себя о).
 eröffnen|открывать (счёт, магазин)|відкривати (рахунок, магазин)|Ich eröffne ein Konto.|Я открываю счёт.
 überweisen|переводить (деньги)|переказувати (гроші)|Ich überweise die Miete.|Я перевожу арендную плату.
-abheben|снимать (деньги)|знімати (гроші)|Ich hebe 100 Euro am Automaten ab.|Я снимаю 100 евро в банкомате.
-einzahlen|вносить (деньги на счёт)|вносити (гроші на рахунок)|Ich zahle Geld auf mein Konto ein.|Я вношу деньги на свой счёт.
-einrichten|настраивать, обустраивать|налаштовувати, облаштовувати|Ich richte einen Dauerauftrag ein.|Я настраиваю постоянное поручение.
+abheben|снимать (деньги)|знімати (гроші)|Ich hebe 100 Euro am Automaten ab.|Я снимаю (abheben; досл.: поднимаю) 100 евро в автомате.
+einzahlen|вносить (деньги на счёт)|вносити (гроші на рахунок)|Ich zahle Geld auf mein Konto ein.|Я вношу (einzahlen) деньги на свой счёт.
+einrichten|настраивать, обустраивать|налаштовувати, облаштовувати|Ich richte einen Dauerauftrag ein.|Я устанавливаю постоянное поручение (einrichten).
 der Rechner|компьютер|комп'ютер|Mein Rechner ist sehr langsam.|Мой компьютер очень медленный.
 das Tablet|планшет|планшет|Das Kind spielt auf dem Tablet.|Ребёнок играет на планшете.
 die Datei|файл|файл|Ich speichere die Datei.|Я сохраняю файл.
 der Ordner|папка|папка|Ich erstelle einen neuen Ordner.|Я создаю новую папку.
 der USB-Stick|флешка|флешка|Die Datei ist auf dem USB-Stick.|Файл на флешке.
-die Festplatte|жёсткий диск|жорсткий диск|Die Festplatte ist voll.|Жёсткий диск заполнен.
-die URL|интернет-адрес (URL)|інтернет-адреса (URL)|Gib die URL im Browser ein.|Введи адрес в браузере.
-der Link|ссылка|посилання|Kannst du den Link teilen?|Можешь поделиться ссылкой?
+die Festplatte|жёсткий диск|жорсткий диск|Die Festplatte ist voll.|Жёсткий диск полный.
+die URL|интернет-адрес (URL)|інтернет-адреса (URL)|Gib die URL im Browser ein.|Введи (eingeben) URL в браузере.
+der Link|ссылка|посилання|Kannst du den Link teilen?|Можешь ты поделиться ссылкой (teilen)?
 die Durchwahl|прямой (добавочный) номер|прямий (додатковий) номер|Meine Durchwahl ist 245.|Мой добавочный номер — 245.
-der Anrufbeantworter|автоответчик|автовідповідач|Sprechen Sie auf den Anrufbeantworter.|Оставьте сообщение на автоответчике.
-runterfahren|выключать (компьютер)|вимикати (комп'ютер)|Fahr den Computer runter, bevor du gehst.|Выключи компьютер, перед тем как уйдёшь.
+der Anrufbeantworter|автоответчик|автовідповідач|Sprechen Sie auf den Anrufbeantworter.|Говорите на автоответчик.
+runterfahren|выключать (компьютер)|вимикати (комп'ютер)|Fahr den Computer runter, bevor du gehst.|Выключи (runterfahren; досл.: «спусти») компьютер, прежде чем ты уйдёшь.
 erstellen|создавать|створювати|Ich erstelle einen Ordner.|Я создаю папку.
-sich einloggen|входить в систему|входити в систему|Ich logge mich mit meinem Passwort ein.|Я вхожу в систему со своим паролем.
-ausloggen|выходить из системы|виходити з системи|Vergiss nicht, dich auszuloggen.|Не забудь выйти из системы.
-abmelden|выписываться, выходить (из системы)|виписуватися, виходити (з системи)|Ich melde mich vom Newsletter ab.|Я отписываюсь от рассылки.
+sich einloggen|входить в систему|входити в систему|Ich logge mich mit meinem Passwort ein.|Я вхожу в систему моим паролем (ich logge mich ein; досл.: «логиню себя»).
+ausloggen|выходить из системы|виходити з системи|Vergiss nicht, dich auszuloggen.|Не забудь выйти из системы (dich ausloggen; досл.: «разлогинить себя»).
+abmelden|выписываться, выходить (из системы)|виписуватися, виходити (з системи)|Ich melde mich vom Newsletter ab.|Я отписываюсь от рассылки (ich melde mich ab; досл.: «отмечаю себя»).
 googeln|гуглить|гуглити|Ich google die Adresse.|Я гуглю адрес.
-mailen|отправлять по почте (e-mail)|надсилати поштою (e-mail)|Kannst du mir die Datei mailen?|Можешь отправить мне файл по почте?
-zusenden|присылать|надсилати|Ich sende Ihnen die Unterlagen zu.|Я пришлю вам документы.
-verbunden|соединённый, связанный|з'єднаний, пов'язаний|Das Handy ist mit dem WLAN verbunden.|Телефон подключён к Wi-Fi.
-der Torwart|вратарь|воротар|Der Torwart hält den Ball.|Вратарь ловит мяч.
+mailen|отправлять по почте (e-mail)|надсилати поштою (e-mail)|Kannst du mir die Datei mailen?|Можешь ты прислать мне файл по почте (mailen)?
+zusenden|присылать|надсилати|Ich sende Ihnen die Unterlagen zu.|Я присылаю вам документы (zusenden).
+verbunden|соединённый, связанный|з'єднаний, пов'язаний|Das Handy ist mit dem WLAN verbunden.|Телефон соединён с WLAN.
+der Torwart|вратарь|воротар|Der Torwart hält den Ball.|Вратарь держит мяч (halten).
 der Stürmer|нападающий|нападник|Der Stürmer schießt ein Tor.|Нападающий забивает гол.
 der Verteidiger|защитник|захисник|Der Verteidiger stoppt den Stürmer.|Защитник останавливает нападающего.
 der Schiedsrichter|судья (в спорте)|суддя (у спорті)|Der Schiedsrichter pfeift.|Судья свистит.
 die Kneipe|бар, пивная|бар, пивна|Wir gehen heute Abend in die Kneipe.|Сегодня вечером мы идём в бар.
-ausgehen|выходить (развлечься)|виходити (розважитися)|Sollen wir heute ausgehen?|Может, сходим куда-нибудь сегодня?
+ausgehen|выходить (развлечься)|виходити (розважитися)|Sollen wir heute ausgehen?|Нам сходить сегодня куда-нибудь? (sollen wir ausgehen; досл.: должны мы сегодня выйти?)
 betrunken|пьяный|п'яний|Du bist betrunken.|Ты пьян.
 Es steht unentschieden.|Счёт ничейный.|Нічия.||
 Für wen bist du?|Ты за кого?|Ти за кого?||
 Ich gebe dir einen aus.|Я угощаю тебя.|Я пригощаю тебе.||
-die Wimperntusche|тушь для ресниц|туш для вій|Ich trage Wimperntusche.|Я крашу ресницы тушью.
+die Wimperntusche|тушь для ресниц|туш для вій|Ich trage Wimperntusche.|Я ношу тушь для ресниц.
 der Lippenstift|помада|помада|Der Lippenstift ist rot.|Помада красная.
-der Lidschatten|тени для век|тіні для повік|Sie trägt blauen Lidschatten.|У неё голубые тени.
+der Lidschatten|тени для век|тіні для повік|Sie trägt blauen Lidschatten.|Она носит голубые тени.
 das Rouge|румяна|рум'яна|Ein bisschen Rouge, bitte.|Немного румян, пожалуйста.
 der Puder|пудра|пудра|Ich nehme etwas Puder.|Я беру немного пудры.
-der Nagellack|лак для ногтей|лак для нігтів|Der Nagellack ist schnell trocken.|Лак для ногтей быстро сохнет.
-der Pony|чёлка|чубчик|Ich möchte einen kurzen Pony.|Я хочу короткую чёлку.
-die Frisur|причёска|зачіска|Deine neue Frisur steht dir gut.|Тебе идёт новая причёска.
-der Zopf|коса|коса|Das Mädchen hat einen langen Zopf.|У девочки длинная коса.
+der Nagellack|лак для ногтей|лак для нігтів|Der Nagellack ist schnell trocken.|Лак для ногтей быстро сухой.
+der Pony|чёлка|чубчик|Ich möchte einen kurzen Pony.|Я хотел бы короткую чёлку.
+die Frisur|причёска|зачіска|Deine neue Frisur steht dir gut.|Твоя новая причёска тебе идёт (досл.: стоит тебе хорошо).
+der Zopf|коса|коса|Das Mädchen hat einen langen Zopf.|У девочки длинная коса (досл.: девочка имеет длинную косу).
 der Föhn|фен|фен|Der Föhn ist im Badezimmer.|Фен в ванной.
 lackieren|красить, покрывать лаком|фарбувати, покривати лаком|Ich lackiere mir die Nägel.|Я крашу себе ногти.
 hübsch|красивый, хорошенький|гарний, гарненький|Das Kleid ist sehr hübsch.|Платье очень красивое.
 Ich lasse mir die Haare schneiden.|Я стригусь (в парикмахерской).|Я підстригаюся.||
 der Elternsprechtag|родительский день|батьківський день|Am Elternsprechtag spreche ich mit der Lehrerin.|В родительский день я разговариваю с учительницей.
-die Schulferien|школьные каникулы|шкільні канікули|In den Schulferien fahren wir weg.|На школьных каникулах мы уезжаем.
+die Schulferien|школьные каникулы|шкільні канікули|In den Schulferien fahren wir weg.|На школьных каникулах мы уезжаем (wegfahren).
 der Füller|перьевая ручка|чорнильна ручка|Die Kinder schreiben mit dem Füller.|Дети пишут перьевой ручкой.
-der Spitzer|точилка|точилка|Hast du einen Spitzer?|У тебя есть точилка?
+der Spitzer|точилка|точилка|Hast du einen Spitzer?|У тебя есть точилка? (досл.: имеешь ты точилку?)
 die Turnhalle|спортзал|спортзал|Der Sportunterricht ist in der Turnhalle.|Урок физкультуры проходит в спортзале.
-der Numerus clausus|ограничение приёма (проходной балл)|обмеження на вступ (прохідний бал)|Für Medizin gibt es einen Numerus clausus.|На медицину есть проходной балл.
-sitzenbleiben|остаться на второй год|залишитися на другий рік|Er ist in der achten Klasse sitzengeblieben.|Он остался на второй год в восьмом классе.
-sich einschreiben|записываться (в вуз, на курс)|записуватися (до вишу, на курс)|Ich schreibe mich an der Universität ein.|Я записываюсь в университет.
+der Numerus clausus|ограничение приёма (проходной балл)|обмеження на вступ (прохідний бал)|Für Medizin gibt es einen Numerus clausus.|На медицину есть проходной балл (досл.: для медицины даёт это Numerus clausus).
+sitzenbleiben|остаться на второй год|залишитися на другий рік|Er ist in der achten Klasse sitzengeblieben.|Он остался на второй год (sitzenbleiben; досл.: «остался сидеть») в восьмом классе.
+sich einschreiben|записываться (в вуз, на курс)|записуватися (до вишу, на курс)|Ich schreibe mich an der Universität ein.|Я записываюсь в университет (ich schreibe mich ein; досл.: вписываю себя).
 die Bremse|тормоз|гальмо|Die Bremse funktioniert nicht.|Тормоз не работает.
-die Kupplung|сцепление|зчеплення|Treten Sie die Kupplung.|Выжмите сцепление.
+die Kupplung|сцепление|зчеплення|Treten Sie die Kupplung.|Нажмите сцепление (досл.: наступите на сцепление).
 das Lenkrad|руль|кермо|Halten Sie das Lenkrad mit beiden Händen.|Держите руль обеими руками.
 der Tacho|спидометр|спідометр|Schau auf den Tacho!|Посмотри на спидометр!
 der Sitz|сиденье|сидіння|Der Sitz ist bequem.|Сиденье удобное.
-der Gurt|ремень безопасности|ремінь безпеки|Mach den Gurt zu!|Пристегни ремень!
+der Gurt|ремень безопасности|ремінь безпеки|Mach den Gurt zu!|Застегни ремень (zumachen)!
 der Gebrauchtwagen|подержанная машина|вживане авто|Ich kaufe einen Gebrauchtwagen.|Я покупаю подержанную машину.
-der TÜV|техосмотр (TÜV)|техогляд (TÜV)|Das Auto muss zum TÜV.|Машине нужно пройти техосмотр.
-der Platten|прокол (колеса)|прокол (колеса)|Ich habe einen Platten am Fahrrad.|У меня прокол на велосипеде.
-die Luftpumpe|насос|насос|Ich pumpe den Reifen mit der Luftpumpe auf.|Я накачиваю колесо насосом.
+der TÜV|техосмотр (TÜV)|техогляд (TÜV)|Das Auto muss zum TÜV.|Машина должна на техосмотр (TÜV).
+der Platten|прокол (колеса)|прокол (колеса)|Ich habe einen Platten am Fahrrad.|У меня прокол на велосипеде (досл.: я имею «плоское» на велосипеде).
+die Luftpumpe|насос|насос|Ich pumpe den Reifen mit der Luftpumpe auf.|Я накачиваю шину насосом (aufpumpen).
 der Sattel|седло|сідло|Der Sattel ist zu hoch.|Седло слишком высокое.
-die Gangschaltung|переключатель передач|перемикач передач|Die Gangschaltung ist kaputt.|Переключатель передач сломан.
-das Vorderlicht|передняя фара (велосипеда)|передня фара (велосипеда)|Mein Vorderlicht geht nicht.|У меня не работает передняя фара.
+die Gangschaltung|переключатель передач|перемикач передач|Die Gangschaltung ist kaputt.|Переключатель передач сломан (kaputt).
+das Vorderlicht|передняя фара (велосипеда)|передня фара (велосипеда)|Mein Vorderlicht geht nicht.|Моя передняя фара не работает (geht nicht).
 das Rücklicht|задний фонарь|задній ліхтар|Das Rücklicht ist rot.|Задний фонарь красный.
-der Fahrradhelm|велосипедный шлем|велосипедний шолом|Trag immer einen Fahrradhelm!|Всегда надевай велошлем!
+der Fahrradhelm|велосипедный шлем|велосипедний шолом|Trag immer einen Fahrradhelm!|Всегда носи велошлем!
 die Fahrzeugpapiere|документы на машину|документи на авто|Zeigen Sie mir bitte die Fahrzeugpapiere.|Покажите, пожалуйста, документы на машину.
-sich anschnallen|пристёгиваться|пристібатися|Bitte schnallen Sie sich an.|Пожалуйста, пристегнитесь.
-tanken|заправлять (машину)|заправляти (машину)|Ich muss noch tanken.|Мне ещё нужно заправиться.
-der Einbruch|кража со взломом|пограбування зі зламом|Gestern gab es einen Einbruch in unserem Haus.|Вчера в нашем доме была кража со взломом.
+sich anschnallen|пристёгиваться|пристібатися|Bitte schnallen Sie sich an.|Пожалуйста, пристегнитесь (schnallen Sie sich an; досл.: пристегните себя).
+tanken|заправлять (машину)|заправляти (машину)|Ich muss noch tanken.|Я должен ещё заправиться (tanken).
+der Einbruch|кража со взломом|пограбування зі зламом|Gestern gab es einen Einbruch in unserem Haus.|Вчера в нашем доме был взлом (досл.: даёт это взлом — es gab).
 die Wertsache|ценная вещь|цінна річ|Lassen Sie keine Wertsachen im Auto.|Не оставляйте ценные вещи в машине.
 der Täter|преступник|злочинець|Die Polizei sucht den Täter.|Полиция ищет преступника.
-die Körperverletzung|телесное повреждение|тілесне ушкодження|Er hat eine Anzeige wegen Körperverletzung erstattet.|Он подал заявление о телесных повреждениях.
+die Körperverletzung|телесное повреждение|тілесне ушкодження|Er hat eine Anzeige wegen Körperverletzung erstattet.|Он подал заявление из-за телесных повреждений (Anzeige erstatten).
 die Warnung|предупреждение|попередження|Das ist meine letzte Warnung!|Это моё последнее предупреждение!
-erstatten|подавать (заявление); возмещать|подавати (заяву); відшкодовувати|Ich möchte Anzeige erstatten.|Я хочу подать заявление в полицию.
-das Tier|животное|тварина|Welches Tier magst du am liebsten?|Какое животное тебе нравится больше всего?
+erstatten|подавать (заявление); возмещать|подавати (заяву); відшкодовувати|Ich möchte Anzeige erstatten.|Я хотел бы подать заявление в полицию (Anzeige erstatten).
+das Tier|животное|тварина|Welches Tier magst du am liebsten?|Какое животное ты любишь больше всего (am liebsten)?
 das Huhn|курица (птица)|курка|Das Huhn legt jeden Tag ein Ei.|Курица несёт яйцо каждый день.
 das Tierfutter|корм для животных|корм для тварин|Ich kaufe Tierfutter für die Katze.|Я покупаю корм для кошки.
 der Hase|заяц|заєць|Der Hase läuft schnell.|Заяц быстро бегает.
 das Murmeltier|сурок|бабак|In den Alpen leben Murmeltiere.|В Альпах живут сурки.
-das Klima|климат|клімат|Das Klima verändert sich.|Климат меняется.
+das Klima|климат|клімат|Das Klima verändert sich.|Климат меняется (verändert sich; досл.: изменяет себя).
 der Umweltschutz|защита окружающей среды|захист довкілля|Umweltschutz ist wichtig.|Защита окружающей среды важна.
-die Umweltverschmutzung|загрязнение окружающей среды|забруднення довкілля|Autos sind eine Ursache für Umweltverschmutzung.|Машины — одна из причин загрязнения среды.
-der Tannenbaum|ёлка|ялинка|Im Wald stehen viele Tannenbäume.|В лесу растёт много ёлок.
+die Umweltverschmutzung|загрязнение окружающей среды|забруднення довкілля|Autos sind eine Ursache für Umweltverschmutzung.|Машины — причина загрязнения окружающей среды.
+der Tannenbaum|ёлка|ялинка|Im Wald stehen viele Tannenbäume.|В лесу стоят много ёлок.
 die Feuchtigkeit|влажность|вологість|Die Feuchtigkeit im Bad ist hoch.|Влажность в ванной высокая.
-verändern|изменять|змінювати|Das Leben hat mich verändert.|Жизнь меня изменила.
-nass|мокрый|мокрий|Meine Schuhe sind nass.|Мои туфли мокрые.
+verändern|изменять|змінювати|Das Leben hat mich verändert.|Жизнь меня изменила (досл.: жизнь имеет меня изменено).
+nass|мокрый|мокрий|Meine Schuhe sind nass.|Мои ботинки мокрые.
 trocken|сухой|сухий|Die Wäsche ist schon trocken.|Бельё уже сухое.
 feucht|влажный|вологий|Die Wand ist feucht.|Стена влажная.
 giftig|ядовитый|отруйний|Diese Pflanze ist giftig.|Это растение ядовитое.
-weltweit|во всём мире|у всьому світі|Das Problem gibt es weltweit.|Эта проблема есть во всём мире.
+weltweit|во всём мире|у всьому світі|Das Problem gibt es weltweit.|Эта проблема есть во всём мире (досл.: проблему даёт это по всему миру).
 der Fremde|незнакомец, чужой|незнайомець, чужий|Sprich nicht mit Fremden!|Не разговаривай с незнакомцами!
-der Single|одинокий человек (без пары)|самотня людина (без пари)|Er ist seit einem Jahr Single.|Он уже год без пары.
-das Lob|похвала|похвала|Die Lehrerin gibt viel Lob.|Учительница много хвалит.
-die Mühe|усилие, старание|зусилля, старання|Danke für deine Mühe!|Спасибо за старания!
-der Erfolg|успех|успіх|Viel Erfolg bei der Prüfung!|Удачи на экзамене!
+der Single|одинокий человек (без пары)|самотня людина (без пари)|Er ist seit einem Jahr Single.|Он уже год одинок (досл.: он с одного года Single).
+das Lob|похвала|похвала|Die Lehrerin gibt viel Lob.|Учительница даёт много похвалы.
+die Mühe|усилие, старание|зусилля, старання|Danke für deine Mühe!|Спасибо за твои старания!
+der Erfolg|успех|успіх|Viel Erfolg bei der Prüfung!|Много успеха на экзамене!
 das Missverständnis|недоразумение|непорозуміння|Das war ein Missverständnis.|Это было недоразумение.
-die Trauer|скорбь, печаль|скорбота, сум|Die Trauer um die Oma ist groß.|Скорбь по бабушке велика.
+die Trauer|скорбь, печаль|скорбота, сум|Die Trauer um die Oma ist groß.|Скорбь по бабушке большая.
 die Beerdigung|похороны|похорон|Die Beerdigung ist am Freitag.|Похороны в пятницу.
 der Friedhof|кладбище|цвинтар|Der Friedhof ist hinter der Kirche.|Кладбище за церковью.
 die Waise|сирота|сирота|Das Kind ist eine Waise.|Ребёнок — сирота.
-der Verwandte|родственник|родич|Zur Hochzeit kommen alle Verwandten.|На свадьбу приезжают все родственники.
+der Verwandte|родственник|родич|Zur Hochzeit kommen alle Verwandten.|На свадьбу приходят все родственники.
 die Veranstaltung|мероприятие|захід, подія|Die Veranstaltung beginnt um 19 Uhr.|Мероприятие начинается в 19 часов.
 der Hinweis|указание, подсказка, совет|вказівка, порада|Danke für den Hinweis!|Спасибо за подсказку!
-zustimmen|соглашаться|погоджуватися|Ich stimme dir zu.|Я с тобой согласен.
-ablehnen|отклонять, отказываться|відхиляти, відмовлятися|Er hat das Angebot abgelehnt.|Он отклонил предложение.
-befreundet|дружный (быть друзьями)|бути друзями|Wir sind seit Jahren befreundet.|Мы дружим много лет.
-die Laune|настроение|настрій|Heute habe ich gute Laune.|Сегодня у меня хорошее настроение.
+zustimmen|соглашаться|погоджуватися|Ich stimme dir zu.|Я с тобой согласен (zustimmen + Dat.; досл.: я соглашаюсь тебе).
+ablehnen|отклонять, отказываться|відхиляти, відмовлятися|Er hat das Angebot abgelehnt.|Он отклонил предложение (досл.: он имеет предложение отклонено).
+befreundet|дружный (быть друзьями)|бути друзями|Wir sind seit Jahren befreundet.|Мы годами дружим (досл.: мы с лет «подружены»).
+die Laune|настроение|настрій|Heute habe ich gute Laune.|Сегодня у меня хорошее настроение (досл.: сегодня имею я хорошее настроение).
 besorgt|обеспокоенный|стурбований|Die Mutter ist besorgt.|Мама обеспокоена.
-unsicher|неуверенный|невпевнений|Ich bin mir unsicher.|Я не уверен.
-verwirrt|растерянный, сбитый с толку|розгублений|Nach der Erklärung war ich noch mehr verwirrt.|После объяснения я растерялся ещё больше.
+unsicher|неуверенный|невпевнений|Ich bin mir unsicher.|Я не уверен (ich bin mir unsicher; досл.: я себе неуверен).
+verwirrt|растерянный, сбитый с толку|розгублений|Nach der Erklärung war ich noch mehr verwirrt.|После объяснения я был ещё более растерян.
 neugierig|любопытный|допитливий|Kinder sind sehr neugierig.|Дети очень любопытны.
-gelassen|спокойный, невозмутимый|спокійний, незворушний|Bleib gelassen!|Сохраняй спокойствие!
-gelangweilt|скучающий|знуджений|Er sitzt gelangweilt im Unterricht.|Он скучает на уроке.
-genervt|раздражённый|роздратований|Ich bin total genervt.|Я жутко раздражён.
+gelassen|спокойный, невозмутимый|спокійний, незворушний|Bleib gelassen!|Оставайся спокойным (gelassen)!
+gelangweilt|скучающий|знуджений|Er sitzt gelangweilt im Unterricht.|Он сидит скучающий на уроке.
+genervt|раздражённый|роздратований|Ich bin total genervt.|Я полностью раздражён (genervt).
 frustriert|расстроенный (из-за неудачи)|розчарований (через невдачу)|Nach der Prüfung war sie frustriert.|После экзамена она была расстроена.
-eifersüchtig|ревнивый|ревнивий|Mein Freund ist eifersüchtig.|Мой парень ревнует.
-neidisch|завистливый|заздрісний|Bist du neidisch?|Ты завидуешь?
+eifersüchtig|ревнивый|ревнивий|Mein Freund ist eifersüchtig.|Мой друг ревнивый.
+neidisch|завистливый|заздрісний|Bist du neidisch?|Ты завистливый?
 empört|возмущённый|обурений|Die Leute sind empört.|Люди возмущены.
 ungeduldig|нетерпеливый|нетерплячий|Sei nicht so ungeduldig!|Не будь таким нетерпеливым!
 misstrauisch|недоверчивый|недовірливий|Er ist sehr misstrauisch.|Он очень недоверчив.
-angewidert|испытывающий отвращение|який відчуває огиду|Sie schaut angewidert weg.|Она с отвращением отворачивается.
-enttäuscht|разочарованный|розчарований|Ich bin enttäuscht von dir.|Я в тебе разочарован.
-einsam|одинокий|самотній|Im Ausland fühlte ich mich oft einsam.|За границей я часто чувствовал себя одиноким.
-verzweifelt|отчаявшийся, в отчаянии|у відчаї|Er war völlig verzweifelt.|Он был в полном отчаянии.
+angewidert|испытывающий отвращение|який відчуває огиду|Sie schaut angewidert weg.|Она с отвращением смотрит в сторону (wegschauen).
+enttäuscht|разочарованный|розчарований|Ich bin enttäuscht von dir.|Я разочарован в тебе (досл.: разочарован от тебя).
+einsam|одинокий|самотній|Im Ausland fühlte ich mich oft einsam.|За границей я часто чувствовал себя одиноким (fühlte mich; досл.: чувствовал себя).
+verzweifelt|отчаявшийся, в отчаянии|у відчаї|Er war völlig verzweifelt.|Он был полностью в отчаянии (verzweifelt).
 beschämt|пристыженный|присоромлений|Er schaut beschämt auf den Boden.|Он пристыженно смотрит в пол.
-schuldig|виноватый|винний|Ich fühle mich schuldig.|Я чувствую себя виноватым.
-sehnsüchtig|тоскующий|сповнений туги|Sie wartet sehnsüchtig auf ihn.|Она тоскливо ждёт его.
-nostalgisch|ностальгический|ностальгійний|Bei alten Fotos werde ich nostalgisch.|От старых фото у меня ностальгия.
+schuldig|виноватый|винний|Ich fühle mich schuldig.|Я чувствую себя виноватым (ich fühle mich; досл.: чувствую себя).
+sehnsüchtig|тоскующий|сповнений туги|Sie wartet sehnsüchtig auf ihn.|Она тоскливо ждёт его (warten auf; досл.: ждёт на него).
+nostalgisch|ностальгический|ностальгійний|Bei alten Fotos werde ich nostalgisch.|При старых фото я становлюсь ностальгичным (werde).
 fröhlich|весёлый|веселий|Die Kinder sind fröhlich.|Дети весёлые.
 begeistert|восторженный, в восторге|захоплений|Ich bin begeistert!|Я в восторге!
-dankbar|благодарный|вдячний|Ich bin dir sehr dankbar.|Я тебе очень благодарен.
+dankbar|благодарный|вдячний|Ich bin dir sehr dankbar.|Я тебе очень благодарен (dankbar + Dat.).
 hoffnungsvoll|полный надежды|сповнений надії|Sie schaut hoffnungsvoll in die Zukunft.|Она с надеждой смотрит в будущее.
-erleichtert|испытывающий облегчение|з полегшенням|Nach der Prüfung war ich erleichtert.|После экзамена я почувствовал облегчение.
+erleichtert|испытывающий облегчение|з полегшенням|Nach der Prüfung war ich erleichtert.|После экзамена я был с облегчением (erleichtert).
 gierig|жадный|жадібний|Sei nicht so gierig!|Не будь таким жадным!
