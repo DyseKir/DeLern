@@ -2774,7 +2774,8 @@ function openSGTopic(L, t) {
     </div>
     <div class="sg-start">
       ${run ? `<button class="btn-primary" id="sg-resume">${sgRunLabel(run)}</button>` : ''}
-      <button class="${run ? 'btn-secondary' : 'btn-primary'}" id="sg-go">▶ ${run ? sgL('Neu anfangen', 'Начать заново') : sgL('Üben', 'Тренировать')} (${t.ex.length} ${sgL('Aufgaben', 'заданий')})</button>
+      <button class="${run ? 'btn-secondary' : 'btn-primary'}" id="sg-go">▶ ${run ? sgL('Neu anfangen', 'Начать заново') : sgL('Üben', 'Тренировать')} (${sgItemCount(t)} ${sgL('Aufgaben', 'заданий')})</button>
+      <div class="sg-prev">${sgHasGen(t) ? '🎲 ' + sgL('Die Aufgaben sind jedes Mal neu: andere Wörter, Personen und Sätze.', 'Задания каждый раз новые: другие слова, лица и предложения.') : '🎲 ' + sgL('Die Aufgaben kommen jedes Mal in anderer Auswahl und Reihenfolge.', 'Задания каждый раз в другом наборе и порядке.')}</div>
       ${pr ? `<div class="sg-prev">${sgL('Bestes Ergebnis', 'Лучший результат')}: <b>${pr.best}%</b>${pr.done ? ' ✓' : ''}</div>` : ''}
       <div class="sg-types">✍️ ${sgL('Lücke füllen', 'вставить слово')} · 🔘 ${sgL('Form wählen', 'выбрать форму')} · 🧩 ${sgL('Satz bauen', 'собрать предложение')} · 🌍 ${sgL('übersetzen', 'перевести')}</div>
     </div>`;
@@ -2813,10 +2814,10 @@ function startSGPractice(L, t, resume) {
     if (SG.idx >= SG.items.length) { sgStartFix(); return; }
   } else {
     let items;
-    if (t) items = shuffle(t.ex.map(sgParse).filter(Boolean));
+    if (t) items = sgBuildItems(t, 8, 4, 10);
     else {
-      // тест урока: по 3 задания из каждой темы + текст в конце
-      items = shuffle(L.topics.flatMap(tp => shuffle(tp.ex.map(sgParse).filter(Boolean)).slice(0, 3)));
+      // тест урока: из каждой темы 2 новых сгенерированных + 1 из учебника (или 3 из учебника) + текст в конце
+      items = shuffle(L.topics.flatMap(tp => sgBuildItems(tp, 2, 1, 3)));
       if (L.text) items.push({ type: 'text', title: L.text.title, de: L.text.de, ru: L.text.ru });
     }
     items.forEach((it, k) => { it.k = k; });
@@ -2839,6 +2840,48 @@ function sgStartFix() {
   drawSGItem();
 }
 
+/* Набор заданий темы: каждый раз новые — gen сгенерированных (db/sg_generator.js, если для темы есть генератор)
+   + до stat случайных из учебника; без генератора — до plain случайных из учебника. */
+function sgBuildItems(t, gen, stat, plain) {
+  const statics = shuffle(t.ex.map(sgParse).filter(Boolean));
+  const make = window.SG_GEN && window.SG_GEN[t.id];
+  if (!make) return statics.slice(0, plain);
+  const out = [], seen = new Set();
+  for (let tries = 0; out.length < gen && tries < gen * 8; tries++) {
+    const it = make();
+    if (it && !seen.has(it.de)) { seen.add(it.de); out.push(it); }
+  }
+  return out.concat(statics.slice(0, stat));
+}
+const sgHasGen = t => !!(window.SG_GEN && window.SG_GEN[t.id]);
+const sgItemCount = t => sgHasGen(t) ? 8 + Math.min(4, t.ex.length) : Math.min(10, t.ex.length);
+
+/* Что именно сделать в задании: у сгенерированных — it.task, у заданий из учебника — по подсказке в скобках */
+function sgTaskText(it) {
+  if (it.task) return it.task;
+  if (it.type === 'g') {
+    const m = it.de.match(/\(([^()]+)\)\s*$/);
+    const h = m ? m[1].trim() : '';
+    const gaps = (it.de.match(/___/g) || []).length;
+    const two = gaps > 1 ? ' (несколько пропусков — по слову в каждый)' : '';
+    if (!h) return 'Вставь пропущенное слово' + two;
+    if (/^(der|die|das|ein|kein|mein|dein|sein|ihr|unser|euer|ein-|kein-)(\s|$|\/)/.test(h) || /^der \/ die \/ das$/.test(h))
+      return `Поставь «${h}» в нужную форму: смотри на род и падеж слова рядом` + two;
+    if (/→/.test(h)) return `Подсказка: ${h}. Вставь слово в нужной форме` + two;
+    if (/^[a-zäöüß]+(en|ern|eln|n)$/.test(h) || /^sich [a-zäöüß]+n$/.test(h) || /^[a-zäöüß]+(en|n),/.test(h))
+      return `Поставь глагол «${h.split(',')[0]}» в нужную форму (лицо и время смотри в предложении)` + two;
+    if (/^(ich|du|er|sie|es|wir|ihr|Sie|sich)$/.test(h)) return `Поставь местоимение «${h}» в нужную форму (падеж смотри по глаголу/предлогу)` + two;
+    if (/^\d+\.$/.test(h)) return `Напиши число ${h} словом в нужной форме` + two;
+    if (/^[a-zäöüß]+$/.test(h)) return `Поставь слово «${h}» в нужную форму` + two;
+    return `Вставь подходящее слово. Подсказка: ${h}` + two;
+  }
+  if (it.type === 'c') return 'Выбери вариант, который правильно подходит в пропуск';
+  if (it.type === 'o') return 'Собери предложение: нажимай на слова в правильном порядке';
+  if (it.type === 't') return 'Переведи предложение на немецкий (пиши целиком, с точкой не обязательно)';
+  if (it.type === 'text') return 'Впиши пропущенные слова в текст — по смыслу и по грамматике этого урока';
+  return '';
+}
+
 const SG_TYPE = { g: ['✍️', 'Lücke füllen', 'Вставь слово'], c: ['🔘', 'Richtige Form wählen', 'Выбери правильный вариант'],
   o: ['🧩', 'Satz bauen', 'Собери предложение'], t: ['🌍', 'Übersetzen', 'Переведи на немецкий'], text: ['📄', 'Text ergänzen', 'Заполни пропуски в тексте'] };
 
@@ -2850,7 +2893,7 @@ function drawSGItem() {
   const head = `<div class="sg-run-top"><span>${SG.idx + 1} / ${SG.items.length}</span>
       <div class="sg-run-bar"><div style="width:${SG.idx / SG.items.length * 100}%"></div></div>
       <span>✓ ${SG.firstTry}</span></div>
-    <div class="sg-type">${ty[0]} ${sgL(ty[1], ty[2])}${SG.fix ? ` <span class="sg-again">${sgL('Fehler korrigieren', 'исправление ошибки')}</span>` : ''}</div>`;
+    <div class="sg-type">${ty[0]} ${escapeHtml(lang === 'de' ? ty[1] : sgTaskText(it))}${SG.fix ? ` <span class="sg-again">${sgL('Fehler korrigieren', 'исправление ошибки')}</span>` : ''}</div>`;
   let body = '';
   if (it.type === 'g') {
     const parts = it.de.split('___');
