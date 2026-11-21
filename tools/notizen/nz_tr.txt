@@ -447,7 +447,7 @@ der Pony|чёлка|чубчик|Ich möchte einen kurzen Pony.|Я хочу ко
 die Frisur|причёска|зачіска|Deine neue Frisur steht dir gut.|Тебе идёт новая причёска.
 der Zopf|коса|коса|Das Mädchen hat einen langen Zopf.|У девочки длинная коса.
 der Föhn|фен|фен|Der Föhn ist im Badezimmer.|Фен в ванной.
-lackieren|красить, покрывать лаком|фарбувати, покривати лаком|Ich lackiere mir die Nägel.|Я крашу ногти.
+lackieren|красить, покрывать лаком|фарбувати, покривати лаком|Ich lackiere mir die Nägel.|Я крашу себе ногти.
 hübsch|красивый, хорошенький|гарний, гарненький|Das Kleid ist sehr hübsch.|Платье очень красивое.
 Ich lasse mir die Haare schneiden.|Я стригусь (в парикмахерской).|Я підстригаюся.||
 der Elternsprechtag|родительский день|батьківський день|Am Elternsprechtag spreche ich mit der Lehrerin.|В родительский день я разговариваю с учительницей.

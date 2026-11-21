@@ -948,7 +948,7 @@
     "nz_430":["Deine neue Frisur steht dir gut.","Тебе идёт новая причёска."],
     "nz_431":["Das Mädchen hat einen langen Zopf.","У девочки длинная коса."],
     "nz_432":["Der Föhn ist im Badezimmer.","Фен в ванной."],
-    "nz_433":["Ich lackiere mir die Nägel.","Я крашу ногти."],
+    "nz_433":["Ich lackiere mir die Nägel.","Я крашу себе ногти."],
     "nz_434":["Das Kleid ist sehr hübsch.","Платье очень красивое."],
     "nz_436":["Am Elternsprechtag spreche ich mit der Lehrerin.","В родительский день я разговариваю с учительницей."],
     "nz_437":["In den Schulferien fahren wir weg.","На школьных каникулах мы уезжаем."],

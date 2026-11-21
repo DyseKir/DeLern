@@ -1,5 +1,7 @@
 # ключ|перевод RU|перевод UK|перевод примера (RU)
 # @new ключ — отдельное слово, даже если такое написание уже есть на сайте (другой смысл)
+@alias fallen=a1_pp_034
+@alias riechen=a1_pp_097
 @new umziehen
 @new ausziehen
 @new das Viertel
