@@ -2675,7 +2675,8 @@ const SG = { lesson: null, topic: null, items: [], idx: 0, firstTry: 0, total: 0
 const sgL = (de, ru) => lstr(de, ru, ru);
 function sgLessons() { return window.SG_LESSONS || []; }
 const sgLn = L => 'Lektion ' + (L.ln || L.n);   // номер урока в книге (у A2 n = 101…, ln = 1…)
-const SG_BOOKS = { A1: ['Schritte international Neu 1+2', 'A1'], 'A2.1': ['Schritte international Neu 3', 'A2.1'], 'A2.2': ['Schritte international Neu 4', 'A2.2'] };
+const SG_BOOKS = { A1: ['Schritte international Neu 1+2', 'A1'], 'A2.1': ['Schritte international Neu 3', 'A2.1'], 'A2.2': ['Schritte international Neu 4', 'A2.2'],
+  'AH-A1': ['Deutsch – ABER HALLO! Grundstufe', 'A1'], 'AH-A2': ['Deutsch – ABER HALLO! Grundstufe', 'A2'] };
 function sgProg(key) { const p = loadProg(); return p['sg_' + key] || null; }
 /* best — % верных (исправленные ошибки тоже считаются верными); done — тема пройдена: от 80%
    или когда все ошибки исправлены (complete). */
@@ -2715,12 +2716,17 @@ function sgParse(line) {
 }
 const sgNorm = s => normSentence(String(s || '').replace(/…/g, ' '));
 
-function renderSGBook(wrap) {
-  const lessons = sgLessons();
+/* series: undefined — Schritte, 'ah' — «Deutsch – ABER HALLO!» (db/aberhallo_grammar.js) */
+function renderSGBook(wrap, series) {
+  const lessons = sgLessons().filter(L => (L.series || '') === (series || ''));
   let allT = 0, doneT = 0;
   lessons.forEach(L => L.topics.forEach(t => { allT++; if ((sgProg(t.id) || {}).done) doneT++; }));
-  wrap.innerHTML = `<div class="sg-intro">📘 ${sgL('Grammatik wie im Lehrbuch „Schritte international Neu“ (A1–A2) — Lektion für Lektion. Zu jedem Thema: kurze Regel und Übungen genau dazu.',
-      'Грамматика как в учебнике «Schritte international Neu» (A1–A2) — урок за уроком. К каждой теме: короткое правило и задания именно по ней.')}
+  const intro = series === 'ah'
+    ? `📗 ${sgL('Grammatik wie im Übungsbuch „Deutsch – ABER HALLO! Grammatikübungen Grundstufe“ (A1–A2) — Lektion für Lektion. Zu jedem Thema: kurze Regel, Tabelle und Übungen genau dazu.',
+      'Грамматика как в пособии «Deutsch – ABER HALLO! Grammatikübungen Grundstufe» (A1–A2) — урок за уроком. К каждой теме: короткое правило, таблица и задания именно по ней.')}`
+    : `📘 ${sgL('Grammatik wie im Lehrbuch „Schritte international Neu“ (A1–A2) — Lektion für Lektion. Zu jedem Thema: kurze Regel und Übungen genau dazu.',
+      'Грамматика как в учебнике «Schritte international Neu» (A1–A2) — урок за уроком. К каждой теме: короткое правило и задания именно по ней.')}`;
+  wrap.innerHTML = `<div class="sg-intro">${intro}
       <div class="sg-total">${sgL('Geschafft', 'Пройдено тем')}: <b>${doneT} / ${allT}</b></div></div>`
     + lessons.map((L, i) => {
       const book = L.book || 'A1', prev = i ? (lessons[i - 1].book || 'A1') : null;
@@ -3052,13 +3058,14 @@ function renderGrammarScreen() {
   const tab = S.grammarTab || 'book';
   $('grammar-tabs').innerHTML =
       `<button class="vlf-btn ${tab==='book'?'active':''}" data-gt="book">📘 ${sgL('Nach dem Lehrbuch','По учебнику (Schritte)')}</button>`
+    + `<button class="vlf-btn ${tab==='ah'?'active':''}" data-gt="ah">📗 ${sgL('Aber Hallo!','Aber Hallo!')}</button>`
     + `<button class="vlf-btn ${tab==='rules'?'active':''}" data-gt="rules">📚 ${sgL('Alle Regeln','Все правила')}</button>`;
   $('grammar-tabs').querySelectorAll('[data-gt]').forEach(b => b.addEventListener('click', () => { S.grammarTab = b.dataset.gt; renderGrammarScreen(); }));
   const oldBar = $('grammar-progress-bar-wrap');
-  if (tab === 'book') {
+  if (tab === 'book' || tab === 'ah') {
     if (oldBar) oldBar.style.display = 'none';
     wrap.className = 'sg-book';
-    renderSGBook(wrap);
+    renderSGBook(wrap, tab === 'ah' ? 'ah' : '');
     return;
   }
   if (oldBar) oldBar.style.display = '';

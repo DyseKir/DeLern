@@ -397,6 +397,33 @@
     return G(`Ich habe am ___ ${m} Geburtstag. (${d}.)`, ORD[d] + 'n', `Когда? — am + …ten/…sten`, `Напиши число ${d}. словом после «am»: am …ten / am …sten`);
   }
 
+  /* Plusquamperfekt: hatte/war + Partizip II */
+  function genPlusq() {
+    const p = persPick(), useSep = Math.random() < 0.3;
+    let inf, aux, part, rest, ru;
+    if (useSep) { const s = pick(SEP); [inf, , , , aux, part, rest] = s; ru = `${s[0]} — ${s[1]}`; }
+    else { const v = pick(V); [inf, , , aux, part, rest] = v; ru = vRu(v); }
+    const auxInf = aux === 'ist' ? 'sein' : 'haben';
+    return G(`Vorher ___ ${subj(p)} ${rest} ___. (${inf})`, `${praet(auxInf, p)} … ${part}`, `${ru} · ${P[p]} · раньше другого действия в прошлом`,
+      `Поставь «${inf}» в Plusquamperfekt: ${auxInf === 'sein' ? 'war' : 'hatte'} в нужной форме + Partizip II в конце (два пропуска)`);
+  }
+  /* Futur I: werden + инфинитив */
+  function genFutur() {
+    const p = persPick(), v = pick(V), adv = pick(['sicher', 'bestimmt', 'wohl']);
+    return G(`${S(p)} ___ morgen ${adv} ${v[5]} ___. (${v[0]})`, `${conj('werden', p)} … ${v[0]}`, `${vRu(v)} · ${P[p]} · ${adv === 'wohl' ? 'предположение' : 'обещание/намерение'}`,
+      `Поставь «${v[0]}» в Futur I: werden в нужной форме + инфинитив в конце (два пропуска)`);
+  }
+  /* dieser / diese / dieses */
+  const DIES = { nom: ['dieser', 'diese', 'dieses'], akk: ['diesen', 'diese', 'dieses'], dat: ['diesem', 'dieser', 'diesem'] };
+  function genDies() {
+    const n = pick(N.filter(x => /[tf]/.test(x[3]))), g = gi(n[0]), cas = pick(['nom', 'akk', 'dat']);
+    const frame = { nom: `___ ${n[1]} ist sehr teuer.`, akk: `Ich nehme ___ ${n[1]}.`, dat: `Was hältst du von ___ ${n[1]}?` }[cas];
+    const casName = { nom: 'Nominativ', akk: 'Akkusativ', dat: 'Dativ' }[cas];
+    const ans = DIES[cas][g];
+    return G(`${frame} (dieser)`, cas === 'nom' ? cap(ans) : ans, `${n[0]} ${n[1]} — ${n[2]} · ${casName}`, `Поставь «dieser» в нужную форму: окончание как у артикля (${ART.def[cas][g]} → ${ans}), ${casName}`);
+  }
+  const genAdjMix = () => (Math.random() < 0.5 ? genAdj('def') : genAdj('ein'))();
+
   /* ═════════════ темы → генераторы ═════════════ */
   window.SG_GEN = {
     sg01_konj: genConj(['ich', 'du', 'Sie'], true),
@@ -440,6 +467,36 @@
     sg4_10_adjbest: genAdj('def'),
     sg4_13_passiv: genPassiv,
     sg4_14_praet: genPraet,
+    /* «Deutsch – ABER HALLO!» (db/aberhallo_grammar.js) */
+    ah1_11_konj: genConj(PERS, true),
+    ah1_12_pron: genPronEr,
+    ah1_21_stark: genVokal,
+    ah1_22_artikel: genDer,
+    ah1_41_trenn: genSep,
+    ah1_42_akk: genAkk,
+    ah1_43_pronakk: genPron('akk'),
+    ah1_51_poss: genPoss(['ich', 'du', 'er', 'sie', 'wir', 'ihr', 'Sie']),
+    ah1_52_praet: genPraetSeinHaben,
+    ah1_62_pdat: genPron('dat'),
+    ah1_63_imp: genImp,
+    ah1_72_modal: genModal(['können', 'dürfen', 'müssen', 'sollen', 'wollen', 'möchten']),
+    ah1_73_pdat: genMit,
+    ah1_81_perf: genPerf(),
+    ah2_11_kausal: genSub('weil'),
+    ah2_13_modpraet: genPraetModal,
+    ah2_23_adjdekl: genAdjMix,
+    ah2_31_dass: genSub('dass'),
+    ah2_32_steig: genKomp,
+    ah2_33_refl: genRefl,
+    ah2_43_kond: genWenn,
+    ah2_51_k2: genK2,
+    ah2_52_wechsel: genWechsel,
+    ah2_53_aehnl: genStellen,
+    ah2_61_praet: genPraet,
+    ah2_63_plusq: genPlusq,
+    ah2_72_unbest: genIndef,
+    ah2_81_dies: genDies,
+    ah2_82_futur: genFutur,
   };
   // для проверок
   window.SG_GEN_TEST = { conj, praet, k2, possForm };
