@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260803w">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261125a">
 </head>
 <body>
 
@@ -35,6 +35,7 @@
       <a href="#" class="nav-link nav-prep" data-screen="prep"     data-i18n="nav_prep">Prüfung morgen</a>
       <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
       <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
+      <a href="#" class="nav-link"        data-screen="briefe"     data-i18n="nav_briefe">Briefe</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
       <a href="#" class="nav-link hidden" id="nav-admin" data-screen="admin">🛠 Админ</a>
@@ -417,6 +418,15 @@
       </div>
     </div>
 
+    <!-- BRIEFE (письма) -->
+    <div id="screen-briefe" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="briefe-back" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">✉️ <span data-i18n="briefe_title">Briefe</span></h2>
+      </div>
+      <div class="br-wrap" id="br-body"></div>
+    </div>
+
     <!-- PROFIL -->
     <div id="screen-profil" class="screen">
       <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
@@ -574,8 +584,10 @@
   <script src="db/notizen.js?v=20260803w"></script>
   <script src="db/aliases.js?v=20260803w"></script>
   <script src="db/dedupe.js?v=20260803w"></script>
-  <script src="db/changelog.js?v=20260803w"></script>
+  <script src="db/changelog.js?v=20261125a"></script>
   <script src="db/achievements.js?v=20260803w"></script>
-  <script src="assets/js/app.js?v=20261122a"></script>
+  <script src="assets/js/app.js?v=20261125a"></script>
+  <script src="db/letters.js?v=20261125a"></script>
+  <script src="assets/js/letters.js?v=20261125a"></script>
 </body>
 </html>
