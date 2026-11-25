@@ -1637,6 +1637,14 @@ function udToggleWord(wid, deckId) {
   p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; saveProg(p);
   return i < 0;
 }
+/* добавить несколько слов разом (к тем, что уже есть); возвращает, сколько добавлено */
+function udAddWords(id, ids) {
+  const p = loadProg(), d = udGet(id, p); if (!d) return 0;
+  const words = d.words.slice(), before = words.length;
+  ids.forEach(x => { if (!words.includes(x)) words.push(x); });
+  if (words.length !== before) { p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; p[UD_CUR] = { id, updatedAt: Date.now() }; saveProg(p); }
+  return words.length - before;
+}
 let UD_WIDX = null;
 function udWordIndex() {
   if (UD_WIDX) return UD_WIDX;
@@ -2226,6 +2234,7 @@ function renderSessionPicker(cat) {
   $('session-pick-search').placeholder = lstr('Suchen…','Поиск…','Пошук…');
   $('session-pick-all').textContent  = lstr('Alle','Все','Всі');
   $('session-pick-none').textContent = lstr('Keine','Ни одного','Жодного');
+  renderSessionUdSelect(cat);
   $('session-pick-list').innerHTML = words.map(w => {
     const tr = (lang==='uk' && window.TRANSLATIONS_UK && window.TRANSLATIONS_UK[w.id]) || w.translation;
     const art = w.article && w.article !== '-' ? `<span class="art-${w.article}">${w.article}</span> ` : '';
@@ -2242,6 +2251,16 @@ function updateSessionPickCount() {
   const n = document.querySelectorAll('#session-pick-list input:checked').length;
   $('session-pick-go').textContent = `${lstr('Ausgewählte lernen','Учить выбранные','Вчити вибрані')} (${n})`;
   $('session-pick-go').disabled = n === 0;
+  $('session-ud-add').textContent = `📌 ${lstr('In meine Karte','В мою карточку','До моєї картки')} (${n})`;
+  $('session-ud-add').disabled = n === 0;
+}
+/* выбор «моей карточки», куда добавить отмеченные слова (сама открытая карточка — не в списке) */
+function renderSessionUdSelect(cat) {
+  const p = loadProg(), cur = udCurId(p);
+  const list = udList(p).filter(d => !(cat && cat.category === 'ud_' + d.id));
+  $('session-ud-sel').innerHTML = list.map(d => `<option value="${d.id}" ${d.id === cur ? 'selected' : ''}>${escapeHtml(d.name)} (${d.words.length})</option>`).join('')
+    + `<option value="__new" ${list.length ? '' : 'selected'}>＋ ${list.length ? lstr('Neue Karte …','Новая карточка…','Нова картка…') : lstr('Neue Karte «Meine Wörter»','Новая карточка «Мои слова»','Нова картка «Мої слова»')}</option>`;
+  $('session-ud-msg').textContent = '';
 }
 
 function startSession(cat, overrideLimit) {
@@ -5487,6 +5506,19 @@ function initEvents() {
   $('session-pick-go').addEventListener('click', () => {
     const ids = [...document.querySelectorAll('#session-pick-list input:checked')].map(i => i.value);
     if (ids.length) goSessionSize(ids);
+  });
+  // 📌 отмеченные слова — в мою карточку (добавляются к уже лежащим там)
+  $('session-ud-add').addEventListener('click', () => {
+    const ids = [...document.querySelectorAll('#session-pick-list input:checked')].map(i => i.value);
+    if (!ids.length) return;
+    let id = $('session-ud-sel').value;
+    if (id === '__new') { id = udList().length ? udPromptCreate() : udCreate(); if (!id) return; }
+    const added = udAddWords(id, ids), d = udGet(id);
+    renderSessionUdSelect(S.pendingSessionCat);
+    $('session-ud-sel').value = id;
+    $('session-ud-msg').textContent = added
+      ? `✓ ${lstr(`${added} hinzugefügt zu «${d.name}» — jetzt ${d.words.length} Wörter`, `Добавлено ${added} в «${d.name}» — теперь там ${d.words.length} слов`, `Додано ${added} до «${d.name}» — тепер там ${d.words.length} слів`)}`
+      : lstr(`Diese Wörter sind schon in «${d.name}».`, `Эти слова уже есть в «${d.name}».`, `Ці слова вже є в «${d.name}».`);
   });
   $('session-size-modal-close').addEventListener('click', closeSessionSizeModal);
   $('session-size-modal').addEventListener('click', e => {

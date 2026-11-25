@@ -2784,3 +2784,8 @@ table.rt tbody tr:nth-child(even) td { background: rgba(255,255,255,.02); }
 .ud-new-tile small { color: var(--text-muted); font-size: 12px; }
 .ud-new-tile:hover { background: rgba(108,99,255,.15); border-color: var(--accent); }
 #karten-crumbs .btn-primary, #karten-crumbs .btn-secondary { padding: 6px 12px; font-size: 13px; }
+.ssm-ud-row { display: flex; gap: 8px; margin-top: 8px; }
+.ssm-ud-row .ud-sel { flex: 1; min-width: 0; padding: 8px 10px; }
+.ssm-ud-row .btn-secondary { white-space: nowrap; padding: 8px 12px; font-size: 13px; }
+.ssm-ud-row .btn-secondary:disabled { opacity: .5; cursor: not-allowed; }
+.ssm-ud-msg { font-size: 12.5px; color: var(--correct); margin-top: 6px; min-height: 1em; }
