@@ -1586,6 +1586,73 @@ function getFavoritesCategory(p = loadProg()) {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   МОИ КАРТОЧКИ — свои наборы слов (отмечаются кнопкой ＋ в поиске «Карточек»).
+   Каждая карточка — отдельный ключ прогресса: prog['ud_<id>'] = { name, emoji, words: [id], created, updatedAt },
+   удаление — { deleted: true, updatedAt }; текущая карточка (куда добавляет ＋) — prog['ud__cur'] = { id, updatedAt }.
+   Синхронизация сливает прогресс по ключам (свежая запись побеждает) — карточки не теряются между устройствами.
+══════════════════════════════════════════════════════════════ */
+const UD_CUR = 'ud__cur';
+function udList(p = loadProg()) {
+  return Object.keys(p).filter(k => k.startsWith('ud_') && k !== UD_CUR && p[k] && !p[k].deleted && Array.isArray(p[k].words))
+    .map(k => ({ id: k.slice(3), ...p[k] })).sort((a, b) => (a.created || 0) - (b.created || 0));
+}
+function udGet(id, p = loadProg()) { const r = id && p['ud_' + id]; return r && !r.deleted && Array.isArray(r.words) ? r : null; }
+function udCurId(p = loadProg()) {
+  const c = p[UD_CUR];
+  if (c && udGet(c.id, p)) return c.id;
+  const l = udList(p); return l.length ? l[l.length - 1].id : null;
+}
+function udSetCur(id) { const p = loadProg(); p[UD_CUR] = { id, updatedAt: Date.now() }; saveProg(p); }
+function udCreate(name) {
+  const p = loadProg(), id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6), now = Date.now();
+  p['ud_' + id] = { name: name || lstr('Meine Wörter', 'Мои слова', 'Мої слова'), emoji: '📌', words: [], created: now, updatedAt: now };
+  p[UD_CUR] = { id, updatedAt: now };
+  saveProg(p);
+  return id;
+}
+function udPromptCreate() {
+  const n = udList().length;
+  const name = prompt(lstr('Name der neuen Karte:', 'Название новой карточки:', 'Назва нової картки:'), n ? lstr(`Meine Wörter ${n + 1}`, `Мои слова ${n + 1}`, `Мої слова ${n + 1}`) : lstr('Meine Wörter', 'Мои слова', 'Мої слова'));
+  if (name === null) return null;
+  return udCreate(name.trim() || undefined);
+}
+function udRename(id) {
+  const p = loadProg(), d = udGet(id, p); if (!d) return false;
+  const name = prompt(lstr('Neuer Name:', 'Новое название:', 'Нова назва:'), d.name);
+  if (name === null || !name.trim()) return false;
+  p['ud_' + id] = { ...d, name: name.trim(), updatedAt: Date.now() }; saveProg(p); return true;
+}
+function udDelete(id) {
+  const p = loadProg(), d = udGet(id, p); if (!d) return false;
+  if (!confirm(lstr(`Karte «${d.name}» löschen? Die Wörter bleiben in ihren normalen Karten.`, `Удалить карточку «${d.name}»? Слова останутся в своих обычных карточках, прогресс не пропадёт.`, `Видалити картку «${d.name}»? Слова залишаться у своїх звичайних картках.`))) return false;
+  p['ud_' + id] = { deleted: true, updatedAt: Date.now() }; saveProg(p); return true;
+}
+/* ＋/✓ — добавить слово в текущую карточку или убрать; нет карточек — создаётся «Мои слова» */
+function udToggleWord(wid, deckId) {
+  let id = deckId || udCurId();
+  if (!id) id = udCreate();
+  const p = loadProg(), d = udGet(id, p); if (!d) return false;
+  const words = d.words.slice(), i = words.indexOf(wid);
+  if (i >= 0) words.splice(i, 1); else words.push(wid);
+  p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; saveProg(p);
+  return i < 0;
+}
+let UD_WIDX = null;
+function udWordIndex() {
+  if (UD_WIDX) return UD_WIDX;
+  UD_WIDX = new Map();
+  (window.VOCAB_DATA || []).forEach(c => (c.words || []).forEach(w => { if (!UD_WIDX.has(w.id)) UD_WIDX.set(w.id, { w, cat: c }); }));
+  return UD_WIDX;
+}
+/* виртуальная карточка для занятия */
+function udCategory(id, p = loadProg()) {
+  const d = udGet(id, p); if (!d) return null;
+  const idx = udWordIndex();
+  const words = d.words.map(x => idx.get(x)).filter(Boolean).map(e => e.w);
+  return { level: S.level, category: 'ud_' + id, name: d.name, name_ru: '', emoji: d.emoji || '📌', words, isVirtual: true, userDeck: true };
+}
+
+/* ══════════════════════════════════════════════════════════════
    ТЕМЫ (db/themes.js): категория → тема по ключу без суффикса _n/_v/_a/_o
 ══════════════════════════════════════════════════════════════ */
 const OTHER_THEME = { id: 'other', emoji: '📦', de: 'Sonstiges', ru: 'Другое', uk: 'Інше', cats: [] };
@@ -1659,17 +1726,19 @@ function makeCatCardHTML(cat, total, learned, p, opts = {}) {
   const resetBtn = virtual ? '' :
     `<button class="cat-reset-btn" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">↻</button>`;
   const fav = !virtual && isFav(cat, p);
-  const favBtn = virtual ? '' :
+  const favBtn = cat.userDeck
+    ? `<button class="cat-ud-btn cat-ud-edit" title="${lstr('Umbenennen','Переименовать','Перейменувати')}">✏️</button><button class="cat-ud-btn cat-ud-del" title="${lstr('Löschen','Удалить','Видалити')}">🗑</button>`
+    : virtual ? '' :
     `<button class="cat-fav-btn ${fav?'on':''}" title="${lstr('Jetzt lernen (markieren)','Отметить: учить сейчас','Позначити: вчити зараз')}">${fav?'★':'☆'}</button>`;
   return `
-    <div class="cat-card ${done?'cat-complete':''} ${fav?'cat-fav':''}" data-cat="${cat.category}" data-lvl="${cat.level}">
+    <div class="cat-card ${done?'cat-complete':''} ${fav?'cat-fav':''} ${cat.userDeck?'cat-ud':''}" data-cat="${cat.category}" data-lvl="${cat.level}">
       ${favBtn}${resetBtn}
       <span class="cat-emoji">${cat.emoji||'📁'}</span>
       ${opts.showLevel && !virtual ? `<div class="cat-level-chip">${cat.level}</div>` : ''}
       <span class="cat-name">${cat.name}${cat.name_ru?`<span class="cat-name-ru"> (${cat.name_ru})</span>`:''}</span>
       <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
       <div class="cat-stats">${t('cat_learned_txt',learned,total)}</div>
-      <div class="cat-words-preview">${preview}</div>
+      <div class="cat-words-preview">${preview || (cat.userDeck ? `<div class="cat-ud-empty">${lstr('Leer — füge Wörter in der Suche mit ＋ hinzu','Пусто — добавляй слова через поиск кнопкой ＋','Порожньо — додавай слова через пошук кнопкою ＋')}</div>` : '')}</div>
       <button class="cat-start-btn">${t('btn_start')}</button>
     </div>`;
 }
@@ -1680,9 +1749,18 @@ function attachCatEvents(container) {
     const key = card.dataset.cat, lvl = card.dataset.lvl;
     const resolve = () => key === 'deferred' ? getDeferredCategory()
                         : key === 'favorites' ? getFavoritesCategory()
+                        : key.startsWith('ud_') ? udCategory(key.slice(3))
                         : (window.VOCAB_DATA||[]).find(c => c.level === lvl && c.category === key);
     const open = () => { const c = resolve(); if (c && c.words) openSessionSizeModal(c); };
     card.querySelector('.cat-start-btn')?.addEventListener('click', e => { e.stopPropagation(); open(); });
+    if (key.startsWith('ud_')) {
+      // моя карточка: клик — открыть список слов, ▶ — учить, ✏️ — переименовать, 🗑 — удалить
+      const id = key.slice(3);
+      card.querySelector('.cat-ud-edit')?.addEventListener('click', e => { e.stopPropagation(); if (udRename(id)) rerenderCurrent(); });
+      card.querySelector('.cat-ud-del')?.addEventListener('click', e => { e.stopPropagation(); if (udDelete(id)) { if (S.kartenDeck === id) S.kartenDeck = null; rerenderCurrent(); } });
+      card.addEventListener('click', () => { S.kartenDeck = id; S.kartenSearch = ''; S.kartenTheme = null; S.kartenFavOnly = false; renderVocabScreen(); });
+      return;
+    }
     // ☆/★ — пометить «хочу учить сейчас»
     card.querySelector('.cat-fav-btn')?.addEventListener('click', e => {
       e.stopPropagation();
@@ -1718,6 +1796,7 @@ function openKarten(opts = {}) {
   S.kartenTheme   = opts.theme || null;
   S.kartenFavOnly = !!opts.fav;
   S.kartenSearch  = '';
+  S.kartenDeck    = opts.deck || null;
   renderVocabScreen();
 }
 
@@ -1763,27 +1842,105 @@ function renderKartenSearch(raw, wrap, crumbs, lvlOk, cards) {
   }
   let html = '';
   if (hits.length) {
-    html += `<h3 class="ks-h">🔤 ${lstr('Wörter', 'Слова', 'Слова')} <small>${hits.length}${hits.length > MAXW ? ' · ' + lstr(`die ersten ${MAXW}`, `показаны первые ${MAXW}`, `показано перші ${MAXW}`) : ''}</small></h3>
-      <div class="ks-words">${hits.slice(0, MAXW).map(({ w, cats: cs }) => {
-        const learned = p[w.id] && p[w.id].status === 'learned';
-        const tr = (lang === 'uk' && UK[w.id]) || w.translation || '';
-        return `<div class="ks-word ${learned ? 'learned' : ''}">
-          <div class="ks-w-main"><span class="art-${w.article}">${w.article && w.article !== '-' ? w.article : ''}</span> <b>${escapeHtml(w.word)}</b>
-            ${learned ? '<span class="ks-ok" title="выучено">✓</span>' : ''}<span class="ks-tr">— ${escapeHtml(tr)}</span></div>
-          <div class="ks-cats">${cs.slice(0, 4).map(c => `<button class="ks-cat" data-cat="${c.category}" data-lvl="${c.level}">${c.emoji || '📁'} ${escapeHtml(lstr(c.name, c.name_ru || c.name, c.name_uk || c.name_ru || c.name))}</button>`).join('')}
-            ${cs.length > 4 ? `<span class="ks-more">+${cs.length - 4}</span>` : ''}</div>
-        </div>`;
-      }).join('')}</div>`;
+    html += udBarHTML(p) + `<h3 class="ks-h">🔤 ${lstr('Wörter', 'Слова', 'Слова')} <small>${hits.length}${hits.length > MAXW ? ' · ' + lstr(`die ersten ${MAXW}`, `показаны первые ${MAXW}`, `показано перші ${MAXW}`) : ''}</small></h3>
+      <div class="ks-words">${hits.slice(0, MAXW).map(({ w, cats: cs }) => ksWordRow(w, cs, p)).join('')}</div>`;
   }
 
   if (byName.length) html += `<h3 class="ks-h">🗂️ ${lstr('Karten', 'Карточки', 'Картки')} <small>${byName.length}</small></h3><div class="categories-full-grid">` + cards(byName.slice(0, 40)) + '</div>';
   wrap.className = 'karten-search-results';
   wrap.innerHTML = html;
   attachCatEvents(wrap);
+  attachKsWordEvents(wrap);
+  attachUdBar(wrap);
+}
+
+/* строка найденного слова: ＋/✓ — в текущую «мою карточку», ниже — карточки, где слово есть */
+function ksWordRow(w, cs, p, deckId) {
+  const UK = window.TRANSLATIONS_UK || {};
+  const learned = p[w.id] && p[w.id].status === 'learned';
+  const tr = (lang === 'uk' && UK[w.id]) || w.translation || '';
+  const d = udGet(deckId || udCurId(p), p), inDeck = !!(d && d.words.includes(w.id));
+  const addTitle = d ? (inDeck ? lstr(`Aus «${d.name}» entfernen`, `Убрать из «${d.name}»`, `Прибрати з «${d.name}»`) : lstr(`Zu «${d.name}» hinzufügen`, `Добавить в «${d.name}»`, `Додати до «${d.name}»`))
+                     : lstr('Zu «Meine Wörter» hinzufügen', 'Добавить в свою карточку «Мои слова»', 'Додати до «Мої слова»');
+  return `<div class="ks-word ${learned ? 'learned' : ''} ${inDeck ? 'in-deck' : ''}">
+    <button class="ks-add ${inDeck ? 'on' : ''}" data-wid="${escapeHtml(w.id)}" title="${escapeHtml(addTitle)}">${inDeck ? '✓' : '＋'}</button>
+    <div class="ks-w-main"><span class="art-${w.article}">${w.article && w.article !== '-' ? w.article : ''}</span> <b>${escapeHtml(w.word)}</b>
+      ${learned ? '<span class="ks-ok" title="выучено">✓</span>' : ''}<span class="ks-tr">— ${escapeHtml(tr)}</span></div>
+    <div class="ks-cats">${cs.slice(0, 4).map(c => `<button class="ks-cat" data-cat="${c.category}" data-lvl="${c.level}">${c.emoji || '📁'} ${escapeHtml(lstr(c.name, c.name_ru || c.name, c.name_uk || c.name_ru || c.name))}</button>`).join('')}
+      ${cs.length > 4 ? `<span class="ks-more">+${cs.length - 4}</span>` : ''}</div>
+  </div>`;
+}
+function attachKsWordEvents(wrap, deckId, onChange) {
   wrap.querySelectorAll('.ks-cat').forEach(b => b.addEventListener('click', () => {
     const c = (window.VOCAB_DATA || []).find(x => x.level === b.dataset.lvl && x.category === b.dataset.cat);
     if (c) openSessionSizeModal(c);
   }));
+  wrap.querySelectorAll('.ks-add').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const hadDeck = !!udCurId();
+    const on = udToggleWord(b.dataset.wid, deckId);
+    if (onChange) { onChange(); return; }
+    if (!hadDeck) { renderVocabScreen(); return; }       // создана первая карточка — перерисовать плашку
+    b.classList.toggle('on', on); b.textContent = on ? '✓' : '＋';
+    b.closest('.ks-word').classList.toggle('in-deck', on);
+    updateUdBar();
+  }));
+}
+
+/* плашка над результатами поиска: в какую мою карточку добавляет ＋ */
+function udBarHTML(p = loadProg()) {
+  const list = udList(p), cur = udCurId(p), d = udGet(cur, p);
+  if (!list.length) return `<div class="ud-bar"><span>📌 ${lstr('Markiere Wörter mit ＋ — sie kommen in deine eigene Karte «Meine Wörter».', 'Отмечай слова кнопкой ＋ — они соберутся в твою личную карточку «Мои слова».', 'Позначай слова кнопкою ＋ — вони зберуться у твою картку «Мої слова».')}</span>
+    <button class="btn-secondary ud-new" id="ud-new">＋ ${lstr('Neue Karte', 'Новая карточка', 'Нова картка')}</button></div>`;
+  return `<div class="ud-bar"><span>📌 ${lstr('＋ fügt hinzu zu', '＋ добавляет в', '＋ додає до')}:</span>
+    <select id="ud-sel" class="ud-sel">${list.map(x => `<option value="${x.id}" ${x.id === cur ? 'selected' : ''}>${escapeHtml(x.name)} (${x.words.length})</option>`).join('')}
+      <option value="__new">＋ ${lstr('Neue Karte …', 'Новая карточка…', 'Нова картка…')}</option></select>
+    <span class="ud-count" id="ud-count">${d.words.length} ${lstr('Wörter', 'слов', 'слів')}</span>
+    <button class="btn-secondary" id="ud-open">📋 ${lstr('Ansehen', 'Открыть', 'Відкрити')}</button>
+    <button class="btn-primary" id="ud-learn" ${d.words.length ? '' : 'disabled'}>▶ ${lstr('Lernen', 'Учить', 'Вчити')}</button></div>`;
+}
+function updateUdBar() {
+  const p = loadProg(), d = udGet(udCurId(p), p); if (!d) return;
+  if ($('ud-count')) $('ud-count').textContent = `${d.words.length} ${lstr('Wörter', 'слов', 'слів')}`;
+  const opt = $('ud-sel') && $('ud-sel').selectedOptions[0];
+  if (opt && opt.value !== '__new') opt.textContent = `${d.name} (${d.words.length})`;
+  if ($('ud-learn')) $('ud-learn').disabled = !d.words.length;
+}
+function attachUdBar(wrap) {
+  $('ud-new')?.addEventListener('click', () => { if (udPromptCreate()) renderVocabScreen(); });
+  $('ud-sel')?.addEventListener('change', e => {
+    const v = e.target.value;
+    if (v === '__new') { udPromptCreate(); renderVocabScreen(); return; }
+    udSetCur(v); renderVocabScreen();
+  });
+  $('ud-open')?.addEventListener('click', () => { S.kartenDeck = udCurId(); S.kartenSearch = ''; renderVocabScreen(); });
+  $('ud-learn')?.addEventListener('click', () => { const c = udCategory(udCurId()); if (c && c.words.length) openSessionSizeModal(c); });
+}
+
+/* просмотр моей карточки: список слов, убрать ✓, учить, переименовать, удалить */
+function renderUdDeck(id, wrap, crumbs) {
+  const p = loadProg(), d = udGet(id, p);
+  if (!d) { S.kartenDeck = null; renderVocabScreen(); return; }
+  const idx = udWordIndex(), items = d.words.map(x => idx.get(x)).filter(Boolean);
+  const learned = items.filter(e => p[e.w.id] && p[e.w.id].status === 'learned').length;
+  crumbs.innerHTML = `<button class="karten-back" id="karten-back">← ${lstr('Alle Themen','Все темы','Усі теми')}</button>
+    <span class="karten-theme-h">${d.emoji || '📌'} ${escapeHtml(d.name)}</span>
+    <span class="ud-meta">${items.length} ${lstr('Wörter','слов','слів')} · ${learned} ${lstr('gelernt','выучено','вивчено')}</span>
+    <button class="btn-primary" id="ud-deck-learn" ${items.length ? '' : 'disabled'}>▶ ${lstr('Lernen','Учить','Вчити')}</button>
+    <button class="btn-secondary" id="ud-deck-cur" ${udCurId(p) === id ? 'disabled' : ''}>📌 ${udCurId(p) === id ? lstr('Aktuelle Karte','Текущая карточка','Поточна картка') : lstr('Als aktuelle wählen','Сделать текущей','Зробити поточною')}</button>
+    <button class="btn-secondary" id="ud-deck-ren">✏️</button>
+    <button class="btn-secondary" id="ud-deck-del">🗑</button>`;
+  $('karten-back').addEventListener('click', () => { S.kartenDeck = null; renderVocabScreen(); });
+  $('ud-deck-learn').addEventListener('click', () => { const c = udCategory(id); if (c && c.words.length) openSessionSizeModal(c); });
+  $('ud-deck-cur').addEventListener('click', () => { udSetCur(id); renderVocabScreen(); });
+  $('ud-deck-ren').addEventListener('click', () => { if (udRename(id)) renderVocabScreen(); });
+  $('ud-deck-del').addEventListener('click', () => { if (udDelete(id)) { S.kartenDeck = null; renderVocabScreen(); } });
+  wrap.className = 'karten-search-results';
+  wrap.innerHTML = items.length
+    ? `<div class="ud-hint">${lstr('✓ entfernt ein Wort aus dieser Karte. Neue Wörter fügst du über die Suche oben mit ＋ hinzu.', '✓ — убрать слово из карточки. Новые слова добавляй через поиск сверху кнопкой ＋.', '✓ — прибрати слово з картки. Нові слова додавай через пошук кнопкою ＋.')}</div>
+       <div class="ks-words">${items.map(e => ksWordRow(e.w, [e.cat], p, id)).join('')}</div>`
+    : `<div class="karten-empty">${lstr('Diese Karte ist noch leer. Suche oben ein Wort (z. B. «seit») und tippe auf ＋.', 'Карточка пока пустая. Найди слово в поиске сверху (например, «seit») и нажми ＋ — оно попадёт сюда.', 'Картка поки порожня. Знайди слово в пошуку (наприклад, «seit») і натисни ＋.')}</div>`;
+  attachKsWordEvents(wrap, id, () => renderVocabScreen());
 }
 
 function updateKartenFavChip() {
@@ -1803,7 +1960,7 @@ function renderVocabScreen() {
     + `<button class="vlf-btn vlf-fav ${S.kartenFavOnly?'active':''}"></button>`;
   updateKartenFavChip();
   filterWrap.querySelectorAll('.vlf-btn').forEach(btn => btn.addEventListener('click', () => {
-    if (btn.classList.contains('vlf-fav')) { S.kartenFavOnly = !S.kartenFavOnly; S.kartenTheme = null; }
+    if (btn.classList.contains('vlf-fav')) { S.kartenFavOnly = !S.kartenFavOnly; S.kartenTheme = null; S.kartenDeck = null; }
     else S.vocabFilter = btn.dataset.vf;
     renderVocabScreen();
   }));
@@ -1822,6 +1979,7 @@ function renderVocabScreen() {
   $('vocab-learned-section').innerHTML = '';
 
   if (q) { renderKartenSearch(q, wrap, crumbs, lvlOk, cards); return; }
+  if (S.kartenDeck) { renderUdDeck(S.kartenDeck, wrap, crumbs); return; }
 
   if (S.kartenFavOnly) {
     /* ─ только выбранные ─ */
@@ -1879,6 +2037,14 @@ function renderVocabScreen() {
   wrap.className = 'karten-themes-grid';
   const deferredCat = getDeferredCategory();
   let html = '';
+  // мои карточки — первыми, плюс плитка «＋ новая»
+  udList(p).forEach(d => {
+    const c = udCategory(d.id, p); if (!c) return;
+    const { total, learned } = catCounts(c, p);
+    html += makeCatCardHTML(c, total, learned, p);
+  });
+  html += `<button class="ud-new-tile" id="ud-new-tile"><span>📌</span><b>${lstr('Eigene Karte', 'Своя карточка', 'Своя картка')}</b>
+    <small>${lstr('Wörter über die Suche mit ＋ sammeln', 'собирай слова через поиск кнопкой ＋', 'збирай слова через пошук кнопкою ＋')}</small></button>`;
   if (deferredCat) {
     const { total, learned } = catCounts(deferredCat, p);
     html += makeCatCardHTML(deferredCat, total, learned, p);
@@ -1900,6 +2066,7 @@ function renderVocabScreen() {
   }).join('');
   wrap.innerHTML = html;
   attachCatEvents(wrap);
+  $('ud-new-tile')?.addEventListener('click', () => { const id = udPromptCreate(); if (id) { S.kartenDeck = id; renderVocabScreen(); } });
   wrap.querySelectorAll('.theme-tile').forEach(tile =>
     tile.addEventListener('click', () => { S.kartenTheme = tile.dataset.theme; renderVocabScreen(); window.scrollTo({ top: 0 }); }));
 
