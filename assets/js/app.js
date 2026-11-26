@@ -1097,7 +1097,10 @@ function updateWP(id, correct) {
     if (wp.status !== 'learned') wp.status = 'learning';
   }
   p[id] = wp; saveProg(p);
-  if (wp.status === 'learned' && isDeferred(id)) removeDeferred(id);   // выучено — уходит из «На потом» в свои карточки
+  if (wp.status === 'learned') {   // выучено — уходит из «На потом» и из своих карточек, считается в обычных
+    if (isDeferred(id)) removeDeferred(id);
+    udDropLearned();
+  }
   return wp;
 }
 
@@ -1636,12 +1639,24 @@ function udDelete(id) {
   if (!confirm(lstr(`Karte «${d.name}» löschen? Die Wörter bleiben in ihren normalen Karten.`, `Удалить карточку «${d.name}»? Слова останутся в своих обычных карточках, прогресс не пропадёт.`, `Видалити картку «${d.name}»? Слова залишаться у своїх звичайних картках.`))) return false;
   p['ud_' + id] = { deleted: true, updatedAt: Date.now() }; saveProg(p); return true;
 }
+/* выученные слова уходят из своих карточек (как из «На потом»); прогресс по ним остаётся в обычных карточках */
+const udIsLearned = (p, x) => !!(p[x] && p[x].status === 'learned');
+function udDropLearned(p = loadProg()) {
+  let changed = false;
+  udList(p).forEach(({ id, ...d }) => {
+    const words = d.words.filter(x => !udIsLearned(p, x));
+    if (words.length !== d.words.length) { p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; changed = true; }
+  });
+  if (changed) saveProg(p);
+  return changed;
+}
 /* ＋/✓ — добавить слово в текущую карточку или убрать; нет карточек — создаётся «Мои слова» */
 function udToggleWord(wid, deckId) {
   let id = deckId || udCurId();
   if (!id) id = udCreate();
   const p = loadProg(), d = udGet(id, p); if (!d) return false;
   const words = d.words.slice(), i = words.indexOf(wid);
+  if (i < 0 && udIsLearned(p, wid)) return false;   // выученное слово в свою карточку не кладём
   if (i >= 0) words.splice(i, 1); else words.push(wid);
   p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; saveProg(p);
   return i < 0;
@@ -1650,7 +1665,7 @@ function udToggleWord(wid, deckId) {
 function udAddWords(id, ids) {
   const p = loadProg(), d = udGet(id, p); if (!d) return 0;
   const words = d.words.slice(), before = words.length;
-  ids.forEach(x => { if (!words.includes(x)) words.push(x); });
+  ids.forEach(x => { if (!words.includes(x) && !udIsLearned(p, x)) words.push(x); });
   if (words.length !== before) { p['ud_' + id] = { ...d, words, updatedAt: Date.now() }; p[UD_CUR] = { id, updatedAt: Date.now() }; saveProg(p); }
   return words.length - before;
 }
@@ -1880,7 +1895,8 @@ function ksWordRow(w, cs, p, deckId) {
   const addTitle = d ? (inDeck ? lstr(`Aus «${d.name}» entfernen`, `Убрать из «${d.name}»`, `Прибрати з «${d.name}»`) : lstr(`Zu «${d.name}» hinzufügen`, `Добавить в «${d.name}»`, `Додати до «${d.name}»`))
                      : lstr('Zu «Meine Wörter» hinzufügen', 'Добавить в свою карточку «Мои слова»', 'Додати до «Мої слова»');
   return `<div class="ks-word ${learned ? 'learned' : ''} ${inDeck ? 'in-deck' : ''}">
-    <button class="ks-add ${inDeck ? 'on' : ''}" data-wid="${escapeHtml(w.id)}" title="${escapeHtml(addTitle)}">${inDeck ? '✓' : '＋'}</button>
+    ${learned && !inDeck ? `<span class="ks-add-off" title="${escapeHtml(lstr('Schon gelernt', 'Уже выучено — в свои карточки попадают только невыученные слова', 'Вже вивчено'))}">⭐</span>`
+      : `<button class="ks-add ${inDeck ? 'on' : ''}" data-wid="${escapeHtml(w.id)}" title="${escapeHtml(addTitle)}">${inDeck ? '✓' : '＋'}</button>`}
     <div class="ks-w-main"><span class="art-${w.article}">${w.article && w.article !== '-' ? w.article : ''}</span> <b>${escapeHtml(w.word)}</b>
       ${learned ? '<span class="ks-ok" title="выучено">✓</span>' : ''}<span class="ks-tr">— ${escapeHtml(tr)}</span></div>
     <div class="ks-cats">${cs.slice(0, 4).map(c => `<button class="ks-cat" data-cat="${c.category}" data-lvl="${c.level}">${c.emoji || '📁'} ${escapeHtml(lstr(c.name, c.name_ru || c.name, c.name_uk || c.name_ru || c.name))}</button>`).join('')}
@@ -1967,6 +1983,7 @@ function updateKartenFavChip() {
 
 function renderVocabScreen() {
   show('wortschatz');
+  udDropLearned();   // слова, выученные раньше или на другом устройстве
   const p = loadProg();
 
   /* ─ фильтр уровней + «★ Выбранные» ─ */

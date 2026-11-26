@@ -2741,6 +2741,7 @@ table.rt.br-ph td { white-space: normal; text-align: left; overflow-wrap: break-
 }
 .ks-add:hover { color: var(--text); border-color: var(--accent); transform: scale(1.08); }
 .ks-add.on { color: #fff; border-color: transparent; background: var(--accent); box-shadow: 0 2px 10px rgba(108,99,255,.45); }
+.ks-add-off { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 15px; opacity: .55; cursor: default; }
 .ks-word.in-deck { border-color: rgba(108,99,255,.55); }
 .ud-bar {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 4px; padding: 10px 14px;
