@@ -944,15 +944,28 @@ function buildWordCache() {
 function loadProg()   { try { return JSON.parse(localStorage.getItem(P().key)||'{}'); } catch { return {}; } }
 function saveProg(p)  { localStorage.setItem(P().key, JSON.stringify(p)); queueCloudSync(); }
 
-/* ── Отложенные на потом ── */
+/* ── Отложенные на потом ──
+   Список id — в dl_defer_<профиль>. В облаке списки устройств объединяются, поэтому каждое
+   действие ещё пишется в прогресс: dfr_<id> = { on, updatedAt } (более свежая запись побеждает),
+   и при синхронизации из списка убираются слова с on:false (вернули) и выученные.
+   Выученное слово уходит из «На потом» и снова считается в карточках, где оно было. */
+const dfrKey = id => 'dfr_' + id;
 function loadDeferred()    { try { return JSON.parse(localStorage.getItem(P().deferKey)||'[]'); } catch { return []; } }
 function saveDeferred(arr) { localStorage.setItem(P().deferKey, JSON.stringify([...new Set(arr)])); queueCloudSync(); }
 function isDeferred(id)    { return loadDeferred().includes(id); }
-function addDeferred(id)   { const a = loadDeferred(); a.push(id); saveDeferred(a); }
-function removeDeferred(id){ saveDeferred(loadDeferred().filter(x => x !== id)); }
+function markDeferred(id, on) { const p = loadProg(); p[dfrKey(id)] = { on, updatedAt: Date.now() }; saveProg(p); }
+function addDeferred(id)   { const a = loadDeferred(); a.push(id); saveDeferred(a); markDeferred(id, true); }
+function removeDeferred(id){ saveDeferred(loadDeferred().filter(x => x !== id)); markDeferred(id, false); }
+/* слово больше не «на потом»: выучено или его вернули (в т.ч. на другом устройстве) */
+function deferDropped(p, id) { const r = p[dfrKey(id)]; return !!((p[id] && p[id].status === 'learned') || (r && r.on === false)); }
+function pruneDeferred(p = loadProg()) {
+  const a = loadDeferred(), keep = a.filter(id => !deferDropped(p, id));
+  if (keep.length !== a.length) saveDeferred(keep);
+  return keep;
+}
 /* виртуальная категория из отложенных слов */
 function getDeferredCategory() {
-  const ids = loadDeferred();
+  const ids = pruneDeferred();
   if (!ids.length) return null;
   const words = [], seen = new Set();   // слово учебника может лежать и в основной карточке — без дублей
   (window.VOCAB_DATA||[]).forEach(cat => (cat.words||[]).forEach(w => {
@@ -1083,7 +1096,9 @@ function updateWP(id, correct) {
     wp.wrong++; wp.streak = 0;
     if (wp.status !== 'learned') wp.status = 'learning';
   }
-  p[id] = wp; saveProg(p); return wp;
+  p[id] = wp; saveProg(p);
+  if (wp.status === 'learned' && isDeferred(id)) removeDeferred(id);   // выучено — уходит из «На потом» в свои карточки
+  return wp;
 }
 
 /* Сброс всех ранее «выученных» слов — теперь выученным считается только после 3x печатного теста */
@@ -1113,12 +1128,6 @@ function resetLearnedWords() {
    синхронизация не подмешала обратно старое "выучено" (см. mergeWordMap) */
 function freshResetWP() {
   return { streak:0, total:0, wrong:0, status:'new', seen:null, updatedAt: Date.now() };
-}
-/* Сбросить прогресс одного слова (снова "новое") */
-function resetWord(id) {
-  const p = loadProg();
-  if (p[id]) { p[id] = freshResetWP(); saveProg(p); }
-  removeDeferred(id);
 }
 /* Сбросить прогресс всей категории */
 function resetCategory(catKey, level) {
@@ -1984,7 +1993,6 @@ function renderVocabScreen() {
   const q = (S.kartenSearch || '').trim();
   $('karten-search-clear').classList.toggle('hidden', !S.kartenSearch);
   wrap.className = 'categories-full-grid';
-  $('vocab-learned-section').innerHTML = '';
 
   if (q) { renderKartenSearch(q, wrap, crumbs, lvlOk, cards); return; }
   if (S.kartenDeck) { renderUdDeck(S.kartenDeck, wrap, crumbs); return; }
@@ -2078,48 +2086,6 @@ function renderVocabScreen() {
   wrap.querySelectorAll('.theme-tile').forEach(tile =>
     tile.addEventListener('click', () => { S.kartenTheme = tile.dataset.theme; renderVocabScreen(); window.scrollTo({ top: 0 }); }));
 
-  /* ─ выученные слова — только в обзоре ─ */
-  renderVocabLearned();
-}
-
-function renderVocabLearned() {
-  const section = $('vocab-learned-section');
-  const p       = loadProg();
-  const allCats = S.vocabFilter==='all' ? (window.VOCAB_DATA||[]) : (window.VOCAB_DATA||[]).filter(c=>c.level===S.vocabFilter);
-  const learnedWords = [], seenL = new Set();
-  allCats.forEach(cat => cat.words.forEach(w => {
-    if (seenL.has(w.id)) return; seenL.add(w.id);
-    if (p[w.id]&&p[w.id].status==='learned') learnedWords.push({...w, catEmoji: cat.emoji});
-  }));
-  if (!learnedWords.length) { section.innerHTML=''; return; }
-  const title = lstr('⭐ Gelernte Wörter','⭐ Выученные слова','⭐ Вивчені слова');
-  const hint  = lstr('Tippe ✕ um ein Wort zurückzusetzen','Нажми ✕ чтобы сбросить слово','Натисни ✕ щоб скинути слово');
-  section.innerHTML = `
-    <h3 class="vocab-learned-title">${title} <span class="vl-hint">— ${hint}</span></h3>
-    <div class="vocab-learned-grid">
-      ${learnedWords.map(w=>`
-        <div class="vl-word-card" data-wid="${w.id}" data-word="${w.word}">
-          <button class="vl-reset" title="${lstr('Zurücksetzen','Сбросить','Скинути')}">✕</button>
-          <span class="vl-emoji">${EMOJI[w.word]||w.catEmoji||'📝'}</span>
-          <span class="vl-art art-${w.article}">${w.article!=='-'?w.article:''}</span>
-          <span class="vl-word">${w.word} <button class="vl-speak" title="🔊">🔊</button></span>
-          <span class="vl-translit">[${w.translit || deTranscribe(w.word)}]</span>
-          <span class="vl-trans">${(lang==='uk'&&window.TRANSLATIONS_UK&&window.TRANSLATIONS_UK[w.id])||w.translation}</span>
-        </div>`).join('')}
-    </div>`;
-  section.querySelectorAll('.vl-reset').forEach(btn =>
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const id = btn.closest('.vl-word-card').dataset.wid;
-      resetWord(id);
-      renderVocabLearned();
-      refreshOverallBar();
-    }));
-  section.querySelectorAll('.vl-speak').forEach(btn =>
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      speakWord(btn.closest('.vl-word-card').dataset.word);
-    }));
 }
 
 /* ══════════════════════════════════════════════════════════════

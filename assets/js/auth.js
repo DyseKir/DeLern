@@ -97,11 +97,20 @@ function mergePet(a, b) {
   if (!b) return a;
   return { clicks: Math.max(a.clicks || 0, b.clicks || 0), hatched: !!(a.hatched || b.hatched) };
 }
+/* «На потом»: списки объединяются, но слово убирается, если оно выучено
+   или его вернули (запись dfr_<id> с on:false новее записи on:true) */
+function deferDroppedIn(prog, id) {
+  const r = prog['dfr_' + id];
+  return !!((prog[id] && prog[id].status === 'learned') || (r && r.on === false));
+}
 function mergeProgressBlobs(local, cloud) {
   local = local || {}; cloud = cloud || {};
+  const prog = (m => (applyIdAliases(m), m))(mergeWordMap(local.prog, cloud.prog));
+  const aliases = (typeof window !== 'undefined' && window.ID_ALIASES) || {};
   return {
-    prog:  (m => (applyIdAliases(m), m))(mergeWordMap(local.prog, cloud.prog)),
-    defer: mergeArrayLog(local.defer, cloud.defer).map(id => ((typeof window !== 'undefined' && window.ID_ALIASES) || {})[id] || id).filter((id, i, arr) => arr.indexOf(id) === i),
+    prog,
+    defer: mergeArrayLog(local.defer, cloud.defer).map(id => aliases[id] || id).filter((id, i, arr) => arr.indexOf(id) === i)
+      .filter(id => !deferDroppedIn(prog, id)),
     mem:   mergeArrayLog(local.mem, cloud.mem),
     used:  mergeArrayLog(local.used, cloud.used),
     shop:  mergeArrayLog(local.shop, cloud.shop),
