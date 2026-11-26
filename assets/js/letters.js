@@ -2,25 +2,46 @@
    ПИСЬМА (db/letters.js): две вкладки
      📖 Образцы  — задание + готовое письмо + полезные фразы
      ✍️ Написать — своё письмо по заданию, проверка по правилам экзамена
-   Фильтры: тип (неофициальное / официальное), уровень, тема (или 🎲 случайная).
-   Каждое «генерирование» подставляет новые имена (друг, адресат, автор).
-   Прогресс: prog['br_<id>'] = { best, n, updatedAt }; черновик — localStorage.
+   Темы и формат — экзамены BAMF: DTZ (уровни A1–B1) и DTB B1, см. LETTER_FORMATS.
+   Уровень A1 / A2 / B1: у каждой темы DTZ свой образец для каждого уровня (LETTER_LEVEL_MODELS),
+   DTB B1 — только B1. Фильтры: уровень, экзамен, тип (du / Sie), тема (или 🎲 случайная).
+   Каждое «генерирование» подставляет новые имена и пол адресата.
+   Прогресс: prog['br_<id>_<уровень>'] = { best, n, updatedAt }; черновик — localStorage.
 ══════════════════════════════════════════════════════════════ */
-const BR = { tab: 'models', type: 'any', level: 'any', topic: 'random', inst: null, showRu: false, checked: null };
+const BR = { tab: 'models', type: 'any', ex: 'any', level: brLoadLevel(), topic: 'random', inst: null, showRu: false, checked: null, topicsOpen: false };
+function brLoadLevel() { try { const v = localStorage.getItem('dl_br_level'); return ['A1', 'A2', 'B1'].includes(v) ? v : 'A2'; } catch { return 'A2'; } }
+function brSaveLevel(v) { try { localStorage.setItem('dl_br_level', v); } catch {} }
 
 const BR_FRIENDS = [['Anna', 'f'], ['Lena', 'f'], ['Sophie', 'f'], ['Maria', 'f'], ['Julia', 'f'], ['Eva', 'f'], ['Clara', 'f'],
   ['Tom', 'm'], ['Max', 'm'], ['Paul', 'm'], ['Jonas', 'm'], ['Lukas', 'm'], ['David', 'm'], ['Felix', 'm']];
 const BR_SURN = ['Becker', 'Schneider', 'Fischer', 'Weber', 'Wagner', 'Hoffmann', 'Schulz', 'Koch', 'Richter', 'Wolf', 'Neumann', 'Braun'];
 const BR_ME = ['Alex', 'Sascha', 'Kim', 'Robin', 'Nika', 'Mika'];
+const BR_EXAMS = [['dtz', '🏛️ DTZ'], ['dtb1', '💼 DTB B1']];
+const BR_LEVELS = ['A1', 'A2', 'B1'];
 const brPick = a => a[Math.floor(Math.random() * a.length)];
-const brTasks = () => window.LETTER_TASKS || [];
-
-function brFiltered() {
-  return brTasks().filter(t => (BR.type === 'any' || t.type === BR.type) && (BR.level === 'any' || t.level === BR.level));
+const brFmt = t => ((window.LETTER_FORMATS || {})[t && t.fmt]) || {};
+/* задания + данные формата (слова, уровень, экзамен) */
+function brTasks() {
+  const T = window.LETTER_TASKS || [];
+  if (!T._norm) {
+    T.forEach(t => { const f = brFmt(t); t.words = t.words || f.words || [60, 100]; t.level = t.level || f.level || 'B1'; t.levels = f.levels || [t.level]; t.ex = f.ex || 'dtz'; t.exam = t.exam || `${f.exam || ''} · ${f.part || ''}`; });
+    T._norm = true;
+  }
+  return T;
 }
 
-/* новое задание: тема + случайные имена */
-function brGenerate(id) {
+function brFiltered() {
+  return brTasks().filter(t => t.levels.includes(BR.level) && (BR.type === 'any' || t.type === BR.type) && (BR.ex === 'any' || t.ex === BR.ex));
+}
+/* задание на выбранном уровне: свой образец, объём и ключ прогресса */
+function brAtLevel(t, L) {
+  const f = brFmt(t), lv = t.levels.includes(L) ? L : t.level;
+  const lm = ((window.LETTER_LEVEL_MODELS || {})[t.id] || {})[lv];
+  return Object.assign({}, t, { level: lv, words: (f.wordsBy && f.wordsBy[lv]) || t.words, model: lm || t.model, key: t.id + '_' + lv });
+}
+
+/* новое задание: тема + случайные имена и пол адресата */
+function brGenerate(id, keepVars) {
   const pool = brFiltered();
   let task = id ? brTasks().find(t => t.id === id) : null;
   if (!task) {
@@ -28,17 +49,24 @@ function brGenerate(id) {
     task = brPick(others.length ? others : pool);
   }
   if (!task) { BR.inst = null; return; }
+  task = brAtLevel(task, BR.level);
+  if (keepVars && BR.inst && BR.inst.task.id === task.id) { BR.inst = { task, vars: BR.inst.vars }; BR.checked = null; return; }
   const fr = brPick(BR_FRIENDS), sn = brPick(BR_SURN), g = Math.random() < 0.5 ? 'f' : 'm', me = brPick(BR_ME), meS = brPick(BR_SURN.filter(s => s !== sn));
+  const kv = brPick(BR_FRIENDS.filter(f => f[1] === g && f[0] !== fr[0]))[0];
   const vars = {
-    NAME: fr[0], LIEBE: fr[1] === 'f' ? 'Liebe' : 'Lieber',
-    NN: (g === 'f' ? 'Frau ' : 'Herr ') + sn,
+    NAME: fr[0], LIEBE: fr[1] === 'f' ? 'Liebe' : 'Lieber', FG: fr[1], G: g,
+    NN: (g === 'f' ? 'Frau ' : 'Herr ') + sn, NNA: (g === 'f' ? 'Frau ' : 'Herrn ') + sn,
     ANREDE: task.to === 'org' ? 'Sehr geehrte Damen und Herren' : (g === 'f' ? 'Sehr geehrte Frau ' : 'Sehr geehrter Herr ') + sn,
+    KUNDE: `${kv} ${sn}`,
     ICH: me, ICHV: `${me} ${meS}`,
   };
   BR.inst = { task, vars };
   BR.checked = null;
 }
-const brFill = (s, v) => String(s || '').replace(/\{(\w+)\}/g, (m, k) => v[k] != null ? v[k] : m);
+/* {=жен|муж} — по полу адресата, {~жен|муж} — по полу друга/коллеги, {KEY} — подстановка */
+const brFill = (s, v) => String(s || '')
+  .replace(/\{([=~])([^|{}]*)\|([^{}]*)\}/g, (m, k, f, ma) => ((k === '=' ? v.G : v.FG) === 'f' ? f : ma))
+  .replace(/\{(\w+)\}/g, (m, k) => v[k] != null ? v[k] : m);
 
 /* ── черновики и прогресс ── */
 const brDraftKey = id => 'dl_brdraft_' + P().key + '_' + id;
@@ -54,59 +82,90 @@ function brSaveResult(id, pct) {
 /* ══════════════ экран ══════════════ */
 function renderLettersScreen() {
   show('briefe');
-  if (!BR.inst || !brFiltered().some(t => t.id === BR.inst.task.id)) brGenerate(BR.topic !== 'random' ? BR.topic : null);
+  if (!BR.inst || BR.inst.task.level !== BR.level || !brFiltered().some(t => t.id === BR.inst.task.id)) brGenerate(BR.topic !== 'random' ? BR.topic : null);
   const body = $('br-body');
   const chip = (k, v, label, on) => `<button class="sc-chip ${on ? 'active' : ''}" data-k="${k}" data-v="${v}">${label}</button>`;
+  const tChip = t => chip('topic', t.id, `${t.emoji} ${escapeHtml(lstr(t.de, t.ru, t.ru))}${brProg(t.id + '_' + BR.level) ? ' ✓' : ''}`, BR.topic === t.id);
   const pool = brFiltered();
-  const done = brTasks().filter(t => brProg(t.id)).length;
+  const done = pool.filter(t => brProg(t.id + '_' + BR.level)).length;
+  const cur = BR.topic !== 'random' ? pool.find(t => t.id === BR.topic) : null;
+  const groups = (window.LETTER_AREAS || []).map(a => {
+    const ts = pool.filter(t => t.area === a.id);
+    return ts.length ? `<div class="br-area"><div class="br-area-h">${a.emoji} ${escapeHtml(lstr(a.de, a.ru, a.uk))} <small>${ts.length}</small></div><div class="sc-chips">${ts.map(tChip).join('')}</div></div>` : '';
+  }).join('');
   body.innerHTML = `
     <div class="br-tabs">
       <button class="vlf-btn ${BR.tab === 'models' ? 'active' : ''}" data-tab="models">📖 ${lstr('Musterbriefe', 'Готовые письма', 'Готові листи')}</button>
       <button class="vlf-btn ${BR.tab === 'write' ? 'active' : ''}" data-tab="write">✍️ ${lstr('Selbst schreiben', 'Написать своё', 'Написати своє')}</button>
     </div>
-    <div class="sg-intro">${BR.tab === 'models'
-      ? lstr('Aufgaben wie in den echten Prüfungen (Goethe A1–B1, telc DTZ) mit Musterlösung und nützlichen Redemitteln.',
-        'Задания как на настоящих экзаменах (Goethe A1–B1, telc DTZ) — с образцом письма и полезными фразами.', 'Завдання як на справжніх іспитах (Goethe A1–B1, telc DTZ) — зі зразком листа й корисними фразами.')
-      : lstr('Schreib deinen Brief zur Aufgabe — die Prüfung zeigt Länge, Anrede, Gruß, du/Sie, alle Punkte, Kommas und Großschreibung. Danach siehst du den Musterbrief.',
-        'Напиши своё письмо по заданию — проверка покажет длину, обращение, прощание, du/Sie, все ли пункты раскрыты, запятые и заглавные буквы. После проверки увидишь образец.',
-        'Напиши свій лист за завданням — перевірка покаже довжину, звертання, прощання, du/Sie, чи розкрито всі пункти, коми й великі літери.')}
-      <div class="sg-total">${lstr('Geschrieben', 'Написано писем по темам', 'Написано листів за темами')}: <b>${done} / ${brTasks().length}</b></div></div>
+    <div class="sg-intro">${lstr('Themen und Format aus den BAMF-Prüfungen: <b>DTZ</b> (Deutsch-Test für Zuwanderer, Integrationskurs, A2–B1) und <b>DTB B1</b> (Deutsch-Test für den Beruf) — nach dem offiziellen Prüfungshandbuch und den Übungstests. Jede DTZ-Aufgabe gibt es für A1, A2 und B1.',
+        'Темы и формат — из экзаменов BAMF: <b>DTZ</b> (Deutsch-Test für Zuwanderer — итог интеграционного курса, A2–B1) и <b>DTB B1</b> (Deutsch-Test für den Beruf — профессиональный курс), по официальному Prüfungshandbuch и пробным тестам. Каждое задание DTZ есть для уровней A1, A2 и B1.',
+        'Теми й формат — з іспитів BAMF: <b>DTZ</b> (Deutsch-Test für Zuwanderer — підсумок інтеграційного курсу, A2–B1) і <b>DTB B1</b> (Deutsch-Test für den Beruf — професійний курс), за офіційним Prüfungshandbuch і пробними тестами. Кожне завдання DTZ є для рівнів A1, A2 і B1.')}
+      <div class="br-note">${BR.tab === 'models'
+      ? lstr('Aufgabe wie in der Prüfung, Musterbrief und nützliche Redemittel.', 'Задание как на экзамене, образец письма и полезные фразы.', 'Завдання як на іспиті, зразок листа й корисні фрази.')
+      : lstr('Schreib deinen Brief — die Prüfung zeigt Länge, Anrede, Gruß, du/Sie, alle Punkte, Kommas und Großschreibung. Danach siehst du den Musterbrief.',
+        'Напиши своё письмо — проверка покажет длину, обращение, прощание, du/Sie, все ли пункты раскрыты, запятые и заглавные буквы. После проверки увидишь образец.',
+        'Напиши свій лист — перевірка покаже довжину, звертання, прощання, du/Sie, чи розкрито всі пункти, коми й великі літери.')}</div>
+      <div class="sg-total">${lstr('Geschrieben', 'Написано писем по темам', 'Написано листів за темами')} (${BR.level}): <b>${done} / ${pool.length}</b></div></div>
     <div class="sent-cfg br-cfg">
+      <div class="sc-row"><span class="sc-label">${lstr('Niveau', 'Уровень', 'Рівень')}</span><div class="sc-chips">
+        ${BR_LEVELS.map(l => chip('level', l, l, BR.level === l)).join('')}</div></div>
+      ${BR.level === 'B1' ? `<div class="sc-row"><span class="sc-label">${lstr('Prüfung (BAMF)', 'Экзамен BAMF', 'Іспит BAMF')}</span><div class="sc-chips">
+        ${chip('ex', 'any', lstr('Alle', 'Все', 'Усі'), BR.ex === 'any')}
+        ${BR_EXAMS.map(e => chip('ex', e[0], e[1], BR.ex === e[0])).join('')}</div></div>` : ''}
       <div class="sc-row"><span class="sc-label">${lstr('Art des Briefes', 'Тип письма', 'Тип листа')}</span><div class="sc-chips">
         ${chip('type', 'any', '🔀 ' + lstr('Egal', 'Любое', 'Будь-який'), BR.type === 'any')}
-        ${chip('type', 'inf', '👋 ' + lstr('Informell (Freund)', 'Неофициальное (другу)', 'Неофіційний (другу)'), BR.type === 'inf')}
-        ${chip('type', 'form', '🎩 ' + lstr('Formell', 'Официальное', 'Офіційний'), BR.type === 'form')}</div></div>
-      <div class="sc-row"><span class="sc-label">${lstr('Niveau', 'Уровень', 'Рівень')}</span><div class="sc-chips">
-        ${chip('level', 'any', lstr('Alle', 'Все', 'Усі'), BR.level === 'any')}
-        ${['A1', 'A2', 'B1'].map(l => chip('level', l, l, BR.level === l)).join('')}</div></div>
+        ${chip('type', 'inf', '👋 ' + lstr('Informell (du)', 'Неофициальное (на du)', 'Неофіційний (на du)'), BR.type === 'inf')}
+        ${chip('type', 'form', '🎩 ' + lstr('Formell (Sie)', 'Официальное (на Sie)', 'Офіційний (на Sie)'), BR.type === 'form')}</div></div>
       <div class="sc-row"><span class="sc-label">${lstr('Thema', 'Тема', 'Тема')}</span><div class="sc-chips">
         ${chip('topic', 'random', '🎲 ' + lstr('Zufällig', 'Случайная', 'Випадкова'), BR.topic === 'random')}
-        ${pool.map(t => chip('topic', t.id, `${t.emoji} ${escapeHtml(lstr(t.de, t.ru, t.ru))}${brProg(t.id) ? ' ✓' : ''}`, BR.topic === t.id)).join('')}</div></div>
+        ${cur ? tChip(cur) : ''}</div></div>
+      <details class="br-topics" ${BR.topicsOpen ? 'open' : ''}><summary>📋 ${lstr('Thema aus der Liste wählen', 'Выбрать тему из списка', 'Вибрати тему зі списку')} (${pool.length})</summary>${groups}</details>
       <button class="btn-primary br-gen" id="br-gen">🎲 ${lstr('Neue Aufgabe generieren', 'Сгенерировать задание', 'Згенерувати завдання')}</button>
     </div>
     <div id="br-main"></div>`;
   body.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => { BR.tab = b.dataset.tab; BR.checked = null; renderLettersScreen(); }));
+  const det = body.querySelector('.br-topics');
+  det.addEventListener('toggle', () => { BR.topicsOpen = det.open; });
   body.querySelectorAll('.br-cfg .sc-chip').forEach(b => b.addEventListener('click', () => {
     const k = b.dataset.k, v = b.dataset.v;
     BR[k] = v;
-    if (k === 'topic') brGenerate(v === 'random' ? null : v);
-    else { if (BR.topic !== 'random' && !brFiltered().some(t => t.id === BR.topic)) BR.topic = 'random'; brGenerate(BR.topic === 'random' ? null : BR.topic); }
+    if (k === 'topic') { BR.topicsOpen = false; brGenerate(v === 'random' ? null : v); }
+    else if (k === 'level') {   // та же тема — на другом уровне (если она есть на этом уровне)
+      brSaveLevel(v); if (v !== 'B1') BR.ex = 'any';
+      if (BR.topic !== 'random' && !brFiltered().some(t => t.id === BR.topic)) BR.topic = 'random';
+      const keep = BR.inst && brFiltered().some(t => t.id === BR.inst.task.id) ? BR.inst.task.id : null;
+      brGenerate(BR.topic !== 'random' ? BR.topic : keep, true);
+    } else { if (BR.topic !== 'random' && !brFiltered().some(t => t.id === BR.topic)) BR.topic = 'random'; brGenerate(BR.topic === 'random' ? null : BR.topic); }
     renderLettersScreen();
   }));
   $('br-gen').addEventListener('click', () => { brGenerate(BR.topic === 'random' ? null : BR.topic); renderLettersScreen(); });
   brRenderMain();
 }
 
+function brMailsHtml(task, vars) {
+  return (task.mails || []).map(m => m.chat
+    ? `<div class="br-chat"><div class="br-chat-from">💬 ${escapeHtml(brFill(m.from, vars))}</div><div class="br-chat-b">${escapeHtml(brFill(m.text, vars))}</div></div>`
+    : `<div class="br-mail"><div class="br-mail-h"><div><b>${lstr('Von', 'От', 'Від')}:</b> ${escapeHtml(brFill(m.from, vars))}</div><div><b>${lstr('Betreff', 'Тема', 'Тема')}:</b> ${escapeHtml(brFill(m.subj, vars))}</div></div><div class="br-mail-b">${escapeHtml(brFill(m.text, vars))}</div></div>`).join('');
+}
 function brTaskCard() {
   const { task, vars } = BR.inst;
+  const f = brFmt(task), hid = BR.showRu ? '' : 'hidden';
   const typeL = task.type === 'inf' ? '👋 ' + lstr('informell · du', 'неофициальное · du', 'неофіційний · du') : '🎩 ' + lstr('formell · Sie', 'официальное · Sie', 'офіційний · Sie');
   return `<div class="br-task">
-    <div class="br-badges"><span>${task.level}</span><span>${escapeHtml(task.exam)}</span><span>${typeL}</span><span>📏 ${task.words[0]}–${task.words[1]} ${lstr('Wörter', 'слов', 'слів')}</span></div>
+    <div class="br-badges"><span class="br-b-ex">${escapeHtml(f.exam || '')}</span><span class="br-b-lv">${lstr('Niveau', 'уровень', 'рівень')} ${task.level}</span><span>${escapeHtml(f.part || '')}</span><span>${typeL}</span><span>📏 ${task.words[0]}–${task.words[1]} ${lstr('Wörter', 'слов', 'слів')}</span>${f.time ? `<span>⏱ ${f.time} ${lstr('Min.', 'мин', 'хв')}${f.timeNote ? ` (${lstr(f.timeNote_de || f.timeNote, f.timeNote, f.timeNote)})` : ''}</span>` : ''}</div>
     <h3 class="br-title">${task.emoji} ${escapeHtml(task.de)} <small>· ${escapeHtml(task.ru)}</small></h3>
     <div class="br-sit">${escapeHtml(brFill(task.sit_de, vars))}</div>
-    <div class="br-sit-ru ${BR.showRu ? '' : 'hidden'}">${escapeHtml(brFill(task.sit_ru, vars))}</div>
-    <ol class="br-points">${task.points.map(p => `<li><b>${escapeHtml(brFill(p.de, vars))}</b><span class="br-sit-ru ${BR.showRu ? '' : 'hidden'}"> — ${escapeHtml(brFill(p.ru, vars))}</span></li>`).join('')}</ol>
-    <button class="btn-secondary br-ru-btn" id="br-ru">${BR.showRu ? lstr('Übersetzung ausblenden', 'Скрыть перевод', 'Сховати переклад') : lstr('Übersetzung zeigen', 'Показать перевод задания', 'Показати переклад')}</button>
+    <div class="br-sit-ru ${hid}">${escapeHtml(brFill(task.sit_ru, vars))}</div>
+    ${brMailsHtml(task, vars)}
+    ${f.instr_de ? `<div class="br-instr">${escapeHtml(brFill(f.instr_de, vars))}<div class="br-sit-ru ${hid}">${escapeHtml(brFill(f.instr_ru, vars))}</div></div>` : ''}
+    ${f.lvlTips && f.lvlTips[task.level] ? `<div class="br-lvtip">🎯 ${escapeHtml(lstr(f.lvlTips[task.level].de, f.lvlTips[task.level].ru, f.lvlTips[task.level].ru))}</div>` : ''}
+    ${f.pts_de ? `<div class="br-pts-h">📝 ${escapeHtml(brFill(f.pts_de, vars))}</div>` : ''}
+    <ol class="br-points">${task.points.map(p => `<li><b>${escapeHtml(brFill(p.de, vars))}</b><span class="br-sit-ru ${hid}"> — ${escapeHtml(brFill(p.ru, vars))}</span></li>`).join('')}</ol>
+    <div class="br-task-btns">
+      <button class="btn-secondary br-ru-btn" id="br-ru">${BR.showRu ? lstr('Übersetzung ausblenden', 'Скрыть перевод', 'Сховати переклад') : lstr('Übersetzung zeigen', 'Показать перевод задания', 'Показати переклад')}</button>
+    </div>
+    ${f.about_ru ? `<details class="br-fmt"><summary>ℹ️ ${lstr('So ist es in der Prüfung', 'Как это выглядит на экзамене', 'Як це виглядає на іспиті')} (${escapeHtml(f.full || f.exam)})</summary><div>${escapeHtml(lstr(f.about_de, f.about_ru, f.about_ru))}</div></details>` : ''}
   </div>`;
 }
 function brLetterHtml(text) { return `<div class="br-letter">${escapeHtml(text)}</div>`; }
@@ -128,7 +187,7 @@ function brRenderMain() {
         <button class="btn-primary" id="br-try">✍️ ${lstr('Diese Aufgabe selbst schreiben', 'Написать это задание самому', 'Написати це завдання самому')}</button></div>` + brPhrasesHtml(task);
     $('br-try').addEventListener('click', () => { BR.tab = 'write'; BR.checked = null; renderLettersScreen(); });
   } else {
-    const pr = brProg(task.id);
+    const pr = brProg(task.key);
     main.innerHTML = brTaskCard() + `<div class="br-block">
         <h4>✍️ ${lstr('Dein Brief', 'Твоё письмо', 'Твій лист')}${pr ? ` <small class="br-best">${lstr('bestes Ergebnis', 'лучший результат', 'найкращий результат')}: ${pr.best}%</small>` : ''}</h4>
         <textarea id="br-text" class="br-text" spellcheck="false" placeholder="${task.type === 'inf' ? 'Liebe … , / Lieber … ,' : 'Sehr geehrte … ,'}"></textarea>
@@ -142,12 +201,12 @@ function brRenderMain() {
         <div id="br-result"></div></div>
       <details class="br-block br-help"><summary>💡 ${lstr('Hilfe: Redemittel und Aufbau', 'Подсказка: фразы и структура', 'Підказка: фрази й структура')}</summary>${brPhrasesHtml(task)}</details>`;
     const ta = $('br-text');
-    ta.value = brDraftLoad(task.id);
+    ta.value = brDraftLoad(task.key);
     const upd = () => {
       const n = brWords(ta.value).length, [a, b] = task.words;
       $('br-count').innerHTML = `${lstr('Wörter', 'Слов', 'Слів')}: <b class="${n >= a && n <= b * 1.3 ? 'br-ok' : n ? 'br-warn' : ''}">${n}</b> / ${a}–${b}`;
     };
-    ta.addEventListener('input', () => { brDraftSave(task.id, ta.value); upd(); });
+    ta.addEventListener('input', () => { brDraftSave(task.key, ta.value); upd(); });
     upd();
     main.querySelectorAll('.br-uml .uml-btn').forEach(b => b.addEventListener('click', () => {
       const s = ta.selectionStart, e = ta.selectionEnd;
@@ -157,7 +216,7 @@ function brRenderMain() {
     $('br-check').addEventListener('click', () => brShowCheck(ta.value));
     $('br-clear').addEventListener('click', () => { if (!ta.value || confirm(lstr('Text löschen?', 'Удалить текст?', 'Видалити текст?'))) { ta.value = ''; ta.dispatchEvent(new Event('input')); $('br-result').innerHTML = ''; } });
     $('br-ai').addEventListener('click', () => brCopyPrompt(ta.value));
-    if (BR.checked && BR.checked.id === task.id) brShowCheck(ta.value);
+    if (BR.checked && BR.checked.id === task.key) brShowCheck(ta.value);
   }
   $('br-ru').addEventListener('click', () => { BR.showRu = !BR.showRu; brRenderMain(); });
 }
@@ -223,7 +282,7 @@ function brCheck(task, vars, raw) {
   if (inf) {
     if (/mit freundlichen grüßen/i.test(tail)) add('warn', 'Прощание', '«Mit freundlichen Grüßen» — для официальных писем. Другу: «Viele Grüße», «Liebe Grüße», «Bis bald».');
     else if (closeInf.test(tail)) add('ok', 'Прощание', 'Есть прощание — отлично.');
-    else add(task.words[1] <= 35 ? 'warn' : 'bad', 'Прощание', 'Нет прощания. В конце: «Viele Grüße» / «Liebe Grüße» / «Bis bald» и имя.');
+    else add(task.fmt === 'dtb1sms' ? 'warn' : 'bad', 'Прощание', 'Нет прощания. В конце: «Viele Grüße» / «Liebe Grüße» / «Bis bald» и имя.');
   } else {
     if (/mit freundlichen grüßen|freundliche grüße|mit besten grüßen/i.test(tail)) add('ok', 'Прощание', 'Официальное прощание — правильно.');
     else if (/viele grüße/i.test(tail)) add('warn', 'Прощание', '«Viele Grüße» допустимо (преподавателю), но надёжнее «Mit freundlichen Grüßen».');
@@ -289,7 +348,7 @@ function brCheck(task, vars, raw) {
     add('info', 'Стиль', `${ichStarts} предложений начинаются с «Ich». Разнообразь: «Leider …», «Heute …», «Deshalb …», «Am Samstag …» (глагол остаётся на 2-м месте).`);
   const conns = ['aber', 'denn', 'weil', 'dass', 'wenn', 'deshalb', 'dann', 'trotzdem', 'außerdem', 'damit', 'ob', 'oder', 'danach', 'zuerst', 'leider', 'deswegen', 'obwohl'];
   const used = conns.filter(c => new RegExp(`\\b${c}\\b`, 'i').test(text));
-  const need = { A1: 1, A2: 2, B1: 3 }[task.level] || 2;
+  const need = { A1: 1, A2: 2, B1: 3, B2: 4 }[task.level] || 2;
   if (used.length >= need) add('ok', 'Связность', `Связки: ${used.join(', ')} — хорошо.`);
   else add('info', 'Связность', `Добавь связки (${need}+ для ${task.level}): aber, denn, weil, deshalb, dann, außerdem, trotzdem …`);
 
@@ -303,9 +362,9 @@ function brShowCheck(raw) {
   const scored = R.filter(r => r.st !== 'info');
   const pts = scored.reduce((s, r) => s + (r.st === 'ok' ? 1 : r.st === 'warn' ? 0.5 : 0), 0);
   const pct = scored.length ? Math.round(pts / scored.length * 100) : 0;
-  const firstTime = !BR.checked || BR.checked.id !== task.id;
-  BR.checked = { id: task.id };
-  if (firstTime) brSaveResult(task.id, pct);
+  const firstTime = !BR.checked || BR.checked.id !== task.key;
+  BR.checked = { id: task.key };
+  if (firstTime) brSaveResult(task.key, pct);
   const ic = { ok: '✅', warn: '⚠️', bad: '❌', info: '💡' };
   const verdict = pct >= 85 ? lstr('Sehr gut!', 'Отлично!', 'Чудово!') : pct >= 65 ? lstr('Gut, aber verbessere die Punkte unten.', 'Хорошо, но поправь пункты ниже.', 'Добре, але виправ пункти нижче.') : lstr('Es fehlt noch einiges.', 'Пока многого не хватает — смотри подсказки.', 'Поки багато чого бракує.');
   $('br-result').innerHTML = `
@@ -322,10 +381,12 @@ function brShowCheck(raw) {
 /* запрос для любого ИИ-чата: задание + письмо + что сделать */
 function brCopyPrompt(raw) {
   const { task, vars } = BR.inst;
-  const txt = `Проверь моё письмо на немецком как экзаменатор (${task.exam}, уровень ${task.level}, ${task.type === 'inf' ? 'неофициальное письмо, на du' : 'официальное письмо, на Sie'}, ${task.words[0]}–${task.words[1]} слов).
+  const f = brFmt(task);
+  const mails = (task.mails || []).map(m => `--- ${m.chat ? 'Сообщение в чате' : 'Входящее письмо'} от: ${brFill(m.from, vars)}${m.subj ? ` | Betreff: ${brFill(m.subj, vars)}` : ''}\n${brFill(m.text, vars)}`).join('\n\n');
+  const txt = `Проверь моё письмо на немецком как экзаменатор BAMF-экзамена ${f.full || task.exam} (часть «${f.part || ''}», мой уровень — ${task.level}, оценивай по критериям ${task.level}; ${task.type === 'inf' ? 'неофициально, на du' : 'официально, на Sie'}; ориентир ${task.words[0]}–${task.words[1]} слов).
 
-Задание: ${brFill(task.sit_de, vars)}
-Пункты:
+Ситуация: ${brFill(task.sit_de, vars)}
+${mails ? '\n' + mails + '\n\n' : ''}${f.instr_de ? 'Задание: ' + brFill(f.instr_de, vars) + '\n' : ''}Пункты:
 ${task.points.map((p, i) => `${i + 1}. ${brFill(p.de, vars)}`).join('\n')}
 
 Моё письмо:
