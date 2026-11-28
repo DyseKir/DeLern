@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261126b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261128a">
 </head>
 <body>
 
@@ -36,6 +36,7 @@
       <a href="#" class="nav-link"        data-screen="tables"     data-i18n="nav_tables">Tabellen</a>
       <a href="#" class="nav-link"        data-screen="translate"  data-i18n="nav_translate">Übersetzen</a>
       <a href="#" class="nav-link"        data-screen="briefe"     data-i18n="nav_briefe">Briefe</a>
+      <a href="#" class="nav-link"        data-screen="ausbildung" data-i18n="nav_ausbildung">Ausbildung</a>
       <a href="#" class="nav-link"        data-screen="profil"     data-i18n="nav_profil">Profil</a>
       <a href="#" class="nav-link"        data-screen="exam"       data-i18n="nav_exam">Prüfung</a>
       <a href="#" class="nav-link hidden" id="nav-admin" data-screen="admin">🛠 Админ</a>
@@ -426,6 +427,15 @@
       <div class="br-wrap" id="br-body"></div>
     </div>
 
+    <!-- AUSBILDUNG (тест при поступлении) -->
+    <div id="screen-ausbildung" class="screen">
+      <div class="screen-header">
+        <button class="back-btn" id="au-back-btn" data-i18n="btn_back">← Zurück</button>
+        <h2 class="screen-title">🛠️ <span data-i18n="au_title">Ausbildung</span></h2>
+      </div>
+      <div class="au-wrap" id="au-body"></div>
+    </div>
+
     <!-- PROFIL -->
     <div id="screen-profil" class="screen">
       <h2 class="screen-title" style="margin-bottom:1.5rem" data-i18n="profile_title">Mein Profil &amp; Fortschritt</h2>
@@ -588,10 +598,12 @@
   <script src="db/notizen.js?v=20260803w"></script>
   <script src="db/aliases.js?v=20260803w"></script>
   <script src="db/dedupe.js?v=20260803w"></script>
-  <script src="db/changelog.js?v=20261126b"></script>
+  <script src="db/changelog.js?v=20261128a"></script>
   <script src="db/achievements.js?v=20260803w"></script>
-  <script src="assets/js/app.js?v=20261126b"></script>
+  <script src="assets/js/app.js?v=20261128a"></script>
   <script src="db/letters.js?v=20261125b"></script>
   <script src="assets/js/letters.js?v=20261125b"></script>
+  <script src="db/ausbildung.js?v=20261128a"></script>
+  <script src="assets/js/ausbildung.js?v=20261128a"></script>
 </body>
 </html>

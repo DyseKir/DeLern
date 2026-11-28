@@ -12,7 +12,7 @@ const LEARNED_THRESHOLD = 3;
 const TR = {
   de: {
     nav_home: 'Startseite',        nav_lektionen: 'Lektionen',
-    nav_wortschatz: 'Karten',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_prep: 'Prüfung morgen', prep_title: 'Prüfungsvorbereitung', nav_translate: 'Sätze', translate_title: 'Satz-Generator', translate_desc: 'Wähle Thema, Niveau, Zeitform und Modalverben — und übe beliebig viele Sätze.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung', nav_briefe: 'Briefe', briefe_title: 'Briefe schreiben',
+    nav_wortschatz: 'Karten',  nav_grammatik: 'Grammatik',  nav_tables: 'Tabellen', tables_title: 'Tabellen (Spickzettel)', nav_prep: 'Prüfung morgen', prep_title: 'Prüfungsvorbereitung', nav_translate: 'Sätze', translate_title: 'Satz-Generator', translate_desc: 'Wähle Thema, Niveau, Zeitform und Modalverben — und übe beliebig viele Sätze.', translate_start: 'Übersetzen starten', translate_again: 'Nochmal', translate_skip: 'Antwort zeigen / weiter', translate_finish: 'Beenden', translate_none: 'Lerne erst ein paar Wörter!', nav_profil: 'Profil', nav_shop: 'Shop', nav_pet: 'Haustier', nav_exam: 'Prüfung', nav_briefe: 'Briefe', briefe_title: 'Briefe schreiben', nav_ausbildung: 'Ausbildung', au_title: 'Ausbildung — Einstellungstest',
     exam_title: 'Globale Prüfung', exam_desc: 'Prüfung über alle gelernten Wörter in zufälliger Reihenfolge. Ohne Punkte — nur ein Test.',
     exam_start: 'Prüfung starten', exam_again: 'Nochmal', exam_none: 'Lerne zuerst ein paar Wörter, dann kannst du die Prüfung machen!',
     exam_done: 'Prüfung beendet!', exam_correct: 'Richtig', exam_total: 'Wörter gesamt', exam_chart_title: 'Verlauf',
@@ -75,7 +75,7 @@ const TR = {
   },
   ru: {
     nav_home: 'Главная',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Карточки',   nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_prep: 'Контрольная', prep_title: 'Подготовка к контрольной', nav_translate: 'Предложения', translate_title: 'Генератор предложений', translate_desc: 'Выбери тему, уровень, время и модальные глаголы — и тренируй сколько угодно предложений.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен', nav_briefe: 'Письма', briefe_title: 'Письма',
+    nav_wortschatz: 'Карточки',   nav_grammatik: 'Грамматика',  nav_tables: 'Таблицы', tables_title: 'Таблицы-шпаргалки', nav_prep: 'Контрольная', prep_title: 'Подготовка к контрольной', nav_translate: 'Предложения', translate_title: 'Генератор предложений', translate_desc: 'Выбери тему, уровень, время и модальные глаголы — и тренируй сколько угодно предложений.', translate_start: 'Начать перевод', translate_again: 'Ещё раз', translate_skip: 'Показать ответ / дальше', translate_finish: 'Завершить', translate_none: 'Сначала выучи несколько слов!', nav_profil: 'Профиль', nav_shop: 'Магазин', nav_pet: 'Питомец', nav_exam: 'Экзамен', nav_briefe: 'Письма', briefe_title: 'Письма', nav_ausbildung: 'Ausbildung', au_title: 'Ausbildung — тест при поступлении',
     exam_title: 'Глобальный экзамен', exam_desc: 'Экзамен по всем выученным словам вразброс. Без баллов — просто проверка.',
     exam_start: 'Начать экзамен', exam_again: 'Пройти ещё раз', exam_none: 'Сначала выучи несколько слов, тогда сможешь пройти экзамен!',
     exam_done: 'Экзамен завершён!', exam_correct: 'Правильно', exam_total: 'Всего слов', exam_chart_title: 'История попыток',
@@ -138,7 +138,7 @@ const TR = {
   },
   uk: {
     nav_home: 'Головна',          nav_lektionen: 'Уроки',
-    nav_wortschatz: 'Картки',     nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_prep: 'Контрольна', prep_title: 'Підготовка до контрольної', nav_translate: 'Речення', translate_title: 'Генератор речень', translate_desc: 'Обери тему, рівень, час і модальні дієслова — і тренуй скільки завгодно речень.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит', nav_briefe: 'Листи', briefe_title: 'Листи',
+    nav_wortschatz: 'Картки',     nav_grammatik: 'Граматика',  nav_tables: 'Таблиці', tables_title: 'Таблиці-шпаргалки', nav_prep: 'Контрольна', prep_title: 'Підготовка до контрольної', nav_translate: 'Речення', translate_title: 'Генератор речень', translate_desc: 'Обери тему, рівень, час і модальні дієслова — і тренуй скільки завгодно речень.', translate_start: 'Почати переклад', translate_again: 'Ще раз', translate_skip: 'Показати відповідь / далі', translate_finish: 'Завершити', translate_none: 'Спершу вивчи кілька слів!', nav_profil: 'Профіль', nav_shop: 'Магазин', nav_pet: 'Вихованець', nav_exam: 'Іспит', nav_briefe: 'Листи', briefe_title: 'Листи', nav_ausbildung: 'Ausbildung', au_title: 'Ausbildung — вступний тест',
     exam_title: 'Глобальний іспит', exam_desc: 'Іспит з усіх вивчених слів врозкид. Без балів — просто перевірка.',
     exam_start: 'Почати іспит', exam_again: 'Пройти ще раз', exam_none: 'Спочатку вивчи кілька слів, тоді зможеш пройти іспит!',
     exam_done: 'Іспит завершено!', exam_correct: 'Правильно', exam_total: 'Усього слів', exam_chart_title: 'Історія спроб',
@@ -1183,6 +1183,7 @@ function rerenderCurrent() {
   else if (S.screen==='prep')       renderPrepScreen();
   else if (S.screen==='translate')  renderTranslateScreen();
   else if (S.screen==='briefe')     renderLettersScreen();
+  else if (S.screen==='ausbildung') renderAusbildungScreen();
   else if (S.screen==='puzzle')     pzDraw();
   else if (S.screen==='profil')     renderProfile();
   else if (S.screen==='exam')       renderExamScreen();
@@ -1270,6 +1271,7 @@ function renderDashboard() {
       ${tile('grammatik','📖',lstr('Grammatik','Грамматика','Граматика'))}
       ${tile('translate','✍️',lstr('Sätze üben','Предложения','Речення'))}
       ${tile('briefe','✉️',lstr('Briefe','Письма','Листи'))}
+      ${tile('ausbildung','🛠️','Ausbildung')}
       ${tile('puzzle','🧩',lstr('Verb bauen','Собери глагол','Збери дієслово'))}
       ${tile('tables','📊',lstr('Tabellen','Таблицы','Таблиці'))}
       ${tile('prep','🎯',lstr('Prüfung morgen','Контрольная','Контрольна'))}
@@ -1283,6 +1285,7 @@ function renderDashboard() {
     else if (g === 'grammatik') renderGrammarScreen();
     else if (g === 'translate') renderTranslateScreen();
     else if (g === 'briefe') renderLettersScreen();
+    else if (g === 'ausbildung') renderAusbildungScreen();
     else if (g === 'puzzle') renderPuzzleScreen();
     else if (g === 'tables') renderTablesScreen();
     else if (g === 'prep') renderPrepScreen();
@@ -5309,6 +5312,7 @@ function initEvents() {
       else if(s==='prep')       renderPrepScreen();
       else if(s==='translate')  renderTranslateScreen();
       else if(s==='briefe')     renderLettersScreen();
+      else if(s==='ausbildung') renderAusbildungScreen();
       else if(s==='profil')     renderProfile();
       else if(s==='exam')       renderExamScreen();
       else if(s==='admin')      renderAdminScreen();
@@ -5398,6 +5402,7 @@ function initEvents() {
   $('translate-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('puzzle-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
   $('briefe-back')?.addEventListener('click', ()=>{ show('home'); renderHome(); });
+  $('au-back-btn')?.addEventListener('click', ()=>{ if (typeof auStopTimer === 'function') auStopTimer(); show('home'); renderHome(); });
 
   /* Артикли */
   document.querySelectorAll('.art-btn').forEach(btn=>
