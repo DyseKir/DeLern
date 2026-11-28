@@ -503,6 +503,204 @@ const AU_GEN = {
   },
 };
 
+/* ── немецкие числительные (до 999 999) ── */
+const AU_E = ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf', 'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn'];
+const AU_Z = ['', '', 'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig'];
+function auDe100(n) { return n < 20 ? AU_E[n] : (n % 10 ? (n % 10 === 1 ? 'ein' : AU_E[n % 10]) + 'und' + AU_Z[Math.floor(n / 10)] : AU_Z[n / 10]); }
+function auDe1000(n) { const h = Math.floor(n / 100), r = n % 100; return (h ? (h === 1 ? 'ein' : AU_E[h]) + 'hundert' : '') + (r ? auDe100(r) : ''); }
+function deNum(n) {
+  if (!n) return 'null';
+  if (n < 1000) return auDe1000(n);
+  const th = Math.floor(n / 1000), r = n % 1000;
+  return (th === 1 ? 'ein' : auDe1000(th)) + 'tausend' + (r ? auDe1000(r) : '');
+}
+function deNumParts(n) {
+  const th = Math.floor(n / 1000), h = Math.floor(n % 1000 / 100), r = n % 100, p = [];
+  if (th) p.push(`${th === 1 ? 'ein' : auDe1000(th)}tausend = ${th * 1000}`);
+  if (h) p.push(`${h === 1 ? 'ein' : AU_E[h]}hundert = ${h * 100}`);
+  if (r) p.push(`${auDe100(r)} = ${r}${r > 20 && r % 10 ? ` (${AU_E[r % 10]} und ${AU_Z[Math.floor(r / 10)]} — единицы идут первыми)` : ''}`);
+  return p.join(' + ');
+}
+const AU_ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+Object.assign(AU_GEN, {
+  zahlen() {
+    const t = auR(0, 6);
+    if (t === 0) { const a = auP([6, 7, 8, 9, 6, 7, 8, 9, 3, 4, 11, 12]), b = auR(3, 12);
+      return T(`${a} · ${b} = ?`, 'Таблица умножения: сколько будет?', a * b, [`${a} · ${b} = ${a * b}`, b > 2 ? `Если забыл: ${a} · ${b - 1} = ${a * (b - 1)}, плюс ещё ${a} → ${a * b}` : null]); }
+    if (t === 1) { const a = auR(3, 12), b = auR(3, 12);
+      return T(`${a * b} : ${a} = ?`, 'Деление по таблице умножения.', b, [`Какое число умножить на ${a}, чтобы получилось ${a * b}?`, `${a} · ${b} = ${a * b} → ${b}`]); }
+    if (t === 2) { const n = auP([auR(13, 99), auR(21, 99), auR(101, 999), auR(1001, 9999)]);
+      return T(`Schreiben Sie in Ziffern: „${deNum(n)}“`, 'Запишите это число цифрами.', n, [`По частям: ${deNumParts(n)}`, `= ${n}`]); }
+    if (t === 3) {
+      let n; do { n = auR(21, 98); } while (n % 10 === 0 || Math.floor(n / 10) === n % 10);
+      const sw = (n % 10) * 10 + Math.floor(n / 10), wr = [...new Set([sw, n + 10 <= 99 ? n + 10 : n - 10, n + 1 <= 99 && (n + 1) % 10 ? n + 1 : n - 1].filter(x => x !== n))].map(deNum);
+      return MC(`Wie schreibt man ${n} auf Deutsch?`, `Как по-немецки ${n}?`, deNum(n), wr, [`Сначала единицы, потом десятки: ${n % 10} → ${AU_E[n % 10]}, «und», ${Math.floor(n / 10) * 10} → ${AU_Z[Math.floor(n / 10)]}`, `${n} = ${deNum(n)}`]);
+    }
+    if (t === 4) {
+      const k = auR(0, 2);
+      if (k === 0) { const n = auR(101, 999), v = n / 100, r = Math.round(n / 10) / 10, d = n % 10;
+        return T(`Runden Sie auf eine Nachkommastelle: ${auF(v)}`, `Округлите до одного знака после запятой: ${auF(v)}`, r, [`Смотрим на вторую цифру после запятой: ${d}`, d >= 5 ? `${d} ≥ 5 → вверх` : `${d} < 5 → вниз`, `≈ ${auF(r)}`]); }
+      if (k === 1) { const n = auR(1001, 9999), r = Math.round(n / 100) * 100, d = Math.floor(n / 10) % 10;
+        return T(`Runden Sie auf Hunderter: ${n}`, `Округлите до сотен: ${n}`, r, [`Смотрим на цифру десятков: ${d}`, d >= 5 ? `${d} ≥ 5 → вверх` : `${d} < 5 → вниз`, `≈ ${r}`]); }
+      const n = auR(1001, 9999), v = n / 1000, r = Math.round(n / 10) / 100, d = n % 10;
+      return T(`Runden Sie auf zwei Nachkommastellen: ${auF(v)}`, `Округлите до двух знаков после запятой: ${auF(v)}`, r, [`Смотрим на третью цифру после запятой: ${d}`, d >= 5 ? `${d} ≥ 5 → вверх` : `${d} < 5 → вниз`, `≈ ${auF(r)}`]);
+    }
+    if (t === 5) {
+      const d = auP([3, 4, 5, 9]), ok = d * auR(Math.ceil(100 / d), Math.floor(999 / d)), wr = new Set();
+      while (wr.size < 3) { const x = auR(100, 999); if (x % d) wr.add(x); }
+      const rule = { 3: 'сумма цифр делится на 3', 4: 'две последние цифры делятся на 4', 5: 'оканчивается на 0 или 5', 9: 'сумма цифр делится на 9' }[d];
+      const qs = String(ok).split('').reduce((s, c) => s + +c, 0);
+      return MC(`Welche Zahl ist durch ${d} teilbar?`, `Какое число делится на ${d}?`, String(ok), [...wr].map(String), [`Признак: ${rule}`, d === 3 || d === 9 ? `${ok}: ${String(ok).split('').join(' + ')} = ${qs} → делится на ${d}` : `${ok} : ${d} = ${ok / d}`]);
+    }
+    const k = auR(0, 2), a = auR(2, 9), b = auR(a + 1, 15);
+    if (k === 0) return T(`${a} − ${b} = ?`, 'Вычислите (ответ может быть отрицательным).', a - b, [`Из меньшего вычитаем большее → минус`, `${b} − ${a} = ${b - a} → ${a - b}`]);
+    if (k === 1) return T(`−${b} + ${a} = ?`, 'Вычислите.', a - b, [`Как температура: было −${b}, стало теплее на ${a}`, `= ${a - b}`]);
+    return T(`(−${a}) · ${b - a} = ?`, 'Вычислите (минус на плюс → минус).', -a * (b - a), [`${a} · ${b - a} = ${a * (b - a)}`, `Минус на плюс → минус: ${-a * (b - a)}`]);
+  },
+
+  mechanik() {
+    const t = auR(0, 6);
+    if (t === 0) { const h = auP([2, 3, 4, 5]), v = auP([40, 50, 60, 75, 80, 90, 100]);
+      return T(`Ein Lkw fährt ${v * h} km in ${h} Stunden. Wie hoch ist seine Durchschnittsgeschwindigkeit?`, `Грузовик проезжает ${v * h} км за ${h} ч. Какая у него средняя скорость?`, v, [`v = s / t = ${v * h} / ${h}`, `= ${v} km/h`], { unit: 'km/h' }); }
+    if (t === 1) { const [kmh, ms] = auP([[36, 10], [54, 15], [72, 20], [90, 25], [108, 30], [18, 5]]);
+      return Math.random() < 0.5
+        ? T(`Rechnen Sie um: ${kmh} km/h = ? m/s`, `Переведите: ${kmh} км/ч = ? м/с`, ms, ['km/h → m/s: делим на 3,6', `${kmh} : 3,6 = ${ms} m/s`], { unit: 'm/s' })
+        : T(`Rechnen Sie um: ${ms} m/s = ? km/h`, `Переведите: ${ms} м/с = ? км/ч`, kmh, ['m/s → km/h: умножаем на 3,6', `${ms} · 3,6 = ${kmh} km/h`], { unit: 'km/h' }); }
+    if (t === 2) { const n = auP([2, 3, 4, 6]), L = n * auP([50, 100, 150, 200]);
+      return T(`Ein Flaschenzug hat ${n} tragende Seile. Die Last beträgt ${L} N. Mit welcher Kraft muss man ziehen (ohne Reibung)?`, `У полиспаста ${n} несущих верёвки. Груз ${L} Н. С какой силой нужно тянуть (без трения)?`, L / n,
+        ['F = Last : Anzahl der tragenden Seile', `= ${L} : ${n} = ${L / n} N`], { unit: 'N' }); }
+    if (t === 3) { const A1 = auP([1, 2, 5]), k = auP([5, 10, 20]), F1 = auP([20, 50, 100]);
+      return T(`Hydraulische Presse: kleiner Kolben ${A1} cm², großer Kolben ${A1 * k} cm². Auf den kleinen Kolben wirken ${F1} N. Welche Kraft entsteht am großen Kolben?`, `Гидравлический пресс: малый поршень ${A1} см², большой ${A1 * k} см². На малый давят ${F1} Н. Какая сила на большом?`, F1 * k,
+        [`Площадь больше в ${A1 * k} : ${A1} = ${k} раз`, `F₂ = ${F1} · ${k} = ${F1 * k} N`], { unit: 'N' }); }
+    if (t === 4) { const c = [[100, 2], [100, 4], [100, 5], [200, 4], [200, 5], [500, 10], [500, 25], [1000, 20], [1000, 50], [600, 20]], [F, A] = auP(c);
+      return T(`Eine Kraft von ${F} N wirkt auf eine Fläche von ${A} cm². Wie groß ist der Druck in N/cm²?`, `Сила ${F} Н действует на площадь ${A} см². Какое давление в Н/см²?`, F / A, [`p = F / A = ${F} / ${A}`, `= ${auF(F / A)} N/cm²`], { unit: 'N/cm²' }); }
+    if (t === 5) { const v = auP([60, 80, 100, 120]), h = auP([0.5, 1.5, 2.5, 3]);
+      return T(`Ein Auto fährt ${h} Stunden mit ${v} km/h. Welche Strecke legt es zurück?`, `Машина едет ${auF(h)} ч со скоростью ${v} км/ч. Какой путь она проедет?`, v * h, [`s = v · t = ${v} · ${auF(h)}`, `= ${auF(v * h)} km`], { unit: 'km' }); }
+    const [q, qr, r, ...w] = auP([['Was bewirkt eine feste Rolle?', 'Что даёт неподвижный блок?', 'Sie ändert nur die Richtung der Kraft.', 'Sie halbiert die Kraft.', 'Sie verdoppelt die Kraft.', 'Sie verkürzt das Seil.'],
+      ['Was bewirkt eine lose Rolle?', 'Что даёт подвижный блок?', 'Man braucht die halbe Kraft, aber den doppelten Seilweg.', 'Man braucht die doppelte Kraft.', 'Sie ändert nur die Richtung.', 'Sie hat keine Wirkung.'],
+      ['Warum schneidet ein scharfes Messer besser?', 'Почему острый нож режет лучше?', 'Die Fläche ist kleiner, deshalb ist der Druck größer.', 'Die Kraft ist kleiner.', 'Das Messer ist schwerer.', 'Der Druck ist kleiner.'],
+      ['Was sagt die „goldene Regel der Mechanik“?', 'Что говорит «золотое правило механики»?', 'Was man an Kraft spart, muss man an Weg zusetzen.', 'Kraft und Weg werden beide kleiner.', 'Die Kraft ist immer gleich der Last.', 'Schwere Körper fallen schneller.'],
+      ['Wie groß ist die Gewichtskraft von 1 kg ungefähr?', 'Какая примерно сила тяжести у 1 кг?', '10 N', '1 N', '100 N', '1000 N'],
+      ['Wozu dient Schmieröl an Maschinen?', 'Зачем нужна смазка в машинах?', 'Es verringert die Reibung.', 'Es erhöht die Reibung.', 'Es erhöht den Druck.', 'Es leitet den Strom.']]);
+    return MC(q, qr, r, w, [`Правильно: ${r}`]);
+  },
+
+  sicherheit() {
+    const R = ['Freischalten', 'Gegen Wiedereinschalten sichern', 'Spannungsfreiheit feststellen', 'Erden und kurzschließen', 'Benachbarte, unter Spannung stehende Teile abdecken oder abschranken'];
+    const order = `Порядок: ${R.map((r, k) => `${k + 1}. ${r}`).join(';  ')}`, t = auR(0, 3);
+    if (t === 0) { const i = auR(0, 4); return MC(`Welche ist die ${i + 1}. Sicherheitsregel?`, `Какое ${i + 1}-е правило безопасности?`, R[i], auShuffle(R.filter((_, k) => k !== i)), [order]); }
+    if (t === 1) { const i = auR(0, 3); return MC(`Welche Sicherheitsregel kommt nach „${R[i]}“?`, `Какое правило идёт после «${R[i]}»?`, R[i + 1], auShuffle(R.filter((_, k) => k !== i + 1 && k !== i)), [order]); }
+    const pool = t === 2 ? [['Welche Farbe hat der Schutzleiter (PE)?', 'Какого цвета защитный провод (PE)?', 'grün-gelb', 'blau', 'braun', 'schwarz'],
+      ['Welche Farbe hat der Neutralleiter (N)?', 'Какого цвета нулевой провод (N)?', 'blau', 'grün-gelb', 'braun', 'rot'], ['Welche Farbe hat der Außenleiter (L) meistens?', 'Какого цвета обычно фаза (L)?', 'braun', 'blau', 'grün-gelb', 'weiß']]
+      : [['Bei welchem Fehlerstrom löst ein üblicher FI-Schutzschalter aus?', 'При каком токе утечки срабатывает обычное УЗО?', '30 mA', '3 A', '16 A', '300 A'],
+        ['Ab welchem Strom durch den Körper besteht Lebensgefahr (ungefähr)?', 'Примерно с какого тока через тело возникает опасность для жизни?', 'etwa 50 mA', 'etwa 5 A', 'etwa 1 µA', 'erst ab 100 A'],
+        ['Was ist ein Kurzschluss?', 'Что такое короткое замыкание?', 'Außenleiter und Neutralleiter berühren sich fast ohne Widerstand.', 'Ein sehr kurzes Kabel.', 'Ein ausgeschalteter Stromkreis.', 'Eine Lampe mit kleiner Leistung.'],
+        ['Wozu dient ein Leitungsschutzschalter (LS)?', 'Для чего нужен автоматический выключатель (LS)?', 'Er schützt die Leitung vor Überlast und Kurzschluss.', 'Er misst den Stromverbrauch.', 'Er erhöht die Spannung.', 'Er ersetzt den Schutzleiter.'],
+        ['Womit stellt man die Spannungsfreiheit fest?', 'Чем проверяют отсутствие напряжения?', 'mit einem zweipoligen Spannungsprüfer', 'mit dem Finger', 'mit einem einpoligen Phasenprüfer', 'mit einem Hammer'],
+        ['Ab welcher Berührungsspannung (Wechselspannung) gilt es als gefährlich?', 'С какого напряжения прикосновения (переменного) считается опасным?', 'über 50 V', 'über 500 V', 'über 5 V', 'erst über 1000 V']];
+    const [q, qr, r, ...w] = auP(pool);
+    return MC(q, qr, r, w, [`Правильно: ${r}`]);
+  },
+
+  logik() {
+    const t = auR(0, 7), fmt = a => a.join(',  ');
+    let s, ans, st;
+    if (t === 0) { const d = auP([2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15]), neg = Math.random() < 0.25, a = neg ? auR(60, 99) : auR(1, 30), dd = neg ? -d : d;
+      s = [0, 1, 2, 3, 4].map(i => a + dd * i); ans = a + dd * 5; st = [`Разности: ${dd > 0 ? '+' : '−'}${d} каждый раз`, `${s[4]} ${dd > 0 ? '+' : '−'} ${d} = ${ans}`]; }
+    else if (t === 1) { const a = auP([1, 2, 3, 4, 5]), q = auP([2, 3]); s = [0, 1, 2, 3, 4].map(i => a * q ** i); ans = a * q ** 5; st = [`Каждое следующее ×${q}`, `${s[4]} · ${q} = ${ans}`]; }
+    else if (t === 2) { const a = auR(1, 10), d0 = auR(1, 3), inc = auR(1, 2); s = [a]; for (let i = 0; i < 4; i++) s.push(s[i] + d0 + inc * i); ans = s[4] + d0 + inc * 4;
+      st = [`Разности: ${[0, 1, 2, 3].map(i => '+' + (d0 + inc * i)).join(', ')} — растут на ${inc}`, `Следующая разность +${d0 + inc * 4}: ${s[4]} + ${d0 + inc * 4} = ${ans}`]; }
+    else if (t === 3) { const [o1, v1, o2, v2] = auP([['×', 2, '−', 3], ['+', 5, '−', 2], ['×', 3, '−', 4], ['+', 4, '×', 2], ['×', 2, '+', 1]]), ap = (x, o, v) => o === '×' ? x * v : o === '+' ? x + v : x - v;
+      s = [auR(3, 8)]; for (let i = 0; i < 5; i++) s.push(i % 2 ? ap(s[i], o2, v2) : ap(s[i], o1, v1)); ans = ap(s[5], o1, v1);
+      st = [`Действия чередуются: ${o1}${v1}, ${o2}${v2}, ${o1}${v1}, ${o2}${v2} …`, `Следующее: ${s[5]} ${o1} ${v1} = ${ans}`]; }
+    else if (t === 4) { const a = auR(1, 9), da = auR(2, 5), b = auR(20, 40), db = auR(1, 4);
+      s = []; for (let i = 0; i < 3; i++) s.push(a + da * i, b - db * i); ans = a + da * 3;
+      st = [`Два ряда через одно: ${a}, ${a + da}, ${a + 2 * da} (+${da}) и ${b}, ${b - db}, ${b - 2 * db} (−${db})`, `Следующее — из первого ряда: ${a + 2 * da} + ${da} = ${ans}`]; }
+    else if (t === 5) { const k = auR(1, 6), plus = Math.random() < 0.4 ? 1 : 0; s = [0, 1, 2, 3, 4].map(i => (k + i) ** 2 + plus); ans = (k + 5) ** 2 + plus;
+      st = [`Квадраты${plus ? ' плюс 1' : ''}: ${s.map((x, i) => `${k + i}²${plus ? '+1' : ''}`).join(', ')}`, `${k + 5}²${plus ? ' + 1' : ''} = ${ans}`]; }
+    else if (t === 6) { s = [auR(1, 5), auR(1, 6)]; for (let i = 2; i < 6; i++) s.push(s[i - 1] + s[i - 2]); ans = s[4] + s[5]; st = ['Каждое число = сумма двух предыдущих', `${s[4]} + ${s[5]} = ${ans}`]; }
+    else {
+      const d = auR(2, 4), a = auR(0, 25 - d * 5), L = [0, 1, 2, 3, 4].map(i => AU_ABC[a + d * i]), ai = a + d * 5, A = AU_ABC[ai];
+      const wr = [ai - 1, ai + 1, ai - 2, ai + 2, ai + 3].filter(i => i >= 0 && i < 26 && i !== ai).slice(0, 3).map(i => AU_ABC[i]);
+      return MC(`Welcher Buchstabe folgt? ${L.join(',  ')},  ?`, 'Какая буква продолжает ряд?', A, wr, [`Номера в алфавите: ${L.map(c => `${c}=${AU_ABC.indexOf(c) + 1}`).join(', ')} — шаг +${d}`, `${a + d * 4 + 1} + ${d} = ${a + d * 5 + 1} → ${A}`]);
+    }
+    return T(`Welche Zahl folgt? ${fmt(s)},  ?`, 'Какое число логично продолжает ряд?', ans, st);
+  },
+
+  konz() {
+    const t = auR(0, 2), grp = x => x.match(/.{1,3}/g).join(' ');
+    const mk = (n, pool) => Array.from({ length: n }, () => pool[auR(0, pool.length - 1)]).join('');
+    const mutate = (x, pool) => { const a = x.split(''), i = auR(0, a.length - 1); let c; do { c = pool[auR(0, pool.length - 1)]; } while (c === a[i]); a[i] = c; return { s: a.join(''), i }; };
+    if (t === 0) {
+      const pool = Math.random() < 0.4 ? 'ABCDEFHKLMNPRSTUVWXZ0123456789' : '0123456789', a = mk(auR(8, 11), pool), same = Math.random() < 0.5, m = mutate(a, pool), b = same ? a : m.s;
+      return MC('Sind die beiden Zeichenfolgen genau gleich?', 'Две строки совпадают полностью?', same ? 'gleich' : 'verschieden', [same ? 'verschieden' : 'gleich'],
+        [same ? 'Все знаки совпадают' : `Отличие в ${m.i + 1}-м знаке: «${a[m.i]}» и «${b[m.i]}»`, `По группам: ${grp(a)}   |   ${grp(b)}`], { code: a + '\n' + b });
+    }
+    if (t === 1) { const s = mk(24, '0123456789'), d = String(auR(0, 9)), n = s.split('').filter(c => c === d).length, g = s.match(/.{4}/g);
+      return T(`Wie oft kommt die Ziffer ${d} vor?`, `Сколько раз в строке встречается цифра ${d}?`, n, [`По группам из 4: ${g.map(x => `${x} (${x.split('').filter(c => c === d).length})`).join(', ')}`, `Всего: ${n}`], { code: g.join(' ') }); }
+    const pool = 'ABCDEFHKLMNPRSTUVWXZ', orig = `${mk(2, pool)}-${mk(4, '0123456789')}-${mk(1, pool)}`, wr = new Set();
+    while (wr.size < 3) { const m = mutate(orig.replace(/-/g, ''), orig.replace(/-/g, '').split('').some(c => /\d/.test(c)) ? '0123456789ABCDEFHKLMNPRSTUVWXZ' : pool).s; wr.add(`${m.slice(0, 2)}-${m.slice(2, 6)}-${m.slice(6)}`); }
+    wr.delete(orig);
+    return MC('Welche Bestellnummer stimmt genau mit dem Original überein?', 'Какой номер заказа точно совпадает с оригиналом?', orig, [...wr], [`Оригинал: ${orig}`, 'Сравнивай по частям: буквы, цифры, последняя буква'], { code: 'Original: ' + orig, mono: true });
+  },
+
+  deutsch() {
+    const t = auR(0, 4);
+    if (t === 0) {
+      const [s, a] = auP([['Ich hoffe, ___ du morgen kommst.', 'dass'], ['Das ist das Werkzeug, ___ ich gestern gekauft habe.', 'das'], ['Er sagt, ___ die Maschine kaputt ist.', 'dass'], ['___ Kabel ist zu kurz.', 'Das'],
+        ['Es ist wichtig, ___ man pünktlich ist.', 'dass'], ['Wo ist das Buch, ___ auf dem Tisch lag?', 'das'], ['Ich weiß, ___ ich noch viel lernen muss.', 'dass'], ['___ habe ich nicht gewusst.', 'Das'],
+        ['Wir freuen uns, ___ Sie da sind.', 'dass'], ['Das Auto, ___ dort steht, gehört meinem Chef.', 'das']]);
+      const other = a === 'dass' ? 'das' : a === 'das' ? 'dass' : 'Dass';
+      return MC(`Setzen Sie ein: ${s}`, 'Вставьте das или dass.', a, [other], [a.toLowerCase() === 'dass' ? 'Это союз «что» (глагол в конце), на dieses/welches не заменить → dass' : 'Можно заменить на dieses / welches (артикль, «который» или «это») → das', `${s.replace('___', a)}`]);
+    }
+    if (t === 1) {
+      const [c, ...w] = auP([['Maschine', 'Maschiene', 'Mashine', 'Maschinne'], ['Reparatur', 'Reperatur', 'Reparattur', 'Repratur'], ['Standard', 'Standart', 'Standarth', 'Stantard'], ['Ergebnis', 'Ergebniss', 'Ergäbnis', 'Ergebnisz'],
+        ['wahrscheinlich', 'warscheinlich', 'wahrscheinlig', 'warscheinlig'], ['vielleicht', 'vieleicht', 'fielleicht', 'vielleich'], ['nämlich', 'nähmlich', 'nämmlich', 'nemlich'], ['endlich', 'entlich', 'endtlich', 'ändlich'],
+        ['Adresse', 'Addresse', 'Adrese', 'Adreße'], ['Paket', 'Packet', 'Packett', 'Pakett'], ['Werkstatt', 'Werkstat', 'Werckstatt', 'Werkstadt'], ['Elektriker', 'Elecktriker', 'Elektricker', 'Electriker'],
+        ['interessant', 'interresant', 'intressant', 'interesant'], ['Batterie', 'Baterie', 'Batteri', 'Battarie'], ['Widerstand', 'Wiederstand', 'Wiederstandt', 'Widerstant'], ['Rhythmus', 'Rytmus', 'Rhytmus', 'Rythmus']]);
+      return MC('Welches Wort ist richtig geschrieben?', 'Какое слово написано правильно?', c, w, [`Правильно: ${c}`, c === 'Widerstand' ? 'wider = «против» (сопротивление), а wieder = «снова»' : null]);
+    }
+    if (t === 2) {
+      const [w, a, n] = auP([['die Stra__e', 'ß', 'долгое «а»'], ['der Flu__', 'ss', 'краткое «u»'], ['gro__', 'ß', 'долгое «о»'], ['ich mu__', 'ss', 'краткое «u»'], ['hei__en', 'ß', 'дифтонг «ei»'], ['e__en', 'ss', 'краткое «е»'],
+        ['der Fu__', 'ß', 'долгое «u»'], ['das Schlo__', 'ss', 'краткое «о»'], ['drau__en', 'ß', 'дифтонг «au»'], ['bi__chen', 'ss', 'краткое «i»'], ['die Grü__e', 'ß', 'долгое «ü»'], ['wi__en', 'ss', 'краткое «i»']]);
+      return MC(`ss oder ß?  ${w.replace('__', '…')}`, 'Что вставить: ss или ß?', a, [a === 'ß' ? 'ss' : 'ß'], [`${n} → ${a}`, w.replace('__', a)]);
+    }
+    if (t === 3) {
+      const [s, a, o, n] = auP([['Ich wohne ___ drei Jahren in Köln.', 'seit', 'seid', 'seit = с какого времени'], ['Ihr ___ heute sehr pünktlich.', 'seid', 'seit', 'seid = вы есть (ihr seid)'],
+        ['___ wann arbeiten Sie hier?', 'Seit', 'Seid', 'seit = с какого времени'], ['___ ihr fertig?', 'Seid', 'Seit', 'seid = вы есть'], ['Kannst du das bitte ___holen?', 'wieder', 'wider', 'wieder = снова'],
+        ['Er hat mir ___sprochen.', 'wider', 'wieder', 'wider = против (widersprechen)'], ['Wir sehen uns morgen ___.', 'wieder', 'wider', 'wieder = снова'], ['Der ___stand ist zu groß.', 'Wider', 'Wieder', 'Widerstand — от wider «против»']]);
+      return MC(`Setzen Sie ein: ${s}`, 'Что вставить?', a, [o], [n, s.replace('___', a)]);
+    }
+    const [c, ...w] = auP([['Ich komme heute nicht, weil ich krank bin.', 'Ich komme heute nicht weil, ich krank bin.', 'Ich komme, heute nicht weil ich krank bin.', 'Ich komme heute, nicht, weil ich krank bin.'],
+      ['Er kauft Kabel, Schalter und Dosen.', 'Er kauft Kabel, Schalter, und Dosen.', 'Er kauft, Kabel Schalter und Dosen.', 'Er kauft Kabel Schalter, und Dosen.'],
+      ['Ich hoffe, dass es klappt.', 'Ich hoffe dass, es klappt.', 'Ich, hoffe dass es klappt.', 'Ich hoffe dass es, klappt.'],
+      ['Der Kollege, der neu ist, hilft mir.', 'Der Kollege der neu ist, hilft mir.', 'Der Kollege, der neu ist hilft mir.', 'Der, Kollege der neu ist hilft mir.'],
+      ['Das Gerät ist klein, aber sehr stark.', 'Das Gerät ist klein aber, sehr stark.', 'Das Gerät, ist klein aber sehr stark.', 'Das Gerät ist, klein, aber sehr stark.']]);
+    return MC('Welcher Satz ist richtig (Kommas)?', 'В каком предложении запятые стоят правильно?', c, w, ['Запятая перед weil, dass, aber и вокруг придаточного; перед und при перечислении — нет', `Правильно: ${c}`]);
+  },
+
+  wissen() {
+    const caps = [['Bayern', 'München'], ['Nordrhein-Westfalen', 'Düsseldorf'], ['Baden-Württemberg', 'Stuttgart'], ['Niedersachsen', 'Hannover'], ['Hessen', 'Wiesbaden'], ['Sachsen', 'Dresden'], ['Rheinland-Pfalz', 'Mainz'],
+      ['Thüringen', 'Erfurt'], ['Schleswig-Holstein', 'Kiel'], ['Brandenburg', 'Potsdam'], ['Sachsen-Anhalt', 'Magdeburg'], ['Mecklenburg-Vorpommern', 'Schwerin'], ['Saarland', 'Saarbrücken']];
+    if (Math.random() < 0.35) { const c = auP(caps); return MC(`Wie heißt die Landeshauptstadt von ${c[0]}?`, `Какая столица земли ${c[0]}?`, c[1], auShuffle(caps.filter(x => x !== c)).slice(0, 3).map(x => x[1]), [`${c[0]} — ${c[1]}`]); }
+    const [q, qr, r, ...w] = auP([['Wie viele Bundesländer hat Deutschland?', 'Сколько федеральных земель в Германии?', '16', '12', '14', '18'], ['Wie heißt die Hauptstadt Deutschlands?', 'Какая столица Германии?', 'Berlin', 'Bonn', 'Frankfurt am Main', 'München'],
+      ['Wann ist der Tag der Deutschen Einheit?', 'Когда День германского единства?', 'am 3. Oktober', 'am 1. Mai', 'am 9. November', 'am 3. Juni'], ['Seit wann gibt es das Grundgesetz?', 'С какого года действует Основной закон?', 'seit 1949', 'seit 1945', 'seit 1990', 'seit 1871'],
+      ['Wie heißt das Parlament Deutschlands?', 'Как называется парламент Германии?', 'der Bundestag', 'der Bundesrat', 'das Kanzleramt', 'der Landtag'], ['Wer wählt den Bundeskanzler oder die Bundeskanzlerin?', 'Кто избирает федерального канцлера?', 'der Bundestag', 'das Volk direkt', 'der Bundespräsident', 'die Bundesländer'],
+      ['Wer ist das Staatsoberhaupt Deutschlands?', 'Кто глава государства в Германии?', 'der Bundespräsident / die Bundespräsidentin', 'der Bundeskanzler', 'der Bundestagspräsident', 'der Ministerpräsident'],
+      ['Alle wie viele Jahre wird der Bundestag normalerweise gewählt?', 'Раз в сколько лет обычно выбирают бундестаг?', 'alle 4 Jahre', 'alle 2 Jahre', 'alle 5 Jahre', 'alle 6 Jahre'],
+      ['Wie heißt der höchste Berg Deutschlands?', 'Как называется самая высокая гора Германии?', 'die Zugspitze', 'der Brocken', 'der Feldberg', 'der Watzmann'], ['Welcher ist der längste Fluss in Deutschland?', 'Какая река самая длинная в Германии?', 'der Rhein', 'die Elbe', 'die Weser', 'der Main'],
+      ['Wie viele Nachbarländer hat Deutschland?', 'Сколько соседних стран у Германии?', '9', '5', '7', '11'], ['An welchen Meeren liegt Deutschland?', 'У каких морей лежит Германия?', 'Nordsee und Ostsee', 'Mittelmeer und Nordsee', 'Ostsee und Schwarzes Meer', 'nur an der Nordsee'],
+      ['Seit wann gibt es den Euro als Bargeld?', 'С какого года евро есть наличными?', 'seit 2002', 'seit 1990', 'seit 1999', 'seit 2010'], ['In welcher Stadt sitzt die Europäische Zentralbank?', 'В каком городе Европейский центральный банк?', 'Frankfurt am Main', 'Berlin', 'Brüssel', 'Paris'],
+      ['Was ist der Nettolohn?', 'Что такое Nettolohn?', 'der Lohn nach Abzug von Steuern und Sozialabgaben', 'der Lohn vor allen Abzügen', 'der Lohn für Überstunden', 'das Urlaubsgeld'],
+      ['Welche Versicherung gehört NICHT zur gesetzlichen Sozialversicherung?', 'Какая страховка НЕ входит в обязательное соцстрахование?', 'die Haftpflichtversicherung', 'die Krankenversicherung', 'die Rentenversicherung', 'die Arbeitslosenversicherung'],
+      ['Wer nimmt die Abschlussprüfung im Handwerk ab?', 'Кто принимает выпускной экзамен в ремесле?', 'die Handwerkskammer (HWK)', 'die Agentur für Arbeit', 'die Berufsschule allein', 'das Finanzamt'],
+      ['Wo lernen Auszubildende die Theorie?', 'Где азубы изучают теорию?', 'in der Berufsschule', 'an der Universität', 'im Gymnasium', 'im Jobcenter'],
+      ['Welches Bundesland hat die meisten Einwohner?', 'В какой земле больше всего жителей?', 'Nordrhein-Westfalen', 'Bayern', 'Berlin', 'Niedersachsen'], ['Welches Bundesland ist flächenmäßig am größten?', 'Какая земля самая большая по площади?', 'Bayern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Brandenburg']]);
+    return MC(q, qr, r, w, [`Правильно: ${r}`]);
+  },
+});
+
 /* ══════════════ ПРОВЕРКА ОТВЕТА ══════════════ */
 function auNumCands(raw) {
   let s = String(raw == null ? '' : raw).replace(/[−–]/g, '-').replace(/[^0-9,.\- ]/g, ' ').trim();
@@ -562,11 +760,41 @@ function auGo(view, extra = {}) { auStopTimer(); Object.assign(AU, { view }, ext
 function auRender() {
   const b = $('au-body'); if (!b) return;
   if (AU.view === 'topic' && auTopic(AU.topic)) auTopicView(b);
+  else if (AU.view === 'path') auPathView(b);
+  else if (AU.view === 'page' && auPage(AU.page)) auPageView(b);
   else if (AU.view === 'cards') auDeckView(b, null);
   else if (AU.view === 'test') auRunView(b);
   else { AU.view = 'home'; auHomeView(b); }
 }
 const auTx = s => escapeHtml(String(s)).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '<code>$1</code>').replace(/\n/g, '<br>');
+/* ── план с нуля ── */
+const auPage = id => (window.AU_PAGES || []).find(x => x.id === id);
+function auItemDone(it, p) {
+  if (it.topic) return auBest('au_' + it.topic, p) >= 80;
+  if (it.page) return !!(p['aur_' + it.page] && p['aur_' + it.page].on);
+  if (it.test) return auBest('au__test', p) >= it.test;
+  return false;
+}
+function auPathInfo(p = loadProg()) {
+  const st = (window.AU_PATH || []).map((s, i) => ({ s, i, done: s.items.filter(it => auItemDone(it, p)).length, n: s.items.length }));
+  const cur = st.findIndex(x => x.done < x.n);
+  return { st, cur: cur < 0 ? st.length : cur, items: st.reduce((a, x) => a + x.n, 0), doneItems: st.reduce((a, x) => a + x.done, 0) };
+}
+function auNextItem(p = loadProg()) { for (const s of (window.AU_PATH || [])) for (const it of s.items) if (!auItemDone(it, p)) return it; return null; }
+function auStageOf(topicId) { return (window.AU_PATH || []).findIndex(s => s.items.some(it => it.topic === topicId)); }
+function auItemInfo(it, p = loadProg()) {
+  if (it.topic) { const t = auTopic(it.topic); if (!t) return null; const best = auBest('au_' + t.id, p), kn = t.cards.filter(c => auKnown(t.id, p).has(auCardKey(c))).length;
+    return { e: t.emoji, de: t.de, ru: t.ru, meta: `✍️ ${best ? best + '%' : '—'} · 🃏 ${kn}/${t.cards.length}` }; }
+  if (it.page) { const g = auPage(it.page); return g && { e: g.emoji, de: g.de, ru: g.ru, meta: auItemDone(it, p) ? lstr('gelesen', 'прочитано', 'прочитано') : lstr('lesen', 'прочитать', 'прочитати') }; }
+  if (it.test) { const b = auBest('au__test', p); return { e: '🎯', de: 'Probetest', ru: lstr(`Probetest: mindestens ${it.test} %`, `Пробный тест — набрать ${it.test} % и больше`, `Пробний тест — ${it.test} %+`), meta: `${lstr('bestes', 'лучший', 'найкращий')}: ${b ? b + '%' : '—'}` }; }
+  return null;
+}
+function auOpenItem(it) {
+  AU.deck = null; AU.run = null;
+  if (it.topic) auGo('topic', { topic: it.topic, tab: 'theory' });
+  else if (it.page) auGo('page', { page: it.page });
+  else if (it.test) auStartRun('test');
+}
 const auPrio = t => t.prio === 1 ? '<span class="au-prio au-p1" title="почти в каждом тесте">🔴</span>' : '<span class="au-prio au-p2" title="бывает часто">🟡</span>';
 
 function auHomeView(b) {
@@ -581,6 +809,14 @@ function auHomeView(b) {
       <div class="br-note">${lstr('In jedem Thema: 📖 Theorie von null an mit Beispielen · 🃏 Karten zum Auswendiglernen · ✍️ Übungsaufgaben (immer neu, mit Lösungsweg).',
         'В каждой теме: 📖 теория с нуля с разобранными примерами · 🃏 карточки для зубрёжки · ✍️ тренировка (задачи каждый раз новые, с решением по шагам).', 'У кожній темі: 📖 теорія з нуля · 🃏 картки · ✍️ тренування.')}
         <br>🔴 — ${lstr('kommt in fast jedem Test', 'есть почти в каждом тесте', 'є майже в кожному тесті')} · 🟡 — ${lstr('kommt oft vor', 'бывает часто', 'буває часто')}</div></div>
+    ${(() => { const P = auPathInfo(p), stg = (window.AU_PATH || [])[P.cur], nx = auNextItem(p), ni = nx && auItemInfo(nx, p);
+      return `<button class="au-pathcard" id="au-path"><span class="au-act-i">🗺️</span><span class="au-pc-body"><b>${lstr('Plan von null an — Schritt für Schritt', 'План с нуля — шаг за шагом', 'План з нуля — крок за кроком')}</b>
+        <small>${stg ? `${lstr('Etappe', 'Этап', 'Етап')} ${P.cur + 1} / ${P.st.length}: ${escapeHtml(lstr(stg.de, stg.ru, stg.ru))}` : '🏆 ' + lstr('Alle Etappen geschafft!', 'Все этапы пройдены!', 'Усі етапи пройдено!')}${ni ? ` · ${lstr('weiter', 'дальше', 'далі')}: ${ni.e} ${escapeHtml(lstr(ni.de, ni.ru, ni.ru))}` : ''}</small>
+        <span class="au-bar"><div style="width:${P.items ? P.doneItems / P.items * 100 : 0}%"></div></span></span><span class="au-pc-go">→</span></button>`; })()}
+    <div class="au-actions">
+      <button class="au-act au-act-sm" data-page="basics"><span class="au-act-i">🎓</span><span><b>${lstr('Was ist eine Ausbildung?', 'Как устроена Ausbildung', 'Як влаштована Ausbildung')}</b><small>${lstr('Ablauf, Bewerbung, Testteile', 'обучение, поступление, части теста', 'навчання, вступ, частини тесту')}</small></span></button>
+      <button class="au-act au-act-sm" data-page="bewerbung"><span class="au-act-i">📨</span><span><b>${lstr('Bewerbung und Gespräch', 'Bewerbung и собеседование', 'Bewerbung і співбесіда')}</b><small>${lstr('Anschreiben, Lebenslauf, Fragen', 'документы, письмо, вопросы и ответы', 'документи, лист, питання')}</small></span></button>
+    </div>
     <div class="au-actions">
       <button class="au-act" id="au-allcards"><span class="au-act-i">🃏</span><span><b>${lstr('Alle Formeln und Begriffe pauken', 'Зубрёжка: все формулы и термины', 'Зубрити всі формули й терміни')}</b>
         <small>${lstr('gelernt', 'знаю', 'знаю')} ${allKnown} / ${allCards}</small></span></button>
@@ -594,6 +830,8 @@ function auHomeView(b) {
           <span class="au-t-meta"><span title="${lstr('beste Übung', 'лучшая тренировка', 'найкраще тренування')}">✍️ ${best ? best + '%' : '—'}</span><span title="${lstr('Karten', 'карточки', 'картки')}">🃏 ${kn}/${t.cards.length}</span></span></button>`;
       }).join('')}</div>`).join('')}`;
   $('au-allcards').addEventListener('click', () => { AU.deck = null; auGo('cards'); });
+  $('au-path').addEventListener('click', () => auGo('path'));
+  b.querySelectorAll('[data-page]').forEach(x => x.addEventListener('click', () => auGo('page', { page: x.dataset.page })));
   $('au-test').addEventListener('click', () => auStartRun('test'));
   b.querySelectorAll('.au-tile').forEach(t => t.addEventListener('click', () => { AU.deck = null; AU.run = null; auGo('topic', { topic: t.dataset.id, tab: 'theory' }); }));
 }
@@ -604,6 +842,7 @@ function auTopicView(b) {
     <button class="au-back" id="au-home">← ${lstr('Alle Themen', 'Все темы', 'Усі теми')}</button>
     <div class="au-head"><span class="au-head-e">${t.emoji}</span><div>
       <h2 class="au-h2">${escapeHtml(t.de)} ${auPrio(t)}</h2><div class="au-head-ru">${escapeHtml(t.ru)}</div>
+      ${auStageOf(t.id) >= 0 ? `<button class="au-stagechip" id="au-tostage">🗺️ ${lstr('Etappe', 'Этап', 'Етап')} ${auStageOf(t.id) + 1} ${lstr('des Plans', 'плана', 'плану')}${auBest('au_' + t.id) >= 80 ? ' · ✓' : ''}</button>` : ''}
       <div class="au-head-skill"><b>${lstr('Was du können musst', 'Что уметь', 'Що вміти')}:</b> ${escapeHtml(t.skill)}${t.sample ? ` · <b>${lstr('Beispiel', 'Пример', 'Приклад')}:</b> ${escapeHtml(t.sample)}` : ''}</div></div></div>
     <div class="br-tabs">
       <button class="vlf-btn ${AU.tab === 'theory' ? 'active' : ''}" data-tab="theory">📖 ${lstr('Theorie', 'Теория', 'Теорія')}</button>
@@ -612,6 +851,7 @@ function auTopicView(b) {
     </div>
     <div id="au-pane"></div>`;
   $('au-home').addEventListener('click', () => auGo('home'));
+  $('au-tostage')?.addEventListener('click', () => auGo('path'));
   b.querySelectorAll('[data-tab]').forEach(x => x.addEventListener('click', () => { AU.tab = x.dataset.tab; if (AU.tab === 'train') AU.run = null; AU.deck = null; auStopTimer(); auTopicView(b); }));
   const pane = $('au-pane');
   if (AU.tab === 'cards') auDeckView(pane, t.id);
@@ -620,7 +860,12 @@ function auTopicView(b) {
 }
 
 function auTheory(pane, t) {
-  const blocks = t.theory.map(x => {
+  const blocks = auBlocksHtml(t.theory);
+  pane.innerHTML = auTheoryTail(t, blocks);
+  auTheoryBind(pane);
+}
+function auBlocksHtml(theory) {
+  return theory.map(x => {
     switch (x[0]) {
       case 'p': return `<p class="au-p">${auTx(x[1])}</p>`;
       case 'h': return `<h4 class="au-h">${auTx(x[1])}</h4>`;
@@ -635,13 +880,17 @@ function auTheory(pane, t) {
       default: return '';
     }
   }).join('');
-  pane.innerHTML = `<div class="au-theory">${blocks}</div>
+}
+function auTheoryTail(t, blocks) {
+  return `<div class="au-theory">${blocks}</div>
     <div class="au-block"><h4>🇩🇪 ${lstr('Wörter für den Test', 'Немецкие слова этой темы', 'Німецькі слова теми')}</h4>
       <div class="rt-scroll"><table class="rt au-tbl">${t.words.map(w => `<tr><td><b>${escapeHtml(w[0])}</b> <button class="au-say" data-say="${escapeHtml(w[0].replace(/\(.*?\)/g, ''))}" title="🔊">🔊</button></td><td>${escapeHtml(w[1])}</td></tr>`).join('')}</table></div></div>
     <div class="au-block"><h4>❓ ${lstr('So wird im Test gefragt', 'Как спрашивают в тесте', 'Як питають у тесті')}</h4>
       <ul class="au-asks">${t.asks.map(a => `<li><b>${escapeHtml(a[0])}</b><span>${escapeHtml(a[1])}</span></li>`).join('')}</ul></div>
     <div class="au-btnrow"><button class="btn-secondary" data-go="cards">🃏 ${lstr('Karten lernen', 'Учить карточки', 'Вчити картки')}</button>
       <button class="btn-primary" data-go="train">✍️ ${lstr('Jetzt üben', 'Тренироваться', 'Тренуватися')}</button></div>`;
+}
+function auTheoryBind(pane) {
   pane.querySelectorAll('[data-go]').forEach(x => x.addEventListener('click', () => { AU.tab = x.dataset.go; AU.run = null; AU.deck = null; auTopicView($('au-body')); window.scrollTo({ top: 0 }); }));
   pane.querySelectorAll('.au-say').forEach(x => x.addEventListener('click', () => { if (typeof speakWord === 'function') speakWord(x.dataset.say.trim()); }));
 }
@@ -721,9 +970,9 @@ function auRunView(host) {
     <div class="au-bar"><div style="width:${R.i / R.tasks.length * 100}%"></div></div>
     <div class="au-q">${isTest ? `<div class="au-q-tp">${tp.emoji} ${escapeHtml(tp.de)}</div>` : ''}
       ${task.svg ? `<div class="au-fig">${task.svg}</div>` : ''}
-      <div class="au-q-de">${escapeHtml(task.q)}</div>${AU.ru ? `<div class="au-q-ru">${escapeHtml(task.qr)}</div>` : ''}</div>
+      <div class="au-q-de">${escapeHtml(task.q)}</div>${task.code ? `<div class="au-code">${escapeHtml(task.code)}</div>` : ''}${AU.ru ? `<div class="au-q-ru">${escapeHtml(task.qr)}</div>` : ''}</div>
     ${task.type === 'mc'
-      ? `<div class="au-opts ${task.optSvg ? 'au-opts-svg' : ''}">${task.opts.map((o, i) => `<button class="au-opt" data-i="${i}">${task.optSvg ? auSym(o) : escapeHtml(o)}</button>`).join('')}</div>`
+      ? `<div class="au-opts ${task.optSvg ? 'au-opts-svg' : ''} ${task.mono ? 'au-opts-mono' : ''}">${task.opts.map((o, i) => `<button class="au-opt" data-i="${i}">${task.optSvg ? auSym(o) : escapeHtml(o)}</button>`).join('')}</div>`
       : `<div class="au-in">${task.pre ? `<span class="au-pre">${escapeHtml(task.pre)}</span>` : ''}<input id="au-input" type="text" inputmode="${task.type === 'frac' ? 'text' : 'decimal'}" autocomplete="off" placeholder="${task.type === 'frac' ? 'z. B. 7/8' : lstr('Antwort', 'Ответ', 'Відповідь')}">${task.unit ? `<span class="au-unit">${escapeHtml(task.unit)}</span>` : ''}
           <button class="btn-primary" id="au-check">${isTest ? lstr('Weiter', 'Дальше', 'Далі') : lstr('Prüfen', 'Проверить', 'Перевірити')}</button></div>
          ${task.type === 'frac' ? `<div class="br-note">${lstr('Bruch mit Schrägstrich eingeben: 7/8, gemischt: 1 1/2', 'Дробь вводи через косую черту: 7/8, смешанное число: 1 1/2', 'Дріб через скісну риску: 7/8')}</div>` : ''}`}
@@ -769,15 +1018,59 @@ function auRunResult(host) {
   host.innerHTML = `${isTest ? `<button class="au-back" id="au-home">← ${lstr('Alle Themen', 'Все темы', 'Усі теми')}</button>` : ''}
     <div class="au-block au-result"><div class="br-score"><b>${pct}%</b> · ${ok} / ${R.tasks.length} · ${verdict}</div>
       ${isTest ? `<div class="br-note">⏱ ${Math.floor(R.secs / 60)}:${String(R.secs % 60).padStart(2, '0')} · ${lstr('bestes Ergebnis', 'лучший результат', 'найкращий результат')}: ${auBest('au__test')}%</div>` : `<div class="br-note">${lstr('bestes Ergebnis', 'лучший результат', 'найкращий результат')}: ${auBest('au_' + R.topic)}%</div>`}
-      <div class="au-btnrow"><button class="btn-primary" id="au-again">↻ ${isTest ? lstr('Neuer Test', 'Новый тест', 'Новий тест') : lstr('Neue Aufgaben', 'Новые задачи', 'Нові задачі')}</button></div></div>
+      ${(() => { const done = isTest ? false : auBest('au_' + R.topic) >= 80, nx = auNextItem(), ni = nx && auItemInfo(nx);
+        return `${done ? `<div class="au-fb ok">✓ ${lstr('Thema im Plan geschafft (≥ 80 %)', 'Тема засчитана в плане (≥ 80 %)', 'Тему зараховано в плані (≥ 80 %)')}</div>` : !isTest ? `<div class="br-note">${lstr('Für den Plan: mindestens 80 % in einer Übungsrunde.', 'Чтобы тема засчиталась в плане, нужно 80 % в одной тренировке.', 'Щоб тему зарахувати, потрібно 80 %.')}</div>` : ''}
+        <div class="au-btnrow"><button class="btn-primary" id="au-again">↻ ${isTest ? lstr('Neuer Test', 'Новый тест', 'Новий тест') : lstr('Neue Aufgaben', 'Новые задачи', 'Нові задачі')}</button>
+        ${ni && (done || isTest) ? `<button class="btn-secondary" id="au-nextstep">${lstr('Nächster Schritt', 'Следующий шаг', 'Наступний крок')}: ${ni.e} ${escapeHtml(lstr(ni.de, ni.ru, ni.ru))} →</button>` : ''}</div>`; })()}</div>
     ${byTopic}
     <div class="au-block"><h4>🔍 ${lstr('Alle Aufgaben', 'Разбор задач', 'Розбір задач')}</h4>${R.tasks.map((t, i) => { const a = R.answers[i];
       const yours = t.type === 'mc' ? (t.optSvg ? AU_SYMN[t.opts[a.raw]][0] : t.opts[a.raw]) : a.raw;
       return `<details class="au-rev ${a.ok ? 'ok' : 'bad'}" ${!a.ok && isTest ? 'open' : ''}><summary>${a.ok ? '✅' : '❌'} ${escapeHtml(t.q)}</summary>
-        ${t.svg ? `<div class="au-fig au-fig-sm">${t.svg}</div>` : ''}<div class="au-q-ru">${escapeHtml(t.qr)}</div>
+        ${t.svg ? `<div class="au-fig au-fig-sm">${t.svg}</div>` : ''}${t.code ? `<div class="au-code">${escapeHtml(t.code)}</div>` : ''}<div class="au-q-ru">${escapeHtml(t.qr)}</div>
         <div>${lstr('Deine Antwort', 'Твой ответ', 'Твоя відповідь')}: <b>${escapeHtml(String(yours))}</b> · ${lstr('richtig', 'правильно', 'правильно')}: <b>${escapeHtml(auAnsText(t))}</b></div>
         <ol>${t.steps.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ol></details>`; }).join('')}</div>`;
   $('au-home')?.addEventListener('click', () => { AU.run = null; auGo('home'); });
+  $('au-nextstep')?.addEventListener('click', () => { const nx = auNextItem(); if (nx) auOpenItem(nx); });
   $('au-again').addEventListener('click', () => { if (isTest) auStartRun('test'); else { auStartRun('train', R.topic, true); auRunView(host); window.scrollTo({ top: 0 }); } });
   host.querySelectorAll('.au-bt').forEach(x => x.addEventListener('click', () => { AU.run = null; AU.deck = null; auGo('topic', { topic: x.dataset.id, tab: 'theory' }); }));
+}
+
+/* ── вид: план с нуля ── */
+function auPathView(b) {
+  const p = loadProg(), P = auPathInfo(p);
+  b.innerHTML = `<button class="au-back" id="au-home">← ${lstr('Alle Themen', 'Все темы', 'Усі теми')}</button>
+    <h3 class="au-gh">🗺️ ${lstr('Plan von null an — Schritt für Schritt', 'План с нуля — шаг за шагом', 'План з нуля — крок за кроком')}</h3>
+    <div class="au-block au-howto"><b>${lstr('So lernst du jede Etappe', 'Как проходить каждый этап', 'Як проходити кожен етап')}:</b>
+      <ol><li>📖 ${lstr('Theorie lesen und die Beispiele selbst nachrechnen', 'прочитай теорию и сам пересчитай разобранные примеры', 'прочитай теорію і перерахуй приклади')}</li>
+        <li>🃏 ${lstr('Karten lernen, bis du fast alle kannst', 'выучи карточки (формулы, слова), пока не будешь знать почти все', 'вивчи картки')}</li>
+        <li>✍️ ${lstr('Üben, bis du in einer Runde 80 % schaffst — dann ist das Thema geschafft ✓', 'тренируйся, пока не наберёшь 80 % в одном круге — тогда тема засчитана ✓', 'тренуйся до 80 % — тоді тему зараховано ✓')}</li></ol>
+      <div class="br-note">${lstr('Lieber jeden Tag 20–30 Minuten als einmal pro Woche 3 Stunden. Einmal pro Woche den Probetest machen und die Fehler wiederholen.',
+        'Лучше 20–30 минут каждый день, чем 3 часа раз в неделю. Раз в неделю проходи пробный тест и повторяй темы с ошибками.', 'Краще 20–30 хвилин щодня. Раз на тиждень — пробний тест.')}</div>
+      <div class="au-pp"><span>${lstr('Geschafft', 'Пройдено', 'Пройдено')}: <b>${P.doneItems} / ${P.items}</b></span><span class="au-bar"><div style="width:${P.items ? P.doneItems / P.items * 100 : 0}%"></div></span></div></div>
+    <div class="au-path">${P.st.map(x => {
+      const cls = x.done === x.n ? 'done' : x.i === P.cur ? 'cur' : 'todo';
+      return `<div class="au-stage ${cls}"><div class="au-st-n">${cls === 'done' ? '✓' : x.i + 1}</div><div class="au-st-body">
+        <div class="au-st-h">${x.s.emoji} ${escapeHtml(lstr(x.s.de, x.s.ru, x.s.ru))} ${cls === 'cur' ? `<span class="au-here">▶ ${lstr('du bist hier', 'ты здесь', 'ти тут')}</span>` : ''}</div>
+        <div class="au-st-goal">${escapeHtml(x.s.goal)}</div>
+        <div class="au-st-items">${x.s.items.map((it, k) => { const inf = auItemInfo(it, p); if (!inf) return ''; const ok = auItemDone(it, p);
+          return `<button class="au-si ${ok ? 'ok' : ''}" data-st="${x.i}" data-k="${k}"><span class="au-si-c">${ok ? '✓' : '○'}</span><span class="au-si-e">${inf.e}</span>
+            <span class="au-si-t"><b>${escapeHtml(inf.de)}</b><small>${escapeHtml(inf.ru)}</small></span><span class="au-si-m">${escapeHtml(inf.meta)}</span></button>`; }).join('')}</div>
+        <div class="au-st-prog">${x.done} / ${x.n}</div></div></div>`; }).join('')}</div>`;
+  $('au-home').addEventListener('click', () => auGo('home'));
+  b.querySelectorAll('.au-si').forEach(x => x.addEventListener('click', () => auOpenItem(window.AU_PATH[+x.dataset.st].items[+x.dataset.k])));
+  const cur = b.querySelector('.au-stage.cur'); if (cur) setTimeout(() => cur.scrollIntoView({ block: 'center', behavior: 'smooth' }), 50);
+}
+
+/* ── вид: информационная страница ── */
+function auPageView(b) {
+  const g = auPage(AU.page), p = loadProg(), read = auItemDone({ page: g.id }, p);
+  b.innerHTML = `<button class="au-back" id="au-topath">← ${lstr('Zum Plan', 'К плану', 'До плану')}</button>
+    <div class="au-head"><span class="au-head-e">${g.emoji}</span><div><h2 class="au-h2">${escapeHtml(lstr(g.de, g.ru, g.ru))}</h2><div class="au-head-ru">${escapeHtml(g.de)}</div></div></div>
+    <div class="au-theory">${auBlocksHtml(g.theory)}</div>
+    <div class="au-btnrow"><button class="${read ? 'btn-secondary' : 'btn-primary'}" id="au-read">${read ? '✓ ' + lstr('Gelesen', 'Прочитано', 'Прочитано') : '✓ ' + lstr('Gelesen — weiter', 'Прочитано — дальше по плану', 'Прочитано — далі')}</button></div>`;
+  $('au-topath').addEventListener('click', () => auGo('path'));
+  $('au-read').addEventListener('click', () => {
+    const pr = loadProg(); pr['aur_' + g.id] = { on: true, updatedAt: Date.now() }; saveProg(pr);
+    const nx = auNextItem(); if (nx && !read) auOpenItem(nx); else auGo('path');
+  });
 }
