@@ -266,16 +266,17 @@ window.AU_PAGES = [
     ] },
 ];
 
-/* ── план с нуля: этапы по порядку; тема засчитана — тренировка ≥ 80 % ── */
+/* ── план с нуля: этапы по порядку. Задания этапов — в db/ausbildung_drills.js (поле st = индекс этапа).
+   items — дополнительные шаги этапа: страница (page; opt — по желанию) и финальный тест (test). ── */
 window.AU_PATH = [
-  { emoji: '🎓', de: 'Orientierung', ru: 'Понять, как всё устроено', goal: 'Что такое Ausbildung, как поступают и из чего состоит тест.', items: [{ page: 'basics' }] },
-  { emoji: '🔢', de: 'Zahlen-Fundament', ru: 'Фундамент: числа и счёт', goal: 'Таблица умножения без запинки, немецкие числа, счёт в уме и порядок действий.', items: [{ topic: 'zahlen' }, { topic: 'kopf' }] },
-  { emoji: '🍕', de: 'Brüche, Prozent, Dreisatz', ru: 'Дроби, проценты, пропорции', goal: 'Три темы, которые есть почти в каждом тесте.', items: [{ topic: 'brueche' }, { topic: 'prozent' }, { topic: 'dreisatz' }] },
-  { emoji: '📏', de: 'Einheiten und Formeln', ru: 'Единицы и формулы', goal: 'Переводить единицы, работать со степенями десяти, выражать величины из формул.', items: [{ topic: 'einheiten' }, { topic: 'potenzen' }, { topic: 'gleichungen' }] },
-  { emoji: '📐', de: 'Geometrie und Textaufgaben', ru: 'Геометрия и задачи из жизни', goal: 'Площади, объёмы, расчёт материала и чтение графиков.', items: [{ topic: 'geometrie' }, { topic: 'text' }, { topic: 'diagramme' }] },
-  { emoji: '🔧', de: 'Mechanik', ru: 'Механика и техническое понимание', goal: 'Сила, скорость, давление, блоки, рычаг и шестерни.', items: [{ topic: 'mechanik' }, { topic: 'hebel' }, { topic: 'zahnraeder' }] },
-  { emoji: '⚡', de: 'Strom verstehen', ru: 'Электричество с нуля', goal: 'Что такое напряжение и ток, что проводит ток, как устроена цепь и как её рисуют.', items: [{ topic: 'groessen' }, { topic: 'leiter' }, { topic: 'stromkreis' }, { topic: 'schaltzeichen' }, { topic: 'acdc' }] },
-  { emoji: '🔣', de: 'Elektro rechnen', ru: 'Расчёты по электрике и безопасность', goal: 'Закон Ома, мощность, энергия и её стоимость, безопасность, датчики и приводы.', items: [{ topic: 'ohm' }, { topic: 'leistung' }, { topic: 'arbeit' }, { topic: 'sicherheit' }, { topic: 'sensor' }] },
-  { emoji: '🧩', de: 'Logik, Konzentration, Deutsch', ru: 'Логика, внимательность, немецкий, общие знания', goal: 'Остальные части Einstellungstest.', items: [{ topic: 'logik' }, { topic: 'konz' }, { topic: 'deutsch' }, { topic: 'wissen' }] },
-  { emoji: '🏁', de: 'Generalprobe und Bewerbung', ru: 'Генеральная репетиция и Bewerbung', goal: 'Пробный тест на 70 % и выше, готовые документы и ответы для собеседования.', items: [{ test: 70 }, { page: 'bewerbung' }] },
+  { emoji: '🎓', de: 'Orientierung', ru: 'Перед стартом', goal: 'По желанию: что такое Ausbildung, как поступают и из чего состоит тест.', items: [{ page: 'basics', opt: true }] },
+  { emoji: '🔢', de: 'Zahlen-Fundament', ru: 'Фундамент: числа и счёт', goal: 'Таблица умножения без запинки, немецкие числа, счёт в уме и порядок действий.', items: [] },
+  { emoji: '🍕', de: 'Brüche, Prozent, Dreisatz', ru: 'Дроби, проценты, пропорции', goal: 'Три темы, которые есть почти в каждом тесте.', items: [] },
+  { emoji: '📏', de: 'Einheiten und Formeln', ru: 'Единицы и формулы', goal: 'Переводить единицы, работать со степенями десяти, выражать величины из формул.', items: [] },
+  { emoji: '📐', de: 'Geometrie und Textaufgaben', ru: 'Геометрия и задачи из жизни', goal: 'Площади, объёмы, расчёт материала и чтение графиков.', items: [] },
+  { emoji: '🔧', de: 'Mechanik', ru: 'Механика и техническое понимание', goal: 'Сила, скорость, давление, блоки, рычаг и шестерни.', items: [] },
+  { emoji: '⚡', de: 'Strom verstehen', ru: 'Электричество с нуля', goal: 'Что такое напряжение и ток, что проводит ток, как устроена цепь и как её рисуют.', items: [] },
+  { emoji: '🔣', de: 'Elektro rechnen', ru: 'Расчёты по электрике и безопасность', goal: 'Закон Ома, мощность, энергия и её стоимость, безопасность, датчики и приводы.', items: [] },
+  { emoji: '🧩', de: 'Logik, Konzentration, Deutsch', ru: 'Логика, внимательность, немецкий, общие знания', goal: 'Остальные части Einstellungstest.', items: [] },
+  { emoji: '🏁', de: 'Generalprobe und Bewerbung', ru: 'Генеральная репетиция и Bewerbung', goal: 'Пробный тест вперемешку по всем темам, документы и ответы для собеседования.', items: [{ test: 70 }, { page: 'bewerbung' }] },
 ];
